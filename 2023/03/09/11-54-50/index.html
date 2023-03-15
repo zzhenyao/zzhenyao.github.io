@@ -28,8 +28,9 @@
 <meta property="og:description" content="CSAPP的第一个实验,处理二进制代码,解谜题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-09T03:54:50.000Z">
-<meta property="article:modified_time" content="2023-03-13T07:46:24.931Z">
+<meta property="article:modified_time" content="2023-03-15T05:24:40.380Z">
 <meta property="article:author" content="yao">
+<meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary">
 
 
@@ -113,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E8%A6%81%E6%B1%82"><span class="nav-number">2.</span> <span class="nav-text">具体要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%8F%8A%E8%A7%A3%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">题目及解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bitXor"><span class="nav-number">3.1.</span> <span class="nav-text">bitXor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmin"><span class="nav-number">3.2.</span> <span class="nav-text">tmin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isTmax"><span class="nav-number">3.3.</span> <span class="nav-text">isTmax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#allOddBits"><span class="nav-number">3.4.</span> <span class="nav-text">allOddBits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#negate"><span class="nav-number">3.5.</span> <span class="nav-text">negate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isAsciiDigit"><span class="nav-number">3.6.</span> <span class="nav-text">isAsciiDigit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conditional"><span class="nav-number">3.7.</span> <span class="nav-text">conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isLessOrEqual"><span class="nav-number">3.8.</span> <span class="nav-text">isLessOrEqual</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logicalNeg"><span class="nav-number">3.9.</span> <span class="nav-text">logicalNeg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#howManyBits"><span class="nav-number">3.10.</span> <span class="nav-text">howManyBits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#floatScale2"><span class="nav-number">3.11.</span> <span class="nav-text">floatScale2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#floatFloat2Int"><span class="nav-number">3.12.</span> <span class="nav-text">floatFloat2Int</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#floatPower2"><span class="nav-number">3.13.</span> <span class="nav-text">floatPower2</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9"><span class="nav-number">3.</span> <span class="nav-text">相关内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%8F%8A%E8%A7%A3%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">题目及解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bitXor"><span class="nav-number">4.1.</span> <span class="nav-text">bitXor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmin"><span class="nav-number">4.2.</span> <span class="nav-text">tmin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isTmax"><span class="nav-number">4.3.</span> <span class="nav-text">isTmax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#allOddBits"><span class="nav-number">4.4.</span> <span class="nav-text">allOddBits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#negate"><span class="nav-number">4.5.</span> <span class="nav-text">negate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isAsciiDigit"><span class="nav-number">4.6.</span> <span class="nav-text">isAsciiDigit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conditional"><span class="nav-number">4.7.</span> <span class="nav-text">conditional</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isLessOrEqual"><span class="nav-number">4.8.</span> <span class="nav-text">isLessOrEqual</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logicalNeg"><span class="nav-number">4.9.</span> <span class="nav-text">logicalNeg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#howManyBits"><span class="nav-number">4.10.</span> <span class="nav-text">howManyBits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#floatScale2"><span class="nav-number">4.11.</span> <span class="nav-text">floatScale2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#floatFloat2Int"><span class="nav-number">4.12.</span> <span class="nav-text">floatFloat2Int</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#floatPower2"><span class="nav-number">4.13.</span> <span class="nav-text">floatPower2</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -128,18 +129,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -210,7 +211,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-13 15:46:24" itemprop="dateModified" datetime="2023-03-13T15:46:24+08:00">2023-03-13</time>
+      <time title="修改时间：2023-03-15 13:24:40" itemprop="dateModified" datetime="2023-03-15T13:24:40+08:00">2023-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/csapp/" itemprop="url" rel="index"><span itemprop="name">csapp</span></a>
+        </span>
     </span>
 
   
@@ -238,8 +248,12 @@
 <ul>
 <li>23.03.10：初稿</li>
 </ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+</ul>
 <h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>DataLab实验，需要我们完善函数，条件是使用限定的操作符，并且操作符的数量也有限制，“&#x3D;”不做数量限制。</p>
-<h1 id="具体要求"><a href="#具体要求" class="headerlink" title="具体要求"></a>具体要求</h1><ol>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
 <li><p>自己定义的int整型的赋值范围是0到0xFF，8bits</p>
 </li>
 <li><p>机器是32位</p>
@@ -595,6 +609,9 @@
 </ul>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/csapp/" rel="tag"># csapp</a>
+          </div>
 
         
 
