@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>CSAPP 实验I Data Lab</title>
+    <url>/2023/03/09/11-54-50/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>23.03.10：初稿</li>
+<li>23.03.18：修改行距</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+</ul>
+<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>DataLab实验，需要我们完善函数，条件是使用限定的操作符，并且操作符的数量也有限制，“&#x3D;”不做数量限制。</p>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
+<li><p>自己定义的int整型的赋值范围是0到0xFF，8bits</p>
+</li>
+<li><p>机器是32位</p>
+</li>
+<li><p>只能使用一元操作符<code>!</code> <code>~</code>，二元操作符<code>&amp;</code> <code>|</code> <code>+</code> <code>&lt;&lt;</code> <code>&gt;&gt;</code> </p>
+</li>
+<li><p>不可以调用其他函数</p>
+</li>
+<li><p>测试命令</p>
+<blockquote>
+<p><code>make clean</code>：清除生成，每次修改<code>bits.c</code>文件都要清除重新生成<code>make</code>：生成文件<br><code>./btest -f funname -1 v</code>：测试单独的函数，带参数 <code>-T 100</code>：修改限制时间<br><code>./dlc bits.c</code> ：测试编码是否符合规则,符合规则无输出，参数<code>-e</code>，输出所有信息<br><code>./ishow 22</code>：输出int值的二进制，数值<br><code>./fshow 22</code>：输出float的二进制，数值，已经非规范值</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="bitXor"><a href="#bitXor" class="headerlink" title="bitXor"></a>bitXor</h2><ul>
+<li><p>题目要求：返回两个int的异或值</p>
+</li>
+<li><p>允许操作：<code>~ &amp;</code></p>
+</li>
+<li><p>操作数量：14</p>
+</li>
+<li><p>分值：1</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">bitXor</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> ~(~(~x &amp; y) &amp; ~(x &amp; ~y));  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="tmin"><a href="#tmin" class="headerlink" title="tmin"></a>tmin</h2><ul>
+<li><p>题目要求：求补码的最小值</p>
+</li>
+<li><p>允许操作：<code>! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</code></p>
+</li>
+<li><p>操作数量：4</p>
+</li>
+<li><p>分值：1</p>
+</li>
+</ul>
+<p>32位机器码的补码最小值是最高位为1，其他位0，所以用1左移31位形成。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">tmin</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="type">int</span> x = <span class="number">1</span>;</span><br><span class="line">  x = x &lt;&lt; <span class="number">31</span>;</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="isTmax"><a href="#isTmax" class="headerlink" title="isTmax"></a>isTmax</h2><ul>
+<li><p>题目要求：如果x是补码最大值返回1，否则返回0</p>
+</li>
+<li><p>允许操作：<code>! ~ &amp; ^ | +</code></p>
+</li>
+<li><p>操作数量：10</p>
+</li>
+<li><p>分值：1</p>
+</li>
+</ul>
+<p>补码的最大值是最高位0，其他位1。加1后是最小值，Tmin和Tmax每位都相反，Tmin^Tmax是全1，可以使用这个值进行返回。需要注意补码的特殊值Tmin，Tmax，还需要注意-1，32位全1 <code>1111</code>，因为-1 ^ 0 &#x3D; 1，需要排除这种情况</p>
+<ul>
+<li><p>flag_2 表示x是否等于 -1 </p>
+<ol>
+<li><p>如果x&#x3D;&#x3D;-1， y&#x3D;0，y^0 &#x3D;&#x3D; 0   flag_2为0</p>
+</li>
+<li><p>如果x!&#x3D;-1，y!&#x3D;0， y^0 !&#x3D; 0，flag_2不为0，flag的值是0或1，所以需要取非两次，把非零值转换为1</p>
+</li>
+</ol>
+</li>
+<li><p>flag_1 表示(x+1)^x，有两种情况结果为全1，x是<code>Tmax</code>和<code>-1</code>，我们只需要全为1的情况，所以先取反~，换成全0，再取非!， 转为1。</p>
+</li>
+<li><p>返回值为两个标志相与，用flag_2排除掉flag_1中-1的这种情况，剩下的就是Tmax</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">isTmax</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">  <span class="type">int</span> y = x + <span class="number">1</span>;  <span class="comment">//Tmin</span></span><br><span class="line">  <span class="type">int</span> flag_1 = !(~(x ^ y)); </span><br><span class="line">  <span class="type">int</span> flag_2= !!(y ^ <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> flag_1 &amp; flag_2; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="allOddBits"><a href="#allOddBits" class="headerlink" title="allOddBits"></a>allOddBits</h2><ul>
+<li><p>题目要求：如果每一个偶数位都是1返回1，否则返回0</p>
+</li>
+<li><p>允许操作：<code>! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</code></p>
+</li>
+<li><p>操作数量：12</p>
+</li>
+<li><p>分值：2</p>
+</li>
+</ul>
+<p>先从32比特中只保留所有偶数位的值，其他位赋值0，再和<code>0xAAAAAAAA</code>作对比相等返回1，因为不能用等号，所以用异或^代替判断，如果相等全为0，取非!值为1，否则为0。</p>
+<ul>
+<li><p>移位和加法让变量y等于0xAAAAAAAA。</p>
+</li>
+<li><p>x与y相与，只留下x的偶数位的值</p>
+</li>
+<li><p>用异或判断x与y是不是相等</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">allOddBits</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">  <span class="type">int</span> y = <span class="number">0xAA</span>; </span><br><span class="line">  <span class="comment">//+优先级大于 &lt;&lt; </span></span><br><span class="line">  y  = y + (y &lt;&lt; <span class="number">8</span>);</span><br><span class="line">  y = y + (y &lt;&lt; <span class="number">16</span>);</span><br><span class="line">  <span class="comment">//只留下x的偶数位值</span></span><br><span class="line">  x = x &amp; y;</span><br><span class="line">  <span class="keyword">return</span> !(y ^ x) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="negate"><a href="#negate" class="headerlink" title="negate"></a>negate</h2><ul>
+<li><p>题目要求：返回-x</p>
+</li>
+<li><p>允许操作：<code>! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</code></p>
+</li>
+<li><p>操作数量：5</p>
+</li>
+<li><p>分值：2</p>
+</li>
+</ul>
+<p>这个比较简单，根据二进制补码x与-x就是按位取反再加1。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">negate</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> ~x + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="isAsciiDigit"><a href="#isAsciiDigit" class="headerlink" title="isAsciiDigit"></a>isAsciiDigit</h2><ul>
+<li><p>题目要求：判断x是不是ASCII码的0-9， 相当于判断x的值是不是0x30到0x39。</p>
+</li>
+<li><p>允许操作：<code>! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</code></p>
+</li>
+<li><p>操作数量：15</p>
+</li>
+<li><p>分值：3</p>
+</li>
+</ul>
+<p>先观察0-9的补码形式</p>
+<p>0x30 <code>110000</code>  </p>
+<p>0x37 <code>110111</code>  </p>
+<p>0x38 <code>111000</code>  </p>
+<p>0x39 <code>111001</code></p>
+<p>首先需要满足除后6位外，高位全为0，满足第一个条件后0-7满足前三位为<code>110</code>，剩下的直接对比是不是等于8或9。<code>不能使用等号所以用异或判断相等</code></p>
+<ul>
+<li><p>flag_1 右移6位后，如果高位全为0，就是0，取非!为1，不然就是0</p>
+</li>
+<li><p>flag_2 右移3位后，满足第一个条件的除了低3位其他全为0，与<code>110</code>比较相等就是0到7中的值</p>
+</li>
+<li><p>flag_3， flag_4，直接判断是不是等于8，9。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">isAsciiDigit</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">  <span class="type">int</span> y = x &amp; <span class="number">0x3f</span>; <span class="comment">//截取x的后6位</span></span><br><span class="line">  <span class="type">int</span> flag_1 = !(x &gt;&gt; <span class="number">6</span>); <span class="comment">//右移六位后,取非为1   x的高位全是0  符合条件</span></span><br><span class="line">  <span class="type">int</span> flag_2 = !((x &gt;&gt; <span class="number">3</span>) ^ <span class="number">0x6</span>);  <span class="comment">//满足第一个条件后,右移3位   异或110   如果为0  就是属于&#x27;0&#x27; 到&#x27;7&#x27;</span></span><br><span class="line">  <span class="type">int</span> flag_3 = !(y ^ <span class="number">0x38</span>);  <span class="comment">//满足第一个条件后   是&#x27;8&#x27;</span></span><br><span class="line">  <span class="type">int</span> flag_4 = !(y ^ <span class="number">0x39</span>);   <span class="comment">//满足第一个条件后   是&#x27;9&#x27;</span></span><br><span class="line">  <span class="keyword">return</span> flag_1 &amp; (flag_2 | flag_3 | flag_4);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="conditional"><a href="#conditional" class="headerlink" title="conditional"></a>conditional</h2><ul>
+<li><p>题目要求：x不为0，返回y， x等于0，返回z。</p>
+</li>
+<li><p>允许操作：<code>! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</code></p>
+</li>
+<li><p>操作数量：16</p>
+</li>
+<li><p>分值：3</p>
+</li>
+</ul>
+<p>先找返回值，x等于0，return (x &amp; y) ^ (~x &amp; z)，x不等于0的时候，结果很多，这时候把x处理一下变为全1，返回值就相等了。</p>
+<ul>
+<li><p>对于x不等于0的情况，换全1比较麻烦，对x取非!，把x简化成0或1。</p>
+</li>
+<li><p>把x扩展到全1和全0，用移位加也能做出来而且满足操作数量的限制，继续做后面的题目<code>logicalNeg</code>想到了一个快速扩展的方法，0或1，取反加1，就是全0或者全1。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">conditional</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> &#123;</span><br><span class="line">  x = !x;   <span class="comment">//取非 把x变为 0 1两种    把他们扩展到32位</span></span><br><span class="line">  x = ~x + <span class="number">1</span>;  <span class="comment">//01快速扩展到全0全1 </span></span><br><span class="line"> <span class="comment">// x = (x &lt;&lt; 1) + x;</span></span><br><span class="line"> <span class="comment">// x = (x &lt;&lt; 2) + x;</span></span><br><span class="line"> <span class="comment">// x = (x &lt;&lt; 4) + x;</span></span><br><span class="line"> <span class="comment">// x = (x &lt;&lt; 8) + x;</span></span><br><span class="line"> <span class="comment">// x = (x &lt;&lt; 16) + x;</span></span><br><span class="line">  <span class="keyword">return</span> ((~x) &amp; y) ^ (x &amp; z);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="isLessOrEqual"><a href="#isLessOrEqual" class="headerlink" title="isLessOrEqual"></a>isLessOrEqual</h2><ul>
+<li><p>题目要求：x&lt;&#x3D;y，返回1，否则返回0。</p>
+</li>
+<li><p>允许操作：<code>! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</code></p>
+</li>
+<li><p>操作数量：24</p>
+</li>
+<li><p>分值：3</p>
+</li>
+</ul>
+<p>找出所以返回1的情况，一共两种情况，相等，小于。相等的时候比较好做，用异或判断相等，小于的情况比较复杂。</p>
+<ul>
+<li><p>等于：flag_3表示相等的情况  异或判断</p>
+</li>
+<li><p>小于：有两种情况 <code>需要注意减法同号一点不会溢出</code></p>
+<ol>
+<li><p>flag_5：x负数，y正数。</p>
+</li>
+<li><p>flag_4：x，y同号，x &lt; y，转换为 y-x&gt;0。</p>
+</li>
+</ol>
+</li>
+<li><p>用flag_5 表示x负数，y正数。   <code>用右移31位看符号看判断正负</code></p>
+</li>
+<li><p>用flag_6 表示x正数，y负数。</p>
+</li>
+<li><p>用sum&#x3D;y - x，flag_4 表示符号。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">isLessOrEqual</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;</span><br><span class="line">  <span class="type">int</span> nagete_x = ~x + <span class="number">1</span>;</span><br><span class="line">  <span class="type">int</span> sum = y + nagete_x; </span><br><span class="line">  <span class="type">int</span> flag_3 = !(x ^ y);</span><br><span class="line">  <span class="type">int</span> flag_5 = (x &gt;&gt; <span class="number">31</span>) &amp; !(y &gt;&gt; <span class="number">31</span>);   </span><br><span class="line">  <span class="type">int</span> flag_6 = !(x &gt;&gt; <span class="number">31</span>) &amp; (y &gt;&gt; <span class="number">31</span>);   </span><br><span class="line">  <span class="type">int</span> flag_4 = !(sum &gt;&gt; <span class="number">31</span>) &amp; !flag_5 &amp; !flag_6;   <span class="comment">//xy同号  减法不会溢出  减法有效</span></span><br><span class="line">  <span class="keyword">return</span> flag_3 | flag_4 | flag_5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="logicalNeg"><a href="#logicalNeg" class="headerlink" title="logicalNeg"></a>logicalNeg</h2><ul>
+<li><p>题目要求：实现取非!的功能</p>
+</li>
+<li><p>允许操作：<code>~ &amp; ^ | + &lt;&lt; &gt;&gt;</code></p>
+</li>
+<li><p>操作数量：12</p>
+</li>
+<li><p>分值：4</p>
+</li>
+</ul>
+<p>思路：取非结果只有0和1，把全0或全1加1，就是1或0，所以就需要把0转换为全1，非0转换为全0，然后加1，就是返回值。默认返回0，找出返回1的情况，也就是全1。<code>只有0和Tmin的负值和自己符号相同，其他的符号都相反</code></p>
+<ul>
+<li><p>取负值，对符号位扩展，然后自己的符号位和负值符号位相加，</p>
+<ol>
+<li><p>0和Tmin，结果为0。</p>
+</li>
+<li><p>其他结果为全1。</p>
+</li>
+</ol>
+</li>
+<li><p>flag_1：~sum，0和Tmin结果为全1， 其他为全0。</p>
+</li>
+<li><p>flag_2：~Tmin 01111 ~0全1</p>
+</li>
+<li><p>flag_3：flag_1 中排除到flag_2的Tmin情况</p>
+<ol>
+<li><p>Tmin <code>0111</code>  0为<code>1111</code>  其余为<code>0000</code></p>
+</li>
+<li><p>取反，只保留符号位， Tmin <code>1111</code> 0为<code>0000</code> 其余为<code>1111</code></p>
+</li>
+<li><p>加1后，0为<code>0001</code>， 其余都统一为<code>0000</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">logicalNeg</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">  <span class="type">int</span> neg_x = ~x;</span><br><span class="line">  <span class="type">int</span> y = neg_x + <span class="number">1</span>;</span><br><span class="line">  <span class="type">int</span> hight_x = x &gt;&gt; <span class="number">31</span>;</span><br><span class="line">  <span class="type">int</span> hight_y = y &gt;&gt; <span class="number">31</span>;</span><br><span class="line">  <span class="type">int</span> flag_1 = ~(hight_x + hight_y);</span><br><span class="line">  <span class="type">int</span> flag_2 = neg_x;</span><br><span class="line">  <span class="type">int</span> flag_3 = (~(flag_1 &amp; flag_2) &gt;&gt; <span class="number">31</span>) + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> flag_3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="howManyBits"><a href="#howManyBits" class="headerlink" title="howManyBits"></a>howManyBits</h2><ul>
+<li><p>题目要求：返回表示x的补码最短长度 <code>注意-1，用一位</code></p>
+</li>
+<li><p>允许操作：<code>! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</code></p>
+</li>
+<li><p>操作数量：90</p>
+</li>
+<li><p>分值：4</p>
+</li>
+</ul>
+<p>思路：用上面做的函数 conditional 做两个if功能， 一次返回分半查找的剩余一半函数 ，一次计算分半如果选择前一半，bit数要加上一半的长度，选择后面长度加0不做处理。</p>
+<blockquote>
+<p>用0xffff0000 留下x的前16位,如果不等于0 说明位数大于16 等于0 说明位数小于16 在后16位内再进行分半查找</p>
+</blockquote>
+<p>正负数的处理<code>重点</code><br>都处理成正数，方便右移添0。加上符号位就是有效位数。</p>
+<ul>
+<li><p>正数：找出最高位的1。</p>
+</li>
+<li><p>负数：找出最高位的0，<code>Tmin也符合</code></p>
+<blockquote>
+<p>负数高位连续的1都是无用数据，只需要找到高位连续的1后的第一个0在哪里，做法是取反，如<code>1110010</code>，有用的数据是<code>10010</code>，全部取反后<code>0001101</code>， 有效位数是4位，加上符号位。</p>
+</blockquote>
+</li>
+<li><p>flag_nage： x是负数 值为1</p>
+</li>
+<li><p>重点代码，</p>
+<ol>
+<li><p>if函数功能</p>
+<blockquote>
+<p><code>x = (extend_f_n &amp; (~x)) ^ ((~extend_f_n) &amp; x);</code> ：如果标记为全1，选择的~x， 如果为全0，选择的x。异或的两边有一个一直为全0，结果一定是另一个。</p>
+</blockquote>
+</li>
+<li><p>一个二分法</p>
+<blockquote>
+<p><code>x_32 = x &amp; bit_32;</code> ：取x的前16位<br><code>x_32 = !x_32;</code>：取非，如果前16位全0，值就是1，否则是0<br><code>x_32 = ~x_32 + 1;</code> 前16位全0，扩充到全1，否则扩充到全0<br><code>flag_32 = ~x_32;</code> 这里是为了减少一个op值，重复使用代码<br><code>x_16 = (flag_32 &amp; (x &gt;&gt; 16)) ^ ((x_32 &amp; (x &amp; (~bit_32))));</code><br>x_32如果全0，说明前16位，有1，那就把x右移16位，覆盖掉后面，继续对这16位进行二分法。<code>这里不用考虑右移补1，因为都是正数最高位都是0</code>。并且总数加16。<br>如果全1，说明前16位都是0，要从后16位开始二分法，不用移位，x_16要等于x的后16位。总数加0。<br><code>sum = sum + (flag_32 &amp; 16);</code>：</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">howManyBits</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">  <span class="type">int</span> x_32, x_16, x_8, x_4, x_2;  <span class="comment">//分别表示x的不同比特</span></span><br><span class="line">  <span class="type">int</span> bit_8 = <span class="number">0xff</span> &lt;&lt; <span class="number">8</span>;</span><br><span class="line">  <span class="type">int</span> bit_32 = (bit_8 + <span class="number">0xff</span>) &lt;&lt; <span class="number">16</span>;   </span><br><span class="line">  <span class="type">int</span> bit_16 = bit_8;</span><br><span class="line">  <span class="type">int</span> flag_32,flag_16,flag_8,flag_4,flag_2;  <span class="comment">//表示 ~x_32  重使用一次 减少 ops数量</span></span><br><span class="line">  <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="type">int</span> flag_nage = !!(x &gt;&gt; <span class="number">31</span>);     <span class="comment">//  x是负数   值为1</span></span><br><span class="line">  <span class="comment">//通过负0和Tmin 都是自己   ^之后为0  排除x是0的情况    当x是Tmin 是值为1</span></span><br><span class="line">  <span class="comment">//int flag_Tmin = !(x ^ (~x + 1)) &amp; x; </span></span><br><span class="line">  <span class="type">int</span> flag_Tmin = !(x &lt;&lt; <span class="number">1</span>) &amp; x;   <span class="comment">//Tmin 左移一位 去掉符号位后是全0   比上面的方法减少op</span></span><br><span class="line">  <span class="type">int</span> extend_f_T = ~flag_Tmin + <span class="number">1</span>;      <span class="comment">//扩展flag_Tmin</span></span><br><span class="line">  <span class="type">int</span> extend_f_n = ~flag_nage + <span class="number">1</span>;      <span class="comment">//扩展flag_nage</span></span><br><span class="line">  sum = sum + (flag_Tmin &amp; <span class="number">32</span>);</span><br><span class="line">  x = (extend_f_T &amp; <span class="number">0</span>) ^ ((~extend_f_T) &amp; x);  <span class="comment">// flag_Tmin 是1时  x赋值0   是0是  x不变</span></span><br><span class="line"></span><br><span class="line">  x = (extend_f_n &amp; (~x)) ^ ((~extend_f_n) &amp; x);  <span class="comment">// flag_nage 是1时  x赋值~x   是0是  x不变</span></span><br><span class="line"></span><br><span class="line">  bit_8 = <span class="number">0xf0</span>; </span><br><span class="line">  x_32 = x &amp; bit_32;</span><br><span class="line">  x_32 = !x_32;</span><br><span class="line">  x_32 = ~x_32 + <span class="number">1</span>;</span><br><span class="line">  flag_32 = ~x_32;</span><br><span class="line">  x_16 = (flag_32 &amp; (x &gt;&gt; <span class="number">16</span>)) ^ ((x_32 &amp; (x &amp; (~bit_32))));</span><br><span class="line">  sum = sum + (flag_32 &amp; <span class="number">16</span>);</span><br><span class="line"></span><br><span class="line">  x = x_16;   <span class="comment">//改变x</span></span><br><span class="line">  x_16 = x &amp; bit_16;</span><br><span class="line">  x_16 = !x_16;</span><br><span class="line">  x_16 = ~x_16 + <span class="number">1</span>;</span><br><span class="line">  flag_16 = ~x_16;</span><br><span class="line">  x_8 = (flag_16 &amp; (x &gt;&gt; <span class="number">8</span>)) ^ ((x_16 &amp; (x &amp; <span class="number">0xff</span>)));</span><br><span class="line">  sum = sum + (flag_16 &amp; <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">  x = x_8;   <span class="comment">//改变x</span></span><br><span class="line">  x_8 = x &amp; bit_8;</span><br><span class="line">  x_8 = !x_8;</span><br><span class="line">  x_8 = ~x_8 + <span class="number">1</span>;</span><br><span class="line">  flag_8 = ~x_8;</span><br><span class="line">  x_4 = (flag_8 &amp; (x &gt;&gt; <span class="number">4</span>)) ^ ((x_8 &amp; (x &amp; (<span class="number">0xf</span>))));   <span class="comment">//~bit_8  改为0xf  省一个op</span></span><br><span class="line">  sum = sum + (flag_8 &amp; <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">  x = x_4;   <span class="comment">//改变x</span></span><br><span class="line">  x_4 = x &amp; <span class="number">12</span>;</span><br><span class="line">  x_4 = !x_4;</span><br><span class="line">  x_4 = ~x_4 + <span class="number">1</span>;</span><br><span class="line">  flag_4 = ~x_4;</span><br><span class="line">  x_2 = (flag_4 &amp; (x &gt;&gt; <span class="number">2</span>)) ^ ((x_4 &amp; (x &amp; <span class="number">3</span>)));</span><br><span class="line">  sum = sum + (flag_4 &amp; <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  x = x_2;</span><br><span class="line">  x_2 = x_2 &gt;&gt; <span class="number">1</span>;</span><br><span class="line">  x_2 = !x_2;</span><br><span class="line">  x_2 = ~x_2 + <span class="number">1</span>;</span><br><span class="line">  flag_2 = ~x_2;</span><br><span class="line">  x = (flag_2 &amp; (x &gt;&gt; <span class="number">1</span>)) ^ ((x_2 &amp; (x &amp; <span class="number">1</span>)));</span><br><span class="line">  sum = sum + (flag_2 &amp; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  sum = sum + (x &amp; <span class="number">1</span>);  <span class="comment">//如果x是0  或者处理之后的Tmin  剩余位全是0    不加最后一个比特位   其他情况加上1</span></span><br><span class="line"></span><br><span class="line">  sum = sum + (!flag_Tmin &amp; <span class="number">1</span>);   <span class="comment">//非Tmin  加上符号位    0符号位就是0  一个bit表示</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="floatScale2"><a href="#floatScale2" class="headerlink" title="floatScale2"></a>floatScale2</h2><ul>
+<li><p>题目要求：无符号数保存的float值，返回乘2</p>
+</li>
+<li><p>允许操作：<code>所有的int，无符号操作符，if，while</code></p>
+</li>
+<li><p>操作数量：30</p>
+</li>
+<li><p>分值：4</p>
+</li>
+</ul>
+<p>思路：</p>
+<ol>
+<li><p>0返回0</p>
+</li>
+<li><p>exp全1： 为无穷 直接返回</p>
+</li>
+<li><p>exp全0： <code>非规格化值：小数部分没有隐藏位</code></p>
+<blockquote>
+<p>f不是全0 直接加左移一位 最后补上符号。<code>非规格化到规格化的过渡</code><br>f是全0 不做处理 返回原值 ，就是第一种情况</p>
+</blockquote>
+</li>
+<li><p>exp 不全1全0 直接加1 相当于乘2</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="title function_">floatScale2</span><span class="params">(<span class="type">unsigned</span> uf)</span> &#123;</span><br><span class="line">  <span class="type">unsigned</span> bit_exp;</span><br><span class="line">  <span class="type">unsigned</span> bit_f;  <span class="comment">//小数部分</span></span><br><span class="line">  <span class="type">unsigned</span> flag_s;  <span class="comment">//符号位</span></span><br><span class="line">  <span class="keyword">if</span>(uf == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  bit_f = uf &amp; (<span class="number">0x007fffff</span>);</span><br><span class="line">  bit_exp = uf &amp; (<span class="number">0x7f800000</span>);   <span class="comment">//取出指数部分</span></span><br><span class="line">  flag_s = uf &gt;&gt; <span class="number">31</span>;</span><br><span class="line">  <span class="keyword">if</span>(bit_exp == <span class="number">0x7f800000</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> uf;</span><br><span class="line">  &#125;</span><br><span class="line">  bit_exp = bit_exp &gt;&gt; <span class="number">23</span>;       <span class="comment">//exp的值</span></span><br><span class="line">  <span class="keyword">if</span>(bit_exp != <span class="number">0</span>)&#123;</span><br><span class="line">    bit_exp = bit_exp + <span class="number">1</span>;</span><br><span class="line">    bit_exp = bit_exp &lt;&lt; <span class="number">23</span>;</span><br><span class="line">    uf = uf &amp; ~(<span class="number">0x7f800000</span>);</span><br><span class="line">    uf = uf ^ bit_exp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(bit_exp == <span class="number">0</span> &amp;&amp; bit_f != <span class="number">0</span>)&#123;</span><br><span class="line">      uf = uf &lt;&lt; <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(flag_s == <span class="number">1</span>)&#123;</span><br><span class="line">        uf = uf | (flag_s &lt;&lt; <span class="number">31</span>);  <span class="comment">//补上符号位</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> uf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="floatFloat2Int"><a href="#floatFloat2Int" class="headerlink" title="floatFloat2Int"></a>floatFloat2Int</h2><ul>
+<li><p>题目要求：float转int值</p>
+</li>
+<li><p>允许操作：<code>所有的int，无符号操作符，if，while</code></p>
+</li>
+<li><p>操作数量：30</p>
+</li>
+<li><p>分值：4</p>
+</li>
+</ul>
+<p>思路：<code>确定指数的范围</code></p>
+<ol>
+<li><p>exp &lt; 127 指数小于0时，是小数，返回0。</p>
+</li>
+<li><p>exp &gt; 158 指数大于31 越界</p>
+</li>
+<li><p>exp 全0 返回0</p>
+</li>
+<li><p>exp 全1 返回0x80000000u</p>
+</li>
+<li><p>exp 其他情况下 对f部分补上隐藏位1 再右移exp-127位，最后补上符号位</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">floatFloat2Int</span><span class="params">(<span class="type">unsigned</span> uf)</span> &#123;</span><br><span class="line">  <span class="type">unsigned</span> bit_exp;</span><br><span class="line">  <span class="type">unsigned</span> bit_f;  <span class="comment">//小数部分</span></span><br><span class="line">  <span class="type">unsigned</span> flag_s;  <span class="comment">//符号位</span></span><br><span class="line">  <span class="type">unsigned</span> E;      <span class="comment">//指数</span></span><br><span class="line">  <span class="type">int</span> F2Int;</span><br><span class="line">  bit_f = uf &amp; (<span class="number">0x007fffff</span>);   <span class="comment">//取出小数部分</span></span><br><span class="line">  bit_f = bit_f | (<span class="number">0x00800000</span>);  <span class="comment">//补上前面隐藏1</span></span><br><span class="line">  bit_exp = uf &amp; (<span class="number">0x7f800000</span>);   <span class="comment">//取出指数部分</span></span><br><span class="line">  bit_exp = bit_exp &gt;&gt; <span class="number">23</span>;</span><br><span class="line">  flag_s = uf &gt;&gt; <span class="number">31</span>;</span><br><span class="line">  <span class="comment">//printf(&quot;s %u %x  exp  %u %x   f  %u  %x\n&quot;, flag_s, flag_s, bit_exp, bit_exp, bit_f, bit_f);</span></span><br><span class="line">  <span class="keyword">if</span>(bit_exp == <span class="number">0xff</span> || bit_exp &gt; <span class="number">158</span>)&#123;  <span class="comment">//无穷   或者NaN   指数越界  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0x80000000</span>u;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(bit_exp &lt; <span class="number">127</span> || bit_exp  == <span class="number">0</span>)&#123;  <span class="comment">//指数是负数   非规格数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;   </span><br><span class="line">  E = bit_exp - <span class="number">127</span>;</span><br><span class="line">  bit_f = bit_f &gt;&gt; (<span class="number">23</span> - E);  <span class="comment">//右移</span></span><br><span class="line">  <span class="comment">//printf(&quot;E %u %x  bit_f   %u %x \n&quot;, E, E, bit_f, bit_f);</span></span><br><span class="line">  F2Int = bit_f;   </span><br><span class="line">  <span class="keyword">if</span>(flag_s == <span class="number">1</span>)&#123;</span><br><span class="line">    F2Int = -F2Int;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> F2Int;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="floatPower2"><a href="#floatPower2" class="headerlink" title="floatPower2"></a>floatPower2</h2><ul>
+<li><p>题目要求：返回float值 2的x次方，x为32位int</p>
+</li>
+<li><p>允许操作：<code>所有的int，无符号操作符，if，while</code></p>
+</li>
+<li><p>操作数量：30</p>
+</li>
+<li><p>分值：4</p>
+</li>
+</ul>
+<p>思路：<code>确定指数的范围</code> x为-127到128之间。</p>
+<p>时间超时 10s内跑不完所有测试数据 可能是电脑问题</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="title function_">floatPower2</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">  <span class="type">unsigned</span> bit_exp;</span><br><span class="line">  <span class="type">unsigned</span> bit_float;  <span class="comment">//float值的bit位</span></span><br><span class="line">  <span class="type">unsigned</span> INF = <span class="number">0x7f800000</span>;</span><br><span class="line">  <span class="keyword">if</span>(x &lt; <span class="number">-127</span>)&#123;  <span class="comment">//值太小</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;   </span><br><span class="line">  <span class="keyword">if</span>(x &gt; <span class="number">128</span>)&#123;  <span class="comment">//太大  返回+INF</span></span><br><span class="line">    <span class="keyword">return</span> INF;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//printf(&quot;x    %d\n&quot;, x);</span></span><br><span class="line">  bit_exp = x + <span class="number">127</span>;</span><br><span class="line">  bit_exp = bit_exp &lt;&lt; <span class="number">23</span>;</span><br><span class="line">  <span class="comment">//printf(&quot;bit_float  %u  %x\n&quot;, bit_float, bit_float);</span></span><br><span class="line">  <span class="keyword">return</span> bit_exp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux和SSh相关命令</title>
+    <url>/2023/03/11/15-22-24/</url>
+    <content><![CDATA[<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="ln链接文件"><a href="#ln链接文件" class="headerlink" title="ln链接文件"></a>ln链接文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s 源文件  目的文件    #建立软链接</span><br><span class="line">ln    源文件  目的文件    #硬链接</span><br></pre></td></tr></table></figure>
+
+<h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>显示当前地址</p>
+<h1 id="SSH命令"><a href="#SSH命令" class="headerlink" title="SSH命令"></a>SSH命令</h1><h2 id="scp传输文件"><a href="#scp传输文件" class="headerlink" title="scp传输文件"></a>scp传输文件</h2><p><code>注意要在本地使用这个命令，ssh登录后使用，文件从服务器下载到服务器了</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp username@ip_address:/home/username/filename ~/   #从服务器下载到本地</span><br><span class="line"># 参数 -P 端口号   要大写</span><br><span class="line"># 参数 -r 文件夹</span><br><span class="line">scp -P2222 -r</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ssh</tag>
+        <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>csapp 实验笔记</title>
+    <url>/2023/03/15/10-59-10/</url>
+    <content><![CDATA[<h1 id="我的实验笔记"><a href="#我的实验笔记" class="headerlink" title="我的实验笔记"></a>我的实验笔记</h1><ul>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+</ul>
+<h1 id="实验指南"><a href="#实验指南" class="headerlink" title="实验指南"></a>实验指南</h1><ul>
+<li><p><a href="https://www.bilibili.com/video/BV1iW411d7hd/?spm_id_from=333.788.top_right_bar_window_custom_collection.content.click&vd_source=d5a3522259c17126f1b623c977d04c3e">B站CS15-213翻译课程</a> </p>
+</li>
+<li><p><a href="https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22">实验课程指导</a> <code>lab重点</code></p>
+</li>
+</ul>
+<blockquote>
+<p>做Lab非常推荐看一下官方给的Lab指导课程，课程里详细介绍了实验上手方式以及需要用到的命令。 </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 实验II Bomb Lab</title>
+    <url>/2023/03/14/09-43-26/</url>
+    <content><![CDATA[<p>更新历史：</p>
+<ul>
+<li>23.03.14：初稿</li>
+<li>23.03.18：修改行距</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a>
+</li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+</ul>
+<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Bomb Lab实验，使用GDB工具拆除六个阶段的炸弹，需要仔细输入，爆炸次数过多实验会失败。</p>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
+<li><p>下载自己的炸弹，不能修改bomb.c代码。</p>
+</li>
+<li><p>每爆炸一次失去一半的分数。</p>
+</li>
+<li><p>测试命令</p>
+<blockquote>
+<p><code>./bomb</code>：运行炸弹程序， <code>psol.txt</code>：文件输入答案</p>
+</blockquote>
+</li>
+<li><p>GDB命令</p>
+<blockquote>
+<p><code>gdb boom</code>：调试命令。参数：<code>-e</code>：置顶可执行文件名<br><code>quit</code>：退出调试<br><code>run [参数]</code>：运行程序；<code>&lt; psol.txt</code>：文件输入<br><code>continue</code>：断点继续<br><code>print expr</code>：打印表达式值，区别：x打印的内存的值<br><code>nexti</code>：单步执行，不进入函数调用<br><code>stepi</code>：单步执行进入函数调用<br><code>break function</code>：函数处断点<br><code>break *address</code>：内存地址处断点<br><code>delete n</code>：删除n号断点<br><code>delete</code>：删除所有断点<br><code>finish</code>：运行的当前函数返回停止<br><code>x/5cb str</code> ：显示5个单字节；<code>h</code>：两个；<code>w</code>：四个；<code>g</code>：八个<br><code>x/1sb str</code> ：显示字符串str<br><code>x/4dw arr</code> ：取4个整型数字以十进制格式显示<br><code>display arr</code>：每次断点都打印数据，参数<code>/x /s /u /c</code>。<br><code>disas</code>：反汇编当前函数<br><code>info registers</code>：显示寄存器内容</p>
+</blockquote>
+</li>
+<li><p>objdump命令 <code>反汇编</code></p>
+<blockquote>
+<p><code>objdump -t</code>：打印变量内容的存储位置<br><code>objdump -d bomb &gt; bomb.s</code>：反汇编生成bomb.s文件。<code>需要使用gdb查看函数</code></p>
+</blockquote>
+</li>
+<li><p>screen 命令 <code>分屏看汇编文件，也可以不分屏在GDB中使用disas命令</code></p>
+<blockquote>
+<p><code>screen -ls</code>：查看所有screen终端<br><code>screen -S name</code> ：创建终端<br><code>screen -r name or id</code> ：连接终端。连接失败用<code>screen -d **</code>：连接<br><code>exit</code>：退出终端<br><code>Ctrl + a，d</code>：暂离；<code>c</code>：创建子会话；<code>w</code>：子会话列表；<code>p</code>：上一个；<code>n</code>：下一个；<code>0-9</code>：切换；<code>：</code>：命令行模式(<code>resize 80</code>)调整窗口大小。<br><code>screen -S id -X quit</code>：关闭视窗</p>
+</blockquote>
+</li>
+<li><p>函数参数传递相关寄存器</p>
+<blockquote>
+<p><code>%rax</code>：返回值<br><code>%rdi</code>：第一个参数<br><code>%rsi</code>：第二个参数<br><code>%rdx</code>：第三个参数<br><code>%rcx</code>：第四个参数<br><code>%d8</code>，<code>%d9</code>，<code>%d10</code>依次是后面的参数</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先从源码<code>bomb.c</code>可以看出调用顺序，通过函数<code>explode_bomb</code>让炸弹爆炸，所有我们在调试过程中，在这个函数处打断点，每次只要输入错误密码，炸弹爆炸的时候程序都会进入断点，这样就不会扣分了。从源码里还能看出每一个关卡的函数都是<code>phase_x</code>，所以每次调试之前，在爆炸处打断点，在<code>phase_x</code>处打断点，进入这关之后，用反汇编命令<code>disas</code>，显示函数的汇编代码，然后进行解题。</p>
+<h2 id="phase-1"><a href="#phase-1" class="headerlink" title="phase_1"></a>phase_1</h2><p>思路：</p>
+<p>第一个比较简单，找到字符串对比函数，参数1放在寄存器rdi里，参数2放在寄存器rsi里。<br>在字符串对比函数内打断点，命令<code>x/1sb $rsi</code>,打印出寄存器里的字符串内容。<br>做法：</p>
+<ol>
+<li><p><code>break phase_1</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230315-120145@2x.png" class="">
+</li>
+<li><p><code>break explode_bomb</code> ：在爆炸函数打断点，防止进入这里引爆炸弹  </p>
+</li>
+<li><p>根据汇编语言可以看出，输入的字符串在调用字符串对比函数中进行对比，根据返回值进行选择是否爆炸。<br><code>break strings_not_equal</code> ：打断点</p>
+</li>
+<li><p><code>x/1sb $rsi</code>：打印<code>$rsi</code>内容，根据phase_1函数的汇编指令中，改变了rsi内容，说明我们输入的密码在<code>$rdi</code>中，解密的密码在<code>$rsi</code>中。</p>
+<img src="/2023/03/14/09-43-26/WX20230315-122703@2x.png" class=""></li>
+</ol>
+<p>答案:</p>
+<p><code>Border relations with Canada have never been better.</code></p>
+<h2 id="phase-2"><a href="#phase-2" class="headerlink" title="phase_2"></a>phase_2</h2><p>思路：</p>
+<p>第二个主要是是在函数分配的栈里面进行操作,通过sscanf函数的第二个参数,format,”%d %d %d %d %d %d”，可以看出密码应该是六个数,通过记录的<code>%rsi</code>是phase2函数的<code>%rsp</code>，可以知道最终密码应该是保存在主函数的栈区，第一次和1比较,相同才能继续，第一个数字是1， 后面每一个数字都是和前一个数字*2相比较，那么就是一个等比数列，公比2。<br>做法：</p>
+<ol>
+<li><p><code>break phase_2</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230315-164003@2x.png" class="">
+<p>发现函数调用了read_six_numbers函数，所以继续在这里打断点，看具体输入了什么。</p>
+</li>
+<li><p><code>break read_six_numbers</code>，查看这个函数的汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230315-164335@2x.png" class="">
+<p>从调用sscanf函数之前可以看出输入格式在第二个参数里 ，以在调用之前打断点，打印<code>rsi</code>的内容。从调用爆炸函数的条件也可以看出来，sscanf返回值大于等于6的时候才会正常跳转，输入的数太少会直接爆炸。</p>
+<img src="/2023/03/14/09-43-26/WX20230315-164848@2x.png" class="">
+<p>这道题的密码应该是6位数字，输入的内容保存在后面的传参里，地址在<code>rsi</code>寄存器里，根据phase_2的调用之前，<code>rsi</code>寄存器里存的是<code>rsp</code>的地址，所以可以判断出，读取函数把输入的数字存到了<code>rsp</code>内的地址里。</p>
+</li>
+<li><p>根据返回到phase_2函数的下一条指令<code>cmpl   $0x1,(%rsp)</code><br><code>cmpl</code>：代表双字，四个字节，用<code>x/6dw $rsp</code>：打印输入的内容看一下是不是自己输入的；根据跳转条件可以看出，第一个密码是1，</p>
+</li>
+<li><p>第一个密码正确后，依次看后面的指令:<br><code>lea    0x4(%rsp),%rbx</code>：下四个字节，第二个密码地址放到<code>rbx</code>里。<br><code>lea    0x18(%rsp),%rbp</code>：第24字节地址放到<code>rbx</code>里。<code>相当于for循环结束条件</code><br><code>mov    -0x4(%rbx),%eax</code>：第一个密码1存到<code>eax</code>。<br><code>add    %eax,%eax</code>：<code>eax</code>+<code>eax</code>。<code>乘2</code><br><code>cmp    %eax,(%rbx)</code>：对比第二个密码是不是2。<br><code>add    $0x4,%rbx</code>：<code>rbx</code>指向下四个字节，第三个密码。<br><code>cmp    %rbp,%rbx</code>：对比是不是到了结束末尾，否则继续进行循环。<br>所以这六个数字密码是一个1开头的等比数列，公比为2。</p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>1 2 4 8 16 32</code></p>
+<h2 id="phase-3"><a href="#phase-3" class="headerlink" title="phase_3"></a>phase_3</h2><p>思路：</p>
+<p>第三个和第二个相同,查看输入的是两个%d,存在phase3的栈里面,不一样的地方是,这道题目的答案有7种,因为第一个密码小于7,所有一共有8组答案,分别是0,207,   1-0x137,2-0x2c3,3-0x100,4-0x185,5-0xce, 6-0x2aa, 7-0x147.<br>做法：</p>
+<ol>
+<li><p><code>break phase_3</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230316-103622@2x.png" class="">
+<p>找到<code>sscanf</code>函数，和之前一样打断点查看输入格式。</p>
+</li>
+<li><p><code>x/1sb $rsi</code>：这道题的密码应该是两个数</p>
+<img src="/2023/03/14/09-43-26/WX20230316-103921@2x.png" class="">
+</li>
+<li><p>基本步骤和上面一样，看一下密码对比的循环指令：<br><code>cmpl   $0x7,0x8(%rsp)</code>：对比第一个数字和7的大小<br><code>ja     0x400fad &lt;phase_3+106&gt;</code>：无符号大于就跳转，跳转之后调用了爆炸函数，说明第一个数字小于等于7并且大于等于0<code>负数当无符号数时第一位总是1，一定比8大</code>。<br><code>mov    0x8(%rsp),%eax</code>：把第一个数字放到<code>eax</code>里。<br><code>jmpq   *0x402470(,%rax,8)</code>：跳转到<code>*(0x402470 + (%rax * 8))</code><br>打印一下从<code>0x402470</code>这里开始存的是什么：<code>x/8xg 0x402470</code>或者<code>x/64xb 0x402470</code>：这里要注意数据是按照大端法存储的。</p>
+<img src="/2023/03/14/09-43-26/WX20230316-110646@2x.png" class="">
+<p>可以看出对应跳转关系，跳转后执行的指令为：<code>mov    $0xcf,%eax</code>，根据不同的第一位数字得到的为：<code>0--0xcf</code> <code>1--0x137</code> <code>2--0x2c3</code> <code>3--0x100</code> <code>4--0x185</code> <code>5--0xce</code> <code>6--0x2aa</code> <code>7--0x147</code></p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>0 207</code></p>
+<h2 id="phase-4"><a href="#phase-4" class="headerlink" title="phase_4"></a>phase_4</h2><p>思路：</p>
+<p>第四个主要难点在func4函数里有一个单操作数的sar指令，之前一直以为移位的数存在寄存器cl里，后来才发现这是默认移位1，所有这个题的密码第一位是在用二分法在(0-14)中找值，但是由于函数返回值是0才不会爆炸，往右半部分查找时，返回值不为0,所以密码只能在左半部分，分别是7，3，1，0，四种答案，第二个密码是在phase_4函数里，对比的数字是0，所以第二个密码是0。<br>做法：</p>
+<ol>
+<li><p><code>break phase_4</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230316-112833@2x.png" class="">
+<p>找到<code>sscanf</code>函数，和之前一样打断点查看输入格式。这道题和上一道的<code>rsi</code>内容一样，说明都是两个数。</p>
+</li>
+<li><p><code>cmpl   $0xe,0x8(%rsp)</code>：<br><code>jbe    0x40103a &lt;phase_4+46&gt;</code>：小于等于跳转，说明第一个密码小于等于14。<br><code>mov    $0xe,%edx</code>：14存到<code>rdx</code>第三个参数。<br><code>mov    $0x0,%esi</code>：0存到<code>rsi</code>第二个参数。<br><code>mov    0x8(%rsp),%edi</code>：第一个密码存到<code>rdi</code>第一个参数。<br><code>callq  0x400fce &lt;func4&gt;</code>：调用func4函数。</p>
+</li>
+<li><p><code>disas</code>：打断点反汇编，区间(a,b)</p>
+<img src="/2023/03/14/09-43-26/WX20230316-113725@2x.png" class="">
+<p><code>mov    %edx,%eax</code>：第三个参数14存到<code>rax</code><br><code>sub    %esi,%eax</code>：<code>rax</code>-<code>rsi</code><br><code>mov    %eax,%ecx</code>：把两个参数的差存到<code>rcx</code> 记为m<br><code>shr    $0x1f,%ecx</code>：<code>ecx</code>逻辑右移31位，<code>ecx</code>是32位的，移动31位，只剩下了符号位。<br><code>add    %ecx,%eax</code>：<code>eax</code>等于0+差。<code>如果b-a=-1，ecx=1，eax+1=0</code><br><code>sar    %eax</code>：<code>eax</code>右移一位，算术右移，等于7，m<br><code>lea    (%rax,%rsi,1),%ecx</code>：加载有效地址，效果是<code>rcx</code>里存入了a+m<br><code>cmp    %edi,%ecx</code>比较中间值是否等于第一个数字。<br>如果大于：<code>lea    -0x1(%rcx),%edx</code>b等于m-1。递归函数，左边区间查找是结束递归后<code>rax</code>乘2。<br>小于等于：<br><code>mov    $0x0,%eax</code>：<code>eax</code>等于0<br><code>cmp    %edi,%ecx</code>：对比中间值和第一个数字<br><code>jge    0x401007 &lt;func4+57&gt;</code>：大于等于跳转，本来是小于等于，相等于等于跳转，所以结束标志是第一个参数等于中间值m。返回值<code>rax</code>为0。<br><code>0x1(%rcx),%esi</code>：小于时，a &#x3D; m+ 1，继续递归，小于时结束递归后执行的是<code>0x1(%rax,%rax,1),%eax</code>，不为0。</p>
+</li>
+<li><p>根据<code>func4</code>返回后<code>test   %eax,%eax</code>，如果不相等就爆炸，所以eax只能等于0，所以第一个数字一定是在二分查找的左边区间，所以可能值为7，3，1，0。</p>
+</li>
+<li><p><code>cmpl   $0x0,0xc(%rsp)</code>：相等时函数结束，说明第二个密码是固定值0。</p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>0 0</code></p>
+<h2 id="phase-5"><a href="#phase-5" class="headerlink" title="phase_5"></a>phase_5</h2><p>思路：</p>
+<p>第五个比较有趣,还是和12一样计算字符串长度,知道密码应该是一个6位长度字符串，计算字符串是不是相等函数的参数显示待匹配的字符串是”flyers”，编译的时候用了canary，栈指针每次都不同，这个对解密应该是没影响，主要是输入的字符串，每一个字节只保留了低四位,然后加上一个地址，将内存中的值送到了rsp里，那么这个地址应该是一个数组，打印一下这个地址开始的15个字节，是一串字符maduiersnfotvbyl，需要我们从里面找出密码，位置分别是9，15，14，5，6，7。所以输入的字符串的ASCII编码后四位应该就是这个值，答案比较多，找<br>了一个’a’-‘z’中的答案。<br>做法：</p>
+<ol>
+<li><p><code>break phase_5</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230316-132301@2x.png" class="">
+<p>根据字符串对比函数的下一条<code>cmp    $0x6,%eax</code>，可以看出这道题密码长度为6。</p>
+</li>
+<li><p>分析跳转后的代码</p>
+<img src="/2023/03/14/09-43-26/WX20230316-160027@2x.png" class="">
+<p><code>movzbl (%rbx,%rax,1),%ecx</code>：<code>ecx</code>内存的是<code>rbx</code>的第<code>rax</code>个字节做零扩展到双字，如图是<code>0x69</code>；<code>rax</code>相当于是for循环里的i。<br><code>mov    %cl,(%rsp)</code>：把<code>rcx</code>的低八位送入栈顶指针指向的地址。<br><code>mov    (%rsp),%rdx</code>：把值继续送到<code>rdx</code>。<br><code>and    $0xf,%edx</code>：只保留<code>rdx</code>的低四位。<br><code>movzbl 0x4024b0(%rdx),%edx</code>：把<code>rdx</code>的值加上<code>0x4024b0</code>，新地址的内容存到<code>edx</code>里。<br><code>mov    %dl,0x10(%rsp,%rax,1)</code>：把<code>rdx</code>的低八位存入<code>rax+rsp+0x10</code>的位置。<br><code>add    $0x1,%rax</code>：i自加<br><code>cmp    $0x6,%rax</code>：循环结束判断</p>
+</li>
+<li><p>后续指令把所有的输入字符改变之后保存在了<code>rsp + 0x10</code>指向的地址里，然后调用<code>strings_not_equal</code>：我们可以根据查看传参，看一下标准答案是什么。</p>
+<img src="/2023/03/14/09-43-26/WX20230316-161808@2x.png" class="">
+<p>可以看到密码是字符串<code>flyers</code>，对应的字节是<code>0x66 0x6c 0x79 0x65 0x72 0x73</code>。</p>
+</li>
+<li><p>我们在打印一下for循环里跳转的地址<code>0x4024b0</code>保存的是什么?</p>
+<img src="/2023/03/14/09-43-26/WX20230316-162400@2x.png" class="">
+<p>由于偏移量总是低四位，范围是0-15，所以字符串只需要关注<br><code>maduiersnfotvbyl</code>前面这些，需要我们从里面找出密码，位置分别是9，15，14，5，6，7。所以输入的字符串的ASCII编码后四位应该就是这个值，答案比较多，找了一个’a’-‘z’中的答案。</p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>ionefg</code></p>
+<h2 id="phase-6"><a href="#phase-6" class="headerlink" title="phase_6"></a>phase_6</h2><p>思路：</p>
+<p>第六个是一个链表，节点的前八个字节中低位是数据，高位是输入的密码，高位的8个字节是下一跳地址，根据输入的6个数必须是1-6，切两两不相同，还进行了一次处理，每一位密码x，变成了y &#x3D; 7-x。</p>
+<p>然后是链表的操作，每一个密码的节点对应的是(y - 1) * 8 + 结点首地址， 分配好结点后进行结点连接。<br>每一位密码的下一跳就是下一位密码对应的结点地址，最后一位结点的下一跳是0；要求是必要让结点中的数据，满足前一个结点大于等于后一个结点，<br>而所有结点的数据分别是：<br>(1):332<br>(2):168<br>(3):924<br>(4):691<br>(5):477<br>(6):443<br>所以数据最大的结点应该在最前面，序号应该是3 4 5 6 1 2。<br>而输入的密码应该是7 - y：   4 3 2 1 6 5<br>做法：</p>
+<ol>
+<li><p><code>break phase_6</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230316-163103@2x.png" class="">
+<img src="/2023/03/14/09-43-26/WX20230316-163118@2x.png" class="">
+<img src="/2023/03/14/09-43-26/WX20230316-163134@2x.png" class="">
+</li>
+<li><p>根据指令，这道题是读取了六个数字，我们直接看后面的处理。输入的数字保存在<code>rsp</code>指向的地址里。每个数字存储在四个字节里<br><code>mov    %rsp,%r14</code>：把输入的数组起始地址送到<code>r14</code><br><code>mov    $0x0,%r12d</code>：<code>r12d</code>赋值0，记为<code>i</code><br><code>mov    %r13,%rbp</code>：<code>rbp</code>保存栈顶指针，数组起始地址<br><code>mov    0x0(%r13),%eax</code>：<code>rax</code>等于输入的第一个值<br><code>sub    $0x1,%eax</code>：自减1<br><code>cmp    $0x5,%eax</code>：判断<code>rax</code>是不是等于5<br><code>jbe    0x401128 &lt;phase_6+52&gt;</code>：无符号小于等于才不会爆炸，所以输入的数字自减前必须是<code>1-6</code>。<br><code>add    $0x1,%r12d</code>：<code>i</code>+1<br><code>cmp    $0x6,%r12d</code>：循环结束标志，相等跳转<br>不相等：<br><code>mov    %r12d,%ebx</code>：把<code>i</code>送到<code>rbx</code>， 记为<code>j = i + 1</code>。<br><code>movslq %ebx,%rax</code>：符号扩展送到<code>rax</code>，等于<code>j</code><br><code>mov    (%rsp,%rax,4),%eax</code>：输入的第<code>j</code>个数 送到 <code>rax</code><br><code>cmp    %eax,0x0(%rbp)</code>：对比<code>rax</code>和栈顶指针指向的数是否相同，相等就爆炸，数字不能重复。<br><code>add    $0x1,%ebx</code>：<code>j++</code><br><code>cmp    $0x5,%ebx</code>：循环跳出条件，后面的每一个数不能和第一个数相等。<br><code>add    $0x4,%r13</code>：循环重复，<code>i</code>指向下一个数<br>所有的数范围是<code>1-6</code>，且不重复时。</p>
+</li>
+<li><p><code>lea    0x18(%rsp),%rsi</code>：把最后一个数的地址送到<code>rsi</code><br><code>mov    %r14,%rax</code>：数组的第一个地址送到<code>rax</code><br><code>mov    $0x7,%ecx</code>：<code>rcx</code>等于7<br><code>mov    %ecx,%edx</code>：<code>rdx</code> &#x3D; 7<br><code>sub    (%rax),%edx</code>：<code>rdx</code> &#x3D; 7 - <code>*rax</code>，数组的第一个数<br><code>mov    %edx,(%rax)</code>：覆盖这个数<br><code>add    $0x4,%rax</code>：数组下一个<br><code>cmp    %rsi,%rax</code>：跳出条件<br>这段代码把所有数组的数，全部用7减，保存差</p>
+</li>
+<li><p><code>mov    $0x0,%esi</code>：<code>rsi</code> &#x3D; 0，记为<code>i</code><br><code>mov    (%rsp,%rsi,1),%ecx</code>：<code>rcx</code>保存<code>rsp</code>的第<code>i</code>个字节地址的数字，记为<code>x</code>，注意数字在4的倍数字节处<br><code>cmp    $0x1,%ecx</code>：<code>x</code> &#x3D;&#x3D; 1，1进行这个if判断<br>如果x&#x3D;&#x3D;1：<br><code>mov    $0x6032d0,%edx</code>：<code>rdx</code>赋值，这里要注意应该就是密码所在地<br>如果x&gt;1：<br><code>mov    $0x1,%eax</code>：<code>rax</code> &#x3D; 1<br><code>mov    $0x6032d0,%edx</code>:<br><code>mov    0x8(%rdx),%rdx</code>：<code>rdx</code> &#x3D;  （<code>rdx</code> + 8地址保存的数据），就是<code>rdx</code>地址指向的节点的next。<br><code>add    $0x1,%eax</code>：<code>rax</code> + 1<br><code>cmp    %ecx,%eax</code>：对比<code>x</code>和<code>rax</code><br>不相等时<code>rax</code>一直加1，最终<code>rdx</code>指向第x个节点地址<br>if判断结束：<br><code>mov    %rdx,0x20(%rsp,%rsi,2)</code>：把<code>rdx</code>数送入<code>rsp</code> + 2 * i + 0x20，这个地址，相当于把数组整体换位置，后面是偏移量。<br><code>add    $0x4,%rsi</code>：<code>i</code> &#x3D; <code>i</code> + 4<br><code>cmp    $0x18,%rsi</code>：结束条件<br>这段循环把数组里的数，全部向后偏移保存了一个数组，这个数组中0，1对应的是固定值<code>$0x6032d0</code>，大于1的值都是<code>$0x6032d0 + 8 * (x - 1)</code>。新数组的每一个数长度是8字节，数据是一串地址。</p>
+<img src="/2023/03/14/09-43-26/WX20230317-124521@2x.png" class="">
+<p>可以看出在<code>rsp</code>后0x20地址处，是六个地址。</p>
+</li>
+<li><p><code>mov    0x20(%rsp),%rbx</code>：<code>rbx</code>等于新建数组的第一个数，记为<code>i</code><br><code>lea    0x28(%rsp),%rax</code>：<code>rax</code>是新数组第二个数的地址，记为<code>&amp;j</code><br><code>lea    0x50(%rsp),%rsi</code>：<code>rsi</code>数组最大地址<br><code>mov    %rbx,%rcx</code>：<code>rcx</code>存第一个数，记为<code>i</code><br>循环：<br><code>mov    (%rax),%rdx</code>：<code>rdx</code>：存下个数，记为<code>j</code><br><code>mov    %rdx,0x8(%rcx)</code>：把<code>j</code>放到<code>i</code>后8个字节处<br><code>add    $0x8,%rax</code>：<code>&amp;j = &amp;j + 8</code>，后移八个字节<br><code>cmp    %rsi,%rax</code>：对比有没有到了数组末尾<br>没有到最后一个地址：<br><code>mov    %rdx,%rcx</code>：<code>rcx</code> &#x3D; <code>rdx</code>，<code>i</code>后移8个字节<br>继续上面的循环<br>如果到了最后一个地址：<br><code>movq   $0x0,0x8(%rdx)</code>：把0存到最后一个节点的后8字节处，尾结点的next&#x3D;0。<br>上面把所有链表连接起来了。链接方式是按照输入的六个数字进行连接，按照1-6的顺序，数字越大，地址越大。每个数字代表一个地址，从1-6链接起来。</p>
+</li>
+<li><p>下面进行的是爆炸判断：<br><code>mov    $0x5,%ebp</code>：<code>rbp</code> &#x3D; 5<br>循环：<br><code>mov    0x8(%rbx),%rax</code>：<code>rax</code>&#x3D;第一个节点的next<br><code>mov    (%rax),%eax</code>：<code>rax</code>&#x3D;地址保存的数<br><code>cmp    %eax,(%rbx)</code>：*next对比**this<br>小于就爆炸：<br>大于等于：<br><code>mov    0x8(%rbx),%rbx</code>：this向后移动8位<br><code>sub    $0x1,%ebp</code>：<code>rbp</code>减1<br>不等于0时，循环继续<br>上面这段循环如果链表的数据表示的地址内存的数是递增的就爆炸了。所以就是要把链表调整为递减的链表，通过输入的1-6。</p>
+</li>
+<li><p>打印看一下这个<code>$0x6032d0</code>地址处保存的数据是什么？<br>链接之前的链表：</p>
+
+<p>重新链接之后的链表：</p>
+
+<p>根据爆炸判断，这道题就是让链表排序成递减。</p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>4 3 2 1 6 5</code></p>
+<h2 id="secret-phase"><a href="#secret-phase" class="headerlink" title="secret_phase"></a>secret_phase</h2><p>重新开始写解题笔记的时候，按照小土刀的博客搭建了hexo博客，根据他的文章格式写出了这篇解题笔记，在他的文章里发现还有一道彩蛋题目，藏在了<code>phase_defused</code>函数里。这个不仔细读汇编代码很难发现，因为一般不会看拆弹成功的函数。现在自己把这个彩蛋也做一下。</p>
+<p>思路：</p>
+<p>做法：</p>
+<ol>
+<li><p>在函数<code>phase_defused</code>处打断点。</p>
+<img src="/2023/03/14/09-43-26/WX20230317-143025@2x.png" class="">
+<p>发现这里有一个<code>secret_phase</code>函数，对这个函数打断点发现不会进入。<br>在汇编代码里找一下函数入口。</p>
+</li>
+<li><p><code>cmpl   $0x6,0x202181(%rip)        # 0x603760 &lt;num_input_strings&gt;</code>：对比当前的关卡数，不等于6时跳转，等于6时，可能会进入彩蛋。</p>
+</li>
+<li><p><code>mov    $0x402619,%esi</code>和<code>mov    $0x603870,%edi</code>，根据这两个参数，应该是调用的sscanf函数，看一下输入参数是什么？</p>
+<img src="/2023/03/14/09-43-26/WX20230317-145028@2x.png" class="">
+<p>可以看出密码是两个数字一个字符串。</p>
+</li>
+<li><p><code>mov    $0x402622,%esi</code>：打印看一下这里存的是什么？</p>
+<img src="/2023/03/14/09-43-26/WX20230317-150241@2x.png" class="">
+<p>可以确定第三个密码是<code>DrEvil</code></p>
+</li>
+<li><p><code>mov    $0x4024f8,%edi</code>：<br><code>mov    $0x402520,%edi</code>：打印看一下这里是什么？</p>
+<img src="/2023/03/14/09-43-26/WX20230317-150454@2x.png" class="">
+</li>
+<li><p>修改一下我们的<code>psol.txt</code>，最后一行加上<code>0 0 DrEvil</code>，重新调试进入<code>secret_phase</code>看一下汇编代码，代码没有进入，说明输入不在最后，继续看一下汇编代码。</p>
+</li>
+<li><p>根据sscanf的第一个参数地址在<code>0x603870</code>，我们就找一下之前输入的数据哪一个存放在这周围，在<code>bomb.s</code>文件里搜一下最近的是<code>read_line</code>函数里的<code>0x603780</code>。<br>看一下附件的代码：<br><code>lea    (%rax,%rax,4),%rsi</code>：<br><code>shl    $0x4,%rsi</code>：<br><code>add    $0x603780,%rsi</code>：<br><code>rax</code>放的是题目序号，乘5，左移4位，加上<code>0x603780</code>后等于我要的值，<code>rax</code>应该等于3。也就是说第三道题目解出来之后，第四道题目的输入缓冲区在<code>0x603870</code>。把输入文件改一下。</p>
+</li>
+<li><p>成功进入彩蛋函数，现在开始解这个彩蛋。<br>这里要把彩蛋的输入放在第六道题的下一行，彩蛋的入口在第四道题的输入后面。<br><code>disas</code>：先看一下汇编代码</p>
+<img src="/2023/03/14/09-43-26/WX20230317-163059@2x.png" class="">
+<p><code>mov    $0xa,%edx</code>：<code>rdx</code>&#x3D;10<br><code>mov    $0x0,%esi</code>：<code>rsi</code>&#x3D;0<br><code>mov    %rax,%rdi</code>：<code>rdi</code> &#x3D; read_line的返回值。就是我们输入的字符串地址。<br><code>callq  0x400bd0 &lt;strtol@plt&gt;</code>：调用函数，找开头的十进制数转换为long int，存在<code>rax</code>里，结尾的下一个地址放在<code>rsi</code>里。<br><code>mov    %rax,%rbx</code>：<code>rbx</code>&#x3D;数字<br><code>lea    -0x1(%rax),%eax</code>：<code>rax</code>-1存到<code>rax</code>里<br><code>cmp    $0x3e8,%eax</code>：对比如果，0x3e8是1000<br>如果大于，爆炸：<br>如果小于等于：<br><code>mov    %ebx,%esi</code>：<code>rsi</code>&#x3D;<code>rbx</code><br><code>mov    $0x6030f0,%edi</code>：<code>rdi</code>赋值，这里应该是密码所在地<br><code>callq  0x401204 &lt;fun7&gt;</code>：跳转到fun7函数</p>
+</li>
+<li><p>在fun7函数里打断点，看下汇编代码</p>
+<img src="/2023/03/14/09-43-26/WX20230317-174533@2x.png" class="">
+<p><code>test   %rdi,%rdi</code>：test<code>rdi</code><br>如果等于0就跳转：<br><code>mov    $0xffffffff,%eax</code>：赋值32位全1，返回<br>不等于0：<br><code>mov    (%rdi),%edx</code>：把<code>rdi</code>地址保存的数据<code>$</code>给<code>rdx</code><br><code>cmp    %esi,%edx</code>：对比<code>rdx</code>和我们输入的密码<br><code>jle    0x401220 &lt;fun7+28&gt;</code>：<br>如果<code>rdx</code>&lt;&#x3D;<code>rsi</code>：<br><code>mov    $0x0,%eax</code>：赋值0<br><code>cmp    %esi,%edx</code>：继续对比<br>如果<code>rdx</code>&#x3D;&#x3D;<code>rsi</code>：返回0。根据彩蛋的汇编代码，可以看出返回值等于2才可以拆弹成功。<br>如果<code>rdx</code>&lt;<code>rsi</code>：<br><code>mov    0x10(%rdi),%rdi</code>：把<code>rdi</code>指向的地址+0x10，取数据送到<code>rdi</code><br>递归fun7。<br><code>lea    0x1(%rax,%rax,1),%eax</code>：<code>rax</code>左移一位再加1。<br>如果<code>rdx</code> &gt; <code>rsi</code>：<br><code>mov    0x8(%rdi),%rdi</code>：把<code>rdi</code>指向的地址+0x8，取数据送到<code>rdi</code><br>递归fun7。<br><code>add    %eax,%eax</code>：<code>rax</code>左移一位</p>
+</li>
+<li><p>根据上面的分析。递归的返回值一共四种<br>（1）：返回32位1<br>（2）：左移一位<br>（3）：0<br>（4）：左移一位加1<br>要想拆掉炸弹，需要返回的是2。<br>返回值顺序是：左移一位&lt;左移一位加1&lt;返回0<br>先从内层递归找条件：fun(x，y)<br>返回0：<code>rdi</code>指向的数 &#x3D;&#x3D; y<br>左移一位加1：<code>rdi</code>指向的数 &lt; y，这里x+16字节<br>左移一位：<code>rdi</code>指向的数 &gt; y，这里x+8字节<br>递归顺序为：<br>fun(x，y) -&gt; fun(x + 8，y) -&gt; fun(x+16，y)</p>
+</li>
+<li><p>打印一下链表存的数据是哪些？</p>
+<img src="/2023/03/14/09-43-26/WX20230317-174533@2x.png" class="">
+<img src="/2023/03/14/09-43-26/WX20230317-174534@2x.png" class="">
+<p>根据搜索路径可以看出，需要输入的密码应该是22。</p>
+</li>
+<li><p>测试一下</p>
+<img src="/2023/03/14/09-43-26/WX20230317-174535@2x.png" class="">
+<p>彩蛋拆除成功！！</p>
+</li>
+</ol>
+<p>答案：<code>22</code>+任意字符串</p>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git笔记</title>
+    <url>/2023/03/08/14-59-55/</url>
+    <content><![CDATA[<p>克隆项目到当前文件夹</p>
+<ul>
+<li><p>git clone https:&#x2F;&#x2F; .</p>
+</li>
+<li><p>注意 .</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>macOS使用ssh登陆WSL2的ubuntu</title>
+    <url>/2023/03/07/14-58-00/</url>
+    <content><![CDATA[<h1 id="ssh-登录wsl-ubuntu"><a href="#ssh-登录wsl-ubuntu" class="headerlink" title="ssh 登录wsl ubuntu"></a>ssh 登录wsl ubuntu</h1><h2 id="固定wsl2的ip地址"><a href="#固定wsl2的ip地址" class="headerlink" title="固定wsl2的ip地址"></a>固定wsl2的ip地址</h2><p>wsl2的ip地址每次都会改变，所以一直要重新设置防火墙端口，通过脚本，每次管理员运行脚本固定ip，就不需要重复设置防火墙端口。</p>
+<ul>
+<li>优化之后固定wsl2 IP:192.168.120.181,运行脚本,转发端口,设置防火墙,自动命令</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">::先停掉wsl实例</span><br><span class="line">wsl --shutdown</span><br><span class="line">::重新拉起，启动ssh服务</span><br><span class="line">wsl -u root -d Ubuntu-20.04 service ssh start</span><br><span class="line">:: 固定IP</span><br><span class="line">wsl -u root ip addr | findstr &quot;192.168.120.181&quot; &gt; nul</span><br><span class="line">if !errorlevel! equ 0 (</span><br><span class="line">   echo wsl ip has set</span><br><span class="line">) else (</span><br><span class="line">   wsl -u root ip addr add 192.168.120.181/24 broadcast 192.168.120.0 dev eth0 label eth0:1</span><br><span class="line">   echo set wsl ip success: 192.168.120.181</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">::windows作为wsl的宿主，在wsl的固定IP的同一网段也给安排另外一个IP</span><br><span class="line">ipconfig | findstr &quot;192.168.120.100&quot; &gt; nul</span><br><span class="line">if !errorlevel! equ 0 (</span><br><span class="line">    echo windows ip has set</span><br><span class="line">) else (</span><br><span class="line">    netsh interface ip add address &quot;vEthernet (WSL)&quot; 192.168.120.100 255.255.255.0</span><br><span class="line">    echo set windows ip success: 192.168.120.100</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">::windows的2222端口转发到ubuntu</span><br><span class="line">netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=2222 connectaddress=192.168.120.181 connectport=2222</span><br><span class="line">::防火墙开启入站规则</span><br><span class="line">::netsh advfirewall firewall add rule name=WSL2 dir=in action=allow protocol=TCP localport=2222</span><br><span class="line"></span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>管理员模式运行脚本后直接连接</p>
+</li>
+<li><p>连接 ip为<code>windows的地址</code></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh name@ip -p2222</span><br></pre></td></tr></table></figure>
+
+<h2 id="ssh服务器命令"><a href="#ssh服务器命令" class="headerlink" title="ssh服务器命令"></a>ssh服务器命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo service ssh restart</span><br><span class="line">sudo service ssh start</span><br><span class="line">sudo service ssh stop</span><br><span class="line">sudo service ssh status</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="wsl命令"><a href="#wsl命令" class="headerlink" title="wsl命令"></a>wsl命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wsl -- hostname -I    #显示wsl的ip</span><br><span class="line">wsl -l -v             #列出当前linux版本状态</span><br><span class="line">wsl --shutdown        #关闭linux</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+        <tag>mac</tag>
+        <tag>ubuntu</tag>
+        <tag>wsl2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++常用函数</title>
+    <url>/2023/03/08/14-45-11/</url>
+    <content><![CDATA[<p>特殊函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//万能头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span> </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="built_in">sort</span>(a,a+n,<span class="built_in">less</span>&lt;<span class="type">int</span>&gt;());<span class="comment">//内置类型的由小到大排序</span></span><br><span class="line"><span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line"><span class="comment">//作用相当于 bool cmd();</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line">  string s;</span><br><span class="line">  s = <span class="built_in">bitset</span>&lt;<span class="number">8</span>&gt;(a[i]).<span class="built_in">to_string</span>();     <span class="comment">//  转换字符串</span></span><br><span class="line">  <span class="built_in">to_ulong</span>()    <span class="comment">// 转换为unsigned long类型</span></span><br><span class="line">  <span class="built_in">to_ullong</span>();　<span class="comment">// 转换成unsigned long long类型</span></span><br><span class="line">  <span class="built_in">set</span>(x, v);    <span class="comment">// 没有参数时 将全部位设为1</span></span><br><span class="line">                <span class="comment">// 有一个x， 将x下标处设为1</span></span><br><span class="line">                <span class="comment">// 两个参数，将x处设为v值</span></span><br><span class="line">  <span class="built_in">reset</span>(x);    <span class="comment">// 置0   无参全部置，有参置下标</span></span><br><span class="line">  <span class="built_in">flip</span>(x);     <span class="comment">// 取反，无参全部取，有参取下标处</span></span><br><span class="line">  <span class="built_in">text</span>(x);     <span class="comment">// 检测下标处是不是1 返回true 0返回false</span></span><br><span class="line">  <span class="built_in">any</span>();       <span class="comment">// 检查是否有1</span></span><br><span class="line">  <span class="built_in">none</span>();      <span class="comment">// 检查是否没有1</span></span><br><span class="line">  <span class="built_in">all</span>();       <span class="comment">// 检查是否全为1</span></span><br><span class="line">  <span class="built_in">count</span>();     <span class="comment">// 求1的个数</span></span><br><span class="line">  <span class="built_in">size</span>();      <span class="comment">// 求位数</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="built_in">typeid</span>(x).<span class="built_in">name</span>();   <span class="comment">// 获取x的类型</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//输出重定向</span></span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;input.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line"><span class="comment">//控制台输入数据，如何输入文件结束标志</span></span><br><span class="line"><span class="comment">//**在Windows下，输入完毕后先按Enter键，再按Ctrl＋Z键，最后再按Enter键</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加快输入速度的两种方法</span></span><br><span class="line">ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);   cin &gt;&gt; x;</span><br><span class="line"><span class="built_in">scanf</span>()；</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//类型转换</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line">ss.<span class="built_in">clear</span>();  <span class="comment">// 清空</span></span><br><span class="line">ss &lt;&lt; s;</span><br><span class="line">ss &gt;&gt; a;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="built_in">isdigit</span>(s[i]);  <span class="comment">// 若参数c为阿拉伯数字0~9 字符，则返回非0值，否则返回0。</span></span><br><span class="line"><span class="type">int</span> n = <span class="built_in">stoi</span>(s);   <span class="comment">//  把s转化为int型 </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line">cout &lt;&lt; <span class="built_in">setw</span>(<span class="number">2</span>);   <span class="comment">// 设置位数</span></span><br><span class="line"><span class="built_in">setprecision</span>(n)     <span class="comment">//设置显示小数精度为n位</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">stefill</span>(c);  <span class="comment">// 设置填充字符</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::scientific)   <span class="comment">//指数表示</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::left)     <span class="comment">//左对齐</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::right)    <span class="comment">//右对齐</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">include &lt;string&gt;</span><br><span class="line"><span class="built_in">substr</span>(<span class="type">int</span> index, <span class="type">int</span> mum); <span class="comment">// 返回一个子字符串 </span></span><br><span class="line"><span class="comment">//std::string::npos是一个常数，它等于size_type类型可以表示的最大值</span></span><br><span class="line"><span class="comment">//用在 s.find()  返回值</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>算法比赛</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+</search>
