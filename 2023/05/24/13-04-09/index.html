@@ -22,26 +22,30 @@
 
     <meta name="description" content="CSAPP的核心部分，机器级编程，理解计算机为了运行程序，执行的一系列指令。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSAPP 三 程序的机器级表示">
+<meta property="og:title" content="CSAPP 笔记三 程序的机器级表示">
 <meta property="og:url" content="https://pkunicor.github.io/2023/05/24/13-04-09/index.html">
 <meta property="og:site_name" content="青山依旧在">
 <meta property="og:description" content="CSAPP的核心部分，机器级编程，理解计算机为了运行程序，执行的一系列指令。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230603-145124@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230603-152227@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230603-152823@2x.png">
 <meta property="article:published_time" content="2023-05-24T05:04:09.000Z">
-<meta property="article:modified_time" content="2023-05-24T09:07:55.976Z">
+<meta property="article:modified_time" content="2023-06-03T07:31:39.430Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230603-145124@2x.png">
 
 
 <link rel="canonical" href="https://pkunicor.github.io/2023/05/24/13-04-09/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2023/05/24/13-04-09/","path":"2023/05/24/13-04-09/","title":"CSAPP 三 程序的机器级表示"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2023/05/24/13-04-09/","path":"2023/05/24/13-04-09/","title":"CSAPP 笔记三 程序的机器级表示"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CSAPP 三 程序的机器级表示 | 青山依旧在</title>
+<title>CSAPP 笔记三 程序的机器级表示 | 青山依旧在</title>
   
 
 
@@ -141,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basics-Lecture-05"><span class="nav-number">2.</span> <span class="nav-text">Basics - Lecture 05</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intel-x86-Processors"><span class="nav-number">2.1.</span> <span class="nav-text">Intel x86 Processors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-assembly-machine-code"><span class="nav-number">2.2.</span> <span class="nav-text">C,assembly, machine code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Turning-C-into-Object-Code"><span class="nav-number">2.2.1.</span> <span class="nav-text">Turning C into Object Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assembly-Characteristics"><span class="nav-number">2.2.2.</span> <span class="nav-text">Assembly Characteristics</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Types"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Data Types</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operations"><span class="nav-number">2.2.3.</span> <span class="nav-text">Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disassembling-Object-Code"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">Disassembling Object Code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Basics-Registers-operands-move"><span class="nav-number">2.3.</span> <span class="nav-text">Assembly Basics: Registers, operands, move</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer-Registers"><span class="nav-number">2.3.1.</span> <span class="nav-text">Integer Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Moving-Data"><span class="nav-number">2.3.2.</span> <span class="nav-text">Moving Data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arithmetic-amp-logical-operations"><span class="nav-number">2.4.</span> <span class="nav-text">Arithmetic &amp; logical operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lea-Src-Dst"><span class="nav-number">2.4.1.</span> <span class="nav-text">lea Src, Dst</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-Arithmetic-Operations"><span class="nav-number">2.4.2.</span> <span class="nav-text">Some Arithmetic Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-Operand-Instructions"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">Two Operand Instructions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#One-Operand-Instructions"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">One Operand Instructions</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,12 +219,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="CSAPP 三 程序的机器级表示 | 青山依旧在">
+      <meta itemprop="name" content="CSAPP 笔记三 程序的机器级表示 | 青山依旧在">
       <meta itemprop="description" content="CSAPP的核心部分，机器级编程，理解计算机为了运行程序，执行的一系列指令。">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CSAPP 三 程序的机器级表示
+          CSAPP 笔记三 程序的机器级表示
         </h1>
 
         <div class="post-meta-container">
@@ -230,9 +234,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-05-24 13:04:09 / 修改时间：17:07:55" itemprop="dateCreated datePublished" datetime="2023-05-24T13:04:09+08:00">2023-05-24</time>
+      <time title="创建时间：2023-05-24 13:04:09" itemprop="dateCreated datePublished" datetime="2023-05-24T13:04:09+08:00">2023-05-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-06-03 15:31:39" itemprop="dateModified" datetime="2023-06-03T15:31:39+08:00">2023-06-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -272,8 +282,80 @@
 </ul>
 <h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
 <li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
-<li><a href="/2023/05/24/13-04-09/" title="CSAPP 三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
+<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
+<li></li>
 </ul>
+<h1 id="Basics-Lecture-05"><a href="#Basics-Lecture-05" class="headerlink" title="Basics - Lecture 05"></a>Basics - Lecture 05</h1><h2 id="Intel-x86-Processors"><a href="#Intel-x86-Processors" class="headerlink" title="Intel x86 Processors"></a>Intel x86 Processors</h2><ul>
+<li><p>CISC - Complex 复杂指令集，RISC - Reduced 精简指令集。</p>
+</li>
+<li><p>x86-64，Linux的命名</p>
+</li>
+<li><p>ARM架构- Acorn RISC Machine</p>
+</li>
+</ul>
+<h2 id="C-assembly-machine-code"><a href="#C-assembly-machine-code" class="headerlink" title="C,assembly, machine code"></a>C,assembly, machine code</h2><ul>
+<li>Micro architecture：微指令架构，CSAPP中很少涉及</li>
+</ul>
+<h3 id="Turning-C-into-Object-Code"><a href="#Turning-C-into-Object-Code" class="headerlink" title="Turning C into Object Code"></a>Turning C into Object Code</h3><ul>
+<li>编译命令<br><code>gcc -Og p1.c p2.c -o p</code><br><code>gcc -Og -S sum.c</code>：<br><code>-S</code>:编译阶段终止，生成汇编语言<br><code>-Og</code>:Optimize编译优化，<code>O1</code>是过去的优化级别，<code>g</code>级可以使代码更可读</li>
+</ul>
+<h3 id="Assembly-Characteristics"><a href="#Assembly-Characteristics" class="headerlink" title="Assembly Characteristics"></a>Assembly Characteristics</h3><h4 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h4><ul>
+<li><p>integer: 以1，2，4，8字节存储<br>数据和地址都用整型保存，不区分无符号和有符号。</p>
+</li>
+<li><p>floating point: 4，8，10字节</p>
+</li>
+<li><p>没有数组以及结构体，这些是由编译器构造的。</p>
+</li>
+</ul>
+<h3 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h3><ul>
+<li><p>执行算术操作</p>
+</li>
+<li><p>在内存和寄存器之间传送数据</p>
+</li>
+<li><p>转移控制</p>
+</li>
+</ul>
+<h4 id="Disassembling-Object-Code"><a href="#Disassembling-Object-Code" class="headerlink" title="Disassembling Object Code"></a>Disassembling Object Code</h4><blockquote>
+<p>指令长度在1-15个字节</p>
+</blockquote>
+<p>反汇编：将目标代码文件反汇编为类汇编语言。</p>
+<ul>
+<li><code>objdump -d sum</code>: 反汇编</li>
+</ul>
+<h2 id="Assembly-Basics-Registers-operands-move"><a href="#Assembly-Basics-Registers-operands-move" class="headerlink" title="Assembly Basics: Registers, operands, move"></a>Assembly Basics: Registers, operands, move</h2><h3 id="Integer-Registers"><a href="#Integer-Registers" class="headerlink" title="Integer Registers"></a>Integer Registers</h3><img src="/2023/05/24/13-04-09/WX20230603-145124@2x.png" class="">
+
+<ul>
+<li><p>参数：1<code>rdi</code>, 2<code>rsi</code>, 3<code>rdx</code>, 4<code>rcx</code>, 5<code>r8</code>, 6<code>r9</code></p>
+</li>
+<li><p>返回值：<code>rax</code></p>
+</li>
+</ul>
+<h3 id="Moving-Data"><a href="#Moving-Data" class="headerlink" title="Moving Data"></a>Moving Data</h3><blockquote>
+<p><code>mov Source, Dest</code></p>
+</blockquote>
+<ul>
+<li><p>不允许从内存取出，存入内存。从内存取出，只能存入寄存器。</p>
+</li>
+<li><p><code>mov $0x4, %rax</code>：目的地址是寄存器<br><code>mov $0x4, (%rax)</code>: 目的地址是内存</p>
+</li>
+<li><p><code>D(R)</code>: Mem[Reg[R] + D]</p>
+</li>
+<li><p><code>D(Rb, Ri, S)</code>: Mem[Reg[Rb] + S * Reg[Ri] + D]</p>
+</li>
+</ul>
+<h2 id="Arithmetic-amp-logical-operations"><a href="#Arithmetic-amp-logical-operations" class="headerlink" title="Arithmetic &amp; logical operations"></a>Arithmetic &amp; logical operations</h2><h3 id="lea-Src-Dst"><a href="#lea-Src-Dst" class="headerlink" title="lea Src, Dst"></a>lea Src, Dst</h3><blockquote>
+<p>C语言中的&amp;，取地址</p>
+</blockquote>
+<p>实际使用中C语言编译器喜欢用这条指令做算术运算，<code>lea (%rdi, %rdi, 2), %rax</code>, mov是将地址指向的内存值取出，lea指令将内存值所在地址取出，相当于存入的是<code>%rdi + %rdi * 2</code>。</p>
+<h3 id="Some-Arithmetic-Operations"><a href="#Some-Arithmetic-Operations" class="headerlink" title="Some Arithmetic Operations"></a>Some Arithmetic Operations</h3><h4 id="Two-Operand-Instructions"><a href="#Two-Operand-Instructions" class="headerlink" title="Two Operand Instructions"></a>Two Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152227@2x.png" class="">
+
+<ul>
+<li><p>目的操作数作为第一个操作数，类似<code>x+=y</code></p>
+</li>
+<li><p>算术左移和逻辑左移相同</p>
+</li>
+</ul>
+<h4 id="One-Operand-Instructions"><a href="#One-Operand-Instructions" class="headerlink" title="One Operand Instructions"></a>One Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152823@2x.png" class="">
 
     </div>
 
@@ -291,7 +373,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://pkunicor.github.io/2023/05/24/13-04-09/" title="CSAPP 三 程序的机器级表示">https://pkunicor.github.io/2023/05/24/13-04-09/</a>
+      <a href="https://pkunicor.github.io/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">https://pkunicor.github.io/2023/05/24/13-04-09/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
