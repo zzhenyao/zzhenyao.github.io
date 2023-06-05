@@ -1,6 +1,519 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>csapp 笔记汇总</title>
+    <url>/2023/03/15/10-59-10/</url>
+    <content><![CDATA[<h1 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h1><h2 id="CMU-15-213笔记"><a href="#CMU-15-213笔记" class="headerlink" title="CMU 15-213笔记"></a>CMU 15-213笔记</h2><p>- </p>
+<h2 id="代码仓库"><a href="#代码仓库" class="headerlink" title="代码仓库"></a>代码仓库</h2><p><a href="https://github.com/PKunicor/CsappLab">PKunicor&#x2F;Csapp lab</a></p>
+<h2 id="实验笔记"><a href="#实验笔记" class="headerlink" title="实验笔记"></a>实验笔记</h2><ul>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
+</ul>
+<h1 id="实验指南"><a href="#实验指南" class="headerlink" title="实验指南"></a>实验指南</h1><ul>
+<li><p><a href="https://www.bilibili.com/video/BV1iW411d7hd/?spm_id_from=333.788.top_right_bar_window_custom_collection.content.click&vd_source=d5a3522259c17126f1b623c977d04c3e">B站CS15-213翻译课程</a> </p>
+</li>
+<li><p><a href="https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22">实验课程指导</a> <code>lab重点</code></p>
+</li>
+</ul>
+<blockquote>
+<p>做Lab非常推荐看一下官方给的Lab指导课程，课程里详细介绍了实验上手方式以及需要用到的命令。 </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 笔记三 程序的机器级表示</title>
+    <url>/2023/05/24/13-04-09/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>23.05.24：初稿</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
+<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
+</ul>
+<h1 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h1><h2 id="Intel-x86-Processors"><a href="#Intel-x86-Processors" class="headerlink" title="Intel x86 Processors"></a>Intel x86 Processors</h2><ul>
+<li><p>CISC - Complex 复杂指令集，RISC - Reduced 精简指令集。</p>
+</li>
+<li><p>x86-64，Linux的命名</p>
+</li>
+<li><p>ARM架构- Acorn RISC Machine</p>
+</li>
+<li><p>两种汇编语法：AT&amp;T：Linux使用的，课程使用这种<br>                       Intel：</p>
+</li>
+</ul>
+<h2 id="C-assembly-machine-code"><a href="#C-assembly-machine-code" class="headerlink" title="C,assembly, machine code"></a>C,assembly, machine code</h2><ul>
+<li>Micro architecture：微指令架构，CSAPP中很少涉及</li>
+</ul>
+<h3 id="Turning-C-into-Object-Code"><a href="#Turning-C-into-Object-Code" class="headerlink" title="Turning C into Object Code"></a>Turning C into Object Code</h3><ul>
+<li>编译命令<br><code>gcc -Og p1.c p2.c -o p</code><br><code>gcc -Og -S sum.c</code>：<br><code>-S</code>:编译阶段终止，生成汇编语言<br><code>-Og</code>:Optimize编译优化，<code>O1</code>是过去的优化级别，<code>g</code>级可以使代码更可读</li>
+</ul>
+<h3 id="Assembly-Characteristics"><a href="#Assembly-Characteristics" class="headerlink" title="Assembly Characteristics"></a>Assembly Characteristics</h3><h4 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h4><ul>
+<li><p>integer: 以1，2，4，8字节存储<br>数据和地址都用整型保存，不区分无符号和有符号。</p>
+</li>
+<li><p>floating point: 4，8，10字节</p>
+</li>
+<li><p>没有数组以及结构体，这些是由编译器构造的。</p>
+</li>
+</ul>
+<h3 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h3><ul>
+<li><p>执行算术操作</p>
+</li>
+<li><p>在内存和寄存器之间传送数据</p>
+</li>
+<li><p>转移控制</p>
+</li>
+</ul>
+<h4 id="Disassembling-Object-Code"><a href="#Disassembling-Object-Code" class="headerlink" title="Disassembling Object Code"></a>Disassembling Object Code</h4><blockquote>
+<p>指令长度在1-15个字节</p>
+</blockquote>
+<p>反汇编：将目标代码文件反汇编为类汇编语言。</p>
+<ul>
+<li><code>objdump -d sum</code>: 反汇编</li>
+</ul>
+<h2 id="Assembly-Basics-Registers-operands-move"><a href="#Assembly-Basics-Registers-operands-move" class="headerlink" title="Assembly Basics: Registers, operands, move"></a>Assembly Basics: Registers, operands, move</h2><h3 id="Integer-Registers"><a href="#Integer-Registers" class="headerlink" title="Integer Registers"></a>Integer Registers</h3><img src="/2023/05/24/13-04-09/WX20230603-145124@2x.png" class="">
+
+<ul>
+<li><p>参数：1<code>rdi</code>, 2<code>rsi</code>, 3<code>rdx</code>, 4<code>rcx</code>, 5<code>r8</code>, 6<code>r9</code>，只能传递整型或者指针，浮点数由另外一组单独的寄存器传递。超出的参数存在栈里。</p>
+</li>
+<li><p>返回值：<code>rax</code></p>
+</li>
+</ul>
+<h3 id="Moving-Data"><a href="#Moving-Data" class="headerlink" title="Moving Data"></a>Moving Data</h3><blockquote>
+<p><code>mov Source, Dest</code></p>
+</blockquote>
+<ul>
+<li><p>不允许从内存取出，存入内存。从内存取出，只能存入寄存器。</p>
+</li>
+<li><p><code>mov $0x4, %rax</code>：目的地址是寄存器<br><code>mov $0x4, (%rax)</code>: 目的地址是内存</p>
+</li>
+<li><p><code>D(R)</code>: Mem[Reg[R] + D]</p>
+</li>
+<li><p><code>D(Rb, Ri, S)</code>: Mem[Reg[Rb] + S * Reg[Ri] + D]</p>
+</li>
+</ul>
+<h2 id="Arithmetic-amp-logical-operations"><a href="#Arithmetic-amp-logical-operations" class="headerlink" title="Arithmetic &amp; logical operations"></a>Arithmetic &amp; logical operations</h2><h3 id="lea-Src-Dst"><a href="#lea-Src-Dst" class="headerlink" title="lea Src, Dst"></a>lea Src, Dst</h3><blockquote>
+<p>C语言中的&amp;，取地址</p>
+</blockquote>
+<p>实际使用中C语言编译器喜欢用这条指令做算术运算，<code>lea (%rdi, %rdi, 2), %rax</code>, mov是将地址指向的内存值取出，lea指令将内存值所在地址取出，相当于存入的是<code>%rdi + %rdi * 2</code>。</p>
+<h3 id="Some-Arithmetic-Operations"><a href="#Some-Arithmetic-Operations" class="headerlink" title="Some Arithmetic Operations"></a>Some Arithmetic Operations</h3><h4 id="Two-Operand-Instructions"><a href="#Two-Operand-Instructions" class="headerlink" title="Two Operand Instructions"></a>Two Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152227@2x.png" class="">
+
+<ul>
+<li><p>目的操作数作为第一个操作数，类似<code>x+=y</code></p>
+</li>
+<li><p>算术左移和逻辑左移相同</p>
+</li>
+</ul>
+<h4 id="One-Operand-Instructions"><a href="#One-Operand-Instructions" class="headerlink" title="One Operand Instructions"></a>One Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152823@2x.png" class="">
+
+<h1 id="Control"><a href="#Control" class="headerlink" title="Control"></a>Control</h1><h2 id="Condition-Codes"><a href="#Condition-Codes" class="headerlink" title="Condition Codes"></a>Condition Codes</h2><h3 id="Single-bit-registers"><a href="#Single-bit-registers" class="headerlink" title="Single bit registers"></a>Single bit registers</h3><ul>
+<li><p><code>CF</code>: Carry Flag (for unsigned)，同样表示无符号数溢出</p>
+</li>
+<li><p><code>SF</code>: Sign Flag (for signed)，负数为1</p>
+</li>
+<li><p><code>ZF</code>: Zero Flag</p>
+</li>
+<li><p><code>OF</code>: Overflow Flag (for signed)</p>
+</li>
+</ul>
+<h3 id="Explicit-Setting"><a href="#Explicit-Setting" class="headerlink" title="Explicit Setting"></a>Explicit Setting</h3><h4 id="Compare"><a href="#Compare" class="headerlink" title="Compare"></a>Compare</h4><blockquote>
+<p>cmpq Src2, Src1</p>
+</blockquote>
+<p>类似减法，Src1 - Src2，但是不保存值，只改变四个条件码</p>
+<ul>
+<li><p>溢出：<code>cmp b， a</code>，有符号补码<br>同号不会溢出，异号才会溢出</p>
+<ul>
+<li><p>负溢出：a-，b+， a-b&gt;0</p>
+</li>
+<li><p>正溢出：a+，b-，a-b&lt;0</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h4><blockquote>
+<p>testq Src2, Src1</p>
+</blockquote>
+<p>与运算，改变SF和ZF。</p>
+<h4 id="SetX-Instructions"><a href="#SetX-Instructions" class="headerlink" title="SetX Instructions"></a>SetX Instructions</h4><img src="/2023/05/24/13-04-09/WX20230605-113101@2x.png" class="">
+
+<blockquote>
+<p>x86-64中4字节计算结果会将高4字节零填充，而2字节操作只会改变2字节。</p>
+</blockquote>
+<h2 id="Conditional-branches"><a href="#Conditional-branches" class="headerlink" title="Conditional branches"></a>Conditional branches</h2><h3 id="Jumping"><a href="#Jumping" class="headerlink" title="Jumping"></a>Jumping</h3><h4 id="JX-Instructions"><a href="#JX-Instructions" class="headerlink" title="JX Instructions"></a>JX Instructions</h4><img src="/2023/05/24/13-04-09/WX20230605-113806@2x.png" class="">
+
+<h3 id="Using-Conditional-Moves"><a href="#Using-Conditional-Moves" class="headerlink" title="Using Conditional Moves"></a>Using Conditional Moves</h3><p>分支预测技术，更多时候分支预测正确率很低，选择执行分支的两部分指令，计算出两个结果，在最后一分钟选择需要的结果。只适用在两个分支都是简单计算。</p>
+<blockquote>
+<p><code>cmovle</code>: 小于等于的时候移动</p>
+</blockquote>
+<h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><p>C代码中最底层的控制就是跳转和测试。</p>
+<h2 id="Switch-Statements"><a href="#Switch-Statements" class="headerlink" title="Switch Statements"></a>Switch Statements</h2><ul>
+<li><p>用跳转表保存代码块的地址，可以快速跳转到该地址。</p>
+</li>
+<li><p>无论最小值是多少，通过增加偏置变为0</p>
+</li>
+<li><p>跳转表由编译器生成，汇编程序填写。</p>
+</li>
+<li><p>值范围很大，相对稀疏，会转变为条件树。</p>
+</li>
+</ul>
+<h1 id="Procedures"><a href="#Procedures" class="headerlink" title="Procedures"></a>Procedures</h1><h2 id="Stack-Structure"><a href="#Stack-Structure" class="headerlink" title="Stack Structure"></a>Stack Structure</h2><ul>
+<li><p>内存地址从下往上递增</p>
+</li>
+<li><p>栈底在上，push时rsp减小</p>
+</li>
+</ul>
+<h3 id="Push-amp-Pop"><a href="#Push-amp-Pop" class="headerlink" title="Push &amp; Pop"></a>Push &amp; Pop</h3><ul>
+<li><p>Push：先减小，在写入</p>
+</li>
+<li><p>Pop：rsp增加</p>
+</li>
+</ul>
+<h2 id="Calling-Conventions"><a href="#Calling-Conventions" class="headerlink" title="Calling Conventions"></a>Calling Conventions</h2><h3 id="Passing-Control"><a href="#Passing-Control" class="headerlink" title="Passing Control"></a>Passing Control</h3><ul>
+<li><p><code>call label</code>: 返回地址入栈，跳转到label</p>
+</li>
+<li><p><code>ret</code>: 出栈，返回</p>
+</li>
+<li><p><code>pc</code>寄存器就存在<code>rip</code>。</p>
+</li>
+</ul>
+<h3 id="Passing-data"><a href="#Passing-data" class="headerlink" title="Passing data"></a>Passing data</h3><p>数据在寄存器和内存中传递，采用默认的规则，在不同的编译器下都可以传递参数。</p>
+<h3 id="Managing-local-data"><a href="#Managing-local-data" class="headerlink" title="Managing local data"></a>Managing local data</h3><h4 id="Stack-Frame"><a href="#Stack-Frame" class="headerlink" title="Stack Frame"></a>Stack Frame</h4><p>每个函数使用的内存块称为栈帧。</p>
+<ul>
+<li><p><code>rbp</code>: 表示基指针，栈底。调用者的<code>rbp</code>保存在被调用者的栈底。</p>
+</li>
+<li><p><code>rsp</code>: 栈顶，当它被分配了多少字节，就知道需要释放多少字节</p>
+</li>
+</ul>
+<h2 id="Illustration-of-Recursion"><a href="#Illustration-of-Recursion" class="headerlink" title="Illustration of Recursion"></a>Illustration of Recursion</h2><p>栈帧是递归调用的前提。</p>
+<h1 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h1><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><h3 id="One-dimensional"><a href="#One-dimensional" class="headerlink" title="One-dimensional"></a>One-dimensional</h3><ul>
+<li>指针加常量， 常量会被适当放缩。</li>
+</ul>
+<h3 id="Multi-dimensional-nested"><a href="#Multi-dimensional-nested" class="headerlink" title="Multi-dimensional(nested)"></a>Multi-dimensional(nested)</h3><ul>
+<li>多维嵌套数组，按行或列连续存储。</li>
+</ul>
+<h3 id="Multi-level"><a href="#Multi-level" class="headerlink" title="Multi-level"></a>Multi-level</h3><ul>
+<li>三个数组，一个以为指针数组保存三个数组的起始地址。</li>
+</ul>
+<h2 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h2><h3 id="Access"><a href="#Access" class="headerlink" title="Access"></a>Access</h3><ul>
+<li>通过字节偏移访问对应的结构体成员。</li>
+</ul>
+<h3 id="Alignment"><a href="#Alignment" class="headerlink" title="Alignment"></a>Alignment</h3><ul>
+<li><p>字节对齐，访问更方便，数据不会跨越多个块</p>
+</li>
+<li><p>占m字节的变量，就存放在m的倍数地址处</p>
+</li>
+<li><p>调整声明顺序，可以优化对齐</p>
+</li>
+</ul>
+<h2 id="Floating-Point"><a href="#Floating-Point" class="headerlink" title="Floating Point"></a>Floating Point</h2><img src="/2023/05/24/13-04-09/WX20230605-164923@2x.png" class="">
+
+<h1 id="Advanced-Topics"><a href="#Advanced-Topics" class="headerlink" title="Advanced Topics"></a>Advanced Topics</h1>]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 实验III Attack Lab</title>
+    <url>/2023/03/18/15-54-47/</url>
+    <content><![CDATA[<p>更新历史：</p>
+<ul>
+<li>23.03.18：初稿</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a>
+</li>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a>
+</li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a>
+</li>
+<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
+</ul>
+<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Attack Lab实验，采用 code-injection 和 return-oriented 两种方法攻击程序。</p>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
+<li><code>./ctarget -q</code>：运行目标文件用参数<code>-q</code>，不使用服务器</li>
+</ol>
+<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2>]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+        <tag>shell</tag>
+        <tag>gdb</tag>
+        <tag>objdump</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 实验II Bomb Lab</title>
+    <url>/2023/03/14/09-43-26/</url>
+    <content><![CDATA[<p>更新历史：</p>
+<ul>
+<li>23.03.14：初稿</li>
+<li>23.03.18：新增secret_phase</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a>
+</li>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a>
+</li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a>
+</li>
+<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
+</ul>
+<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Bomb Lab实验，使用GDB工具拆除六个阶段的炸弹，需要仔细输入，爆炸次数过多实验会失败。</p>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
+<li><p>下载自己的炸弹，不能修改bomb.c代码。</p>
+</li>
+<li><p>每爆炸一次失去一半的分数。</p>
+</li>
+<li><p>测试命令</p>
+<blockquote>
+<p><code>./bomb</code>：运行炸弹程序， <code>psol.txt</code>：文件输入答案</p>
+</blockquote>
+</li>
+<li><p>GDB命令</p>
+<blockquote>
+<p><code>gdb boom</code>：调试命令。参数：<code>-e</code>：置顶可执行文件名<br><code>quit</code>：退出调试<br><code>run [参数]</code>：运行程序；<code>&lt; psol.txt</code>：文件输入<br><code>continue</code>：断点继续<br><code>print expr</code>：打印表达式值，区别：x打印的内存的值<br><code>nexti</code>：单步执行，不进入函数调用<br><code>stepi</code>：单步执行进入函数调用<br><code>break function</code>：函数处断点<br><code>break *address</code>：内存地址处断点<br><code>delete n</code>：删除n号断点<br><code>delete</code>：删除所有断点<br><code>finish</code>：运行的当前函数返回停止<br><code>x/5cb str</code> ：显示5个单字节；<code>h</code>：两个；<code>w</code>：四个；<code>g</code>：八个<br><code>x/1sb str</code> ：显示字符串str<br><code>x/4dw arr</code> ：取4个整型数字以十进制格式显示<br><code>display arr</code>：每次断点都打印数据，参数<code>/x /s /u /c</code>。<br><code>disas</code>：反汇编当前函数<br><code>info registers</code>：显示寄存器内容</p>
+</blockquote>
+</li>
+<li><p>objdump命令 <code>反汇编</code></p>
+<blockquote>
+<p><code>objdump -t</code>：打印变量内容的存储位置<br><code>objdump -d bomb &gt; bomb.s</code>：反汇编生成bomb.s文件。<code>需要使用gdb查看函数</code></p>
+</blockquote>
+</li>
+<li><p>screen 命令 <code>分屏看汇编文件，也可以不分屏在GDB中使用disas命令</code></p>
+<blockquote>
+<p><code>screen -ls</code>：查看所有screen终端<br><code>screen -S name</code> ：创建终端<br><code>screen -r name or id</code> ：连接终端。连接失败用<code>screen -d **</code>：连接<br><code>exit</code>：退出终端<br><code>Ctrl + a，d</code>：暂离；<code>c</code>：创建子会话；<code>w</code>：子会话列表；<code>p</code>：上一个；<code>n</code>：下一个；<code>0-9</code>：切换；<code>：</code>：命令行模式(<code>resize 80</code>)调整窗口大小。<br><code>screen -S id -X quit</code>：关闭视窗</p>
+</blockquote>
+</li>
+<li><p>函数参数传递相关寄存器</p>
+<blockquote>
+<p><code>%rax</code>：返回值<br><code>%rdi</code>：第一个参数<br><code>%rsi</code>：第二个参数<br><code>%rdx</code>：第三个参数<br><code>%rcx</code>：第四个参数<br><code>%d8</code>，<code>%d9</code>，<code>%d10</code>依次是后面的参数</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先从源码<code>bomb.c</code>可以看出调用顺序，通过函数<code>explode_bomb</code>让炸弹爆炸，所有我们在调试过程中，在这个函数处打断点，每次只要输入错误密码，炸弹爆炸的时候程序都会进入断点，这样就不会扣分了。从源码里还能看出每一个关卡的函数都是<code>phase_x</code>，所以每次调试之前，在爆炸处打断点，在<code>phase_x</code>处打断点，进入这关之后，用反汇编命令<code>disas</code>，显示函数的汇编代码，然后进行解题。</p>
+<h2 id="phase-1"><a href="#phase-1" class="headerlink" title="phase_1"></a>phase_1</h2><p>思路：</p>
+<p>第一个比较简单，找到字符串对比函数，参数1放在寄存器rdi里，参数2放在寄存器rsi里。<br>在字符串对比函数内打断点，命令<code>x/1sb $rsi</code>,打印出寄存器里的字符串内容。<br>做法：</p>
+<ol>
+<li><p><code>break phase_1</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230315-120145@2x.png" class="">
+</li>
+<li><p><code>break explode_bomb</code> ：在爆炸函数打断点，防止进入这里引爆炸弹  </p>
+</li>
+<li><p>根据汇编语言可以看出，输入的字符串在调用字符串对比函数中进行对比，根据返回值进行选择是否爆炸。<br><code>break strings_not_equal</code> ：打断点</p>
+</li>
+<li><p><code>x/1sb $rsi</code>：打印<code>$rsi</code>内容，根据phase_1函数的汇编指令中，改变了rsi内容，说明我们输入的密码在<code>$rdi</code>中，解密的密码在<code>$rsi</code>中。</p>
+<img src="/2023/03/14/09-43-26/WX20230315-122703@2x.png" class=""></li>
+</ol>
+<p>答案:</p>
+<p><code>Border relations with Canada have never been better.</code></p>
+<h2 id="phase-2"><a href="#phase-2" class="headerlink" title="phase_2"></a>phase_2</h2><p>思路：</p>
+<p>第二个主要是是在函数分配的栈里面进行操作,通过sscanf函数的第二个参数,format,”%d %d %d %d %d %d”，可以看出密码应该是六个数,通过记录的<code>%rsi</code>是phase2函数的<code>%rsp</code>，可以知道最终密码应该是保存在主函数的栈区，第一次和1比较,相同才能继续，第一个数字是1， 后面每一个数字都是和前一个数字*2相比较，那么就是一个等比数列，公比2。<br>做法：</p>
+<ol>
+<li><p><code>break phase_2</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230315-164003@2x.png" class="">
+<p>发现函数调用了read_six_numbers函数，所以继续在这里打断点，看具体输入了什么。</p>
+</li>
+<li><p><code>break read_six_numbers</code>，查看这个函数的汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230315-164335@2x.png" class="">
+<p>从调用sscanf函数之前可以看出输入格式在第二个参数里 ，以在调用之前打断点，打印<code>rsi</code>的内容。从调用爆炸函数的条件也可以看出来，sscanf返回值大于等于6的时候才会正常跳转，输入的数太少会直接爆炸。</p>
+<img src="/2023/03/14/09-43-26/WX20230315-164848@2x.png" class="">
+<p>这道题的密码应该是6位数字，输入的内容保存在后面的传参里，地址在<code>rsi</code>寄存器里，根据phase_2的调用之前，<code>rsi</code>寄存器里存的是<code>rsp</code>的地址，所以可以判断出，读取函数把输入的数字存到了<code>rsp</code>内的地址里。</p>
+</li>
+<li><p>根据返回到phase_2函数的下一条指令<code>cmpl   $0x1,(%rsp)</code><br><code>cmpl</code>：代表双字，四个字节，用<code>x/6dw $rsp</code>：打印输入的内容看一下是不是自己输入的；根据跳转条件可以看出，第一个密码是1，</p>
+</li>
+<li><p>第一个密码正确后，依次看后面的指令:<br><code>lea    0x4(%rsp),%rbx</code>：下四个字节，第二个密码地址放到<code>rbx</code>里。<br><code>lea    0x18(%rsp),%rbp</code>：第24字节地址放到<code>rbx</code>里。<code>相当于for循环结束条件</code><br><code>mov    -0x4(%rbx),%eax</code>：第一个密码1存到<code>eax</code>。<br><code>add    %eax,%eax</code>：<code>eax</code>+<code>eax</code>。<code>乘2</code><br><code>cmp    %eax,(%rbx)</code>：对比第二个密码是不是2。<br><code>add    $0x4,%rbx</code>：<code>rbx</code>指向下四个字节，第三个密码。<br><code>cmp    %rbp,%rbx</code>：对比是不是到了结束末尾，否则继续进行循环。<br>所以这六个数字密码是一个1开头的等比数列，公比为2。</p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>1 2 4 8 16 32</code></p>
+<h2 id="phase-3"><a href="#phase-3" class="headerlink" title="phase_3"></a>phase_3</h2><p>思路：</p>
+<p>第三个和第二个相同,查看输入的是两个%d,存在phase3的栈里面,不一样的地方是,这道题目的答案有7种,因为第一个密码小于7,所有一共有8组答案,分别是0,207,   1-0x137,2-0x2c3,3-0x100,4-0x185,5-0xce, 6-0x2aa, 7-0x147.<br>做法：</p>
+<ol>
+<li><p><code>break phase_3</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230316-103622@2x.png" class="">
+<p>找到<code>sscanf</code>函数，和之前一样打断点查看输入格式。</p>
+</li>
+<li><p><code>x/1sb $rsi</code>：这道题的密码应该是两个数</p>
+<img src="/2023/03/14/09-43-26/WX20230316-103921@2x.png" class="">
+</li>
+<li><p>基本步骤和上面一样，看一下密码对比的循环指令：<br><code>cmpl   $0x7,0x8(%rsp)</code>：对比第一个数字和7的大小<br><code>ja     0x400fad &lt;phase_3+106&gt;</code>：无符号大于就跳转，跳转之后调用了爆炸函数，说明第一个数字小于等于7并且大于等于0<code>负数当无符号数时第一位总是1，一定比8大</code>。<br><code>mov    0x8(%rsp),%eax</code>：把第一个数字放到<code>eax</code>里。<br><code>jmpq   *0x402470(,%rax,8)</code>：跳转到<code>*(0x402470 + (%rax * 8))</code><br>打印一下从<code>0x402470</code>这里开始存的是什么：<code>x/8xg 0x402470</code>或者<code>x/64xb 0x402470</code>：这里要注意数据是按照大端法存储的。</p>
+<img src="/2023/03/14/09-43-26/WX20230316-110646@2x.png" class="">
+<p>可以看出对应跳转关系，跳转后执行的指令为：<code>mov    $0xcf,%eax</code>，根据不同的第一位数字得到的为：<code>0--0xcf</code> <code>1--0x137</code> <code>2--0x2c3</code> <code>3--0x100</code> <code>4--0x185</code> <code>5--0xce</code> <code>6--0x2aa</code> <code>7--0x147</code></p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>0 207</code></p>
+<h2 id="phase-4"><a href="#phase-4" class="headerlink" title="phase_4"></a>phase_4</h2><p>思路：</p>
+<p>第四个主要难点在func4函数里有一个单操作数的sar指令，之前一直以为移位的数存在寄存器cl里，后来才发现这是默认移位1，所有这个题的密码第一位是在用二分法在(0-14)中找值，但是由于函数返回值是0才不会爆炸，往右半部分查找时，返回值不为0,所以密码只能在左半部分，分别是7，3，1，0，四种答案，第二个密码是在phase_4函数里，对比的数字是0，所以第二个密码是0。<br>做法：</p>
+<ol>
+<li><p><code>break phase_4</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230316-112833@2x.png" class="">
+<p>找到<code>sscanf</code>函数，和之前一样打断点查看输入格式。这道题和上一道的<code>rsi</code>内容一样，说明都是两个数。</p>
+</li>
+<li><p><code>cmpl   $0xe,0x8(%rsp)</code>：<br><code>jbe    0x40103a &lt;phase_4+46&gt;</code>：小于等于跳转，说明第一个密码小于等于14。<br><code>mov    $0xe,%edx</code>：14存到<code>rdx</code>第三个参数。<br><code>mov    $0x0,%esi</code>：0存到<code>rsi</code>第二个参数。<br><code>mov    0x8(%rsp),%edi</code>：第一个密码存到<code>rdi</code>第一个参数。<br><code>callq  0x400fce &lt;func4&gt;</code>：调用func4函数。</p>
+</li>
+<li><p><code>disas</code>：打断点反汇编，区间(a,b)</p>
+<img src="/2023/03/14/09-43-26/WX20230316-113725@2x.png" class="">
+<p><code>mov    %edx,%eax</code>：第三个参数14存到<code>rax</code><br><code>sub    %esi,%eax</code>：<code>rax</code>-<code>rsi</code><br><code>mov    %eax,%ecx</code>：把两个参数的差存到<code>rcx</code> 记为m<br><code>shr    $0x1f,%ecx</code>：<code>ecx</code>逻辑右移31位，<code>ecx</code>是32位的，移动31位，只剩下了符号位。<br><code>add    %ecx,%eax</code>：<code>eax</code>等于0+差。<code>如果b-a=-1，ecx=1，eax+1=0</code><br><code>sar    %eax</code>：<code>eax</code>右移一位，算术右移，等于7，m<br><code>lea    (%rax,%rsi,1),%ecx</code>：加载有效地址，效果是<code>rcx</code>里存入了a+m<br><code>cmp    %edi,%ecx</code>比较中间值是否等于第一个数字。<br>如果大于：<code>lea    -0x1(%rcx),%edx</code>b等于m-1。递归函数，左边区间查找是结束递归后<code>rax</code>乘2。<br>小于等于：<br><code>mov    $0x0,%eax</code>：<code>eax</code>等于0<br><code>cmp    %edi,%ecx</code>：对比中间值和第一个数字<br><code>jge    0x401007 &lt;func4+57&gt;</code>：大于等于跳转，本来是小于等于，相等于等于跳转，所以结束标志是第一个参数等于中间值m。返回值<code>rax</code>为0。<br><code>0x1(%rcx),%esi</code>：小于时，a &#x3D; m+ 1，继续递归，小于时结束递归后执行的是<code>0x1(%rax,%rax,1),%eax</code>，不为0。</p>
+</li>
+<li><p>根据<code>func4</code>返回后<code>test   %eax,%eax</code>，如果不相等就爆炸，所以eax只能等于0，所以第一个数字一定是在二分查找的左边区间，所以可能值为7，3，1，0。</p>
+</li>
+<li><p><code>cmpl   $0x0,0xc(%rsp)</code>：相等时函数结束，说明第二个密码是固定值0。</p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>0 0</code></p>
+<h2 id="phase-5"><a href="#phase-5" class="headerlink" title="phase_5"></a>phase_5</h2><p>思路：</p>
+<p>第五个比较有趣,还是和12一样计算字符串长度,知道密码应该是一个6位长度字符串，计算字符串是不是相等函数的参数显示待匹配的字符串是”flyers”，编译的时候用了canary，栈指针每次都不同，这个对解密应该是没影响，主要是输入的字符串，每一个字节只保留了低四位,然后加上一个地址，将内存中的值送到了rsp里，那么这个地址应该是一个数组，打印一下这个地址开始的15个字节，是一串字符maduiersnfotvbyl，需要我们从里面找出密码，位置分别是9，15，14，5，6，7。所以输入的字符串的ASCII编码后四位应该就是这个值，答案比较多，找<br>了一个’a’-‘z’中的答案。<br>做法：</p>
+<ol>
+<li><p><code>break phase_5</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230316-132301@2x.png" class="">
+<p>根据字符串对比函数的下一条<code>cmp    $0x6,%eax</code>，可以看出这道题密码长度为6。</p>
+</li>
+<li><p>分析跳转后的代码</p>
+<img src="/2023/03/14/09-43-26/WX20230316-160027@2x.png" class="">
+<p><code>movzbl (%rbx,%rax,1),%ecx</code>：<code>ecx</code>内存的是<code>rbx</code>的第<code>rax</code>个字节做零扩展到双字，如图是<code>0x69</code>；<code>rax</code>相当于是for循环里的i。<br><code>mov    %cl,(%rsp)</code>：把<code>rcx</code>的低八位送入栈顶指针指向的地址。<br><code>mov    (%rsp),%rdx</code>：把值继续送到<code>rdx</code>。<br><code>and    $0xf,%edx</code>：只保留<code>rdx</code>的低四位。<br><code>movzbl 0x4024b0(%rdx),%edx</code>：把<code>rdx</code>的值加上<code>0x4024b0</code>，新地址的内容存到<code>edx</code>里。<br><code>mov    %dl,0x10(%rsp,%rax,1)</code>：把<code>rdx</code>的低八位存入<code>rax+rsp+0x10</code>的位置。<br><code>add    $0x1,%rax</code>：i自加<br><code>cmp    $0x6,%rax</code>：循环结束判断</p>
+</li>
+<li><p>后续指令把所有的输入字符改变之后保存在了<code>rsp + 0x10</code>指向的地址里，然后调用<code>strings_not_equal</code>：我们可以根据查看传参，看一下标准答案是什么。</p>
+<img src="/2023/03/14/09-43-26/WX20230316-161808@2x.png" class="">
+<p>可以看到密码是字符串<code>flyers</code>，对应的字节是<code>0x66 0x6c 0x79 0x65 0x72 0x73</code>。</p>
+</li>
+<li><p>我们在打印一下for循环里跳转的地址<code>0x4024b0</code>保存的是什么?</p>
+<img src="/2023/03/14/09-43-26/WX20230316-162400@2x.png" class="">
+<p>由于偏移量总是低四位，范围是0-15，所以字符串只需要关注<br><code>maduiersnfotvbyl</code>前面这些，需要我们从里面找出密码，位置分别是9，15，14，5，6，7。所以输入的字符串的ASCII编码后四位应该就是这个值，答案比较多，找了一个’a’-‘z’中的答案。</p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>ionefg</code></p>
+<h2 id="phase-6"><a href="#phase-6" class="headerlink" title="phase_6"></a>phase_6</h2><p>思路：</p>
+<p>第六个是一个链表，节点的前八个字节中低位是数据，高位是输入的密码，高位的8个字节是下一跳地址，根据输入的6个数必须是1-6，切两两不相同，还进行了一次处理，每一位密码x，变成了y &#x3D; 7-x。</p>
+<p>然后是链表的操作，每一个密码的节点对应的是(y - 1) * 8 + 结点首地址， 分配好结点后进行结点连接。<br>每一位密码的下一跳就是下一位密码对应的结点地址，最后一位结点的下一跳是0；要求是必要让结点中的数据，满足前一个结点大于等于后一个结点，<br>而所有结点的数据分别是：<br>(1):332<br>(2):168<br>(3):924<br>(4):691<br>(5):477<br>(6):443<br>所以数据最大的结点应该在最前面，序号应该是3 4 5 6 1 2。<br>而输入的密码应该是7 - y：   4 3 2 1 6 5<br>做法：</p>
+<ol>
+<li><p><code>break phase_6</code> ：打断点</p>
+</li>
+<li><p><code>disas</code>：显示汇编指令</p>
+<img src="/2023/03/14/09-43-26/WX20230316-163103@2x.png" class="">
+<img src="/2023/03/14/09-43-26/WX20230316-163118@2x.png" class="">
+<img src="/2023/03/14/09-43-26/WX20230316-163134@2x.png" class="">
+</li>
+<li><p>根据指令，这道题是读取了六个数字，我们直接看后面的处理。输入的数字保存在<code>rsp</code>指向的地址里。每个数字存储在四个字节里<br><code>mov    %rsp,%r14</code>：把输入的数组起始地址送到<code>r14</code><br><code>mov    $0x0,%r12d</code>：<code>r12d</code>赋值0，记为<code>i</code><br><code>mov    %r13,%rbp</code>：<code>rbp</code>保存栈顶指针，数组起始地址<br><code>mov    0x0(%r13),%eax</code>：<code>rax</code>等于输入的第一个值<br><code>sub    $0x1,%eax</code>：自减1<br><code>cmp    $0x5,%eax</code>：判断<code>rax</code>是不是等于5<br><code>jbe    0x401128 &lt;phase_6+52&gt;</code>：无符号小于等于才不会爆炸，所以输入的数字自减前必须是<code>1-6</code>。<br><code>add    $0x1,%r12d</code>：<code>i</code>+1<br><code>cmp    $0x6,%r12d</code>：循环结束标志，相等跳转<br>不相等：<br><code>mov    %r12d,%ebx</code>：把<code>i</code>送到<code>rbx</code>， 记为<code>j = i + 1</code>。<br><code>movslq %ebx,%rax</code>：符号扩展送到<code>rax</code>，等于<code>j</code><br><code>mov    (%rsp,%rax,4),%eax</code>：输入的第<code>j</code>个数 送到 <code>rax</code><br><code>cmp    %eax,0x0(%rbp)</code>：对比<code>rax</code>和栈顶指针指向的数是否相同，相等就爆炸，数字不能重复。<br><code>add    $0x1,%ebx</code>：<code>j++</code><br><code>cmp    $0x5,%ebx</code>：循环跳出条件，后面的每一个数不能和第一个数相等。<br><code>add    $0x4,%r13</code>：循环重复，<code>i</code>指向下一个数<br>所有的数范围是<code>1-6</code>，且不重复时。</p>
+</li>
+<li><p><code>lea    0x18(%rsp),%rsi</code>：把最后一个数的地址送到<code>rsi</code><br><code>mov    %r14,%rax</code>：数组的第一个地址送到<code>rax</code><br><code>mov    $0x7,%ecx</code>：<code>rcx</code>等于7<br><code>mov    %ecx,%edx</code>：<code>rdx</code> &#x3D; 7<br><code>sub    (%rax),%edx</code>：<code>rdx</code> &#x3D; 7 - <code>*rax</code>，数组的第一个数<br><code>mov    %edx,(%rax)</code>：覆盖这个数<br><code>add    $0x4,%rax</code>：数组下一个<br><code>cmp    %rsi,%rax</code>：跳出条件<br>这段代码把所有数组的数，全部用7减，保存差</p>
+</li>
+<li><p><code>mov    $0x0,%esi</code>：<code>rsi</code> &#x3D; 0，记为<code>i</code><br><code>mov    (%rsp,%rsi,1),%ecx</code>：<code>rcx</code>保存<code>rsp</code>的第<code>i</code>个字节地址的数字，记为<code>x</code>，注意数字在4的倍数字节处<br><code>cmp    $0x1,%ecx</code>：<code>x</code> &#x3D;&#x3D; 1，1进行这个if判断<br>如果x&#x3D;&#x3D;1：<br><code>mov    $0x6032d0,%edx</code>：<code>rdx</code>赋值，这里要注意应该就是密码所在地<br>如果x&gt;1：<br><code>mov    $0x1,%eax</code>：<code>rax</code> &#x3D; 1<br><code>mov    $0x6032d0,%edx</code>:<br><code>mov    0x8(%rdx),%rdx</code>：<code>rdx</code> &#x3D;  （<code>rdx</code> + 8地址保存的数据），就是<code>rdx</code>地址指向的节点的next。<br><code>add    $0x1,%eax</code>：<code>rax</code> + 1<br><code>cmp    %ecx,%eax</code>：对比<code>x</code>和<code>rax</code><br>不相等时<code>rax</code>一直加1，最终<code>rdx</code>指向第x个节点地址<br>if判断结束：<br><code>mov    %rdx,0x20(%rsp,%rsi,2)</code>：把<code>rdx</code>数送入<code>rsp</code> + 2 * i + 0x20，这个地址，相当于把数组整体换位置，后面是偏移量。<br><code>add    $0x4,%rsi</code>：<code>i</code> &#x3D; <code>i</code> + 4<br><code>cmp    $0x18,%rsi</code>：结束条件<br>这段循环把数组里的数，全部向后偏移保存了一个数组，这个数组中0，1对应的是固定值<code>$0x6032d0</code>，大于1的值都是<code>$0x6032d0 + 8 * (x - 1)</code>。新数组的每一个数长度是8字节，数据是一串地址。</p>
+<img src="/2023/03/14/09-43-26/WX20230317-124521@2x.png" class="">
+<p>可以看出在<code>rsp</code>后0x20地址处，是六个地址。</p>
+</li>
+<li><p><code>mov    0x20(%rsp),%rbx</code>：<code>rbx</code>等于新建数组的第一个数，记为<code>i</code><br><code>lea    0x28(%rsp),%rax</code>：<code>rax</code>是新数组第二个数的地址，记为<code>&amp;j</code><br><code>lea    0x50(%rsp),%rsi</code>：<code>rsi</code>数组最大地址<br><code>mov    %rbx,%rcx</code>：<code>rcx</code>存第一个数，记为<code>i</code><br>循环：<br><code>mov    (%rax),%rdx</code>：<code>rdx</code>：存下个数，记为<code>j</code><br><code>mov    %rdx,0x8(%rcx)</code>：把<code>j</code>放到<code>i</code>后8个字节处<br><code>add    $0x8,%rax</code>：<code>&amp;j = &amp;j + 8</code>，后移八个字节<br><code>cmp    %rsi,%rax</code>：对比有没有到了数组末尾<br>没有到最后一个地址：<br><code>mov    %rdx,%rcx</code>：<code>rcx</code> &#x3D; <code>rdx</code>，<code>i</code>后移8个字节<br>继续上面的循环<br>如果到了最后一个地址：<br><code>movq   $0x0,0x8(%rdx)</code>：把0存到最后一个节点的后8字节处，尾结点的next&#x3D;0。<br>上面把所有链表连接起来了。链接方式是按照输入的六个数字进行连接，按照1-6的顺序，数字越大，地址越大。每个数字代表一个地址，从1-6链接起来。</p>
+</li>
+<li><p>下面进行的是爆炸判断：<br><code>mov    $0x5,%ebp</code>：<code>rbp</code> &#x3D; 5<br>循环：<br><code>mov    0x8(%rbx),%rax</code>：<code>rax</code>&#x3D;第一个节点的next<br><code>mov    (%rax),%eax</code>：<code>rax</code>&#x3D;地址保存的数<br><code>cmp    %eax,(%rbx)</code>：*next对比**this<br>小于就爆炸：<br>大于等于：<br><code>mov    0x8(%rbx),%rbx</code>：this向后移动8位<br><code>sub    $0x1,%ebp</code>：<code>rbp</code>减1<br>不等于0时，循环继续<br>上面这段循环如果链表的数据表示的地址内存的数是递增的就爆炸了。所以就是要把链表调整为递减的链表，通过输入的1-6。</p>
+</li>
+<li><p>打印看一下这个<code>$0x6032d0</code>地址处保存的数据是什么？<br>链接之前的链表：</p>
+
+<p>重新链接之后的链表：</p>
+
+<p>根据爆炸判断，这道题就是让链表排序成递减。</p>
+</li>
+</ol>
+<p>答案:</p>
+<p><code>4 3 2 1 6 5</code></p>
+<h2 id="secret-phase"><a href="#secret-phase" class="headerlink" title="secret_phase"></a>secret_phase</h2><p>重新开始写解题笔记的时候，按照小土刀的博客搭建了hexo博客，根据他的文章格式写出了这篇解题笔记，在他的文章里发现还有一道彩蛋题目，藏在了<code>phase_defused</code>函数里。这个不仔细读汇编代码很难发现，因为一般不会看拆弹成功的函数。现在自己把这个彩蛋也做一下。</p>
+<p>思路：</p>
+<p>做法：</p>
+<ol>
+<li><p>在函数<code>phase_defused</code>处打断点。</p>
+<img src="/2023/03/14/09-43-26/WX20230317-143025@2x.png" class="">
+<p>发现这里有一个<code>secret_phase</code>函数，对这个函数打断点发现不会进入。<br>在汇编代码里找一下函数入口。</p>
+</li>
+<li><p><code>cmpl   $0x6,0x202181(%rip)        # 0x603760 &lt;num_input_strings&gt;</code>：对比当前的关卡数，不等于6时跳转，等于6时，可能会进入彩蛋。</p>
+</li>
+<li><p><code>mov    $0x402619,%esi</code>和<code>mov    $0x603870,%edi</code>，根据这两个参数，应该是调用的sscanf函数，看一下输入参数是什么？</p>
+<img src="/2023/03/14/09-43-26/WX20230317-145028@2x.png" class="">
+<p>可以看出密码是两个数字一个字符串。</p>
+</li>
+<li><p><code>mov    $0x402622,%esi</code>：打印看一下这里存的是什么？</p>
+<img src="/2023/03/14/09-43-26/WX20230317-150241@2x.png" class="">
+<p>可以确定第三个密码是<code>DrEvil</code></p>
+</li>
+<li><p><code>mov    $0x4024f8,%edi</code>：<br><code>mov    $0x402520,%edi</code>：打印看一下这里是什么？</p>
+<img src="/2023/03/14/09-43-26/WX20230317-150454@2x.png" class="">
+</li>
+<li><p>修改一下我们的<code>psol.txt</code>，最后一行加上<code>0 0 DrEvil</code>，重新调试进入<code>secret_phase</code>看一下汇编代码，代码没有进入，说明输入不在最后，继续看一下汇编代码。</p>
+</li>
+<li><p>根据sscanf的第一个参数地址在<code>0x603870</code>，我们就找一下之前输入的数据哪一个存放在这周围，在<code>bomb.s</code>文件里搜一下最近的是<code>read_line</code>函数里的<code>0x603780</code>。<br>看一下附件的代码：<br><code>lea    (%rax,%rax,4),%rsi</code>：<br><code>shl    $0x4,%rsi</code>：<br><code>add    $0x603780,%rsi</code>：<br><code>rax</code>放的是题目序号，乘5，左移4位，加上<code>0x603780</code>后等于我要的值，<code>rax</code>应该等于3。也就是说第三道题目解出来之后，第四道题目的输入缓冲区在<code>0x603870</code>。把输入文件改一下。</p>
+</li>
+<li><p>成功进入彩蛋函数，现在开始解这个彩蛋。<br>这里要把彩蛋的输入放在第六道题的下一行，彩蛋的入口在第四道题的输入后面。<br><code>disas</code>：先看一下汇编代码</p>
+<img src="/2023/03/14/09-43-26/WX20230317-163059@2x.png" class="">
+<p><code>mov    $0xa,%edx</code>：<code>rdx</code>&#x3D;10<br><code>mov    $0x0,%esi</code>：<code>rsi</code>&#x3D;0<br><code>mov    %rax,%rdi</code>：<code>rdi</code> &#x3D; read_line的返回值。就是我们输入的字符串地址。<br><code>callq  0x400bd0 &lt;strtol@plt&gt;</code>：调用函数，找开头的十进制数转换为long int，存在<code>rax</code>里，结尾的下一个地址放在<code>rsi</code>里。<br><code>mov    %rax,%rbx</code>：<code>rbx</code>&#x3D;数字<br><code>lea    -0x1(%rax),%eax</code>：<code>rax</code>-1存到<code>rax</code>里<br><code>cmp    $0x3e8,%eax</code>：对比如果，0x3e8是1000<br>如果大于，爆炸：<br>如果小于等于：<br><code>mov    %ebx,%esi</code>：<code>rsi</code>&#x3D;<code>rbx</code><br><code>mov    $0x6030f0,%edi</code>：<code>rdi</code>赋值，这里应该是密码所在地<br><code>callq  0x401204 &lt;fun7&gt;</code>：跳转到fun7函数</p>
+</li>
+<li><p>在fun7函数里打断点，看下汇编代码</p>
+<img src="/2023/03/14/09-43-26/WX20230317-174533@2x.png" class="">
+<p><code>test   %rdi,%rdi</code>：test<code>rdi</code><br>如果等于0就跳转：<br><code>mov    $0xffffffff,%eax</code>：赋值32位全1，返回<br>不等于0：<br><code>mov    (%rdi),%edx</code>：把<code>rdi</code>地址保存的数据<code>$</code>给<code>rdx</code><br><code>cmp    %esi,%edx</code>：对比<code>rdx</code>和我们输入的密码<br><code>jle    0x401220 &lt;fun7+28&gt;</code>：<br>如果<code>rdx</code>&lt;&#x3D;<code>rsi</code>：<br><code>mov    $0x0,%eax</code>：赋值0<br><code>cmp    %esi,%edx</code>：继续对比<br>如果<code>rdx</code>&#x3D;&#x3D;<code>rsi</code>：返回0。根据彩蛋的汇编代码，可以看出返回值等于2才可以拆弹成功。<br>如果<code>rdx</code>&lt;<code>rsi</code>：<br><code>mov    0x10(%rdi),%rdi</code>：把<code>rdi</code>指向的地址+0x10，取数据送到<code>rdi</code><br>递归fun7。<br><code>lea    0x1(%rax,%rax,1),%eax</code>：<code>rax</code>左移一位再加1。<br>如果<code>rdx</code> &gt; <code>rsi</code>：<br><code>mov    0x8(%rdi),%rdi</code>：把<code>rdi</code>指向的地址+0x8，取数据送到<code>rdi</code><br>递归fun7。<br><code>add    %eax,%eax</code>：<code>rax</code>左移一位</p>
+</li>
+<li><p>根据上面的分析。递归的返回值一共四种<br>（1）：返回32位1<br>（2）：左移一位<br>（3）：0<br>（4）：左移一位加1<br>要想拆掉炸弹，需要返回的是2。<br>返回值顺序是：左移一位&lt;左移一位加1&lt;返回0<br>先从内层递归找条件：fun(x，y)<br>返回0：<code>rdi</code>指向的数 &#x3D;&#x3D; y<br>左移一位加1：<code>rdi</code>指向的数 &lt; y，这里x+16字节<br>左移一位：<code>rdi</code>指向的数 &gt; y，这里x+8字节<br>递归顺序为：<br>fun(x，y) -&gt; fun(x + 8，y) -&gt; fun(x+16，y)</p>
+</li>
+<li><p>打印一下链表存的数据是哪些？</p>
+<img src="/2023/03/14/09-43-26/WX20230317-174533@2x.png" class="">
+<img src="/2023/03/14/09-43-26/WX20230317-174534@2x.png" class="">
+<p>根据搜索路径可以看出，需要输入的密码应该是22。</p>
+</li>
+<li><p>测试一下</p>
+<img src="/2023/03/14/09-43-26/WX20230317-174535@2x.png" class="">
+<p>彩蛋拆除成功！！</p>
+</li>
+</ol>
+<p>答案：<code>22</code>+任意字符串</p>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+        <tag>shell</tag>
+        <tag>gdb</tag>
+        <tag>objdump</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux和SSh相关命令</title>
+    <url>/2023/03/11/15-22-24/</url>
+    <content><![CDATA[<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="ln链接文件"><a href="#ln链接文件" class="headerlink" title="ln链接文件"></a>ln链接文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s 源文件  目的文件    #建立软链接</span><br><span class="line">ln    源文件  目的文件    #硬链接</span><br></pre></td></tr></table></figure>
+
+<h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>显示当前地址</p>
+<h1 id="SSH命令"><a href="#SSH命令" class="headerlink" title="SSH命令"></a>SSH命令</h1><h2 id="scp传输文件"><a href="#scp传输文件" class="headerlink" title="scp传输文件"></a>scp传输文件</h2><p><code>注意要在本地使用这个命令，ssh登录后使用，文件从服务器下载到服务器了</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp username@ip_address:/home/username/filename ~/   #从服务器下载到本地</span><br><span class="line"># 参数 -P 端口号   要大写</span><br><span class="line"># 参数 -r 文件夹</span><br><span class="line">scp -P2222 -r</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>ssh</tag>
+        <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSAPP 实验I Data Lab</title>
     <url>/2023/03/09/11-54-50/</url>
     <content><![CDATA[<p>更新历史</p>
@@ -344,368 +857,21 @@
       </tags>
   </entry>
   <entry>
-    <title>CSAPP 实验II Bomb Lab</title>
-    <url>/2023/03/14/09-43-26/</url>
-    <content><![CDATA[<p>更新历史：</p>
+    <title>git笔记</title>
+    <url>/2023/03/08/14-59-55/</url>
+    <content><![CDATA[<p>克隆项目到当前文件夹</p>
 <ul>
-<li>23.03.14：初稿</li>
-<li>23.03.18：新增secret_phase</li>
+<li><p>git clone https:&#x2F;&#x2F; .</p>
+</li>
+<li><p>注意 .</p>
+</li>
 </ul>
-<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a>
-</li>
-<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a>
-</li>
-<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a>
-</li>
-<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
-</ul>
-<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Bomb Lab实验，使用GDB工具拆除六个阶段的炸弹，需要仔细输入，爆炸次数过多实验会失败。</p>
-<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
-<li><p>下载自己的炸弹，不能修改bomb.c代码。</p>
-</li>
-<li><p>每爆炸一次失去一半的分数。</p>
-</li>
-<li><p>测试命令</p>
-<blockquote>
-<p><code>./bomb</code>：运行炸弹程序， <code>psol.txt</code>：文件输入答案</p>
-</blockquote>
-</li>
-<li><p>GDB命令</p>
-<blockquote>
-<p><code>gdb boom</code>：调试命令。参数：<code>-e</code>：置顶可执行文件名<br><code>quit</code>：退出调试<br><code>run [参数]</code>：运行程序；<code>&lt; psol.txt</code>：文件输入<br><code>continue</code>：断点继续<br><code>print expr</code>：打印表达式值，区别：x打印的内存的值<br><code>nexti</code>：单步执行，不进入函数调用<br><code>stepi</code>：单步执行进入函数调用<br><code>break function</code>：函数处断点<br><code>break *address</code>：内存地址处断点<br><code>delete n</code>：删除n号断点<br><code>delete</code>：删除所有断点<br><code>finish</code>：运行的当前函数返回停止<br><code>x/5cb str</code> ：显示5个单字节；<code>h</code>：两个；<code>w</code>：四个；<code>g</code>：八个<br><code>x/1sb str</code> ：显示字符串str<br><code>x/4dw arr</code> ：取4个整型数字以十进制格式显示<br><code>display arr</code>：每次断点都打印数据，参数<code>/x /s /u /c</code>。<br><code>disas</code>：反汇编当前函数<br><code>info registers</code>：显示寄存器内容</p>
-</blockquote>
-</li>
-<li><p>objdump命令 <code>反汇编</code></p>
-<blockquote>
-<p><code>objdump -t</code>：打印变量内容的存储位置<br><code>objdump -d bomb &gt; bomb.s</code>：反汇编生成bomb.s文件。<code>需要使用gdb查看函数</code></p>
-</blockquote>
-</li>
-<li><p>screen 命令 <code>分屏看汇编文件，也可以不分屏在GDB中使用disas命令</code></p>
-<blockquote>
-<p><code>screen -ls</code>：查看所有screen终端<br><code>screen -S name</code> ：创建终端<br><code>screen -r name or id</code> ：连接终端。连接失败用<code>screen -d **</code>：连接<br><code>exit</code>：退出终端<br><code>Ctrl + a，d</code>：暂离；<code>c</code>：创建子会话；<code>w</code>：子会话列表；<code>p</code>：上一个；<code>n</code>：下一个；<code>0-9</code>：切换；<code>：</code>：命令行模式(<code>resize 80</code>)调整窗口大小。<br><code>screen -S id -X quit</code>：关闭视窗</p>
-</blockquote>
-</li>
-<li><p>函数参数传递相关寄存器</p>
-<blockquote>
-<p><code>%rax</code>：返回值<br><code>%rdi</code>：第一个参数<br><code>%rsi</code>：第二个参数<br><code>%rdx</code>：第三个参数<br><code>%rcx</code>：第四个参数<br><code>%d8</code>，<code>%d9</code>，<code>%d10</code>依次是后面的参数</p>
-</blockquote>
-</li>
-</ol>
-<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先从源码<code>bomb.c</code>可以看出调用顺序，通过函数<code>explode_bomb</code>让炸弹爆炸，所有我们在调试过程中，在这个函数处打断点，每次只要输入错误密码，炸弹爆炸的时候程序都会进入断点，这样就不会扣分了。从源码里还能看出每一个关卡的函数都是<code>phase_x</code>，所以每次调试之前，在爆炸处打断点，在<code>phase_x</code>处打断点，进入这关之后，用反汇编命令<code>disas</code>，显示函数的汇编代码，然后进行解题。</p>
-<h2 id="phase-1"><a href="#phase-1" class="headerlink" title="phase_1"></a>phase_1</h2><p>思路：</p>
-<p>第一个比较简单，找到字符串对比函数，参数1放在寄存器rdi里，参数2放在寄存器rsi里。<br>在字符串对比函数内打断点，命令<code>x/1sb $rsi</code>,打印出寄存器里的字符串内容。<br>做法：</p>
-<ol>
-<li><p><code>break phase_1</code> ：打断点</p>
-</li>
-<li><p><code>disas</code>：显示汇编指令</p>
-<img src="/2023/03/14/09-43-26/WX20230315-120145@2x.png" class="">
-</li>
-<li><p><code>break explode_bomb</code> ：在爆炸函数打断点，防止进入这里引爆炸弹  </p>
-</li>
-<li><p>根据汇编语言可以看出，输入的字符串在调用字符串对比函数中进行对比，根据返回值进行选择是否爆炸。<br><code>break strings_not_equal</code> ：打断点</p>
-</li>
-<li><p><code>x/1sb $rsi</code>：打印<code>$rsi</code>内容，根据phase_1函数的汇编指令中，改变了rsi内容，说明我们输入的密码在<code>$rdi</code>中，解密的密码在<code>$rsi</code>中。</p>
-<img src="/2023/03/14/09-43-26/WX20230315-122703@2x.png" class=""></li>
-</ol>
-<p>答案:</p>
-<p><code>Border relations with Canada have never been better.</code></p>
-<h2 id="phase-2"><a href="#phase-2" class="headerlink" title="phase_2"></a>phase_2</h2><p>思路：</p>
-<p>第二个主要是是在函数分配的栈里面进行操作,通过sscanf函数的第二个参数,format,”%d %d %d %d %d %d”，可以看出密码应该是六个数,通过记录的<code>%rsi</code>是phase2函数的<code>%rsp</code>，可以知道最终密码应该是保存在主函数的栈区，第一次和1比较,相同才能继续，第一个数字是1， 后面每一个数字都是和前一个数字*2相比较，那么就是一个等比数列，公比2。<br>做法：</p>
-<ol>
-<li><p><code>break phase_2</code> ：打断点</p>
-</li>
-<li><p><code>disas</code>：显示汇编指令</p>
-<img src="/2023/03/14/09-43-26/WX20230315-164003@2x.png" class="">
-<p>发现函数调用了read_six_numbers函数，所以继续在这里打断点，看具体输入了什么。</p>
-</li>
-<li><p><code>break read_six_numbers</code>，查看这个函数的汇编指令</p>
-<img src="/2023/03/14/09-43-26/WX20230315-164335@2x.png" class="">
-<p>从调用sscanf函数之前可以看出输入格式在第二个参数里 ，以在调用之前打断点，打印<code>rsi</code>的内容。从调用爆炸函数的条件也可以看出来，sscanf返回值大于等于6的时候才会正常跳转，输入的数太少会直接爆炸。</p>
-<img src="/2023/03/14/09-43-26/WX20230315-164848@2x.png" class="">
-<p>这道题的密码应该是6位数字，输入的内容保存在后面的传参里，地址在<code>rsi</code>寄存器里，根据phase_2的调用之前，<code>rsi</code>寄存器里存的是<code>rsp</code>的地址，所以可以判断出，读取函数把输入的数字存到了<code>rsp</code>内的地址里。</p>
-</li>
-<li><p>根据返回到phase_2函数的下一条指令<code>cmpl   $0x1,(%rsp)</code><br><code>cmpl</code>：代表双字，四个字节，用<code>x/6dw $rsp</code>：打印输入的内容看一下是不是自己输入的；根据跳转条件可以看出，第一个密码是1，</p>
-</li>
-<li><p>第一个密码正确后，依次看后面的指令:<br><code>lea    0x4(%rsp),%rbx</code>：下四个字节，第二个密码地址放到<code>rbx</code>里。<br><code>lea    0x18(%rsp),%rbp</code>：第24字节地址放到<code>rbx</code>里。<code>相当于for循环结束条件</code><br><code>mov    -0x4(%rbx),%eax</code>：第一个密码1存到<code>eax</code>。<br><code>add    %eax,%eax</code>：<code>eax</code>+<code>eax</code>。<code>乘2</code><br><code>cmp    %eax,(%rbx)</code>：对比第二个密码是不是2。<br><code>add    $0x4,%rbx</code>：<code>rbx</code>指向下四个字节，第三个密码。<br><code>cmp    %rbp,%rbx</code>：对比是不是到了结束末尾，否则继续进行循环。<br>所以这六个数字密码是一个1开头的等比数列，公比为2。</p>
-</li>
-</ol>
-<p>答案:</p>
-<p><code>1 2 4 8 16 32</code></p>
-<h2 id="phase-3"><a href="#phase-3" class="headerlink" title="phase_3"></a>phase_3</h2><p>思路：</p>
-<p>第三个和第二个相同,查看输入的是两个%d,存在phase3的栈里面,不一样的地方是,这道题目的答案有7种,因为第一个密码小于7,所有一共有8组答案,分别是0,207,   1-0x137,2-0x2c3,3-0x100,4-0x185,5-0xce, 6-0x2aa, 7-0x147.<br>做法：</p>
-<ol>
-<li><p><code>break phase_3</code> ：打断点</p>
-</li>
-<li><p><code>disas</code>：显示汇编指令</p>
-<img src="/2023/03/14/09-43-26/WX20230316-103622@2x.png" class="">
-<p>找到<code>sscanf</code>函数，和之前一样打断点查看输入格式。</p>
-</li>
-<li><p><code>x/1sb $rsi</code>：这道题的密码应该是两个数</p>
-<img src="/2023/03/14/09-43-26/WX20230316-103921@2x.png" class="">
-</li>
-<li><p>基本步骤和上面一样，看一下密码对比的循环指令：<br><code>cmpl   $0x7,0x8(%rsp)</code>：对比第一个数字和7的大小<br><code>ja     0x400fad &lt;phase_3+106&gt;</code>：无符号大于就跳转，跳转之后调用了爆炸函数，说明第一个数字小于等于7并且大于等于0<code>负数当无符号数时第一位总是1，一定比8大</code>。<br><code>mov    0x8(%rsp),%eax</code>：把第一个数字放到<code>eax</code>里。<br><code>jmpq   *0x402470(,%rax,8)</code>：跳转到<code>*(0x402470 + (%rax * 8))</code><br>打印一下从<code>0x402470</code>这里开始存的是什么：<code>x/8xg 0x402470</code>或者<code>x/64xb 0x402470</code>：这里要注意数据是按照大端法存储的。</p>
-<img src="/2023/03/14/09-43-26/WX20230316-110646@2x.png" class="">
-<p>可以看出对应跳转关系，跳转后执行的指令为：<code>mov    $0xcf,%eax</code>，根据不同的第一位数字得到的为：<code>0--0xcf</code> <code>1--0x137</code> <code>2--0x2c3</code> <code>3--0x100</code> <code>4--0x185</code> <code>5--0xce</code> <code>6--0x2aa</code> <code>7--0x147</code></p>
-</li>
-</ol>
-<p>答案:</p>
-<p><code>0 207</code></p>
-<h2 id="phase-4"><a href="#phase-4" class="headerlink" title="phase_4"></a>phase_4</h2><p>思路：</p>
-<p>第四个主要难点在func4函数里有一个单操作数的sar指令，之前一直以为移位的数存在寄存器cl里，后来才发现这是默认移位1，所有这个题的密码第一位是在用二分法在(0-14)中找值，但是由于函数返回值是0才不会爆炸，往右半部分查找时，返回值不为0,所以密码只能在左半部分，分别是7，3，1，0，四种答案，第二个密码是在phase_4函数里，对比的数字是0，所以第二个密码是0。<br>做法：</p>
-<ol>
-<li><p><code>break phase_4</code> ：打断点</p>
-</li>
-<li><p><code>disas</code>：显示汇编指令</p>
-<img src="/2023/03/14/09-43-26/WX20230316-112833@2x.png" class="">
-<p>找到<code>sscanf</code>函数，和之前一样打断点查看输入格式。这道题和上一道的<code>rsi</code>内容一样，说明都是两个数。</p>
-</li>
-<li><p><code>cmpl   $0xe,0x8(%rsp)</code>：<br><code>jbe    0x40103a &lt;phase_4+46&gt;</code>：小于等于跳转，说明第一个密码小于等于14。<br><code>mov    $0xe,%edx</code>：14存到<code>rdx</code>第三个参数。<br><code>mov    $0x0,%esi</code>：0存到<code>rsi</code>第二个参数。<br><code>mov    0x8(%rsp),%edi</code>：第一个密码存到<code>rdi</code>第一个参数。<br><code>callq  0x400fce &lt;func4&gt;</code>：调用func4函数。</p>
-</li>
-<li><p><code>disas</code>：打断点反汇编，区间(a,b)</p>
-<img src="/2023/03/14/09-43-26/WX20230316-113725@2x.png" class="">
-<p><code>mov    %edx,%eax</code>：第三个参数14存到<code>rax</code><br><code>sub    %esi,%eax</code>：<code>rax</code>-<code>rsi</code><br><code>mov    %eax,%ecx</code>：把两个参数的差存到<code>rcx</code> 记为m<br><code>shr    $0x1f,%ecx</code>：<code>ecx</code>逻辑右移31位，<code>ecx</code>是32位的，移动31位，只剩下了符号位。<br><code>add    %ecx,%eax</code>：<code>eax</code>等于0+差。<code>如果b-a=-1，ecx=1，eax+1=0</code><br><code>sar    %eax</code>：<code>eax</code>右移一位，算术右移，等于7，m<br><code>lea    (%rax,%rsi,1),%ecx</code>：加载有效地址，效果是<code>rcx</code>里存入了a+m<br><code>cmp    %edi,%ecx</code>比较中间值是否等于第一个数字。<br>如果大于：<code>lea    -0x1(%rcx),%edx</code>b等于m-1。递归函数，左边区间查找是结束递归后<code>rax</code>乘2。<br>小于等于：<br><code>mov    $0x0,%eax</code>：<code>eax</code>等于0<br><code>cmp    %edi,%ecx</code>：对比中间值和第一个数字<br><code>jge    0x401007 &lt;func4+57&gt;</code>：大于等于跳转，本来是小于等于，相等于等于跳转，所以结束标志是第一个参数等于中间值m。返回值<code>rax</code>为0。<br><code>0x1(%rcx),%esi</code>：小于时，a &#x3D; m+ 1，继续递归，小于时结束递归后执行的是<code>0x1(%rax,%rax,1),%eax</code>，不为0。</p>
-</li>
-<li><p>根据<code>func4</code>返回后<code>test   %eax,%eax</code>，如果不相等就爆炸，所以eax只能等于0，所以第一个数字一定是在二分查找的左边区间，所以可能值为7，3，1，0。</p>
-</li>
-<li><p><code>cmpl   $0x0,0xc(%rsp)</code>：相等时函数结束，说明第二个密码是固定值0。</p>
-</li>
-</ol>
-<p>答案:</p>
-<p><code>0 0</code></p>
-<h2 id="phase-5"><a href="#phase-5" class="headerlink" title="phase_5"></a>phase_5</h2><p>思路：</p>
-<p>第五个比较有趣,还是和12一样计算字符串长度,知道密码应该是一个6位长度字符串，计算字符串是不是相等函数的参数显示待匹配的字符串是”flyers”，编译的时候用了canary，栈指针每次都不同，这个对解密应该是没影响，主要是输入的字符串，每一个字节只保留了低四位,然后加上一个地址，将内存中的值送到了rsp里，那么这个地址应该是一个数组，打印一下这个地址开始的15个字节，是一串字符maduiersnfotvbyl，需要我们从里面找出密码，位置分别是9，15，14，5，6，7。所以输入的字符串的ASCII编码后四位应该就是这个值，答案比较多，找<br>了一个’a’-‘z’中的答案。<br>做法：</p>
-<ol>
-<li><p><code>break phase_5</code> ：打断点</p>
-</li>
-<li><p><code>disas</code>：显示汇编指令</p>
-<img src="/2023/03/14/09-43-26/WX20230316-132301@2x.png" class="">
-<p>根据字符串对比函数的下一条<code>cmp    $0x6,%eax</code>，可以看出这道题密码长度为6。</p>
-</li>
-<li><p>分析跳转后的代码</p>
-<img src="/2023/03/14/09-43-26/WX20230316-160027@2x.png" class="">
-<p><code>movzbl (%rbx,%rax,1),%ecx</code>：<code>ecx</code>内存的是<code>rbx</code>的第<code>rax</code>个字节做零扩展到双字，如图是<code>0x69</code>；<code>rax</code>相当于是for循环里的i。<br><code>mov    %cl,(%rsp)</code>：把<code>rcx</code>的低八位送入栈顶指针指向的地址。<br><code>mov    (%rsp),%rdx</code>：把值继续送到<code>rdx</code>。<br><code>and    $0xf,%edx</code>：只保留<code>rdx</code>的低四位。<br><code>movzbl 0x4024b0(%rdx),%edx</code>：把<code>rdx</code>的值加上<code>0x4024b0</code>，新地址的内容存到<code>edx</code>里。<br><code>mov    %dl,0x10(%rsp,%rax,1)</code>：把<code>rdx</code>的低八位存入<code>rax+rsp+0x10</code>的位置。<br><code>add    $0x1,%rax</code>：i自加<br><code>cmp    $0x6,%rax</code>：循环结束判断</p>
-</li>
-<li><p>后续指令把所有的输入字符改变之后保存在了<code>rsp + 0x10</code>指向的地址里，然后调用<code>strings_not_equal</code>：我们可以根据查看传参，看一下标准答案是什么。</p>
-<img src="/2023/03/14/09-43-26/WX20230316-161808@2x.png" class="">
-<p>可以看到密码是字符串<code>flyers</code>，对应的字节是<code>0x66 0x6c 0x79 0x65 0x72 0x73</code>。</p>
-</li>
-<li><p>我们在打印一下for循环里跳转的地址<code>0x4024b0</code>保存的是什么?</p>
-<img src="/2023/03/14/09-43-26/WX20230316-162400@2x.png" class="">
-<p>由于偏移量总是低四位，范围是0-15，所以字符串只需要关注<br><code>maduiersnfotvbyl</code>前面这些，需要我们从里面找出密码，位置分别是9，15，14，5，6，7。所以输入的字符串的ASCII编码后四位应该就是这个值，答案比较多，找了一个’a’-‘z’中的答案。</p>
-</li>
-</ol>
-<p>答案:</p>
-<p><code>ionefg</code></p>
-<h2 id="phase-6"><a href="#phase-6" class="headerlink" title="phase_6"></a>phase_6</h2><p>思路：</p>
-<p>第六个是一个链表，节点的前八个字节中低位是数据，高位是输入的密码，高位的8个字节是下一跳地址，根据输入的6个数必须是1-6，切两两不相同，还进行了一次处理，每一位密码x，变成了y &#x3D; 7-x。</p>
-<p>然后是链表的操作，每一个密码的节点对应的是(y - 1) * 8 + 结点首地址， 分配好结点后进行结点连接。<br>每一位密码的下一跳就是下一位密码对应的结点地址，最后一位结点的下一跳是0；要求是必要让结点中的数据，满足前一个结点大于等于后一个结点，<br>而所有结点的数据分别是：<br>(1):332<br>(2):168<br>(3):924<br>(4):691<br>(5):477<br>(6):443<br>所以数据最大的结点应该在最前面，序号应该是3 4 5 6 1 2。<br>而输入的密码应该是7 - y：   4 3 2 1 6 5<br>做法：</p>
-<ol>
-<li><p><code>break phase_6</code> ：打断点</p>
-</li>
-<li><p><code>disas</code>：显示汇编指令</p>
-<img src="/2023/03/14/09-43-26/WX20230316-163103@2x.png" class="">
-<img src="/2023/03/14/09-43-26/WX20230316-163118@2x.png" class="">
-<img src="/2023/03/14/09-43-26/WX20230316-163134@2x.png" class="">
-</li>
-<li><p>根据指令，这道题是读取了六个数字，我们直接看后面的处理。输入的数字保存在<code>rsp</code>指向的地址里。每个数字存储在四个字节里<br><code>mov    %rsp,%r14</code>：把输入的数组起始地址送到<code>r14</code><br><code>mov    $0x0,%r12d</code>：<code>r12d</code>赋值0，记为<code>i</code><br><code>mov    %r13,%rbp</code>：<code>rbp</code>保存栈顶指针，数组起始地址<br><code>mov    0x0(%r13),%eax</code>：<code>rax</code>等于输入的第一个值<br><code>sub    $0x1,%eax</code>：自减1<br><code>cmp    $0x5,%eax</code>：判断<code>rax</code>是不是等于5<br><code>jbe    0x401128 &lt;phase_6+52&gt;</code>：无符号小于等于才不会爆炸，所以输入的数字自减前必须是<code>1-6</code>。<br><code>add    $0x1,%r12d</code>：<code>i</code>+1<br><code>cmp    $0x6,%r12d</code>：循环结束标志，相等跳转<br>不相等：<br><code>mov    %r12d,%ebx</code>：把<code>i</code>送到<code>rbx</code>， 记为<code>j = i + 1</code>。<br><code>movslq %ebx,%rax</code>：符号扩展送到<code>rax</code>，等于<code>j</code><br><code>mov    (%rsp,%rax,4),%eax</code>：输入的第<code>j</code>个数 送到 <code>rax</code><br><code>cmp    %eax,0x0(%rbp)</code>：对比<code>rax</code>和栈顶指针指向的数是否相同，相等就爆炸，数字不能重复。<br><code>add    $0x1,%ebx</code>：<code>j++</code><br><code>cmp    $0x5,%ebx</code>：循环跳出条件，后面的每一个数不能和第一个数相等。<br><code>add    $0x4,%r13</code>：循环重复，<code>i</code>指向下一个数<br>所有的数范围是<code>1-6</code>，且不重复时。</p>
-</li>
-<li><p><code>lea    0x18(%rsp),%rsi</code>：把最后一个数的地址送到<code>rsi</code><br><code>mov    %r14,%rax</code>：数组的第一个地址送到<code>rax</code><br><code>mov    $0x7,%ecx</code>：<code>rcx</code>等于7<br><code>mov    %ecx,%edx</code>：<code>rdx</code> &#x3D; 7<br><code>sub    (%rax),%edx</code>：<code>rdx</code> &#x3D; 7 - <code>*rax</code>，数组的第一个数<br><code>mov    %edx,(%rax)</code>：覆盖这个数<br><code>add    $0x4,%rax</code>：数组下一个<br><code>cmp    %rsi,%rax</code>：跳出条件<br>这段代码把所有数组的数，全部用7减，保存差</p>
-</li>
-<li><p><code>mov    $0x0,%esi</code>：<code>rsi</code> &#x3D; 0，记为<code>i</code><br><code>mov    (%rsp,%rsi,1),%ecx</code>：<code>rcx</code>保存<code>rsp</code>的第<code>i</code>个字节地址的数字，记为<code>x</code>，注意数字在4的倍数字节处<br><code>cmp    $0x1,%ecx</code>：<code>x</code> &#x3D;&#x3D; 1，1进行这个if判断<br>如果x&#x3D;&#x3D;1：<br><code>mov    $0x6032d0,%edx</code>：<code>rdx</code>赋值，这里要注意应该就是密码所在地<br>如果x&gt;1：<br><code>mov    $0x1,%eax</code>：<code>rax</code> &#x3D; 1<br><code>mov    $0x6032d0,%edx</code>:<br><code>mov    0x8(%rdx),%rdx</code>：<code>rdx</code> &#x3D;  （<code>rdx</code> + 8地址保存的数据），就是<code>rdx</code>地址指向的节点的next。<br><code>add    $0x1,%eax</code>：<code>rax</code> + 1<br><code>cmp    %ecx,%eax</code>：对比<code>x</code>和<code>rax</code><br>不相等时<code>rax</code>一直加1，最终<code>rdx</code>指向第x个节点地址<br>if判断结束：<br><code>mov    %rdx,0x20(%rsp,%rsi,2)</code>：把<code>rdx</code>数送入<code>rsp</code> + 2 * i + 0x20，这个地址，相当于把数组整体换位置，后面是偏移量。<br><code>add    $0x4,%rsi</code>：<code>i</code> &#x3D; <code>i</code> + 4<br><code>cmp    $0x18,%rsi</code>：结束条件<br>这段循环把数组里的数，全部向后偏移保存了一个数组，这个数组中0，1对应的是固定值<code>$0x6032d0</code>，大于1的值都是<code>$0x6032d0 + 8 * (x - 1)</code>。新数组的每一个数长度是8字节，数据是一串地址。</p>
-<img src="/2023/03/14/09-43-26/WX20230317-124521@2x.png" class="">
-<p>可以看出在<code>rsp</code>后0x20地址处，是六个地址。</p>
-</li>
-<li><p><code>mov    0x20(%rsp),%rbx</code>：<code>rbx</code>等于新建数组的第一个数，记为<code>i</code><br><code>lea    0x28(%rsp),%rax</code>：<code>rax</code>是新数组第二个数的地址，记为<code>&amp;j</code><br><code>lea    0x50(%rsp),%rsi</code>：<code>rsi</code>数组最大地址<br><code>mov    %rbx,%rcx</code>：<code>rcx</code>存第一个数，记为<code>i</code><br>循环：<br><code>mov    (%rax),%rdx</code>：<code>rdx</code>：存下个数，记为<code>j</code><br><code>mov    %rdx,0x8(%rcx)</code>：把<code>j</code>放到<code>i</code>后8个字节处<br><code>add    $0x8,%rax</code>：<code>&amp;j = &amp;j + 8</code>，后移八个字节<br><code>cmp    %rsi,%rax</code>：对比有没有到了数组末尾<br>没有到最后一个地址：<br><code>mov    %rdx,%rcx</code>：<code>rcx</code> &#x3D; <code>rdx</code>，<code>i</code>后移8个字节<br>继续上面的循环<br>如果到了最后一个地址：<br><code>movq   $0x0,0x8(%rdx)</code>：把0存到最后一个节点的后8字节处，尾结点的next&#x3D;0。<br>上面把所有链表连接起来了。链接方式是按照输入的六个数字进行连接，按照1-6的顺序，数字越大，地址越大。每个数字代表一个地址，从1-6链接起来。</p>
-</li>
-<li><p>下面进行的是爆炸判断：<br><code>mov    $0x5,%ebp</code>：<code>rbp</code> &#x3D; 5<br>循环：<br><code>mov    0x8(%rbx),%rax</code>：<code>rax</code>&#x3D;第一个节点的next<br><code>mov    (%rax),%eax</code>：<code>rax</code>&#x3D;地址保存的数<br><code>cmp    %eax,(%rbx)</code>：*next对比**this<br>小于就爆炸：<br>大于等于：<br><code>mov    0x8(%rbx),%rbx</code>：this向后移动8位<br><code>sub    $0x1,%ebp</code>：<code>rbp</code>减1<br>不等于0时，循环继续<br>上面这段循环如果链表的数据表示的地址内存的数是递增的就爆炸了。所以就是要把链表调整为递减的链表，通过输入的1-6。</p>
-</li>
-<li><p>打印看一下这个<code>$0x6032d0</code>地址处保存的数据是什么？<br>链接之前的链表：</p>
-
-<p>重新链接之后的链表：</p>
-
-<p>根据爆炸判断，这道题就是让链表排序成递减。</p>
-</li>
-</ol>
-<p>答案:</p>
-<p><code>4 3 2 1 6 5</code></p>
-<h2 id="secret-phase"><a href="#secret-phase" class="headerlink" title="secret_phase"></a>secret_phase</h2><p>重新开始写解题笔记的时候，按照小土刀的博客搭建了hexo博客，根据他的文章格式写出了这篇解题笔记，在他的文章里发现还有一道彩蛋题目，藏在了<code>phase_defused</code>函数里。这个不仔细读汇编代码很难发现，因为一般不会看拆弹成功的函数。现在自己把这个彩蛋也做一下。</p>
-<p>思路：</p>
-<p>做法：</p>
-<ol>
-<li><p>在函数<code>phase_defused</code>处打断点。</p>
-<img src="/2023/03/14/09-43-26/WX20230317-143025@2x.png" class="">
-<p>发现这里有一个<code>secret_phase</code>函数，对这个函数打断点发现不会进入。<br>在汇编代码里找一下函数入口。</p>
-</li>
-<li><p><code>cmpl   $0x6,0x202181(%rip)        # 0x603760 &lt;num_input_strings&gt;</code>：对比当前的关卡数，不等于6时跳转，等于6时，可能会进入彩蛋。</p>
-</li>
-<li><p><code>mov    $0x402619,%esi</code>和<code>mov    $0x603870,%edi</code>，根据这两个参数，应该是调用的sscanf函数，看一下输入参数是什么？</p>
-<img src="/2023/03/14/09-43-26/WX20230317-145028@2x.png" class="">
-<p>可以看出密码是两个数字一个字符串。</p>
-</li>
-<li><p><code>mov    $0x402622,%esi</code>：打印看一下这里存的是什么？</p>
-<img src="/2023/03/14/09-43-26/WX20230317-150241@2x.png" class="">
-<p>可以确定第三个密码是<code>DrEvil</code></p>
-</li>
-<li><p><code>mov    $0x4024f8,%edi</code>：<br><code>mov    $0x402520,%edi</code>：打印看一下这里是什么？</p>
-<img src="/2023/03/14/09-43-26/WX20230317-150454@2x.png" class="">
-</li>
-<li><p>修改一下我们的<code>psol.txt</code>，最后一行加上<code>0 0 DrEvil</code>，重新调试进入<code>secret_phase</code>看一下汇编代码，代码没有进入，说明输入不在最后，继续看一下汇编代码。</p>
-</li>
-<li><p>根据sscanf的第一个参数地址在<code>0x603870</code>，我们就找一下之前输入的数据哪一个存放在这周围，在<code>bomb.s</code>文件里搜一下最近的是<code>read_line</code>函数里的<code>0x603780</code>。<br>看一下附件的代码：<br><code>lea    (%rax,%rax,4),%rsi</code>：<br><code>shl    $0x4,%rsi</code>：<br><code>add    $0x603780,%rsi</code>：<br><code>rax</code>放的是题目序号，乘5，左移4位，加上<code>0x603780</code>后等于我要的值，<code>rax</code>应该等于3。也就是说第三道题目解出来之后，第四道题目的输入缓冲区在<code>0x603870</code>。把输入文件改一下。</p>
-</li>
-<li><p>成功进入彩蛋函数，现在开始解这个彩蛋。<br>这里要把彩蛋的输入放在第六道题的下一行，彩蛋的入口在第四道题的输入后面。<br><code>disas</code>：先看一下汇编代码</p>
-<img src="/2023/03/14/09-43-26/WX20230317-163059@2x.png" class="">
-<p><code>mov    $0xa,%edx</code>：<code>rdx</code>&#x3D;10<br><code>mov    $0x0,%esi</code>：<code>rsi</code>&#x3D;0<br><code>mov    %rax,%rdi</code>：<code>rdi</code> &#x3D; read_line的返回值。就是我们输入的字符串地址。<br><code>callq  0x400bd0 &lt;strtol@plt&gt;</code>：调用函数，找开头的十进制数转换为long int，存在<code>rax</code>里，结尾的下一个地址放在<code>rsi</code>里。<br><code>mov    %rax,%rbx</code>：<code>rbx</code>&#x3D;数字<br><code>lea    -0x1(%rax),%eax</code>：<code>rax</code>-1存到<code>rax</code>里<br><code>cmp    $0x3e8,%eax</code>：对比如果，0x3e8是1000<br>如果大于，爆炸：<br>如果小于等于：<br><code>mov    %ebx,%esi</code>：<code>rsi</code>&#x3D;<code>rbx</code><br><code>mov    $0x6030f0,%edi</code>：<code>rdi</code>赋值，这里应该是密码所在地<br><code>callq  0x401204 &lt;fun7&gt;</code>：跳转到fun7函数</p>
-</li>
-<li><p>在fun7函数里打断点，看下汇编代码</p>
-<img src="/2023/03/14/09-43-26/WX20230317-174533@2x.png" class="">
-<p><code>test   %rdi,%rdi</code>：test<code>rdi</code><br>如果等于0就跳转：<br><code>mov    $0xffffffff,%eax</code>：赋值32位全1，返回<br>不等于0：<br><code>mov    (%rdi),%edx</code>：把<code>rdi</code>地址保存的数据<code>$</code>给<code>rdx</code><br><code>cmp    %esi,%edx</code>：对比<code>rdx</code>和我们输入的密码<br><code>jle    0x401220 &lt;fun7+28&gt;</code>：<br>如果<code>rdx</code>&lt;&#x3D;<code>rsi</code>：<br><code>mov    $0x0,%eax</code>：赋值0<br><code>cmp    %esi,%edx</code>：继续对比<br>如果<code>rdx</code>&#x3D;&#x3D;<code>rsi</code>：返回0。根据彩蛋的汇编代码，可以看出返回值等于2才可以拆弹成功。<br>如果<code>rdx</code>&lt;<code>rsi</code>：<br><code>mov    0x10(%rdi),%rdi</code>：把<code>rdi</code>指向的地址+0x10，取数据送到<code>rdi</code><br>递归fun7。<br><code>lea    0x1(%rax,%rax,1),%eax</code>：<code>rax</code>左移一位再加1。<br>如果<code>rdx</code> &gt; <code>rsi</code>：<br><code>mov    0x8(%rdi),%rdi</code>：把<code>rdi</code>指向的地址+0x8，取数据送到<code>rdi</code><br>递归fun7。<br><code>add    %eax,%eax</code>：<code>rax</code>左移一位</p>
-</li>
-<li><p>根据上面的分析。递归的返回值一共四种<br>（1）：返回32位1<br>（2）：左移一位<br>（3）：0<br>（4）：左移一位加1<br>要想拆掉炸弹，需要返回的是2。<br>返回值顺序是：左移一位&lt;左移一位加1&lt;返回0<br>先从内层递归找条件：fun(x，y)<br>返回0：<code>rdi</code>指向的数 &#x3D;&#x3D; y<br>左移一位加1：<code>rdi</code>指向的数 &lt; y，这里x+16字节<br>左移一位：<code>rdi</code>指向的数 &gt; y，这里x+8字节<br>递归顺序为：<br>fun(x，y) -&gt; fun(x + 8，y) -&gt; fun(x+16，y)</p>
-</li>
-<li><p>打印一下链表存的数据是哪些？</p>
-<img src="/2023/03/14/09-43-26/WX20230317-174533@2x.png" class="">
-<img src="/2023/03/14/09-43-26/WX20230317-174534@2x.png" class="">
-<p>根据搜索路径可以看出，需要输入的密码应该是22。</p>
-</li>
-<li><p>测试一下</p>
-<img src="/2023/03/14/09-43-26/WX20230317-174535@2x.png" class="">
-<p>彩蛋拆除成功！！</p>
-</li>
-</ol>
-<p>答案：<code>22</code>+任意字符串</p>
 ]]></content>
       <categories>
-        <category>csapp</category>
+        <category>工具</category>
       </categories>
       <tags>
-        <tag>csapp</tag>
-        <tag>shell</tag>
-        <tag>gdb</tag>
-        <tag>objdump</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSAPP 笔记三 程序的机器级表示</title>
-    <url>/2023/05/24/13-04-09/</url>
-    <content><![CDATA[<p>更新历史</p>
-<ul>
-<li>23.05.24：初稿</li>
-</ul>
-<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
-<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
-</ul>
-<h1 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h1><h2 id="Intel-x86-Processors"><a href="#Intel-x86-Processors" class="headerlink" title="Intel x86 Processors"></a>Intel x86 Processors</h2><ul>
-<li><p>CISC - Complex 复杂指令集，RISC - Reduced 精简指令集。</p>
-</li>
-<li><p>x86-64，Linux的命名</p>
-</li>
-<li><p>ARM架构- Acorn RISC Machine</p>
-</li>
-</ul>
-<h2 id="C-assembly-machine-code"><a href="#C-assembly-machine-code" class="headerlink" title="C,assembly, machine code"></a>C,assembly, machine code</h2><ul>
-<li>Micro architecture：微指令架构，CSAPP中很少涉及</li>
-</ul>
-<h3 id="Turning-C-into-Object-Code"><a href="#Turning-C-into-Object-Code" class="headerlink" title="Turning C into Object Code"></a>Turning C into Object Code</h3><ul>
-<li>编译命令<br><code>gcc -Og p1.c p2.c -o p</code><br><code>gcc -Og -S sum.c</code>：<br><code>-S</code>:编译阶段终止，生成汇编语言<br><code>-Og</code>:Optimize编译优化，<code>O1</code>是过去的优化级别，<code>g</code>级可以使代码更可读</li>
-</ul>
-<h3 id="Assembly-Characteristics"><a href="#Assembly-Characteristics" class="headerlink" title="Assembly Characteristics"></a>Assembly Characteristics</h3><h4 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h4><ul>
-<li><p>integer: 以1，2，4，8字节存储<br>数据和地址都用整型保存，不区分无符号和有符号。</p>
-</li>
-<li><p>floating point: 4，8，10字节</p>
-</li>
-<li><p>没有数组以及结构体，这些是由编译器构造的。</p>
-</li>
-</ul>
-<h3 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h3><ul>
-<li><p>执行算术操作</p>
-</li>
-<li><p>在内存和寄存器之间传送数据</p>
-</li>
-<li><p>转移控制</p>
-</li>
-</ul>
-<h4 id="Disassembling-Object-Code"><a href="#Disassembling-Object-Code" class="headerlink" title="Disassembling Object Code"></a>Disassembling Object Code</h4><blockquote>
-<p>指令长度在1-15个字节</p>
-</blockquote>
-<p>反汇编：将目标代码文件反汇编为类汇编语言。</p>
-<ul>
-<li><code>objdump -d sum</code>: 反汇编</li>
-</ul>
-<h2 id="Assembly-Basics-Registers-operands-move"><a href="#Assembly-Basics-Registers-operands-move" class="headerlink" title="Assembly Basics: Registers, operands, move"></a>Assembly Basics: Registers, operands, move</h2><h3 id="Integer-Registers"><a href="#Integer-Registers" class="headerlink" title="Integer Registers"></a>Integer Registers</h3><img src="/2023/05/24/13-04-09/WX20230603-145124@2x.png" class="">
-
-<ul>
-<li><p>参数：1<code>rdi</code>, 2<code>rsi</code>, 3<code>rdx</code>, 4<code>rcx</code>, 5<code>r8</code>, 6<code>r9</code></p>
-</li>
-<li><p>返回值：<code>rax</code></p>
-</li>
-</ul>
-<h3 id="Moving-Data"><a href="#Moving-Data" class="headerlink" title="Moving Data"></a>Moving Data</h3><blockquote>
-<p><code>mov Source, Dest</code></p>
-</blockquote>
-<ul>
-<li><p>不允许从内存取出，存入内存。从内存取出，只能存入寄存器。</p>
-</li>
-<li><p><code>mov $0x4, %rax</code>：目的地址是寄存器<br><code>mov $0x4, (%rax)</code>: 目的地址是内存</p>
-</li>
-<li><p><code>D(R)</code>: Mem[Reg[R] + D]</p>
-</li>
-<li><p><code>D(Rb, Ri, S)</code>: Mem[Reg[Rb] + S * Reg[Ri] + D]</p>
-</li>
-</ul>
-<h2 id="Arithmetic-amp-logical-operations"><a href="#Arithmetic-amp-logical-operations" class="headerlink" title="Arithmetic &amp; logical operations"></a>Arithmetic &amp; logical operations</h2><h3 id="lea-Src-Dst"><a href="#lea-Src-Dst" class="headerlink" title="lea Src, Dst"></a>lea Src, Dst</h3><blockquote>
-<p>C语言中的&amp;，取地址</p>
-</blockquote>
-<p>实际使用中C语言编译器喜欢用这条指令做算术运算，<code>lea (%rdi, %rdi, 2), %rax</code>, mov是将地址指向的内存值取出，lea指令将内存值所在地址取出，相当于存入的是<code>%rdi + %rdi * 2</code>。</p>
-<h3 id="Some-Arithmetic-Operations"><a href="#Some-Arithmetic-Operations" class="headerlink" title="Some Arithmetic Operations"></a>Some Arithmetic Operations</h3><h4 id="Two-Operand-Instructions"><a href="#Two-Operand-Instructions" class="headerlink" title="Two Operand Instructions"></a>Two Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152227@2x.png" class="">
-
-<ul>
-<li><p>目的操作数作为第一个操作数，类似<code>x+=y</code></p>
-</li>
-<li><p>算术左移和逻辑左移相同</p>
-</li>
-</ul>
-<h4 id="One-Operand-Instructions"><a href="#One-Operand-Instructions" class="headerlink" title="One Operand Instructions"></a>One Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152823@2x.png" class="">
-
-<h1 id="Control"><a href="#Control" class="headerlink" title="Control"></a>Control</h1><h2 id="Condition-Codes"><a href="#Condition-Codes" class="headerlink" title="Condition Codes"></a>Condition Codes</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-      <categories>
-        <category>csapp</category>
-      </categories>
-      <tags>
-        <tag>csapp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSAPP 实验III Attack Lab</title>
-    <url>/2023/03/18/15-54-47/</url>
-    <content><![CDATA[<p>更新历史：</p>
-<ul>
-<li>23.03.18：初稿</li>
-</ul>
-<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a>
-</li>
-<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a>
-</li>
-<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a>
-</li>
-<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
-</ul>
-<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Attack Lab实验，采用 code-injection 和 return-oriented 两种方法攻击程序。</p>
-<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
-<li><code>./ctarget -q</code>：运行目标文件用参数<code>-q</code>，不使用服务器</li>
-</ol>
-<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2>]]></content>
-      <categories>
-        <category>csapp</category>
-      </categories>
-      <tags>
-        <tag>csapp</tag>
-        <tag>shell</tag>
-        <tag>gdb</tag>
-        <tag>objdump</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -741,51 +907,6 @@
       </tags>
   </entry>
   <entry>
-    <title>csapp 笔记汇总</title>
-    <url>/2023/03/15/10-59-10/</url>
-    <content><![CDATA[<h1 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h1><h2 id="CMU-15-213笔记"><a href="#CMU-15-213笔记" class="headerlink" title="CMU 15-213笔记"></a>CMU 15-213笔记</h2><p>- </p>
-<h2 id="代码仓库"><a href="#代码仓库" class="headerlink" title="代码仓库"></a>代码仓库</h2><p><a href="https://github.com/PKunicor/CsappLab">PKunicor&#x2F;Csapp lab</a></p>
-<h2 id="实验笔记"><a href="#实验笔记" class="headerlink" title="实验笔记"></a>实验笔记</h2><ul>
-<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
-<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
-<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
-</ul>
-<h1 id="实验指南"><a href="#实验指南" class="headerlink" title="实验指南"></a>实验指南</h1><ul>
-<li><p><a href="https://www.bilibili.com/video/BV1iW411d7hd/?spm_id_from=333.788.top_right_bar_window_custom_collection.content.click&vd_source=d5a3522259c17126f1b623c977d04c3e">B站CS15-213翻译课程</a> </p>
-</li>
-<li><p><a href="https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22">实验课程指导</a> <code>lab重点</code></p>
-</li>
-</ul>
-<blockquote>
-<p>做Lab非常推荐看一下官方给的Lab指导课程，课程里详细介绍了实验上手方式以及需要用到的命令。 </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>csapp</category>
-      </categories>
-      <tags>
-        <tag>csapp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux和SSh相关命令</title>
-    <url>/2023/03/11/15-22-24/</url>
-    <content><![CDATA[<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="ln链接文件"><a href="#ln链接文件" class="headerlink" title="ln链接文件"></a>ln链接文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s 源文件  目的文件    #建立软链接</span><br><span class="line">ln    源文件  目的文件    #硬链接</span><br></pre></td></tr></table></figure>
-
-<h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>显示当前地址</p>
-<h1 id="SSH命令"><a href="#SSH命令" class="headerlink" title="SSH命令"></a>SSH命令</h1><h2 id="scp传输文件"><a href="#scp传输文件" class="headerlink" title="scp传输文件"></a>scp传输文件</h2><p><code>注意要在本地使用这个命令，ssh登录后使用，文件从服务器下载到服务器了</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp username@ip_address:/home/username/filename ~/   #从服务器下载到本地</span><br><span class="line"># 参数 -P 端口号   要大写</span><br><span class="line"># 参数 -r 文件夹</span><br><span class="line">scp -P2222 -r</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>ssh</tag>
-        <tag>mac</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>macOS使用ssh登陆WSL2的ubuntu</title>
     <url>/2023/03/07/14-58-00/</url>
     <content><![CDATA[<h1 id="ssh-登录wsl-ubuntu"><a href="#ssh-登录wsl-ubuntu" class="headerlink" title="ssh 登录wsl ubuntu"></a>ssh 登录wsl ubuntu</h1><h2 id="固定wsl2的ip地址"><a href="#固定wsl2的ip地址" class="headerlink" title="固定wsl2的ip地址"></a>固定wsl2的ip地址</h2><p>wsl2的ip地址每次都会改变，所以一直要重新设置防火墙端口，通过脚本，每次管理员运行脚本固定ip，就不需要重复设置防火墙端口。</p>
@@ -814,24 +935,6 @@
         <tag>mac</tag>
         <tag>ubuntu</tag>
         <tag>wsl2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git笔记</title>
-    <url>/2023/03/08/14-59-55/</url>
-    <content><![CDATA[<p>克隆项目到当前文件夹</p>
-<ul>
-<li><p>git clone https:&#x2F;&#x2F; .</p>
-</li>
-<li><p>注意 .</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
 </search>

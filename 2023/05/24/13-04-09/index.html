@@ -30,8 +30,11 @@
 <meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230603-145124@2x.png">
 <meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230603-152227@2x.png">
 <meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230603-152823@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230605-113101@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230605-113806@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/05/24/13-04-09/WX20230605-164923@2x.png">
 <meta property="article:published_time" content="2023-05-24T05:04:09.000Z">
-<meta property="article:modified_time" content="2023-06-04T08:44:34.742Z">
+<meta property="article:modified_time" content="2023-06-05T08:52:38.250Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary">
@@ -145,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basics"><span class="nav-number">2.</span> <span class="nav-text">Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intel-x86-Processors"><span class="nav-number">2.1.</span> <span class="nav-text">Intel x86 Processors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-assembly-machine-code"><span class="nav-number">2.2.</span> <span class="nav-text">C,assembly, machine code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Turning-C-into-Object-Code"><span class="nav-number">2.2.1.</span> <span class="nav-text">Turning C into Object Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assembly-Characteristics"><span class="nav-number">2.2.2.</span> <span class="nav-text">Assembly Characteristics</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Types"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Data Types</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operations"><span class="nav-number">2.2.3.</span> <span class="nav-text">Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disassembling-Object-Code"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">Disassembling Object Code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Basics-Registers-operands-move"><span class="nav-number">2.3.</span> <span class="nav-text">Assembly Basics: Registers, operands, move</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer-Registers"><span class="nav-number">2.3.1.</span> <span class="nav-text">Integer Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Moving-Data"><span class="nav-number">2.3.2.</span> <span class="nav-text">Moving Data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arithmetic-amp-logical-operations"><span class="nav-number">2.4.</span> <span class="nav-text">Arithmetic &amp; logical operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lea-Src-Dst"><span class="nav-number">2.4.1.</span> <span class="nav-text">lea Src, Dst</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-Arithmetic-Operations"><span class="nav-number">2.4.2.</span> <span class="nav-text">Some Arithmetic Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-Operand-Instructions"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">Two Operand Instructions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#One-Operand-Instructions"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">One Operand Instructions</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Control"><span class="nav-number">3.</span> <span class="nav-text">Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Condition-Codes"><span class="nav-number">3.1.</span> <span class="nav-text">Condition Codes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basics"><span class="nav-number">2.</span> <span class="nav-text">Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intel-x86-Processors"><span class="nav-number">2.1.</span> <span class="nav-text">Intel x86 Processors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-assembly-machine-code"><span class="nav-number">2.2.</span> <span class="nav-text">C,assembly, machine code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Turning-C-into-Object-Code"><span class="nav-number">2.2.1.</span> <span class="nav-text">Turning C into Object Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assembly-Characteristics"><span class="nav-number">2.2.2.</span> <span class="nav-text">Assembly Characteristics</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Types"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Data Types</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Operations"><span class="nav-number">2.2.3.</span> <span class="nav-text">Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disassembling-Object-Code"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">Disassembling Object Code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembly-Basics-Registers-operands-move"><span class="nav-number">2.3.</span> <span class="nav-text">Assembly Basics: Registers, operands, move</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer-Registers"><span class="nav-number">2.3.1.</span> <span class="nav-text">Integer Registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Moving-Data"><span class="nav-number">2.3.2.</span> <span class="nav-text">Moving Data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arithmetic-amp-logical-operations"><span class="nav-number">2.4.</span> <span class="nav-text">Arithmetic &amp; logical operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lea-Src-Dst"><span class="nav-number">2.4.1.</span> <span class="nav-text">lea Src, Dst</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Some-Arithmetic-Operations"><span class="nav-number">2.4.2.</span> <span class="nav-text">Some Arithmetic Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-Operand-Instructions"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">Two Operand Instructions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#One-Operand-Instructions"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">One Operand Instructions</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Control"><span class="nav-number">3.</span> <span class="nav-text">Control</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Condition-Codes"><span class="nav-number">3.1.</span> <span class="nav-text">Condition Codes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Single-bit-registers"><span class="nav-number">3.1.1.</span> <span class="nav-text">Single bit registers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Explicit-Setting"><span class="nav-number">3.1.2.</span> <span class="nav-text">Explicit Setting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Compare"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">Compare</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Test"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">Test</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SetX-Instructions"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">SetX Instructions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional-branches"><span class="nav-number">3.2.</span> <span class="nav-text">Conditional branches</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jumping"><span class="nav-number">3.2.1.</span> <span class="nav-text">Jumping</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JX-Instructions"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">JX Instructions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Conditional-Moves"><span class="nav-number">3.2.2.</span> <span class="nav-text">Using Conditional Moves</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loops"><span class="nav-number">3.3.</span> <span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Statements"><span class="nav-number">3.4.</span> <span class="nav-text">Switch Statements</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Procedures"><span class="nav-number">4.</span> <span class="nav-text">Procedures</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack-Structure"><span class="nav-number">4.1.</span> <span class="nav-text">Stack Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Push-amp-Pop"><span class="nav-number">4.1.1.</span> <span class="nav-text">Push &amp; Pop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calling-Conventions"><span class="nav-number">4.2.</span> <span class="nav-text">Calling Conventions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Passing-Control"><span class="nav-number">4.2.1.</span> <span class="nav-text">Passing Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Passing-data"><span class="nav-number">4.2.2.</span> <span class="nav-text">Passing data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-local-data"><span class="nav-number">4.2.3.</span> <span class="nav-text">Managing local data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stack-Frame"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">Stack Frame</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Illustration-of-Recursion"><span class="nav-number">4.3.</span> <span class="nav-text">Illustration of Recursion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data"><span class="nav-number">5.</span> <span class="nav-text">Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrays"><span class="nav-number">5.1.</span> <span class="nav-text">Arrays</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-dimensional"><span class="nav-number">5.1.1.</span> <span class="nav-text">One-dimensional</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-dimensional-nested"><span class="nav-number">5.1.2.</span> <span class="nav-text">Multi-dimensional(nested)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-level"><span class="nav-number">5.1.3.</span> <span class="nav-text">Multi-level</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structures"><span class="nav-number">5.2.</span> <span class="nav-text">Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Access"><span class="nav-number">5.2.1.</span> <span class="nav-text">Access</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alignment"><span class="nav-number">5.2.2.</span> <span class="nav-text">Alignment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Floating-Point"><span class="nav-number">5.3.</span> <span class="nav-text">Floating Point</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Advanced-Topics"><span class="nav-number">6.</span> <span class="nav-text">Advanced Topics</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -242,7 +245,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-06-04 16:44:34" itemprop="dateModified" datetime="2023-06-04T16:44:34+08:00">2023-06-04</time>
+      <time title="修改时间：2023-06-05 16:52:38" itemprop="dateModified" datetime="2023-06-05T16:52:38+08:00">2023-06-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -290,6 +293,8 @@
 </li>
 <li><p>ARM架构- Acorn RISC Machine</p>
 </li>
+<li><p>两种汇编语法：AT&amp;T：Linux使用的，课程使用这种<br>                       Intel：</p>
+</li>
 </ul>
 <h2 id="C-assembly-machine-code"><a href="#C-assembly-machine-code" class="headerlink" title="C,assembly, machine code"></a>C,assembly, machine code</h2><ul>
 <li>Micro architecture：微指令架构，CSAPP中很少涉及</li>
@@ -323,7 +328,7 @@
 <h2 id="Assembly-Basics-Registers-operands-move"><a href="#Assembly-Basics-Registers-operands-move" class="headerlink" title="Assembly Basics: Registers, operands, move"></a>Assembly Basics: Registers, operands, move</h2><h3 id="Integer-Registers"><a href="#Integer-Registers" class="headerlink" title="Integer Registers"></a>Integer Registers</h3><img src="/2023/05/24/13-04-09/WX20230603-145124@2x.png" class="">
 
 <ul>
-<li><p>参数：1<code>rdi</code>, 2<code>rsi</code>, 3<code>rdx</code>, 4<code>rcx</code>, 5<code>r8</code>, 6<code>r9</code></p>
+<li><p>参数：1<code>rdi</code>, 2<code>rsi</code>, 3<code>rdx</code>, 4<code>rcx</code>, 5<code>r8</code>, 6<code>r9</code>，只能传递整型或者指针，浮点数由另外一组单独的寄存器传递。超出的参数存在栈里。</p>
 </li>
 <li><p>返回值：<code>rax</code></p>
 </li>
@@ -355,7 +360,108 @@
 </ul>
 <h4 id="One-Operand-Instructions"><a href="#One-Operand-Instructions" class="headerlink" title="One Operand Instructions"></a>One Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152823@2x.png" class="">
 
-<h1 id="Control"><a href="#Control" class="headerlink" title="Control"></a>Control</h1><h2 id="Condition-Codes"><a href="#Condition-Codes" class="headerlink" title="Condition Codes"></a>Condition Codes</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h1 id="Control"><a href="#Control" class="headerlink" title="Control"></a>Control</h1><h2 id="Condition-Codes"><a href="#Condition-Codes" class="headerlink" title="Condition Codes"></a>Condition Codes</h2><h3 id="Single-bit-registers"><a href="#Single-bit-registers" class="headerlink" title="Single bit registers"></a>Single bit registers</h3><ul>
+<li><p><code>CF</code>: Carry Flag (for unsigned)，同样表示无符号数溢出</p>
+</li>
+<li><p><code>SF</code>: Sign Flag (for signed)，负数为1</p>
+</li>
+<li><p><code>ZF</code>: Zero Flag</p>
+</li>
+<li><p><code>OF</code>: Overflow Flag (for signed)</p>
+</li>
+</ul>
+<h3 id="Explicit-Setting"><a href="#Explicit-Setting" class="headerlink" title="Explicit Setting"></a>Explicit Setting</h3><h4 id="Compare"><a href="#Compare" class="headerlink" title="Compare"></a>Compare</h4><blockquote>
+<p>cmpq Src2, Src1</p>
+</blockquote>
+<p>类似减法，Src1 - Src2，但是不保存值，只改变四个条件码</p>
+<ul>
+<li><p>溢出：<code>cmp b， a</code>，有符号补码<br>同号不会溢出，异号才会溢出</p>
+<ul>
+<li><p>负溢出：a-，b+， a-b&gt;0</p>
+</li>
+<li><p>正溢出：a+，b-，a-b&lt;0</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h4><blockquote>
+<p>testq Src2, Src1</p>
+</blockquote>
+<p>与运算，改变SF和ZF。</p>
+<h4 id="SetX-Instructions"><a href="#SetX-Instructions" class="headerlink" title="SetX Instructions"></a>SetX Instructions</h4><img src="/2023/05/24/13-04-09/WX20230605-113101@2x.png" class="">
+
+<blockquote>
+<p>x86-64中4字节计算结果会将高4字节零填充，而2字节操作只会改变2字节。</p>
+</blockquote>
+<h2 id="Conditional-branches"><a href="#Conditional-branches" class="headerlink" title="Conditional branches"></a>Conditional branches</h2><h3 id="Jumping"><a href="#Jumping" class="headerlink" title="Jumping"></a>Jumping</h3><h4 id="JX-Instructions"><a href="#JX-Instructions" class="headerlink" title="JX Instructions"></a>JX Instructions</h4><img src="/2023/05/24/13-04-09/WX20230605-113806@2x.png" class="">
+
+<h3 id="Using-Conditional-Moves"><a href="#Using-Conditional-Moves" class="headerlink" title="Using Conditional Moves"></a>Using Conditional Moves</h3><p>分支预测技术，更多时候分支预测正确率很低，选择执行分支的两部分指令，计算出两个结果，在最后一分钟选择需要的结果。只适用在两个分支都是简单计算。</p>
+<blockquote>
+<p><code>cmovle</code>: 小于等于的时候移动</p>
+</blockquote>
+<h2 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h2><p>C代码中最底层的控制就是跳转和测试。</p>
+<h2 id="Switch-Statements"><a href="#Switch-Statements" class="headerlink" title="Switch Statements"></a>Switch Statements</h2><ul>
+<li><p>用跳转表保存代码块的地址，可以快速跳转到该地址。</p>
+</li>
+<li><p>无论最小值是多少，通过增加偏置变为0</p>
+</li>
+<li><p>跳转表由编译器生成，汇编程序填写。</p>
+</li>
+<li><p>值范围很大，相对稀疏，会转变为条件树。</p>
+</li>
+</ul>
+<h1 id="Procedures"><a href="#Procedures" class="headerlink" title="Procedures"></a>Procedures</h1><h2 id="Stack-Structure"><a href="#Stack-Structure" class="headerlink" title="Stack Structure"></a>Stack Structure</h2><ul>
+<li><p>内存地址从下往上递增</p>
+</li>
+<li><p>栈底在上，push时rsp减小</p>
+</li>
+</ul>
+<h3 id="Push-amp-Pop"><a href="#Push-amp-Pop" class="headerlink" title="Push &amp; Pop"></a>Push &amp; Pop</h3><ul>
+<li><p>Push：先减小，在写入</p>
+</li>
+<li><p>Pop：rsp增加</p>
+</li>
+</ul>
+<h2 id="Calling-Conventions"><a href="#Calling-Conventions" class="headerlink" title="Calling Conventions"></a>Calling Conventions</h2><h3 id="Passing-Control"><a href="#Passing-Control" class="headerlink" title="Passing Control"></a>Passing Control</h3><ul>
+<li><p><code>call label</code>: 返回地址入栈，跳转到label</p>
+</li>
+<li><p><code>ret</code>: 出栈，返回</p>
+</li>
+<li><p><code>pc</code>寄存器就存在<code>rip</code>。</p>
+</li>
+</ul>
+<h3 id="Passing-data"><a href="#Passing-data" class="headerlink" title="Passing data"></a>Passing data</h3><p>数据在寄存器和内存中传递，采用默认的规则，在不同的编译器下都可以传递参数。</p>
+<h3 id="Managing-local-data"><a href="#Managing-local-data" class="headerlink" title="Managing local data"></a>Managing local data</h3><h4 id="Stack-Frame"><a href="#Stack-Frame" class="headerlink" title="Stack Frame"></a>Stack Frame</h4><p>每个函数使用的内存块称为栈帧。</p>
+<ul>
+<li><p><code>rbp</code>: 表示基指针，栈底。调用者的<code>rbp</code>保存在被调用者的栈底。</p>
+</li>
+<li><p><code>rsp</code>: 栈顶，当它被分配了多少字节，就知道需要释放多少字节</p>
+</li>
+</ul>
+<h2 id="Illustration-of-Recursion"><a href="#Illustration-of-Recursion" class="headerlink" title="Illustration of Recursion"></a>Illustration of Recursion</h2><p>栈帧是递归调用的前提。</p>
+<h1 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h1><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><h3 id="One-dimensional"><a href="#One-dimensional" class="headerlink" title="One-dimensional"></a>One-dimensional</h3><ul>
+<li>指针加常量， 常量会被适当放缩。</li>
+</ul>
+<h3 id="Multi-dimensional-nested"><a href="#Multi-dimensional-nested" class="headerlink" title="Multi-dimensional(nested)"></a>Multi-dimensional(nested)</h3><ul>
+<li>多维嵌套数组，按行或列连续存储。</li>
+</ul>
+<h3 id="Multi-level"><a href="#Multi-level" class="headerlink" title="Multi-level"></a>Multi-level</h3><ul>
+<li>三个数组，一个以为指针数组保存三个数组的起始地址。</li>
+</ul>
+<h2 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h2><h3 id="Access"><a href="#Access" class="headerlink" title="Access"></a>Access</h3><ul>
+<li>通过字节偏移访问对应的结构体成员。</li>
+</ul>
+<h3 id="Alignment"><a href="#Alignment" class="headerlink" title="Alignment"></a>Alignment</h3><ul>
+<li><p>字节对齐，访问更方便，数据不会跨越多个块</p>
+</li>
+<li><p>占m字节的变量，就存放在m的倍数地址处</p>
+</li>
+<li><p>调整声明顺序，可以优化对齐</p>
+</li>
+</ul>
+<h2 id="Floating-Point"><a href="#Floating-Point" class="headerlink" title="Floating Point"></a>Floating Point</h2><img src="/2023/05/24/13-04-09/WX20230605-164923@2x.png" class="">
+
+<h1 id="Advanced-Topics"><a href="#Advanced-Topics" class="headerlink" title="Advanced Topics"></a>Advanced Topics</h1>
     </div>
 
     
