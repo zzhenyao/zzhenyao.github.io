@@ -18,8 +18,8 @@
   --btn-default-hover-bg: transparent;
   --btn-default-hover-color: var(--link-hover-color);
   --btn-default-hover-border-color: var(--link-hover-color);
-  --highlight-background: #f3f3f3;
-  --highlight-foreground: #444;
+  --highlight-background: #eee;
+  --highlight-foreground: #555;
   --highlight-gutter-background: #e1e1e1;
   --highlight-gutter-foreground: #555;
   color-scheme: light;
@@ -223,7 +223,7 @@ body {
   color: var(--text-color);
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 1em;
-  line-height: 2;
+  line-height: 1.6;
   min-height: 100%;
   position: relative;
   transition: padding 0.2s ease-in-out;
@@ -236,8 +236,8 @@ h5,
 h6 {
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
-  line-height: 1.5;
-  margin: 20px 0 7px;
+  line-height: 1.4;
+  margin: 10px 0 7px;
 }
 h1 {
   font-size: 1.5em;
@@ -258,7 +258,7 @@ h6 {
   font-size: 0.875em;
 }
 p {
-  margin: 0 0 5px;
+  margin: 0 0 0px;
 }
 a {
   border-bottom: 1px solid #ccc;
@@ -285,17 +285,17 @@ hr {
   background-image: repeating-linear-gradient(-45deg, #ddd, #ddd 4px, transparent 4px, transparent 8px);
   border: 0;
   height: 2px;
-  margin: 30px 0;
+  margin: 10px 0;
 }
 blockquote {
-  border-left: 4px solid #ddd;
+  border-left: 4px solid #91f191;
   color: var(--blockquote-color);
   margin: 0;
-  padding: 0 8px;
+  padding: 0 6px;
 }
 blockquote cite::before {
   content: '-';
-  padding: 0 3px;
+  padding: 0 2px;
 }
 dt {
   font-weight: bold;
@@ -433,7 +433,7 @@ pre {
 }
 figure.highlight,
 pre {
-  line-height: 1.6;
+  line-height: 1.4;
   margin: 0 auto 20px;
 }
 figure.highlight figcaption,
@@ -1234,7 +1234,7 @@ pre code {
   visibility: hidden;
 }
 .sidebar-nav-active .sidebar-nav {
-  height: calc(2em + 1px);
+  height: calc(1.6em + 1px);
   pointer-events: unset;
   visibility: unset;
 }
@@ -2688,7 +2688,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #39ffff;
+  background: #1ce516;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);

@@ -45,16 +45,19 @@
 </li>
 <li><p>ARM架构- Acorn RISC Machine</p>
 </li>
-<li><p>两种汇编语法：AT&amp;T：Linux使用的，课程使用这种<br>                       Intel：</p>
+<li><p>两种汇编语法：AT&amp;T和Intel。Linux和课程使用的是AT&amp;T。</p>
 </li>
 </ul>
 <h2 id="C-assembly-machine-code"><a href="#C-assembly-machine-code" class="headerlink" title="C,assembly, machine code"></a>C,assembly, machine code</h2><ul>
 <li>Micro architecture：微指令架构，CSAPP中很少涉及</li>
 </ul>
-<h3 id="Turning-C-into-Object-Code"><a href="#Turning-C-into-Object-Code" class="headerlink" title="Turning C into Object Code"></a>Turning C into Object Code</h3><ul>
+<p><strong>Turning C into Object Code</strong></p>
+<ul>
 <li>编译命令<br><code>gcc -Og p1.c p2.c -o p</code><br><code>gcc -Og -S sum.c</code>：<br><code>-S</code>:编译阶段终止，生成汇编语言<br><code>-Og</code>:Optimize编译优化，<code>O1</code>是过去的优化级别，<code>g</code>级可以使代码更可读</li>
 </ul>
-<h3 id="Assembly-Characteristics"><a href="#Assembly-Characteristics" class="headerlink" title="Assembly Characteristics"></a>Assembly Characteristics</h3><h4 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h4><ul>
+<p><strong>Assembly Characteristics</strong></p>
+<p>Data Types</p>
+<ul>
 <li><p>integer: 以1，2，4，8字节存储<br>数据和地址都用整型保存，不区分无符号和有符号。</p>
 </li>
 <li><p>floating point: 4，8，10字节</p>
@@ -62,7 +65,8 @@
 <li><p>没有数组以及结构体，这些是由编译器构造的。</p>
 </li>
 </ul>
-<h3 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h3><ul>
+<p><strong>Operations</strong></p>
+<ul>
 <li><p>执行算术操作</p>
 </li>
 <li><p>在内存和寄存器之间传送数据</p>
@@ -70,14 +74,16 @@
 <li><p>转移控制</p>
 </li>
 </ul>
-<h4 id="Disassembling-Object-Code"><a href="#Disassembling-Object-Code" class="headerlink" title="Disassembling Object Code"></a>Disassembling Object Code</h4><blockquote>
+<p>Disassembling Object Code</p>
+<blockquote>
 <p>指令长度在1-15个字节</p>
 </blockquote>
 <p>反汇编：将目标代码文件反汇编为类汇编语言。</p>
 <ul>
 <li><code>objdump -d sum</code>: 反汇编</li>
 </ul>
-<h2 id="Assembly-Basics-Registers-operands-move"><a href="#Assembly-Basics-Registers-operands-move" class="headerlink" title="Assembly Basics: Registers, operands, move"></a>Assembly Basics: Registers, operands, move</h2><h3 id="Integer-Registers"><a href="#Integer-Registers" class="headerlink" title="Integer Registers"></a>Integer Registers</h3><img src="/2023/05/24/13-04-09/WX20230603-145124@2x.png" class="">
+<h2 id="Assembly-Basics-Registers-operands-move"><a href="#Assembly-Basics-Registers-operands-move" class="headerlink" title="Assembly Basics: Registers, operands, move"></a>Assembly Basics: Registers, operands, move</h2><p><strong>Integer Registers</strong></p>
+<img src="/2023/05/24/13-04-09/WX20230603-145124@2x.png" class="">
 
 <ul>
 <li><p>参数：1<code>rdi</code>, 2<code>rsi</code>, 3<code>rdx</code>, 4<code>rcx</code>, 5<code>r8</code>, 6<code>r9</code>，只能传递整型或者指针，浮点数由另外一组单独的寄存器传递。超出的参数存在栈里。</p>
@@ -85,7 +91,8 @@
 <li><p>返回值：<code>rax</code></p>
 </li>
 </ul>
-<h3 id="Moving-Data"><a href="#Moving-Data" class="headerlink" title="Moving Data"></a>Moving Data</h3><blockquote>
+<p><strong>Moving Data</strong></p>
+<blockquote>
 <p><code>mov Source, Dest</code></p>
 </blockquote>
 <ul>
@@ -98,11 +105,13 @@
 <li><p><code>D(Rb, Ri, S)</code>: Mem[Reg[Rb] + S * Reg[Ri] + D]</p>
 </li>
 </ul>
-<h2 id="Arithmetic-amp-logical-operations"><a href="#Arithmetic-amp-logical-operations" class="headerlink" title="Arithmetic &amp; logical operations"></a>Arithmetic &amp; logical operations</h2><h3 id="lea-Src-Dst"><a href="#lea-Src-Dst" class="headerlink" title="lea Src, Dst"></a>lea Src, Dst</h3><blockquote>
+<h2 id="Arithmetic-amp-logical-operations"><a href="#Arithmetic-amp-logical-operations" class="headerlink" title="Arithmetic &amp; logical operations"></a>Arithmetic &amp; logical operations</h2><p><strong>lea Src, Dst</strong></p>
+<blockquote>
 <p>C语言中的&amp;，取地址</p>
 </blockquote>
 <p>实际使用中C语言编译器喜欢用这条指令做算术运算，<code>lea (%rdi, %rdi, 2), %rax</code>, mov是将地址指向的内存值取出，lea指令将内存值所在地址取出，相当于存入的是<code>%rdi + %rdi * 2</code>。</p>
-<h3 id="Some-Arithmetic-Operations"><a href="#Some-Arithmetic-Operations" class="headerlink" title="Some Arithmetic Operations"></a>Some Arithmetic Operations</h3><h4 id="Two-Operand-Instructions"><a href="#Two-Operand-Instructions" class="headerlink" title="Two Operand Instructions"></a>Two Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152227@2x.png" class="">
+<p>Some ArTwo Operand Instructions</p>
+<img src="/2023/05/24/13-04-09/WX20230603-152227@2x.png" class="">
 
 <ul>
 <li><p>目的操作数作为第一个操作数，类似<code>x+=y</code></p>
@@ -110,9 +119,11 @@
 <li><p>算术左移和逻辑左移相同</p>
 </li>
 </ul>
-<h4 id="One-Operand-Instructions"><a href="#One-Operand-Instructions" class="headerlink" title="One Operand Instructions"></a>One Operand Instructions</h4><img src="/2023/05/24/13-04-09/WX20230603-152823@2x.png" class="">
+<p>One Operand Instructions</p>
+<img src="/2023/05/24/13-04-09/WX20230603-152823@2x.png" class="">
 
-<h1 id="Control"><a href="#Control" class="headerlink" title="Control"></a>Control</h1><h2 id="Condition-Codes"><a href="#Condition-Codes" class="headerlink" title="Condition Codes"></a>Condition Codes</h2><h3 id="Single-bit-registers"><a href="#Single-bit-registers" class="headerlink" title="Single bit registers"></a>Single bit registers</h3><ul>
+<h1 id="Control"><a href="#Control" class="headerlink" title="Control"></a>Control</h1><h2 id="Condition-Codes"><a href="#Condition-Codes" class="headerlink" title="Condition Codes"></a>Condition Codes</h2><p><strong>Single bit registers</strong></p>
+<ul>
 <li><p><code>CF</code>: Carry Flag (for unsigned)，同样表示无符号数溢出</p>
 </li>
 <li><p><code>SF</code>: Sign Flag (for signed)，负数为1</p>
@@ -122,7 +133,9 @@
 <li><p><code>OF</code>: Overflow Flag (for signed)</p>
 </li>
 </ul>
-<h3 id="Explicit-Setting"><a href="#Explicit-Setting" class="headerlink" title="Explicit Setting"></a>Explicit Setting</h3><h4 id="Compare"><a href="#Compare" class="headerlink" title="Compare"></a>Compare</h4><blockquote>
+<p><strong>Explicit Setting</strong></p>
+<p>Compare</p>
+<blockquote>
 <p>cmpq Src2, Src1</p>
 </blockquote>
 <p>类似减法，Src1 - Src2，但是不保存值，只改变四个条件码</p>
@@ -136,18 +149,23 @@
 </ul>
 </li>
 </ul>
-<h4 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h4><blockquote>
+<p>Test</p>
+<blockquote>
 <p>testq Src2, Src1</p>
 </blockquote>
 <p>与运算，改变SF和ZF。</p>
-<h4 id="SetX-Instructions"><a href="#SetX-Instructions" class="headerlink" title="SetX Instructions"></a>SetX Instructions</h4><img src="/2023/05/24/13-04-09/WX20230605-113101@2x.png" class="">
+<p>SetX Instructions</p>
+<img src="/2023/05/24/13-04-09/WX20230605-113101@2x.png" class="">
 
 <blockquote>
 <p>x86-64中4字节计算结果会将高4字节零填充，而2字节操作只会改变2字节。</p>
 </blockquote>
-<h2 id="Conditional-branches"><a href="#Conditional-branches" class="headerlink" title="Conditional branches"></a>Conditional branches</h2><h3 id="Jumping"><a href="#Jumping" class="headerlink" title="Jumping"></a>Jumping</h3><h4 id="JX-Instructions"><a href="#JX-Instructions" class="headerlink" title="JX Instructions"></a>JX Instructions</h4><img src="/2023/05/24/13-04-09/WX20230605-113806@2x.png" class="">
+<h2 id="Conditional-branches"><a href="#Conditional-branches" class="headerlink" title="Conditional branches"></a>Conditional branches</h2><p><strong>Jumping</strong></p>
+<p>JX Instructions</p>
+<img src="/2023/05/24/13-04-09/WX20230605-113806@2x.png" class="">
 
-<h3 id="Using-Conditional-Moves"><a href="#Using-Conditional-Moves" class="headerlink" title="Using Conditional Moves"></a>Using Conditional Moves</h3><p>分支预测技术，更多时候分支预测正确率很低，选择执行分支的两部分指令，计算出两个结果，在最后一分钟选择需要的结果。只适用在两个分支都是简单计算。</p>
+<p><strong>Using Conditional Moves</strong></p>
+<p>分支预测技术，更多时候分支预测正确率很低，选择执行分支的两部分指令，计算出两个结果，在最后一分钟选择需要的结果。只适用在两个分支都是简单计算。</p>
 <blockquote>
 <p><code>cmovle</code>: 小于等于的时候移动</p>
 </blockquote>
@@ -168,13 +186,15 @@
 <li><p>栈底在上，push时rsp减小</p>
 </li>
 </ul>
-<h3 id="Push-amp-Pop"><a href="#Push-amp-Pop" class="headerlink" title="Push &amp; Pop"></a>Push &amp; Pop</h3><ul>
+<p><strong>Push &amp; Pop</strong></p>
+<ul>
 <li><p>Push：先减小，在写入</p>
 </li>
 <li><p>Pop：rsp增加</p>
 </li>
 </ul>
-<h2 id="Calling-Conventions"><a href="#Calling-Conventions" class="headerlink" title="Calling Conventions"></a>Calling Conventions</h2><h3 id="Passing-Control"><a href="#Passing-Control" class="headerlink" title="Passing Control"></a>Passing Control</h3><ul>
+<h2 id="Calling-Conventions"><a href="#Calling-Conventions" class="headerlink" title="Calling Conventions"></a>Calling Conventions</h2><p><strong>Passing Control</strong></p>
+<ul>
 <li><p><code>call label</code>: 返回地址入栈，跳转到label</p>
 </li>
 <li><p><code>ret</code>: 出栈，返回</p>
@@ -182,8 +202,11 @@
 <li><p><code>pc</code>寄存器就存在<code>rip</code>。</p>
 </li>
 </ul>
-<h3 id="Passing-data"><a href="#Passing-data" class="headerlink" title="Passing data"></a>Passing data</h3><p>数据在寄存器和内存中传递，采用默认的规则，在不同的编译器下都可以传递参数。</p>
-<h3 id="Managing-local-data"><a href="#Managing-local-data" class="headerlink" title="Managing local data"></a>Managing local data</h3><h4 id="Stack-Frame"><a href="#Stack-Frame" class="headerlink" title="Stack Frame"></a>Stack Frame</h4><p>每个函数使用的内存块称为栈帧。</p>
+<p><strong>Passing data</strong></p>
+<p>数据在寄存器和内存中传递，采用默认的规则，在不同的编译器下都可以传递参数。</p>
+<p><strong>Managing local data</strong></p>
+<p>Stack Frame</p>
+<p>每个函数使用的内存块称为栈帧。</p>
 <ul>
 <li><p><code>rbp</code>: 表示基指针，栈底。调用者的<code>rbp</code>保存在被调用者的栈底。</p>
 </li>
@@ -191,19 +214,24 @@
 </li>
 </ul>
 <h2 id="Illustration-of-Recursion"><a href="#Illustration-of-Recursion" class="headerlink" title="Illustration of Recursion"></a>Illustration of Recursion</h2><p>栈帧是递归调用的前提。</p>
-<h1 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h1><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><h3 id="One-dimensional"><a href="#One-dimensional" class="headerlink" title="One-dimensional"></a>One-dimensional</h3><ul>
+<h1 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h1><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p><strong>One-dimensional</strong></p>
+<ul>
 <li>指针加常量， 常量会被适当放缩。</li>
 </ul>
-<h3 id="Multi-dimensional-nested"><a href="#Multi-dimensional-nested" class="headerlink" title="Multi-dimensional(nested)"></a>Multi-dimensional(nested)</h3><ul>
+<p><strong>Multi-dimensional(nested)</strong></p>
+<ul>
 <li>多维嵌套数组，按行或列连续存储。</li>
 </ul>
-<h3 id="Multi-level"><a href="#Multi-level" class="headerlink" title="Multi-level"></a>Multi-level</h3><ul>
+<p><strong>Multi-level</strong></p>
+<ul>
 <li>三个数组，一个以为指针数组保存三个数组的起始地址。</li>
 </ul>
-<h2 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h2><h3 id="Access"><a href="#Access" class="headerlink" title="Access"></a>Access</h3><ul>
+<h2 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h2><p><strong>Access</strong></p>
+<ul>
 <li>通过字节偏移访问对应的结构体成员。</li>
 </ul>
-<h3 id="Alignment"><a href="#Alignment" class="headerlink" title="Alignment"></a>Alignment</h3><ul>
+<p><strong>Alignment</strong></p>
+<ul>
 <li><p>字节对齐，访问更方便，数据不会跨越多个块</p>
 </li>
 <li><p>占m字节的变量，就存放在m的倍数地址处</p>
