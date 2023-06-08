@@ -241,7 +241,67 @@
 </ul>
 <h2 id="Floating-Point"><a href="#Floating-Point" class="headerlink" title="Floating Point"></a>Floating Point</h2><img src="/2023/05/24/13-04-09/WX20230605-164923@2x.png" class="">
 
-<h1 id="Advanced-Topics"><a href="#Advanced-Topics" class="headerlink" title="Advanced Topics"></a>Advanced Topics</h1>]]></content>
+<h1 id="Advanced-Topics"><a href="#Advanced-Topics" class="headerlink" title="Advanced Topics"></a>Advanced Topics</h1><h2 id="Memory-Layout"><a href="#Memory-Layout" class="headerlink" title="Memory Layout"></a>Memory Layout</h2><p>目前64位的内存只允许使用47位。Linux栈的大小为8MB。</p>
+<ul>
+<li><p>Stack: 局部变量</p>
+</li>
+<li><p>Text：执行的机器指令，只可读</p>
+</li>
+<li><p>Data：存放全局变量，静态变量，字符串常量</p>
+</li>
+<li><p>Heap：动态申请，malloc，calloc，new</p>
+</li>
+<li><p>Shared Libraries：存放库函数，动态加载</p>
+</li>
+</ul>
+<p>堆分配的内存是从高位低位向中间分配，中间的一部分没有分配的内存访问段错误。<code>这是由操作系统的管理策略决定</code></p>
+<h2 id="Buffer-Overflow"><a href="#Buffer-Overflow" class="headerlink" title="Buffer Overflow"></a>Buffer Overflow</h2><p><strong>Vulnerability</strong></p>
+<ul>
+<li><p><code>gets()</code>: 函数不检查缓冲区大小，容易越界。 </p>
+</li>
+<li><p><code>strcpy</code>, <code>strcat</code>,<code>scanf</code>, <code>fscanf</code>, <code>sscanf</code>, 都有溢出风险。</p>
+</li>
+<li><p>机器指令是小端存放的，低位在前。 </p>
+</li>
+<li></li>
+</ul>
+<p><strong>Code Injection Attacks</strong></p>
+<p>代码注入攻击，把字符填充到缓冲区中，形成可执行的指令，修改返回指针。</p>
+<blockquote>
+<p>Worm与Virus：蠕虫可以自己生存，病毒不能独自运行。</p>
+</blockquote>
+<p><strong>Protection</strong></p>
+<p><strong>Randomized stack offsets</strong>栈随机化</p>
+<p>栈随机化会让缓冲区随机变化，无法预测下一个地址。</p>
+<p><strong>Nonexecutable code segments</strong></p>
+<p>标记栈是不可执行的代码。</p>
+<p><strong>Stack Canaries</strong></p>
+<p><code>gcc -fstack-protector</code> 默认启动栈保护</p>
+<p><code>%fs</code>: 特殊寄存器，某块内存的值，如果Canay值改变了说明有溢出。Canay值是<code>小端存放</code>。</p>
+<blockquote>
+<p>Canay的值最低位字节为0，这是字符串的off-by-one bug，虽然字符串的空字符占用了Canay值，产生了溢出，但是检测不到溢出。</p>
+</blockquote>
+<p><strong>Return-Oriented Programming Attacks</strong></p>
+<p>Canay无法破解，但是我们知道代码在什么地方，全局变量和代码的位置没有改变，通过找到某段代码组合在一起，面向返回编程。</p>
+<blockquote>
+<p>gadget: 通过截断一些指令，形成新的指令，替换了程序计数器</p>
+</blockquote>
+<img src="/2023/05/24/13-04-09/WX20230608-112255@2x.png" class="">
+
+<p>attack Lab中关闭了canary，可以通过缓冲区溢出设置需要的返回地址。</p>
+<h2 id="Unions"><a href="#Unions" class="headerlink" title="Unions"></a>Unions</h2><ul>
+<li><p>联合体只会为最大的域分配地址。</p>
+</li>
+<li><p>联合体可以用来做类型转换，不改变位。</p>
+</li>
+</ul>
+<h2 id="大端小端"><a href="#大端小端" class="headerlink" title="大端小端"></a>大端小端</h2><ul>
+<li><p>IA32：字节小端存放</p>
+</li>
+<li><p>x86-64：字节小端存放</p>
+</li>
+</ul>
+]]></content>
       <categories>
         <category>csapp</category>
       </categories>
@@ -268,6 +328,8 @@
 <h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Attack Lab实验，采用 code-injection 和 return-oriented 两种方法攻击程序。</p>
 <h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
 <li><code>./ctarget -q</code>：运行目标文件用参数<code>-q</code>，不使用服务器</li>
+<li>code-injection：关闭了栈随机化，栈不可执行和canary。</li>
+<li>return-oriented：打开栈随机化和不可执行，关闭canary。</li>
 </ol>
 <h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2>]]></content>
       <categories>
@@ -536,9 +598,9 @@
         <category>工具</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>ssh</tag>
         <tag>mac</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -960,9 +1022,9 @@
       </categories>
       <tags>
         <tag>ssh</tag>
-        <tag>mac</tag>
         <tag>ubuntu</tag>
         <tag>wsl2</tag>
+        <tag>mac</tag>
       </tags>
   </entry>
 </search>
