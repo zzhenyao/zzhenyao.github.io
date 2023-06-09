@@ -223,7 +223,7 @@ body {
   color: var(--text-color);
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 1em;
-  line-height: 1.6;
+  line-height: 1.8;
   min-height: 100%;
   position: relative;
   transition: padding 0.2s ease-in-out;
@@ -1234,7 +1234,7 @@ pre code {
   visibility: hidden;
 }
 .sidebar-nav-active .sidebar-nav {
-  height: calc(1.6em + 1px);
+  height: calc(1.8em + 1px);
   pointer-events: unset;
   visibility: unset;
 }
@@ -2688,7 +2688,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ff2661;
+  background: #93b0f5;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
