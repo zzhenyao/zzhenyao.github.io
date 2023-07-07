@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CSAPP五优化程序性能</title>
+    <title>csapp 笔记汇总</title>
+    <url>/2023/03/15/10-59-10/</url>
+    <content><![CDATA[<h1 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h1><h2 id="CMU-15-213笔记"><a href="#CMU-15-213笔记" class="headerlink" title="CMU 15-213笔记"></a>CMU 15-213笔记</h2><ul>
+<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
+<li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
+</ul>
+<h2 id="代码仓库"><a href="#代码仓库" class="headerlink" title="代码仓库"></a>代码仓库</h2><p><a href="https://github.com/PKunicor/CsappLab">PKunicor&#x2F;Csapp lab</a></p>
+<h2 id="实验笔记"><a href="#实验笔记" class="headerlink" title="实验笔记"></a>实验笔记</h2><ul>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
+</ul>
+<h1 id="实验指南"><a href="#实验指南" class="headerlink" title="实验指南"></a>实验指南</h1><ul>
+<li><p><a href="https://www.bilibili.com/video/BV1iW411d7hd/?spm_id_from=333.788.top_right_bar_window_custom_collection.content.click&vd_source=d5a3522259c17126f1b623c977d04c3e">B站CS15-213翻译课程</a> </p>
+</li>
+<li><p><a href="https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22">实验课程指导</a> <code>lab重点</code></p>
+</li>
+</ul>
+<blockquote>
+<p>做Lab非常推荐看一下官方给的Lab指导课程，课程里详细介绍了实验上手方式以及需要用到的命令。 </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 笔记五 优化程序性能</title>
     <url>/2023/07/06/14-25-42/</url>
     <content><![CDATA[<p>更新历史</p>
 <ul>
@@ -10,8 +40,104 @@
 <h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
 <li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
 <li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
-<li><a href="/2023/07/06/14-25-42/" title="CSAPP五优化程序性能">第五章 - 优化程序性能</a></li>
+<li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
 </ul>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>通过查看汇编代码，对没有优化的代码进行调整。</p>
+<h1 id="Generally-Useful-Optimizations"><a href="#Generally-Useful-Optimizations" class="headerlink" title="Generally Useful Optimizations"></a>Generally Useful Optimizations</h1><ul>
+<li><p>Code Motion：代码移动，把常用的结果存到循环外。优化等级1以上，编译器会自动完成这个工作。</p>
+</li>
+<li><p>Reduction in Strength：减少计算量，乘法换左移或加法。</p>
+</li>
+<li><p>Share Common Subexpressions：寻找公共表达式，减少计算量。</p>
+</li>
+</ul>
+<h1 id="Optimization-Blockers"><a href="#Optimization-Blockers" class="headerlink" title="Optimization Blockers"></a>Optimization Blockers</h1><ul>
+<li><p>Procedure Calls：循环中进行相同结果的重复调用。</p>
+<blockquote>
+<p>编译器无法优化的原因：</p>
+<p>1.不知道是否在循环中修改了字符串；2. 文件单独编译，编译器不知道函数使用的是哪个文件中的函数，编译器事先假设函数是一个黑盒。</p>
+</blockquote>
+</li>
+<li><p>Memory Matters: 循环中重复读取内存。</p>
+<blockquote>
+<p>无法优化的原因：</p>
+<p>编译器不确定C语言是否存在内存别名，之前的结果会不会影响下一次读取的内存值。所以每次都进行读取写入操作。</p>
+</blockquote>
+</li>
+<li><p>Memory Aliasing：引入局部变量防止内存重叠。</p>
+</li>
+</ul>
+<h1 id="Exploiting-Instruction-Level-Parallelism"><a href="#Exploiting-Instruction-Level-Parallelism" class="headerlink" title="Exploiting Instruction-Level Parallelism"></a>Exploiting Instruction-Level Parallelism</h1><p>采用指令级并行，适用于各种机器的通用优化方法</p>
+<h2 id="Benchmark-Example"><a href="#Benchmark-Example" class="headerlink" title="Benchmark Example"></a>Benchmark Example</h2><p>基准例子，使用一个抽象的数据结构。</p>
+<img src="/2023/07/06/14-25-42/WX20230706-153904@2x.png" class="">
+
+<p><strong>Basic Optimizations</strong></p>
+<ul>
+<li><p>计算数组长度移出循环</p>
+</li>
+<li><p>移除边界检查，用新函数获取数组</p>
+</li>
+<li><p>引入局部变量</p>
+</li>
+</ul>
+<img src="/2023/07/06/14-25-42/WX20230706-154041@2x.png" class="">
+
+<p>优化后性能：</p>
+<img src="/2023/07/06/14-25-42/WX20230706-154316@2x.png" class="">
+
+<p><code>优化的基本限制</code>: 程序限制了整数和浮点数的乘法必须顺序执行，所需要的周期为3和5。</p>
+<p><strong>Modern CPU Design</strong></p>
+<img src="/2023/07/06/14-25-42/WX20230706-163939@2x.png" class="">
+
+<p> 1995年的CPU，了解流程。</p>
+<p> 超标量乱序执行：顺序指令分解重组，实现指令级并行。</p>
+<p>Superscalar Processor：超标量处理器</p>
+<p><strong>Pipelined Functional Units</strong></p>
+<img src="/2023/07/06/14-25-42/WX20230706-170033@2x.png" class="">
+
+<p>指令流水线：<code>这里假设指令需要三个阶段完成</code></p>
+<h2 id="Loop-Unrolling"><a href="#Loop-Unrolling" class="headerlink" title="Loop Unrolling"></a>Loop Unrolling</h2><p><code>循环展开</code>: 循环中计算多个值，而不是计算一次。</p>
+<img src="/2023/07/06/14-25-42/WX20230707-094102@2x.png" class="">
+
+<blockquote>
+<p>每次循环计算两个操作数</p>
+<p><code>limit</code>: n-1, 循环i跳出时满足 i + 1 &lt; (n - 1) + 1 &#x3D; n; </p>
+</blockquote>
+<img src="/2023/07/06/14-25-42/WX20230707-094654@2x.png" class="">
+
+<blockquote>
+<p>只有加法的CPE有了提升，降低了循环计数的消耗。其他没用提升是因为接近了延迟界限。</p>
+</blockquote>
+<p>调整循环展开的计算顺序：</p>
+<p><code>x = x OP (d[i] OP d[i+1])</code></p>
+<img src="/2023/07/06/14-25-42/WX20230707-105030@2x.png" class="">
+
+<p>吞吐量突破了延迟界限，浮点数两个乘法器，一个加法器。</p>
+<img src="/2023/07/06/14-25-42/WX20230707-105355@2x.png" class="">
+
+<p>减少了计算的依赖，两个元素的计算不需要等上一个x的结果。浮点数不满足结合律，改变括号可能会发生舍入溢出，结果发生变化。</p>
+<p><code>Latency Bound</code>：严格顺序执行时，一条指令需要花费的全部时间。</p>
+<p><code>Throughput Bound</code>：基于硬件数量和性能限制，<code>只有两个load单元，吞吐量为0.5</code></p>
+<p><strong>Separate Accumulators</strong></p>
+<p>多累加器，改变元素组合的顺序，如奇偶分开。</p>
+<img src="/2023/07/06/14-25-42/WX20230707-112901@2x.png" class="">
+
+<p><strong>Unrolling &amp; Accumulating</strong></p>
+<p>以K为因子展开一个L长度的数组，CPE可以接近吞吐界限</p>
+<h2 id="Programming-with-AVX2"><a href="#Programming-with-AVX2" class="headerlink" title="Programming with AVX2"></a>Programming with AVX2</h2><p><strong>YMM Registers</strong></p>
+<p>总共有16个32字节的寄存器 ，是%XMM的二倍。</p>
+<h2 id="SIMD-Operations"><a href="#SIMD-Operations" class="headerlink" title="SIMD Operations"></a>SIMD Operations</h2><img src="/2023/07/06/14-25-42/WX20230707-114005@2x.png" class="">
+
+<p><code>Vector Instructions</code>矢量指令：并行执行八次单精度或四次双精度浮点操作</p>
+<p>矢量指令是为处理视频，声音，图形引入的</p>
+<p>gcc对矢量指令的优化是有限的</p>
+<h1 id="Dealing-with-Conditionals"><a href="#Dealing-with-Conditionals" class="headerlink" title="Dealing with Conditionals"></a>Dealing with Conditionals</h1><h2 id="What-About-Branches？"><a href="#What-About-Branches？" class="headerlink" title="What About Branches？"></a>What About Branches？</h2><p><strong>Branch Prediction</strong></p>
+<p>分支预测技术：先执行猜测的分支，然后再判断分支是否正确</p>
+<blockquote>
+<p>所有的分支预测结果都写在寄存器副本中，错误时会回退正确的寄存器结果</p>
+</blockquote>
+<p><strong>Performance Cost</strong></p>
+<p>执行代价就是用了很多时钟周期处理所有的分支指令，可能会执行大量无效操作</p>
 ]]></content>
       <categories>
         <category>csapp</category>
@@ -30,7 +156,7 @@
 <h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
 <li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
 <li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
-<li><a href="/2023/07/06/14-25-42/" title="CSAPP五优化程序性能">第五章 - 优化程序性能</a></li>
+<li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
 </ul>
 <h1 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h1><h2 id="Intel-x86-Processors"><a href="#Intel-x86-Processors" class="headerlink" title="Intel x86 Processors"></a>Intel x86 Processors</h2><ul>
 <li><p>CISC - Complex 复杂指令集，RISC - Reduced 精简指令集。</p>
@@ -303,38 +429,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++常用函数</title>
-    <url>/2023/03/08/14-45-11/</url>
-    <content><![CDATA[<p>特殊函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//万能头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span> </span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="built_in">sort</span>(a,a+n,<span class="built_in">less</span>&lt;<span class="type">int</span>&gt;());<span class="comment">//内置类型的由小到大排序</span></span><br><span class="line"><span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line"><span class="comment">//作用相当于 bool cmd();</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line">  string s;</span><br><span class="line">  s = <span class="built_in">bitset</span>&lt;<span class="number">8</span>&gt;(a[i]).<span class="built_in">to_string</span>();     <span class="comment">//  转换字符串</span></span><br><span class="line">  <span class="built_in">to_ulong</span>()    <span class="comment">// 转换为unsigned long类型</span></span><br><span class="line">  <span class="built_in">to_ullong</span>();　<span class="comment">// 转换成unsigned long long类型</span></span><br><span class="line">  <span class="built_in">set</span>(x, v);    <span class="comment">// 没有参数时 将全部位设为1</span></span><br><span class="line">                <span class="comment">// 有一个x， 将x下标处设为1</span></span><br><span class="line">                <span class="comment">// 两个参数，将x处设为v值</span></span><br><span class="line">  <span class="built_in">reset</span>(x);    <span class="comment">// 置0   无参全部置，有参置下标</span></span><br><span class="line">  <span class="built_in">flip</span>(x);     <span class="comment">// 取反，无参全部取，有参取下标处</span></span><br><span class="line">  <span class="built_in">text</span>(x);     <span class="comment">// 检测下标处是不是1 返回true 0返回false</span></span><br><span class="line">  <span class="built_in">any</span>();       <span class="comment">// 检查是否有1</span></span><br><span class="line">  <span class="built_in">none</span>();      <span class="comment">// 检查是否没有1</span></span><br><span class="line">  <span class="built_in">all</span>();       <span class="comment">// 检查是否全为1</span></span><br><span class="line">  <span class="built_in">count</span>();     <span class="comment">// 求1的个数</span></span><br><span class="line">  <span class="built_in">size</span>();      <span class="comment">// 求位数</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="built_in">typeid</span>(x).<span class="built_in">name</span>();   <span class="comment">// 获取x的类型</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//输出重定向</span></span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;input.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line"><span class="comment">//控制台输入数据，如何输入文件结束标志</span></span><br><span class="line"><span class="comment">//**在Windows下，输入完毕后先按Enter键，再按Ctrl＋Z键，最后再按Enter键</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加快输入速度的两种方法</span></span><br><span class="line">ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);   cin &gt;&gt; x;</span><br><span class="line"><span class="built_in">scanf</span>()；</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//类型转换</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line">ss.<span class="built_in">clear</span>();  <span class="comment">// 清空</span></span><br><span class="line">ss &lt;&lt; s;</span><br><span class="line">ss &gt;&gt; a;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="built_in">isdigit</span>(s[i]);  <span class="comment">// 若参数c为阿拉伯数字0~9 字符，则返回非0值，否则返回0。</span></span><br><span class="line"><span class="type">int</span> n = <span class="built_in">stoi</span>(s);   <span class="comment">//  把s转化为int型 </span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line">cout &lt;&lt; <span class="built_in">setw</span>(<span class="number">2</span>);   <span class="comment">// 设置位数</span></span><br><span class="line"><span class="built_in">setprecision</span>(n)     <span class="comment">//设置显示小数精度为n位</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">stefill</span>(c);  <span class="comment">// 设置填充字符</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::scientific)   <span class="comment">//指数表示</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::left)     <span class="comment">//左对齐</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::right)    <span class="comment">//右对齐</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">include &lt;string&gt;</span><br><span class="line"><span class="built_in">substr</span>(<span class="type">int</span> index, <span class="type">int</span> mum); <span class="comment">// 返回一个子字符串 </span></span><br><span class="line"><span class="comment">//std::string::npos是一个常数，它等于size_type类型可以表示的最大值</span></span><br><span class="line"><span class="comment">//用在 s.find()  返回值</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>算法比赛</tag>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSAPP 实验III Attack Lab</title>
     <url>/2023/03/18/15-54-47/</url>
     <content><![CDATA[<p>更新历史：</p>
@@ -447,24 +541,6 @@
         <tag>shell</tag>
         <tag>gdb</tag>
         <tag>objdump</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git笔记</title>
-    <url>/2023/03/08/14-59-55/</url>
-    <content><![CDATA[<p>克隆项目到当前文件夹</p>
-<ul>
-<li><p>git clone https:&#x2F;&#x2F; .</p>
-</li>
-<li><p>注意 .</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -711,33 +787,21 @@
       </tags>
   </entry>
   <entry>
-    <title>csapp 笔记汇总</title>
-    <url>/2023/03/15/10-59-10/</url>
-    <content><![CDATA[<h1 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h1><h2 id="CMU-15-213笔记"><a href="#CMU-15-213笔记" class="headerlink" title="CMU 15-213笔记"></a>CMU 15-213笔记</h2><ul>
-<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
-<li><a href="/2023/07/06/14-25-42/" title="CSAPP五优化程序性能">第五章 - 优化程序性能</a></li>
-</ul>
-<h2 id="代码仓库"><a href="#代码仓库" class="headerlink" title="代码仓库"></a>代码仓库</h2><p><a href="https://github.com/PKunicor/CsappLab">PKunicor&#x2F;Csapp lab</a></p>
-<h2 id="实验笔记"><a href="#实验笔记" class="headerlink" title="实验笔记"></a>实验笔记</h2><ul>
-<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
-<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
-<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
-</ul>
-<h1 id="实验指南"><a href="#实验指南" class="headerlink" title="实验指南"></a>实验指南</h1><ul>
-<li><p><a href="https://www.bilibili.com/video/BV1iW411d7hd/?spm_id_from=333.788.top_right_bar_window_custom_collection.content.click&vd_source=d5a3522259c17126f1b623c977d04c3e">B站CS15-213翻译课程</a> </p>
-</li>
-<li><p><a href="https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22">实验课程指导</a> <code>lab重点</code></p>
-</li>
-</ul>
-<blockquote>
-<p>做Lab非常推荐看一下官方给的Lab指导课程，课程里详细介绍了实验上手方式以及需要用到的命令。 </p>
-</blockquote>
+    <title>Linux和SSh相关命令</title>
+    <url>/2023/03/11/15-22-24/</url>
+    <content><![CDATA[<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="ln链接文件"><a href="#ln链接文件" class="headerlink" title="ln链接文件"></a>ln链接文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s 源文件  目的文件    #建立软链接</span><br><span class="line">ln    源文件  目的文件    #硬链接</span><br></pre></td></tr></table></figure>
+
+<h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>显示当前地址</p>
+<h1 id="SSH命令"><a href="#SSH命令" class="headerlink" title="SSH命令"></a>SSH命令</h1><h2 id="scp传输文件"><a href="#scp传输文件" class="headerlink" title="scp传输文件"></a>scp传输文件</h2><p><code>注意要在本地使用这个命令，ssh登录后使用，文件从服务器下载到服务器了</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp username@ip_address:/home/username/filename ~/   #从服务器下载到本地</span><br><span class="line"># 参数 -P 端口号   要大写</span><br><span class="line"># 参数 -r 文件夹</span><br><span class="line">scp -P2222 -r</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>csapp</category>
+        <category>工具</category>
       </categories>
       <tags>
-        <tag>csapp</tag>
+        <tag>linux</tag>
+        <tag>ssh</tag>
+        <tag>mac</tag>
       </tags>
   </entry>
   <entry>
@@ -1084,21 +1148,53 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux和SSh相关命令</title>
-    <url>/2023/03/11/15-22-24/</url>
-    <content><![CDATA[<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="ln链接文件"><a href="#ln链接文件" class="headerlink" title="ln链接文件"></a>ln链接文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s 源文件  目的文件    #建立软链接</span><br><span class="line">ln    源文件  目的文件    #硬链接</span><br></pre></td></tr></table></figure>
-
-<h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>显示当前地址</p>
-<h1 id="SSH命令"><a href="#SSH命令" class="headerlink" title="SSH命令"></a>SSH命令</h1><h2 id="scp传输文件"><a href="#scp传输文件" class="headerlink" title="scp传输文件"></a>scp传输文件</h2><p><code>注意要在本地使用这个命令，ssh登录后使用，文件从服务器下载到服务器了</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp username@ip_address:/home/username/filename ~/   #从服务器下载到本地</span><br><span class="line"># 参数 -P 端口号   要大写</span><br><span class="line"># 参数 -r 文件夹</span><br><span class="line">scp -P2222 -r</span><br></pre></td></tr></table></figure>
+    <title>git笔记</title>
+    <url>/2023/03/08/14-59-55/</url>
+    <content><![CDATA[<p>克隆项目到当前文件夹</p>
+<ul>
+<li><p>git clone https:&#x2F;&#x2F; .</p>
+</li>
+<li><p>注意 .</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>工具</category>
       </categories>
       <tags>
-        <tag>linux</tag>
-        <tag>ssh</tag>
-        <tag>mac</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++常用函数</title>
+    <url>/2023/03/08/14-45-11/</url>
+    <content><![CDATA[<p>特殊函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//万能头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span> </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="built_in">sort</span>(a,a+n,<span class="built_in">less</span>&lt;<span class="type">int</span>&gt;());<span class="comment">//内置类型的由小到大排序</span></span><br><span class="line"><span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line"><span class="comment">//作用相当于 bool cmd();</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line">  string s;</span><br><span class="line">  s = <span class="built_in">bitset</span>&lt;<span class="number">8</span>&gt;(a[i]).<span class="built_in">to_string</span>();     <span class="comment">//  转换字符串</span></span><br><span class="line">  <span class="built_in">to_ulong</span>()    <span class="comment">// 转换为unsigned long类型</span></span><br><span class="line">  <span class="built_in">to_ullong</span>();　<span class="comment">// 转换成unsigned long long类型</span></span><br><span class="line">  <span class="built_in">set</span>(x, v);    <span class="comment">// 没有参数时 将全部位设为1</span></span><br><span class="line">                <span class="comment">// 有一个x， 将x下标处设为1</span></span><br><span class="line">                <span class="comment">// 两个参数，将x处设为v值</span></span><br><span class="line">  <span class="built_in">reset</span>(x);    <span class="comment">// 置0   无参全部置，有参置下标</span></span><br><span class="line">  <span class="built_in">flip</span>(x);     <span class="comment">// 取反，无参全部取，有参取下标处</span></span><br><span class="line">  <span class="built_in">text</span>(x);     <span class="comment">// 检测下标处是不是1 返回true 0返回false</span></span><br><span class="line">  <span class="built_in">any</span>();       <span class="comment">// 检查是否有1</span></span><br><span class="line">  <span class="built_in">none</span>();      <span class="comment">// 检查是否没有1</span></span><br><span class="line">  <span class="built_in">all</span>();       <span class="comment">// 检查是否全为1</span></span><br><span class="line">  <span class="built_in">count</span>();     <span class="comment">// 求1的个数</span></span><br><span class="line">  <span class="built_in">size</span>();      <span class="comment">// 求位数</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="built_in">typeid</span>(x).<span class="built_in">name</span>();   <span class="comment">// 获取x的类型</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//输出重定向</span></span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;input.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line"><span class="comment">//控制台输入数据，如何输入文件结束标志</span></span><br><span class="line"><span class="comment">//**在Windows下，输入完毕后先按Enter键，再按Ctrl＋Z键，最后再按Enter键</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加快输入速度的两种方法</span></span><br><span class="line">ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);   cin &gt;&gt; x;</span><br><span class="line"><span class="built_in">scanf</span>()；</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//类型转换</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line">ss.<span class="built_in">clear</span>();  <span class="comment">// 清空</span></span><br><span class="line">ss &lt;&lt; s;</span><br><span class="line">ss &gt;&gt; a;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="built_in">isdigit</span>(s[i]);  <span class="comment">// 若参数c为阿拉伯数字0~9 字符，则返回非0值，否则返回0。</span></span><br><span class="line"><span class="type">int</span> n = <span class="built_in">stoi</span>(s);   <span class="comment">//  把s转化为int型 </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line">cout &lt;&lt; <span class="built_in">setw</span>(<span class="number">2</span>);   <span class="comment">// 设置位数</span></span><br><span class="line"><span class="built_in">setprecision</span>(n)     <span class="comment">//设置显示小数精度为n位</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">stefill</span>(c);  <span class="comment">// 设置填充字符</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::scientific)   <span class="comment">//指数表示</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::left)     <span class="comment">//左对齐</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::right)    <span class="comment">//右对齐</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">include &lt;string&gt;</span><br><span class="line"><span class="built_in">substr</span>(<span class="type">int</span> index, <span class="type">int</span> mum); <span class="comment">// 返回一个子字符串 </span></span><br><span class="line"><span class="comment">//std::string::npos是一个常数，它等于size_type类型可以表示的最大值</span></span><br><span class="line"><span class="comment">//用在 s.find()  返回值</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>算法比赛</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
