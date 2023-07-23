@@ -43,6 +43,7 @@
 <li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
 <li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
 <li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
+<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
 </ul>
 <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>通过查看汇编代码，对没有优化的代码进行调整。</p>
 <h1 id="Generally-Useful-Optimizations"><a href="#Generally-Useful-Optimizations" class="headerlink" title="Generally Useful Optimizations"></a>Generally Useful Optimizations</h1><ul>
@@ -503,6 +504,7 @@
 <li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
 <li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
 <li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
+<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
 </ul>
 <h1 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h1><h2 id="Intel-x86-Processors"><a href="#Intel-x86-Processors" class="headerlink" title="Intel x86 Processors"></a>Intel x86 Processors</h2><ul>
 <li><p>CISC - Complex 复杂指令集，RISC - Reduced 精简指令集。</p>
@@ -1295,6 +1297,90 @@
         <tag>mac</tag>
         <tag>ubuntu</tag>
         <tag>wsl2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 笔记六 存储器层次结构</title>
+    <url>/2023/07/23/09-27-18/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>23.07.23：初稿</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
+<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
+<li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
+<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
+</ul>
+<h1 id="The-Memory-Hierarchy"><a href="#The-Memory-Hierarchy" class="headerlink" title="The Memory Hierarchy"></a>The Memory Hierarchy</h1><h2 id="Storage-technologies-and-trends"><a href="#Storage-technologies-and-trends" class="headerlink" title="Storage technologies and trends"></a>Storage technologies and trends</h2><p><strong>Random-Access Memory(RAM)</strong></p>
+<p>根据存储单元实现方式区分为：</p>
+<p><strong>SRAM(Static)</strong></p>
+<ul>
+<li><p>4或6个晶体存储 1 bit， 成本很高</p>
+</li>
+<li><p>访问速度比DRAM快</p>
+</li>
+<li><p>不太需要EDC(error detection and correction)错误检测和纠正</p>
+</li>
+<li><p>组成cache</p>
+</li>
+</ul>
+<p><strong>DRAM(Dynamic)</strong></p>
+<ul>
+<li><p>一个晶体存储 1 bit</p>
+</li>
+<li><p>需要刷新 </p>
+</li>
+<li><p>需要EDC</p>
+</li>
+<li><p>组成主存储器，图形显卡的帧缓存(frame buffers)</p>
+</li>
+</ul>
+<p><strong>Nonvolatile Memories</strong></p>
+<p>Read-only memory(ROM):生产期间硬编程一次</p>
+<p>Programmable ROM(PROM): 可编程ROM</p>
+<p>Eraseable PROM(EPROM): 可擦拭可编程ROM</p>
+<p>Electrically eraseable PROM(EEPROM): 电子可擦拭可编程ROM</p>
+<p>Flash memory: 闪存，提供了擦拭模块，但是会有损耗。</p>
+<p><strong>Disk Drive</strong></p>
+<p>因为机械特性，硬盘会比SRAM，DRAM慢很多。</p>
+<img src="/2023/07/23/09-27-18/QQ20230723-095730@2x.jpg" class="">
+
+<p>Sectors：扇区</p>
+<img src="/2023/07/23/09-27-18/QQ20230723-143055@2x.jpg" class="">
+
+<p>Cylinder: 柱面</p>
+<p>Logical Disk Blocks：逻辑块</p>
+<p>实现物理块与逻辑块之间的映射关系。</p>
+<p><strong>Solid State Disks(SSDs)</strong></p>
+<img src="/2023/07/23/09-27-18/QQ20230723-143913@2x.jpg" class="">
+
+<ul>
+<li><p>没有机械部件，由闪存翻译层固件控制</p>
+</li>
+<li><p>以页为单位读写，写入时必须擦拭整个块</p>
+</li>
+</ul>
+<h2 id="Locality-of-reference"><a href="#Locality-of-reference" class="headerlink" title="Locality of reference"></a>Locality of reference</h2><p>程序的局部性</p>
+<p>程序需要良好的局部性，有利用于读写内存。</p>
+<h2 id="Caching-in-the-Memory-Hierarchy"><a href="#Caching-in-the-Memory-Hierarchy" class="headerlink" title="Caching in the Memory Hierarchy"></a>Caching in the Memory Hierarchy</h2><p>利用缓存和局部性原理构建了存储器层次结构。</p>
+<img src="/2023/07/23/09-27-18/QQ20230723-144603@2x.jpg" class="">
+
+<blockquote>
+<p>高层保存着从低层检索到的数据</p>
+</blockquote>
+<p><strong>Caches</strong></p>
+<img src="/2023/07/23/09-27-18/QQ20230723-144821@2x.jpg" class="">
+
+<p>Cold (compulsory) miss: 冷命中，初始时cache为空</p>
+<p>Conflict miss: 冲突不命中，位置被占用了</p>
+<p>Capacity miss: 容量不命中，不可以容纳超过缓存大小的工作集</p>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
       </tags>
   </entry>
 </search>
