@@ -1225,6 +1225,7 @@
     <content><![CDATA[<h1 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h1><h2 id="CMU-15-213笔记"><a href="#CMU-15-213笔记" class="headerlink" title="CMU 15-213笔记"></a>CMU 15-213笔记</h2><ul>
 <li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
 <li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
+<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
 </ul>
 <h2 id="代码仓库"><a href="#代码仓库" class="headerlink" title="代码仓库"></a>代码仓库</h2><p><a href="https://github.com/PKunicor/CsappLab">PKunicor&#x2F;Csapp lab</a></p>
 <h2 id="实验笔记"><a href="#实验笔记" class="headerlink" title="实验笔记"></a>实验笔记</h2><ul>
