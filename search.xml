@@ -1,35 +1,357 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C++常用函数</title>
-    <url>/2023/03/08/14-45-11/</url>
-    <content><![CDATA[<p>特殊函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//万能头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span> </span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="built_in">sort</span>(a,a+n,<span class="built_in">less</span>&lt;<span class="type">int</span>&gt;());<span class="comment">//内置类型的由小到大排序</span></span><br><span class="line"><span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line"><span class="comment">//作用相当于 bool cmd();</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line">  string s;</span><br><span class="line">  s = <span class="built_in">bitset</span>&lt;<span class="number">8</span>&gt;(a[i]).<span class="built_in">to_string</span>();     <span class="comment">//  转换字符串</span></span><br><span class="line">  <span class="built_in">to_ulong</span>()    <span class="comment">// 转换为unsigned long类型</span></span><br><span class="line">  <span class="built_in">to_ullong</span>();　<span class="comment">// 转换成unsigned long long类型</span></span><br><span class="line">  <span class="built_in">set</span>(x, v);    <span class="comment">// 没有参数时 将全部位设为1</span></span><br><span class="line">                <span class="comment">// 有一个x， 将x下标处设为1</span></span><br><span class="line">                <span class="comment">// 两个参数，将x处设为v值</span></span><br><span class="line">  <span class="built_in">reset</span>(x);    <span class="comment">// 置0   无参全部置，有参置下标</span></span><br><span class="line">  <span class="built_in">flip</span>(x);     <span class="comment">// 取反，无参全部取，有参取下标处</span></span><br><span class="line">  <span class="built_in">text</span>(x);     <span class="comment">// 检测下标处是不是1 返回true 0返回false</span></span><br><span class="line">  <span class="built_in">any</span>();       <span class="comment">// 检查是否有1</span></span><br><span class="line">  <span class="built_in">none</span>();      <span class="comment">// 检查是否没有1</span></span><br><span class="line">  <span class="built_in">all</span>();       <span class="comment">// 检查是否全为1</span></span><br><span class="line">  <span class="built_in">count</span>();     <span class="comment">// 求1的个数</span></span><br><span class="line">  <span class="built_in">size</span>();      <span class="comment">// 求位数</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="built_in">typeid</span>(x).<span class="built_in">name</span>();   <span class="comment">// 获取x的类型</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//输出重定向</span></span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;input.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line"><span class="comment">//控制台输入数据，如何输入文件结束标志</span></span><br><span class="line"><span class="comment">//**在Windows下，输入完毕后先按Enter键，再按Ctrl＋Z键，最后再按Enter键</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加快输入速度的两种方法</span></span><br><span class="line">ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);   cin &gt;&gt; x;</span><br><span class="line"><span class="built_in">scanf</span>()；</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//类型转换</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line">ss.<span class="built_in">clear</span>();  <span class="comment">// 清空</span></span><br><span class="line">ss &lt;&lt; s;</span><br><span class="line">ss &gt;&gt; a;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="built_in">isdigit</span>(s[i]);  <span class="comment">// 若参数c为阿拉伯数字0~9 字符，则返回非0值，否则返回0。</span></span><br><span class="line"><span class="type">int</span> n = <span class="built_in">stoi</span>(s);   <span class="comment">//  把s转化为int型 </span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line">cout &lt;&lt; <span class="built_in">setw</span>(<span class="number">2</span>);   <span class="comment">// 设置位数</span></span><br><span class="line"><span class="built_in">setprecision</span>(n)     <span class="comment">//设置显示小数精度为n位</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">stefill</span>(c);  <span class="comment">// 设置填充字符</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::scientific)   <span class="comment">//指数表示</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::left)     <span class="comment">//左对齐</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::right)    <span class="comment">//右对齐</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">include &lt;string&gt;</span><br><span class="line"><span class="built_in">substr</span>(<span class="type">int</span> index, <span class="type">int</span> mum); <span class="comment">// 返回一个子字符串 </span></span><br><span class="line"><span class="comment">//std::string::npos是一个常数，它等于size_type类型可以表示的最大值</span></span><br><span class="line"><span class="comment">//用在 s.find()  返回值</span></span><br></pre></td></tr></table></figure>
+    <title>csapp 笔记汇总</title>
+    <url>/2023/03/15/10-59-10/</url>
+    <content><![CDATA[<h1 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h1><h2 id="CMU-15-213笔记"><a href="#CMU-15-213笔记" class="headerlink" title="CMU 15-213笔记"></a>CMU 15-213笔记</h2><ul>
+<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
+<li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
+<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
+</ul>
+<h2 id="代码仓库"><a href="#代码仓库" class="headerlink" title="代码仓库"></a>代码仓库</h2><p><a href="https://github.com/PKunicor/CsappLab">PKunicor&#x2F;Csapp lab</a></p>
+<h2 id="实验笔记"><a href="#实验笔记" class="headerlink" title="实验笔记"></a>实验笔记</h2><ul>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
+<li><a href="/2024/03/09/16-34-34/" title="CSAPP 实验IV CacheLab">IV Cache Lab - 实现一个缓存系统</a></li>
+<li></li>
+</ul>
+<h1 id="实验指南"><a href="#实验指南" class="headerlink" title="实验指南"></a>实验指南</h1><ul>
+<li><p><a href="https://www.bilibili.com/video/BV1iW411d7hd/?spm_id_from=333.788.top_right_bar_window_custom_collection.content.click&vd_source=d5a3522259c17126f1b623c977d04c3e">B站CS15-213翻译课程</a> </p>
+</li>
+<li><p><a href="https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22">实验课程指导</a> <code>lab重点</code></p>
+</li>
+</ul>
+<blockquote>
+<p>做Lab非常推荐看一下官方给的Lab指导课程，课程里详细介绍了实验上手方式以及需要用到的命令。 </p>
+</blockquote>
 ]]></content>
       <categories>
-        <category>数据结构</category>
+        <category>csapp</category>
       </categories>
       <tags>
-        <tag>算法比赛</tag>
-        <tag>c++</tag>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 实验IV CacheLab</title>
+    <url>/2024/03/09/16-34-34/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.03.09：初稿</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
+<li><a href="/2024/03/09/16-34-34/" title="CSAPP 实验IV CacheLab">IV Cache Lab - 实现一个缓存系统</a></li>
+<li><a href="/2023/07/07/16-27-21/" title="CSAPP 实验V Performance Lab">V Performance Lab - 实现代码优化</a></li>
+</ul>
+<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>CacheLab实验，第一部分需要模拟Cache计算命中，未命中次数，第二部分实现代码优化，减少未命中次数。</p>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
+<li><p>Cache</p>
+<blockquote>
+<img src="/2024/03/09/16-34-34/QQ20240309-165258@2x.png" class="">
+
+<p>不需要关注 <code>b</code> bits，使用LRU替换策略。</p>
+<p>Cache是一个二维数组cache[S][E]，S&#x3D;2^s，组数。</p>
+<p>每一个cache行包含：Valid bit， Tag， LRU counter。</p>
+<p>用Tag对比E匹配line。</p>
+</blockquote>
+</li>
+<li><p>生成内存调试工具命令: <code>linux&gt; valgrind --log-fd=1 --tool=lackey -v --trace-mem=yes ls -l</code></p>
+<blockquote>
+<p>参数<code>ls -l</code>：打印输出在文件stdout</p>
+<p>格式为<code>[space]operation address,size</code>，除了I操作外，前都有一个空格</p>
+<p>操作：I-instruction load，L-data load，S-data store， M-data modify。M包含L，S。</p>
+<p>address：64-bit 16进制</p>
+<p>size：字节数</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="Part-A-Writing-a-Cache-Simulator"><a href="#Part-A-Writing-a-Cache-Simulator" class="headerlink" title="Part A Writing a Cache Simulator"></a>Part A Writing a Cache Simulator</h2><p>完成<code>csim.c</code>文件，使用<code>valgrind</code>生成测试数据，输出命中，未命中和替换次数，输出格式为<code>hits:4 misses:5 evictions:3</code>。</p>
+<h3 id="相关内容-1"><a href="#相关内容-1" class="headerlink" title="相关内容"></a>相关内容</h3><ul>
+<li><p>修改<code>csim.c</code>文件</p>
+</li>
+<li><p>可参考的二进制文件<code>csim-ref</code>，使用命令<code>./csim-ref [-hv] -s &lt;s&gt; -E &lt;E&gt; -b &lt;b&gt; -t &lt;tracefile&gt;</code></p>
+<blockquote>
+<p>参数：v-打印内存追踪记录</p>
+</blockquote>
+</li>
+<li><p>自动评分工具<code>test-csim</code></p>
+</li>
+<li><p>建议代码像参考模拟器显示输出，方便测试。</p>
+</li>
+<li><p>使用<code>getopt</code>分析命令行参数。需包含头文件&lt;getopt.h&gt;，&lt;unistd.h&gt;，&lt;stdlib.h&gt;。可以获取函数参数。</p>
+</li>
+<li><p>使用<code>fscanf</code>按行读取文件</p>
+</li>
+<li><p>使用<code>malloc</code>，<code>free</code>，防止内存泄漏</p>
+</li>
+<li><p>使用<code>printSummary(hit_count, miss_count, eviction_count);</code>，打印输出</p>
+</li>
+<li><p>数据是对齐，且不会出现跨块访问。</p>
+</li>
+</ul>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSetbits 5</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MaxLine 4</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MaxBytebits 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Myline</span>&#123;</span></span><br><span class="line">  <span class="type">int</span> valid; <span class="comment">//有效位</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> tag;   <span class="comment">//tag标记  十进制</span></span><br><span class="line">  <span class="type">int</span> lru_num;   <span class="comment">// 最近使用标记 0 - (E - 1)</span></span><br><span class="line">&#125;Myline;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Mycache</span>&#123;</span></span><br><span class="line">  <span class="type">int</span> S;            <span class="comment">// set 大小</span></span><br><span class="line">  <span class="type">int</span> E;            <span class="comment">// line 大小</span></span><br><span class="line">  <span class="type">int</span> B;            <span class="comment">//偏移大小</span></span><br><span class="line">  <span class="type">int</span> size_Tag;     <span class="comment">// tag bits = 64 - s- b</span></span><br><span class="line">  Myline **<span class="built_in">set</span>;    <span class="comment">//set数组</span></span><br><span class="line">&#125;Mycache;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//get command line arguments</span></span><br><span class="line"><span class="comment">//p_s s的指针   p_E E的指针   p_b b的指针    fn 文件名</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Mygetopt</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[], <span class="type">int</span> *p_s, <span class="type">int</span> *p_E, <span class="type">int</span> *p_b, <span class="type">char</span> *fn, <span class="type">int</span> *flag_v)</span>;   </span><br><span class="line"><span class="comment">//16进制转换十进制</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">Hex2dec</span><span class="params">(<span class="type">char</span> *hex)</span>;</span><br><span class="line"><span class="comment">//返回tag</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">GetDecTag</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b)</span>;</span><br><span class="line"><span class="comment">//返回组号</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetDecSetNum</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b)</span>;</span><br><span class="line"><span class="comment">//返回这个dec地址下当前偏移量开始剩余的字节数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetDecRestByte</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b, <span class="type">int</span> B)</span>;</span><br><span class="line"><span class="comment">//初始化set</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Initset</span><span class="params">(Mycache *mc)</span>;</span><br><span class="line"><span class="comment">//处理最近未使用</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetminLRU</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E)</span>;</span><br><span class="line"><span class="comment">//是否set满了</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">IsFullSet</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E)</span>;</span><br><span class="line"><span class="comment">//命中处理  </span></span><br><span class="line"><span class="type">void</span> <span class="title function_">HitDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> Eindex)</span>;</span><br><span class="line"><span class="comment">//未命中 加载cache</span></span><br><span class="line"><span class="comment">// 有空余line加载</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MissLoadDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> Eindex, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec_tag)</span>;</span><br><span class="line"><span class="comment">//line替换</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MissEvictionDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> delindex, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec_tag)</span>;</span><br><span class="line"><span class="comment">//访问处理   返回1 hit   2  miss  3 miss eviction</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">LoadDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">StoreDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">ModifyDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">  FILE *fp;</span><br><span class="line">  <span class="type">int</span> hit_count, miss_count, eviction_count;</span><br><span class="line">  <span class="type">int</span> s, E, b;</span><br><span class="line">  <span class="type">int</span> flag_v = <span class="number">0</span>;     <span class="comment">//opt v 的标记</span></span><br><span class="line">  <span class="type">char</span> *file_name;</span><br><span class="line">  <span class="type">char</span> optcache = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">  <span class="type">char</span> ignorechar = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">  <span class="type">char</span> hex[<span class="number">65</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="type">int</span> size = <span class="number">0</span>;        <span class="comment">//个数</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec;</span><br><span class="line"></span><br><span class="line">  hit_count = <span class="number">0</span>;</span><br><span class="line">  miss_count = <span class="number">0</span>;</span><br><span class="line">  eviction_count = <span class="number">0</span>;</span><br><span class="line">  Mycache cache;</span><br><span class="line">  file_name = (<span class="type">char</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">char</span>) * <span class="number">30</span>);</span><br><span class="line">  Mygetopt(argc, argv, &amp;s, &amp;E, &amp;b, file_name, &amp;flag_v);</span><br><span class="line">  cache.S = <span class="built_in">pow</span>(<span class="number">2</span>, s);</span><br><span class="line">  cache.E = E;</span><br><span class="line">  cache.B = <span class="built_in">pow</span>(<span class="number">2</span>, b);</span><br><span class="line">  cache.size_Tag = <span class="number">64</span> - s - b;</span><br><span class="line">  Initset(&amp;cache);</span><br><span class="line"></span><br><span class="line">  fp = fopen(file_name, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">fscanf</span>(fp, <span class="string">&quot; %c %[^,]%c%d&quot;</span>, &amp;optcache, hex, &amp;ignorechar, &amp;size) != <span class="number">-1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(optcache == <span class="string">&#x27;I&#x27;</span>)&#123;</span><br><span class="line">      <span class="built_in">fscanf</span>(fp, <span class="string">&quot;%c&quot;</span>, &amp;ignorechar);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;%c %s,%d&quot;</span>, optcache, hex, size);</span><br><span class="line">    &#125;</span><br><span class="line">    dec = Hex2dec(hex);</span><br><span class="line">    <span class="comment">//========处理内存访问</span></span><br><span class="line">    <span class="type">int</span> setnum = <span class="number">0</span>;  <span class="comment">//组号</span></span><br><span class="line">    <span class="type">int</span> flag_kind = <span class="number">0</span>;   <span class="comment">//cache 类型   hit miss  </span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dectag = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//int restbyte = 0;  // 当前偏移量下剩余的字节数</span></span><br><span class="line">    <span class="comment">//int loadbyte = 0;  //已加载的字节数</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> loaddec = dec;   <span class="comment">//当前加载的地址</span></span><br><span class="line">    setnum = GetDecSetNum(loaddec, s, b);</span><br><span class="line">    dectag = GetDecTag(loaddec, s, b);</span><br><span class="line">    <span class="comment">//restbyte = GetDecRestByte(loaddec, s, b, cache.B);   //剩余加载的字节数</span></span><br><span class="line">    flag_kind = LoadDeal(cache.<span class="built_in">set</span>[setnum], E, dectag, flag_v);</span><br><span class="line">    <span class="comment">/*loadbyte += restbyte;</span></span><br><span class="line"><span class="comment">    loaddec += restbyte;   //当前地址加上剩余字节数  如果加载字节数不够  这就是下一个加载地址</span></span><br><span class="line"><span class="comment">    while(loadbyte &lt; size)&#123;</span></span><br><span class="line"><span class="comment">      setnum = GetDecSetNum(loaddec, s, b);</span></span><br><span class="line"><span class="comment">      dectag = GetDecTag(loaddec, s, b);</span></span><br><span class="line"><span class="comment">      LoadDeal(cache.set[setnum], E, dectag, flag_v);</span></span><br><span class="line"><span class="comment">      loadbyte += cache.B;</span></span><br><span class="line"><span class="comment">      loaddec += cache.B;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="keyword">if</span>(flag_kind == <span class="number">1</span>)&#123;</span><br><span class="line">      hit_count++;</span><br><span class="line">      <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; hit&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(flag_kind == <span class="number">2</span>)&#123;</span><br><span class="line">        miss_count++;</span><br><span class="line">        <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot; miss&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">        miss_count++;</span><br><span class="line">        eviction_count++;</span><br><span class="line">        <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot; miss eviction&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(optcache == <span class="string">&#x27;M&#x27;</span>)&#123;</span><br><span class="line">      hit_count++;   <span class="comment">//修改  store一定hit</span></span><br><span class="line">      <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; hit\n&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//=====================</span></span><br><span class="line">    <span class="built_in">fscanf</span>(fp, <span class="string">&quot;%c&quot;</span>, &amp;ignorechar);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  printSummary(hit_count, miss_count, eviction_count);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Mygetopt</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[], <span class="type">int</span> *p_s, <span class="type">int</span> *p_E, <span class="type">int</span> *p_b, <span class="type">char</span> *fn, <span class="type">int</span> *flag_v)</span>&#123;</span><br><span class="line">  <span class="type">int</span> opt;</span><br><span class="line">  <span class="keyword">while</span> ((opt = getopt(argc, argv, <span class="string">&quot;vh:s:E:b:t:&quot;</span>)) != <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (opt) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span>:</span><br><span class="line">        *p_s = atoi(optarg);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;E&#x27;</span>:</span><br><span class="line">        *p_E = atoi(optarg);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">        *p_b = atoi(optarg);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;t&#x27;</span>:</span><br><span class="line">        <span class="built_in">strcpy</span>(fn, optarg);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;v&#x27;</span>:</span><br><span class="line">        *flag_v = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">Hex2dec</span><span class="params">(<span class="type">char</span> *hex)</span>&#123;</span><br><span class="line">  <span class="type">int</span> len = <span class="built_in">strlen</span>(hex);</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec = <span class="number">0</span>;</span><br><span class="line">  <span class="type">int</span> pow16 = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isdigit</span>(hex[i]))&#123;</span><br><span class="line">      dec += (hex[i] - <span class="string">&#x27;0&#x27;</span>) * pow16;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      dec += (hex[i] - <span class="number">87</span>) * pow16;</span><br><span class="line">    &#125;</span><br><span class="line">    pow16 *= <span class="number">16</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dec;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">GetDecTag</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> dec &gt;&gt; (s + b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">GetDecSetNum</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">  <span class="type">int</span> setbits = (<span class="number">1</span> &lt;&lt; s);</span><br><span class="line">  setbits = ~(~setbits + <span class="number">1</span>);</span><br><span class="line">  dec = dec &gt;&gt; (b);</span><br><span class="line">  <span class="keyword">return</span> dec &amp; setbits;   <span class="comment">//返回set组号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">GetDecRestByte</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b, <span class="type">int</span> B)</span>&#123;</span><br><span class="line">  <span class="type">int</span> Bytebits = <span class="number">1</span> &lt;&lt; b;</span><br><span class="line">  Bytebits = ~(~Bytebits + <span class="number">1</span>);</span><br><span class="line">  dec = dec &amp; Bytebits;   <span class="comment">//剩余偏移量</span></span><br><span class="line">  <span class="keyword">return</span> B - dec;  <span class="comment">//返回剩余的字节数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Initset</span><span class="params">(Mycache *mc)</span>&#123;</span><br><span class="line">  <span class="type">int</span> S = (*mc).S;</span><br><span class="line">  <span class="type">int</span> E = (*mc).E;</span><br><span class="line">  (*mc).<span class="built_in">set</span> = (Myline **)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Myline *) * S);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; S; i++)&#123;</span><br><span class="line">    (*mc).<span class="built_in">set</span>[i] = (Myline *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Myline) * E);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; (*mc).S; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; (*mc).E; j++)&#123;</span><br><span class="line">      (*mc).<span class="built_in">set</span>[i][j].valid = <span class="number">0</span>;  <span class="comment">//有效位为0</span></span><br><span class="line">      (*mc).<span class="built_in">set</span>[i][j].lru_num = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">GetminLRU</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E)</span>&#123;</span><br><span class="line">  <span class="type">int</span> min = <span class="number">1000</span>;</span><br><span class="line">  <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].valid == <span class="number">0</span>)&#123;   <span class="comment">// 如果存在一个无效位置 直接返回</span></span><br><span class="line">      k = i;</span><br><span class="line">      <span class="keyword">break</span>;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].lru_num &lt; min)&#123;  </span><br><span class="line">      min = <span class="built_in">set</span>[i].lru_num;</span><br><span class="line">      k = i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">IsFullSet</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].valid == <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">HitDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> Eindex)</span>&#123;</span><br><span class="line">  <span class="type">int</span> nowLRU = <span class="built_in">set</span>[Eindex].lru_num;</span><br><span class="line">  <span class="comment">//把比现在要访问的cache set中lrunum大的全部减一  </span></span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].lru_num &gt; nowLRU)&#123;</span><br><span class="line">      <span class="built_in">set</span>[i].lru_num--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">set</span>[Eindex].lru_num = E - <span class="number">1</span>;  <span class="comment">//最新访问的cache LRU设置为最大</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">MissLoadDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> Eindex, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec_tag)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//把比现在要访问的cache set中lrunum大的全部减一  </span></span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].lru_num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="built_in">set</span>[i].lru_num--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">set</span>[Eindex].tag = dec_tag;</span><br><span class="line">  <span class="built_in">set</span>[Eindex].valid = <span class="number">1</span>;  </span><br><span class="line">  <span class="built_in">set</span>[Eindex].lru_num = E - <span class="number">1</span>;  <span class="comment">//最新访问的cache LRU设置为最大</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">MissEvictionDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> delindex, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec_tag)</span>&#123;</span><br><span class="line">  <span class="comment">//将要替换的line命中  改为最近访问过,然后再替换掉tag值</span></span><br><span class="line">  HitDeal(<span class="built_in">set</span>, E, delindex);</span><br><span class="line">  <span class="built_in">set</span>[delindex].tag = dec_tag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">LoadDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>&#123;</span><br><span class="line">  <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].tag == now_tag &amp;&amp; <span class="built_in">set</span>[i].valid == <span class="number">1</span>)&#123;</span><br><span class="line">      HitDeal(<span class="built_in">set</span>, E, i);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(i == E)&#123;</span><br><span class="line">    <span class="type">int</span> Lindex = GetminLRU(<span class="built_in">set</span>, E);</span><br><span class="line">    <span class="keyword">if</span>(IsFullSet(<span class="built_in">set</span>, E) == <span class="number">1</span>)&#123;</span><br><span class="line">      <span class="comment">//满的  替换</span></span><br><span class="line">      MissEvictionDeal(<span class="built_in">set</span>, E, Lindex, now_tag);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      MissLoadDeal(<span class="built_in">set</span>, E, Lindex, now_tag);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">StoreDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>&#123;</span><br><span class="line">  <span class="comment">//Store 相当于 Load</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">ModifyDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>&#123;</span><br><span class="line">  <span class="comment">//int kind = LoadDeal(set, E, now_tag,flag_v);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Part-B-Optimizing-Matrix-Transpose"><a href="#Part-B-Optimizing-Matrix-Transpose" class="headerlink" title="Part B Optimizing Matrix Transpose"></a>Part B Optimizing Matrix Transpose</h2><p>完成<code>trans.c</code>文件，实现一个转置矩阵代码<code>transpose_submit</code>，尽可能少的产生cache未命中。</p>
+<h3 id="相关内容-2"><a href="#相关内容-2" class="headerlink" title="相关内容"></a>相关内容</h3><ul>
+<li><p>只允许使用最多12个本地int变量，调用函数中一起计算</p>
+</li>
+<li><p>不允许使用long或者其他存储数值的方法，不允许使用数组</p>
+</li>
+<li><p>不能递归</p>
+</li>
+<li><p>使用参考模拟器来测试代码，cache参数为<code>s = 5， E = 1， b = 5</code></p>
+</li>
+<li><p>int为4个字节。</p>
+</li>
+<li><p>只有三种形式的矩阵，32*32，64*64，61*67。</p>
+</li>
+<li><img src="/2024/03/09/16-34-34/QQ20240310-152729@2x.png" class=""> 
+<p>矩阵乘法的分块技术</p>
+</li>
+<li><p>两个数组的第一个数据，在cache中存储到相同位置，数组按照行优先存储，数据是对齐的</p>
+</li>
+<li><p><code>./test-trans -M 32 -N 32</code> 测试函数 </p>
+</li>
+<li><p><code>./tracegen -M 64 -N 64 -F 0</code> 输出错误信息</p>
+</li>
+</ul>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>数据是对齐的，所以一个cache行包含32个字节，存储8个int数据，cache能存储256个int数据，根据<del><code>3B^2 &lt;&lt; C</code>，块长为B&#x3D;8</del>。根据<code>2B^2 &lt;&lt; C</code>，块长&lt;&#x3D;11，由于cache行可以存8个数据，所以选择块长8。</p>
+<img src="/2024/03/09/16-34-34/QQ20240310-191918@2x.png" class="">
+
+<p>以32*32的矩阵为例，除了处于对角线上的块会产生冲突不命中，其他块都可以优化不命中情况</p>
+<p>以上这种情况对32*32是成立的，64*64和61*67不成立，所以重新思考了这道题的解法，根据data lab中数据的操作都是在内存中进行的。</p>
+<p><strong>数组的首地址给出后，行优先数据为一维连续存储形式</strong></p>
+<p>这道题可以转换为数组A[N][M]在内存中连续存放，每一个位置x的数根据相同的转换方式保存到数组B[M][N]的位置y，转换公式为<code>i_a = x / M</code>，<code>j_a = x % M</code>，<code>y = j_a * N + i_a * M</code>。于是存储公式为<code>B(y) = A(x)</code>。</p>
+<img src="/2024/03/09/16-34-34/QQ20240312-145802@2x.png" class="">
+
+<blockquote>
+<p>示意图如上，cache行存2个数据，3*3的数组中，无法直观看出内存区别，而cache的分块目的是为了在内存中读取到cache时减少miss次数，所以我们根据内存进行重排数组，改为5*2的数组。</p>
+</blockquote>
+<p>所以这道题可以把数组转换为32列的任意数组，由于一行只有32列，远远小于cache的容量256个数据，所以相邻行的上下两个数据不会映射的同一个cache行。</p>
+<p>需要把文件放入linux的文件夹中，如果在共享文件夹中会出现运行超时。</p>
+<h3 id="32-x-32"><a href="#32-x-32" class="headerlink" title="32 x 32"></a>32 x 32</h3><p>基本步骤：</p>
+<ul>
+<li><p>重排数组</p>
+</li>
+<li><p>处理AB数组中x，y映射相同的位置，先用局部变量保存，然后处理这一行的其他数据，最后保存在B数组的中，cache行自动换出。</p>
+</li>
+</ul>
+<p><strong>分析原因</strong></p>
+<blockquote>
+<p>当<code>A[i][j]</code>与<code>B[j][i]</code>的cache映射相同set内时，取出<code>A[i][j]</code>中的值，写入B数组时会换出A的cache行，导致下次访问A的同一行cache数据时需要继续换出一次。</p>
+</blockquote>
+<p><strong>解决办法</strong></p>
+<blockquote>
+<p>用局部变量保存访问冲突的值，等循环结束后，在写入B中。</p>
+<p>计算所在行，x表示数组一维连续内存的位置(0开始)，cache 组号<code>s=（x%256 ) / 8;</code></p>
+</blockquote>
+<p><strong>结果</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> M, <span class="type">int</span> N, <span class="type">int</span> A[N][M], <span class="type">int</span> B[M][N])</span> &#123;</span><br><span class="line">  <span class="comment">//int t_1, t_2, t_3;</span></span><br><span class="line">  <span class="type">int</span> t_4, t_5;</span><br><span class="line">  <span class="type">int</span> i, j, ii, jj;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i += <span class="number">8</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; M; j += <span class="number">8</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (ii = i; ii &lt; ((i + <span class="number">8</span>) &lt; N ? i + <span class="number">8</span> : N); ii++) &#123;</span><br><span class="line">        <span class="comment">//标记没有访问冲突</span></span><br><span class="line">        t_4 = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (jj = j; jj &lt; ((j + <span class="number">8</span>) &lt; M ? j + <span class="number">8</span> : M); jj++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (ii * M + jj == jj * N + ii) &#123;</span><br><span class="line">            <span class="keyword">if</span> (t_4 == <span class="number">-1</span>) &#123;</span><br><span class="line">              t_4 = ii;</span><br><span class="line">              t_5 = jj;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// printf(&quot;**  2-- %d  3--  %d\n&quot;, t_2, t_3);</span></span><br><span class="line">          B[jj][ii] = A[ii][jj];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (t_4 != <span class="number">-1</span>) &#123;</span><br><span class="line">          B[t_5][t_4] = A[t_4][t_5];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/09/16-34-34/QQ20240312-183951@2x.png" class="">
+
+<p>miss数量287，满分</p>
+<h3 id="64-x-64"><a href="#64-x-64" class="headerlink" title="64 x 64"></a>64 x 64</h3><p>出现一个cache行中两次相同映射的问题</p>
+<p><strong>分析原因</strong></p>
+<blockquote>
+<p>在32 x 32的数组中，一个cache行为8，块为8x8，一个cache行最多只有对角线的的一个元素冲突miss，但是64x64的数组中，8x8的块中，前四行与后四行冲突miss，所以一个cache行的8个数据中，最多有两个元素冲突miss</p>
+</blockquote>
+<p><strong>解决办法</strong></p>
+<blockquote>
+<p>继续添加一个局部变量记录冲突位置，一行遍历完后再处理。</p>
+<p>继续出现了只遍历到了32，在64 X 64的数组转换为32列时，行数为128。</p>
+</blockquote>
+<img src="/2024/03/09/16-34-34/QQ20240312-225626@2x.png" class="">
+
+<p>miss数量为4611，还需要继续调低。</p>
+<p><strong>分析原因</strong></p>
+
+
+<p><del>错误答案</del></p>
+<p>64X64中，改了内存排列后，第二行与第一行的转置不在同一cache行内。</p>
+<p>按照左上右上，左下，右下顺序。</p>
+<p><strong>结果</strong></p>
+<img src="/2024/03/09/16-34-34/QQ20240313-183244@2x.png" class="">
+
+<p><strong>分析原因</strong></p>
+<blockquote>
+<p>没有拿到满分，按照上下划分为两个4X8的数组</p>
+<p>下边的4X8数组，一行中的后四列在B数组中会cache冲突行，如图<img src="/2024/03/09/16-34-34/QQ20240313-191649@2x.png" class=""></p>
+<p>注意：</p>
+<p>上四行转置之后，B数组的下四行正在cache中，为了不换出，先转置A数组的右下，再左下。</p>
+</blockquote>
+<p><strong>结果</strong></p>
+<img src="/2024/03/09/16-34-34/QQ20240313-193617@2x.png" class="">
+
+<p>减少到1547，但是还没有满分。</p>
+<p>继续修改</p>
+<blockquote>
+<p>题目要求减少miss数量，可以利用cache中空闲的地方保存数据  最后在替换出去</p>
+<img src="/2024/03/09/16-34-34/QQ20240313-202434@2x.png" class="">
+
+<p>如图，A的上半部分的后四列存到B的后四列中</p>
+<img src="/2024/03/09/16-34-34/QQ20240313-202818@2x.png" class="">
+
+<p>下半部分的第一列，先把B数组的第一行后四列保存到下部分的第一行，这样第一个cache就替换完成，依次完成其他行，最后把右下角转置过去。</p>
+</blockquote>
+<p><strong>结果</strong></p>
+<img src="/2024/03/09/16-34-34/QQ20240313-210554@2x.png" class="">
+
+<p>miss数1339，差39次满分，没有找到优化位置。</p>
+<h3 id="61-X-67"><a href="#61-X-67" class="headerlink" title="61 X 67"></a>61 X 67</h3><p><strong>结果</strong></p>
+<img src="/2024/03/09/16-34-34/QQ20240313-210917@2x.png" class="">
+
+<h3 id="最终得分"><a href="#最终得分" class="headerlink" title="最终得分"></a>最终得分</h3>]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 笔记六 存储器层次结构</title>
+    <url>/2023/07/23/09-27-18/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>23.07.23：初稿</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
+<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
+<li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
+<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
+</ul>
+<h1 id="The-Memory-Hierarchy"><a href="#The-Memory-Hierarchy" class="headerlink" title="The Memory Hierarchy"></a>The Memory Hierarchy</h1><h2 id="Storage-technologies-and-trends"><a href="#Storage-technologies-and-trends" class="headerlink" title="Storage technologies and trends"></a>Storage technologies and trends</h2><p><strong>Random-Access Memory(RAM)</strong></p>
+<p>根据存储单元实现方式区分为：</p>
+<p><strong>SRAM(Static)</strong></p>
+<ul>
+<li><p>4或6个晶体存储 1 bit， 成本很高</p>
+</li>
+<li><p>访问速度比DRAM快</p>
+</li>
+<li><p>不太需要EDC(error detection and correction)错误检测和纠正</p>
+</li>
+<li><p>组成cache</p>
+</li>
+</ul>
+<p><strong>DRAM(Dynamic)</strong></p>
+<ul>
+<li><p>一个晶体存储 1 bit</p>
+</li>
+<li><p>需要刷新 </p>
+</li>
+<li><p>需要EDC</p>
+</li>
+<li><p>组成主存储器，图形显卡的帧缓存(frame buffers)</p>
+</li>
+</ul>
+<p><strong>Nonvolatile Memories</strong></p>
+<p>Read-only memory(ROM):生产期间硬编程一次</p>
+<p>Programmable ROM(PROM): 可编程ROM</p>
+<p>Eraseable PROM(EPROM): 可擦拭可编程ROM</p>
+<p>Electrically eraseable PROM(EEPROM): 电子可擦拭可编程ROM</p>
+<p>Flash memory: 闪存，提供了擦拭模块，但是会有损耗。</p>
+<p><strong>Disk Drive</strong></p>
+<p>因为机械特性，硬盘会比SRAM，DRAM慢很多。</p>
+<img src="/2023/07/23/09-27-18/QQ20230723-095730@2x.jpg" class="">
+
+<p>Sectors：扇区</p>
+<img src="/2023/07/23/09-27-18/QQ20230723-143055@2x.jpg" class="">
+
+<p>Cylinder: 柱面</p>
+<p>Logical Disk Blocks：逻辑块</p>
+<p>实现物理块与逻辑块之间的映射关系。</p>
+<p><strong>Solid State Disks(SSDs)</strong></p>
+<img src="/2023/07/23/09-27-18/QQ20230723-143913@2x.jpg" class="">
+
+<ul>
+<li><p>没有机械部件，由闪存翻译层固件控制</p>
+</li>
+<li><p>以页为单位读写，写入时必须擦拭整个块</p>
+</li>
+</ul>
+<h2 id="Locality-of-reference"><a href="#Locality-of-reference" class="headerlink" title="Locality of reference"></a>Locality of reference</h2><p>程序的局部性</p>
+<p>程序需要良好的局部性，有利用于读写内存。</p>
+<h2 id="Caching-in-the-Memory-Hierarchy"><a href="#Caching-in-the-Memory-Hierarchy" class="headerlink" title="Caching in the Memory Hierarchy"></a>Caching in the Memory Hierarchy</h2><p>利用缓存和局部性原理构建了存储器层次结构。</p>
+<img src="/2023/07/23/09-27-18/QQ20230723-144603@2x.jpg" class="">
+
+<blockquote>
+<p>高层保存着从低层检索到的数据</p>
+</blockquote>
+<p><strong>Caches</strong></p>
+<img src="/2023/07/23/09-27-18/QQ20230723-144821@2x.jpg" class="">
+
+<p>Cold (compulsory) miss: 冷命中，初始时cache为空</p>
+<p>Conflict miss: 冲突不命中，位置被占用了</p>
+<p>Capacity miss: 容量不命中，不可以容纳超过缓存大小的工作集</p>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSAPP 实验V Performance Lab</title>
+    <url>/2023/07/07/16-27-21/</url>
+    <content><![CDATA[<p>更新历史：</p>
+<ul>
+<li>23.07.07：初稿</li>
+<li>23.07.22：没学过汇编，复杂代码看不懂，明年有时间再回头做这个实验</li>
+<li>24.03.09：实验作废，用cache lab 替代。</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
+</ul>
+<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>采用代码移动，循环展开以及指令并行对图像的旋转和平滑函数进行优化。</p>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
+<li><p><code>make driver</code>：生成运行文件， 运行<code>./driver</code>参数</p>
+<blockquote>
+<p><code>-g</code>：尽运行<code>rotate</code>和<code>smooth</code>函数</p>
+<p><code>-f</code>：指定文件输入运行</p>
+<p><code>-d</code>： 运行写入指定文件</p>
+<p><code>-q</code>：写入文件后结束运行</p>
+</blockquote>
+</li>
+<li><p><code>指导文件建议</code>：观看汇编代码，平滑函数计算密集，翻转函数存储密集。</p>
+</li>
+<li><p>允许添加宏，全局变量和其他函数(过程)。</p>
+</li>
+<li><p>假定图像矩阵的大小为32的倍数</p>
+</li>
+</ol>
+<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>课程中讲过的常见优化方式：代码移动，减少重复过程调用，消除不必要的内存引用，循环展开以及提高并行性。先查看汇编代码，根据汇编代码选择合适的方法对函数进行优化。</p>
+<h2 id="Phase-Rotate"><a href="#Phase-Rotate" class="headerlink" title="Phase Rotate"></a>Phase Rotate</h2><p>原函数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">naive_rotate</span><span class="params">(<span class="type">int</span> dim, pixel *src, pixel *dst)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; dim; i++)</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; dim; j++)</span><br><span class="line">        dst[RIDX(dim<span class="number">-1</span>-j, i, dim)] = src[RIDX(i, j, dim)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>汇编：</p>
+<img src="/2023/07/07/16-27-21/QQ20230719-190626@2x.jpg" class="">
+
+<img src="/2023/07/07/16-27-21/QQ20230719-190641@2x.jpg" class="">
+
+<blockquote>
+<p><del>之前的lab里讲过实验环境在32位shark机器下，这里汇编代码在push占用了8个字节，不太明白是不是我的环境不对</del></p>
+<p><code>已解决</code>：确实环境不对，没有32位依赖，更新之后push占用4个字节</p>
+<p><code>imul multi， src， des</code>三目运算</p>
+</blockquote>
+<p><strong>1.数据存放方式</strong></p>
+<p>数据在栈空间中小端存放，<code>rdi</code>存放在<code>rsp + 0x18</code>，<code>edi</code>存放在加4个字节的位置。所以 0x1c(%esp) 的值就是dim。</p>
+]]></content>
+      <categories>
+        <category>csapp</category>
+      </categories>
+      <tags>
+        <tag>csapp</tag>
+        <tag>shell</tag>
+        <tag>gdb</tag>
+        <tag>objdump</tag>
       </tags>
   </entry>
   <entry>
@@ -433,87 +755,120 @@
       </tags>
   </entry>
   <entry>
-    <title>CSAPP 笔记六 存储器层次结构</title>
-    <url>/2023/07/23/09-27-18/</url>
-    <content><![CDATA[<p>更新历史</p>
+    <title>CSAPP 实验III Attack Lab</title>
+    <url>/2023/03/18/15-54-47/</url>
+    <content><![CDATA[<p>更新历史：</p>
 <ul>
-<li>23.07.23：初稿</li>
+<li>23.03.18：初稿</li>
 </ul>
 <h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
-<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
-<li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
-<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a>
+</li>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a>
+</li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a>
+</li>
+<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a>
+</li>
+<li><a href="/2024/03/09/16-34-34/" title="CSAPP 实验IV CacheLab">IV Cache Lab - 实现一个缓存系统</a></li>
 </ul>
-<h1 id="The-Memory-Hierarchy"><a href="#The-Memory-Hierarchy" class="headerlink" title="The Memory Hierarchy"></a>The Memory Hierarchy</h1><h2 id="Storage-technologies-and-trends"><a href="#Storage-technologies-and-trends" class="headerlink" title="Storage technologies and trends"></a>Storage technologies and trends</h2><p><strong>Random-Access Memory(RAM)</strong></p>
-<p>根据存储单元实现方式区分为：</p>
-<p><strong>SRAM(Static)</strong></p>
-<ul>
-<li><p>4或6个晶体存储 1 bit， 成本很高</p>
+<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Attack Lab实验，采用 code-injection 和 return-oriented 两种方法攻击程序。</p>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
+<li><code>./ctarget -q</code>：运行目标文件用参数<code>-q</code>，不使用服务器</li>
+<li><code>-i FILE</code>: 文件输入</li>
+<li><code>./hex2raw &lt; 1.txt | ./ctarget -q</code>: 答案不换行，用<code>hex2raw</code>转换成字符串，注意需要用小端存储。</li>
+<li><code>call</code>指令会将8个字节的<code>rip</code>值入栈，作为<code>ret</code>返回地址。</li>
+<li>code-injection：关闭了栈随机化，栈不可执行和canary。</li>
+<li>return-oriented：打开栈随机化和不可执行，关闭canary。</li>
+</ol>
+<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>和课程中讲解的两种漏洞的破解方式相同：代码注入利用缓冲区溢出，把需要执行的指令输入到栈中。面向返回编程将需要的指令片段返回地址输入到缓冲区中，模拟一个程序计数器，顺序执行需要执行的指令。由于bomb实验对每一条汇编命令都进行了解释，这个实验就不逐条解释了，把之前做过的答案重新整理一遍。</p>
+<h2 id="Phase-1"><a href="#Phase-1" class="headerlink" title="Phase 1"></a>Phase 1</h2><p>思路：第一个很简单输入函数开辟了0x28的空间用于保存输入,返回地址在rsp+0x28的位置,所以输入一段0x28字节的字符串后面跟上返回touch1的地址,注意地址是小端存放:<code>C0 17 40 00 00 00 00 00 </code>, 以下答案为了方便观看添加了换行，运行程序时需要去掉换行。</p>
+<ol>
+<li><p>gdb进入程序，对test函数反汇编：</p>
+<img src="/2023/03/18/15-54-47/WX20230609-103056@2x.png" class="">
 </li>
-<li><p>访问速度比DRAM快</p>
+<li><p>调用了getbuf函数，可以查看一下汇编代码，找出缓冲区的大小</p>
+<img src="/2023/03/18/15-54-47/WX20230609-103332@2x.png" class="">
 </li>
-<li><p>不太需要EDC(error detection and correction)错误检测和纠正</p>
+<li><p>缓冲区大小为<code>0x28</code>，40个字节，输入的字符串保存在当前<code>rsp</code>处。然后输入40个字节无用数据，充满缓冲区，继续输入8个字节的touch1地址，覆盖掉原地址。</p>
 </li>
-<li><p>组成cache</p>
+<li><p>对要跳转的touch1函数反汇编，找一下函数入口地址：</p>
+<img src="/2023/03/18/15-54-47/WX20230609-102814@2x.png" class="">
 </li>
-</ul>
-<p><strong>DRAM(Dynamic)</strong></p>
-<ul>
-<li><p>一个晶体存储 1 bit</p>
+<li><p>所以需要返回的地址为<code>0x00000000004017c0</code>，输入小端存放。</p>
 </li>
-<li><p>需要刷新 </p>
-</li>
-<li><p>需要EDC</p>
-</li>
-<li><p>组成主存储器，图形显卡的帧缓存(frame buffers)</p>
-</li>
-</ul>
-<p><strong>Nonvolatile Memories</strong></p>
-<p>Read-only memory(ROM):生产期间硬编程一次</p>
-<p>Programmable ROM(PROM): 可编程ROM</p>
-<p>Eraseable PROM(EPROM): 可擦拭可编程ROM</p>
-<p>Electrically eraseable PROM(EEPROM): 电子可擦拭可编程ROM</p>
-<p>Flash memory: 闪存，提供了擦拭模块，但是会有损耗。</p>
-<p><strong>Disk Drive</strong></p>
-<p>因为机械特性，硬盘会比SRAM，DRAM慢很多。</p>
-<img src="/2023/07/23/09-27-18/QQ20230723-095730@2x.jpg" class="">
+</ol>
+<p>答案：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">c0 <span class="number">17</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
 
-<p>Sectors：扇区</p>
-<img src="/2023/07/23/09-27-18/QQ20230723-143055@2x.jpg" class="">
-
-<p>Cylinder: 柱面</p>
-<p>Logical Disk Blocks：逻辑块</p>
-<p>实现物理块与逻辑块之间的映射关系。</p>
-<p><strong>Solid State Disks(SSDs)</strong></p>
-<img src="/2023/07/23/09-27-18/QQ20230723-143913@2x.jpg" class="">
-
-<ul>
-<li><p>没有机械部件，由闪存翻译层固件控制</p>
+<h2 id="Phase-2"><a href="#Phase-2" class="headerlink" title="Phase 2"></a>Phase 2</h2><p>思路：</p>
+<p>第二个需要注入可执行代码, 需要把touch2的参数寄存器<code>rdi</code>内容设置为cookie, 这样重置ret到touch2才能正确执行, 所有第一次在getbuf中把返回值重置为一个栈地址, 然后在这个地址内写入一系列操作, 每次ret后返回地址会自动退栈, 所以先把<code>rsp</code>-8, 然后在<code>rdi</code>写入touch2的地址,然后将<code>rdi</code>写入<code>rsp</code>指向的栈地址中,然后把cookie值写入<code>rdi</code>中,最后ret。</p>
+<ol>
+<li><p>先查看一下touch2函数的入口在哪里：</p>
+<img src="/2023/03/18/15-54-47/WX20230609-104729@2x.png" class="">
 </li>
-<li><p>以页为单位读写，写入时必须擦拭整个块</p>
+<li><p>可以看到需要返回地址为<code>0x00000000004017ec</code>， 参数可以进入touch2函数打印一下那个局部变量的值，也可以在上一个题目输出信息那里看到，我的cookie值为<code>0x59b997fa</code>。</p>
 </li>
-</ul>
-<h2 id="Locality-of-reference"><a href="#Locality-of-reference" class="headerlink" title="Locality of reference"></a>Locality of reference</h2><p>程序的局部性</p>
-<p>程序需要良好的局部性，有利用于读写内存。</p>
-<h2 id="Caching-in-the-Memory-Hierarchy"><a href="#Caching-in-the-Memory-Hierarchy" class="headerlink" title="Caching in the Memory Hierarchy"></a>Caching in the Memory Hierarchy</h2><p>利用缓存和局部性原理构建了存储器层次结构。</p>
-<img src="/2023/07/23/09-27-18/QQ20230723-144603@2x.jpg" class="">
+<li><p>这次需要让指令在栈中执行，所以需要知道getbuf时<code>%rsp</code>的值，可以在test处打断点，<code>display $rsp</code>，值为<code>$rsp = (void *) 0x5561dcb0</code>。test函数中分配8个字节，call getbuf 时使用了8个字节，getbuf分配40个字节，一共分配了56个字节，所以在我们输入字符串时，<code>rsp</code>指向的地址值应该是<code>0x5561dc78</code></p>
+</li>
+<li><p>接下来就是注入一段需要运行的代码，可以先写汇编代码，通过指令<code>gcc -c foo.s</code>，生成二进制代码<code>foo.o</code>， 在通过<code>objdump -d foo.o</code>反汇编，生成可读的机器指令。</p>
+</li>
+</ol>
+<p>答案：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">48</span> <span class="number">83</span> ec <span class="number">08</span>           <span class="comment">/*  sub    $0x8,%rsp */</span></span><br><span class="line"><span class="number">48</span> c7 c7 ec <span class="number">17</span> <span class="number">40</span> <span class="number">00</span>  <span class="comment">/*  mov    $0x4017ec,%rdi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">3</span>c <span class="number">24</span>           <span class="comment">/*  mov    %rdi,(%rsp) */</span></span><br><span class="line"><span class="number">48</span> c7 c7 fa <span class="number">97</span> b9 <span class="number">59</span>  <span class="comment">/*  mov    $0x59b997fa,%rdi   -   set cookie */</span></span><br><span class="line">c3                    <span class="comment">/*  retq  */</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span></span><br><span class="line"><span class="number">78</span> dc <span class="number">61</span> <span class="number">55</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span><span class="comment">/* return adress, execute exploit code */</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>高层保存着从低层检索到的数据</p>
-</blockquote>
-<p><strong>Caches</strong></p>
-<img src="/2023/07/23/09-27-18/QQ20230723-144821@2x.jpg" class="">
+<h2 id="Phase-3"><a href="#Phase-3" class="headerlink" title="Phase 3"></a>Phase 3</h2><p>思路：</p>
+<p>第三题和第二题基本相同return到touch3后要进行一次cookie对比,第二题是十六进制的数字对比,可以提前把cookie写入<code>rdi</code>寄存器里,但是第三题的参数是一个字符串指针,所以要把字符串地址写入<code>rsi</code>第二个参数寄存器里,不能用在栈中写,因为后面还有两次函数调用,栈空间很容易被覆盖,找了一下变量cookie的地址,这个地址<code>0x6044e4</code>的后面有很长一段地址没有使用过,所以可以把字符串写入<code>0x6044ec</code>,<code>rsi</code>的参数传递在<code>0x6044ec</code>,还有一个地方是字符串<code>0x59b997fa</code>,每个字符存在一个字节里,一共需要8个字节的空间,可以用<code>mov</code>,写入十六进制数,但是要注意字符串大端存放,数字是小端存放,翻转一下就可以了.</p>
+<ol>
+<li><p>根据实验指南中提示的函数<code>hexmatch</code>, 做了一个字符串对比，第二个参数是字符串地址，而且在函数中将传入的cookie值转换成了一个随机地址的字符串，然后进行字符串对比，所以我们需要提前把字符串写入到固定的地址，然参数传进去。</p>
+</li>
+<li><p><code>disas touch3</code></p>
+<img src="/2023/03/18/15-54-47/WX20230609-123834@2x.png" class="">
+</li>
+<li><p>可以看出cookie值存在内存的<code>0x6044e4</code>处，打印一下周围的内存值，<code>x/6xg</code></p>
+<img src="/2023/03/18/15-54-47/WX20230609-130233@2x.png" class="">
+</li>
+<li><p>上面可以看到后面有一部分是没有使用的内存，选一个<code>0x6044ec</code>，把我们的字符串写入这里，注意大端存放。</p>
+</li>
+<li><p>接下来注入要运行的指令，和上一题相同，但是要把字符串写入到选定的地址里，字符串<code>59b997fa</code>转换为16进制为<code>0x35 0x39 0x62 0x39 0x39 0x37 0x66 0x61</code>，但是要注意小端存放的值为<code>0x6166373939623935</code>，所以写入这个值，当做字符串读出时刚好是cookie值。<code>movabs</code>：用于64位立即数赋值。</p>
+</li>
+</ol>
+<p>答案：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">48</span> <span class="number">83</span> ec <span class="number">08</span>           <span class="comment">/*  sub    $0x8,%rsp */</span></span><br><span class="line">bf fa <span class="number">18</span> <span class="number">40</span> <span class="number">00</span>        <span class="comment">/*  mov    $0x4018fa,%edi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">3</span>c <span class="number">24</span>           <span class="comment">/*  mov    %rdi,(%rsp) */</span></span><br><span class="line">bf ec <span class="number">44</span> <span class="number">60</span> <span class="number">00</span>        <span class="comment">/*  mov    $0x6044ec,%edi  */</span></span><br><span class="line"><span class="number">48</span> be <span class="number">35</span> <span class="number">39</span> <span class="number">62</span> <span class="number">39</span> <span class="number">39</span>  </span><br><span class="line"><span class="number">37</span> <span class="number">66</span> <span class="number">61</span>              <span class="comment">/*  movabs $0x6166373939623935,%rsi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">37</span>              <span class="comment">/*  mov    %rsi,(%rdi)    */</span></span><br><span class="line">c3                    <span class="comment">/*  retq  */</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span></span><br><span class="line"><span class="number">78</span> dc <span class="number">61</span> <span class="number">55</span> <span class="comment">/* return adress, execute exploit code */</span></span><br></pre></td></tr></table></figure>
 
-<p>Cold (compulsory) miss: 冷命中，初始时cache为空</p>
-<p>Conflict miss: 冲突不命中，位置被占用了</p>
-<p>Capacity miss: 容量不命中，不可以容纳超过缓存大小的工作集</p>
+<h2 id="Phase-4"><a href="#Phase-4" class="headerlink" title="Phase 4"></a>Phase 4</h2><p>思路：</p>
+<p>第四题,和第二题相同,需要把代码返回到touch2里面,但是不能像phase2中代码注入运行代码,因为栈内标记为不可执行了,所以要使用ROP的方法来操作,在给出的gadget中选择两个连续的48 89 c7 c3, mov %rax,%rdi,   还有一个58 c3, popq %rax,将这两条指令的地址用栈溢出的方法写到返回里,在返回地址中间加上cookie码。</p>
+<ol>
+<li><p><em><strong><code>gcc -c farm.c</code>：生成目标文件<br><code>objdump -d farm.o &gt; farm.s</code>：反汇编生成可读指令<br><code>这里需要注意优化级别为 -Og，与实验的优化级别相同</code></strong></em><br><code>objdump -d rtarget.o &gt; rtarget.s</code>：直接对可执行文件反汇编生成的指令带地址，更方便看一些。</p>
+</li>
+<li><p>在<code>rtarget.s</code>中找我们需要的指令，</p>
+</li>
+<li><p><code>setval_426</code>函数中有：地址为<code>4019c5</code></p>
+<img src="/2023/03/18/15-54-47/WX20230609-140230@2x.png" class="">
+</li>
+<li><p>找到我们需要的<code>48 89 c7</code>，后续的<code>90</code>是一个nop，什么也不做，计数器加1，最后跟着<code>c3</code>ret。</p>
+</li>
+<li><p>上面把<code>rax</code>的值存到<code>rdi</code>中了，接下来我们就是找一个pop指令<code>58 90 c3</code>，退栈到<code>rax</code>中，找到<code>getval_280</code>：地址为<code>4019cc</code></p>
+<img src="/2023/03/18/15-54-47/WX20230609-140336@2x.png" class="">
+</li>
+<li><p>所以溢出的输入为退栈到<code>rax</code>，栈顶是cookie值，然后执行<code>0x4019c5</code>的mov指令，最后返回touch2。注意所有的操作都是8字节。</p>
+</li>
+</ol>
+<p>答案：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">01</span> <span class="number">02</span> <span class="number">00</span> <span class="number">00</span>   <span class="comment">/*40个字节溢出  */</span></span><br><span class="line">cc <span class="number">19</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">fa <span class="number">97</span> b9 <span class="number">59</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">c5 <span class="number">19</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">ec <span class="number">17</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Phase-5"><a href="#Phase-5" class="headerlink" title="Phase 5"></a>Phase 5</h2><p>思路：</p>
+<p>和Phase 3相同，但是要把代码注入改为target序列执行指令，可能需要对寄存器的低字节进行操作，还没想出怎么做这个题目，后面有时间了再来做。</p>
+<p>答案：</p>
 ]]></content>
       <categories>
         <category>csapp</category>
       </categories>
       <tags>
         <tag>csapp</tag>
+        <tag>shell</tag>
+        <tag>gdb</tag>
+        <tag>objdump</tag>
       </tags>
   </entry>
   <entry>
@@ -762,120 +1117,21 @@
       </tags>
   </entry>
   <entry>
-    <title>CSAPP 实验III Attack Lab</title>
-    <url>/2023/03/18/15-54-47/</url>
-    <content><![CDATA[<p>更新历史：</p>
-<ul>
-<li>23.03.18：初稿</li>
-</ul>
-<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a>
-</li>
-<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a>
-</li>
-<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a>
-</li>
-<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a>
-</li>
-<li><a href="/2024/03/09/16-34-34/" title="CSAPP 实验IV CacheLab">IV Cache Lab - 实现一个缓存系统</a></li>
-</ul>
-<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>Attack Lab实验，采用 code-injection 和 return-oriented 两种方法攻击程序。</p>
-<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
-<li><code>./ctarget -q</code>：运行目标文件用参数<code>-q</code>，不使用服务器</li>
-<li><code>-i FILE</code>: 文件输入</li>
-<li><code>./hex2raw &lt; 1.txt | ./ctarget -q</code>: 答案不换行，用<code>hex2raw</code>转换成字符串，注意需要用小端存储。</li>
-<li><code>call</code>指令会将8个字节的<code>rip</code>值入栈，作为<code>ret</code>返回地址。</li>
-<li>code-injection：关闭了栈随机化，栈不可执行和canary。</li>
-<li>return-oriented：打开栈随机化和不可执行，关闭canary。</li>
-</ol>
-<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>和课程中讲解的两种漏洞的破解方式相同：代码注入利用缓冲区溢出，把需要执行的指令输入到栈中。面向返回编程将需要的指令片段返回地址输入到缓冲区中，模拟一个程序计数器，顺序执行需要执行的指令。由于bomb实验对每一条汇编命令都进行了解释，这个实验就不逐条解释了，把之前做过的答案重新整理一遍。</p>
-<h2 id="Phase-1"><a href="#Phase-1" class="headerlink" title="Phase 1"></a>Phase 1</h2><p>思路：第一个很简单输入函数开辟了0x28的空间用于保存输入,返回地址在rsp+0x28的位置,所以输入一段0x28字节的字符串后面跟上返回touch1的地址,注意地址是小端存放:<code>C0 17 40 00 00 00 00 00 </code>, 以下答案为了方便观看添加了换行，运行程序时需要去掉换行。</p>
-<ol>
-<li><p>gdb进入程序，对test函数反汇编：</p>
-<img src="/2023/03/18/15-54-47/WX20230609-103056@2x.png" class="">
-</li>
-<li><p>调用了getbuf函数，可以查看一下汇编代码，找出缓冲区的大小</p>
-<img src="/2023/03/18/15-54-47/WX20230609-103332@2x.png" class="">
-</li>
-<li><p>缓冲区大小为<code>0x28</code>，40个字节，输入的字符串保存在当前<code>rsp</code>处。然后输入40个字节无用数据，充满缓冲区，继续输入8个字节的touch1地址，覆盖掉原地址。</p>
-</li>
-<li><p>对要跳转的touch1函数反汇编，找一下函数入口地址：</p>
-<img src="/2023/03/18/15-54-47/WX20230609-102814@2x.png" class="">
-</li>
-<li><p>所以需要返回的地址为<code>0x00000000004017c0</code>，输入小端存放。</p>
-</li>
-</ol>
-<p>答案：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">c0 <span class="number">17</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
+    <title>Linux和SSH相关命令</title>
+    <url>/2023/03/11/15-22-24/</url>
+    <content><![CDATA[<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="ln链接文件"><a href="#ln链接文件" class="headerlink" title="ln链接文件"></a>ln链接文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s 源文件  目的文件    #建立软链接</span><br><span class="line">ln    源文件  目的文件    #硬链接</span><br></pre></td></tr></table></figure>
 
-<h2 id="Phase-2"><a href="#Phase-2" class="headerlink" title="Phase 2"></a>Phase 2</h2><p>思路：</p>
-<p>第二个需要注入可执行代码, 需要把touch2的参数寄存器<code>rdi</code>内容设置为cookie, 这样重置ret到touch2才能正确执行, 所有第一次在getbuf中把返回值重置为一个栈地址, 然后在这个地址内写入一系列操作, 每次ret后返回地址会自动退栈, 所以先把<code>rsp</code>-8, 然后在<code>rdi</code>写入touch2的地址,然后将<code>rdi</code>写入<code>rsp</code>指向的栈地址中,然后把cookie值写入<code>rdi</code>中,最后ret。</p>
-<ol>
-<li><p>先查看一下touch2函数的入口在哪里：</p>
-<img src="/2023/03/18/15-54-47/WX20230609-104729@2x.png" class="">
-</li>
-<li><p>可以看到需要返回地址为<code>0x00000000004017ec</code>， 参数可以进入touch2函数打印一下那个局部变量的值，也可以在上一个题目输出信息那里看到，我的cookie值为<code>0x59b997fa</code>。</p>
-</li>
-<li><p>这次需要让指令在栈中执行，所以需要知道getbuf时<code>%rsp</code>的值，可以在test处打断点，<code>display $rsp</code>，值为<code>$rsp = (void *) 0x5561dcb0</code>。test函数中分配8个字节，call getbuf 时使用了8个字节，getbuf分配40个字节，一共分配了56个字节，所以在我们输入字符串时，<code>rsp</code>指向的地址值应该是<code>0x5561dc78</code></p>
-</li>
-<li><p>接下来就是注入一段需要运行的代码，可以先写汇编代码，通过指令<code>gcc -c foo.s</code>，生成二进制代码<code>foo.o</code>， 在通过<code>objdump -d foo.o</code>反汇编，生成可读的机器指令。</p>
-</li>
-</ol>
-<p>答案：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">48</span> <span class="number">83</span> ec <span class="number">08</span>           <span class="comment">/*  sub    $0x8,%rsp */</span></span><br><span class="line"><span class="number">48</span> c7 c7 ec <span class="number">17</span> <span class="number">40</span> <span class="number">00</span>  <span class="comment">/*  mov    $0x4017ec,%rdi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">3</span>c <span class="number">24</span>           <span class="comment">/*  mov    %rdi,(%rsp) */</span></span><br><span class="line"><span class="number">48</span> c7 c7 fa <span class="number">97</span> b9 <span class="number">59</span>  <span class="comment">/*  mov    $0x59b997fa,%rdi   -   set cookie */</span></span><br><span class="line">c3                    <span class="comment">/*  retq  */</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span></span><br><span class="line"><span class="number">78</span> dc <span class="number">61</span> <span class="number">55</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span><span class="comment">/* return adress, execute exploit code */</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Phase-3"><a href="#Phase-3" class="headerlink" title="Phase 3"></a>Phase 3</h2><p>思路：</p>
-<p>第三题和第二题基本相同return到touch3后要进行一次cookie对比,第二题是十六进制的数字对比,可以提前把cookie写入<code>rdi</code>寄存器里,但是第三题的参数是一个字符串指针,所以要把字符串地址写入<code>rsi</code>第二个参数寄存器里,不能用在栈中写,因为后面还有两次函数调用,栈空间很容易被覆盖,找了一下变量cookie的地址,这个地址<code>0x6044e4</code>的后面有很长一段地址没有使用过,所以可以把字符串写入<code>0x6044ec</code>,<code>rsi</code>的参数传递在<code>0x6044ec</code>,还有一个地方是字符串<code>0x59b997fa</code>,每个字符存在一个字节里,一共需要8个字节的空间,可以用<code>mov</code>,写入十六进制数,但是要注意字符串大端存放,数字是小端存放,翻转一下就可以了.</p>
-<ol>
-<li><p>根据实验指南中提示的函数<code>hexmatch</code>, 做了一个字符串对比，第二个参数是字符串地址，而且在函数中将传入的cookie值转换成了一个随机地址的字符串，然后进行字符串对比，所以我们需要提前把字符串写入到固定的地址，然参数传进去。</p>
-</li>
-<li><p><code>disas touch3</code></p>
-<img src="/2023/03/18/15-54-47/WX20230609-123834@2x.png" class="">
-</li>
-<li><p>可以看出cookie值存在内存的<code>0x6044e4</code>处，打印一下周围的内存值，<code>x/6xg</code></p>
-<img src="/2023/03/18/15-54-47/WX20230609-130233@2x.png" class="">
-</li>
-<li><p>上面可以看到后面有一部分是没有使用的内存，选一个<code>0x6044ec</code>，把我们的字符串写入这里，注意大端存放。</p>
-</li>
-<li><p>接下来注入要运行的指令，和上一题相同，但是要把字符串写入到选定的地址里，字符串<code>59b997fa</code>转换为16进制为<code>0x35 0x39 0x62 0x39 0x39 0x37 0x66 0x61</code>，但是要注意小端存放的值为<code>0x6166373939623935</code>，所以写入这个值，当做字符串读出时刚好是cookie值。<code>movabs</code>：用于64位立即数赋值。</p>
-</li>
-</ol>
-<p>答案：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">48</span> <span class="number">83</span> ec <span class="number">08</span>           <span class="comment">/*  sub    $0x8,%rsp */</span></span><br><span class="line">bf fa <span class="number">18</span> <span class="number">40</span> <span class="number">00</span>        <span class="comment">/*  mov    $0x4018fa,%edi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">3</span>c <span class="number">24</span>           <span class="comment">/*  mov    %rdi,(%rsp) */</span></span><br><span class="line">bf ec <span class="number">44</span> <span class="number">60</span> <span class="number">00</span>        <span class="comment">/*  mov    $0x6044ec,%edi  */</span></span><br><span class="line"><span class="number">48</span> be <span class="number">35</span> <span class="number">39</span> <span class="number">62</span> <span class="number">39</span> <span class="number">39</span>  </span><br><span class="line"><span class="number">37</span> <span class="number">66</span> <span class="number">61</span>              <span class="comment">/*  movabs $0x6166373939623935,%rsi */</span></span><br><span class="line"><span class="number">48</span> <span class="number">89</span> <span class="number">37</span>              <span class="comment">/*  mov    %rsi,(%rdi)    */</span></span><br><span class="line">c3                    <span class="comment">/*  retq  */</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span></span><br><span class="line"><span class="number">78</span> dc <span class="number">61</span> <span class="number">55</span> <span class="comment">/* return adress, execute exploit code */</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Phase-4"><a href="#Phase-4" class="headerlink" title="Phase 4"></a>Phase 4</h2><p>思路：</p>
-<p>第四题,和第二题相同,需要把代码返回到touch2里面,但是不能像phase2中代码注入运行代码,因为栈内标记为不可执行了,所以要使用ROP的方法来操作,在给出的gadget中选择两个连续的48 89 c7 c3, mov %rax,%rdi,   还有一个58 c3, popq %rax,将这两条指令的地址用栈溢出的方法写到返回里,在返回地址中间加上cookie码。</p>
-<ol>
-<li><p><em><strong><code>gcc -c farm.c</code>：生成目标文件<br><code>objdump -d farm.o &gt; farm.s</code>：反汇编生成可读指令<br><code>这里需要注意优化级别为 -Og，与实验的优化级别相同</code></strong></em><br><code>objdump -d rtarget.o &gt; rtarget.s</code>：直接对可执行文件反汇编生成的指令带地址，更方便看一些。</p>
-</li>
-<li><p>在<code>rtarget.s</code>中找我们需要的指令，</p>
-</li>
-<li><p><code>setval_426</code>函数中有：地址为<code>4019c5</code></p>
-<img src="/2023/03/18/15-54-47/WX20230609-140230@2x.png" class="">
-</li>
-<li><p>找到我们需要的<code>48 89 c7</code>，后续的<code>90</code>是一个nop，什么也不做，计数器加1，最后跟着<code>c3</code>ret。</p>
-</li>
-<li><p>上面把<code>rax</code>的值存到<code>rdi</code>中了，接下来我们就是找一个pop指令<code>58 90 c3</code>，退栈到<code>rax</code>中，找到<code>getval_280</code>：地址为<code>4019cc</code></p>
-<img src="/2023/03/18/15-54-47/WX20230609-140336@2x.png" class="">
-</li>
-<li><p>所以溢出的输入为退栈到<code>rax</code>，栈顶是cookie值，然后执行<code>0x4019c5</code>的mov指令，最后返回touch2。注意所有的操作都是8字节。</p>
-</li>
-</ol>
-<p>答案：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">01</span> <span class="number">02</span> <span class="number">00</span> <span class="number">00</span>   <span class="comment">/*40个字节溢出  */</span></span><br><span class="line">cc <span class="number">19</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">fa <span class="number">97</span> b9 <span class="number">59</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">c5 <span class="number">19</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br><span class="line">ec <span class="number">17</span> <span class="number">40</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Phase-5"><a href="#Phase-5" class="headerlink" title="Phase 5"></a>Phase 5</h2><p>思路：</p>
-<p>和Phase 3相同，但是要把代码注入改为target序列执行指令，可能需要对寄存器的低字节进行操作，还没想出怎么做这个题目，后面有时间了再来做。</p>
-<p>答案：</p>
+<h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>显示当前地址</p>
+<h1 id="SSH命令"><a href="#SSH命令" class="headerlink" title="SSH命令"></a>SSH命令</h1><h2 id="scp传输文件"><a href="#scp传输文件" class="headerlink" title="scp传输文件"></a>scp传输文件</h2><p><code>注意要在本地使用这个命令，ssh登录后使用，文件从服务器下载到服务器了</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp username@ip_address:/home/username/filename ~/   #从服务器下载到本地</span><br><span class="line"># 参数 -P 端口号   要大写</span><br><span class="line"># 参数 -r 文件夹</span><br><span class="line">scp -P2222 -r</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>csapp</category>
+        <category>工具</category>
       </categories>
       <tags>
-        <tag>csapp</tag>
-        <tag>shell</tag>
-        <tag>gdb</tag>
-        <tag>objdump</tag>
+        <tag>linux</tag>
+        <tag>ssh</tag>
+        <tag>mac</tag>
       </tags>
   </entry>
   <entry>
@@ -1224,226 +1480,53 @@
       </tags>
   </entry>
   <entry>
-    <title>CSAPP 实验V Performance Lab</title>
-    <url>/2023/07/07/16-27-21/</url>
-    <content><![CDATA[<p>更新历史：</p>
+    <title>git笔记</title>
+    <url>/2023/03/08/14-59-55/</url>
+    <content><![CDATA[<p>克隆项目到当前文件夹</p>
 <ul>
-<li>23.07.07：初稿</li>
-<li>23.07.22：没学过汇编，复杂代码看不懂，明年有时间再回头做这个实验</li>
-<li>24.03.09：实验作废，用cache lab 替代。</li>
-</ul>
-<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
-</ul>
-<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>采用代码移动，循环展开以及指令并行对图像的旋转和平滑函数进行优化。</p>
-<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
-<li><p><code>make driver</code>：生成运行文件， 运行<code>./driver</code>参数</p>
-<blockquote>
-<p><code>-g</code>：尽运行<code>rotate</code>和<code>smooth</code>函数</p>
-<p><code>-f</code>：指定文件输入运行</p>
-<p><code>-d</code>： 运行写入指定文件</p>
-<p><code>-q</code>：写入文件后结束运行</p>
-</blockquote>
+<li><p>git clone https:&#x2F;&#x2F; .</p>
 </li>
-<li><p><code>指导文件建议</code>：观看汇编代码，平滑函数计算密集，翻转函数存储密集。</p>
-</li>
-<li><p>允许添加宏，全局变量和其他函数(过程)。</p>
-</li>
-<li><p>假定图像矩阵的大小为32的倍数</p>
-</li>
-</ol>
-<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>课程中讲过的常见优化方式：代码移动，减少重复过程调用，消除不必要的内存引用，循环展开以及提高并行性。先查看汇编代码，根据汇编代码选择合适的方法对函数进行优化。</p>
-<h2 id="Phase-Rotate"><a href="#Phase-Rotate" class="headerlink" title="Phase Rotate"></a>Phase Rotate</h2><p>原函数：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">naive_rotate</span><span class="params">(<span class="type">int</span> dim, pixel *src, pixel *dst)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; dim; i++)</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; dim; j++)</span><br><span class="line">        dst[RIDX(dim<span class="number">-1</span>-j, i, dim)] = src[RIDX(i, j, dim)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>汇编：</p>
-<img src="/2023/07/07/16-27-21/QQ20230719-190626@2x.jpg" class="">
-
-<img src="/2023/07/07/16-27-21/QQ20230719-190641@2x.jpg" class="">
-
-<blockquote>
-<p><del>之前的lab里讲过实验环境在32位shark机器下，这里汇编代码在push占用了8个字节，不太明白是不是我的环境不对</del></p>
-<p><code>已解决</code>：确实环境不对，没有32位依赖，更新之后push占用4个字节</p>
-<p><code>imul multi， src， des</code>三目运算</p>
-</blockquote>
-<p><strong>1.数据存放方式</strong></p>
-<p>数据在栈空间中小端存放，<code>rdi</code>存放在<code>rsp + 0x18</code>，<code>edi</code>存放在加4个字节的位置。所以 0x1c(%esp) 的值就是dim。</p>
-]]></content>
-      <categories>
-        <category>csapp</category>
-      </categories>
-      <tags>
-        <tag>csapp</tag>
-        <tag>shell</tag>
-        <tag>gdb</tag>
-        <tag>objdump</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSAPP 实验IV CacheLab</title>
-    <url>/2024/03/09/16-34-34/</url>
-    <content><![CDATA[<p>更新历史</p>
-<ul>
-<li>24.03.09：初稿</li>
-</ul>
-<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
-<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
-<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
-<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
-<li><a href="/2024/03/09/16-34-34/" title="CSAPP 实验IV CacheLab">IV Cache Lab - 实现一个缓存系统</a></li>
-<li><a href="/2023/07/07/16-27-21/" title="CSAPP 实验V Performance Lab">V Performance Lab - 实现代码优化</a></li>
-</ul>
-<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>CacheLab实验，第一部分需要模拟Cache计算命中，未命中次数，第二部分实现代码优化，减少未命中次数。</p>
-<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
-<li><p>Cache</p>
-<blockquote>
-<img src="/2024/03/09/16-34-34/QQ20240309-165258@2x.png" class="">
-
-<p>不需要关注 <code>b</code> bits，使用LRU替换策略。</p>
-<p>Cache是一个二维数组cache[S][E]，S&#x3D;2^s，组数。</p>
-<p>每一个cache行包含：Valid bit， Tag， LRU counter。</p>
-<p>用Tag对比E匹配line。</p>
-</blockquote>
-</li>
-<li><p>生成内存调试工具命令: <code>linux&gt; valgrind --log-fd=1 --tool=lackey -v --trace-mem=yes ls -l</code></p>
-<blockquote>
-<p>参数<code>ls -l</code>：打印输出在文件stdout</p>
-<p>格式为<code>[space]operation address,size</code>，除了I操作外，前都有一个空格</p>
-<p>操作：I-instruction load，L-data load，S-data store， M-data modify。M包含L，S。</p>
-<p>address：64-bit 16进制</p>
-<p>size：字节数</p>
-</blockquote>
-</li>
-</ol>
-<h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="Part-A-Writing-a-Cache-Simulator"><a href="#Part-A-Writing-a-Cache-Simulator" class="headerlink" title="Part A Writing a Cache Simulator"></a>Part A Writing a Cache Simulator</h2><p>完成<code>csim.c</code>文件，使用<code>valgrind</code>生成测试数据，输出命中，未命中和替换次数，输出格式为<code>hits:4 misses:5 evictions:3</code>。</p>
-<h3 id="相关内容-1"><a href="#相关内容-1" class="headerlink" title="相关内容"></a>相关内容</h3><ul>
-<li><p>修改<code>csim.c</code>文件</p>
-</li>
-<li><p>可参考的二进制文件<code>csim-ref</code>，使用命令<code>./csim-ref [-hv] -s &lt;s&gt; -E &lt;E&gt; -b &lt;b&gt; -t &lt;tracefile&gt;</code></p>
-<blockquote>
-<p>参数：v-打印内存追踪记录</p>
-</blockquote>
-</li>
-<li><p>自动评分工具<code>test-csim</code></p>
-</li>
-<li><p>建议代码像参考模拟器显示输出，方便测试。</p>
-</li>
-<li><p>使用<code>getopt</code>分析命令行参数。需包含头文件&lt;getopt.h&gt;，&lt;unistd.h&gt;，&lt;stdlib.h&gt;。可以获取函数参数。</p>
-</li>
-<li><p>使用<code>fscanf</code>按行读取文件</p>
-</li>
-<li><p>使用<code>malloc</code>，<code>free</code>，防止内存泄漏</p>
-</li>
-<li><p>使用<code>printSummary(hit_count, miss_count, eviction_count);</code>，打印输出</p>
-</li>
-<li><p>数据是对齐，且不会出现跨块访问。</p>
+<li><p>注意 .</p>
 </li>
 </ul>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSetbits 5</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MaxLine 4</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MaxBytebits 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Myline</span>&#123;</span></span><br><span class="line">  <span class="type">int</span> valid; <span class="comment">//有效位</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> tag;   <span class="comment">//tag标记  十进制</span></span><br><span class="line">  <span class="type">int</span> lru_num;   <span class="comment">// 最近使用标记 0 - (E - 1)</span></span><br><span class="line">&#125;Myline;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Mycache</span>&#123;</span></span><br><span class="line">  <span class="type">int</span> S;            <span class="comment">// set 大小</span></span><br><span class="line">  <span class="type">int</span> E;            <span class="comment">// line 大小</span></span><br><span class="line">  <span class="type">int</span> B;            <span class="comment">//偏移大小</span></span><br><span class="line">  <span class="type">int</span> size_Tag;     <span class="comment">// tag bits = 64 - s- b</span></span><br><span class="line">  Myline **<span class="built_in">set</span>;    <span class="comment">//set数组</span></span><br><span class="line">&#125;Mycache;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//get command line arguments</span></span><br><span class="line"><span class="comment">//p_s s的指针   p_E E的指针   p_b b的指针    fn 文件名</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Mygetopt</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[], <span class="type">int</span> *p_s, <span class="type">int</span> *p_E, <span class="type">int</span> *p_b, <span class="type">char</span> *fn, <span class="type">int</span> *flag_v)</span>;   </span><br><span class="line"><span class="comment">//16进制转换十进制</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">Hex2dec</span><span class="params">(<span class="type">char</span> *hex)</span>;</span><br><span class="line"><span class="comment">//返回tag</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">GetDecTag</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b)</span>;</span><br><span class="line"><span class="comment">//返回组号</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetDecSetNum</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b)</span>;</span><br><span class="line"><span class="comment">//返回这个dec地址下当前偏移量开始剩余的字节数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetDecRestByte</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b, <span class="type">int</span> B)</span>;</span><br><span class="line"><span class="comment">//初始化set</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">Initset</span><span class="params">(Mycache *mc)</span>;</span><br><span class="line"><span class="comment">//处理最近未使用</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetminLRU</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E)</span>;</span><br><span class="line"><span class="comment">//是否set满了</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">IsFullSet</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E)</span>;</span><br><span class="line"><span class="comment">//命中处理  </span></span><br><span class="line"><span class="type">void</span> <span class="title function_">HitDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> Eindex)</span>;</span><br><span class="line"><span class="comment">//未命中 加载cache</span></span><br><span class="line"><span class="comment">// 有空余line加载</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MissLoadDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> Eindex, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec_tag)</span>;</span><br><span class="line"><span class="comment">//line替换</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MissEvictionDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> delindex, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec_tag)</span>;</span><br><span class="line"><span class="comment">//访问处理   返回1 hit   2  miss  3 miss eviction</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">LoadDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">StoreDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">ModifyDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">  FILE *fp;</span><br><span class="line">  <span class="type">int</span> hit_count, miss_count, eviction_count;</span><br><span class="line">  <span class="type">int</span> s, E, b;</span><br><span class="line">  <span class="type">int</span> flag_v = <span class="number">0</span>;     <span class="comment">//opt v 的标记</span></span><br><span class="line">  <span class="type">char</span> *file_name;</span><br><span class="line">  <span class="type">char</span> optcache = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">  <span class="type">char</span> ignorechar = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">  <span class="type">char</span> hex[<span class="number">65</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="type">int</span> size = <span class="number">0</span>;        <span class="comment">//个数</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec;</span><br><span class="line"></span><br><span class="line">  hit_count = <span class="number">0</span>;</span><br><span class="line">  miss_count = <span class="number">0</span>;</span><br><span class="line">  eviction_count = <span class="number">0</span>;</span><br><span class="line">  Mycache cache;</span><br><span class="line">  file_name = (<span class="type">char</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">char</span>) * <span class="number">30</span>);</span><br><span class="line">  Mygetopt(argc, argv, &amp;s, &amp;E, &amp;b, file_name, &amp;flag_v);</span><br><span class="line">  cache.S = <span class="built_in">pow</span>(<span class="number">2</span>, s);</span><br><span class="line">  cache.E = E;</span><br><span class="line">  cache.B = <span class="built_in">pow</span>(<span class="number">2</span>, b);</span><br><span class="line">  cache.size_Tag = <span class="number">64</span> - s - b;</span><br><span class="line">  Initset(&amp;cache);</span><br><span class="line"></span><br><span class="line">  fp = fopen(file_name, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">fscanf</span>(fp, <span class="string">&quot; %c %[^,]%c%d&quot;</span>, &amp;optcache, hex, &amp;ignorechar, &amp;size) != <span class="number">-1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(optcache == <span class="string">&#x27;I&#x27;</span>)&#123;</span><br><span class="line">      <span class="built_in">fscanf</span>(fp, <span class="string">&quot;%c&quot;</span>, &amp;ignorechar);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;%c %s,%d&quot;</span>, optcache, hex, size);</span><br><span class="line">    &#125;</span><br><span class="line">    dec = Hex2dec(hex);</span><br><span class="line">    <span class="comment">//========处理内存访问</span></span><br><span class="line">    <span class="type">int</span> setnum = <span class="number">0</span>;  <span class="comment">//组号</span></span><br><span class="line">    <span class="type">int</span> flag_kind = <span class="number">0</span>;   <span class="comment">//cache 类型   hit miss  </span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dectag = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//int restbyte = 0;  // 当前偏移量下剩余的字节数</span></span><br><span class="line">    <span class="comment">//int loadbyte = 0;  //已加载的字节数</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> loaddec = dec;   <span class="comment">//当前加载的地址</span></span><br><span class="line">    setnum = GetDecSetNum(loaddec, s, b);</span><br><span class="line">    dectag = GetDecTag(loaddec, s, b);</span><br><span class="line">    <span class="comment">//restbyte = GetDecRestByte(loaddec, s, b, cache.B);   //剩余加载的字节数</span></span><br><span class="line">    flag_kind = LoadDeal(cache.<span class="built_in">set</span>[setnum], E, dectag, flag_v);</span><br><span class="line">    <span class="comment">/*loadbyte += restbyte;</span></span><br><span class="line"><span class="comment">    loaddec += restbyte;   //当前地址加上剩余字节数  如果加载字节数不够  这就是下一个加载地址</span></span><br><span class="line"><span class="comment">    while(loadbyte &lt; size)&#123;</span></span><br><span class="line"><span class="comment">      setnum = GetDecSetNum(loaddec, s, b);</span></span><br><span class="line"><span class="comment">      dectag = GetDecTag(loaddec, s, b);</span></span><br><span class="line"><span class="comment">      LoadDeal(cache.set[setnum], E, dectag, flag_v);</span></span><br><span class="line"><span class="comment">      loadbyte += cache.B;</span></span><br><span class="line"><span class="comment">      loaddec += cache.B;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="keyword">if</span>(flag_kind == <span class="number">1</span>)&#123;</span><br><span class="line">      hit_count++;</span><br><span class="line">      <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; hit&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(flag_kind == <span class="number">2</span>)&#123;</span><br><span class="line">        miss_count++;</span><br><span class="line">        <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot; miss&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">        miss_count++;</span><br><span class="line">        eviction_count++;</span><br><span class="line">        <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">          <span class="built_in">printf</span>(<span class="string">&quot; miss eviction&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(optcache == <span class="string">&#x27;M&#x27;</span>)&#123;</span><br><span class="line">      hit_count++;   <span class="comment">//修改  store一定hit</span></span><br><span class="line">      <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; hit\n&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(flag_v == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//=====================</span></span><br><span class="line">    <span class="built_in">fscanf</span>(fp, <span class="string">&quot;%c&quot;</span>, &amp;ignorechar);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  printSummary(hit_count, miss_count, eviction_count);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Mygetopt</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[], <span class="type">int</span> *p_s, <span class="type">int</span> *p_E, <span class="type">int</span> *p_b, <span class="type">char</span> *fn, <span class="type">int</span> *flag_v)</span>&#123;</span><br><span class="line">  <span class="type">int</span> opt;</span><br><span class="line">  <span class="keyword">while</span> ((opt = getopt(argc, argv, <span class="string">&quot;vh:s:E:b:t:&quot;</span>)) != <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (opt) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span>:</span><br><span class="line">        *p_s = atoi(optarg);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;E&#x27;</span>:</span><br><span class="line">        *p_E = atoi(optarg);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">        *p_b = atoi(optarg);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;t&#x27;</span>:</span><br><span class="line">        <span class="built_in">strcpy</span>(fn, optarg);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;v&#x27;</span>:</span><br><span class="line">        *flag_v = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">Hex2dec</span><span class="params">(<span class="type">char</span> *hex)</span>&#123;</span><br><span class="line">  <span class="type">int</span> len = <span class="built_in">strlen</span>(hex);</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec = <span class="number">0</span>;</span><br><span class="line">  <span class="type">int</span> pow16 = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isdigit</span>(hex[i]))&#123;</span><br><span class="line">      dec += (hex[i] - <span class="string">&#x27;0&#x27;</span>) * pow16;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      dec += (hex[i] - <span class="number">87</span>) * pow16;</span><br><span class="line">    &#125;</span><br><span class="line">    pow16 *= <span class="number">16</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dec;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">GetDecTag</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> dec &gt;&gt; (s + b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">GetDecSetNum</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">  <span class="type">int</span> setbits = (<span class="number">1</span> &lt;&lt; s);</span><br><span class="line">  setbits = ~(~setbits + <span class="number">1</span>);</span><br><span class="line">  dec = dec &gt;&gt; (b);</span><br><span class="line">  <span class="keyword">return</span> dec &amp; setbits;   <span class="comment">//返回set组号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">GetDecRestByte</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec, <span class="type">int</span> s, <span class="type">int</span> b, <span class="type">int</span> B)</span>&#123;</span><br><span class="line">  <span class="type">int</span> Bytebits = <span class="number">1</span> &lt;&lt; b;</span><br><span class="line">  Bytebits = ~(~Bytebits + <span class="number">1</span>);</span><br><span class="line">  dec = dec &amp; Bytebits;   <span class="comment">//剩余偏移量</span></span><br><span class="line">  <span class="keyword">return</span> B - dec;  <span class="comment">//返回剩余的字节数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Initset</span><span class="params">(Mycache *mc)</span>&#123;</span><br><span class="line">  <span class="type">int</span> S = (*mc).S;</span><br><span class="line">  <span class="type">int</span> E = (*mc).E;</span><br><span class="line">  (*mc).<span class="built_in">set</span> = (Myline **)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Myline *) * S);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; S; i++)&#123;</span><br><span class="line">    (*mc).<span class="built_in">set</span>[i] = (Myline *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Myline) * E);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; (*mc).S; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; (*mc).E; j++)&#123;</span><br><span class="line">      (*mc).<span class="built_in">set</span>[i][j].valid = <span class="number">0</span>;  <span class="comment">//有效位为0</span></span><br><span class="line">      (*mc).<span class="built_in">set</span>[i][j].lru_num = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">GetminLRU</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E)</span>&#123;</span><br><span class="line">  <span class="type">int</span> min = <span class="number">1000</span>;</span><br><span class="line">  <span class="type">int</span> k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].valid == <span class="number">0</span>)&#123;   <span class="comment">// 如果存在一个无效位置 直接返回</span></span><br><span class="line">      k = i;</span><br><span class="line">      <span class="keyword">break</span>;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].lru_num &lt; min)&#123;  </span><br><span class="line">      min = <span class="built_in">set</span>[i].lru_num;</span><br><span class="line">      k = i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">IsFullSet</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].valid == <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">HitDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> Eindex)</span>&#123;</span><br><span class="line">  <span class="type">int</span> nowLRU = <span class="built_in">set</span>[Eindex].lru_num;</span><br><span class="line">  <span class="comment">//把比现在要访问的cache set中lrunum大的全部减一  </span></span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].lru_num &gt; nowLRU)&#123;</span><br><span class="line">      <span class="built_in">set</span>[i].lru_num--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">set</span>[Eindex].lru_num = E - <span class="number">1</span>;  <span class="comment">//最新访问的cache LRU设置为最大</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">MissLoadDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> Eindex, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec_tag)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//把比现在要访问的cache set中lrunum大的全部减一  </span></span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].lru_num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="built_in">set</span>[i].lru_num--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">set</span>[Eindex].tag = dec_tag;</span><br><span class="line">  <span class="built_in">set</span>[Eindex].valid = <span class="number">1</span>;  </span><br><span class="line">  <span class="built_in">set</span>[Eindex].lru_num = E - <span class="number">1</span>;  <span class="comment">//最新访问的cache LRU设置为最大</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">MissEvictionDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">int</span> delindex, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> dec_tag)</span>&#123;</span><br><span class="line">  <span class="comment">//将要替换的line命中  改为最近访问过,然后再替换掉tag值</span></span><br><span class="line">  HitDeal(<span class="built_in">set</span>, E, delindex);</span><br><span class="line">  <span class="built_in">set</span>[delindex].tag = dec_tag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">LoadDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>&#123;</span><br><span class="line">  <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; E; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">set</span>[i].tag == now_tag &amp;&amp; <span class="built_in">set</span>[i].valid == <span class="number">1</span>)&#123;</span><br><span class="line">      HitDeal(<span class="built_in">set</span>, E, i);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(i == E)&#123;</span><br><span class="line">    <span class="type">int</span> Lindex = GetminLRU(<span class="built_in">set</span>, E);</span><br><span class="line">    <span class="keyword">if</span>(IsFullSet(<span class="built_in">set</span>, E) == <span class="number">1</span>)&#123;</span><br><span class="line">      <span class="comment">//满的  替换</span></span><br><span class="line">      MissEvictionDeal(<span class="built_in">set</span>, E, Lindex, now_tag);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      MissLoadDeal(<span class="built_in">set</span>, E, Lindex, now_tag);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">StoreDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>&#123;</span><br><span class="line">  <span class="comment">//Store 相当于 Load</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">ModifyDeal</span><span class="params">(Myline *<span class="built_in">set</span>, <span class="type">int</span> E, <span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> now_tag, <span class="type">int</span> flag_v)</span>&#123;</span><br><span class="line">  <span class="comment">//int kind = LoadDeal(set, E, now_tag,flag_v);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Part-B-Optimizing-Matrix-Transpose"><a href="#Part-B-Optimizing-Matrix-Transpose" class="headerlink" title="Part B Optimizing Matrix Transpose"></a>Part B Optimizing Matrix Transpose</h2><p>完成<code>trans.c</code>文件，实现一个转置矩阵代码<code>transpose_submit</code>，尽可能少的产生cache未命中。</p>
-<h3 id="相关内容-2"><a href="#相关内容-2" class="headerlink" title="相关内容"></a>相关内容</h3><ul>
-<li><p>只允许使用最多12个本地int变量，调用函数中一起计算</p>
-</li>
-<li><p>不允许使用long或者其他存储数值的方法，不允许使用数组</p>
-</li>
-<li><p>不能递归</p>
-</li>
-<li><p>使用参考模拟器来测试代码，cache参数为<code>s = 5， E = 1， b = 5</code></p>
-</li>
-<li><p>int为4个字节。</p>
-</li>
-<li><p>只有三种形式的矩阵，32*32，64*64，61*67。</p>
-</li>
-<li><img src="/2024/03/09/16-34-34/QQ20240310-152729@2x.png" class=""> 
-<p>矩阵乘法的分块技术</p>
-</li>
-<li><p>两个数组的第一个数据，在cache中存储到相同位置，数组按照行优先存储，数据是对齐的</p>
-</li>
-<li><p><code>./test-trans -M 32 -N 32</code> 测试函数</p>
-</li>
-</ul>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>数据是对齐的，所以一个cache行包含32个字节，存储8个int数据，cache能存储256个int数据，根据<del><code>3B^2 &lt;&lt; C</code>，块长为B&#x3D;8</del>。根据<code>2B^2 &lt;&lt; C</code>，块长&lt;&#x3D;11，由于cache行可以存8个数据，所以选择块长8。</p>
-<img src="/2024/03/09/16-34-34/QQ20240310-191918@2x.png" class="">
-
-<p>以32*32的矩阵为例，除了处于对角线上的块会产生冲突不命中，其他块都可以优化不命中情况</p>
-<p>以上这种情况对32*32是成立的，64*64和61*67不成立，所以重新思考了这道题的解法，根据data lab中数据的操作都是在内存中进行的。</p>
-<p><strong>数组的首地址给出后，行优先数据为一维连续存储形式</strong></p>
-<p>这道题可以转换为数组A[N][M]在内存中连续存放，每一个位置x的数根据相同的转换方式保存到数组B[M][N]的位置y，转换公式为<code>i_a = x / M</code>，<code>j_a = x % M</code>，<code>y = j_a * N + i_a * M</code>。于是存储公式为<code>B(y) = A(x)</code>。</p>
-<img src="/2024/03/09/16-34-34/QQ20240312-145802@2x.png" class="">
-
-<blockquote>
-<p>示意图如上，cache行存2个数据，3*3的数组中，无法直观看出内存区别，而cache的分块目的是为了在内存中读取到cache时减少miss次数，所以我们根据内存进行重排数组，改为5*2的数组。</p>
-</blockquote>
-<p>所以这道题可以把数组转换为32列的任意数组，由于一行只有32列，远远小于cache的容量256个数据，所以相邻行的上下两个数据不会映射的同一个cache行。</p>
-<p>需要把文件放入linux的文件夹中，如果在共享文件夹中会出现运行超时。</p>
-<h3 id="32-x-32"><a href="#32-x-32" class="headerlink" title="32 x 32"></a>32 x 32</h3><p>基本步骤：</p>
-<ul>
-<li><p>重排数组</p>
-</li>
-<li><p>处理AB数组中x，y映射相同的位置，先用局部变量保存，然后处理这一行的其他数据，最后保存在B数组的中，cache行自动换出。</p>
-</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> M, <span class="type">int</span> N, <span class="type">int</span> A[N][M], <span class="type">int</span> B[M][N])</span>&#123;</span><br><span class="line">  <span class="type">int</span> t_1, t_2, t_3;</span><br><span class="line">  <span class="type">int</span> i, j, ii, jj;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; N; i += <span class="number">8</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; M; j += <span class="number">8</span>)&#123;</span><br><span class="line">      <span class="keyword">for</span>(ii = i; ii &lt; ((i + <span class="number">8</span>) &lt; N ? i + <span class="number">8</span> : N); ii++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(jj = j; jj &lt; ((j + <span class="number">8</span>) &lt; M ? j + <span class="number">8</span> : M); jj++)&#123;</span><br><span class="line">          <span class="comment">//先计算内存中的位置   然后再转换为原数组 x y</span></span><br><span class="line">          t_1 = ii * <span class="number">32</span> + jj; </span><br><span class="line">          <span class="comment">//x</span></span><br><span class="line">          t_2 = t_1 / M;</span><br><span class="line">          <span class="comment">//y</span></span><br><span class="line">          t_3 = t_1 % M;</span><br><span class="line">          <span class="comment">//t_4 = t_2 * N + t_3 * M;</span></span><br><span class="line">          B[t_3][t_2] = A[t_2][t_3];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/09/16-34-34/QQ20240312-174840@2x.png" class="">
-
-<p>处理完成后miss数为343，没有拿到满分。</p>
-<p><strong>分析原因</strong></p>
-<blockquote>
-<p>当<code>A[i][j]</code>与<code>B[j][i]</code>的cache映射相同set内时，取出<code>A[i][j]</code>中的值，写入B数组时会换出A的cache行，导致下次访问A的同一行cache数据时需要继续换出一次。</p>
-</blockquote>
-<p><strong>解决办法</strong></p>
-<blockquote>
-<p>用局部变量保存访问冲突的值，等循环结束后，在写入B中。</p>
-<p>计算所在行，x表示数组一维连续内存的位置(0开始)，cache 组号<code>s=（x%256 ) / 8;</code></p>
-</blockquote>
-<p><strong>结果</strong></p>
-<img src="/2024/03/09/16-34-34/QQ20240312-183951@2x.png" class="">
-
-<p>miss数量287，满分</p>
-<h3 id="64-x-64"><a href="#64-x-64" class="headerlink" title="64 x 64"></a>64 x 64</h3><p>出现一个cache行中两次相同映射的问题</p>
-<p><strong>分析原因</strong></p>
-<blockquote>
-<p>在32 x 32的数组中，一个cache行为8，块为8x8，一个cache行最多只有对角线的的一个元素冲突miss，但是64x64的数组中，8x8的块中，前四行与后四行冲突miss，所以一个cache行的8个数据中，最多有两个元素冲突miss</p>
-</blockquote>
-<p><strong>解决办法</strong></p>
-<blockquote>
-<p>继续添加一个局部变量记录冲突位置，一行遍历完后再处理。</p>
-</blockquote>
-<p>继续出现了只遍历到了32，在64 X 64的数组转换为32列时，行数为128。</p>
-<img src="/2024/03/09/16-34-34/QQ20240312-225626@2x.png" class="">
-
-<p>miss数量为4675，还需要继续调低。</p>
-<p><strong>分析原因</strong></p>
-<blockquote>
-<p>有可能是因为重复计算了。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>csapp</category>
-      </categories>
-      <tags>
-        <tag>csapp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux和SSH相关命令</title>
-    <url>/2023/03/11/15-22-24/</url>
-    <content><![CDATA[<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="ln链接文件"><a href="#ln链接文件" class="headerlink" title="ln链接文件"></a>ln链接文件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ln -s 源文件  目的文件    #建立软链接</span><br><span class="line">ln    源文件  目的文件    #硬链接</span><br></pre></td></tr></table></figure>
-
-<h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>显示当前地址</p>
-<h1 id="SSH命令"><a href="#SSH命令" class="headerlink" title="SSH命令"></a>SSH命令</h1><h2 id="scp传输文件"><a href="#scp传输文件" class="headerlink" title="scp传输文件"></a>scp传输文件</h2><p><code>注意要在本地使用这个命令，ssh登录后使用，文件从服务器下载到服务器了</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">scp username@ip_address:/home/username/filename ~/   #从服务器下载到本地</span><br><span class="line"># 参数 -P 端口号   要大写</span><br><span class="line"># 参数 -r 文件夹</span><br><span class="line">scp -P2222 -r</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>工具</category>
       </categories>
       <tags>
-        <tag>linux</tag>
-        <tag>ssh</tag>
-        <tag>mac</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++常用函数</title>
+    <url>/2023/03/08/14-45-11/</url>
+    <content><![CDATA[<p>特殊函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//万能头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span> </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="built_in">sort</span>(a,a+n,<span class="built_in">less</span>&lt;<span class="type">int</span>&gt;());<span class="comment">//内置类型的由小到大排序</span></span><br><span class="line"><span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line"><span class="comment">//作用相当于 bool cmd();</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line">  string s;</span><br><span class="line">  s = <span class="built_in">bitset</span>&lt;<span class="number">8</span>&gt;(a[i]).<span class="built_in">to_string</span>();     <span class="comment">//  转换字符串</span></span><br><span class="line">  <span class="built_in">to_ulong</span>()    <span class="comment">// 转换为unsigned long类型</span></span><br><span class="line">  <span class="built_in">to_ullong</span>();　<span class="comment">// 转换成unsigned long long类型</span></span><br><span class="line">  <span class="built_in">set</span>(x, v);    <span class="comment">// 没有参数时 将全部位设为1</span></span><br><span class="line">                <span class="comment">// 有一个x， 将x下标处设为1</span></span><br><span class="line">                <span class="comment">// 两个参数，将x处设为v值</span></span><br><span class="line">  <span class="built_in">reset</span>(x);    <span class="comment">// 置0   无参全部置，有参置下标</span></span><br><span class="line">  <span class="built_in">flip</span>(x);     <span class="comment">// 取反，无参全部取，有参取下标处</span></span><br><span class="line">  <span class="built_in">text</span>(x);     <span class="comment">// 检测下标处是不是1 返回true 0返回false</span></span><br><span class="line">  <span class="built_in">any</span>();       <span class="comment">// 检查是否有1</span></span><br><span class="line">  <span class="built_in">none</span>();      <span class="comment">// 检查是否没有1</span></span><br><span class="line">  <span class="built_in">all</span>();       <span class="comment">// 检查是否全为1</span></span><br><span class="line">  <span class="built_in">count</span>();     <span class="comment">// 求1的个数</span></span><br><span class="line">  <span class="built_in">size</span>();      <span class="comment">// 求位数</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="built_in">typeid</span>(x).<span class="built_in">name</span>();   <span class="comment">// 获取x的类型</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//输出重定向</span></span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;input.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line"><span class="comment">//控制台输入数据，如何输入文件结束标志</span></span><br><span class="line"><span class="comment">//**在Windows下，输入完毕后先按Enter键，再按Ctrl＋Z键，最后再按Enter键</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加快输入速度的两种方法</span></span><br><span class="line">ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);   cin &gt;&gt; x;</span><br><span class="line"><span class="built_in">scanf</span>()；</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//类型转换</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line">ss.<span class="built_in">clear</span>();  <span class="comment">// 清空</span></span><br><span class="line">ss &lt;&lt; s;</span><br><span class="line">ss &gt;&gt; a;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="built_in">isdigit</span>(s[i]);  <span class="comment">// 若参数c为阿拉伯数字0~9 字符，则返回非0值，否则返回0。</span></span><br><span class="line"><span class="type">int</span> n = <span class="built_in">stoi</span>(s);   <span class="comment">//  把s转化为int型 </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line">cout &lt;&lt; <span class="built_in">setw</span>(<span class="number">2</span>);   <span class="comment">// 设置位数</span></span><br><span class="line"><span class="built_in">setprecision</span>(n)     <span class="comment">//设置显示小数精度为n位</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">stefill</span>(c);  <span class="comment">// 设置填充字符</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::scientific)   <span class="comment">//指数表示</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::left)     <span class="comment">//左对齐</span></span><br><span class="line"><span class="built_in">setiosflags</span>(ios::right)    <span class="comment">//右对齐</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">include &lt;string&gt;</span><br><span class="line"><span class="built_in">substr</span>(<span class="type">int</span> index, <span class="type">int</span> mum); <span class="comment">// 返回一个子字符串 </span></span><br><span class="line"><span class="comment">//std::string::npos是一个常数，它等于size_type类型可以表示的最大值</span></span><br><span class="line"><span class="comment">//用在 s.find()  返回值</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>算法比赛</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1475,57 +1558,6 @@
         <tag>mac</tag>
         <tag>ubuntu</tag>
         <tag>wsl2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git笔记</title>
-    <url>/2023/03/08/14-59-55/</url>
-    <content><![CDATA[<p>克隆项目到当前文件夹</p>
-<ul>
-<li><p>git clone https:&#x2F;&#x2F; .</p>
-</li>
-<li><p>注意 .</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>csapp 笔记汇总</title>
-    <url>/2023/03/15/10-59-10/</url>
-    <content><![CDATA[<h1 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h1><h2 id="CMU-15-213笔记"><a href="#CMU-15-213笔记" class="headerlink" title="CMU 15-213笔记"></a>CMU 15-213笔记</h2><ul>
-<li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
-<li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
-<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
-</ul>
-<h2 id="代码仓库"><a href="#代码仓库" class="headerlink" title="代码仓库"></a>代码仓库</h2><p><a href="https://github.com/PKunicor/CsappLab">PKunicor&#x2F;Csapp lab</a></p>
-<h2 id="实验笔记"><a href="#实验笔记" class="headerlink" title="实验笔记"></a>实验笔记</h2><ul>
-<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
-<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
-<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
-<li><a href="/2024/03/09/16-34-34/" title="CSAPP 实验IV CacheLab">IV Cache Lab - 实现一个缓存系统</a></li>
-<li></li>
-</ul>
-<h1 id="实验指南"><a href="#实验指南" class="headerlink" title="实验指南"></a>实验指南</h1><ul>
-<li><p><a href="https://www.bilibili.com/video/BV1iW411d7hd/?spm_id_from=333.788.top_right_bar_window_custom_collection.content.click&vd_source=d5a3522259c17126f1b623c977d04c3e">B站CS15-213翻译课程</a> </p>
-</li>
-<li><p><a href="https://scs.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22b96d90ae-9871-4fae-91e2-b1627b43e25e%22">实验课程指导</a> <code>lab重点</code></p>
-</li>
-</ul>
-<blockquote>
-<p>做Lab非常推荐看一下官方给的Lab指导课程，课程里详细介绍了实验上手方式以及需要用到的命令。 </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>csapp</category>
-      </categories>
-      <tags>
-        <tag>csapp</tag>
       </tags>
   </entry>
 </search>
