@@ -19,28 +19,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="git常用命令笔记">
+    <meta name="description" content="前面的实验都要在 shell 中运行，这次我们直接做一个自己的 shell！这之后无论是异常还是信号，都难不倒我们啦。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git笔记">
-<meta property="og:url" content="https://pkunicor.github.io/2023/03/08/14-59-55/index.html">
+<meta property="og:title" content="CSAPP实验VShellLab">
+<meta property="og:url" content="https://pkunicor.github.io/2024/03/14/12-34-42/index.html">
 <meta property="og:site_name" content="青山依旧在">
-<meta property="og:description" content="git常用命令笔记">
+<meta property="og:description" content="前面的实验都要在 shell 中运行，这次我们直接做一个自己的 shell！这之后无论是异常还是信号，都难不倒我们啦。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-08T06:59:55.000Z">
-<meta property="article:modified_time" content="2023-03-18T02:30:44.690Z">
+<meta property="og:image" content="https://pkunicor.github.io/2024/03/14/12-34-42/QQ20240314-154949@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/03/14/12-34-42/QQ20240314-160705@2x.png">
+<meta property="article:published_time" content="2024-03-14T04:34:42.000Z">
+<meta property="article:modified_time" content="2024-03-14T14:19:26.517Z">
 <meta property="article:author" content="yao">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/03/14/12-34-42/QQ20240314-154949@2x.png">
 
 
-<link rel="canonical" href="https://pkunicor.github.io/2023/03/08/14-59-55/">
+<link rel="canonical" href="https://pkunicor.github.io/2024/03/14/12-34-42/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2023/03/08/14-59-55/","path":"2023/03/08/14-59-55/","title":"git笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/03/14/12-34-42/","path":"2024/03/14/12-34-42/","title":"CSAPP实验VShellLab"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>git笔记 | 青山依旧在</title>
+<title>CSAPP实验VShellLab | 青山依旧在</title>
   
 
 
@@ -127,7 +130,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -140,6 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9"><span class="nav-number">3.</span> <span class="nav-text">相关内容</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -200,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2023/03/08/14-59-55/">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/03/14/12-34-42/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo.png">
@@ -213,12 +217,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="git笔记 | 青山依旧在">
-      <meta itemprop="description" content="git常用命令笔记">
+      <meta itemprop="name" content="CSAPP实验VShellLab | 青山依旧在">
+      <meta itemprop="description" content="前面的实验都要在 shell 中运行，这次我们直接做一个自己的 shell！这之后无论是异常还是信号，都难不倒我们啦。">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          git笔记
+          CSAPP实验VShellLab
         </h1>
 
         <div class="post-meta-container">
@@ -228,15 +232,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-03-08 14:59:55" itemprop="dateCreated datePublished" datetime="2023-03-08T14:59:55+08:00">2023-03-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-18 10:30:44" itemprop="dateModified" datetime="2023-03-18T10:30:44+08:00">2023-03-18</time>
+      <time title="创建时间：2024-03-14 12:34:42 / 修改时间：22:19:26" itemprop="dateCreated datePublished" datetime="2024-03-14T12:34:42+08:00">2024-03-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -244,7 +242,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+          <a href="/categories/csapp/" itemprop="url" rel="index"><span itemprop="name">csapp</span></a>
         </span>
     </span>
 
@@ -267,15 +265,85 @@
     
     
     <div class="post-body" itemprop="articleBody">
-            <div class="post-description">git常用命令笔记</div>
+            <div class="post-description">前面的实验都要在 shell 中运行，这次我们直接做一个自己的 shell！这之后无论是异常还是信号，都难不倒我们啦。</div>
 	<hr>
-        <p>克隆项目到当前文件夹</p>
+        <p>更新历史</p>
 <ul>
-<li><p>git clone https:&#x2F;&#x2F; .</p>
-</li>
-<li><p>注意 .</p>
-</li>
+<li>24.03.14：初稿</li>
 </ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
+<li><a href="/2023/03/09/11-54-50/" title="CSAPP 实验I Data Lab">I Data Lab - 位操作，数据表示</a></li>
+<li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
+<li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
+<li><a href="/2024/03/09/16-34-34/" title="CSAPP 实验IV CacheLab">IV Cache Lab - 实现一个缓存系统</a></li>
+<li><a href="/2024/03/14/12-34-42/" title="CSAPP实验VShellLab">V Shell Lab - 实现一个Shell</a></li>
+</ul>
+<h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>ShellLab实验，理解程序控制和信号，完成一个简单Shell。</p>
+<h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
+<li><blockquote>
+<p><code>tsh&gt; /bin/ls -l -d</code>，<code>&amp;</code>后台运行</p>
+<p><code>int main(int argc, char *argv[])</code></p>
+<p><code>argc</code>：参数个数  <code>argv[]</code>：从左往右的参数</p>
+<p><code>ctrl-c</code> SIGINT终止信号，<code>ctrl-z</code>SIGTSTP停止信号，SIGCONT继续信号</p>
+<p><code>jobs</code>：列出所有作业</p>
+<p><code>bg &lt;job&gt;</code>：后台暂停的作业开始运行</p>
+<p><code>fg &lt;job&gt;</code>：前台暂停的作业开始运行</p>
+<p><code>kill &lt;job&gt;</code>：杀死作业</p>
+</blockquote>
+</li>
+<li><p><strong>tsh</strong>的规格</p>
+<blockquote>
+<p>提示符为<code>tsh&gt; </code></p>
+<p>输入命令为<code>name arguments</code>：如果name是内置命令，直接执行，否则视为可执行文件路径，并调用初始子进程运行</p>
+<p>不需要支持<code>|</code>和<code>&lt;</code>，<code>&gt;</code></p>
+<p>信号需要传递到所有子进程</p>
+<p>命令末尾带<code>&amp;</code>，后台运行</p>
+<p>进程PID<code>%5</code>，作业JID<code>5</code></p>
+<p>需要支持内置命令<code>quit</code>，<code>jobs</code>，<code>bg &lt;job&gt;</code>，<code>fg &lt;job&gt;</code></p>
+<p>如果僵尸进程没有收到信号就终止了，需要打印出异常信息</p>
+</blockquote>
+</li>
+<li><p>检查作业</p>
+<blockquote>
+<p><code>tshref</code>：样例tsh，可以对比自己的shell</p>
+<p><code>sdriver.pl</code>：打印输入的shell命令和输出信息<br> <code>./sdriver.pl -t trace01.txt -s ./tsh -a &quot;-p&quot;</code>：<code>-t</code>追踪文件，<code>-s</code>指定shell，<code>-a &quot;-p&quot;</code>不输出提示符</p>
+<p>也可以使用<code>make test01</code>测试自己的shell，<code>make rtest01</code>测试样例shell</p>
+<p><code>trace01.txt</code>序号从01-16，越小测试越简单</p>
+<p><code>tshref.out</code>所有的输出信息以供参考</p>
+</blockquote>
+</li>
+<li><p>提示</p>
+<blockquote>
+<p>根据追踪文件来设计shell，依次从简单开始，按照输出完成设计</p>
+<p>要检测出<code>kill -pid</code>的错误</p>
+<p>多使用下列函数</p>
+<p><code>pid_t waitpid (pid_t pid, int* statusp, int options)</code>：</p>
+<p>成功时返回子进程的PID，  </p>
+<p>options &#x3D; WNOHANG时立即返回0     表示没有任何子进程终止</p>
+<p>options &#x3D; WUNTRACED时，接收到SIGSTOP信号，终止或暂停。</p>
+<p>如果发生其他错误返回-1。</p>
+<p><code>kill &lt;PID&gt;</code>:  <code>kill -s &lt;信号&gt; &lt;PID&gt;</code></p>
+<p>用指定信号形式终止进程</p>
+<p><code>int fork(void)</code>: </p>
+<p>创建一个子进程，子进程返回0，父进程返回子进程的ID，调用一次返回两次，先返回子进程，再返回父进程</p>
+<p><code>int execve(const char *filename, char *const argv[], char *const envp[]);</code>: </p>
+<p>参数为新程序的路径名称，命令行参数数组，环境变量参数数组</p>
+<p>替换进程的状态和上下文，切换另一个进程</p>
+<p>执行成功不会返回到调用，错误返回-1</p>
+<p><code>int setpgid(pid_t pid, pid_t pgid)</code>:</p>
+<p>给pid进程设置为pgid进程组识别码，如果pid为0设置当前进程，pgid为0，用当前组识别码取代，返回为组识别码，-1错误</p>
+<p><code>sigprocmash</code>:</p>
+<p>int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);<br>参数：<br>how：用于指定信号修改的方式，可能选择有三种：<br>SIG_BLOCK &#x2F;&#x2F;加入信号到进程屏蔽。<br>SIG_UNBLOCK &#x2F;&#x2F;从进程屏蔽里将信号删除。<br>SIG_SETMASK &#x2F;&#x2F;将set的值设定为新的进程屏蔽。</p>
+<p>set：为指向信号集的指针，在此专指新设的信号集，如果仅想读取现在的屏蔽值，可将其置为NULL。<br>oldset：也是指向信号集的指针，在此存放原来的信号集。<br>返回说明：<br>成功执行时，返回0。失败返回-1，errno被设为EINVAL。</p>
+<p><code>exit(int status)</code>：终止进程，正常返回状态0</p>
+<p>尽量不要在自己的shell中使用more, less, vi, emacs，多使用&#x2F;bin&#x2F;ls,&#x2F;bin&#x2F;ps,  &#x2F;bin&#x2F;echo</p>
+<p>如果在Unix shell中像自己的shell输入 ctrl-c：fork之后执行之前，子进程先调用<code>setpgid(0, 0)</code>，放入一个新的进程组，保证Unix shell的进程组中只有shell。不会把命令传递给所有Unix shell的进程组，只传递给shell。</p>
+<img src="/2024/03/14/12-34-42/QQ20240314-154949@2x.png" class="">
+
+<img src="/2024/03/14/12-34-42/QQ20240314-160705@2x.png" class=""></blockquote>
+</li>
+</ol>
 
     </div>
 
@@ -293,7 +361,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://pkunicor.github.io/2023/03/08/14-59-55/" title="git笔记">https://pkunicor.github.io/2023/03/08/14-59-55/</a>
+      <a href="https://pkunicor.github.io/2024/03/14/12-34-42/" title="CSAPP实验VShellLab">https://pkunicor.github.io/2024/03/14/12-34-42/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -302,21 +370,18 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/git/" rel="tag"># git</a>
+              <a href="/tags/csapp/" rel="tag"># csapp</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/03/08/14-45-11/" rel="prev" title="C++常用函数">
-                  <i class="fa fa-chevron-left"></i> C++常用函数
+                <a href="/2024/03/09/16-34-34/" rel="prev" title="CSAPP 实验IV CacheLab">
+                  <i class="fa fa-chevron-left"></i> CSAPP 实验IV CacheLab
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/03/09/11-54-50/" rel="next" title="CSAPP 实验I Data Lab">
-                  CSAPP 实验I Data Lab <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -404,7 +469,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"2bd08cf21e277bc3354031d60653374f"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"8c2cc08a28cc7361d0755fe2c7556c43"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
