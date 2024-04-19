@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://pkunicor.github.io/images/20180105_224648.png">
 <meta property="og:image" content="https://pkunicor.github.io/images/20180106_085915.png">
 <meta property="article:published_time" content="2024-04-18T07:34:48.000Z">
-<meta property="article:modified_time" content="2024-04-19T13:57:08.046Z">
+<meta property="article:modified_time" content="2024-04-19T14:18:06.949Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="机器学习, 深度学习, 吴恩达">
 <meta name="twitter:card" content="summary">
@@ -161,18 +161,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -243,7 +243,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-19 21:57:08" itemprop="dateModified" datetime="2024-04-19T21:57:08+08:00">2024-04-19</time>
+      <time title="修改时间：2024-04-19 22:18:06" itemprop="dateModified" datetime="2024-04-19T22:18:06+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -346,9 +346,65 @@
  <img src="/2024/04/18/15-34-48/20180105_201639.png" class="">
 <p>在鸡尾酒会上，大家说话声音彼此重叠，几乎很难分辨出面前的人说了什么。我们很难对于这个问题进行数据标注，而这里的通过机器学习的无监督学习算法，就可以将说话者的声音同背景音乐分离出来。</p>
 <h1 id="2-单变量线性回归（Linear-Regression-with-One-Variable）"><a href="#2-单变量线性回归（Linear-Regression-with-One-Variable）" class="headerlink" title="2 单变量线性回归（Linear Regression with One Variable）"></a>2 单变量线性回归（Linear Regression with One Variable）</h1><h2 id="2-1-模型表示（Model-Representation）"><a href="#2-1-模型表示（Model-Representation）" class="headerlink" title="2.1 模型表示（Model Representation）"></a>2.1 模型表示（Model Representation）</h2><ol>
-<li>房价预测训练集<br>| Size in $feet^2$ ($x$) | Price ($) in 1000’s($y$) |<br>| ——————————— | ————————————- |<br>| 2104| 460                       |<br>| 1416                   | 232                       |<br>| 1534                   | 315                       |<br>| 852                    | 178                       |<br>| …                    | …                       |</li>
+<li>房价预测训练集</li>
 </ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Size in $feet^2$ ($x$)</th>
+<th>Price ($) in 1000’s($y$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2104</td>
+<td>460</td>
+</tr>
+<tr>
+<td>1416</td>
+<td>232</td>
+</tr>
+<tr>
+<td>1534</td>
+<td>315</td>
+</tr>
+<tr>
+<td>852</td>
+<td>178</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>房价预测训练集中，同时给出了输入 $x$ 和输出结果 $y$，即给出了人为标注的<strong>”正确结果“</strong>，且预测的量是连续的，属于监督学习中的回归问题。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>表头</th>
+<th>表头</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+<tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+<tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+</tbody>
+</table>
+</div>
 <ol>
 <li><strong>问题解决模型</strong></li>
 </ol>

@@ -36,6 +36,21 @@
       </tags>
   </entry>
   <entry>
+    <title>markdown语法</title>
+    <url>/2024/04/19/22-19-04/</url>
+    <content><![CDATA[<h1 id="hexo引擎更换"><a href="#hexo引擎更换" class="headerlink" title="hexo引擎更换"></a>hexo引擎更换</h1><p>选用hexo-renderer-kramed渲染器</p>
+<blockquote>
+<p>作为行内代码：<script type="math/tex">a+b</script><br>行内公式：$$ a+b $$</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>markdown</category>
+      </categories>
+      <tags>
+        <tag>markdown, hexo, Latex</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vim实用技巧</title>
     <url>/2024/04/19/11-47-11/</url>
     <content><![CDATA[<h1 id="按键说明"><a href="#按键说明" class="headerlink" title="按键说明"></a>按键说明</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">d 删除 delete</span><br><span class="line">r 替换 replace</span><br><span class="line">c 修改 change</span><br><span class="line">y 复制 yank</span><br><span class="line">v 选取 visual select</span><br></pre></td></tr></table></figure>
@@ -163,9 +178,65 @@
  <img src="/2024/04/18/15-34-48/20180105_201639.png" class="">
 <p>在鸡尾酒会上，大家说话声音彼此重叠，几乎很难分辨出面前的人说了什么。我们很难对于这个问题进行数据标注，而这里的通过机器学习的无监督学习算法，就可以将说话者的声音同背景音乐分离出来。</p>
 <h1 id="2-单变量线性回归（Linear-Regression-with-One-Variable）"><a href="#2-单变量线性回归（Linear-Regression-with-One-Variable）" class="headerlink" title="2 单变量线性回归（Linear Regression with One Variable）"></a>2 单变量线性回归（Linear Regression with One Variable）</h1><h2 id="2-1-模型表示（Model-Representation）"><a href="#2-1-模型表示（Model-Representation）" class="headerlink" title="2.1 模型表示（Model Representation）"></a>2.1 模型表示（Model Representation）</h2><ol>
-<li>房价预测训练集<br>| Size in $feet^2$ ($x$) | Price ($) in 1000’s($y$) |<br>| ——————————— | ————————————- |<br>| 2104| 460                       |<br>| 1416                   | 232                       |<br>| 1534                   | 315                       |<br>| 852                    | 178                       |<br>| …                    | …                       |</li>
+<li>房价预测训练集</li>
 </ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Size in $feet^2$ ($x$)</th>
+<th>Price ($) in 1000’s($y$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2104</td>
+<td>460</td>
+</tr>
+<tr>
+<td>1416</td>
+<td>232</td>
+</tr>
+<tr>
+<td>1534</td>
+<td>315</td>
+</tr>
+<tr>
+<td>852</td>
+<td>178</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>房价预测训练集中，同时给出了输入 $x$ 和输出结果 $y$，即给出了人为标注的<strong>”正确结果“</strong>，且预测的量是连续的，属于监督学习中的回归问题。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>表头</th>
+<th>表头</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+<tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+<tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+</tbody>
+</table>
+</div>
 <ol>
 <li><strong>问题解决模型</strong></li>
 </ol>
