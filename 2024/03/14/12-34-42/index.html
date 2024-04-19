@@ -284,7 +284,8 @@
 <li><a href="/2023/03/14/09-43-26/" title="CSAPP 实验II Bomb Lab">II Bomb Lab - 汇编，栈帧与 gdb</a></li>
 <li><a href="/2023/03/18/15-54-47/" title="CSAPP 实验III Attack Lab">III Attack Lab - 漏洞是如何被攻击的</a></li>
 <li><a href="/2024/03/09/16-34-34/" title="CSAPP 实验IV CacheLab">IV Cache Lab - 实现一个缓存系统</a></li>
-<li><a href="/2024/03/14/12-34-42/" title="CSAPP 实验V ShellLab">V Shell Lab - 实现一个Shell</a></li>
+<li><a href="/2024/03/14/12-34-42/" title="CSAPP 实验V ShellLab">V Shell Lab - 实现一个Shell</a>
+</li>
 </ul>
 <h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>ShellLab实验，理解程序控制和信号，完成一个简单Shell。</p>
 <h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ul>
@@ -292,7 +293,7 @@
 </li>
 <li><p><code>int main(int argc, char *argv[])</code></p>
 <ul>
-<li><p><code>argc</code>：参数个数  <code>argv[]</code>：从左往右的参数</p>
+<li><p><code>argc</code>：参数个数  <code>argv[]</code>：从左往右的参数</p>
 </li>
 <li><p><code>ctrl-c</code> SIGINT终止信号，<code>ctrl-z</code>SIGTSTP停止信号，SIGCONT继续信号</p>
 </li>
@@ -308,7 +309,7 @@
 </li>
 <li><p><strong>tsh</strong>的规格</p>
 <ul>
-<li><p>提示符为<code>tsh&gt; </code></p>
+<li><p>提示符为<code>tsh&gt;</code></p>
 </li>
 <li><p>输入命令为<code>name arguments</code>：如果name是内置命令，直接执行，否则视为可执行文件路径，并调用初始子进程运行</p>
 </li>
@@ -330,7 +331,7 @@
 <ul>
 <li><p><code>tshref</code>：样例tsh，可以对比自己的shell</p>
 </li>
-<li><p><code>sdriver.pl</code>：打印输入的shell命令和输出信息<br> <code>./sdriver.pl -t trace01.txt -s ./tsh -a &quot;-p&quot;</code>：<code>-t</code>追踪文件，<code>-s</code>指定shell，<code>-a &quot;-p&quot;</code>不输出提示符</p>
+<li><p><code>sdriver.pl</code>：打印输入的shell命令和输出信息<br> <code>./sdriver.pl -t trace01.txt -s ./tsh -a &quot;-p&quot;</code>：<code>-t</code>追踪文件，<code>-s</code>指定shell，<code>-a &quot;-p&quot;</code>不输出提示符</p>
 </li>
 <li><p>也可以使用<code>make test01</code>测试自己的shell，<code>make rtest01</code>测试样例shell</p>
 </li>
@@ -351,12 +352,12 @@
 <li><p><code>pid_t waitpid (pid_t pid, int* statusp, int options)</code>：</p>
 <blockquote>
 <p>成功时返回子进程的PID，  </p>
-<p>options &#x3D; WNOHANG时立即返回0     表示没有任何子进程终止</p>
-<p>options &#x3D; WUNTRACED时，接收到SIGSTOP信号，终止或暂停。</p>
+<p>options = WNOHANG时立即返回0     表示没有任何子进程终止</p>
+<p>options = WUNTRACED时，接收到SIGSTOP信号，终止或暂停。</p>
 <p>如果发生其他错误返回-1。</p>
 </blockquote>
 </li>
-<li><p><code>kill </code>:<code>kill -s &lt;信号&gt;</code></p>
+<li><p><code>kill</code>:<code>kill -s &lt;信号&gt;</code></p>
 <blockquote>
 <p>用指定信号形式终止进程，可以杀死可以暂停</p>
 <p>-s，会将s的进程组全部执行</p>
@@ -381,7 +382,7 @@
 </li>
 <li><p><code>sigprocmash</code>:</p>
 <blockquote>
-<p>int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);<br>参数：<br>how：用于指定信号修改的方式，可能选择有三种：<br>SIG_BLOCK &#x2F;&#x2F;加入信号到进程屏蔽。<br>SIG_UNBLOCK &#x2F;&#x2F;从进程屏蔽里将信号删除。<br>SIG_SETMASK &#x2F;&#x2F;将set的值设定为新的进程屏蔽。</p>
+<p>int sigprocmask(int how, const sigset_t <em>set, sigset_t </em>oldset);<br>参数：<br>how：用于指定信号修改的方式，可能选择有三种：<br>SIG_BLOCK //加入信号到进程屏蔽。<br>SIG_UNBLOCK //从进程屏蔽里将信号删除。<br>SIG_SETMASK //将set的值设定为新的进程屏蔽。</p>
 <p>set：为指向信号集的指针，在此专指新设的信号集，如果仅想读取现在的屏蔽值，可将其置为NULL。<br>oldset：也是指向信号集的指针，在此存放原来的信号集。<br>返回说明：<br>成功执行时，返回0。失败返回-1，errno被设为EINVAL。</p>
 </blockquote>
 </li>
@@ -390,7 +391,7 @@
 <p>终止进程，正常返回状态0</p>
 </blockquote>
 </li>
-<li><p>尽量不要在自己的shell中使用more, less, vi, emacs，多使用&#x2F;bin&#x2F;ls,&#x2F;bin&#x2F;ps, &#x2F;bin&#x2F;echo</p>
+<li><p>尽量不要在自己的shell中使用more, less, vi, emacs，多使用/bin/ls,/bin/ps, /bin/echo</p>
 </li>
 <li><p>如果在Unix shell中像自己的shell输入 ctrl-c：fork之后执行之前，子进程先调用<code>setpgid(0, 0)</code>，放入一个新的进程组，保证Unix shell的进程组中只有shell。不会把命令传递给所有Unix shell的进程组，只传递给shell。</p>
 </li>
@@ -402,23 +403,20 @@
 </li>
 <li><p>常用信号量</p>
 <img src="/2024/03/14/12-34-42/QQ20240314-160705@2x.png" class="">
-
-<img src="/2024/03/14/12-34-42/QQ20240314-154949@2x.png" class=""></li>
+<img src="/2024/03/14/12-34-42/QQ20240314-154949@2x.png" class="">
+</li>
 </ul>
 <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h2><p>trace01-03比较简单，用课本中代码写入就可以，修改一下fork和execve封装。</p>
 <h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h2><h3 id="trace04"><a href="#trace04" class="headerlink" title="trace04"></a>trace04</h3><p>根据标准输出</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">./sdriver.pl -t trace04.txt -s ./tsh -a &quot;-p&quot;</span><br><span class="line">#</span><br><span class="line"># trace04.txt - Run a background job.</span><br><span class="line">#</span><br><span class="line">tsh&gt; ./myspin 1 &amp;</span><br><span class="line">[1] (26252) ./myspin 1 &amp;</span><br></pre></td></tr></table></figure>
-
 <p>在主函数执行中增加添加作业函数<code>addjob</code>，修改一下原来的输出格式，<code>printf(&quot;[%d] (%d)  %s&quot;, pid2jid(pid), pid, cmdline);</code>。</p>
 <p>问题：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tsh&gt; ./myspin 1 &amp;</span><br><span class="line">[2] (920)  ./myspin 1 &amp;</span><br></pre></td></tr></table></figure>
-
 <p>作业从[2]标号开始，可能是重复添加作业了。查看输出后，发现echo函数添加作业后，运行结束时没有删除作业，导致作业号多一个。</p>
 <p>解决办法：</p>
 <p>在waitpid之后，增加一个删除作业函数<code>deletejob</code></p>
 <h2 id="trace05"><a href="#trace05" class="headerlink" title="trace05"></a>trace05</h2><p>增加打印jobs列表</p>
 <h3 id="trace06"><a href="#trace06" class="headerlink" title="trace06"></a>trace06</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># trace06.txt - Forward SIGINT to foreground job.</span><br><span class="line">#</span><br><span class="line">/bin/echo -e tsh&gt; ./myspin 4</span><br><span class="line">./myspin 4 </span><br><span class="line"></span><br><span class="line">SLEEP 2</span><br><span class="line">INT</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>SLEEP命令不是输入进去的字符串，主要是获取作业的终止状态</p>
 </blockquote>
@@ -456,10 +454,11 @@
 </li>
 <li><p><code>sigprocmask(int how, sigset_t *set, sigset_t *oldset)</code></p>
 <blockquote>
-<p>how: <code>SIG_SETMASK</code>赋值  </p>
-<p>          <code>SIG_BLOCK</code>阻塞 做或运算   与原来的集合</p>
-<p>          <code>SIG_UNBLOCK</code> 解除  做与运算</p>
-<p>set，操作集合</p>
+<p>how: <code>SIG_SETMASK</code>赋值  </p>
+<pre><code>      `SIG_BLOCK`阻塞 做或运算   与原来的集合
+
+      `SIG_UNBLOCK` 解除  做与运算
+</code></pre><p>set，操作集合</p>
 <p>oldset，保存原集合，可以为NULL</p>
 </blockquote>
 </li>
@@ -469,10 +468,8 @@
 <p>对add函数和del函数阻塞信号。</p>
 <p>检测INT键，绑定响应函数，用kill杀死进程，系统发出<code>SIGCHLD</code>信号，在<code>SIGCHLD</code>响应函数中删除作业。</p>
 <h3 id="trace07"><a href="#trace07" class="headerlink" title="trace07"></a>trace07</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># trace07.txt - Forward SIGINT only to foreground job.</span><br><span class="line">#</span><br><span class="line">/bin/echo -e tsh&gt; ./myspin 4 \046</span><br><span class="line">./myspin 4 &amp;</span><br><span class="line"></span><br><span class="line">/bin/echo -e tsh&gt; ./myspin 5</span><br><span class="line">./myspin 5 </span><br><span class="line"></span><br><span class="line">SLEEP 2</span><br><span class="line">INT</span><br><span class="line"></span><br><span class="line">/bin/echo tsh&gt; jobs</span><br><span class="line">jobs</span><br></pre></td></tr></table></figure>
-
 <p>06已经做完了，输出完整。</p>
 <h3 id="trace08"><a href="#trace08" class="headerlink" title="trace08"></a>trace08</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/bin/echo -e tsh&gt; ./myspin 4 \046</span><br><span class="line">./myspin 4 &amp;</span><br><span class="line"></span><br><span class="line">/bin/echo -e tsh&gt; ./myspin 5</span><br><span class="line">./myspin 5 </span><br><span class="line"></span><br><span class="line">SLEEP 2</span><br><span class="line">TSTP</span><br><span class="line"></span><br><span class="line">/bin/echo tsh&gt; jobs</span><br><span class="line">jobs</span><br></pre></td></tr></table></figure>
-
 <p>完成前台进程暂停信号响应。kill函数可以暂停进程。</p>
 <p>代码可以正常暂停，但是暂停之后不会终止，无法退出。</p>
 <p>解决：</p>
@@ -484,7 +481,6 @@
 </blockquote>
 <h3 id="trace10"><a href="#trace10" class="headerlink" title="trace10"></a>trace10</h3><p>完成fg内置命令</p>
 <h3 id="trace11-13"><a href="#trace11-13" class="headerlink" title="trace11-13"></a>trace11-13</h3><img src="/2024/03/14/12-34-42/QQ20240316-185955@2x.png" class="">
-
 <p>输出信息与样例shell相同，但和答案不同。</p>
 <h3 id="trace14"><a href="#trace14" class="headerlink" title="trace14"></a>trace14</h3><p>问题：</p>
 <p>简单的错误处理，处理输入输出格式错误。</p>
@@ -619,7 +615,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

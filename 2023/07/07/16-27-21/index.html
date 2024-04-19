@@ -283,7 +283,8 @@
 <li>24.03.09：实验作废，用cache lab 替代。</li>
 </ul>
 <h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
+<li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a>
+</li>
 </ul>
 <h1 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h1><p>采用代码移动，循环展开以及指令并行对图像的旋转和平滑函数进行优化。</p>
 <h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
@@ -305,12 +306,9 @@
 <h1 id="题目及解法"><a href="#题目及解法" class="headerlink" title="题目及解法"></a>题目及解法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>课程中讲过的常见优化方式：代码移动，减少重复过程调用，消除不必要的内存引用，循环展开以及提高并行性。先查看汇编代码，根据汇编代码选择合适的方法对函数进行优化。</p>
 <h2 id="Phase-Rotate"><a href="#Phase-Rotate" class="headerlink" title="Phase Rotate"></a>Phase Rotate</h2><p>原函数：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">naive_rotate</span><span class="params">(<span class="type">int</span> dim, pixel *src, pixel *dst)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; dim; i++)</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; dim; j++)</span><br><span class="line">        dst[RIDX(dim<span class="number">-1</span>-j, i, dim)] = src[RIDX(i, j, dim)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>汇编：</p>
 <img src="/2023/07/07/16-27-21/QQ20230719-190626@2x.jpg" class="">
-
 <img src="/2023/07/07/16-27-21/QQ20230719-190641@2x.jpg" class="">
-
 <blockquote>
 <p><del>之前的lab里讲过实验环境在32位shark机器下，这里汇编代码在push占用了8个字节，不太明白是不是我的环境不对</del></p>
 <p><code>已解决</code>：确实环境不对，没有32位依赖，更新之后push占用4个字节</p>
@@ -449,7 +447,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

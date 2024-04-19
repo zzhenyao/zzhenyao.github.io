@@ -27,7 +27,7 @@
 <meta property="og:description" content="ssh登录wsl2下的ubuntu,自动固定wsl的ip地址">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-07T06:58:00.000Z">
-<meta property="article:modified_time" content="2023-03-18T02:30:41.391Z">
+<meta property="article:modified_time" content="2024-04-13T01:39:10.274Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="ssh">
 <meta property="article:tag" content="mac">
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-18 10:30:41" itemprop="dateModified" datetime="2023-03-18T10:30:41+08:00">2023-03-18</time>
+      <time title="修改时间：2024-04-13 09:39:10" itemprop="dateModified" datetime="2024-04-13T09:39:10+08:00">2024-04-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -278,7 +278,6 @@
 <li>优化之后固定wsl2 IP:192.168.120.181,运行脚本,转发端口,设置防火墙,自动命令</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">::先停掉wsl实例</span><br><span class="line">wsl --shutdown</span><br><span class="line">::重新拉起，启动ssh服务</span><br><span class="line">wsl -u root -d Ubuntu-20.04 service ssh start</span><br><span class="line">:: 固定IP</span><br><span class="line">wsl -u root ip addr | findstr &quot;192.168.120.181&quot; &gt; nul</span><br><span class="line">if !errorlevel! equ 0 (</span><br><span class="line">   echo wsl ip has set</span><br><span class="line">) else (</span><br><span class="line">   wsl -u root ip addr add 192.168.120.181/24 broadcast 192.168.120.0 dev eth0 label eth0:1</span><br><span class="line">   echo set wsl ip success: 192.168.120.181</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">::windows作为wsl的宿主，在wsl的固定IP的同一网段也给安排另外一个IP</span><br><span class="line">ipconfig | findstr &quot;192.168.120.100&quot; &gt; nul</span><br><span class="line">if !errorlevel! equ 0 (</span><br><span class="line">    echo windows ip has set</span><br><span class="line">) else (</span><br><span class="line">    netsh interface ip add address &quot;vEthernet (WSL)&quot; 192.168.120.100 255.255.255.0</span><br><span class="line">    echo set windows ip success: 192.168.120.100</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">::windows的2222端口转发到ubuntu</span><br><span class="line">netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=2222 connectaddress=192.168.120.181 connectport=2222</span><br><span class="line">::防火墙开启入站规则</span><br><span class="line">::netsh advfirewall firewall add rule name=WSL2 dir=in action=allow protocol=TCP localport=2222</span><br><span class="line"></span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>管理员模式运行脚本后直接连接</p>
 </li>
@@ -286,9 +285,7 @@
 </li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh name@ip -p2222</span><br></pre></td></tr></table></figure>
-
 <h2 id="ssh服务器命令"><a href="#ssh服务器命令" class="headerlink" title="ssh服务器命令"></a>ssh服务器命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo service ssh restart</span><br><span class="line">sudo service ssh start</span><br><span class="line">sudo service ssh stop</span><br><span class="line">sudo service ssh status</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h2 id="wsl命令"><a href="#wsl命令" class="headerlink" title="wsl命令"></a>wsl命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wsl -- hostname -I    #显示wsl的ip</span><br><span class="line">wsl -l -v             #列出当前linux版本状态</span><br><span class="line">wsl --shutdown        #关闭linux</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -418,7 +415,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

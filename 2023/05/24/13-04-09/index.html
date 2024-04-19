@@ -286,7 +286,8 @@
 <li><a href="/2023/03/15/10-59-10/" title="csapp 笔记汇总">CSAPP - 笔记汇总</a></li>
 <li><a href="/2023/05/24/13-04-09/" title="CSAPP 笔记三 程序的机器级表示">第三章 - 程序的机器级表示</a></li>
 <li><a href="/2023/07/06/14-25-42/" title="CSAPP 笔记五 优化程序性能">第五章 - 优化程序性能</a></li>
-<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a></li>
+<li><a href="/2023/07/23/09-27-18/" title="CSAPP 笔记六 存储器层次结构">第六章 - 存储器层次结构</a>
+</li>
 </ul>
 <h1 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h1><h2 id="Intel-x86-Processors"><a href="#Intel-x86-Processors" class="headerlink" title="Intel x86 Processors"></a>Intel x86 Processors</h2><ul>
 <li><p>CISC - Complex 复杂指令集，RISC - Reduced 精简指令集。</p>
@@ -334,7 +335,6 @@
 </ul>
 <h2 id="Assembly-Basics-Registers-operands-move"><a href="#Assembly-Basics-Registers-operands-move" class="headerlink" title="Assembly Basics: Registers, operands, move"></a>Assembly Basics: Registers, operands, move</h2><p><strong>Integer Registers</strong></p>
 <img src="/2023/05/24/13-04-09/WX20230603-145124@2x.png" class="">
-
 <ul>
 <li><p>参数：1<code>rdi</code>, 2<code>rsi</code>, 3<code>rdx</code>, 4<code>rcx</code>, 5<code>r8</code>, 6<code>r9</code>，只能传递整型或者指针，浮点数由另外一组单独的寄存器传递。超出的参数存在栈里。</p>
 </li>
@@ -362,7 +362,6 @@
 <p>实际使用中C语言编译器喜欢用这条指令做算术运算，<code>lea (%rdi, %rdi, 2), %rax</code>, mov是将地址指向的内存值取出，lea指令将内存值所在地址取出，相当于存入的是<code>%rdi + %rdi * 2</code>。</p>
 <p>Some ArTwo Operand Instructions</p>
 <img src="/2023/05/24/13-04-09/WX20230603-152227@2x.png" class="">
-
 <ul>
 <li><p>目的操作数作为第一个操作数，类似<code>x+=y</code></p>
 </li>
@@ -371,7 +370,6 @@
 </ul>
 <p>One Operand Instructions</p>
 <img src="/2023/05/24/13-04-09/WX20230603-152823@2x.png" class="">
-
 <h1 id="Control"><a href="#Control" class="headerlink" title="Control"></a>Control</h1><h2 id="Condition-Codes"><a href="#Condition-Codes" class="headerlink" title="Condition Codes"></a>Condition Codes</h2><p><strong>Single bit registers</strong></p>
 <ul>
 <li><p><code>CF</code>: Carry Flag (for unsigned)，同样表示无符号数溢出</p>
@@ -406,14 +404,12 @@
 <p>与运算，改变SF和ZF。</p>
 <p>SetX Instructions</p>
 <img src="/2023/05/24/13-04-09/WX20230605-113101@2x.png" class="">
-
 <blockquote>
 <p>x86-64中4字节计算结果会将高4字节零填充，而2字节操作只会改变2字节。</p>
 </blockquote>
 <h2 id="Conditional-branches"><a href="#Conditional-branches" class="headerlink" title="Conditional branches"></a>Conditional branches</h2><p><strong>Jumping</strong></p>
 <p>JX Instructions</p>
 <img src="/2023/05/24/13-04-09/WX20230605-113806@2x.png" class="">
-
 <p><strong>Using Conditional Moves</strong></p>
 <p>分支预测技术，更多时候分支预测正确率很低，选择执行分支的两部分指令，计算出两个结果，在最后一分钟选择需要的结果。只适用在两个分支都是简单计算。</p>
 <blockquote>
@@ -490,7 +486,6 @@
 </li>
 </ul>
 <h2 id="Floating-Point"><a href="#Floating-Point" class="headerlink" title="Floating Point"></a>Floating Point</h2><img src="/2023/05/24/13-04-09/WX20230605-164923@2x.png" class="">
-
 <h1 id="Advanced-Topics"><a href="#Advanced-Topics" class="headerlink" title="Advanced Topics"></a>Advanced Topics</h1><h2 id="Memory-Layout"><a href="#Memory-Layout" class="headerlink" title="Memory Layout"></a>Memory Layout</h2><p>目前64位的内存只允许使用47位。Linux栈的大小为8MB。</p>
 <ul>
 <li><p>Stack: 局部变量</p>
@@ -511,7 +506,7 @@
 </li>
 <li><p><code>strcpy</code>, <code>strcat</code>,<code>scanf</code>, <code>fscanf</code>, <code>sscanf</code>, 都有溢出风险。</p>
 </li>
-<li><p>机器指令是小端存放的，低位在前。</p>
+<li><p>机器指令是小端存放的，低位在前。 </p>
 </li>
 </ul>
 <p><strong>Code Injection Attacks</strong></p>
@@ -536,7 +531,6 @@
 <p>gadget: 通过截断一些指令，形成新的指令，替换了程序计数器</p>
 </blockquote>
 <img src="/2023/05/24/13-04-09/WX20230608-112255@2x.png" class="">
-
 <p>attack Lab中关闭了canary，可以通过缓冲区溢出设置需要的返回地址。</p>
 <h2 id="Unions"><a href="#Unions" class="headerlink" title="Unions"></a>Unions</h2><ul>
 <li><p>联合体只会为最大的域分配地址。</p>
@@ -678,7 +672,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

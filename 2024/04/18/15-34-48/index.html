@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://pkunicor.github.io/images/20180105_224648.png">
 <meta property="og:image" content="https://pkunicor.github.io/images/20180106_085915.png">
 <meta property="article:published_time" content="2024-04-18T07:34:48.000Z">
-<meta property="article:modified_time" content="2024-04-18T12:39:56.956Z">
+<meta property="article:modified_time" content="2024-04-19T13:57:08.046Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="机器学习, 深度学习, 吴恩达">
 <meta name="twitter:card" content="summary">
@@ -235,9 +235,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-18 15:34:48 / 修改时间：20:39:56" itemprop="dateCreated datePublished" datetime="2024-04-18T15:34:48+08:00">2024-04-18</time>
+      <time title="创建时间：2024-04-18 15:34:48" itemprop="dateCreated datePublished" datetime="2024-04-18T15:34:48+08:00">2024-04-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-19 21:57:08" itemprop="dateModified" datetime="2024-04-19T21:57:08+08:00">2024-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,15 +281,17 @@
 <li>24.04.18：初稿</li>
 </ul>
 <h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
-<li><a href="/2024/04/18/15-40-53/" title="Notes-ML-AndrewNg-笔记汇总">机器学习 - 笔记汇总</a></li>
+<li><a href="/2024/04/18/15-40-53/" title="Notes-ML-AndrewNg-笔记汇总">机器学习 - 笔记汇总</a>
+</li>
 </ul>
 <h1 id="1-引言（Introduction）"><a href="#1-引言（Introduction）" class="headerlink" title="1 引言（Introduction）"></a>1 引言（Introduction）</h1><h2 id="1-1-Welcome"><a href="#1-1-Welcome" class="headerlink" title="1.1 Welcome"></a>1.1 Welcome</h2><p>随着互联网数据不断累积，硬件不断升级迭代，在这个信息爆炸的时代，机器学习已被应用在各行各业中，可谓无处不在。</p>
 <h2 id="1-2-什么是机器学习（What-is-Machine-Learning）"><a href="#1-2-什么是机器学习（What-is-Machine-Learning）" class="headerlink" title="1.2 什么是机器学习（What is Machine Learning）"></a>1.2 什么是机器学习（What is Machine Learning）</h2><ol>
-<li>机器学习定义<br> 这里主要有两种定义：</li>
-</ol>
+<li><p>机器学习定义<br> 这里主要有两种定义：</p>
 <ul>
-<li>Arthur Samuel (1959). Machine Learning:<br>Field of study that gives computers the ability to learn without being explicitly programmed.<br>这个定义有点不正式但提出的时间最早，来自于一个懂得计算机编程的下棋菜鸟。他编写了一个程序，但没有显式地编程每一步该怎么走，而是让计算机自己和自己对弈，并不断地计算布局的好坏，来判断什么情况下获胜的概率高，从而积累经验，好似学习，最后，这个计算机程序成为了一个比他自己还厉害的棋手。</li>
-<li>Tom Mitchell (1998) Well-posed Learning Problem:<br>A computer program is said to learn from experience E with respect to some <strong>task T</strong> and some <strong>performance measure P</strong>, if its performance on T, as measured by P, improves with <strong>experience E</strong>.<br>Tom Mitchell 的定义更为现代和正式。在过滤垃圾邮件这个例子中，电子邮件系统会根据用户对电子邮件的标记（是&#x2F;不是垃圾邮件）不断学习，从而提升过滤垃圾邮件的准确率，定义中的三个字母分别代表：<ul>
+<li><p>Arthur Samuel (1959). Machine Learning:<br>Field of study that gives computers the ability to learn without being explicitly programmed.<br>这个定义有点不正式但提出的时间最早，来自于一个懂得计算机编程的下棋菜鸟。他编写了一个程序，但没有显式地编程每一步该怎么走，而是让计算机自己和自己对弈，并不断地计算布局的好坏，来判断什么情况下获胜的概率高，从而积累经验，好似学习，最后，这个计算机程序成为了一个比他自己还厉害的棋手。</p>
+</li>
+<li><p>Tom Mitchell (1998) Well-posed Learning Problem:<br>A computer program is said to learn from experience E with respect to some <strong>task T</strong> and some <strong>performance measure P</strong>, if its performance on T, as measured by P, improves with <strong>experience E</strong>.<br>Tom Mitchell 的定义更为现代和正式。在过滤垃圾邮件这个例子中，电子邮件系统会根据用户对电子邮件的标记（是/不是垃圾邮件）不断学习，从而提升过滤垃圾邮件的准确率，定义中的三个字母分别代表：</p>
+<ul>
 <li>T(Task): 过滤垃圾邮件任务。</li>
 <li>P(Performance): 电子邮件系统过滤垃圾邮件的准确率。</li>
 <li>E(Experience): 用户对电子邮件的标记。<blockquote>
@@ -293,7 +301,7 @@
 </ul>
 </li>
 </ul>
-<ol start="2">
+</li>
 <li>机器学习算法<br>主要有两种机器学习的算法分类<ol>
 <li>监督学习</li>
 <li>无监督学习<br>还有一些算法也属于机器学习领域，诸如：</li>
@@ -309,10 +317,11 @@
 <h2 id="1-3-监督学习（Supervised-Learning）"><a href="#1-3-监督学习（Supervised-Learning）" class="headerlink" title="1.3 监督学习（Supervised Learning）"></a>1.3 监督学习（Supervised Learning）</h2><p>监督学习，即为教计算机如何去完成预测任务（有反馈），预先给一定数据量的输入<strong>和对应的结果</strong>即训练集，建模拟合，最后让计算机预测未知数据的结果。<br>监督学习一般有两种：</p>
 <ol>
 <li><p>回归问题（Regression）<br>回归问题即为预测一系列的<strong>连续值</strong>。<br>在房屋价格预测的例子中，给出了一系列的房屋面积数据，根据这些数据来预测任意面积的房屋价格。给出照片-年龄数据集，预测给定照片的年龄。</p>
-  
+
 </li>
 <li><p>分类问题（Classification）<br>分类问题即为预测一系列的<strong>离散值</strong>。<br>即根据数据预测被预测对象属于哪个分类。<br>视频中举了癌症肿瘤这个例子，针对诊断结果，分别分类为良性或恶性。还例如垃圾邮件分类问题，也同样属于监督学习中的分类问题。</p>
-<img src="/2024/04/18/15-34-48/20180105_194839.png" class=""></li>
+<img src="/2024/04/18/15-34-48/20180105_194839.png" class="">
+</li>
 </ol>
 <p>视频中提到<strong>支持向量机</strong>这个算法，旨在解决当特征量很大的时候（特征即如癌症例子中的肿块大小，颜色，气味等各种特征），计算机内存一定会不够用的情况。<strong>支持向量机能让计算机处理无限多个特征。</strong></p>
 <h2 id="1-4-无监督学习（Unsupervised-Learning）"><a href="#1-4-无监督学习（Unsupervised-Learning）" class="headerlink" title="1.4 无监督学习（Unsupervised Learning）"></a>1.4 无监督学习（Unsupervised Learning）</h2><p>相对于监督学习，训练集不会有人为标注的结果（无反馈），我们<strong>不会给出</strong>结果或<strong>无法得知</strong>训练集的结果是什么样，而是单纯由计算机通过无监督学习算法自行分析，从而“得出结果”。计算机可能会把特定的数据集归为几个不同的簇，故叫做聚类算法。</p>
@@ -335,70 +344,41 @@
 <p>在例如谷歌新闻这样的网站中，每天后台都会收集成千上万的新闻，然后将这些新闻分组成一个个的新闻专题，这样一个又一个聚类，就是应用了无监督学习的结果。</p>
 <p><strong>鸡尾酒问题</strong></p>
  <img src="/2024/04/18/15-34-48/20180105_201639.png" class="">
-
 <p>在鸡尾酒会上，大家说话声音彼此重叠，几乎很难分辨出面前的人说了什么。我们很难对于这个问题进行数据标注，而这里的通过机器学习的无监督学习算法，就可以将说话者的声音同背景音乐分离出来。</p>
 <h1 id="2-单变量线性回归（Linear-Regression-with-One-Variable）"><a href="#2-单变量线性回归（Linear-Regression-with-One-Variable）" class="headerlink" title="2 单变量线性回归（Linear Regression with One Variable）"></a>2 单变量线性回归（Linear Regression with One Variable）</h1><h2 id="2-1-模型表示（Model-Representation）"><a href="#2-1-模型表示（Model-Representation）" class="headerlink" title="2.1 模型表示（Model Representation）"></a>2.1 模型表示（Model Representation）</h2><ol>
-<li>房价预测训练集<table>
-<thead>
-<tr>
-<th>Size in $feet^2$ ($x$)</th>
-<th>Price ($) in 1000’s($y$)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2104</td>
-<td>460</td>
-</tr>
-<tr>
-<td>1416</td>
-<td>232</td>
-</tr>
-<tr>
-<td>1534</td>
-<td>315</td>
-</tr>
-<tr>
-<td>852</td>
-<td>178</td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-</tr>
-</tbody></table>
-</li>
+<li>房价预测训练集<br>| Size in $feet^2$ ($x$) | Price ($) in 1000’s($y$) |<br>| ——————————— | ————————————- |<br>| 2104| 460                       |<br>| 1416                   | 232                       |<br>| 1534                   | 315                       |<br>| 852                    | 178                       |<br>| …                    | …                       |</li>
 </ol>
 <p>房价预测训练集中，同时给出了输入 $x$ 和输出结果 $y$，即给出了人为标注的<strong>”正确结果“</strong>，且预测的量是连续的，属于监督学习中的回归问题。</p>
-<ol start="2">
+<ol>
 <li><strong>问题解决模型</strong></li>
 </ol>
-<p><img src="/images/20180105_212048.png"></p>
+<p><img src="/images/20180105_212048.png" alt=""></p>
 <p>其中 $h$ 代表结果函数，也称为<strong>假设（hypothesis）</strong> 。假设函数根据输入（房屋的面积），给出预测结果输出（房屋的价格），即是一个 $X\to Y$ 的映射。</p>
-<p>$h_\theta(x)&#x3D;\theta_0+\theta_1x$，为解决房价问题的一种可行表达式。</p>
+<p>$h_\theta(x)=\theta_0+\theta_1x$，为解决房价问题的一种可行表达式。</p>
 <blockquote>
-<p>$x$: 特征&#x2F;输入变量。</p>
+<p>$x$: 特征/输入变量。</p>
 </blockquote>
 <p>上式中，$\theta$ 为参数，$\theta$ 的变化才决定了输出结果，不同以往，这里的 $x$ 被我们<strong>视作已知</strong>（不论是数据集还是预测时的输入），所以怎样解得 $\theta$ 以更好地拟合数据，成了求解该问题的最终问题。</p>
 <p>单变量，即只有一个特征（如例子中房屋的面积这个特征）。</p>
 <h2 id="2-2-代价函数（Cost-Function）"><a href="#2-2-代价函数（Cost-Function）" class="headerlink" title="2.2 代价函数（Cost Function）"></a>2.2 代价函数（Cost Function）</h2><blockquote>
 <p>李航《统计学习方法》一书中，损失函数与代价函数两者为<strong>同一概念</strong>，未作细分区别，全书没有和《深度学习》一书一样混用，而是统一使用<strong>损失函数</strong>来指代这类类似概念。</p>
 <p>吴恩达（Andrew Ng）老师在其公开课中对两者做了细分。<strong>如果要听他的课做作业，不细分这两个概念是会被打小手扣分的</strong>！这也可能是因为老师发现了业内混用的乱象，想要治一治吧。</p>
-<p><strong>损失函数</strong>（Loss&#x2F;Error Function）: 计算<strong>单个</strong>样本的误差。<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning/lecture/yWaRd/logistic-regression-cost-function">link</a></p>
+<p><strong>损失函数</strong>（Loss/Error Function）: 计算<strong>单个</strong>样本的误差。<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks-deep-learning/lecture/yWaRd/logistic-regression-cost-function">link</a></p>
 <p><strong>代价函数</strong>（Cost Function）: 计算整个训练集<strong>所有损失函数之和的平均值</strong></p>
 <p>综合考虑，本笔记对两者概念进行细分，若有所谬误，欢迎指正。</p>
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/52398145/answer/298003145">机器学习中的目标函数、损失函数、代价函数有什么区别？- 知乎</a></p>
 </blockquote>
-<p>我们的目的在于求解预测结果 $h$ 最接近于实际结果 $y$ 时 $\theta$ 的取值，则问题可表达为<strong>求解 $\sum\limits_{i&#x3D;0}^{m}(h_\theta(x^{(i)})-y^{(i)})$ 的最小值</strong>。</p>
+<p>我们的目的在于求解预测结果 $h$ 最接近于实际结果 $y$ 时 $\theta$ 的取值，则问题可表达为<strong>求解 $\sum\limits_{i=0}^{m}(h_\theta(x^{(i)})-y^{(i)})$ 的最小值</strong>。</p>
 <blockquote>
 <p>$m$: 训练集中的样本总数</p>
-<p>$y$: 目标变量&#x2F;输出变量</p>
+<p>$y$: 目标变量/输出变量</p>
 <p>$\left(x, y\right)$: 训练集中的实例</p>
 <p>$\left(x^{\left(i\right)},y^{\left(i\right)}\right)$: 训练集中的第 $i$ 个样本实例</p>
 </blockquote>
-<p><img src="/images/20180105_224648.png"></p>
+<p><img src="/images/20180105_224648.png" alt=""></p>
 <p>上图展示了当 $\theta$ 取不同值时，$h_\theta\left(x\right)$ 对数据集的拟合情况，蓝色虚线部分代表<strong>建模误差</strong>（预测结果与实际结果之间的误差），我们的目标就是最小化所有误差之和。</p>
 <p>为了求解最小值，引入代价函数（Cost Function）概念，用于度量建模误差。考虑到要计算最小值，应用二次函数对求和式建模，即应用统计学中的平方损失函数（最小二乘法）：</p>
-<p>$$J(\theta_0,\theta_1)&#x3D;\dfrac{1}{2m}\displaystyle\sum_{i&#x3D;1}^m\left(\hat{y}<em>{i}-y</em>{i} \right)^2&#x3D;\dfrac{1}{2m}\displaystyle\sum_{i&#x3D;1}^m\left(h_\theta(x_{i})-y_{i}\right)^2$$ </p>
+<p>$$ J(\theta_0, \theta_1)= \dfrac{ 1 }{ 2m } \displaystyle \sum_ {i=1}^m\left(\hat{y}_{i}-y_{i} \right)^2=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(h_\theta(x_{i})-y_{i}\right)^2 $$</p>
 <blockquote>
 <p>$\hat{y}$: $y$ 的预测值</p>
 <p>系数 $\frac{1}{2}$ 存在与否都不会影响结果，这里是为了在应用梯度下降时便于求解，平方的导数会抵消掉 $\frac{1}{2}$ 。</p>
@@ -406,14 +386,14 @@
 <p>讨论到这里，我们的问题就转化成了<strong>求解 $J\left( \theta_0, \theta_1  \right)$ 的最小值</strong>。</p>
 <h2 id="2-3-代价函数-直观理解1（Cost-Function-Intuition-I）"><a href="#2-3-代价函数-直观理解1（Cost-Function-Intuition-I）" class="headerlink" title="2.3 代价函数 - 直观理解1（Cost Function - Intuition I）"></a>2.3 代价函数 - 直观理解1（Cost Function - Intuition I）</h2><p>根据上节视频，列出如下定义：</p>
 <ul>
-<li>假设函数（Hypothesis）: $h_\theta(x)&#x3D;\theta_0+\theta_1x$</li>
+<li>假设函数（Hypothesis）: $h_\theta(x)=\theta_0+\theta_1x$</li>
 <li>参数（Parameters）: $\theta_0, \theta_1$</li>
-<li>代价函数（Cost Function）: $J\left( \theta_0, \theta_1  \right)&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}{ { {\left( { {h}_{\theta } }\left( { {x}^{(i)} } \right)-{ {y}^{(i)} } \right)}^{2} } }$</li>
+<li>代价函数（Cost Function）: $J\left( \theta_0, \theta_1  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{ { {\left( { {h}_{\theta } }\left( { {x}^{(i)} } \right)-{ {y}^{(i)} } \right)}^{2} } }$</li>
 <li>目标（Goal）: $\underset{\theta_0, \theta_1}{\text{minimize}} J \left(\theta_0, \theta_1 \right)$</li>
 </ul>
-<p>为了直观理解代价函数到底是在做什么，先假设 $\theta_0 &#x3D; 0$，并假设训练集有三个数据，分别为$\left(1, 1\right), \left(2, 2\right), \left(3, 3\right)$，这样在平面坐标系中绘制出 $h_\theta\left(x\right)$ ，并分析 $J\left(\theta_0, \theta_1\right)$ 的变化。</p>
-<p><img src="/images/20180106_085915.png"></p>
-<p>右图 $J\left(\theta_0, \theta_1\right)$ 随着 $\theta_1$ 的变化而变化，可见<strong>当 $\theta_1 &#x3D; 1$ 时，$J\left(\theta_0, \theta_1 \right) &#x3D; 0$，取得最小值，</strong>对应于左图青色直线，即函数 $h$ 拟合程度最好的情况。</p>
+<p>为了直观理解代价函数到底是在做什么，先假设 $\theta_0 = 0$，并假设训练集有三个数据，分别为$\left(1, 1\right), \left(2, 2\right), \left(3, 3\right)$，这样在平面坐标系中绘制出 $h_\theta\left(x\right)$ ，并分析 $J\left(\theta_0, \theta_1\right)$ 的变化。</p>
+<p><img src="/images/20180106_085915.png" alt=""></p>
+<p>右图 $J\left(\theta_0, \theta_1\right)$ 随着 $\theta_1$ 的变化而变化，可见<strong>当 $\theta_1 = 1$ 时，$J\left(\theta_0, \theta_1 \right) = 0$，取得最小值，</strong>对应于左图青色直线，即函数 $h$ 拟合程度最好的情况。</p>
 
     </div>
 
@@ -542,7 +522,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
