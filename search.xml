@@ -36,6 +36,472 @@
       </tags>
   </entry>
   <entry>
+    <title>post</title>
+    <url>/2024/04/22/13-37-13/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>机器学习笔记三 多变量线性回归</title>
+    <url>/2024/04/22/13-37-10/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.22：初稿</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2024/04/18/15-40-53/" title="Notes-ML-AndrewNg-笔记汇总">吴恩达机器学习 - 笔记汇总</a>
+</li>
+</ul>
+<h1 id="6-逻辑回归（Logistic-Regression）"><a href="#6-逻辑回归（Logistic-Regression）" class="headerlink" title="6 逻辑回归（Logistic Regression）"></a>6 逻辑回归（Logistic Regression）</h1><h2 id="6-1-分类（Classification）"><a href="#6-1-分类（Classification）" class="headerlink" title="6.1 分类（Classification）"></a>6.1 分类（Classification）</h2><p>在分类问题中，预测的结果是离散值（结果是否属于某一类），逻辑回归算法（Logistic Regression）被用于解决这类分类问题。</p>
+<ul>
+<li>垃圾邮件判断</li>
+<li>金融欺诈判断</li>
+<li>肿瘤诊断</li>
+</ul>
+<p>讨论肿瘤诊断问题：</p>
+<img src="/2024/04/22/13-37-10/20180109_144040.png" class="">
+<p>肿瘤诊断问题的目的是告诉病人<strong>是否</strong>为恶性肿瘤，是一个<strong>二元分类问题（binary class problems）</strong>，则定义 $ y \in\lbrace 0, 1\rbrace$，其中 0 表示<strong>负向类（negative class）</strong>，代表恶性肿瘤（”-“），1 为<strong>正向类（positive class）</strong>，代表良性肿瘤（”+”）。如图，定义最右边的样本为<strong>偏差项</strong>。</p>
+<p>在未加入偏差项时，线性回归算法给出了品红色的拟合直线，若规定</p>
+<p>$h_\theta(x) \geqslant 0.5$ ，预测为 $y = 1$，即正向类；</p>
+<p>$h_\theta(x) \lt 0.5$ ，预测为 $y = 0$，即负向类。</p>
+<p>即以 0.5 为<strong>阈值（threshold）</strong>，则我们就可以根据线性回归结果，得到相对正确的分类结果 $y$。</p>
+<p>接下来加入偏差项，线性回归算法给出了靛青色的拟合直线，如果阈值仍然为 0.5，可以看到算法在某些情况下会给出完全错误的结果，对于癌症、肿瘤诊断这类要求预测极其精确的问题，这种情况是无法容忍的。</p>
+<p>不仅如此，线性回归算法的值域为全体实数集（$h_\theta(x) \in R$），则当线性回归函数给出诸如 $h_\theta(x) = 10000, h_\theta(x) = -10000$ 等很大/很小（负数）的数值时，结果 $y \in \lbrace 0, 1\rbrace$，这显得非常怪异。</p>
+<p>区别于线性回归算法，逻辑回归算法是一个分类算法，<strong>其输出值永远在 0 到 1 之间</strong>，即 $h_\theta(x) \in (0,1)$。</p>
+<h2 id="6-2-假设函数表示（Hypothesis-Representation"><a href="#6-2-假设函数表示（Hypothesis-Representation" class="headerlink" title="6.2 假设函数表示（Hypothesis Representation"></a>6.2 假设函数表示（Hypothesis Representation</h2><p>为了使 $h_\theta(x) \in \left(0, 1\right)$，引入逻辑回归模型，定义假设函数</p>
+<script type="math/tex; mode=display">
+h_\theta \left( x \right)=g(z)=g\left(\theta^{T}x \right)</script><p>对比线性回归函数 $h_\theta \left( x \right)=\theta^{T}x$，$g$ 表示逻辑函数（<a href="https://en.wikipedia.org/wiki/Logistic_function">logistic function</a>），复合起来，则称为逻辑回归函数。</p>
+<p>逻辑函数是 S 形函数，会将所有实数映射到 $(0, 1)$ 范围。</p>
+<p><a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid 函数</a>（如下图）是逻辑函数的特殊情 况，其公式为 $g\left( z \right)=\frac{1}{1+{ {e}^{-z} } }$。 </p>
+<img src="/2024/04/22/13-37-10/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class="">
+<p>应用 sigmoid 函数，则逻辑回归模型：<script type="math/tex">h_{\theta}(x)=g(\theta^Tx) =\frac{1}{1+e^{-\theta^Tx} }</script></p>
+<p>逻辑回归模型中，$h_\theta \left( x \right)$ 的作用是，根据输入 $x$ 以及参数 $\theta$，计算得出”输出 $y=1$“的可能性（estimated probability），概率学中表示为：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& h_\theta(x) = P(y=1 | x ; \theta) = 1 - P(y=0 | x ; \theta) \\
+& P(y = 0 | x;\theta) + P(y = 1 | x ; \theta) = 1
+\end{align*}</script><p>以肿瘤诊断为例，$h_\theta \left( x \right)=0.7$ 表示病人有 $70\%$ 的概率得了恶性肿瘤。</p>
+<h2 id="6-3-决策边界（Decision-Boundary）"><a href="#6-3-决策边界（Decision-Boundary）" class="headerlink" title="6.3 决策边界（Decision Boundary）"></a>6.3 决策边界（Decision Boundary）</h2><p>决策边界的概念，可帮助我们更好地理解逻辑回归模型的拟合原理。</p>
+<p>在逻辑回归中，有假设函数 $h_\theta \left( x \right)=g(z)=g\left(\theta^{T}x \right)$。</p>
+<p>为了得出分类的结果，这里和前面一样，规定以 $0.5$ 为阈值：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& h_\theta(x) \geq 0.5 \rightarrow y = 1 \\
+& h_\theta(x) < 0.5 \rightarrow y = 0 \\
+\end{align*}</script><p>回忆一下 sigmoid 函数的图像：</p>
+<img src="/2024/04/22/13-37-10/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class="">
+<p>观察可得当 $g(z) \geq 0.5$ 时，有 $z \geq 0$，即 $\theta^Tx \geq 0$。</p>
+<p>同线性回归模型的不同点在于： </p>
+<script type="math/tex; mode=display">
+\begin{align*}
+z \to +\infty, e^{-\infty} \to 0 \Rightarrow g(z)=1 \\
+z \to -\infty, e^{\infty}\to \infty \Rightarrow g(z)=0
+\end{align*}</script><p>直观一点来个例子，${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2} }{x_{2} }\right)$ 是下图模型的假设函数：</p>
+<img src="/2024/04/22/13-37-10/20180111_000653.png" class="20180111_000814.png) 根据上面的讨论，要进行分类，那么只要 $ {\theta_0}+{\theta_1}{x_1}+{\theta_{2} }{x_{2} }\geq0$ 时，就预测 $y &#x3D; 1$，即预测为正向类。 如果取 $\theta &#x3D; \begin{bmatrix} -3\\1\\1\end{bmatrix}$，则有 $z &#x3D; -3+{x_1}+{x_2}$，当 $z \geq 0$ 即 ${x_1}+{x_2} \geq 3$ 时，易绘制图中的品红色直线即**决策边界**，为正向类（以红叉标注的数据）给出 $y&#x3D;1$ 的分类预测结果。 上面讨论了逻辑回归模型中线性拟合的例子，下面则是一个多项式拟合的例子，和线性回归中的情况也是类似的。 为了拟合下图数据，建模多项式假设函数： $$ {h_\theta}\left( x \right)&#x3D;g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2} }{x_{2} }+{\theta_{3} }x_{1}^{2}+{\theta_{4} }x_{2}^{2} \right) $$ 这里取 $\theta &#x3D; \begin{bmatrix} -1\\0\\0\\1\\1\end{bmatrix}$，决策边界对应了一个在原点处的单位圆（${x_1}^2+{x_2}^2 &#x3D; 1$），如此便可给出分类结果，如图中品红色曲线： {% asset_img">
+<p>当然，通过一些更为复杂的多项式，还能拟合那些图像显得非常怪异的数据，使得决策边界形似碗状、爱心状等等。</p>
+<p>简单来说，决策边界就是<strong>分类的分界线</strong>，分类现在实际就由 $z$ （中的 $\theta$）决定啦。</p>
+<h2 id="6-4-代价函数（Cost-Function）"><a href="#6-4-代价函数（Cost-Function）" class="headerlink" title="6.4 代价函数（Cost Function）"></a>6.4 代价函数（Cost Function）</h2><p>那我们怎么知道决策边界是啥样？$\theta$ 多少时能很好的拟合数据？当然，见招拆招，总要来个 $J(\theta)$。</p>
+<p>如果直接套用线性回归的代价函数： $J\left( {\theta} \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{ { {\left( h_{\theta} \left({x}^{\left( i \right)} \right)-{y}^{\left( i \right)} \right)}^{2} } }$</p>
+<p>其中 $h_\theta(x) = g\left(\theta^{T}x \right)$，可绘制关于 $J(\theta)$ 的图像，如下图</p>
+<img src="/2024/04/22/13-37-10/20180111_080314.png" class="">
+<p>回忆线性回归中的平方损失函数，其是一个二次凸函数（碗状），二次凸函数的重要性质是只有一个局部最小点即全局最小点。上图中有许多局部最小点，这样将使得梯度下降算法无法确定收敛点是全局最优。</p>
+<img src="/2024/04/22/13-37-10/20180111_080514.png" class="">
+<p>如果此处的损失函数也是一个凸函数，是否也有同样的性质，从而最优化？这类讨论凸函数最优值的问题，被称为<strong>凸优化问题（Convex optimization）</strong>。</p>
+<p>当然，损失函数不止平方损失函数一种。</p>
+<p>对于逻辑回归，更换平方损失函数为<strong>对数损失函数</strong>，可由统计学中的最大似然估计方法推出代价函数 $J(\theta)$：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& J(\theta) = \dfrac{1}{m} \sum_{i=1}^m \mathrm{Cost}(h_\theta(x^{(i)}),y^{(i)}) \\
+& \mathrm{Cost}(h_\theta(x),y) = -\log(h_\theta(x)) \; & \text{if y = 1} \\
+& \mathrm{Cost}(h_\theta(x),y) = -\log(1-h_\theta(x)) \; & \text{if y = 0}
+\end{align*}</script><p>则有关于 $J(\theta)$ 的图像如下：</p>
+<img src="/2024/04/22/13-37-10/20180111_080614.png" class="">
+<p>如左图，当训练集的结果为 $y=1$（正样本）时，随着假设函数趋向于 $1$，代价函数的值会趋于 $0$，即意味着拟合程度很好。如果假设函数此时趋于 $0$，则会给出一个<strong>很高的代价</strong>，拟合程度<strong>差</strong>，算法会根据其迅速纠正 $\theta$ 值，右图 $y=0$ 同理。</p>
+<p>区别于平方损失函数，对数损失函数也是一个凸函数，但没有局部最优值。</p>
+<h2 id="6-5-简化的成本函数和梯度下降（Simplified-Cost-Function-and-Gradient-Descent）"><a href="#6-5-简化的成本函数和梯度下降（Simplified-Cost-Function-and-Gradient-Descent）" class="headerlink" title="6.5 简化的成本函数和梯度下降（Simplified Cost Function and Gradient Descent）"></a>6.5 简化的成本函数和梯度下降（Simplified Cost Function and Gradient Descent）</h2><p>由于懒得分类讨论，对于二元分类问题，我们可把代价函数<strong>简化</strong>为一个函数：<br>$Cost\left( {h_\theta}\left( x \right),y \right)=-y\times log\left( {h_\theta}\left( x \right) \right)-(1-y)\times log\left( 1-{h_\theta}\left( x \right) \right)$</p>
+<p>当 $y = 0$，左边式子整体为 $0$，当 $y = 1$，则 $1-y=0$，右边式子整体为0，也就和上面的分段函数一样了，而一个式子计算起来更方便。</p>
+<p>$J(\theta) = - \frac{1}{m} \displaystyle \sum_{i=1}^m [y^{(i)}\log (h_\theta (x^{(i)})) + (1 - y^{(i)})\log (1 - h_\theta(x^{(i)}))]$</p>
+<p>向量化实现：</p>
+<p>$h = g(X\theta)$，$J(\theta) = \frac{1}{m} \cdot \left(-y^{T}\log(h)-(1-y)^{T}\log(1-h)\right)$</p>
+<p>为了最优化 $\theta$，仍使用梯度下降法，算法同线性回归中一致：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& \text{Repeat until convergence:} \; \lbrace \\
+&{ {\theta }_{j} }:={ {\theta }_{j} }-\alpha \frac{\partial }{\partial { {\theta }_{j} } }J\left( {\theta}  \right) \\
+\rbrace
+\end{align*}</script><p>解出偏导得：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& \text{Repeat until convergence:} \; \lbrace \\
+& \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0,1...n}\\
+\rbrace
+\end{align*}</script><p>注意，虽然形式上梯度下降算法同线性回归一样，但其中的假设函不同，即$h_\theta(x) = g\left(\theta^{T}x \right)$，不过求导后的结果也相同。</p>
+<p>向量化实现：$\theta := \theta - \frac{\alpha}{m} X^{T} (g(X \theta ) - y)$</p>
+<p><strong>逻辑回归中代价函数求导的推导过程：</strong></p>
+<script type="math/tex; mode=display">
+J(\theta) = - \frac{1}{m} \displaystyle \sum_{i=1}^m [y^{(i)}\log (h_\theta (x^{(i)})) + (1 - y^{(i)})\log (1 - h_\theta(x^{(i)}))]</script><p>令 $f(\theta) = { {y}^{(i)} }\log \left( {h_\theta}\left( { {x}^{(i)} } \right) \right)+\left( 1-{ {y}^{(i)} } \right)\log \left( 1-{h_\theta}\left( { {x}^{(i)} } \right) \right)$</p>
+<p>忆及 $h_\theta(x) = g(z)$，$g(z) = \frac{1}{1+e^{(-z)} }$，则</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+f(\theta) &= { {y}^{(i)} }\log \left( \frac{1}{1+{ {e}^{-z} } } \right)+\left( 1-{ {y}^{(i)} } \right)\log \left( 1-\frac{1}{1+{ {e}^{-z} } } \right) \\
+&= -{ {y}^{(i)} }\log \left( 1+{ {e}^{-z} } \right)-\left( 1-{ {y}^{(i)} } \right)\log \left( 1+{ {e}^{z} } \right)
+\end{align*}</script><p>忆及 $z=\theta^Tx^{(i)}$，对 $\theta_j$ 求偏导，则没有 $\theta_j$ 的项求偏导即为 $0$，都消去，则得：</p>
+<script type="math/tex; mode=display">
+\frac{\partial z}{\partial {\theta_{j} } }=\frac{\partial }{\partial {\theta_{j} } }\left( \theta^Tx^{(i)}  \right)=x^{(i)}_j</script><p>所以有：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\frac{\partial }{\partial {\theta_{j} } }f\left( \theta  \right)&=\frac{\partial }{\partial {\theta_{j} } }[-{ {y}^{(i)} }\log \left( 1+{ {e}^{-z} } \right)-\left( 1-{ {y}^{(i)} } \right)\log \left( 1+{ {e}^{z} } \right)] \\
+&=-{ {y}^{(i)} }\frac{\frac{\partial }{\partial {\theta_{j} } }\left(-z \right) e^{-z} }{1+e^{-z} }-\left( 1-{ {y}^{(i)} } \right)\frac{\frac{\partial }{\partial {\theta_{j} } }\left(z \right){e^{z} } }{1+e^{z} } \\
+&=-{ {y}^{(i)} }\frac{-x^{(i)}_je^{-z} }{1+e^{-z} }-\left( 1-{ {y}^{(i)} } \right)\frac{x^{(i)}_j}{1+e^{-z} } \\
+&=\left({ {y}^{(i)} }\frac{e^{-z} }{1+e^{-z} }-\left( 1-{ {y}^{(i)} } \right)\frac{1}{1+e^{-z} }\right)x^{(i)}_j \\
+&=\left({ {y}^{(i)} }\frac{e^{-z} }{1+e^{-z} }-\left( 1-{ {y}^{(i)} } \right)\frac{1}{1+e^{-z} }\right)x^{(i)}_j \\
+&=\left(\frac{ { {y}^{(i)} }(e^{-z}+1)-1}{1+e^{-z} }\right)x^{(i)}_j \\
+&={({ {y}^{(i)} }-\frac{1}{1+{ {e}^{-z} } })x_j^{(i)} } \\
+&={\left({ {y}^{(i)} }-{h_\theta}\left( { {x}^{(i)} } \right)\right)x_j^{(i)} } \\
+&=-{\left({h_\theta}\left( { {x}^{(i)} } \right)-{ {y}^{(i)} }\right)x_j^{(i)} }
+\end{align*}</script><p>则可得代价函数的导数：</p>
+<script type="math/tex; mode=display">
+\frac{\partial }{\partial {\theta_{j} } }J(\theta) = -\frac{1}{m}\sum\limits_{i=1}^{m}{\frac{\partial }{\partial {\theta_{j} } }f(\theta)}=\frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)}</script><h2 id="6-6-进阶优化（Advanced-Optimization）"><a href="#6-6-进阶优化（Advanced-Optimization）" class="headerlink" title="6.6 进阶优化（Advanced Optimization）"></a>6.6 进阶优化（Advanced Optimization）</h2><p>运行梯度下降算法，其能最小化代价函数 $J(\theta)$ 并得出 $\theta$ 的最优值，在使用梯度下降算法时，如果不需要观察代价函数的收敛情况，则直接计算 $J(\theta)$ 的导数项即可，而不需要计算 $J(\theta)$ 值。</p>
+<p>我们编写代码给出代价函数及其偏导数然后传入梯度下降算法中，接下来算法则会为我们最小化代价函数给出参数的最优解。这类算法被称为<strong>最优化算法（Optimization Algorithms）</strong>，梯度下降算法不是唯一的最小化算法<sup><a href="#fn_1" id="reffn_1">1</a></sup>。</p>
+<p>一些最优化算法：</p>
+<ul>
+<li>梯度下降法（Gradient Descent）</li>
+<li>共轭梯度算法（Conjugate gradient）</li>
+<li>牛顿法和拟牛顿法（Newton’s method &amp; Quasi-Newton Methods）<ul>
+<li>DFP算法</li>
+<li>局部优化法（BFGS）</li>
+<li>有限内存局部优化法（L-BFGS）</li>
+</ul>
+</li>
+<li>拉格朗日乘数法（Lagrange multiplier）</li>
+</ul>
+<p>比较梯度下降算法：一些最优化算法虽然会更为复杂，难以调试，自行实现又困难重重，开源库又效率也不一，哎，做个调包侠还得碰运气。不过这些算法通常效率更高，并无需选择学习速率 $\alpha$（少一个参数少一份痛苦啊！）。</p>
+<p>Octave/Matlab 中对这类高级算法做了封装，易于调用。</p>
+<p>假设有 $J(\theta) = (\theta_1-5)^2 + (\theta_2-5)^2$，要求参数 $\theta=\begin{bmatrix} \theta_1\\\theta_2\end{bmatrix}$的最优值。</p>
+<p>下面为 Octave/Matlab 求解最优化问题的代码实例：</p>
+<ol>
+<li>创建一个函数以返回代价函数及其偏导数：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[jVal, gradient]</span> = <span class="title">costFunction</span><span class="params">(theta)</span></span></span><br><span class="line">  <span class="comment">% code to compute J(theta)</span></span><br><span class="line">  jVal=(theta(<span class="number">1</span>)<span class="number">-5</span>)^<span class="number">2</span>+(theta(<span class="number">2</span>)<span class="number">-5</span>)^<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">% code to compute derivative of J(theta)</span></span><br><span class="line">  gradient=<span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">  </span><br><span class="line">  gradient(<span class="number">1</span>)=<span class="number">2</span>*(theta(<span class="number">1</span>)<span class="number">-5</span>);</span><br><span class="line">  gradient(<span class="number">2</span>)=<span class="number">2</span>*(theta(<span class="number">2</span>)<span class="number">-5</span>);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>将 <code>costFunction</code> 函数及所需参数传入最优化函数 <code>fminunc</code>，以求解最优化问题：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">options = optimset(<span class="string">&#x27;GradObj&#x27;</span>, <span class="string">&#x27;on&#x27;</span>, <span class="string">&#x27;MaxIter&#x27;</span>, <span class="number">100</span>);</span><br><span class="line">initialTheta = <span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">   [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>&#39;GradObj&#39;, &#39;on&#39;</code>: 启用梯度目标参数（则需要将梯度传入算法）</p>
+<p><code>&#39;MaxIter&#39;, 100</code>: 最大迭代次数为 100 次</p>
+<p><code>@xxx</code>: Octave/Matlab 中的函数指针</p>
+<p><code>optTheta</code>: 最优化得到的参数向量</p>
+<p><code>functionVal</code>: 引用函数最后一次的返回值</p>
+<p><code>exitFlag</code>: 标记代价函数是否收敛</p>
+</blockquote>
+<p>注：Octave/Matlab 中可以使用 <code>help fminunc</code> 命令随时查看函数的帮助文档。</p>
+<ol>
+<li>返回结果</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">optTheta =</span><br><span class="line"></span><br><span class="line">     5</span><br><span class="line">     5</span><br><span class="line"></span><br><span class="line">functionVal = 0</span><br><span class="line"></span><br><span class="line">exitFlag = 1</span><br></pre></td></tr></table></figure>
+<h2 id="6-7-多类别分类-一对多（Multiclass-Classification-One-vs-all）"><a href="#6-7-多类别分类-一对多（Multiclass-Classification-One-vs-all）" class="headerlink" title="6.7 多类别分类: 一对多（Multiclass Classification: One-vs-all）"></a>6.7 多类别分类: 一对多（Multiclass Classification: One-vs-all）</h2><p>一直在讨论二元分类问题，这里谈谈多类别分类问题（比如天气预报）。</p>
+<img src="/2024/04/22/13-37-10/20180112_001720.png" class="">
+<p>原理是，转化多类别分类问题为<strong>多个二元分类问题</strong>，这种方法被称为 One-vs-all。</p>
+<p>正式定义：$h_\theta^{\left( i \right)}\left( x \right)=p\left( y=i|x;\theta  \right), i=\left( 1,2,3….k \right)$</p>
+<blockquote>
+<p>$h_\theta^{\left( i \right)}\left( x \right)$: 输出 $y=i$（属于第 $i$ 个分类）的可能性</p>
+<p>$k$: 类别总数，如上图 $k=3$。</p>
+</blockquote>
+<p>注意多类别分类问题中 $h_\theta(x)$ 的结果不再只是一个实数而是一个向量，如果类别总数为 $k$，现在 $h_\theta(x)$ 就是一个 $k$ 维向量。</p>
+<p>对于某个样本实例，需计算所有的 $k$ 种分类情况得到 $h_\theta(x)$，然后看分为哪个类别时预测输出的值最大，就说它输出属于哪个类别，即 $y = \mathop{\max}\limits_i\,h_\theta^{\left( i \right)}\left( x \right)$。</p>
+<h1 id="7-正则化（Regularization）"><a href="#7-正则化（Regularization）" class="headerlink" title="7 正则化（Regularization）"></a>7 正则化（Regularization）</h1><h2 id="7-1-过拟合问题（The-Problem-of-Overfitting）"><a href="#7-1-过拟合问题（The-Problem-of-Overfitting）" class="headerlink" title="7.1 过拟合问题（The Problem of Overfitting）"></a>7.1 过拟合问题（The Problem of Overfitting）</h2><p>对于拟合的表现，可以分为三类情况：</p>
+<ul>
+<li><p><strong>欠拟合（Underfitting）</strong></p>
+<p>无法很好的拟合训练集中的数据，预测值和实际值的误差很大，这类情况被称为欠拟合。拟合模型比较简单（特征选少了）时易出现这类情况。类似于，你上课不好好听，啥都不会，下课也差不多啥都不会。</p>
+</li>
+<li><p><strong>优良的拟合（Just right）</strong></p>
+<p>不论是训练集数据还是不在训练集中的预测数据，都能给出较为正确的结果。类似于，学霸学神！</p>
+</li>
+<li><p><strong>过拟合（Overfitting）</strong></p>
+<p>能很好甚至完美拟合训练集中的数据，即 $J(\theta) \to 0$，但是对于不在训练集中的<strong>新数据</strong>，预测值和实际值的误差会很大，<strong>泛化能力弱</strong>，这类情况被称为过拟合。拟合模型过于复杂（特征选多了）时易出现这类情况。类似于，你上课跟着老师做题都会都听懂了，下课遇到新题就懵了不会拓展。</p>
+</li>
+</ul>
+<p>线性模型中的拟合情况（左图欠拟合，右图过拟合）：<br><img src="/2024/04/22/13-37-10/20180112_091654.png" class=""></p>
+<p>逻辑分类模型中的拟合情况：<br><img src="/2024/04/22/13-37-10/20180112_092027.png" class=""></p>
+<p>为了度量拟合表现，引入：</p>
+<ul>
+<li><p>偏差（bias）</p>
+<p>指模型的预测值与真实值的<strong>偏离程度</strong>。偏差越大，预测值偏离真实值越厉害。偏差低意味着能较好地反应训练集中的数据情况。</p>
+</li>
+<li><p>方差（Variance）</p>
+<p>指模型预测值的<strong>离散程度或者变化范围</strong>。方差越大，数据的分布越分散，函数波动越大，泛化能力越差。方差低意味着拟合曲线的稳定性高，波动小。</p>
+</li>
+</ul>
+<p>据此，我们有对同一数据的各类拟合情况如下图：<br><img src="/2024/04/22/13-37-10/20180112_085630.png" class=""></p>
+<p>据上图，高偏差意味着欠拟合，高方差意味着过拟合。</p>
+<p>我们应尽量使得拟合模型处于低方差（较好地拟合数据）状态且同时处于低偏差（较好地预测新值）的状态。</p>
+<p>避免过拟合的方法有：</p>
+<ul>
+<li>减少特征的数量<ul>
+<li>手动选取需保留的特征</li>
+<li>使用模型选择算法来选取合适的特征（如 PCA 算法）</li>
+<li>减少特征的方式易丢失有用的特征信息</li>
+</ul>
+</li>
+<li>正则化（Regularization）<ul>
+<li>可保留所有参数（许多有用的特征都能轻微影响结果）</li>
+<li>减少/惩罚各参数大小（magnitude），以减轻各参数对模型的影响程度</li>
+<li>当有很多参数对于模型只有轻微影响时，正则化方法的表现很好</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-2-代价函数（Cost-Function）"><a href="#7-2-代价函数（Cost-Function）" class="headerlink" title="7.2 代价函数（Cost Function）"></a>7.2 代价函数（Cost Function）</h2><p>很多时候由于特征数量过多，过拟合时我们很难选出要保留的特征，这时候应用正则化方法则是很好的选择。</p>
+<p>上文中，$\theta_0 + \theta_1x + \theta_2x^2 + \theta_3x^3 + \theta_4x^4$ 这样一个复杂的多项式较易过拟合，在不减少特征的情况下，<strong>如果能消除类似于 $\theta_3x^3$、$\theta_4x^4$ 等复杂部分，那复杂函数就变得简单了</strong>。</p>
+<p>为了保留各个参数的信息，不修改假设函数，改而修改代价函数：</p>
+<script type="math/tex; mode=display">
+min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2</script><p>上式中，我们在代价函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项（penalty term）$1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化代价函数，那么势必需要极大地<strong>减小 $\theta_3$、$\theta_4$</strong>，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就<strong>“变得”简单</strong>了，从而在保留各参数的情况下避免了过拟合问题。</p>
+<img src="/2024/04/22/13-37-10/20180114_090054.png" class="">
+<p>根据上面的讨论，有时也无法决定要减少哪个参数，故统一惩罚除了 $\theta_0$ 外的所有参数。</p>
+<p>代价函数：</p>
+<script type="math/tex; mode=display">
+J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}{ { {({h_\theta}({ {x}^{(i)} })-{ {y}^{(i)} })}^{2} }+\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2} }]}</script><blockquote>
+<p>$\lambda$: 正则化参数（Regularization Parameter），$\lambda &gt; 0$</p>
+<p>$\sum\limits_{j=1}^{n}$: 不惩罚基础参数 $\theta_0$</p>
+<p>$\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2} }$: 正则化项</p>
+</blockquote>
+<p>$\lambda$ 正则化参数类似于学习速率，也需要我们自行对其选择一个合适的值。</p>
+<ul>
+<li>过大<ul>
+<li>导致模型欠拟合（假设可能会变成近乎 $x = \theta_0$ 的直线）</li>
+<li>无法正常去过拟问题</li>
+<li>梯度下降可能无法收敛</li>
+</ul>
+</li>
+<li>过小<ul>
+<li>无法避免过拟合（等于没有）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>正则化符合奥卡姆剃刀（Occam’s razor）原理。在所有可能选择的模型中，能够很好地解释已知数据并且十分简单才是最好的模型，也就是应该选择的模型。从贝叶斯估计的角度来看，正则化项对应于模型的先验概率。可以假设复杂的模型有较大的先验概率，简单的模型有较小的先验概率。</p>
+<p>正则化是结构风险最小化策略的实现，是去过拟合问题的典型方法，虽然看起来多了个一参数多了一重麻烦，后文会介绍自动选取正则化参数的方法。模型越复杂，正则化参数值就越大。比如，正则化项可以是模型参数向量的范数。</p>
+</blockquote>
+<h2 id="7-3-线性回归正则化（Regularized-Linear-Regression）"><a href="#7-3-线性回归正则化（Regularized-Linear-Regression）" class="headerlink" title="7.3 线性回归正则化（Regularized Linear Regression）"></a>7.3 线性回归正则化（Regularized Linear Regression）</h2><p>应用正则化的线性回归梯度下降算法：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& \text{Repeat}\ \lbrace \\
+& \ \ \ \ \theta_0 := \theta_0 - \alpha\ \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)} \\
+& \ \ \ \ \theta_j := \theta_j - \alpha\ \left[ \left( \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} \right) + \frac{\lambda}{m}\theta_j \right], \ \ \ j \in \lbrace 1,2...n\rbrace\\
+& \rbrace
+\end{align*}</script><p>也可以移项得到更新表达式的另一种表示形式</p>
+<script type="math/tex; mode=display">
+\theta_j := \theta_j(1 - \alpha\frac{\lambda}{m}) - \alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}</script><blockquote>
+<p>$\frac{\lambda}{m}\theta_j$: 正则化项</p>
+</blockquote>
+<p>应用正则化的正规方程法<sup><a href="#fn_2" id="reffn_2">2</a></sup>：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& \theta = \left( X^TX + \lambda \cdot L \right)^{-1} X^Ty \\
+& \text{where}\ \ L = \begin{bmatrix} 0 & & & & \\
+& 1 & & & \\
+& & 1 & & \\
+& & & \ddots & \\
+& & & & 1 \\ \end{bmatrix}
+\end{align*}</script><blockquote>
+<p>$\lambda\cdot L$: 正则化项</p>
+<p>$L$: 第一行第一列为 $0$ 的 $n+1$ 维单位矩阵</p>
+</blockquote>
+<p>Octave 代码：<br><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; L = <span class="built_in">eye</span>(<span class="number">5</span>)</span><br><span class="line">&gt;&gt; L(<span class="number">1</span>,<span class="number">1</span>) = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">L =</span><br><span class="line"></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>前文提到正则化可以解决正规方程法中不可逆的问题，即增加了 $\lambda \cdot L$ 正则化项后，可以保证 $X^TX + \lambda \cdot L$ 可逆（invertible），即便 $X^TX$ 不可逆（non-invertible）。 </p>
+<h2 id="7-4-逻辑回归正则化（Regularized-Logistic-Regression）"><a href="#7-4-逻辑回归正则化（Regularized-Logistic-Regression）" class="headerlink" title="7.4 逻辑回归正则化（Regularized Logistic Regression）"></a>7.4 逻辑回归正则化（Regularized Logistic Regression）</h2><p>为逻辑回归的代价函数添加正则化项：</p>
+<script type="math/tex; mode=display">
+J(\theta) = - \frac{1}{m} \sum_{i=1}^m \large[ y^{(i)}\ \log (h_\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h_\theta(x^{(i)}))\large] + \frac{\lambda}{2m}\sum_{j=1}^n \theta_j^2</script><p>前文已经证明过逻辑回归和线性回归的代价函数的求导结果是一样的，此处通过给正则化项添加常数 $\frac{1}{2}$，则其求导结果也就一样了。</p>
+<p>从而有应用正则化的逻辑回归梯度下降算法：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& \text{Repeat}\ \lbrace \\
+& \ \ \ \ \theta_0 := \theta_0 - \alpha\ \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)} \\
+& \ \ \ \ \theta_j := \theta_j - \alpha\ \left[ \left( \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} \right) + \frac{\lambda}{m}\theta_j \right], \ \ \ j \in \lbrace 1,2...n\rbrace\\
+& \rbrace \end{align*}</script><blockquote id="fn_1">
+<sup>1</sup>. <a href="https://en.wikipedia.org/wiki/List_of_algorithms#Optimization_algorithms">https://en.wikipedia.org/wiki/List_of_algorithms#Optimization_algorithms</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. week2 - 4.6<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习, 深度学习, 吴恩达</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>机器学习笔记二 多变量线性回归</title>
+    <url>/2024/04/21/07-10-14/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.21：初稿</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2024/04/18/15-40-53/" title="Notes-ML-AndrewNg-笔记汇总">吴恩达机器学习 - 笔记汇总</a>
+</li>
+</ul>
+<h1 id="4-多变量线性回归（Linear-Regression-with-Multiple-Variables）"><a href="#4-多变量线性回归（Linear-Regression-with-Multiple-Variables）" class="headerlink" title="4 多变量线性回归（Linear Regression with Multiple Variables）"></a>4 多变量线性回归（Linear Regression with Multiple Variables）</h1><h2 id="4-1-多特征（Multiple-Features）"><a href="#4-1-多特征（Multiple-Features）" class="headerlink" title="4.1 多特征（Multiple Features）"></a>4.1 多特征（Multiple Features）</h2><p>不同维度的多个特征。</p>
+<img src="/2024/04/21/07-10-14/20180107_234509.png" class="">
+<p>这里由于特征不再只有一个，引入一些新的记号</p>
+<blockquote>
+<p>$n$: 特征的总数</p>
+<p> ${x}^{\left( i \right)}$: 代表样本矩阵中第 $i$ 行，也就是第 $i$ 个训练实例。</p>
+<p> ${x}_{j}^{\left( i \right)}$: 代表样本矩阵中第 $i$ 行的第 $j$ 列，也就是第 $i$ 个训练实例的第 $j$ 个特征。</p>
+</blockquote>
+<p>参照上图，则有 ${x}^{(2)}\text{=}\begin{bmatrix} 1416\\\ 3\\\ 2\\\ 40 \end{bmatrix}, {x}^{(2)}_{1} = 1416$</p>
+<blockquote>
+<p>全部写成一维向量</p>
+</blockquote>
+<p>多变量假设函数 $h$ 表示为：$h_{\theta}\left( x \right)={\theta_{0} }+{\theta_{1} }{x_{1} }+{\theta_{2} }{x_{2} }+…+{\theta_{n} }{x_{n} }$</p>
+<p>对于 $\theta_0$，和单特征中一样，我们将其看作基础数值。</p>
+<p>$$<br>h_\theta\left(x\right)=\begin{bmatrix}\theta_0\; \theta_1\; … \;\theta_n \end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x<br>$$</p>
+<blockquote>
+<p>$\theta^T$: $\theta$ 矩阵的转置</p>
+<p>$x$: 某个样本的特征向量，$n+1$ 维特征量向量</p>
+<p>$x_0$: 为了计算方便我们会假设 $x_0^{(i)} = 1$</p>
+</blockquote>
+<h2 id="4-2-多变量梯度下降（Gradient-Descent-for-Multiple-Variables）"><a href="#4-2-多变量梯度下降（Gradient-Descent-for-Multiple-Variables）" class="headerlink" title="4.2 多变量梯度下降（Gradient Descent for Multiple Variables）"></a>4.2 多变量梯度下降（Gradient Descent for Multiple Variables）</h2><p>多变量代价函数类似于单变量代价函数，</p>
+<p>即 $J\left( {\theta_{0} },{\theta_{1} }…{\theta_{n} } \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{ { {\left( h_{\theta} \left({x}^{\left( i \right)} \right)-{y}^{\left( i \right)} \right)}^{2} } }$ ，其中 $h_\theta\left(x\right)= \theta^T x$。</p>
+<p>前文提到梯度下降对于最小化代价函数的通用性，则多变量梯度下降公式即</p>
+<p>$$<br>\begin{align<em>}<br>&amp; \text{Repeat until convergence:} \; \lbrace \\<br>&amp;{ {\theta }_{j} }:={ {\theta }_{j} }-\alpha \frac{\partial }{\partial { {\theta }_{j} } }J\left( {\theta_{0} },{\theta_{1} }…{\theta_{n} }  \right) \\<br>\rbrace<br>\end{align</em>}<br>$$</p>
+<p>解出偏导得：</p>
+<p>$$<br>\begin{align<em>}<br>&amp; \text{repeat until convergence:} \; \lbrace \\<br>&amp; \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; &amp; \text{for j := 0,1…n}\\<br>\rbrace<br>\end{align</em>}<br>$$</p>
+<p>可展开为：</p>
+<p>$$<br>\begin{aligned}<br>&amp; \text{repeat until convergence:} \; \lbrace \\<br>&amp; \theta_0 := \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_0^{(i)}\\<br>&amp; \theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_1^{(i)} \\<br>&amp; \theta_2 := \theta_2 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_2^{(i)} \\<br>&amp; \vdots \\<br>&amp; \theta_n := \theta_n - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_n^{(i)} &amp;\\<br>\rbrace<br>\end{aligned}<br>$$</p>
+<p>当然，同单变量梯度下降一样，计算时需要<strong>同时更新</strong>所有参数。</p>
+<p>$h_\theta\left(x\right)= \theta^T x$，则得到同时更新参数的向量化（Vectorization）实现：<br>$$<br>\theta = \theta - \alpha \frac{1}{m}(X^T(X\theta-y))<br>$$</p>
+<p><strong>向量化推导过程：</strong></p>
+<p>$$<br>\begin{aligned}<br>&amp;X = \begin{bmatrix}{ {x}^{(0)} } ^ T \newline { {x}^{(1)} } ^ T \newline \vdots \newline { {x}^{(m)} } ^ T\ \end{bmatrix}<br>&amp;X^T = \begin{bmatrix}{x}^{(0)}\; {x}^{(1)}\; … \;{x}^{(m)} \end{bmatrix}<br>\\<br>&amp;X\theta - y = \begin{bmatrix}{ {x}^{(0)} } ^ T \theta - y\newline { {x}^{(1)} } ^ T \theta -y \newline \vdots \newline { {x}^{(m)} } ^ T\theta -y\ \end{bmatrix} \\<br>&amp;h_\theta\left(x\right)= X\theta<br>\end{aligned}<br>$$</p>
+<blockquote>
+<p>$X$: 是一个秩为1的矩阵？  一次更新一个相同的特征向量？？<br>$X$: 训练集数据，$m\times(n+1)$ 维矩阵（包含基本特征 $x_0=1$）</p>
+</blockquote>
+<h2 id="4-3-梯度下降实践1-特征值缩放（Gradient-Descent-in-Practice-I-Feature-Scaling）"><a href="#4-3-梯度下降实践1-特征值缩放（Gradient-Descent-in-Practice-I-Feature-Scaling）" class="headerlink" title="4.3 梯度下降实践1-特征值缩放（Gradient Descent in Practice I - Feature Scaling）"></a>4.3 梯度下降实践1-特征值缩放（Gradient Descent in Practice I - Feature Scaling）</h2><p>在应用梯度下降算法实践时，由于各特征值的范围不一，可能会影响代价函数收敛速度。</p>
+<p>房屋面积大小和房间数量这两个特征。</p>
+<img src="/2024/04/21/07-10-14/20180108_100751.png" class="">
+<p>为了优化梯度下降的收敛速度，采用特征缩放的技巧，使各特征值的<strong>范围尽量一致</strong>。</p>
+<p>除了以上图人工选择并除以一个参数的方式，<strong>均值归一化（Mean normalization</strong>方法更为便捷，可采用它来对所有特征值统一缩放：</p>
+<p> $x_i:=\frac{x_i-average(x)}{maximum(x)-minimum(x)}$, 使得  $x_i \in (-1,1)$</p>
+<p>对于特征的范围，并不一定需要使得 $-1 \leqslant x \leqslant 1$，类似于 $1\leqslant x \leqslant 3$ 等也是可取的，而诸如 $-100 \leqslant x \leqslant 100 $，$-0.00001 \leqslant x \leqslant 0.00001$，就显得过大/过小了。</p>
+<p>另外注意，一旦采用特征缩放，我们就需对所有的输入采用特征缩放，包括训练集、测试集、预测输入等。</p>
+<h2 id="4-4-梯度下降实践2-学习速率（Gradient-Descent-in-Practice-II-Learning-Rate）"><a href="#4-4-梯度下降实践2-学习速率（Gradient-Descent-in-Practice-II-Learning-Rate）" class="headerlink" title="4.4 梯度下降实践2-学习速率（Gradient Descent in Practice II - Learning Rate）"></a>4.4 梯度下降实践2-学习速率（Gradient Descent in Practice II - Learning Rate）</h2><p>通常，有两种方法来确定函数是否收敛</p>
+<ul>
+<li>多次迭代收敛法<ul>
+<li>无法确定需要多少次迭代</li>
+<li>较易绘制关于迭代次数的图像</li>
+<li>根据图像易预测所需的迭代次数</li>
+</ul>
+</li>
+<li>自动化测试收敛法（比较阈值）<ul>
+<li>不易选取阈值</li>
+<li>代价函数近乎直线时无法确定收敛情况</li>
+</ul>
+</li>
+</ul>
+<p>对于梯度下降，一般采用多次迭代收敛法来得出最小化代价函数的参数值，自动化测试收敛法（如设定 $J\left(\theta\right) &lt; {10}^{-3}$ 时判定收敛）则几乎不会被使用。</p>
+<p>我们可以通过绘制<strong>代价函数关于迭代次数的图像</strong>，可视化梯度下降的执行过程，借助直观的图形来发现代价函数趋向于多少时能趋于收敛，依据图像变化情况，确定诸如学习速率的取值，迭代次数的大小等问题。</p>
+<img src="/2024/04/21/07-10-14/20180108_103357.png" class="">
+<p>对于学习速率 $\alpha$，一般上图展现的为适中情况，下图中，左图可能表明 <strong>$\alpha$ 过大</strong>，代价函数<strong>无法收敛</strong>，右图可能表明 <strong>$\alpha$ 过小</strong>，代价函数<strong>收敛的太慢</strong>。当然，$\alpha$ 足够小时，代价函数在每轮迭代后一定会减少。</p>
+<img src="/2024/04/21/07-10-14/20180108_104701.png" class="">
+<p>通过不断改变 $\alpha$ 值，绘制并观察图像，并以此来确定合适的学习速率。 尝试时可取 $\alpha$ 如 $\dots\;0,001,\;0.003,\;0.01,\;0.03,\;0.1,\;\dots$</p>
+<h2 id="4-5-特征和多项式回归（Features-and-Polynomial-Regression）"><a href="#4-5-特征和多项式回归（Features-and-Polynomial-Regression）" class="headerlink" title="4.5 特征和多项式回归（Features and Polynomial Regression）"></a>4.5 特征和多项式回归（Features and Polynomial Regression）</h2><p>在特征选取时，我们也可以自己归纳总结，定义一个新的特征，用来<strong>取代或拆分</strong>旧的一个或多个特征。比如，对于房屋面积特征来说，我们可以将其拆分为长度和宽度两个特征，反之，我们也可以合并长度和宽度这两个特征为面积这一个特征。</p>
+<p>线性回归只能以直线来对数据进行拟合，有时候需要使用<strong>曲线</strong>来对数据进行拟合，即<strong>多项式回归（Polynomial Regression）</strong>。</p>
+<p>比如一个二次方模型：$h_{\theta}\left( x \right)={\theta_{0} }+{\theta_{1} }{x_{1} }+{\theta_{2} }{x_{2}^2}$</p>
+<p>或者三次方模型：$h_{\theta}\left( x \right)={\theta_{0} }+{\theta_{1} }{x_{1} }+{\theta_{2} }{x_{2}^2}+{\theta_{3} }{x_{3}^3}$ </p>
+<p>或者平方根模型： $h_{\theta}\left( x \right)={\theta_{0} }+{\theta_{1} }{x_{1} }+{\theta_{2} }{x_{2}^2}+{\theta_{3} }{\sqrt{x_3} }$</p>
+<img src="/2024/04/21/07-10-14/20180108_113132.png" class="">
+<p>在使用多项式回归时，要记住非常有必要进行特征缩放，比如 $x_1$ 的范围为 1-1000，那么 $x_1^2$ 的范围则为 1- 1000000，不使用特征缩放的话，范围不一致，也更易影响效率。</p>
+<blockquote>
+<p>多特征下的特征值缩放按照$x$还是$x^3$ ？</p>
+</blockquote>
+<h2 id="4-6-正规方程（Normal-Equation）"><a href="#4-6-正规方程（Normal-Equation）" class="headerlink" title="4.6 正规方程（Normal Equation）"></a>4.6 正规方程（Normal Equation）</h2><p>对于一些线性回归问题来说，正规方程法给出了一个更好的解决问题的方式。</p>
+<p>正规方程法，即令 $\frac{\partial}{\partial{\theta_{j} } }J\left( {\theta_{j} } \right)=0$ ，通过解析函数的方式直接计算得出参数向量的值  $\theta ={ {\left( {X^T}X \right)}^{-1} }{X^{T} }y$ ，Octave/Matlab 代码： <code>theta = inv(X&#39;*X)*X&#39;*y</code>。</p>
+<blockquote>
+<p>${X}^{-1}$: 矩阵 $X$ 的逆，在 Octave 中，<code>inv</code> 函数用于计算矩阵的逆，类似的还有 <code>pinv</code> 函数。</p>
+<p><code>X&#39;</code>: 在 Octave 中表示矩阵 X 的转置，即 $X^T$</p>
+</blockquote>
+<p>下表列出了正规方程法与梯度下降算法的对比</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>梯度下降</th>
+<th>正规方程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否需要选取 $\alpha$</td>
+<td>需要</td>
+<td>不需要</td>
+</tr>
+<tr>
+<td>是否需要迭代运算</td>
+<td>需要</td>
+<td>不需要</td>
+</tr>
+<tr>
+<td>特征量大时</td>
+<td>适用，$O\left(kn^2\right)$</td>
+<td>不适用，$(X^TX)^{-1}$ 复杂度 $O\left( { {n}^{3} } \right)$</td>
+</tr>
+<tr>
+<td>适用范围</td>
+<td>各类模型</td>
+<td>只适用线性模型，且矩阵需可逆</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>一般来说，当 $n$ 超过 10000 时，对于正规方程而言，特征量较大。</li>
+<li>梯度下降算法的普适性好，而对于特定的线性回归模型，正规方程是很好的替代品。</li>
+</ul>
+<p><strong>正规方程法的推导过程</strong>：(同4.2)<br>$$<br>\begin{aligned}<br>J\left( \theta  \right)&amp; =\frac{1}{2m}\sum\limits_{i=1}^{m}{ { {\left( {h_{\theta} }\left( {x^{(i)} } \right)-{y^{(i)} } \right)}^{2} } }\\<br>&amp; =\frac{1}{2m}||X\theta-y||^2 \\<br>&amp; =\frac{1}{2m}(X\theta-y)^T(X\theta-y) \hspace{15cm}<br>\end{aligned}<br>$$</p>
+<p>展开上式可得</p>
+<p>$<br>(X\theta-y)^T = \theta^T X^T - y^T<br>$</p>
+<p>$J(\theta )= \frac{1}{2m}\left( { {\theta }^{T} }{ {X}^{T} }X\theta -{ {\theta}^{T} }{ {X}^{T} }y-{ {y}^{T} }X\theta + { {y}^{T} }y \right)$</p>
+<p>注意到 ${ {\theta}^{T} }{ {X}^{T} }y$ 与 ${ {y}^{T} }X\theta$ 都为标量，实际上是等价的，则：</p>
+<p>$J(\theta) = \frac{1}{2m}[{\theta }^{T}X^TX\theta-2\theta^TX^Ty+y^Ty]$</p>
+<p>接下来对$J(\theta )$ 求偏导，根据矩阵的求导法则:</p>
+<p>$\frac{d X^TAX}{d X}=2AX$</p>
+<p>$\frac{d X^T}{d X}={E}$</p>
+<p>$\frac{d AB}{d B}={A^T}$</p>
+<p>所以有:</p>
+<p>$\frac{\partial J\left( \theta  \right)}{\partial \theta }=\frac{1}{2m}\left(2{ {X}^{T} }X\theta -2{ {X}^{T} }y \right)={ {X}^{T} }X\theta -{ {X}^{T} }y$</p>
+<p>令$\frac{\partial J\left( \theta  \right)}{\partial \theta }=0$, 则有<br>$$<br>\theta ={ {\left( {X^{T} }X \right)}^{-1} }{X^{T} }y<br>$$</p>
+<blockquote>
+<p>求最小值, 极值一定是最小值, 具有实际意义</p>
+</blockquote>
+<h2 id="4-7-不可逆性正规方程（Normal-Equation-Noninvertibility）"><a href="#4-7-不可逆性正规方程（Normal-Equation-Noninvertibility）" class="headerlink" title="4.7 不可逆性正规方程（Normal Equation Noninvertibility）"></a>4.7 不可逆性正规方程（Normal Equation Noninvertibility）</h2><p>（本部分内容为选讲）</p>
+<p>正规方程无法应用于不可逆的矩阵，发生这种问题的概率很小，通常由于</p>
+<ul>
+<li><p>特征之间线性相关</p>
+<p>比如同时包含英寸的尺寸和米为单位的尺寸两个特征，它们是线性相关的</p>
+<p>即 ${x_{1} }={x_{2} }*{ {\left( 3.28 \right)}^{2} }$。</p>
+</li>
+<li><p>特征数量大于训练集的数量 $\left(m \leqslant n \right)$。</p>
+</li>
+</ul>
+<p>如果发现 $X^TX$ 的结果不可逆，可尝试：</p>
+<ul>
+<li>减少多余/重复特征</li>
+<li>增加训练集数量</li>
+<li>使用正规化（后文）</li>
+</ul>
+<p>对于这类不可逆的矩阵，我们称之为<strong>奇异矩阵</strong>或<strong>退化矩阵</strong>。</p>
+<p>这种情况下，如果还想使用正规方程法，在Octave中，可以选用 <code>pinv</code> 函数，<code>pinv</code> 区别于 <code>inv</code>，<code>pinv</code> 函数被称为伪逆函数，在矩阵不可逆的时候，使用这个函数仍可正确地计算出 $\theta$ 的值。</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习, 深度学习, 吴恩达</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>markdown语法</title>
     <url>/2024/04/19/22-19-04/</url>
     <content><![CDATA[<h1 id="hexo引擎更换"><a href="#hexo引擎更换" class="headerlink" title="hexo引擎更换"></a>hexo引擎更换</h1><h2 id="latex特殊转义"><a href="#latex特殊转义" class="headerlink" title="latex特殊转义"></a>latex特殊转义</h2><p>选用hexo-renderer-kramed渲染器</p>
@@ -44,7 +510,13 @@
 <h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><ul>
 <li>换行：\begin{align*}  //  \end{align*}  转为 \begin{split}</li>
 <li>换行中间不能有空行<h3 id="乘法"><a href="#乘法" class="headerlink" title="乘法*"></a>乘法*</h3></li>
-<li>乘法需要加\*转义<h2 id="markdown表格"><a href="#markdown表格" class="headerlink" title="markdown表格"></a>markdown表格</h2>与正文空一行，才能正常转义</li>
+<li>乘法需要加\*转义<h3 id="求导偏导"><a href="#求导偏导" class="headerlink" title="求导偏导"></a>求导偏导</h3></li>
+<li>求导 <code>d</code>  直接写</li>
+<li>偏导 <code>\partial</code><h2 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h2><h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3>与正文空一行，才能正常转义<h3 id="跳转1"><a href="#跳转1" class="headerlink" title="跳转1"></a>跳转<sup><a href="#fn_1" id="reffn_1">1</a></sup></h3></li>
+<li><blockquote id="fn_1">
+<sup>1</sup>. <code>[^1]</code>: 设置标签， 在需要跳转的地方写入<code>[^1]:</code>生成跳转箭头<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+</li>
 </ul>
 </blockquote>
 ]]></content>
@@ -111,7 +583,7 @@
       </tags>
   </entry>
   <entry>
-    <title>AndrewNg 机器学习笔记 一</title>
+    <title>机器学习笔记一 单变量线性回归</title>
     <url>/2024/04/18/15-34-48/</url>
     <content><![CDATA[<p>更新历史</p>
 <ul>
