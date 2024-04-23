@@ -161,8 +161,10 @@
 <blockquote>
 <p>证明时为先求导后添加偏置单元，与前向传播算法顺序一致，实际实现时，求导和添加偏置单元的顺序可作调换，由于一般选择忽略偏置单元的误差，所以并不影响结果。</p>
 </blockquote>
-<p>即证得 $\delta^{(3)}=(\Theta^{(3)})^T\delta^{(4)}.<em>(a^{(3)})’=(\Theta^{(3)})^T\delta^{(4)}.</em>\ a^{(3)} .*\ (1-a^{(3)})$</p>
-<p>对于任意的隐藏层 $l + 1$ 及权重矩阵 $\Theta^{(l)}$，有 $J(\Theta)\rightarrow a^{(L)} \rightarrow z^{(L)} \rightarrow \dots \rightarrow a^{(l+1)} \rightarrow z^{(l+1)} \rightarrow\Theta^{(l)}$ 关系不变，故证得：<br>$$<br>\frac{\partial}{\partial\Theta^{(l)} } J(\Theta) =  a^{(l)}\delta^{(l+1)}, \ \ \delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)}.<em>\ a^{(l)} .</em>\ (1-a^{(l)})\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.<br>$$<br>再添回为了计算方便去掉的 $\frac{1}{m}$ 和正则化项（时刻记住偏置单元不正则化）等，即可得上节中 $J(\Theta)$ 的偏导。</p>
+<p>即证得 $\delta^{(3)}=(\Theta^{(3)})^T\delta^{(4)}.*(a^{(3)})’=(\Theta^{(3)})^T\delta^{(4)}.*\ a^{(3)} .*\ (1-a^{(3)})$</p>
+<p>对于任意的隐藏层 $l + 1$ 及权重矩阵 $\Theta^{(l)}$，有 $J(\Theta)\rightarrow a^{(L)} \rightarrow z^{(L)} \rightarrow \dots \rightarrow a^{(l+1)} \rightarrow z^{(l+1)} \rightarrow\Theta^{(l)}$ 关系不变，故证得：</p>
+<p>$$<br>\frac{\partial}{\partial\Theta^{(l)} } J(\Theta) =  a^{(l)}\delta^{(l+1)}, \ \ \delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)}.*\ a^{(l)} .*\ (1-a^{(l)})\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.<br>$$</p>
+<p>再添回为了计算方便去掉的 $\frac{1}{m}$ 和正则化项（时刻记住偏置单元不正则化）等，即可得上节中 $J(\Theta)$ 的偏导。</p>
 <h2 id="9-4-实现注意点-参数展开（Implementation-Note-Unrolling-Parameters）"><a href="#9-4-实现注意点-参数展开（Implementation-Note-Unrolling-Parameters）" class="headerlink" title="9.4 实现注意点: 参数展开（Implementation Note: Unrolling Parameters）"></a>9.4 实现注意点: 参数展开（Implementation Note: Unrolling Parameters）</h2><p>在 Octave/Matlab 中，如果要使用类似于 <code>fminunc</code> 等高级最优化函数，其函数参数、函数返回值等都为且只为向量，而由于神经网络中的权重是多维矩阵，所以需要用到参数展开这个技巧。</p>
 <p>说白了，这个技巧就是把多个矩阵转换为一个长长的向量，便于传入函数，之后再根据矩阵维度，转回矩阵即可。</p>
 <p>Octave 代码：</p>
@@ -520,7 +522,7 @@
 <ul>
 <li>消除方式为如果使代价函数足够小，$\lambda$等于1000时，$\theta_3$就需要约等于0，消除了这个特征的影响。</li>
 </ul>
-<p>min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2<br>$$</p>
+<p>$$<br>min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2<br>$$</p>
 <p>上式中，我们在代价函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项（penalty term）$1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化代价函数，那么势必需要极大地<strong>减小 $\theta_3$、$\theta_4$</strong>，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就<strong>变得简单</strong>了，从而在保留各参数的情况下避免了过拟合问题。</p>
 <img src="/2024/04/22/13-37-10/20180114_090054.png" class="">
 <p>根据上面的讨论，有时也无法决定要减少哪个参数，故统一惩罚除了 $\theta_0$ 外的所有参数。</p>
@@ -2375,9 +2377,9 @@
         <category>工具</category>
       </categories>
       <tags>
+        <tag>linux</tag>
         <tag>ssh</tag>
         <tag>mac</tag>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2778,9 +2780,9 @@
       </categories>
       <tags>
         <tag>ssh</tag>
+        <tag>mac</tag>
         <tag>ubuntu</tag>
         <tag>wsl2</tag>
-        <tag>mac</tag>
       </tags>
   </entry>
 </search>
