@@ -19,25 +19,43 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="post">
+    <meta name="description" content="吴恩达机器学习笔记week3--神经网络的表达">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记四 神经网络的表达">
 <meta property="og:url" content="https://pkunicor.github.io/2024/04/22/13-37-13/index.html">
 <meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="吴恩达机器学习笔记week3--神经网络的表达">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180115_084326.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180115_101441.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180115_101442.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20141213201613758.jpg">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180116_001543.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180116_001543.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180116_105545.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180117_000612.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180117_000349.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180117_004820.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180116_235545.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180117_010904.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180117_011331.png">
 <meta property="article:published_time" content="2024-04-22T05:37:13.000Z">
-<meta property="article:modified_time" content="2024-04-22T05:37:13.558Z">
+<meta property="article:modified_time" content="2024-04-23T04:54:30.045Z">
 <meta property="article:author" content="yao">
+<meta property="article:tag" content="机器学习, 深度学习, 吴恩达">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/22/13-37-13/20180115_084326.png">
 
 
 <link rel="canonical" href="https://pkunicor.github.io/2024/04/22/13-37-13/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/22/13-37-13/","path":"2024/04/22/13-37-13/","title":"post"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/22/13-37-13/","path":"2024/04/22/13-37-13/","title":"机器学习笔记四 神经网络的表达"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>post | 且听风吟</title>
+<title>机器学习笔记四 神经网络的表达 | 且听风吟</title>
   
 
 
@@ -124,7 +142,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -137,6 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9A%E8%A1%A8%E8%BE%BE%EF%BC%88Neural-Networks-Representation%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">8 神经网络：表达（Neural Networks: Representation）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%81%87%E8%AE%BE%EF%BC%88Non-linear-Hypotheses%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">8.1 非线性假设（Non-linear Hypotheses）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E5%A4%A7%E8%84%91%EF%BC%88Neurons-and-the-Brain%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">8.2 神经网络和大脑（Neurons and the Brain）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-%E6%A8%A1%E5%9E%8B%E8%A1%A8%E7%A4%BA1%EF%BC%88Model-Representation-I%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">8.3 模型表示1（Model Representation I）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-%E6%A8%A1%E5%9E%8B%E8%A1%A8%E7%A4%BA2%EF%BC%88Model-Representation-II%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">8.4 模型表示2（Model Representation II）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-%E4%BE%8B%E5%AD%90%E5%92%8C%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A31%EF%BC%88Examples-and-Intuitions-I%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">8.5 例子和直观理解1（Examples and Intuitions I）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-%E4%BE%8B%E5%AD%90%E5%92%8C%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A32%EF%BC%88Examples-and-Intuitions-II%EF%BC%89"><span class="nav-number">2.6.</span> <span class="nav-text">8.6 例子和直观理解2（Examples and Intuitions II）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-7-%E5%A4%9A%E7%B1%BB%E5%88%AB%E5%88%86%E7%B1%BB%EF%BC%88Multiclass-Classification%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">8.7 多类别分类（Multiclass Classification）</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -151,7 +170,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,12 +229,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="post | 且听风吟">
-      <meta itemprop="description" content="">
+      <meta itemprop="name" content="机器学习笔记四 神经网络的表达 | 且听风吟">
+      <meta itemprop="description" content="吴恩达机器学习笔记week3--神经网络的表达">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          post
+          机器学习笔记四 神经网络的表达
         </h1>
 
         <div class="post-meta-container">
@@ -227,6 +246,22 @@
       <span class="post-meta-item-text">发表于</span>
 
       <time title="创建时间：2024-04-22 13:37:13" itemprop="dateCreated datePublished" datetime="2024-04-22T13:37:13+08:00">2024-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-23 12:54:30" itemprop="dateModified" datetime="2024-04-23T12:54:30+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
     </span>
 
   
@@ -248,8 +283,111 @@
     
     
     <div class="post-body" itemprop="articleBody">
+            <div class="post-description">吴恩达机器学习笔记week3--神经网络的表达</div>
 	<hr>
-        
+        <p>更新历史</p>
+<ul>
+<li>24.04.22：初稿</li>
+</ul>
+<h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2024/04/18/15-40-53/" title="机器笔记汇总">吴恩达机器学习 - 笔记汇总</a>
+</li>
+</ul>
+<h1 id="8-神经网络：表达（Neural-Networks-Representation）"><a href="#8-神经网络：表达（Neural-Networks-Representation）" class="headerlink" title="8 神经网络：表达（Neural Networks: Representation）"></a>8 神经网络：表达（Neural Networks: Representation）</h1><h2 id="8-1-非线性假设（Non-linear-Hypotheses）"><a href="#8-1-非线性假设（Non-linear-Hypotheses）" class="headerlink" title="8.1 非线性假设（Non-linear Hypotheses）"></a>8.1 非线性假设（Non-linear Hypotheses）</h2><p>理论上我们可以用多项式函数去近似任意函数（泰勒极数（Taylor series）），从而可得到任意问题的拟合曲线。</p>
+<p>在实际处理时，特征量通常会很多，如果再构造高阶多项式等，特征数量将会急剧增加，这使得回归模型的复杂度太高，可见并不合适。神经网络无需构造高阶多项式，在特征量很大时也可以处理的很好。</p>
+<p>那特征能有多大呢？下面是一个计算机视觉中的例子：</p>
+<img src="/2024/04/22/13-37-13/20180115_084326.png" class="">
+<p>如上图，如果选取一小块 $50 * 50$ 像素的灰度图片（一个像素只有亮度一个值），选择每个像素点作为特征，则特征总量 $n=2500$（换成 RGB（一个像素有三个值），则 $n = 7500$），如果将其两两组合作为新特征，则特征数量将为 $C_{2500}^{2} \approx 3\ million$。</p>
+<h2 id="8-2-神经网络和大脑（Neurons-and-the-Brain）"><a href="#8-2-神经网络和大脑（Neurons-and-the-Brain）" class="headerlink" title="8.2 神经网络和大脑（Neurons and the Brain）"></a>8.2 神经网络和大脑（Neurons and the Brain）</h2><p>脑科学家通过对动物实验，发现大脑中专用于处理听觉信号的脑皮层也能处理其他诸如视觉等信号，即如果切断其与耳朵的联系，将其与眼睛相连，则这块负责听觉的脑皮层区域也能接受并处理视觉信号，从而学会“看”。脑科学家通过这类换源实验，就推论假设大脑的学习算法只有一种（“one learning algorithm” hypothesis）。那么如果能找出这种学习算法并应用于计算机中，那梦想中和人一样的人工智能就成真了。</p>
+<p>神经网络就源于<strong>模拟人类大脑</strong>，但其需要的计算量很大。随着计算机硬件性能的提高，神经网络逐渐从衰落变为流行，如今已广泛地被应用在各行各业中。</p>
+<p>下图是根据研究做的一些应用（有兴趣可回顾视频）：</p>
+<img src="/2024/04/22/13-37-13/20180115_101441.png" class="">
+<p>BrainPort  系统：帮助失明人士通过摄像头以及舌尖感官“看”东西</p>
+<img src="/2024/04/22/13-37-13/20180115_101442.png" class="">
+<p>触觉皮带：在朝北时蜂鸣器会发出声响，可使人拥有方向感（声音信号转换为方向信号）。</p>
+<h2 id="8-3-模型表示1（Model-Representation-I）"><a href="#8-3-模型表示1（Model-Representation-I）" class="headerlink" title="8.3 模型表示1（Model Representation I）"></a>8.3 模型表示1（Model Representation I）</h2><p>大脑神经元</p>
+<img src="/2024/04/22/13-37-13/20141213201613758.jpg" class="">
+<p>想象一下印刷厂中流水线的工人，每个工人都有特定的任务，比如装订，塑封，贴防伪标识等等，工人们看到书本并处理完自己的任务后，就回放回传送带，紧接着传送带就传给下一个环节的工人，如此不断重复从而完成一个又一个环节，直到一本书印制完成。</p>
+<p>那么类比一下，把上图中的<strong>细胞核（nucleus）</strong>类比成工人，<strong>轴突（axon）</strong>类比传送带，<strong>树突（dendrite）</strong>则比类比成工人的双眼。一个又一个细胞体，从树突接收需要处理的信息，对其进行处理后，再经由轴突通过电信号把处理完的信息传递出去，直到理解信息的内容。</p>
+<p>人工神经网络中，树突对应<strong>输入（input）</strong>，细胞核对应<strong>激活单元（activation unit）</strong>，轴突对应<strong>输出（output）</strong>。</p>
+<p>我们一般把神经网络划分为三部分（注意，不是只有三层！），即输入层（input layer），隐藏层（hidden layer）和输出层（output layer）。</p>
+<img src="/2024/04/22/13-37-13/20180116_001543.png" class="">
+<p>图中的一个圈表示神经网络中的一个激活单元，输入层对应输入单元，隐藏层对应中间单元，输出层则对应输出单元。中间激活单元应用<strong>激活函数</strong>处理数据。</p>
+<p>下面列出一些已有概念在神经网络中的别称：</p>
+<ul>
+<li>$x_0$: 偏置单元（bias unit），$x_0$=1</li>
+<li>$\Theta$: 权重（weight），即参数。</li>
+<li>激活函数: $g$，即逻辑函数等。</li>
+<li>输入层: 对应于训练集中的特征 $x$。</li>
+<li>输出层: 对应于训练集中的结果 $y$。</li>
+</ul>
+<blockquote>
+<p>$a^{(j)}_i$: 第 $j$ 层的第 $i$ 个激活单元</p>
+<p>$\Theta^{(j)}$: 从第 $j$ 层映射到第 $j+1$ 层时的权重矩阵。</p>
+<p>$\Theta^{(j)}_{v,u}$: 从第 $j$ 层的第 $u$ 个单元映射到第 $j+1$ 层的第 $v$ 个单元的权重</p>
+<p>$s_j$: 第 $j$ 层的激活单元数目（不包含偏置单元）</p>
+</blockquote>
+<p>注意：</p>
+<ul>
+<li><strong>每个单元会作用于下一层的所有单元</strong>（矩阵乘法运算）。</li>
+<li>如果第 $j$ 层有 $s_j$ 个单元，第 $j+1$ 层有 $s_{j+1}$ 个单元，$\Theta^{(j)}$ 是一个 $s_{j+1} \times (s_j+1)$ 维的权重矩阵。即每一层的权重矩阵大小都是非固定的。</li>
+<li>其中，$+1$ 来自于偏置单元，这样意味着输出层不包含偏置单元，输入层和隐藏层需要增加偏置单元。</li>
+</ul>
+<p>依据本节所给模型，有：</p>
+<p>$Size(\Theta^{(1)})=s_{j+1} \times (s_j + 1) =s_2 \times (s_1 + 1) = 3 \times 4$</p>
+<p>$Size(\Theta^{(2)})=s_3 \times (s_2 + 1) = 1 \times 4$</p>
+<h2 id="8-4-模型表示2（Model-Representation-II）"><a href="#8-4-模型表示2（Model-Representation-II）" class="headerlink" title="8.4 模型表示2（Model Representation II）"></a>8.4 模型表示2（Model Representation II）</h2><img src="/2024/04/22/13-37-13/20180116_001543.png" class="">
+<p>对输入层（Layer 1）的所有激活单元应用激活函数，从而得到隐藏层（Layer 2）中激活单元的值：</p>
+<p>$$<br>\begin{split} a_1^{(2)} = g(\Theta_{10}^{(1)}x_0 + \Theta_{11}^{(1)}x_1 + \Theta_{12}^{(1)}x_2 + \Theta_{13}^{(1)}x_3)\\<br>a_2^{(2)} = g(\Theta_{20}^{(1)}x_0 + \Theta_{21}^{(1)}x_1 + \Theta_{22}^{(1)}x_2 + \Theta_{23}^{(1)}x_3)\\<br>a_3^{(2)} = g(\Theta_{30}^{(1)}x_0 + \Theta_{31}^{(1)}x_1 + \Theta_{32}^{(1)}x_2 + \Theta_{33}^{(1)}x_3)<br>\end{split}<br>$$<br>对 Layer 2 中的所有激活单元应用激活函数，从而得到输出：</p>
+<p>$h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{(2)} + \Theta_{12}^{(2)}a_2^{(2)} + \Theta_{13}^{(2)}a_3^{(2)})$</p>
+<p>上面的计算过程被称为<strong>前向传播（Forward propagation）</strong>，即从输入层开始，一层一层地向下计算并传递结果。</p>
+<p>再回顾一下逻辑回归：</p>
+<p>${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2} }{x_{2} }+{\theta_{3} }x_3 \right)$</p>
+<p>是不是除了符号表示，其他都完全一样？其实神经网络就好似回归模型，只不过输入变成了中间单元 $a_1^{(j)}, a_2^{(j)}, \dots, a_n^{(j)}$。从输入 $x$ 开始，下一层的每个激活单元都包含了上一层的所有信息（单元值），通过最优化算法不断迭代计算，激活单元能得出关于输入 $x$ 的更多信息，这就好像是在给假设函数加多项式。隐藏层的这些单元好似升级版的初始特征，从而能给出更好的预测。</p>
+<p><strong>向量化实现</strong></p>
+<p>定义 $a^{(1)}=x=\left[ \begin{matrix}x_0\\ x_1 \\ x_2 \\ x_3 \end{matrix} \right]$，$\Theta^{(1)}=\left[\begin{matrix}\Theta^{(1)}_{10}&amp; \Theta^{(1)}_{11}&amp; \Theta^{(1)}_{12}&amp; \Theta^{(1)}_{13}\\ \Theta^{(1)}_{20}&amp; \Theta^{(1)}_{21}&amp; \Theta^{(1)}_{22}&amp; \Theta^{(1)}_{23}\\ \Theta^{(1)}_{30}&amp; \Theta^{(1)}_{31}&amp; \Theta^{(1)}_{32} &amp; \Theta^{(1)}_{33}\end{matrix}\right]$，</p>
+<p>$\begin{split}a_1^{(2)} = g(z_1^{(2)}) \\ a_2^{(2)} = g(z_2^{(2)}) \newline a_3^{(2)} = g(z_3^{(2)}) \newline \end{split}$，$z^{(2)}=\left[ \begin{matrix}z_1^{(2)}\\ z_1^{(2)} \\ z_1^{(2)}\end{matrix} \right]$</p>
+<p>则有 $a^{(2)}= g(\Theta^{(1)}a^{(1)})=g(z^{(2)})$</p>
+<p>预测结果即 $h_\Theta(x) = a^{(3)} = g(\Theta^{(2)}a^{(2)}) = g(z^{(3)})$</p>
+<p>即有 $z^{(j)}_i = \Theta^{(j-1)}_{i,0}a^{(j-1)}_{0}+ \Theta^{(j-1)}_{i,1}a^{(j-1)}_{1}+\dots+ \Theta^{(j-1)}_{i,n}a^{(j-1)}_{n}$，</p>
+<p> $z^{(j)} = \Theta^{(j-1)}a^{(j-1)}$，$a^{(j)} = g(z^{(j)})$，通过该式即可计算神经网络中每一层的值。</p>
+<p>扩展到所有样本实例：</p>
+<p>${ {z}^{\left( 2 \right)} }={ {\Theta }^{\left( 1 \right)} } { {X}^{T} }$，这时 $z^{(2)}$ 是一个 $s_2 \times m$ 维矩阵。</p>
+<blockquote>
+<p>$m$: 训练集中的样本实例数量</p>
+<p>$s_2$: 第二层神经网络中激活单元的数量</p>
+</blockquote>
+<p>当然，神经网络可有多层，每层的激活单元数量也并不固定：</p>
+<img src="/2024/04/22/13-37-13/20180116_105545.png" class="">
+<blockquote>
+<p>我们习惯于将输入层称为神经网络的第 0 层，如上图的神经网络被称为三层网络。</p>
+</blockquote>
+<h2 id="8-5-例子和直观理解1（Examples-and-Intuitions-I）"><a href="#8-5-例子和直观理解1（Examples-and-Intuitions-I）" class="headerlink" title="8.5 例子和直观理解1（Examples and Intuitions I）"></a>8.5 例子和直观理解1（Examples and Intuitions I）</h2><p>为了更好的理解神经网络，举例单层神经网络进行逻辑运算的例子。</p>
+<p>下面的例子中，$x_1,x_2$ 为二进制数。</p>
+<p>逻辑与（AND）运算（都为真值则结果才为真）神经网络：</p>
+<img src="/2024/04/22/13-37-13/20180117_000612.png" class="">
+<p>$\Theta^{(1)} =\begin{bmatrix}-30 &amp; 20 &amp; 20\end{bmatrix}$，$h_\Theta(x) = g(-30+20x_1+20x_2)$。</p>
+<p>回顾 sigmoid 函数图像，根据输入则有上图中右边的表格，即 $h_\theta(x)\approx x_1\ \text{AND}\ x_2$。这样就实现了一个能够进行与运算的神经网络。 </p>
+<img src="/2024/04/22/13-37-13/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class="">
+<p>再举一例，逻辑或（OR）运算（有一个真值则结果就为真）神经网络：</p>
+<img src="/2024/04/22/13-37-13/20180117_000349.png" class="">
+<h2 id="8-6-例子和直观理解2（Examples-and-Intuitions-II）"><a href="#8-6-例子和直观理解2（Examples-and-Intuitions-II）" class="headerlink" title="8.6 例子和直观理解2（Examples and Intuitions II）"></a>8.6 例子和直观理解2（Examples and Intuitions II）</h2><p>下面逐步构建复杂一点的神经网络</p>
+<img src="/2024/04/22/13-37-13/20180117_004820.png" class="">
+<p>如上图，我们分别构建了三个单层神经网络，将这三个网络组合起来，可得到一个新的神经网络，其可完成逻辑运算中的异或（XNOR）操作：</p>
+<img src="/2024/04/22/13-37-13/20180116_235545.png" class="">
+<p>这里的组合即为 $\text{XNOR}=( \text{x}_1\, \text{AND}\, \text{x}_2 )\, \text{OR} \left( \left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right) \right)$</p>
+<p>$\Theta^{(1)} =\begin{bmatrix}-30 &amp; 20 &amp; 20 \newline 10 &amp; -20 &amp; -20\end{bmatrix}$，$\Theta^{(2)} =\begin{bmatrix}-10 &amp; 20 &amp; 20\end{bmatrix}$，$\begin{split}&amp; a^{(2)} = g(\Theta^{(1)} \cdot x) \newline&amp; a^{(3)} = g(\Theta^{(2)} \cdot a^{(2)}) \newline&amp; h_\Theta(x) = a^{(3)}\end{split}$</p>
+<p>可见，特征值能不断升级，并抽取出更多信息，直到计算出结果。而如此不断组合，我们就可以逐渐构造出越来越复杂、强大的神经网络，比如用于手写识别的神经网络。</p>
+<h2 id="8-7-多类别分类（Multiclass-Classification）"><a href="#8-7-多类别分类（Multiclass-Classification）" class="headerlink" title="8.7 多类别分类（Multiclass Classification）"></a>8.7 多类别分类（Multiclass Classification）</h2><p>之前讨论的都是预测结果为单值情况下的神经网络，要实现多类别分类，其实只要修改一下输出层，让输出层包含多个输出单元即可。</p>
+<p>举一个 4 分类问题的实例：</p>
+<img src="/2024/04/22/13-37-13/20180117_010904.png" class="">
+<p>有四种分类情况，那么就让输出层包含 4 个输出单元即可，则 $h_\Theta$ 为 4 维向量。 </p>
+<p>神经网络中的多分类算法算是对 one-vs-all 思想的扩展，定义预测结果一共有 4 种情况：</p>
+<img src="/2024/04/22/13-37-13/20180117_011331.png" class="">
+<p>如果预测结果 $h_\Theta(x) =\begin{bmatrix}0 \newline 0 \newline 1 \newline 0 \newline\end{bmatrix}$，那么表示 $h_\Theta(x)_3$，即分为第 3 类，对应于图中的摩托车（Motorcycle）。</p>
+<p><strong>总结一下</strong></p>
+<p>多分类问题，要分为 $K$ 类，就在输出层放置 $K$ 个输出单元，对于单个样本实例，预测向量 $h_\Theta(x)$ 为 $K$ 维向量，我们则依据这个预测向量，得出该实例属于哪个类 $y^{(i)}$。注意，神经网络中的预测和结果都是 $K$ 维向量，而不再只是一个实数了。</p>
+
     </div>
 
     
@@ -266,7 +404,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://pkunicor.github.io/2024/04/22/13-37-13/" title="post">https://pkunicor.github.io/2024/04/22/13-37-13/</a>
+      <a href="https://pkunicor.github.io/2024/04/22/13-37-13/" title="机器学习笔记四 神经网络的表达">https://pkunicor.github.io/2024/04/22/13-37-13/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -274,6 +412,9 @@
 </ul>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%90%B4%E6%81%A9%E8%BE%BE/" rel="tag"># 机器学习, 深度学习, 吴恩达</a>
+          </div>
 
         
 
@@ -284,6 +425,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/04/23/12-43-40/" rel="next" title="机器学习笔记五 神经网络的学习">
+                  机器学习笔记五 神经网络的学习 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -371,7 +515,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
