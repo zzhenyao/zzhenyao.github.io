@@ -19,33 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="动手学深度学习李沐-07-链式法则与自动求导">
+    <meta name="description" content="动手学深度学习李沐">
 <meta property="og:type" content="article">
 <meta property="og:title" content="07-链式法则与自动求导">
 <meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-07/index.html">
 <meta property="og:site_name" content="且听风吟">
-<meta property="og:description" content="动手学深度学习李沐-07-链式法则与自动求导">
+<meta property="og:description" content="动手学深度学习李沐">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-01">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-02">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-03">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-04">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-05">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-06">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-07">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-08">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-09">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-10">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-11">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-12">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-13">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-14">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-01.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-02.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-03.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-04.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-05.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-06.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-07.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-08.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-09.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-10.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-11.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-12.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-13.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-14.png">
 <meta property="article:published_time" content="2024-04-23T03:01:07.000Z">
-<meta property="article:modified_time" content="2024-04-24T03:52:14.895Z">
+<meta property="article:modified_time" content="2024-04-24T08:21:23.399Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-01">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/11-01-07/image-01.png">
 
 
 <link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-07/">
@@ -155,7 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#07-%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">1.</span> <span class="nav-text">07-链式法则与自动求导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%90%91%E9%87%8F%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.1.</span> <span class="nav-text">1. 向量链式法则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%A0%87%E9%87%8F%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 标量链式法则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%8B%93%E5%B1%95%E5%88%B0%E5%90%91%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 拓展到向量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B1%EF%BC%88%E6%A0%87%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%EF%BC%89"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">例1（标量对向量求导）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B2%EF%BC%88%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9F%A9%E9%98%B5%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%89"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">例2（涉及到矩阵的情况）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">1.2.</span> <span class="nav-text">2. 自动求导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E8%AE%A1%E7%AE%97%E5%9B%BE"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 计算图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 自动求导的两种模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 复杂度比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="nav-number">1.3.</span> <span class="nav-text">3. 代码部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC-Q-amp-A"><span class="nav-number">1.4.</span> <span class="nav-text">4. 自动求导 Q&amp;A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%BB%83%E4%B9%A0"><span class="nav-number">1.5.</span> <span class="nav-text">5. 练习</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#07-%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">2.</span> <span class="nav-text">07-链式法则与自动求导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%90%91%E9%87%8F%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">2.1.</span> <span class="nav-text">1. 向量链式法则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%A0%87%E9%87%8F%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 标量链式法则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%8B%93%E5%B1%95%E5%88%B0%E5%90%91%E9%87%8F"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 拓展到向量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B1%EF%BC%88%E6%A0%87%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%EF%BC%89"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">例1（标量对向量求导）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B2%EF%BC%88%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9F%A9%E9%98%B5%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%89"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">例2（涉及到矩阵的情况）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">2.2.</span> <span class="nav-text">2. 自动求导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E8%AE%A1%E7%AE%97%E5%9B%BE"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 计算图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 自动求导的两种模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%AF%94%E8%BE%83"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3 复杂度比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="nav-number">2.3.</span> <span class="nav-text">3. 代码部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC-Q-amp-A"><span class="nav-number">2.4.</span> <span class="nav-text">4. 自动求导 Q&amp;A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%BB%83%E4%B9%A0"><span class="nav-number">2.5.</span> <span class="nav-text">5. 练习</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="07-链式法则与自动求导 | 且听风吟">
-      <meta itemprop="description" content="动手学深度学习李沐-07-链式法则与自动求导">
+      <meta itemprop="description" content="动手学深度学习李沐">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -252,7 +252,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-24 11:52:14" itemprop="dateModified" datetime="2024-04-24T11:52:14+08:00">2024-04-24</time>
+      <time title="修改时间：2024-04-24 16:21:23" itemprop="dateModified" datetime="2024-04-24T16:21:23+08:00">2024-04-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -283,12 +283,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-            <div class="post-description">动手学深度学习李沐-07-链式法则与自动求导</div>
+            <div class="post-description">动手学深度学习李沐</div>
 	<hr>
-        <h2 id="07-链式法则与自动求导"><a href="#07-链式法则与自动求导" class="headerlink" title="07-链式法则与自动求导"></a>07-链式法则与自动求导</h2><h3 id="1-向量链式法则"><a href="#1-向量链式法则" class="headerlink" title="1. 向量链式法则"></a>1. 向量链式法则</h3><ul>
+        <p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="07-链式法则与自动求导"><a href="#07-链式法则与自动求导" class="headerlink" title="07-链式法则与自动求导"></a>07-链式法则与自动求导</h2><h3 id="1-向量链式法则"><a href="#1-向量链式法则" class="headerlink" title="1. 向量链式法则"></a>1. 向量链式法则</h3><ul>
 <li><h4 id="1-1-标量链式法则"><a href="#1-1-标量链式法则" class="headerlink" title="1.1 标量链式法则"></a>1.1 标量链式法则</h4></li>
 </ul>
-<p><img src="..\imgs\07\image-01" alt="image-20220107231957396" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-01.png" class="">
 <ul>
 <li><h4 id="1-2-拓展到向量"><a href="#1-2-拓展到向量" class="headerlink" title="1.2 拓展到向量"></a>1.2 拓展到向量</h4><blockquote>
 <p>需要注意维数的变化</p>
@@ -301,16 +309,16 @@
 </blockquote>
 </li>
 </ul>
-<p><img src="..\imgs\07\image-02" alt="image-20220107231931153" style="zoom: 80%;" /></p>
+<img src="/2024/04/23/11-01-07/image-02.png" class="">
 <hr>
 <h5 id="例1（标量对向量求导）"><a href="#例1（标量对向量求导）" class="headerlink" title="例1（标量对向量求导）"></a>例1（标量对向量求导）</h5><blockquote>
 <p>这里应该是用分子布局，所以是X转置</p>
 </blockquote>
-<p>​                                 <img src="..\imgs\07\image-03" alt="image-20220107233527373" style="zoom: 67%;" />          </p>
+<p>​                                 <img src="/2024/04/23/11-01-07/image-03.png" class="">   </p>
 <h5 id="例2（涉及到矩阵的情况）"><a href="#例2（涉及到矩阵的情况）" class="headerlink" title="例2（涉及到矩阵的情况）"></a>例2（涉及到矩阵的情况）</h5><blockquote>
 <p>X是mxn的矩阵,w为n维向量，y为m维向量；<br>z对Xw-y做L2 norm,为标量；<br>过程与例一大体一致；</p>
 </blockquote>
-<p>​                                   <img src="..\imgs\07\image-04" alt="image-20220107233753066" style="zoom: 67%;" />   </p>
+<p>​                                   <img src="/2024/04/23/11-01-07/image-04.png" class=""></p>
 <hr>
 <blockquote>
 <p>由于在神经网络动辄几百层，手动进行链式求导是很困难的，因此我们需要借助自动求导</p>
@@ -322,10 +330,10 @@
 <li><p>自动求导有别于</p>
 <ul>
 <li><p>符号求导</p>
-<p><img src="..\imgs\07\image-05" alt="image-20220107235547201" style="zoom: 50%;" /> </p>
+<img src="/2024/04/23/11-01-07/image-05.png" class="">
 </li>
 <li><p>数值求导</p>
-<p><img src="..\imgs\07\image-06" alt="image-20220107235611767" style="zoom: 50%;" /> </p>
+<img src="/2024/04/23/11-01-07/image-06.png" class="">
 </li>
 </ul>
 </li>
@@ -340,42 +348,42 @@
 </blockquote>
 </li>
 </ul>
-<p><img src="..\imgs\07\image-07" alt="image-20220107235918270" style="zoom: 67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-07.png" class="">
 <p>​     </p>
 <ul>
-<li><p>计算图有两种构造方式</p>
+<li><p>计算图有两种构造方式<br>计算与上图无关</p>
 <ul>
 <li><p>显示构造</p>
 <blockquote>
 <p>可以理解为先定义公式再代值</p>
 <p>Tensorflow/Theano/MXNet</p>
 </blockquote>
-<p>​                                  <img src="..\imgs\07\image-08" alt="image-20220108000740736" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-08.png" class="">
 </li>
 <li><p>隐式构造</p>
 <blockquote>
 <p>系统将所有的计算记录下来</p>
 <p>Pytorch/MXNet</p>
 </blockquote>
-<p>​                                 <img src="..\imgs\07\image-09" alt="image-20220108001154208" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-09.png" class="">
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="2-2-自动求导的两种模式"><a href="#2-2-自动求导的两种模式" class="headerlink" title="2.2 自动求导的两种模式"></a>2.2 自动求导的两种模式</h4><ul>
 <li><p>正向累积</p>
-<p>​                                   <img src="..\imgs\07\image-10" alt="image-20220108001506326" style="zoom:67%;" /></p>
+ <img src="/2024/04/23/11-01-07/image-10.png" class="">
 </li>
 <li><p>反向累积（反向传递back propagation）</p>
-<p>​                                     <img src="..\imgs\07\image-11" alt="image-20220108001517029" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-11.png" class="">
 </li>
 </ul>
 <p>​    <strong>反向累积计算过程</strong></p>
-<p><img src="..\imgs\07\image-12" alt="image-20220108001847175" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-12.png" class="">
 <blockquote>
 <p>反向累积的正向过程：自底向上，需要存储中间结果</p>
 <p>反向累积的反向过程：自顶向下，可以去除不需要的枝（图中的x应为w）</p>
-<p>​            <img src="..\imgs\07\image-13" alt="image-20220108002228166" style="zoom:50%;" /></p>
+<img src="/2024/04/23/11-01-07/image-13.png" class="">
 </blockquote>
 <h4 id="2-3-复杂度比较"><a href="#2-3-复杂度比较" class="headerlink" title="2.3 复杂度比较"></a>2.3 复杂度比较</h4><ul>
 <li><p>反向累积</p>
@@ -475,7 +483,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">x = torch.arange(-20,20,0.1,requires_grad=True,dtype=torch.float32)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line">y.sum().backward()</span><br><span class="line">plt.plot(x.detach(),y.detach(),label=&#x27;y=sinx&#x27;)</span><br><span class="line">plt.plot(x.detach(),x.grad,label=&#x27;dy/dx&#x27;)</span><br><span class="line">plt.legend(loc=&#x27;lower right&#x27;)</span><br></pre></td></tr></table></figure>
 <p>Out[66]:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;matplotlib.legend.Legend at 0x1d627d00280&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="..\imgs\07\image-14" alt="img.png" style="zoom:50%;" /></p>
+<img src="/2024/04/23/11-01-07/image-14.png" class="">
 
     </div>
 

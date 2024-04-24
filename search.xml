@@ -8,23 +8,29 @@
 <li>24.04.24：初稿</li>
 </ul>
 <h1 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h1><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a></li>
+<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a></li>
+<li><a href="/2024/04/23/11-01-01/" title="01-深度学习课程安排">01-课程安排</a></li>
+<li><a href="/2024/04/23/11-01-02/" title="02-深度学习介绍">02-深度学习介绍</a></li>
+<li><a href="/2024/04/23/11-01-03/" title="03-深度学习安装">03-安装</a></li>
+<li><a href="/2024/04/23/11-01-04/" title="04-数据读取和操作">04-数据读取和操作</a></li>
+<li><a href="/2024/04/23/11-01-05/" title="05-线性代数">05-线性代数</a></li>
+<li><a href="/2024/04/23/11-01-06/" title="06-矩阵计算">06-矩阵计算</a></li>
+<li><a href="/2024/04/23/11-01-07/" title="07-链式法则与自动求导">07-链式法则与自动求导</a></li>
+<li><a href="/2024/04/23/11-01-08/" title="08-线性回归+基础优化算法">08-线性回归+基础优化算法</a></li>
+<li><a href="/2024/04/23/11-01-09/" title="09-softmax回归">09-softmax回归</a></li>
+<li><a href="/2024/04/23/11-01-10/" title="10-多层感知机">10-多层感知机</a></li>
+<li><a href="/2024/04/23/11-01-11/" title="11-模型选择+过拟合和欠拟合">11-模型选择+过拟合和欠拟合</a></li>
+<li><a href="/2024/04/23/11-01-12/" title="12 权重衰退 Weight Decay">12-权重衰退</a></li>
+<li><a href="/2024/04/23/11-01-13/" title="13-丢弃法">13-丢弃法</a></li>
+<li><a href="/2024/04/23/11-01-14/" title="14-数值稳定性+模型初始化和激活函数">14-数值稳定性</a></li>
+<li><a href="/2024/04/23/11-01-15/" title="15-实战Kaggle比赛：预测房价">15-实战Kaggle比赛：预测房价</a></li>
 <li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a>
--</li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a>
--</li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a></li>
-<li></li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a></li>
-<li></li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a></li>
-<li></li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a></li>
-<li></li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a></li>
-<li></li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a></li>
-<li></li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a></li>
+</li>
+</ul>
+<p><strong>d2l官网</strong>：<a href="https://zh-v2.d2l.ai/index.html">动手学深度学习</a><br><strong>笔记来源</strong>：<a href="https://github.com/MLNLP-World/DeepLearning-MuLi-Notes/tree/main">DeepLearning-MuLi-Notes</a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><code>!pip install git+https://github.com/d2l-ai/d2l-zh@release  # installing d2l</code>下载较慢，使用<code>!pip install d2l==1.0.3</code>。</li>
 <li></li>
 </ul>
 ]]></content>
@@ -3114,7 +3120,15 @@ True
   <entry>
     <title>15-实战Kaggle比赛：预测房价</title>
     <url>/2024/04/23/11-01-15/</url>
-    <content><![CDATA[<h3 id="实战Kaggle比赛：预测房价"><a href="#实战Kaggle比赛：预测房价" class="headerlink" title="实战Kaggle比赛：预测房价"></a>实战Kaggle比赛：预测房价</h3><ul>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h3 id="实战Kaggle比赛：预测房价"><a href="#实战Kaggle比赛：预测房价" class="headerlink" title="实战Kaggle比赛：预测房价"></a>实战Kaggle比赛：预测房价</h3><ul>
 <li><p>实际上这个时间竞赛已经结束了。</p>
 </li>
 <li><p>这节目的是提供大家一个实际操作的机会，使用的大多是前面学到的知识。课程提供了代码样本，酒体内容详见含注释的代码中。</p>
@@ -3133,16 +3147,24 @@ True
   <entry>
     <title>14-数值稳定性+模型初始化和激活函数</title>
     <url>/2024/04/23/11-01-14/</url>
-    <content><![CDATA[<h2 id="14-数值稳定性-模型初始化和激活函数"><a href="#14-数值稳定性-模型初始化和激活函数" class="headerlink" title="14-数值稳定性+模型初始化和激活函数"></a>14-数值稳定性+模型初始化和激活函数</h2><h3 id="1-数值稳定性"><a href="#1-数值稳定性" class="headerlink" title="1. 数值稳定性"></a>1. 数值稳定性</h3><p>数值稳定性是深度学习中比较重要的点，特别是当神经网络变得很深的时候，数值通常很容易变得不稳定。</p>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="14-数值稳定性-模型初始化和激活函数"><a href="#14-数值稳定性-模型初始化和激活函数" class="headerlink" title="14-数值稳定性+模型初始化和激活函数"></a>14-数值稳定性+模型初始化和激活函数</h2><h3 id="1-数值稳定性"><a href="#1-数值稳定性" class="headerlink" title="1. 数值稳定性"></a>1. 数值稳定性</h3><p>数值稳定性是深度学习中比较重要的点，特别是当神经网络变得很深的时候，数值通常很容易变得不稳定。</p>
 <h4 id="1-1-神经网络的梯度"><a href="#1-1-神经网络的梯度" class="headerlink" title="1.1 神经网络的梯度"></a>1.1 神经网络的梯度</h4><img src="/2024/04/23/11-01-14/14-01.png" class="">
 <p><strong>考虑d层神经网络</strong></p>
 <ul>
-<li><p>t表示层数，<img src="https://latex.codecogs.com/svg.image?h^{t-1}" title="h^{t-1}" />表示第<em>t-1</em>层的输出，经过一个<img src="https://latex.codecogs.com/svg.image?f_{t}" title="f_{t}" />函数后，得到第<em>t</em>层的输出。</p>
+<li><p>t表示层数，$h^{t-1}$表示第<em>t-1</em>层的输出，经过一个$f_{t}$函数后，得到第<em>t</em>层的输出。</p>
 </li>
 <li><p>最终输出y的表示：输入x经过若干层(<em>d</em>层)的函数作用，最后被损失函数作用得到输出y。</p>
 </li>
 </ul>
-<p><strong>计算损失函数<em>L</em>关于第<em>t</em>层参数<img src="https://latex.codecogs.com/svg.image?W_{t}&space;" title="W_{t} " />的梯度</strong></p>
+<p><strong>计算损失函数<em>L</em>关于第<em>t</em>层参数$W_{t}$的梯度</strong></p>
 <ul>
 <li><p>由链导法则得到上图中乘积公式</p>
 </li>
@@ -3150,29 +3172,26 @@ True
 </li>
 </ul>
 <h4 id="1-2-数值稳定性的常见两个问题"><a href="#1-2-数值稳定性的常见两个问题" class="headerlink" title="1.2 数值稳定性的常见两个问题"></a>1.2 数值稳定性的常见两个问题</h4><p><strong>梯度爆炸</strong></p>
-<p>假设梯度都是一些比1大的数比如1.5，做100次乘积之后得到<img src="https://latex.codecogs.com/svg.image?4\times&space;10^{17}" title="4\times 10^{17}" />，这个数字很容易带来一些浮点数上限的问题（需了解更多请参考计算机系统-计算机中浮点数的存储方式）。</p>
+<p>假设梯度都是一些比1大的数比如1.5，做100次乘积之后得到$4\times 10^{17}$，这个数字很容易带来一些浮点数上限的问题（需了解更多请参考计算机系统-计算机中浮点数的存储方式）。</p>
 <p><strong>梯度消失</strong></p>
-<p>假设梯度都是一些比1小的数比如0.8，做100次乘积之后得到<img src="https://latex.codecogs.com/svg.image?2\times10^{-10}" title="2\times10^{-10}" />，也可能会带来浮点数下溢的问题。</p>
+<p>假设梯度都是一些比1小的数比如0.8，做100次乘积之后得到$2\times10^{-10}$，也可能会带来浮点数下溢的问题。</p>
 <h4 id="1-3-例子：MLP"><a href="#1-3-例子：MLP" class="headerlink" title="1.3 例子：MLP"></a>1.3 例子：MLP</h4><p>此处我们着重探讨<a href="#11-神经网络的梯度">1.1节</a>中所述的求梯度时所做的d-t次矩阵乘法，并以一个实例MLP来探讨其结果的具体形式。</p>
 <img src="/2024/04/23/11-01-14/14-02.png" class="">
 <ul>
-<li><p>第一行公式，定义<img src="https://latex.codecogs.com/svg.image?h^{t}" title="h^{t}" />和<img src="https://latex.codecogs.com/svg.image?h^{t-1}" title="h^{t-1}" />(均为向量)的函数关系<img src="https://latex.codecogs.com/svg.image?f_{t}" title="f_{t}" />，第t层的权重矩阵作用于t-1层的输出<img src="https://latex.codecogs.com/svg.image?h^{t-1}" title="h^{t-1}" />后经过激活函数<img src="https://latex.codecogs.com/svg.image?\sigma&space;" title="\sigma " />得到<img src="https://latex.codecogs.com/svg.image?h^{t}" title="h^{t}" />，注意激活函数<img src="https://latex.codecogs.com/svg.image?\sigma&space;" title="\sigma " />逐元素计算。</p>
+<li><p>第一行公式，定义$h^{t}$和$h^{t-1}$(均为向量)的函数关系$f_{t}$，第t层的权重矩阵作用于t-1层的输出$h^{t-1}$后经过激活函数$\sigma$得到$h^{t}$，注意激活函数$\sigma$逐元素计算。</p>
 </li>
-<li><p>第二行公式：这里用到链导法则，激活函数<img src="https://latex.codecogs.com/svg.image?\sigma&space;" title="\sigma " />先对内部向量逐元素求导，然后把求导后这个向量变成对角矩阵（可以理解为链导法则中内部向量<img src="https://latex.codecogs.com/svg.image?W_{t}h_{t-1}" title="W_{t}h_{t-1}" />对自身进行求导，变成一个nxn的对角矩阵，更多请参考<a href="https://nndl.github.io/nndl-book.pdf">邱锡鹏 《神经网络与深度学习》</a><sup><a href="#fn_ 图片1" id="reffn_ 图片1"> 图片1</a></sup>）</p>
-<div align="center">
-   <img src="../imgs/14/14-03.png" alt="image" align="center" width="500" />
-</div>
-
+<li><p>第二行公式：这里用到链导法则，激活函数$\sigma$先对内部向量逐元素求导，然后把求导后这个向量变成对角矩阵（可以理解为链导法则中内部向量$W_{t}h_{t-1}$对自身进行求导，变成一个nxn的对角矩阵，更多请参考<a href="https://nndl.github.io/nndl-book.pdf">邱锡鹏 《神经网络与深度学习》</a><sup><a href="#fn_ 图片1" id="reffn_ 图片1"> 图片1</a></sup>）</p>
 </li>
 </ul>
+<img src="/2024/04/23/11-01-14/14-03.png" class="">
 <blockquote id="fn_图片1">
 <sup>图片1</sup>. 引自<a href="https://nndl.github.io/nndl-book.pdf">邱锡鹏 《神经网络与深度学习》</a>附录：数学基础 <a href="#reffn_图片1" title="Jump back to footnote [图片1] in the text."> &#8617;</a>
 </blockquote>
 <ul>
-<li>视频中<strong>勘误说明</strong>：链导法则中 <img src="https://latex.codecogs.com/svg.image?\frac{\partial&space;W^{t}h^{t-1}}{\partial&space;h^{t-1}}=&space;W^{t}" title="\frac{\partial W^{t}h^{t-1}}{\partial h^{t-1}}= W^{t}" /> 而不是<img src="https://latex.codecogs.com/svg.image?\left&space;(W^{t}&space;&space;\right&space;)^{T}" title="\left (W^{t} \right )^{T}" />（这点由分子分母维度也容易推出），故最终求导结果包含<img src="https://latex.codecogs.com/svg.image?W^{t}" title="W^{t}" />，而不是其转置。</li>
+<li>视频中<strong>勘误说明</strong>：链导法则中$\frac{\partial W^{t}h^{t-1}}{\partial h^{t-1}}= W^{t}$而不是$\left (W^{t} \right )^{T}$（这点由分子分母维度也容易推出），故最终求导结果包含$W^{t}$，而不是其转置。</li>
 </ul>
 <h4 id="1-3-梯度爆炸"><a href="#1-3-梯度爆炸" class="headerlink" title="1.3 梯度爆炸"></a>1.3 梯度爆炸</h4><h5 id="1-3-1-使用ReLU作为激活函数"><a href="#1-3-1-使用ReLU作为激活函数" class="headerlink" title="1.3.1 使用ReLU作为激活函数"></a>1.3.1 使用ReLU作为激活函数</h5><img src="/2024/04/23/11-01-14/14-04.png" class="">
-<p>由于激活函数Relu求导后或者是1或者是0，变为对角矩阵的斜对角线元素后，与<img src="https://latex.codecogs.com/svg.image?W^{i}" title="W^{i}" />做乘积，斜对角线为1的部分会使得W中元素保留，最终该连乘式中有一些元素来自<img src="https://latex.codecogs.com/svg.image?\prod\left&space;(&space;W^{i}&space;\right&space;)&space;" title="\prod\left ( W^{i} \right ) " />，如果大部分<img src="https://latex.codecogs.com/svg.image?W^{i}" title="W^{i}" />中 值都大于1，且层数比较大，那么连乘之后可能导致梯度爆炸的问题。</p>
+<p>由于激活函数Relu求导后或者是1或者是0，变为对角矩阵的斜对角线元素后，与$W^{i}$做乘积，斜对角线为1的部分会使得W中元素保留，最终该连乘式中有一些元素来自$\prod\left ( W^{i} \right )$ ，如果大部分$W^{i}$中 值都大于1，且层数比较大，那么连乘之后可能导致梯度爆炸的问题。</p>
 <h5 id="1-3-2-梯度爆炸问题"><a href="#1-3-2-梯度爆炸问题" class="headerlink" title="1.3.2 梯度爆炸问题"></a>1.3.2 梯度爆炸问题</h5><ul>
 <li><p>值超出值域（infinity）</p>
 <ul>
@@ -3196,7 +3215,7 @@ True
 <li>黄色曲线为梯度，注意到当输入x值取±6时，此时梯度已经变得很小，由图也可以看出，当输入值稍大或稍小都很容易引起小梯度。</li>
 </ul>
 <img src="/2024/04/23/11-01-14/14-06.png" class="">
-<p>所以最终连乘式中<img src="https://latex.codecogs.com/svg.image?\prod&space;diag\left&space;(&space;\sigma&space;^{'}\left&space;(&space;W^{i}h^{i-1}&space;\right&space;)&space;\right&space;)&space;" title="\prod diag\left ( \sigma ^{'}\left ( W^{i}h^{i-1} \right ) \right ) " />项乘出来会很小，导致整个梯度很小，产生梯度消失问题。</p>
+<p>所以最终连乘式中$\prod diag\left ( \sigma ^{‘}\left ( W^{i}h^{i-1} \right ) \right )$项乘出来会很小，导致整个梯度很小，产生梯度消失问题。</p>
 <h5 id="1-4-2-梯度消失的问题"><a href="#1-4-2-梯度消失的问题" class="headerlink" title="1.4.2 梯度消失的问题"></a>1.4.2 梯度消失的问题</h5><ul>
 <li><p>梯度值变为0</p>
 <ul>
@@ -3275,18 +3294,16 @@ True
 </li>
 <li><p>最后一行由于wi,j独立同分布，方差相同，加上做了hj独立同分布的假设，所以可以写成 <strong>[t-1层输出维度] x [t层权重方差] x [t-1层输出方差]</strong> 的形式</p>
 </li>
-<li><p>此时，我们回过头来看我们的终极目标<a href="#22-基本假设：让每层的均值/方差是一个常数">2.2节</a>的假设，每层输出期望为0我们已经可以满足(2.4.1节已经推导出)，而方差相同这一目标，通过上图的推导，我们发现需要<img src="https://latex.codecogs.com/svg.image?&space;n_{t-1}\gamma&space;_{t}=1&space;" title=" n_{t-1}\gamma _{t}=1 " />。</p>
+<li><p>此时，我们回过头来看我们的终极目标<a href="#22-基本假设：让每层的均值/方差是一个常数">2.2节</a>的假设，每层输出期望为0我们已经可以满足(2.4.1节已经推导出)，而方差相同这一目标，通过上图的推导，我们发现需要&lt;$n_{t-1}\gamma _{t}=1$。</p>
 </li>
 </ul>
 <h5 id="2-4-3-反向均值和方差"><a href="#2-4-3-反向均值和方差" class="headerlink" title="2.4.3 反向均值和方差"></a>2.4.3 反向均值和方差</h5><img src="/2024/04/23/11-01-14/14-11.png" class="">
-<p>反向的情况和正向的类似，不过此时我们需要满足的式子变为<img src="https://latex.codecogs.com/svg.image?&space;n_{t}\gamma&space;_{t}=1&space;" title=" n_{t}\gamma _{t}=1 " />。</p>
+<p>反向的情况和正向的类似，不过此时我们需要满足的式子变为$n_{t}\gamma _{t}=1$。</p>
 <h5 id="2-4-4-Xavier初始"><a href="#2-4-4-Xavier初始" class="headerlink" title="2.4.4 Xavier初始"></a>2.4.4 Xavier初始</h5><ul>
-<li><p>上述推导带来的问题：难以同时满足<img src="https://latex.codecogs.com/svg.image?&space;n_{t-1}\gamma&space;_{t}=1&space;" title=" n_{t-1}\gamma _{t}=1 " />和<img src="https://latex.codecogs.com/svg.image?&space;n_{t}\gamma&space;_{t}=1&space;" title=" n_{t}\gamma _{t}=1 " />。（需要每层输出的维度都相同）</p>
+<li><p>上述推导带来的问题：难以同时满足$n_{t-1}\gamma _{t}=1$和$n_{t}\gamma _{t}=1$。（需要每层输出的维度都相同）</p>
 </li>
 <li><p>采用Xavier折中解决，不能同时满足上面两式，转而满足 [<strong>上面两式做加法后除以2</strong>] 得到的式子，用两种分布进行初始化（每层方差、均值满足推导式）。</p>
-<div align="center">
-   <img src="../imgs/14/14-12.png" alt="image" align="center" width="500" />
-</div>
+<img src="/2024/04/23/11-01-14/14-12.png" class="">
 </li>
 <li><p>如果能确定每层输入、输出维度大小，则能确定该层权重的方差大小。</p>
 </li>
@@ -3339,7 +3356,15 @@ True
   <entry>
     <title>13-丢弃法</title>
     <url>/2024/04/23/11-01-13/</url>
-    <content><![CDATA[<h2 id="13-丢弃法"><a href="#13-丢弃法" class="headerlink" title="13-丢弃法"></a>13-丢弃法</h2><h3 id="1-丢弃法动机、实现及原则"><a href="#1-丢弃法动机、实现及原则" class="headerlink" title="1.丢弃法动机、实现及原则"></a>1.丢弃法动机、实现及原则</h3><h4 id="1-1动机"><a href="#1-1动机" class="headerlink" title="1.1动机"></a>1.1动机</h4><ul>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="13-丢弃法"><a href="#13-丢弃法" class="headerlink" title="13-丢弃法"></a>13-丢弃法</h2><h3 id="1-丢弃法动机、实现及原则"><a href="#1-丢弃法动机、实现及原则" class="headerlink" title="1.丢弃法动机、实现及原则"></a>1.丢弃法动机、实现及原则</h3><h4 id="1-1动机"><a href="#1-1动机" class="headerlink" title="1.1动机"></a>1.1动机</h4><ul>
 <li>一个好的模型需要对输入数据的扰动鲁棒（健壮性）</li>
 </ul>
 <h4 id=""><a href="#" class="headerlink" title=" "></a> </h4><img src="/2024/04/23/11-01-13/13-02.jpg" class="">       
@@ -3358,8 +3383,12 @@ True
 <img src="/2024/04/23/11-01-13/13-04.png" class="">
 <ul>
 <li>能够满足加入噪音的期望相同原则</li>
+<li>一定概率变为0，一定概率变得很大</li>
 </ul>
 <img src="/2024/04/23/11-01-13/13-05.png" class="">
+<ul>
+<li>期望没有发生变化，分母的意义</li>
+</ul>
 <h3 id="3-丢弃法使用"><a href="#3-丢弃法使用" class="headerlink" title="3.丢弃法使用"></a>3.丢弃法使用</h3><h4 id="3-1丢弃法的使用位置"><a href="#3-1丢弃法的使用位置" class="headerlink" title="3.1丢弃法的使用位置"></a>3.1丢弃法的使用位置</h4><ul>
 <li>通常将丢弃法作用在隐藏全连接层的输出上</li>
 </ul>
@@ -3389,35 +3418,38 @@ True
   <entry>
     <title>12 权重衰退 Weight Decay</title>
     <url>/2024/04/23/11-01-12/</url>
-    <content><![CDATA[<h2 id="12-权重衰退-Weight-Decay"><a href="#12-权重衰退-Weight-Decay" class="headerlink" title="12 权重衰退 Weight Decay"></a>12 权重衰退 Weight Decay</h2><p>权重衰退是最常见的一种处理过拟合的方法，是最广泛使用的正则化技术之一。</p>
-<blockquote>
-<h4 id="复习：控制模型容量"><a href="#复习：控制模型容量" class="headerlink" title="复习：控制模型容量"></a>复习：控制模型容量</h4><ol>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="12-权重衰退-Weight-Decay"><a href="#12-权重衰退-Weight-Decay" class="headerlink" title="12 权重衰退 Weight Decay"></a>12 权重衰退 Weight Decay</h2><p>权重衰退是最常见的一种处理过拟合的方法，是最广泛使用的正则化技术之一。</p>
+<h4 id="复习：控制模型容量"><a href="#复习：控制模型容量" class="headerlink" title="复习：控制模型容量"></a>复习：控制模型容量</h4><blockquote>
+<ol>
 <li>使用更少参数</li>
 <li>控制每个参数（取值/可选择的值）范围较小</li>
 </ol>
 </blockquote>
 <p>其中权重衰退属于第二种方法。</p>
-<h3 id="1-硬性限制-直观理解"><a href="#1-硬性限制-直观理解" class="headerlink" title="1. 硬性限制/直观理解"></a>1. 硬性限制/直观理解</h3><p>我们的优化目标仍然是$min\space\ell(\bold{w},b)$，只是额外对$\bold{w}$添加一个限制条件$||\bold{w}||^2\leqslant\theta$，即权重的各项平方和小于一个特定的常数$\theta$。那么设定一个较小的$\theta$就会使得$\bold{w}$中每个元素的值都不会太大。</p>
+<h3 id="1-硬性限制-直观理解"><a href="#1-硬性限制-直观理解" class="headerlink" title="1. 硬性限制/直观理解"></a>1. 硬性限制/直观理解</h3><p>我们的优化目标仍然是$min\space\ell(\boldsymbol{w},b)$，只是额外对$\boldsymbol{w}$添加一个限制条件$||\boldsymbol{w}||^2\leqslant\theta$，即权重的各项平方和小于一个特定的常数$\theta$。那么设定一个较小的$\theta$就会使得$\boldsymbol{w}$中每个元素的值都不会太大。</p>
 <p>通常不会限制偏移b，理论上讲b表示整个数据在零点上的偏移，因此是不应该限制的，但实践中限制与否对结果都没什么影响。</p>
 <p><strong>吴恩达课程中对这一现象的解释是w是高维向量，已经包含了绝大多数参数足以表达高方差问题，b作为单个数字对结果的影响就会很小.</strong></p>
-<p>小的$\theta$意味着更强的正则项，对于相同的$\theta$，$\bold{w}$中元素越多则单个元素的值会越小。</p>
+<p>小的$\theta$意味着更强的正则项，对于相同的$\theta$，$\boldsymbol{w}$中元素越多则单个元素的值会越小。</p>
 <h3 id="2-柔性限制-实际应用"><a href="#2-柔性限制-实际应用" class="headerlink" title="2. 柔性限制/实际应用"></a>2. 柔性限制/实际应用</h3><p>上文说的硬性限制在实际使用时比较麻烦，实际上常用的函数是</p>
-<p>$$<br>\begin{split}</p>
-<p>min\space\ell(\bold{w},b)+\frac{\lambda}{2}||\bold{w}||^2</p>
-<p>\end{split}<br>$$</p>
+<p>$$<br>\begin{split}<br>min\space\ell(\boldsymbol{w},b)+\frac{\lambda}{2}||\boldsymbol{w}||^2<br>\end{split}<br>$$</p>
 <p>可以通过拉格朗日乘子证明对于每个$\theta$都可以找到$\lambda$使得硬性限制的目标函数等价于上式。</p>
-<p>其中$\frac{\lambda}{2}||\bold{w}||^2$这一项被称为罚(penalty)，$\lambda$是超参数，控制了正则项的重要程度。</p>
-<p>当 $\lambda=0$ 时无作用，$\lambda\rightarrow\infty$ 时最优解 $\bold{w}^*\rightarrow0$，也就是说 $\lambda$ 越大模型复杂度就被控制的越低。</p>
+<p>其中$\frac{\lambda}{2}||\boldsymbol{w}||^2$这一项被称为罚(penalty)，$\lambda$是超参数，控制了正则项的重要程度。</p>
+<p>当 $\lambda=0$ 时无作用，$\lambda\rightarrow\infty$ 时最优解 $\boldsymbol{w}^*\rightarrow0$，也就是说 $\lambda$ 越大模型复杂度就被控制的越低。</p>
 <p>下面是老师给出的演示图</p>
 <img src="/2024/04/23/11-01-12/12-01.JPG" class="">
-<p>以$\bold{w}$中只有两个参数为例，其中绿色的部分是原本损失函数函数值的“等高线”，黄色部分可以看作是正则项对应函数值的“等高线” ，使用权重衰减后需要优化的损失函数相当于图中两组等高线叠加。原本最优解位于绿色中心，现在这一位置在对于正则项有很高的损失，而正则项最小值位于原点，因此现在的最终优化解会更靠近原点，而当所有参数都更靠近原点时模型的规模也就更小。</p>
-<h3 id="3-参数更新"><a href="#3-参数更新" class="headerlink" title="3. 参数更新"></a>3. 参数更新</h3><h4 id="3-1-计算梯度"><a href="#3-1-计算梯度" class="headerlink" title="3.1 计算梯度"></a>3.1 计算梯度</h4><p>$$<br>\begin{split}</p>
-<p>\frac{\partial{} }{\partial{\bold{w} } }(\ell(\bold{w},b)+\frac{\lambda}{2}||\bold{w}||^2)=\frac{\partial{\ell(\bold{w},b)} }{ {\partial{\bold{w} } } }+\lambda\bold{w}</p>
-<p>\end{split}<br>$$</p>
+<p>以$\boldsymbol{w}$中只有两个参数为例，其中绿色的部分是原本损失函数函数值的“等高线”，黄色部分可以看作是正则项对应函数值的“等高线” ，使用权重衰减后需要优化的损失函数相当于图中两组等高线叠加。原本最优解位于绿色中心，现在这一位置在对于正则项有很高的损失，而正则项最小值位于原点，因此现在的最终优化解会更靠近原点，而当所有参数都更靠近原点时模型的规模也就更小。</p>
+<h3 id="3-参数更新"><a href="#3-参数更新" class="headerlink" title="3. 参数更新"></a>3. 参数更新</h3><h4 id="3-1-计算梯度"><a href="#3-1-计算梯度" class="headerlink" title="3.1 计算梯度"></a>3.1 计算梯度</h4><p>$$<br>\begin{split}<br>\frac{\partial{} }{\partial{\boldsymbol{w} } }(\ell(\boldsymbol{w},b)+\frac{\lambda}{2}||\boldsymbol{w}||^2)=\frac{\partial{\ell(\boldsymbol{w},b)} }{ {\partial{\boldsymbol{w} } } }+\lambda\boldsymbol{w}<br>\end{split}<br>$$</p>
 <h4 id="3-2-更新参数"><a href="#3-2-更新参数" class="headerlink" title="3.2 更新参数"></a>3.2 更新参数</h4><p>将上式结果带入更新参数公式整理可得</p>
-<p>$$<br>\begin{split}</p>
-<p>\bold{w}_{t+1}=(1-\eta\lambda)\bold{w}_{t}-\eta\frac{\partial{\ell(\bold{w}_t,b_t)} }{ {\partial{\bold{w}_{t} } } }<br>\end{split}<br>$$</p>
-<p>注意到这个公式中后一项与原来更新参数的公式没有区别，仅仅是在前一项$\bold{w}_{t}$ 上加了一个系数$(1-\eta\lambda)$。通常$\eta\lambda&lt;1$ ，也就是说由于引入了$\lambda$，每次更新参数前先给待更新参数乘上一个小于1的权重再更新，权重衰退由此得名。</p>
+<p>$$<br>\begin{split}<br>\boldsymbol{w}_{t+1}=(1-\eta\lambda)\boldsymbol{w}_{t}-\eta\frac{\partial{\ell(\boldsymbol{w}_t,b_t)} }{ {\partial{\boldsymbol{w}_{t} } } }<br>\end{split}<br>$$</p>
+<p>注意到这个公式中后一项与原来更新参数的公式没有区别，仅仅是在前一项$\boldsymbol{w}_{t}$ 上加了一个系数$(1-\eta\lambda)$。通常$\eta\lambda&lt;1$ ，也就是说由于引入了$\lambda$，每次更新参数前先给待更新参数乘上一个小于1的权重再更新，权重衰退由此得名。</p>
 <h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><ul>
 <li>权重衰退通过L2正则项使得模型参数不会过大，从而控制模型复杂度</li>
 <li>正则项权重（$\lambda$）是控制模型复杂度的超参数                                                                                                                                       </li>
@@ -3464,14 +3496,14 @@ $\mathbf{w}_{t+1}=\mathbf{w}_{t}-\eta\frac{\partial{\ell(\mathbf{w}_t,b_t)} }{ {
 </li>
 <li><p>Q：关于L2范数的记法</p>
 </li>
-<li><p>A：完整的写法是$||\bold{w}||^2_2$，上标的2表示平方，下标的2表示是L2范数，下标有时省略。</p>
+<li><p>A：完整的写法是$||\boldsymbol{w}||^2_2$，上标的2表示平方，下标的2表示是L2范数，下标有时省略。</p>
 </li>
-<li><p>Q：为什么要把$\bold{w}$往小拉？如果最优解的$\bold{w}$本来就较大权重衰减是否会起反作用？/正则项使得$\bold{w}$变得更平均没有突出的值为什么可以拟合的更好呢？</p>
+<li><p>Q：为什么要把$\boldsymbol{w}$往小拉？如果最优解的$\boldsymbol{w}$本来就较大权重衰减是否会起反作用？/正则项使得$\boldsymbol{w}$变得更平均没有突出的值为什么可以拟合的更好呢？</p>
 </li>
 <li><p>A：实际训练的数据都是有噪音的，而这些噪音可能会被拟合进去使得我们实际求解时得不到数学上的最优解，正则化起到将结果拉向最优解的作用。当然如果$\lambda$选取过大可能会拉小的过多，如果没有过拟合那权重衰减就不起作用。</p>
 <p><strong>笔者注：这部分老师花了较长时间解释，建议大家自己去看视频。我的个人理解是重点不在于w大小/是否平均，而是由于数据有噪声，而噪声引起过拟合使得求出的w比数学上的最优解更大/更不平均，这时就需要正则化起到一个将结果拉向更小/平均/接近最优解的作用。</strong></p>
 </li>
-<li><p>Q：噪音大会使得$\bold{w}$较大是经验所得还是可以证明？</p>
+<li><p>Q：噪音大会使得$\boldsymbol{w}$较大是经验所得还是可以证明？</p>
 </li>
 <li>A：可以证明，但本课程中不讲，可以自己尝试。</li>
 <li>Q：怎样调整$\lambda$？</li>
@@ -3489,7 +3521,15 @@ $\mathbf{w}_{t+1}=\mathbf{w}_{t}-\eta\frac{\partial{\ell(\mathbf{w}_t,b_t)} }{ {
   <entry>
     <title>11-模型选择+过拟合和欠拟合</title>
     <url>/2024/04/23/11-01-11/</url>
-    <content><![CDATA[<h2 id="11-模型选择-过拟合和欠拟合"><a href="#11-模型选择-过拟合和欠拟合" class="headerlink" title="11-模型选择+过拟合和欠拟合"></a>11-模型选择+过拟合和欠拟合</h2><h3 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1. 模型选择"></a>1. 模型选择</h3><p>本小节主要介绍了评估模型的一些指标和方法</p>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="11-模型选择-过拟合和欠拟合"><a href="#11-模型选择-过拟合和欠拟合" class="headerlink" title="11-模型选择+过拟合和欠拟合"></a>11-模型选择+过拟合和欠拟合</h2><h3 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1. 模型选择"></a>1. 模型选择</h3><p>本小节主要介绍了评估模型的一些指标和方法</p>
 <h4 id="1-1-实例分析：预测谁会偿还贷款"><a href="#1-1-实例分析：预测谁会偿还贷款" class="headerlink" title="1.1 实例分析：预测谁会偿还贷款"></a>1.1 实例分析：预测谁会偿还贷款</h4><ul>
 <li>银行雇你来调查谁会偿还贷款，你得到了100个申请人的信息，其中五个人在3年内违约了。然后你惊讶的发现，<strong>所有的五个人在面试时都穿了蓝色衬衫</strong>。显然，你的模型也发现了这个强信号，这会有什么问题？</li>
 </ul>
@@ -3534,14 +3574,15 @@ $\mathbf{w}_{t+1}=\mathbf{w}_{t}-\eta\frac{\partial{\ell(\mathbf{w}_t,b_t)} }{ {
 <li>报告k个验证集误差的平均</li>
 </ul>
 </li>
-<li><p>常用：k = 5或10</p>
+<li>常用：k = 5或10<blockquote>
+<p>随机打散，分割K块，k次计算，第i次，用第i块作为验证集，剩下的作为训练数据集。这样会获得k次误差，算误差平均值。</p>
+</blockquote>
 </li>
-<li><p>K-则交叉验证的目的是在没有足够多数据使用时评估模型和超参数的性能，也就是说，<strong>K次训练和验证使用的是相同的超参数和模型</strong></p>
-</li>
+<li>K-则交叉验证的目的是在没有足够多数据使用时评估模型和超参数的性能，也就是说，<strong>K次训练和验证使用的是相同的超参数和模型</strong></li>
 </ul>
 <h4 id="1-5-总结"><a href="#1-5-总结" class="headerlink" title="1.5 总结"></a>1.5 总结</h4><ul>
 <li>训练数据集：训练模型参数</li>
-<li>验证数据集：选择模型超参数</li>
+<li>验证数据集：选择模型超参数,保留最好的参数</li>
 <li>非大数据集上通常使用k-则交叉验证</li>
 </ul>
 <h3 id="2-过拟合和欠拟合"><a href="#2-过拟合和欠拟合" class="headerlink" title="2. 过拟合和欠拟合"></a>2. 过拟合和欠拟合</h3><h4 id="2-1-什么是过拟合和欠拟合？"><a href="#2-1-什么是过拟合和欠拟合？" class="headerlink" title="2.1 什么是过拟合和欠拟合？"></a>2.1 什么是过拟合和欠拟合？</h4><div class="table-container">
@@ -3609,7 +3650,6 @@ $\mathbf{w}_{t+1}=\mathbf{w}_{t}-\eta\frac{\partial{\ell(\mathbf{w}_t,b_t)} }{ {
 <img src="/2024/04/23/11-01-11/11-05.png" class="">
 <ul>
 <li>支持N维输入的感知机的VC维是N+1</li>
-<li>一些多层感知机的VC维是:<img src="http://chart.googleapis.com/chart?cht=tx&chl=O(Nlog_2N)" style="border:none;"></li>
 </ul>
 <h4 id="2-6-VC维的用处"><a href="#2-6-VC维的用处" class="headerlink" title="2.6 VC维的用处"></a>2.6 VC维的用处</h4><ul>
 <li>提供为什么一个模型好的理论依据<ul>
@@ -3666,22 +3706,24 @@ $\mathbf{w}_{t+1}=\mathbf{w}_{t}-\eta\frac{\partial{\ell(\mathbf{w}_t,b_t)} }{ {
   <entry>
     <title>10-多层感知机</title>
     <url>/2024/04/23/11-01-10/</url>
-    <content><![CDATA[<h2 id="多层感知机"><a href="#多层感知机" class="headerlink" title="多层感知机"></a>多层感知机</h2><h3 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>从现在的观点来看，感知机实际上就是神经网络中的一个神经单元</p>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="多层感知机"><a href="#多层感知机" class="headerlink" title="多层感知机"></a>多层感知机</h2><h3 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>从现在的观点来看，感知机实际上就是神经网络中的一个神经单元</p>
 <img src="/2024/04/23/11-01-10/%E6%84%9F%E7%9F%A5%E6%9C%BA.png" class="">
 <p>感知机能解决二分类问题，但与线性回归和softmax回归有所区别：线性回归与softmax回归的输出均为实数，softmax回归的输出同时还满足概率公理。</p>
 <h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><p>训练感知机的伪代码如下：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">initialize w = <span class="number">0</span> <span class="keyword">and</span> b = <span class="number">0</span></span><br><span class="line">repeat</span><br><span class="line">    <span class="comment">#此处表达式小于0代表预测结果错误</span></span><br><span class="line">    <span class="keyword">if</span> y_i[&lt;w,x_i&gt;+b] &lt;= <span class="number">0</span> then</span><br><span class="line">        w=w + yixi</span><br><span class="line">        b=b + yi</span><br><span class="line">    end <span class="keyword">if</span></span><br><span class="line">until <span class="built_in">all</span> classified correctly</span><br></pre></td></tr></table></figure>
-<p>可以看出这等价于使用如下损失函数的随机梯度下降（batch_size=1）: </p>
-<script type="math/tex; mode=display">
-\ell(y,\bold x,\bold w)=max(0,-y<\bold w,\bold x>)\\
-=max(0,-y\bold w^T\bold x)</script><p>当预测错误时，偏导数为 </p>
-<script type="math/tex; mode=display">
-\frac{\partial \ell}{\partial \bold w}=-y\cdot \bold x</script><p>注：此处为了方便计算，将偏置项b归入w中的最后一维，并在特征x中相应的最后一维加入常数1</p>
-<h4 id="收敛定理"><a href="#收敛定理" class="headerlink" title="收敛定理"></a>收敛定理</h4><p>设数据在特征空间能被半径为r的圆（球）覆盖，并且分类时有余量（即$\sigma$函数的输入不会取使输出模棱两可的值）$y(\bold x^T\bold w)\geq \rho$，若初始参数满足$\|\bold w\|^2+b^2 \leq 1$，则感知机保证在$\frac{r^2+1}{\rho ^2}$步内收敛</p>
+<p>可以看出这等价于使用如下损失函数的随机梯度下降（batch_size=1）:<br>$$<br>\ell(y, \boldsymbol x,\boldsymbol w)=max(0,-y&lt;\boldsymbol w,\boldsymbol x&gt;)\\<br>=max(0,-y\boldsymbol w^T\boldsymbol x)<br>$$<br>当预测错误时，偏导数为<br>$$<br>\frac{\partial \ell}{\partial \boldsymbol w}=-y\cdot \boldsymbol x<br>$$</p>
+<p>注：此处为了方便计算，将偏置项b归入w中的最后一维，并在特征x中相应的最后一维加入常数1</p>
+<h4 id="收敛定理"><a href="#收敛定理" class="headerlink" title="收敛定理"></a>收敛定理</h4><p>设数据在特征空间能被半径为r的圆（球）覆盖，并且分类时有余量（即$\sigma$函数的输入不会取使输出模棱两可的值）$y(\boldsymbol x^T\boldsymbol w)\geq \rho$，若初始参数满足$\|\boldsymbol w\|^2+b^2 \leq 1$，则感知机保证在$\frac{r^2+1}{\rho ^2}$步内收敛</p>
 <p><a href="https://zhuanlan.zhihu.com/p/46762820">收敛性的证明</a></p>
-<h3 id="线性模型的缺陷"><a href="#线性模型的缺陷" class="headerlink" title="线性模型的缺陷"></a>线性模型的缺陷</h3><p>在前面的课程中我们学习了softmax回归，线性回归，他们有将输入向量与一个权重向量做内积再与一个偏置相加得到一个值的过程：</p>
-<script type="math/tex; mode=display">
-O =W^TX+b</script><p>这个过程被称为仿射变换，它是一个带有偏置项的线性变换，它最终产生的模型被称为线性模型，线性模型的特点是只能以线性的方式对特征空间进行划分：</p>
+<h3 id="线性模型的缺陷"><a href="#线性模型的缺陷" class="headerlink" title="线性模型的缺陷"></a>线性模型的缺陷</h3><p>在前面的课程中我们学习了softmax回归，线性回归，他们有将输入向量与一个权重向量做内积再与一个偏置相加得到一个值的过程：<br>$$<br>O =W^TX+b<br>$$<br>这个过程被称为仿射变换，它是一个带有偏置项的线性变换，它最终产生的模型被称为线性模型，线性模型的特点是只能以线性的方式对特征空间进行划分：</p>
 <img src="/2024/04/23/11-01-10/%E7%BA%BF%E6%80%A7%E5%88%92%E5%88%86.png" class="">
 <p>然而，这种线性划分依赖于线性假设，是非常不可靠的</p>
 <ul>
@@ -3712,15 +3754,10 @@ O =W^TX+b</script><p>这个过程被称为仿射变换，它是一个带有偏�
 <h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><p>但是仅仅有线性变换是不够的，如果我们简单的将多个线性变换按层次叠加，由于线性变换的结果仍为线性变换，所以最终的结果等价于线性变换，与单个感知机并无区别，反而加大了模型，浪费了资源，为了防止这个问题，需要对每个单元（感知机）的输出通过激活函数进行处理再交由下一层的感知机进行运算，这些激活函数就是解决非线性问题的关键。</p>
 <p><em>激活函数</em>（activation function）通过计算加权和并加上偏置来确定神经元是否应该被激活，它们将输入信号转换为输出的可微运算。大多数激活函数都是非线性的。</p>
 <p>主要的激活函数有：</p>
-<h5 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h5><p>最受欢迎的激活函数是<em>修正线性单元</em>（Rectified linear<br>unit，<em>ReLU</em>），因为它实现简单，同时在各种预测任务中表现良好。<strong>ReLU提供了一种非常简单的非线性变换</strong>。给定元素$x$，ReLU函数被定义为该元素与$0$的最大值：</p>
-<script type="math/tex; mode=display">
-\operatorname{ReLU}(x) = \max(x, 0)</script><p>ReLU函数通过将相应的活性值设为0，仅保留正元素并丢弃所有负元素。为了直观感受一下，我们可以画出函数的曲线图。正如从图中所看到，激活函数是分段线性的。使用ReLU的原因是，它求导表现得特别好：要么让参数消失，要么让参数通过。这使得优化表现的更好，并且ReLU减轻了困扰以往神经网络的梯度消失问题</p>
-<h5 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h5><p><strong>对于一个定义域在$\mathbb{R}$中的输入，<em>sigmoid函数</em>将输入变换为区间(0,1)上的输出</strong>。 因此，sigmoid通常称为<em>挤压函数</em>（squashing function）：它将范围$（-\infty, \infty）$中的任意输入压缩到区间（0,1）中的某个值：</p>
-<script type="math/tex; mode=display">
-\operatorname{sigmoid}(x) = \frac{1}{1 + e^{-x}}.</script><p>在基于梯度的学习中，sigmoid函数是一个自然的选择，因为它是一个平滑的、可微的阈值单元近似。当我们想要将输出视作二元分类问题的概率时，sigmoid仍然被广泛用作输出单元上的激活函数（你可以将sigmoid视为softmax的特例）。然而，sigmoid在隐藏层中已经较少使用，它在大部分时候被更简单、更容易训练的ReLU所取代。</p>
-<h5 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h5><p>与sigmoid函数类似，<strong>tanh(双曲正切)函数也能将其输入压缩转换到区间(-1,1)上</strong>。tanh函数的公式如下： </p>
-<script type="math/tex; mode=display">
-\operatorname{tanh}(x) = \frac{1 - e^{-2x}}{1 + e^{-2x}}</script><h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>还可以使用更多隐藏层的感知机和softmax函数解决分类问题</p>
+<h5 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h5><p>最受欢迎的激活函数是<em>修正线性单元</em>（Rectified linear<br>unit，<em>ReLU</em>），因为它实现简单，同时在各种预测任务中表现良好。<strong>ReLU提供了一种非常简单的非线性变换</strong>。给定元素$x$，ReLU函数被定义为该元素与$0$的最大值：<br>$$<br>\operatorname{ReLU}(x) = \max(x, 0)<br>$$<br>ReLU函数通过将相应的活性值设为0，仅保留正元素并丢弃所有负元素。为了直观感受一下，我们可以画出函数的曲线图。正如从图中所看到，激活函数是分段线性的。使用ReLU的原因是，它求导表现得特别好：要么让参数消失，要么让参数通过。这使得优化表现的更好，并且ReLU减轻了困扰以往神经网络的梯度消失问题</p>
+<h5 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h5><p><strong>对于一个定义域在$\mathbb{R}$中的输入，<em>sigmoid函数</em>将输入变换为区间(0,1)上的输出</strong>。 因此，sigmoid通常称为<em>挤压函数</em>（squashing function）：它将范围$（-\infty, \infty）$中的任意输入压缩到区间（0,1）中的某个值：<br>$$<br>\operatorname{sigmoid}(x) = \frac{1}{1 + e^{-x}}.<br>$$<br>在基于梯度的学习中，sigmoid函数是一个自然的选择，因为它是一个平滑的、可微的阈值单元近似。当我们想要将输出视作二元分类问题的概率时，sigmoid仍然被广泛用作输出单元上的激活函数（你可以将sigmoid视为softmax的特例）。然而，sigmoid在隐藏层中已经较少使用，它在大部分时候被更简单、更容易训练的ReLU所取代。</p>
+<h5 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h5><p>与sigmoid函数类似，<strong>tanh(双曲正切)函数也能将其输入压缩转换到区间(-1,1)上</strong>。tanh函数的公式如下：<br>$$<br>\operatorname{tanh}(x) = \frac{1 - e^{-2x}}{1 + e^{-2x}}<br>$$</p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>还可以使用更多隐藏层的感知机和softmax函数解决分类问题</p>
 <h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ol>
 <li>证明一个仅使用ReLU（或pReLU）的多层感知机构造了一个连续的分段线性函数。</li>
 </ol>
@@ -3784,7 +3821,15 @@ O =W^TX+b</script><p>这个过程被称为仿射变换，它是一个带有偏�
   <entry>
     <title>09-softmax回归</title>
     <url>/2024/04/23/11-01-09/</url>
-    <content><![CDATA[<h1 id="09-softmax回归"><a href="#09-softmax回归" class="headerlink" title="09-softmax回归"></a>09-softmax回归</h1><h3 id="1-回归VS分类："><a href="#1-回归VS分类：" class="headerlink" title="1.回归VS分类："></a>1.回归VS分类：</h3><ul>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h1 id="09-softmax回归"><a href="#09-softmax回归" class="headerlink" title="09-softmax回归"></a>09-softmax回归</h1><h3 id="1-回归VS分类："><a href="#1-回归VS分类：" class="headerlink" title="1.回归VS分类："></a>1.回归VS分类：</h3><ul>
 <li>回归估计一个连续值</li>
 <li>分类预测一个离散类别</li>
 </ul>
@@ -3804,46 +3849,38 @@ O =W^TX+b</script><p>这个过程被称为仿射变换，它是一个带有偏�
 <img src="/2024/04/23/11-01-09/09-03.png" class="">
 <h5 id="均方损失："><a href="#均方损失：" class="headerlink" title="均方损失："></a>均方损失：</h5><ul>
 <li><p>对类别进行一位有效编码</p>
-<p><img src="http://latex.codecogs.com/gif.latex?\\
-y=[y_{1},y_{2},...,y_{n}]^{T}" alt=""><br><img src="http://latex.codecogs.com/gif.latex?\\\
-y_{i}=\begin{cases}
-1&amp;i=y\\
-2&amp;otherwise
-\end{cases}" alt=""></p>
+<p>$y=[y_{1},y_{2},…,y_{n}]^{T}$<br>$y_{i}=\begin{cases}<br>1&amp;i=y\\<br>2&amp;otherwise<br>\end{cases}$</p>
 </li>
 <li><p>使用均方损失训练</p>
 </li>
-<li><p>最大值为预测<br><img src="http://latex.codecogs.com/gif.latex?\\
-\hat{y}=\underset {i}{argmax}\quad o^{i}" alt=""></p>
-<h5 id="无校验比例"><a href="#无校验比例" class="headerlink" title="无校验比例"></a>无校验比例</h5></li>
+<li><p>最大值为预测<br>$<br>\hat{y}=\underset {i}{argmax}\quad o^{i}<br>$</p>
+</li>
+</ul>
+<h5 id="无校验比例"><a href="#无校验比例" class="headerlink" title="无校验比例"></a>无校验比例</h5><ul>
 <li><p>对类别进行一位有效编码</p>
 </li>
-<li><p>最大值为预测<br><img src="http://latex.codecogs.com/gif.latex?\\
-\hat{y}=\underset {i}{argmax}\quad o^{i}" alt=""></p>
+<li><p>最大值为预测<br>$<br>\hat{y}=\underset {i}{argmax}\quad o^{i}<br>$</p>
 </li>
-<li><p>需要更置信的识别正确类（大余量）<br><img src="http://latex.codecogs.com/gif.latex?\\
-o_y-o_i\geq\Delta(y,i" alt=""><br>)</p>
+<li><p>需要更置信的识别正确类（大余量）<br>$<br>o_y-o_i\geq\Delta(y,i)<br>$</p>
 </li>
 </ul>
 <h5 id="校验比例"><a href="#校验比例" class="headerlink" title="校验比例"></a>校验比例</h5><ul>
-<li><p>输出匹配概率（非负，和为1）<br><img src="http://latex.codecogs.com/gif.latex?\\
-\hat{y}=softmax(o" alt=""><br>)</p>
-<p><img src="http://latex.codecogs.com/gif.latex?\\
-\hat{y_i}=\frac{exp(o_i" alt="">}{\sum_{k} exp(o_k)}<br>)</p>
+<li><p>输出匹配概率（$\hat{y}$非负，和为1）<br>$<br>\hat{y}=softmax(o)<br>$</p>
+<p>$<br>\hat{y_i}=\frac{exp(o_i)}{\sum_{k} exp(o_k)}<br>$</p>
 </li>
 </ul>
 <ul>
-<li>概率y和$\hat{y}$的区别作为损失</li>
+<li>概率$y$和$\hat{y}$的区别作为损失</li>
 </ul>
 <h4 id="1-2-Softmax和交叉熵损失"><a href="#1-2-Softmax和交叉熵损失" class="headerlink" title="1.2 Softmax和交叉熵损失"></a>1.2 Softmax和交叉熵损失</h4><ul>
 <li><p>交叉熵用来衡量两个概率的区别$H(p,q)=\sum_{i} -p_{i}log(q_i)$</p>
 </li>
-<li><p>将它作为损失<br><img src="http://latex.codecogs.com/gif.latex?\\
-l(y,\hat{y}" alt="">=-\sum_{i}y_{i}log\hat{y_{i}}=-log\hat{y_y}<br>)</p>
+<li><p>将它作为损失<br>$<br>l(y,\hat{y})=-\sum_{i}y_{i}log\hat{y_{i}}=-log\hat{y_y}<br>$</p>
+<blockquote>
+<p>推导过程？</p>
+</blockquote>
 </li>
-<li><p>其梯度是真实概率和预测概率的区别<br><img src="http://latex.codecogs.com/gif.latex?\\
-\partial_{o_{i}}l(y,\hat{y}" alt="">=softmax(o)_{i}-y_{i}<br>)</p>
-</li>
+<li>其梯度是真实概率和预测概率的区别<br>$<br>\partial_{o_{i}}l(y,\hat{y})=softmax(o)_{i}-y_{i}<br>$</li>
 </ul>
 <blockquote>
 <p>Softmax回归是一个多类分类模型</p>
@@ -3851,40 +3888,51 @@ l(y,\hat{y}" alt="">=-\sum_{i}y_{i}log\hat{y_{i}}=-log\hat{y_y}<br>)</p>
 <p>使用交叉熵来衡量和预测标号的区别</p>
 </blockquote>
 <h3 id="2-损失函数"><a href="#2-损失函数" class="headerlink" title="2.损失函数"></a>2.损失函数</h3><img src="/2024/04/23/11-01-09/09-04.png" class="">
-<h4 id="2-1-L2-Loss"><a href="#2-1-L2-Loss" class="headerlink" title="2.1 L2 Loss"></a>2.1 L2 Loss</h4><p><img src="http://latex.codecogs.com/gif.latex?\\
-l(y,y^{&#39;}" alt="">=\frac{1}{2}(y-y^{‘})^2<br>)</p>
+<h4 id="2-1-L2-Loss-均方损失"><a href="#2-1-L2-Loss-均方损失" class="headerlink" title="2.1 L2 Loss  均方损失"></a>2.1 L2 Loss  均方损失</h4><p>$<br>l(y,y^{‘})=\frac{1}{2}(y-y^{‘})^2<br>$</p>
 <img src="/2024/04/23/11-01-09/09-05.png" class="">
 <blockquote>
-<p>梯度会随着结果逼近而下降</p>
+<p>蓝色：y=0<br>绿色似然函数,高斯分布<br>损失函数的梯度，一次函数<br>梯度会随着结果逼近而下降</p>
 </blockquote>
-<h4 id="2-2-L1-Loss"><a href="#2-2-L1-Loss" class="headerlink" title="2.2 L1 Loss"></a>2.2 L1 Loss</h4><p><img src="http://latex.codecogs.com/gif.latex?\\
-l(y,y^{&#39;}" alt="">=\lvert y-y^{‘}\rvert<br>)</p>
+<h4 id="2-2-L1-Loss-绝对值损失函数"><a href="#2-2-L1-Loss-绝对值损失函数" class="headerlink" title="2.2 L1 Loss  绝对值损失函数"></a>2.2 L1 Loss  绝对值损失函数</h4><p>$<br>l(y,y^{‘})=\lvert y-y^{‘}\rvert<br>$</p>
 <img src="/2024/04/23/11-01-09/09-06.png" class="">
 <blockquote>
 <p>梯度保持不变，但在0处梯度随机</p>
 </blockquote>
-<h4 id="2-3Huber’s-Robust-Loss"><a href="#2-3Huber’s-Robust-Loss" class="headerlink" title="2.3Huber’s Robust Loss"></a>2.3Huber’s Robust Loss</h4><img src="/2024/04/23/11-01-09/09-07.png" class="">
+<h4 id="2-3Huber’s-Robust-Loss-鲁棒损失"><a href="#2-3Huber’s-Robust-Loss-鲁棒损失" class="headerlink" title="2.3Huber’s Robust Loss   鲁棒损失"></a>2.3Huber’s Robust Loss   鲁棒损失</h4><img src="/2024/04/23/11-01-09/09-07.png" class="">
 <blockquote>
 <p>结合L1 Loss和L2 Loss的优点</p>
 </blockquote>
 <h3 id="3-图片分类数据集"><a href="#3-图片分类数据集" class="headerlink" title="3.图片分类数据集"></a>3.图片分类数据集</h3><h4 id="3-1-Fashion-MNIST数据集："><a href="#3-1-Fashion-MNIST数据集：" class="headerlink" title="3.1 Fashion-MNIST数据集："></a>3.1 Fashion-MNIST数据集：</h4><ul>
 <li><p>读取数据集</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">trans=transforms.ToTensor()</span><br><span class="line">mnist_train=torchvision.datasets.FashionMNIST(root=<span class="string">&quot;../data&quot;</span>,train=<span class="literal">True</span>,                                              transform=trans,download=<span class="literal">True</span>)</span><br><span class="line">mnist_test=torchvision.datasets.FashionMNIST(root=<span class="string">&quot;../data&quot;</span>,train=<span class="literal">False</span>,                                             transform=trans,download=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 通过ToTensor实例将图像数据从PIL类型变换成32位浮点数格式，</span></span><br><span class="line"><span class="comment"># 并除以255使得所有像素的数值均在0～1之间</span></span><br><span class="line"><span class="comment"># 转换为张量形式 trans</span></span><br><span class="line"><span class="comment"># 读取为训练集，测试集，读取为张量形式还不是图片形式</span></span><br><span class="line">trans=transforms.ToTensor()</span><br><span class="line">mnist_train=torchvision.datasets.FashionMNIST(root=<span class="string">&quot;../data&quot;</span>,train=<span class="literal">True</span>,                                              transform=trans,download=<span class="literal">True</span>)</span><br><span class="line">mnist_test=torchvision.datasets.FashionMNIST(root=<span class="string">&quot;../data&quot;</span>,train=<span class="literal">False</span>,                                             transform=trans,download=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>数据集内图片大小</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">mnist_train[<span class="number">0</span>][<span class="number">0</span>].shape</span><br><span class="line">torch.Size([<span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一张图片的shape</span></span><br><span class="line">mnist_train[<span class="number">0</span>][<span class="number">0</span>].shape</span><br><span class="line">torch.Size([<span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>])</span><br></pre></td></tr></table></figure>
 <p>表示图片为单通道（黑白）的28X28的图片</p>
 </li>
-<li><p>显示数据集图像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">X,y = next(iter(data.DataLoader(mnist_train,batch_size=18)))</span><br><span class="line">show_images(X.reshape(18,28,28),2,9,titles=get_fashion_mnist_labels(y))</span><br></pre></td></tr></table></figure>
+<li><p>两个可视化函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_fashion_mnist_labels</span>(<span class="params">labels</span>):  </span><br><span class="line">  <span class="string">&quot;&quot;&quot;返回Fashion-MNIST数据集的文本标签&quot;&quot;&quot;</span></span><br><span class="line">  text_labels = [<span class="string">&#x27;t-shirt&#x27;</span>, <span class="string">&#x27;trouser&#x27;</span>, <span class="string">&#x27;pullover&#x27;</span>, <span class="string">&#x27;dress&#x27;</span>, <span class="string">&#x27;coat&#x27;</span>,</span><br><span class="line">                 <span class="string">&#x27;sandal&#x27;</span>, <span class="string">&#x27;shirt&#x27;</span>, <span class="string">&#x27;sneaker&#x27;</span>, <span class="string">&#x27;bag&#x27;</span>, <span class="string">&#x27;ankle boot&#x27;</span>]</span><br><span class="line">  <span class="keyword">return</span> [text_labels[<span class="built_in">int</span>(i)] <span class="keyword">for</span> i <span class="keyword">in</span> labels]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">show_images</span>(<span class="params">imgs, num_rows, num_cols, titles=<span class="literal">None</span>, scale=<span class="number">1.5</span></span>):  </span><br><span class="line">  <span class="string">&quot;&quot;&quot;绘制图像列表&quot;&quot;&quot;</span></span><br><span class="line">  figsize = (num_cols * scale, num_rows * scale)</span><br><span class="line">  _, axes = d2l.plt.subplots(num_rows, num_cols, figsize=figsize)</span><br><span class="line">  axes = axes.flatten()</span><br><span class="line">  <span class="keyword">for</span> i, (ax, img) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(axes, imgs)):</span><br><span class="line">      <span class="keyword">if</span> torch.is_tensor(img):</span><br><span class="line">          <span class="comment"># 图片张量</span></span><br><span class="line">          ax.imshow(img.numpy())</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">          <span class="comment"># PIL图片</span></span><br><span class="line">          ax.imshow(img)</span><br><span class="line">      ax.axes.get_xaxis().set_visible(<span class="literal">False</span>)</span><br><span class="line">      ax.axes.get_yaxis().set_visible(<span class="literal">False</span>)</span><br><span class="line">      <span class="keyword">if</span> titles:</span><br><span class="line">          ax.set_title(titles[i])</span><br><span class="line">  <span class="keyword">return</span> axes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<ul>
+<li><p>显示数据集图像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 画2行每行9个，titles拿出</span><br><span class="line">X,y = next(iter(data.DataLoader(mnist_train,batch_size=18)))</span><br><span class="line">show_images(X.reshape(18,28,28),2,9,titles=get_fashion_mnist_labels(y))</span><br></pre></td></tr></table></figure>
 <img src="/2024/04/23/11-01-09/09-08.png" class="">
-<h3 id="4-从零实现softmax回归"><a href="#4-从零实现softmax回归" class="headerlink" title="4.从零实现softmax回归"></a>4.从零实现softmax回归</h3><h4 id="softmax"><a href="#softmax" class="headerlink" title="softmax:"></a>softmax:</h4><script type="math/tex; mode=display">
-softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">softmax</span>(<span class="params">X</span>):</span><br><span class="line">    X_exp = torch.exp(X)</span><br><span class="line">    partition = X_exp.<span class="built_in">sum</span>(<span class="number">1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> X_exp / partition</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>定义load_data_fashion_mnist函数<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_data_fashion_mnist</span>(<span class="params">batch_size, resize=<span class="literal">None</span></span>):  </span><br><span class="line">  <span class="string">&quot;&quot;&quot;下载Fashion-MNIST数据集，然后将其加载到内存中&quot;&quot;&quot;</span></span><br><span class="line">  trans = [transforms.ToTensor()]</span><br><span class="line">  <span class="keyword">if</span> resize:</span><br><span class="line">      trans.insert(<span class="number">0</span>, transforms.Resize(resize))</span><br><span class="line">  trans = transforms.Compose(trans)</span><br><span class="line">  mnist_train = torchvision.datasets.FashionMNIST(</span><br><span class="line">      root=<span class="string">&quot;../data&quot;</span>, train=<span class="literal">True</span>, transform=trans, download=<span class="literal">True</span>)</span><br><span class="line">  mnist_test = torchvision.datasets.FashionMNIST(</span><br><span class="line">      root=<span class="string">&quot;../data&quot;</span>, train=<span class="literal">False</span>, transform=trans, download=<span class="literal">True</span>)</span><br><span class="line">  <span class="keyword">return</span> (data.DataLoader(mnist_train, batch_size, shuffle=<span class="literal">True</span>,</span><br><span class="line">                          num_workers=get_dataloader_workers()),</span><br><span class="line">          data.DataLoader(mnist_test, batch_size, shuffle=<span class="literal">False</span>,</span><br><span class="line">                          num_workers=get_dataloader_workers()))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我们通过指定resize参数来测试load_data_fashion_mnist函数的图像大小调整功能。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_iter, test_iter = load_data_fashion_mnist(<span class="number">32</span>, resize=<span class="number">64</span>)</span><br><span class="line"><span class="keyword">for</span> X, y <span class="keyword">in</span> train_iter:</span><br><span class="line">  <span class="built_in">print</span>(X.shape, X.dtype, y.shape, y.dtype)</span><br><span class="line">  <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-从零实现softmax回归"><a href="#4-从零实现softmax回归" class="headerlink" title="4.从零实现softmax回归"></a>4.从零实现softmax回归</h3><h4 id="softmax"><a href="#softmax" class="headerlink" title="softmax:"></a>softmax:</h4><p>$$<br>softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">softmax</span>(<span class="params">X</span>):</span><br><span class="line">    <span class="comment"># 求每一个元素的指数计算</span></span><br><span class="line">    X_exp = torch.exp(X)</span><br><span class="line">    <span class="comment"># 按行求和</span></span><br><span class="line">    partition = X_exp.<span class="built_in">sum</span>(<span class="number">1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> X_exp / partition</span><br></pre></td></tr></table></figure>
 <ol>
 <li><p>将图像展平，每个图像看做长度为784的向量，因为数据集有十个类别，所以网络输出维度为10。以此设定参数大小并初始化：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num_inputs = <span class="number">784</span></span><br><span class="line">num_outputs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">W = torch.normal(<span class="number">0</span>, <span class="number">0.01</span>, size=(num_inputs, num_outputs), requires_grad=<span class="literal">True</span>)</span><br><span class="line">b = torch.zeros(num_outputs, requires_grad=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 图片是一个三维的，拉长为一个向量,softmax回归输入为向量</span></span><br><span class="line">num_inputs = <span class="number">784</span></span><br><span class="line">num_outputs = <span class="number">10</span></span><br><span class="line"><span class="comment"># 用高斯回归初始权重，均值0，方差0.01，形状行列为输入输出个数，需要计算梯度</span></span><br><span class="line">W = torch.normal(<span class="number">0</span>, <span class="number">0.01</span>, size=(num_inputs, num_outputs), requires_grad=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 输出需要一个偏移</span></span><br><span class="line">b = torch.zeros(num_outputs, requires_grad=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>实现softmax回归模型：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">net</span>(<span class="params">X</span>):</span><br><span class="line">    <span class="keyword">return</span> softmax(torch.matmul(X.reshape((-<span class="number">1</span>, W.shape[<span class="number">0</span>])), W) + b)</span><br></pre></td></tr></table></figure>
@@ -3907,10 +3955,14 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 </li>
 </ol>
 <img src="/2024/04/23/11-01-09/09-09.png" class="">
+<ol>
+<li>动画<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animator</span>: </span><br><span class="line">  <span class="string">&quot;&quot;&quot;在动画中绘制数据&quot;&quot;&quot;</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, xlabel=<span class="literal">None</span>, ylabel=<span class="literal">None</span>, legend=<span class="literal">None</span>, xlim=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">               ylim=<span class="literal">None</span>, xscale=<span class="string">&#x27;linear&#x27;</span>, yscale=<span class="string">&#x27;linear&#x27;</span>,</span></span><br><span class="line"><span class="params">               fmts=(<span class="params"><span class="string">&#x27;-&#x27;</span>, <span class="string">&#x27;m--&#x27;</span>, <span class="string">&#x27;g-.&#x27;</span>, <span class="string">&#x27;r:&#x27;</span></span>), nrows=<span class="number">1</span>, ncols=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">               figsize=(<span class="params"><span class="number">3.5</span>, <span class="number">2.5</span></span>)</span>):</span><br><span class="line">      <span class="comment"># 增量地绘制多条线</span></span><br><span class="line">      <span class="keyword">if</span> legend <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">          legend = []</span><br><span class="line">      d2l.use_svg_display()</span><br><span class="line">      self.fig, self.axes = d2l.plt.subplots(nrows, ncols, figsize=figsize)</span><br><span class="line">      <span class="keyword">if</span> nrows * ncols == <span class="number">1</span>:</span><br><span class="line">          self.axes = [self.axes, ]</span><br><span class="line">      <span class="comment"># 使用lambda函数捕获参数</span></span><br><span class="line">      self.config_axes = <span class="keyword">lambda</span>: d2l.set_axes(</span><br><span class="line">          self.axes[<span class="number">0</span>], xlabel, ylabel, xlim, ylim, xscale, yscale, legend)</span><br><span class="line">      self.X, self.Y, self.fmts = <span class="literal">None</span>, <span class="literal">None</span>, fmts</span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self, x, y</span>):</span><br><span class="line">      <span class="comment"># 向图表中添加多个数据点</span></span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">hasattr</span>(y, <span class="string">&quot;__len__&quot;</span>):</span><br><span class="line">          y = [y]</span><br><span class="line">      n = <span class="built_in">len</span>(y)</span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">hasattr</span>(x, <span class="string">&quot;__len__&quot;</span>):</span><br><span class="line">          x = [x] * n</span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> self.X:</span><br><span class="line">          self.X = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> self.Y:</span><br><span class="line">          self.Y = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">      <span class="keyword">for</span> i, (a, b) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(x, y)):</span><br><span class="line">          <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> b <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">              self.X[i].append(a)</span><br><span class="line">              self.Y[i].append(b)</span><br><span class="line">      self.axes[<span class="number">0</span>].cla()</span><br><span class="line">      <span class="keyword">for</span> x, y, fmt <span class="keyword">in</span> <span class="built_in">zip</span>(self.X, self.Y, self.fmts):</span><br><span class="line">          self.axes[<span class="number">0</span>].plot(x, y, fmt)</span><br><span class="line">      self.config_axes()</span><br><span class="line">      display.display(self.fig)</span><br><span class="line">      display.clear_output(wait=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <h3 id="5-softmax的简洁实现"><a href="#5-softmax的简洁实现" class="headerlink" title="5.softmax的简洁实现"></a>5.softmax的简洁实现</h3><blockquote>
 <p>调用torch内的网络层</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> d2l <span class="keyword">import</span> torch <span class="keyword">as</span> d2l</span><br><span class="line">batch_size=<span class="number">256</span></span><br><span class="line">train_iter,test_iter=d2l.load_data_fashion_mnist(batch_size)</span><br><span class="line">net=nn.Sequential(nn.Flatten(),nn.Linear(<span class="number">784</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_weights</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(m) == nn.Linear:</span><br><span class="line">        nn.init.normal_(m.weight,std=<span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line">net.apply(init_weights)</span><br><span class="line">loss=nn.CrossEntropyLoss()</span><br><span class="line">trainer=torch.optim.SGD(net.parameters(),lr=<span class="number">0.1</span>)</span><br><span class="line">num_epochs=<span class="number">10</span></span><br><span class="line">d2l.train_ch3(net,train_iter,test_iter,loss,num_epochs,trainer)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#train_iter 返回一个训练集测试集的迭代器</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> d2l <span class="keyword">import</span> torch <span class="keyword">as</span> d2l</span><br><span class="line">batch_size=<span class="number">256</span></span><br><span class="line">train_iter,test_iter=d2l.load_data_fashion_mnist(batch_size)</span><br><span class="line">net=nn.Sequential(nn.Flatten(),nn.Linear(<span class="number">784</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_weights</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(m) == nn.Linear:</span><br><span class="line">        nn.init.normal_(m.weight,std=<span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line">net.apply(init_weights)</span><br><span class="line">loss=nn.CrossEntropyLoss()</span><br><span class="line">trainer=torch.optim.SGD(net.parameters(),lr=<span class="number">0.1</span>)</span><br><span class="line">num_epochs=<span class="number">10</span></span><br><span class="line">d2l.train_ch3(net,train_iter,test_iter,loss,num_epochs,trainer)</span><br></pre></td></tr></table></figure>
 <h3 id="6-softmax回归Q-amp-A"><a href="#6-softmax回归Q-amp-A" class="headerlink" title="6.softmax回归Q&amp;A"></a>6.softmax回归Q&amp;A</h3><p><strong>Q1:softlabel训练策略以及为什么有效？</strong></p>
 <blockquote>
 <p>softmax用指数很难逼近1，softlabel将正例和负例分别标记为0.9和0.1使结果逼近变得可能，这是一个常用的小技巧。</p>
@@ -3921,7 +3973,7 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <h5 id="Q3-为什么使用交叉熵，而不用相对熵，互信息熵等其他基于信息量的度量？"><a href="#Q3-为什么使用交叉熵，而不用相对熵，互信息熵等其他基于信息量的度量？" class="headerlink" title="Q3:为什么使用交叉熵，而不用相对熵，互信息熵等其他基于信息量的度量？"></a>Q3:为什么使用交叉熵，而不用相对熵，互信息熵等其他基于信息量的度量？</h5><blockquote>
 <p>实际上使用哪一种熵的效果区别不大，所以哪种简单就用哪种</p>
 </blockquote>
-<h5 id="Q4-为什么我们只关心正确类，而不关心不正确的类呢？"><a href="#Q4-为什么我们只关心正确类，而不关心不正确的类呢？" class="headerlink" title="Q4:   为什么我们只关心正确类，而不关心不正确的类呢？"></a>Q4:<img src="http://latex.codecogs.com/gif.latex?\\y*log\hat{y}" alt="">   为什么我们只关心正确类，而不关心不正确的类呢？</h5><blockquote>
+<h5 id="Q4-y-log-hat-y-为什么我们只关心正确类，而不关心不正确的类呢？"><a href="#Q4-y-log-hat-y-为什么我们只关心正确类，而不关心不正确的类呢？" class="headerlink" title="Q4:$y*log\hat{y}$   为什么我们只关心正确类，而不关心不正确的类呢？"></a>Q4:$y*log\hat{y}$   为什么我们只关心正确类，而不关心不正确的类呢？</h5><blockquote>
 <p>并不是不关心，而是不正确的的类标号为零，所以算式中不体现，如果使用softlabel策略，就会体现出不正确的类。</p>
 </blockquote>
 <h5 id="Q5-似然函数曲线是怎么得出来的？有什么参考意义？"><a href="#Q5-似然函数曲线是怎么得出来的？有什么参考意义？" class="headerlink" title="Q5:似然函数曲线是怎么得出来的？有什么参考意义？"></a>Q5:似然函数曲线是怎么得出来的？有什么参考意义？</h5><blockquote>
@@ -3947,7 +3999,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>08-线性回归+基础优化算法</title>
     <url>/2024/04/23/11-01-08/</url>
-    <content><![CDATA[<h2 id="线性回归-基础优化算法"><a href="#线性回归-基础优化算法" class="headerlink" title="线性回归+基础优化算法"></a>线性回归+基础优化算法</h2><h3 id="1-线性回归"><a href="#1-线性回归" class="headerlink" title="1.线性回归"></a>1.线性回归</h3><ul>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="线性回归-基础优化算法"><a href="#线性回归-基础优化算法" class="headerlink" title="线性回归+基础优化算法"></a>线性回归+基础优化算法</h2><h3 id="1-线性回归"><a href="#1-线性回归" class="headerlink" title="1.线性回归"></a>1.线性回归</h3><ul>
 <li><p>房价预测例子</p>
 </li>
 <li><p><strong>线性模型</strong></p>
@@ -3959,10 +4019,10 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <li><p>输出 ：$y=\omega_1x_1+\omega_2x_2+…+\omega_nx_n+b$，</p>
 <p>向量版本的是 $y=&lt;\omega,x&gt;+b$</p>
 </li>
-<li><p>线性模型可以看作是单层神经网络（图片）</p>
+<li><p>线性模型可以看作是单层神经网络</p>
 <blockquote>
 <ul>
-<li>神经网络源于神经科学（图片）<ul>
+<li>神经网络源于神经科学<ul>
 <li>最早的神经网络是源自神经科学的，但是时至今日，很多神经网络已经远远高于神经科学，可解释性也不是很强，不必纠结</li>
 </ul>
 </li>
@@ -3997,10 +4057,10 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <li><p><strong>参数学习</strong></p>
 <ul>
 <li><p><strong>训练损失</strong>。但我们训练参数的时候，需要定义一个损失函数来衡量参数的好坏，应用前文提过的平方损失有公式：</p>
-<p>​    $l(X,x,\omega,b)=\frac{1}{2n}\sum_{i=1}^n(y_i-<x_i,w>-b)^2=\frac{1}{2n}||y-X\omega-b||^2$</p>
+<p>$l(X,x,\omega,b)=\frac{1}{2n}\sum_{i=1}^n(y_i-{&lt; x_i, w &gt;}-b)^2=\frac{1}{2n}||y-X\omega-b||^2$</p>
 </li>
 <li><p><strong>最小化损失来学习参数</strong>。训练参数的目的就是使损失函数的值尽可能小（这意味着预估值和真实值更接近）。最后求得的参数值可表示为：</p>
-<p>$\omega^<em>,b^</em>=argmin_{\omega,b}l(X,x,\omega,b)$</p>
+<p>$\omega^*,b^*=argmin_{\omega,b}l(X,x,\omega,b)$</p>
 </li>
 </ul>
 </li>
@@ -4122,10 +4182,18 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>07-链式法则与自动求导</title>
     <url>/2024/04/23/11-01-07/</url>
-    <content><![CDATA[<h2 id="07-链式法则与自动求导"><a href="#07-链式法则与自动求导" class="headerlink" title="07-链式法则与自动求导"></a>07-链式法则与自动求导</h2><h3 id="1-向量链式法则"><a href="#1-向量链式法则" class="headerlink" title="1. 向量链式法则"></a>1. 向量链式法则</h3><ul>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="07-链式法则与自动求导"><a href="#07-链式法则与自动求导" class="headerlink" title="07-链式法则与自动求导"></a>07-链式法则与自动求导</h2><h3 id="1-向量链式法则"><a href="#1-向量链式法则" class="headerlink" title="1. 向量链式法则"></a>1. 向量链式法则</h3><ul>
 <li><h4 id="1-1-标量链式法则"><a href="#1-1-标量链式法则" class="headerlink" title="1.1 标量链式法则"></a>1.1 标量链式法则</h4></li>
 </ul>
-<p><img src="..\imgs\07\image-01" alt="image-20220107231957396" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-01.png" class="">
 <ul>
 <li><h4 id="1-2-拓展到向量"><a href="#1-2-拓展到向量" class="headerlink" title="1.2 拓展到向量"></a>1.2 拓展到向量</h4><blockquote>
 <p>需要注意维数的变化</p>
@@ -4138,16 +4206,16 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 </blockquote>
 </li>
 </ul>
-<p><img src="..\imgs\07\image-02" alt="image-20220107231931153" style="zoom: 80%;" /></p>
+<img src="/2024/04/23/11-01-07/image-02.png" class="">
 <hr>
 <h5 id="例1（标量对向量求导）"><a href="#例1（标量对向量求导）" class="headerlink" title="例1（标量对向量求导）"></a>例1（标量对向量求导）</h5><blockquote>
 <p>这里应该是用分子布局，所以是X转置</p>
 </blockquote>
-<p>​                                 <img src="..\imgs\07\image-03" alt="image-20220107233527373" style="zoom: 67%;" />          </p>
+<p>​                                 <img src="/2024/04/23/11-01-07/image-03.png" class="">   </p>
 <h5 id="例2（涉及到矩阵的情况）"><a href="#例2（涉及到矩阵的情况）" class="headerlink" title="例2（涉及到矩阵的情况）"></a>例2（涉及到矩阵的情况）</h5><blockquote>
 <p>X是mxn的矩阵,w为n维向量，y为m维向量；<br>z对Xw-y做L2 norm,为标量；<br>过程与例一大体一致；</p>
 </blockquote>
-<p>​                                   <img src="..\imgs\07\image-04" alt="image-20220107233753066" style="zoom: 67%;" />   </p>
+<p>​                                   <img src="/2024/04/23/11-01-07/image-04.png" class=""></p>
 <hr>
 <blockquote>
 <p>由于在神经网络动辄几百层，手动进行链式求导是很困难的，因此我们需要借助自动求导</p>
@@ -4159,10 +4227,10 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <li><p>自动求导有别于</p>
 <ul>
 <li><p>符号求导</p>
-<p><img src="..\imgs\07\image-05" alt="image-20220107235547201" style="zoom: 50%;" /> </p>
+<img src="/2024/04/23/11-01-07/image-05.png" class="">
 </li>
 <li><p>数值求导</p>
-<p><img src="..\imgs\07\image-06" alt="image-20220107235611767" style="zoom: 50%;" /> </p>
+<img src="/2024/04/23/11-01-07/image-06.png" class="">
 </li>
 </ul>
 </li>
@@ -4177,42 +4245,42 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 </blockquote>
 </li>
 </ul>
-<p><img src="..\imgs\07\image-07" alt="image-20220107235918270" style="zoom: 67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-07.png" class="">
 <p>​     </p>
 <ul>
-<li><p>计算图有两种构造方式</p>
+<li><p>计算图有两种构造方式<br>计算与上图无关</p>
 <ul>
 <li><p>显示构造</p>
 <blockquote>
 <p>可以理解为先定义公式再代值</p>
 <p>Tensorflow/Theano/MXNet</p>
 </blockquote>
-<p>​                                  <img src="..\imgs\07\image-08" alt="image-20220108000740736" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-08.png" class="">
 </li>
 <li><p>隐式构造</p>
 <blockquote>
 <p>系统将所有的计算记录下来</p>
 <p>Pytorch/MXNet</p>
 </blockquote>
-<p>​                                 <img src="..\imgs\07\image-09" alt="image-20220108001154208" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-09.png" class="">
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="2-2-自动求导的两种模式"><a href="#2-2-自动求导的两种模式" class="headerlink" title="2.2 自动求导的两种模式"></a>2.2 自动求导的两种模式</h4><ul>
 <li><p>正向累积</p>
-<p>​                                   <img src="..\imgs\07\image-10" alt="image-20220108001506326" style="zoom:67%;" /></p>
+ <img src="/2024/04/23/11-01-07/image-10.png" class="">
 </li>
 <li><p>反向累积（反向传递back propagation）</p>
-<p>​                                     <img src="..\imgs\07\image-11" alt="image-20220108001517029" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-11.png" class="">
 </li>
 </ul>
 <p>​    <strong>反向累积计算过程</strong></p>
-<p><img src="..\imgs\07\image-12" alt="image-20220108001847175" style="zoom:67%;" /></p>
+<img src="/2024/04/23/11-01-07/image-12.png" class="">
 <blockquote>
 <p>反向累积的正向过程：自底向上，需要存储中间结果</p>
 <p>反向累积的反向过程：自顶向下，可以去除不需要的枝（图中的x应为w）</p>
-<p>​            <img src="..\imgs\07\image-13" alt="image-20220108002228166" style="zoom:50%;" /></p>
+<img src="/2024/04/23/11-01-07/image-13.png" class="">
 </blockquote>
 <h4 id="2-3-复杂度比较"><a href="#2-3-复杂度比较" class="headerlink" title="2.3 复杂度比较"></a>2.3 复杂度比较</h4><ul>
 <li><p>反向累积</p>
@@ -4312,7 +4380,7 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">x = torch.arange(-20,20,0.1,requires_grad=True,dtype=torch.float32)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line">y.sum().backward()</span><br><span class="line">plt.plot(x.detach(),y.detach(),label=&#x27;y=sinx&#x27;)</span><br><span class="line">plt.plot(x.detach(),x.grad,label=&#x27;dy/dx&#x27;)</span><br><span class="line">plt.legend(loc=&#x27;lower right&#x27;)</span><br></pre></td></tr></table></figure>
 <p>Out[66]:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;matplotlib.legend.Legend at 0x1d627d00280&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="..\imgs\07\image-14" alt="img.png" style="zoom:50%;" /></p>
+<img src="/2024/04/23/11-01-07/image-14.png" class="">
 ]]></content>
       <categories>
         <category>动手学深度学习</category>
@@ -4324,7 +4392,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>06-矩阵计算</title>
     <url>/2024/04/23/11-01-06/</url>
-    <content><![CDATA[<h2 id="06-矩阵计算"><a href="#06-矩阵计算" class="headerlink" title="06-矩阵计算"></a>06-矩阵计算</h2><h3 id="1-导数的概念及几何意义"><a href="#1-导数的概念及几何意义" class="headerlink" title="1. 导数的概念及几何意义"></a>1. 导数的概念及几何意义</h3><h4 id="1-1-标量导数"><a href="#1-1-标量导数" class="headerlink" title="1.1 标量导数"></a>1.1 标量导数</h4><ul>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="06-矩阵计算"><a href="#06-矩阵计算" class="headerlink" title="06-矩阵计算"></a>06-矩阵计算</h2><h3 id="1-导数的概念及几何意义"><a href="#1-导数的概念及几何意义" class="headerlink" title="1. 导数的概念及几何意义"></a>1. 导数的概念及几何意义</h3><h4 id="1-1-标量导数"><a href="#1-1-标量导数" class="headerlink" title="1.1 标量导数"></a>1.1 标量导数</h4><ul>
 <li>导数是切线的斜率</li>
 </ul>
 <img src="/2024/04/23/11-01-06/06-01.png" class="">
@@ -4348,7 +4424,8 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <h4 id="2-2-f是一个向量"><a href="#2-2-f是一个向量" class="headerlink" title="2.2 f是一个向量"></a>2.2 f是一个向量</h4><ul>
 <li><strong>f</strong>是由若干个f(标量)组成的向量</li>
 </ul>
-<h5 id="2-2-1-input是一个标量"><a href="#2-2-1-input是一个标量" class="headerlink" title="2.2.1 input是一个标量"></a>2.2.1 input是一个标量</h5><img src="/style=zoom:%2040%25;float:left" class="06-09.png&quot; alt&#x3D;image" title="&#x2F;&gt; ##### 2.2.2 input是一个向量 {% asset_img &#x2F;2024&#x2F;04&#x2F;23&#x2F;11-01-06&#x2F;06-10.png">
+<h5 id="2-2-1-input是一个标量"><a href="#2-2-1-input是一个标量" class="headerlink" title="2.2.1 input是一个标量"></a>2.2.1 input是一个标量</h5><img src="/2024/04/23/11-01-06/06-09.png" class="">
+<h5 id="2-2-2-input是一个向量"><a href="#2-2-2-input是一个向量" class="headerlink" title="2.2.2 input是一个向量"></a>2.2.2 input是一个向量</h5><img src="/2024/04/23/11-01-06/06-10.png" class="">
 <img src="/2024/04/23/11-01-06/06-11.png" class="">
 <h5 id="2-2-3-input是一个矩阵"><a href="#2-2-3-input是一个矩阵" class="headerlink" title="2.2.3 input是一个矩阵"></a>2.2.3 input是一个矩阵</h5><img src="/2024/04/23/11-01-06/06-12.png" class="">
 <img src="/2024/04/23/11-01-06/06-13.png" class="">
@@ -4364,15 +4441,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <p><strong>可以将f对x1，x2，x3的偏导分别求出来，即</strong></p>
 <img src="/2024/04/23/11-01-06/06-20.png" class="">
 <ul>
-<li>矩阵求导也是一样的，<strong>本质就是</strong> <img src="https://www.zhihu.com/equation?tex=%5Ctext%7Bfunction%7D" alt="[公式]"> 中的<strong>每个</strong> <img src="https://www.zhihu.com/equation?tex=f" alt="[公式]"> <strong>分别对变元中的每个元素逐个求偏导，只不过写成了向量、矩阵形式而已。</strong></li>
+<li>矩阵求导也是一样的，<strong>本质就是</strong> $function$ 中的<strong>每个</strong>$f$ <strong>分别对变元中的每个元素逐个求偏导，只不过写成了向量、矩阵形式而已。</strong></li>
 </ul>
 <img src="/2024/04/23/11-01-06/06-21.png" class="">
 <p>（课上是按行向量展开的）</p>
 <img src="/2024/04/23/11-01-06/06-22.png" class="">
-<p><strong>X为矩阵时</strong>，先把矩阵变元 <img src="https://www.zhihu.com/equation?tex=%5Cpmb%7BX%7D" alt="[公式]"> 进行<strong>转置</strong>，再对<strong>转置后</strong>的<strong>每个位置</strong>的元素逐个求偏导，结果布局和<strong>转置布局一样</strong>。（课上讲的是这种展开方式）</p>
+<p><strong>X为矩阵时</strong>，先把矩阵变元$X$进行<strong>转置</strong>，再对<strong>转置后</strong>的<strong>每个位置</strong>的元素逐个求偏导，结果布局和<strong>转置布局一样</strong>。（课上讲的是这种展开方式）</p>
 <img src="/2024/04/23/11-01-06/06-23.png" class="">
 <ul>
-<li>所以，如果 <img src="https://www.zhihu.com/equation?tex=%5Ctext%7Bfunction%7D" alt="[公式]"> 中有 <img src="https://www.zhihu.com/equation?tex=m" alt="[公式]"> 个 <img src="https://www.zhihu.com/equation?tex=f" alt="[公式]"> (标量)，变元中有 <img src="https://www.zhihu.com/equation?tex=n" alt="[公式]"> 个元素，那么，每个 <img src="https://www.zhihu.com/equation?tex=f" alt="[公式]"> 对变元中的每个元素逐个求偏导后，我们就会产生 <img src="https://www.zhihu.com/equation?tex=m+%5Ctimes+n" alt="[公式]"> 个结果。</li>
+<li>所以，如果 $function$中有 $m$个$f$ (标量)，变元中有 $n$个元素，那么，每个 $f$对变元中的每个元素逐个求偏导后，我们就会产生 $m*n$个结果。</li>
 </ul>
 <h3 id="4-矩阵求导的布局"><a href="#4-矩阵求导的布局" class="headerlink" title="4. 矩阵求导的布局"></a>4. 矩阵求导的布局</h3><ul>
 <li>经过上述对求导本质的推导，关于矩阵求导的问题，实质上就是对求导结果的进一步排布问题<br><strong>对于2.2（f为向量，input也为向量）中的情况，其求导结果有两种排布方式，一种是<code>分子布局</code>，一种是<code>分母布局</code></strong></li>
@@ -4397,7 +4474,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>05-线性代数</title>
     <url>/2024/04/23/11-01-05/</url>
-    <content><![CDATA[<h2 id="05-线性代数"><a href="#05-线性代数" class="headerlink" title="05-线性代数"></a>05-线性代数</h2><h3 id="1-线性代数基础知识"><a href="#1-线性代数基础知识" class="headerlink" title="1. 线性代数基础知识"></a>1. 线性代数基础知识</h3><p>这部分主要是由标量过渡到向量，再从向量拓展到矩阵操作，重点在于理解矩阵层面上的操作（都是大学线代课的内容，熟悉的可以自动忽略）</p>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="05-线性代数"><a href="#05-线性代数" class="headerlink" title="05-线性代数"></a>05-线性代数</h2><h3 id="1-线性代数基础知识"><a href="#1-线性代数基础知识" class="headerlink" title="1. 线性代数基础知识"></a>1. 线性代数基础知识</h3><p>这部分主要是由标量过渡到向量，再从向量拓展到矩阵操作，重点在于理解矩阵层面上的操作</p>
 <h4 id="1-1-标量"><a href="#1-1-标量" class="headerlink" title="1.1 标量"></a>1.1 标量</h4><img src="/2024/04/23/11-01-05/05-01.png" class="">
 <h4 id="1-2-向量"><a href="#1-2-向量" class="headerlink" title="1.2 向量"></a>1.2 向量</h4><img src="/2024/04/23/11-01-05/05-02.png" class="">
 <img src="/2024/04/23/11-01-05/05-03.png" class="">
@@ -4425,8 +4510,8 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <h4 id="2-3-矩阵"><a href="#2-3-矩阵" class="headerlink" title="2.3 矩阵"></a>2.3 矩阵</h4><h5 id="2-3-1-创建"><a href="#2-3-1-创建" class="headerlink" title="2.3.1 创建"></a>2.3.1 创建</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = torch.arange(<span class="number">6</span>)     <span class="comment"># tensor([0, 1, 2, 3, 4, 5])</span></span><br><span class="line">B = torch.tensor([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">0</span>,<span class="number">4</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]])</span><br><span class="line">C = torch.tensor([[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">                   [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">                   [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]],</span><br><span class="line">                  [[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">                   [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>]]])</span><br><span class="line">D = torch.arange(<span class="number">20</span>, dtype=torch.float32)</span><br></pre></td></tr></table></figure>
 <h5 id="2-3-2-转置"><a href="#2-3-2-转置" class="headerlink" title="2.3.2 转置"></a>2.3.2 转置</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = torch.arange(<span class="number">6</span>)     <span class="comment"># tensor([0, 1, 2, 3, 4, 5])</span></span><br><span class="line">A = A.reshape(<span class="number">3</span>,<span class="number">2</span>)      <span class="comment"># tensor([[0, 1],</span></span><br><span class="line">                        <span class="comment">#         [2, 3],</span></span><br><span class="line">                        <span class="comment">#         [4, 5]])</span></span><br><span class="line"></span><br><span class="line">A = A.T                 <span class="comment"># 转置 A.T</span></span><br><span class="line">                        <span class="comment"># tensor([[0, 2, 4],</span></span><br><span class="line">                        <span class="comment">#         [1, 3, 5]])</span></span><br></pre></td></tr></table></figure>
 <h5 id="2-3-3-reshape"><a href="#2-3-3-reshape" class="headerlink" title="2.3.3 reshape"></a>2.3.3 reshape</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用reshape方法创建一个形状为3 x 2的矩阵A</span></span><br><span class="line">A = torch.arange(<span class="number">6</span>)     <span class="comment"># tensor([0, 1, 2, 3, 4, 5])</span></span><br><span class="line">A = A.reshape(<span class="number">3</span>,<span class="number">2</span>)      <span class="comment"># tensor([[0, 1],</span></span><br><span class="line">                        <span class="comment">#         [2, 3],</span></span><br><span class="line">                        <span class="comment">#         [4, 5]])</span></span><br></pre></td></tr></table></figure>
-<p><em><u>tips（确定矩阵shape)：</em>&lt;/u&gt;</p>
-<p><u><em>由外层到内层依次去中括号，并记下去掉中括号后此时元素的个数，任选其中一个元素重复上述去括号的操作直到该元素中无中括号，记下的数字从左到右依次排序中间用x连接即为矩阵shape</em></u></p>
+<p>tips(确定矩阵shape)：</p>
+<p>由外层到内层依次去中括号，并记下去掉中括号后此时元素的个数，任选其中一个元素重复上述去括号的操作直到该元素中无中括号，记下的数字从左到右依次排序中间用x连接即为矩阵shape</p>
 <h5 id="2-3-4-clone"><a href="#2-3-4-clone" class="headerlink" title="2.3.4 clone"></a>2.3.4 clone</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = torch.arange(<span class="number">20</span>, dtype=torch.float32)</span><br><span class="line">A = A.reshape(<span class="number">5</span>,<span class="number">4</span>)</span><br><span class="line">B = A.clone()   <span class="comment"># 通过分配新内存，将A的一个副本分给B，该边B并不影响A的值</span></span><br><span class="line"><span class="built_in">print</span>(B)        <span class="comment"># tensor([[ 0.,  1.,  2.,  3.],</span></span><br><span class="line">                <span class="comment">#         [ 4.,  5.,  6.,  7.],</span></span><br><span class="line">                <span class="comment">#         [ 8.,  9., 10., 11.],</span></span><br><span class="line">                <span class="comment">#         [12., 13., 14., 15.],</span></span><br><span class="line">                <span class="comment">#         [16., 17., 18., 19.]])</span></span><br></pre></td></tr></table></figure>
 <h5 id="2-3-5-sum"><a href="#2-3-5-sum" class="headerlink" title="2.3.5 sum"></a>2.3.5 sum</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = torch.tensor([[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">                   [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">                   [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]],</span><br><span class="line">                  [[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">                   [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>]]])</span><br><span class="line"><span class="built_in">print</span>(A.shape)</span><br><span class="line"><span class="comment"># torch.Size([2, 3, 3])</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>())</span><br><span class="line"><span class="comment"># tensor(54)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">0</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[ 1,  2,  3],</span></span><br><span class="line"><span class="string">        [ 5,  6,  7],</span></span><br><span class="line"><span class="string">        [ 9, 10, 11]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">0</span>, keepdims=<span class="literal">True</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[[ 1,  2,  3],</span></span><br><span class="line"><span class="string">         [ 5,  6,  7],</span></span><br><span class="line"><span class="string">         [ 9, 10, 11]]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">1</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[12, 15, 18],</span></span><br><span class="line"><span class="string">        [ 3,  3,  3]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[[12, 15, 18]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 3,  3,  3]]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">2</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[ 6, 15, 24],</span></span><br><span class="line"><span class="string">        [ 0,  3,  6]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">2</span>, keepdims=<span class="literal">True</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[[ 6],</span></span><br><span class="line"><span class="string">         [15],</span></span><br><span class="line"><span class="string">         [24]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 0],</span></span><br><span class="line"><span class="string">         [ 3],</span></span><br><span class="line"><span class="string">         [ 6]]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=[<span class="number">0</span>,<span class="number">1</span>]))</span><br><span class="line"><span class="comment"># tensor([15, 18, 21])</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=[<span class="number">0</span>,<span class="number">1</span>], keepdims=<span class="literal">True</span>))</span><br><span class="line"><span class="comment"># tensor([[[15, 18, 21]]])</span></span><br></pre></td></tr></table></figure>
 <h5 id="2-3-6-numel"><a href="#2-3-6-numel" class="headerlink" title="2.3.6 numel"></a>2.3.6 numel</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = torch.tensor([[<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>],[<span class="number">1.</span>,<span class="number">1.</span>,<span class="number">1.</span>]])</span><br><span class="line"><span class="built_in">print</span>(A.numel())    <span class="comment"># 6 元素个数</span></span><br></pre></td></tr></table></figure>
@@ -4447,7 +4532,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>04-数据读取和操作</title>
     <url>/2024/04/23/11-01-04/</url>
-    <content><![CDATA[<h2 id="04-数据读取和操作"><a href="#04-数据读取和操作" class="headerlink" title="04-数据读取和操作"></a>04-数据读取和操作</h2><h3 id="1-数据操作"><a href="#1-数据操作" class="headerlink" title="1. 数据操作"></a>1. 数据操作</h3><p>为了能够完成各种数据操作，我们需要某种方法来存储和操作数据。通常，我们需要做两件重要的事：</p>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="04-数据读取和操作"><a href="#04-数据读取和操作" class="headerlink" title="04-数据读取和操作"></a>04-数据读取和操作</h2><h3 id="1-数据操作"><a href="#1-数据操作" class="headerlink" title="1. 数据操作"></a>1. 数据操作</h3><p>为了能够完成各种数据操作，我们需要某种方法来存储和操作数据。通常，我们需要做两件重要的事：</p>
 <ol>
 <li>获取数据；</li>
 <li>将数据读入计算机后对其进行处理。</li>
@@ -4554,7 +4647,10 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 </table>
 </div>
 <h4 id="2-2-处理缺失值"><a href="#2-2-处理缺失值" class="headerlink" title="2.2 处理缺失值"></a>2.2 处理缺失值</h4><p>“NaN”项代表缺失值。[<strong>为了处理缺失的数据，典型的方法包括<em>插值法</em>和<em>删除法</em>，</strong>]其中插值法用一个替代值弥补缺失值，而删除法则直接忽略缺失值。通过位置索引<code>iloc</code>，我们将<code>data</code>分成<code>inputs</code>和<code>outputs</code>，其中前者为<code>data</code>的前两列，而后者为<code>data</code>的最后一列。对于<code>inputs</code>中缺少的数值，我们用同一列的均值替换“NaN”项。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>inputs, outputs = data.iloc[:, <span class="number">0</span>:<span class="number">2</span>], data.iloc[:, <span class="number">2</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>inputs = inputs.fillna(inputs.mean())</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>inputs, outputs = data.iloc[:, <span class="number">0</span>:<span class="number">2</span>], data.iloc[:, <span class="number">2</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>inputs = inputs.fillna(inputs.mean(numeric_only=<span class="literal">True</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>numeric_only=True,处理运行bug</p>
+</blockquote>
 <div class="table-container">
 <table>
 <thead>
@@ -4697,7 +4793,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>03-深度学习安装</title>
     <url>/2024/04/23/11-01-03/</url>
-    <content><![CDATA[<h2 id="03-安装"><a href="#03-安装" class="headerlink" title="03-安装"></a>03-安装</h2><h3 id="1-安装python"><a href="#1-安装python" class="headerlink" title="1.安装python"></a>1.安装python</h3><p>首先前提是安装python，这里推荐安装python3.8 输入命令 <strong><em>sudo apt install python3.8</em></strong> 即可</p>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="03-安装"><a href="#03-安装" class="headerlink" title="03-安装"></a>03-安装</h2><h3 id="1-安装python"><a href="#1-安装python" class="headerlink" title="1.安装python"></a>1.安装python</h3><p>首先前提是安装python，这里推荐安装python3.8 输入命令 <strong><em>sudo apt install python3.8</em></strong> 即可</p>
 <h3 id="2-安装Miniconda-Anaconda"><a href="#2-安装Miniconda-Anaconda" class="headerlink" title="2.安装Miniconda/Anaconda"></a>2.安装Miniconda/Anaconda</h3><ul>
 <li><p>然后第二步，安装 Miniconda（如果已经安装conda或者Miniconda，则可以跳过该步骤)。</p>
 <h4 id="2-1-安装Miniconda"><a href="#2-1-安装Miniconda" class="headerlink" title="2.1 安装Miniconda"></a>2.1 安装Miniconda</h4><ul>
@@ -4752,7 +4856,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>02-深度学习介绍</title>
     <url>/2024/04/23/11-01-02/</url>
-    <content><![CDATA[<h2 id="02-深度学习介绍"><a href="#02-深度学习介绍" class="headerlink" title="02-深度学习介绍"></a>02-深度学习介绍</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><h4 id="1-1-AI地图"><a href="#1-1-AI地图" class="headerlink" title="1.1 AI地图"></a>1.1 AI地图</h4><p>首先画一个简单的人工智能地图：</p>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="02-深度学习介绍"><a href="#02-深度学习介绍" class="headerlink" title="02-深度学习介绍"></a>02-深度学习介绍</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><h4 id="1-1-AI地图"><a href="#1-1-AI地图" class="headerlink" title="1.1 AI地图"></a>1.1 AI地图</h4><p>首先画一个简单的人工智能地图：</p>
 <img src="/2024/04/23/11-01-02/02-01.png" class="">
 <ul>
 <li><p>x轴表示不同的模式or方法：最早的是符号学，接下来是概率模型，之后是机器学习</p>
@@ -4806,15 +4918,14 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
 <p>在接下来几年中，使用深度学习可以将误差降到很低。</p>
 <p>2017年基本所有的团队可以将错误率降到5%以下，基本可以达到人类识别图片的精度。</p>
 </blockquote>
-<h4 id="2-2-物体检测和分割"><a href="#2-2-物体检测和分割" class="headerlink" title="2.2 物体检测和分割"></a>2.2 物体检测和分割</h4><p>当你不仅仅想知道图片里有什么内容，还想知道物体是什么，在什么位置，这就是<strong>物体检测</strong>。<strong>物体分割</strong>是指每一个像素属于什么，属于飞机还是属于人(如下图)，这是图像领域更深层次的一个应用。<br><img src="/2024/04/23/11-01-02/02-03.png" class=""><br>&lt;/div&gt;</p>
-<h4 id="2-3-样式迁移"><a href="#2-3-样式迁移" class="headerlink" title="2.3 样式迁移"></a>2.3 样式迁移</h4><p>原图片+想要迁移的风格=风格迁移后的图片，加了一个可以根据输入改变图片风格的滤镜。<br><img src="/2024/04/23/11-01-02/02-04.png" class=""><br>&lt;/div&gt;</p>
-<h4 id="2-4-人脸合成"><a href="#2-4-人脸合成" class="headerlink" title="2.4 人脸合成"></a>2.4 人脸合成</h4><p>下图中所有的人脸都是假的，由机器合成的图片：<br><img src="/2024/04/23/11-01-02/02-05.png" class=""><br>&lt;/div&gt;</p>
+<h4 id="2-2-物体检测和分割"><a href="#2-2-物体检测和分割" class="headerlink" title="2.2 物体检测和分割"></a>2.2 物体检测和分割</h4><p>当你不仅仅想知道图片里有什么内容，还想知道物体是什么，在什么位置，这就是<strong>物体检测</strong>。<strong>物体分割</strong>是指每一个像素属于什么，属于飞机还是属于人(如下图)，这是图像领域更深层次的一个应用。<br><img src="/2024/04/23/11-01-02/02-03.png" class=""></p>
+<h4 id="2-3-样式迁移"><a href="#2-3-样式迁移" class="headerlink" title="2.3 样式迁移"></a>2.3 样式迁移</h4><p>原图片+想要迁移的风格=风格迁移后的图片，加了一个可以根据输入改变图片风格的滤镜。<br><img src="/2024/04/23/11-01-02/02-04.png" class=""></p>
+<h4 id="2-4-人脸合成"><a href="#2-4-人脸合成" class="headerlink" title="2.4 人脸合成"></a>2.4 人脸合成</h4><p>下图中所有的人脸都是假的，由机器合成的图片：<br><img src="/2024/04/23/11-01-02/02-05.png" class=""></p>
 <h4 id="2-5-文字生成图片"><a href="#2-5-文字生成图片" class="headerlink" title="2.5 文字生成图片"></a>2.5 文字生成图片</h4><ol>
 <li><p>描述：一个胡萝卜宝宝遛狗的图片。</p>
 </li>
 <li><p>描述：一个牛油果形状的靠背椅。</p>
 <img src="/2024/04/23/11-01-02/02-06.png" class="">
-<p>&lt;/div&gt;</p>
 </li>
 </ol>
 <h4 id="2-6-文字生成"><a href="#2-6-文字生成" class="headerlink" title="2.6 文字生成"></a>2.6 文字生成</h4><blockquote>
@@ -4910,7 +5021,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>01-深度学习课程安排</title>
     <url>/2024/04/23/11-01-01/</url>
-    <content><![CDATA[<h2 id="01-课程安排"><a href="#01-课程安排" class="headerlink" title="01-课程安排"></a>01-课程安排</h2><h3 id="1-课程目标"><a href="#1-课程目标" class="headerlink" title="1. 课程目标"></a>1. 课程目标</h3><ul>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="01-课程安排"><a href="#01-课程安排" class="headerlink" title="01-课程安排"></a>01-课程安排</h2><h3 id="1-课程目标"><a href="#1-课程目标" class="headerlink" title="1. 课程目标"></a>1. 课程目标</h3><ul>
 <li>介绍深度学习经典和最新模型<ul>
 <li>LeNet, ResNet, LSTM, BERT, …</li>
 </ul>
@@ -4967,7 +5086,15 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
   <entry>
     <title>00-深度学习预告</title>
     <url>/2024/04/23/11-01-00/</url>
-    <content><![CDATA[<h2 id="00-预告"><a href="#00-预告" class="headerlink" title="00-预告"></a>00-预告</h2><h3 id="1-学习深度学习关键是动手"><a href="#1-学习深度学习关键是动手" class="headerlink" title="1. 学习深度学习关键是动手"></a>1. 学习深度学习关键是动手</h3><ul>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.04.24：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
+</li>
+</ul>
+<h2 id="00-预告"><a href="#00-预告" class="headerlink" title="00-预告"></a>00-预告</h2><h3 id="1-学习深度学习关键是动手"><a href="#1-学习深度学习关键是动手" class="headerlink" title="1. 学习深度学习关键是动手"></a>1. 学习深度学习关键是动手</h3><ul>
 <li>深度学习是人工智能最热的领域</li>
 <li>核心是神经网络</li>
 <li>神经网络是一门语言</li>
@@ -5534,18 +5661,28 @@ softmax(X)_{ij}=\frac{exp(X_{ij})}{\sum_{k} exp(X_{ik})}</script><figure class="
     <content><![CDATA[<h1 id="hexo引擎更换"><a href="#hexo引擎更换" class="headerlink" title="hexo引擎更换"></a>hexo引擎更换</h1><h2 id="latex特殊转义"><a href="#latex特殊转义" class="headerlink" title="latex特殊转义"></a>latex特殊转义</h2><p>选用hexo-renderer-kramed渲染器</p>
 <blockquote>
 <p>作为行内代码：$ a+b $<br>行内公式：<code>\$\$ a+b \$\$</code></p>
+</blockquote>
 <h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><ul>
 <li>换行：\begin{align*}  //  \end{align*}  转为 \begin{split}</li>
-<li>换行中间不能有空行<h3 id="乘法"><a href="#乘法" class="headerlink" title="乘法*"></a>乘法*</h3></li>
-<li>乘法需要加\*转义<h3 id="求导偏导"><a href="#求导偏导" class="headerlink" title="求导偏导"></a>求导偏导</h3></li>
+<li>换行中间不能有空行</li>
+</ul>
+<h3 id="乘法"><a href="#乘法" class="headerlink" title="乘法*"></a>乘法*</h3><ul>
+<li>乘法需要加\*转义</li>
+</ul>
+<h3 id="求导偏导"><a href="#求导偏导" class="headerlink" title="求导偏导"></a>求导偏导</h3><ul>
 <li>求导 <code>d</code>  直接写</li>
-<li>偏导 <code>\partial</code><h2 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h2><h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3>与正文空一行，才能正常转义<h3 id="跳转1"><a href="#跳转1" class="headerlink" title="跳转1"></a>跳转<sup><a href="#fn_1" id="reffn_1">1</a></sup></h3></li>
+<li>偏导 <code>\partial</code></li>
+</ul>
+<h3 id="大写bold"><a href="#大写bold" class="headerlink" title="大写bold"></a>大写bold</h3><ul>
+<li>改为<code>boldsymbol</code></li>
+</ul>
+<h2 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h2><h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>与正文空一行，才能正常转义</p>
+<h3 id="跳转1"><a href="#跳转1" class="headerlink" title="跳转1"></a>跳转<sup><a href="#fn_1" id="reffn_1">1</a></sup></h3><ul>
 <li><blockquote id="fn_1">
 <sup>1</sup>. <code>[^1]</code>: 设置标签， 在需要跳转的地方写入<code>[^1]:</code>生成跳转箭头<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
 </blockquote>
 </li>
 </ul>
-</blockquote>
 ]]></content>
       <categories>
         <category>markdown</category>
