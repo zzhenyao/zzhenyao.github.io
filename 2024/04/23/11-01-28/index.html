@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="28-批量归一化">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-28/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-28/deep_model.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/28/cat-dog-train.svg">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/28/cat-dog-test.svg">
+<meta property="article:published_time" content="2024-04-23T03:01:28.000Z">
+<meta property="article:modified_time" content="2024-04-24T04:03:52.072Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/11-01-28/deep_model.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-28/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-28/","path":"2024/04/23/11-01-28/","title":"28-批量归一化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>28-批量归一化 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">批量归一化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%B7%B1%E5%B1%82%E7%BD%91%E7%BB%9C%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">训练深层网络时的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96-1"><span class="nav-number">1.2.</span> <span class="nav-text">批量归一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E5%BC%8F%E5%8C%96%E8%A1%A8%E8%BE%BE"><span class="nav-number">1.3.</span> <span class="nav-text">形式化表达</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96%E5%B1%82"><span class="nav-number">1.4.</span> <span class="nav-text">批量归一化层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82"><span class="nav-number">1.4.1.</span> <span class="nav-text">全连接层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82"><span class="nav-number">1.4.2.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96"><span class="nav-number">1.4.3.</span> <span class="nav-text">预测过程中的批量归一化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="nav-number">1.4.4.</span> <span class="nav-text">实现细节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%B4%E6%81%A9%E8%BE%BE%E8%80%81%E5%B8%88%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96"><span class="nav-number">1.5.</span> <span class="nav-text">吴恩达老师深度学习课程中的批量归一化</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="28-批量归一化 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          28-批量归一化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:28" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:28+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 12:03:52" itemprop="dateModified" datetime="2024-04-24T12:03:52+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐</div>
+	<hr>
+        <h2 id="批量归一化"><a href="#批量归一化" class="headerlink" title="批量归一化"></a>批量归一化</h2><p>深层神经网络的训练，尤其是使网络在较短时间内收敛是十分困难的，<strong>批量归一化[batch normalization]</strong>是一种流行且有效的技术，能加速深层网络的收敛速度，目前仍被广泛使用。</p>
+<h3 id="训练深层网络时的问题"><a href="#训练深层网络时的问题" class="headerlink" title="训练深层网络时的问题"></a>训练深层网络时的问题</h3><img src="/2024/04/23/11-01-28/deep_model.png" class="">
+<p>深度神经网络在训练时会遇到一些问题：</p>
+<ul>
+<li>收敛速度慢：<ul>
+<li>由于训练时先正向传播后反向传播，且每层的梯度一般较小，若网络较深，则反向传播时会出现类似于梯度消失的现象，导致距离数据更近的层梯度较小，收敛慢，而距离输出更近的层梯度较大，收敛快。然而底部的层一般都用于提取较基础的特征信息，上方的层收敛后，由于底部提取基础特征的层仍在变化，上方的层一直在不停的重新训练，导致整个网络难以收敛，训练较慢。</li>
+</ul>
+</li>
+<li>内部协变量转移：<ul>
+<li>分布偏移：偏移在视频课程中并未出现，但在《动手学深度学习》这本书中有提到过，在<a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/chapter_multilayer-perceptrons/environment.html">4.9. 环境和分布偏移</a>部分。偏移指的是训练数据可能和测试数据的分布不同，比如利用来自真实的猫和狗的照片的训练数据训练模型，然后让模型去预测动画中的猫和狗的图片。<img src="../imgs/28/cat-dog-train.svg" alt="cat-dog-train"><img src="../imgs/28/cat-dog-test.svg" alt="cat-dog-test">这显然会降低正确率也会对模型的进一步优化带来干扰。一般情况下对于分布偏移我们毫无办法，然而，在一些特定场景中，如果假定一些训练数据和测试数据分布的前提条件，就能对分布偏移进行处理，其中之一就是协变量偏移。</li>
+<li>协变量偏移：协变量偏移假设输入的分布可能随时间变化，但标签函数（条件分布$P(y|\bold x)$）没有改变。统计学家称这为<em>协变量偏移</em>（covariate shift）并给出了一些解决方案</li>
+<li><strong>内部协变量偏移(Internal Covariate Shift)</strong>：每一层的参数在更新过程中，会改变下一层输入的分布，导致网络参数变幻莫测，难以收敛，神经网络层数越多，表现得越明显。</li>
+<li><font color="red">注意：</font>
+* <font color="red">1：内部协变量偏移这个词与标准的协变量偏移所有区别。</font>
+* <font color="red">2：能缓解内部协变量偏移仅仅是批量归一化的作者提出的假想，后续论文证实批量归一化实际对内部协变量偏移的缓解帮助不大</font>
+* <font color="red">3：批量归一化一般只影响模型的收敛速度，不影响精度</font></li>
+</ul>
+</li>
+<li>过拟合：<ul>
+<li>由于网络深度加深，变得更为复杂，使得网络容易过拟合。</li>
+</ul>
+</li>
+</ul>
+<h3 id="批量归一化-1"><a href="#批量归一化-1" class="headerlink" title="批量归一化"></a>批量归一化</h3><p><strong>批量归一化(batch normalization)</strong>在 <a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/chapter_references/zreferences.html#ioffe-szegedy-2015">[Ioffe &amp; Szegedy, 2015]</a>中被提出，用于解决上述训练深度网络时的这些问题，然而这只是人们的感性理解，关于批量归一化具体是怎样帮助训练这个问题目前仍待进一步研究。</p>
+<p>批量归一化尝试将每个训练中的mini-batch小批量数据（即会导致参数更新的数据）在每一层的结果进行归一化，使其更稳定，归一化指的是对于当前小批量中的所有样本，求出期望和方差，然后将每个样本减去期望再除以标准差。</p>
+<h3 id="形式化表达"><a href="#形式化表达" class="headerlink" title="形式化表达"></a>形式化表达</h3><p>下面的运算均为向量运算，向量中的每个维度代表一个特征，对于每个特征分别进行计算再拼接在一起即为向量运算。</p>
+<p>设$ \bold x \in \mathcal{B}$为来自一个小批量$\mathcal{B}$的输入，批量规范化BN根据下式进行转换</p>
+<script type="math/tex; mode=display">
+\mathrm{BN}(\mathbf{x}) = \boldsymbol{\gamma} \odot \frac{\mathbf{x} - \hat{\boldsymbol{\mu}}_\mathcal{B}}{\hat{\boldsymbol{\sigma}}_\mathcal{B}} + \boldsymbol{\beta}.</script><p>式中$\hat{\boldsymbol{\mu}}_\mathcal{B}$为小批量$\mathcal{B}$样本均值，$\hat{\boldsymbol{\sigma}}_\mathcal{B}$为样本标准差：</p>
+<script type="math/tex; mode=display">
+\begin{split}\begin{aligned} \hat{\boldsymbol{\mu}}_\mathcal{B} &= \frac{1}{|\mathcal{B}|} \sum_{\mathbf{x} \in \mathcal{B}} \mathbf{x},\\
+\hat{\boldsymbol{\sigma}}_\mathcal{B}^2 &= \frac{1}{|\mathcal{B}|} \sum_{\mathbf{x} \in \mathcal{B}} (\mathbf{x} - \hat{\boldsymbol{\mu}}_{\mathcal{B}})^2 + \epsilon\end{aligned}\end{split}</script><p>其中$\epsilon$用于防止分母为0，经过减期望与除以标准差后得到期望为1方差为0的小批量数据。然而，期望和方差为了使小批量有更自由的选择，再将其乘拉伸参数$\boldsymbol {\gamma}$，加偏移参数$\boldsymbol \beta$，这两个参数与$\bold x$同样大小，是模型中的可学习参数，与其他参数一同更新。</p>
+<p>由于$\hat{\boldsymbol{\mu}}_\mathcal{B}$和$\hat{\boldsymbol{\sigma}}_\mathcal{B}$为由当前小批量计算的值，实际上是整个分布对应的期望与标准差的估计值，由于小批量的随机选择，$\hat{\boldsymbol{\mu}}_\mathcal{B}$和$\hat{\boldsymbol{\sigma}}_\mathcal{B}$会给模型带来一定的与输入数据有关的噪音，而这些噪音也能对模型进行正则化，防止过拟合。为何这种噪音能加快训练并带来正则化还有待研究，不过已有理论说明了为什么批量规范化最适应$50∼100$范围中的中等批量大小的问题。</p>
+<p>训练时不能使用整个数据集，只能一步步的训练和更新；而预测时模型已然固定，可以根据整个数据集精确计算均值和方差。因此，批量归一化对于训练和预测时有两种不同模式。</p>
+<h3 id="批量归一化层"><a href="#批量归一化层" class="headerlink" title="批量归一化层"></a>批量归一化层</h3><p>批量归一化不再单独的考虑单个样本，需要对整个mini-batch进行，因此需要考虑多种情况。</p>
+<h4 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h4><p>通常，我们将批量规范化层置于全连接层中的仿射变换和激活函数之间。如下：</p>
+<script type="math/tex; mode=display">
+\mathbf{h} = \phi(\mathrm{BN}(\mathbf{W}\mathbf{x} + \mathbf{b}))</script><h4 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h4><p>在卷积层中，我们将通道视作每个位置的特征，将每个样本中的每个位置视作一个样本进行计算。每个通道都有着自己的拉伸参数${\gamma}$和偏移参数$\beta$，所有通道加在一起组成了拉伸参数向量$\boldsymbol {\gamma}$和偏移参数向量$\boldsymbol \beta$，若样本数为m，卷积输出为p*q，计算时对m*p*q个向量进行批量归一化运算（即视作有m*p*q个样本）</p>
+<h4 id="预测过程中的批量归一化"><a href="#预测过程中的批量归一化" class="headerlink" title="预测过程中的批量归一化"></a>预测过程中的批量归一化</h4><p>在训练过程中，我们需要不断地更新模型，方差和均值也就在不断地变化，就必须计算当前小批量数据对应的方差和均值，然而预测时我们的模型已经确定下来，可以用在整个训练数据集上得到的均值和方差来对预测时的结果进行归一化。</p>
+<h4 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h4><ul>
+<li><p>在实际实现时，一般使用指数加权平均来更新小批量的均值和方差，指数加权平均将旧值和当前计算结果不断进行加权平均，最终做到平滑的向更新值靠拢，公式如下：</p>
+</li>
+<li><script type="math/tex; mode=display">
+S_t = 
+\begin{cases} 
+Y_1, &t = 1 \\\\ 
+\beta S_{t-1} + (1-\beta)Y_t, &t > 1 
+\end{cases}</script></li>
+<li><p>批量归一化的参数可以通过动量梯度下降，RMSProp，Adam等多种优化方法进行训练。</p>
+</li>
+</ul>
+<h3 id="吴恩达老师深度学习课程中的批量归一化"><a href="#吴恩达老师深度学习课程中的批量归一化" class="headerlink" title="吴恩达老师深度学习课程中的批量归一化"></a>吴恩达老师深度学习课程中的批量归一化</h3><p>吴恩达老师深度学习课程中的批量归一化中的部分内容与本课程有所出入，考虑到批量归一化这部分内容还没有精确的理论解释，目前的认识仅限于直觉，故将两课程中的区别即补充罗列在此作为参考：</p>
+<ul>
+<li>关于dropout：<ul>
+<li>本课中提到批量归一化有正则化效果，无需再进行dropout</li>
+<li>吴恩达老师课程中提到批量归一化正则化效果较差，不能作为正则化的手段，必要时需要dropout</li>
+</ul>
+</li>
+<li>对于线性层（包括其他带有偏置项的层）后的批量归一化，由于归一化时减去了均值，偏置项被消掉，可以省略归一化层之前的偏置项</li>
+<li>标准化的输入能使梯度下降加快，批归一化能使得每层的输入都被归一化，这也是训练更快的原因之一</li>
+<li>批量归一化可以使得不同层之间互相的影响减少，从而应对数据偏移，增强鲁棒性。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-28/" title="28-批量归一化">https://pkunicor.github.io/2024/04/23/11-01-28/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-26/" rel="prev" title="26-网络中的网络（NiN）">
+                  <i class="fa fa-chevron-left"></i> 26-网络中的网络（NiN）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-29/" rel="next" title="29-残差网络（ResNet）">
+                  29-残差网络（ResNet） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"128d89c612f820a8a019ac94d6a15b6b"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

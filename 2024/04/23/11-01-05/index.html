@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐-05-线性代数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05-线性代数">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-05/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐-05-线性代数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-01.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-02.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-03.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-04.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-05.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-06.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-07.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-08.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-09.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-10.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog/650633/201407/141700142243782.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog/650633/201407/141700145536982.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog/650633/201407/141700149439396.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog/650633/201407/141700153035353.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-11.png">
+<meta property="article:published_time" content="2024-04-23T03:01:05.000Z">
+<meta property="article:modified_time" content="2024-04-24T03:46:30.268Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/11-01-05/05-01.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-05/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-05/","path":"2024/04/23/11-01-05/","title":"05-线性代数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>05-线性代数 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#05-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">05-线性代数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">1. 线性代数基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%A0%87%E9%87%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 标量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%90%91%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 向量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E7%9F%A9%E9%98%B5"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-%E7%9F%A9%E9%98%B5%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">1.3.1 矩阵的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-2-%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">1.3.2 特殊矩阵</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E5%92%8C%E7%89%B9%E5%BE%81%E5%80%BC"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">1.3.3 特征向量和特征值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">2. 线性代数实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%A0%87%E9%87%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 标量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%90%91%E9%87%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 向量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-1-%E5%88%9B%E5%BB%BA"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">2.3.1 创建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-%E8%BD%AC%E7%BD%AE"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2.3.2 转置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-3-reshape"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">2.3.3 reshape</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-4-clone"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">2.3.4 clone</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-5-sum"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">2.3.5 sum</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-6-numel"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">2.3.6 numel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-7-mean"><span class="nav-number">1.2.3.7.</span> <span class="nav-text">2.3.7 mean</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-8-dot"><span class="nav-number">1.2.3.8.</span> <span class="nav-text">2.3.8 dot</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-9-mm%E3%80%81mv"><span class="nav-number">1.2.3.9.</span> <span class="nav-text">2.3.9 mm、mv</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-10-L1%E3%80%81L2%E3%80%81F%E8%8C%83%E6%95%B0"><span class="nav-number">1.2.3.10.</span> <span class="nav-text">2.3.10  L1、L2、F范数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-11-%E8%BF%90%E7%AE%97"><span class="nav-number">1.2.3.11.</span> <span class="nav-text">2.3.11  运算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-12-%E5%B9%BF%E6%92%AD"><span class="nav-number">1.2.3.12.</span> <span class="nav-text">2.3.12 广播</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="05-线性代数 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐-05-线性代数">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          05-线性代数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:05" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:05+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 11:46:30" itemprop="dateModified" datetime="2024-04-24T11:46:30+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐-05-线性代数</div>
+	<hr>
+        <h2 id="05-线性代数"><a href="#05-线性代数" class="headerlink" title="05-线性代数"></a>05-线性代数</h2><h3 id="1-线性代数基础知识"><a href="#1-线性代数基础知识" class="headerlink" title="1. 线性代数基础知识"></a>1. 线性代数基础知识</h3><p>这部分主要是由标量过渡到向量，再从向量拓展到矩阵操作，重点在于理解矩阵层面上的操作（都是大学线代课的内容，熟悉的可以自动忽略）</p>
+<h4 id="1-1-标量"><a href="#1-1-标量" class="headerlink" title="1.1 标量"></a>1.1 标量</h4><img src="/2024/04/23/11-01-05/05-01.png" class="">
+<h4 id="1-2-向量"><a href="#1-2-向量" class="headerlink" title="1.2 向量"></a>1.2 向量</h4><img src="/2024/04/23/11-01-05/05-02.png" class="">
+<img src="/2024/04/23/11-01-05/05-03.png" class="">
+<h4 id="1-3-矩阵"><a href="#1-3-矩阵" class="headerlink" title="1.3 矩阵"></a>1.3 矩阵</h4><h5 id="1-3-1-矩阵的操作"><a href="#1-3-1-矩阵的操作" class="headerlink" title="1.3.1 矩阵的操作"></a>1.3.1 矩阵的操作</h5><img src="/2024/04/23/11-01-05/05-04.png" class="">
+<img src="/2024/04/23/11-01-05/05-05.png" class="">
+<img src="/2024/04/23/11-01-05/05-06.png" class="">
+<img src="/2024/04/23/11-01-05/05-07.png" class="">
+<p>​    (矩阵范数麻烦且不常用，一般用F范数)</p>
+<h5 id="1-3-2-特殊矩阵"><a href="#1-3-2-特殊矩阵" class="headerlink" title="1.3.2 特殊矩阵"></a>1.3.2 特殊矩阵</h5><img src="/2024/04/23/11-01-05/05-08.png" class="">
+<img src="/2024/04/23/11-01-05/05-09.png" class="">
+<img src="/2024/04/23/11-01-05/05-10.png" class="">
+<p>​    (深度学习里基本不会涉及到正定、置换矩阵，这里明确个概念就行)</p>
+<h5 id="1-3-3-特征向量和特征值"><a href="#1-3-3-特征向量和特征值" class="headerlink" title="1.3.3 特征向量和特征值"></a>1.3.3 特征向量和特征值</h5><ul>
+<li><p>数学定义：设A是n阶方阵，如果存在常数<img src="https://images0.cnblogs.com/blog/650633/201407/141700142243782.png" alt="img">及非零n向量x，使得<img src="https://images0.cnblogs.com/blog/650633/201407/141700145536982.png" alt="img">，则称<img src="https://images0.cnblogs.com/blog/650633/201407/141700149439396.png" alt="img">是矩阵A的特征值，x是A属于特征值<img src="https://images0.cnblogs.com/blog/650633/201407/141700153035353.png" alt="img">的特征向量</p>
+</li>
+<li><p>直观理解：不被矩阵A改变方向的向量x就是A的一个特征向量</p>
+<img src="/2024/04/23/11-01-05/05-11.png" class="">
+</li>
+<li><p>矩阵不一定有特征向量，但是对称矩阵总是可以找到特征向量</p>
+</li>
+</ul>
+<h3 id="2-线性代数实现"><a href="#2-线性代数实现" class="headerlink" title="2. 线性代数实现"></a>2. 线性代数实现</h3><p>这部分主要是应用pytorch实现基本矩阵操作，同样由标量过渡到向量最后拓展到矩阵</p>
+<h4 id="2-1-标量"><a href="#2-1-标量" class="headerlink" title="2.1 标量"></a>2.1 标量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch    <span class="comment"># 应用pytorch框架</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 标量由只有一个元素的张量表示</span></span><br><span class="line">x = torch.tensor([<span class="number">3.0</span>])     <span class="comment"># 单独一个数字表示标量也可以</span></span><br><span class="line">y = torch.tensor([<span class="number">2.0</span>])     <span class="comment"># 单独一个数字表示标量也可以</span></span><br><span class="line"><span class="built_in">print</span>(x + y)    <span class="comment"># tensor([5.])</span></span><br><span class="line"><span class="built_in">print</span>(x * y)    <span class="comment"># tensor([6.])</span></span><br><span class="line"><span class="built_in">print</span>(x / y)    <span class="comment"># tensor([1.5000])</span></span><br><span class="line"><span class="built_in">print</span>(x ** y)   <span class="comment"># tensor([9.]) 指数运算</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-向量"><a href="#2-2-向量" class="headerlink" title="2.2 向量"></a>2.2 向量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 向量可以看作是若干标量值组成的列表</span></span><br><span class="line">x = torch.arange(<span class="number">4</span>)     <span class="comment"># tensor([0, 1, 2, 3])</span></span><br><span class="line">                        <span class="comment"># 生成[0, 4)范围内所有整数构成的张量tensor</span></span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">3</span>])             <span class="comment"># tensor(3)</span></span><br><span class="line">                        <span class="comment"># 和列表相似，通过张量的索引访问元素</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(x))           <span class="comment"># 4</span></span><br><span class="line">                        <span class="comment"># 获取张量x的长度</span></span><br><span class="line"><span class="built_in">print</span>(x.shape)          <span class="comment"># torch.Size([4])</span></span><br><span class="line">                        <span class="comment"># 获取张量形状，这里x是只有一个轴的张量因此形状只有一个元素</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="2-3-矩阵"><a href="#2-3-矩阵" class="headerlink" title="2.3 矩阵"></a>2.3 矩阵</h4><h5 id="2-3-1-创建"><a href="#2-3-1-创建" class="headerlink" title="2.3.1 创建"></a>2.3.1 创建</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A = torch.arange(<span class="number">6</span>)     <span class="comment"># tensor([0, 1, 2, 3, 4, 5])</span></span><br><span class="line">B = torch.tensor([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">0</span>,<span class="number">4</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]])</span><br><span class="line">C = torch.tensor([[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">                   [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">                   [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]],</span><br><span class="line">                  [[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">                   [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>]]])</span><br><span class="line">D = torch.arange(<span class="number">20</span>, dtype=torch.float32)</span><br></pre></td></tr></table></figure>
+<h5 id="2-3-2-转置"><a href="#2-3-2-转置" class="headerlink" title="2.3.2 转置"></a>2.3.2 转置</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A = torch.arange(<span class="number">6</span>)     <span class="comment"># tensor([0, 1, 2, 3, 4, 5])</span></span><br><span class="line">A = A.reshape(<span class="number">3</span>,<span class="number">2</span>)      <span class="comment"># tensor([[0, 1],</span></span><br><span class="line">                        <span class="comment">#         [2, 3],</span></span><br><span class="line">                        <span class="comment">#         [4, 5]])</span></span><br><span class="line"></span><br><span class="line">A = A.T                 <span class="comment"># 转置 A.T</span></span><br><span class="line">                        <span class="comment"># tensor([[0, 2, 4],</span></span><br><span class="line">                        <span class="comment">#         [1, 3, 5]])</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-3-reshape"><a href="#2-3-3-reshape" class="headerlink" title="2.3.3 reshape"></a>2.3.3 reshape</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用reshape方法创建一个形状为3 x 2的矩阵A</span></span><br><span class="line">A = torch.arange(<span class="number">6</span>)     <span class="comment"># tensor([0, 1, 2, 3, 4, 5])</span></span><br><span class="line">A = A.reshape(<span class="number">3</span>,<span class="number">2</span>)      <span class="comment"># tensor([[0, 1],</span></span><br><span class="line">                        <span class="comment">#         [2, 3],</span></span><br><span class="line">                        <span class="comment">#         [4, 5]])</span></span><br></pre></td></tr></table></figure>
+<p><em><u>tips（确定矩阵shape)：</em>&lt;/u&gt;</p>
+<p><u><em>由外层到内层依次去中括号，并记下去掉中括号后此时元素的个数，任选其中一个元素重复上述去括号的操作直到该元素中无中括号，记下的数字从左到右依次排序中间用x连接即为矩阵shape</em></u></p>
+<h5 id="2-3-4-clone"><a href="#2-3-4-clone" class="headerlink" title="2.3.4 clone"></a>2.3.4 clone</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A = torch.arange(<span class="number">20</span>, dtype=torch.float32)</span><br><span class="line">A = A.reshape(<span class="number">5</span>,<span class="number">4</span>)</span><br><span class="line">B = A.clone()   <span class="comment"># 通过分配新内存，将A的一个副本分给B，该边B并不影响A的值</span></span><br><span class="line"><span class="built_in">print</span>(B)        <span class="comment"># tensor([[ 0.,  1.,  2.,  3.],</span></span><br><span class="line">                <span class="comment">#         [ 4.,  5.,  6.,  7.],</span></span><br><span class="line">                <span class="comment">#         [ 8.,  9., 10., 11.],</span></span><br><span class="line">                <span class="comment">#         [12., 13., 14., 15.],</span></span><br><span class="line">                <span class="comment">#         [16., 17., 18., 19.]])</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-5-sum"><a href="#2-3-5-sum" class="headerlink" title="2.3.5 sum"></a>2.3.5 sum</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">A = torch.tensor([[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">                   [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">                   [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]],</span><br><span class="line">                  [[<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">                   [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">                   [<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>]]])</span><br><span class="line"><span class="built_in">print</span>(A.shape)</span><br><span class="line"><span class="comment"># torch.Size([2, 3, 3])</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>())</span><br><span class="line"><span class="comment"># tensor(54)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">0</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[ 1,  2,  3],</span></span><br><span class="line"><span class="string">        [ 5,  6,  7],</span></span><br><span class="line"><span class="string">        [ 9, 10, 11]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">0</span>, keepdims=<span class="literal">True</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[[ 1,  2,  3],</span></span><br><span class="line"><span class="string">         [ 5,  6,  7],</span></span><br><span class="line"><span class="string">         [ 9, 10, 11]]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">1</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[12, 15, 18],</span></span><br><span class="line"><span class="string">        [ 3,  3,  3]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[[12, 15, 18]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 3,  3,  3]]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">2</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[ 6, 15, 24],</span></span><br><span class="line"><span class="string">        [ 0,  3,  6]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">2</span>, keepdims=<span class="literal">True</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[[ 6],</span></span><br><span class="line"><span class="string">         [15],</span></span><br><span class="line"><span class="string">         [24]],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        [[ 0],</span></span><br><span class="line"><span class="string">         [ 3],</span></span><br><span class="line"><span class="string">         [ 6]]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=[<span class="number">0</span>,<span class="number">1</span>]))</span><br><span class="line"><span class="comment"># tensor([15, 18, 21])</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=[<span class="number">0</span>,<span class="number">1</span>], keepdims=<span class="literal">True</span>))</span><br><span class="line"><span class="comment"># tensor([[[15, 18, 21]]])</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-6-numel"><a href="#2-3-6-numel" class="headerlink" title="2.3.6 numel"></a>2.3.6 numel</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A = torch.tensor([[<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>],[<span class="number">1.</span>,<span class="number">1.</span>,<span class="number">1.</span>]])</span><br><span class="line"><span class="built_in">print</span>(A.numel())    <span class="comment"># 6 元素个数</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-7-mean"><a href="#2-3-7-mean" class="headerlink" title="2.3.7 mean"></a>2.3.7 mean</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A = torch.tensor([[<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>],[<span class="number">1.</span>,<span class="number">1.</span>,<span class="number">1.</span>]])</span><br><span class="line"><span class="built_in">print</span>(A.numel())    <span class="comment"># 6 元素个数</span></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>())      <span class="comment"># tensor(3.)</span></span><br><span class="line"><span class="built_in">print</span>(A.mean())     <span class="comment"># tensor(0.5000)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 特定轴</span></span><br><span class="line">A = torch.tensor([[<span class="number">0.</span>,<span class="number">0.</span>,<span class="number">0.</span>],[<span class="number">1.</span>,<span class="number">1.</span>,<span class="number">1.</span>]])</span><br><span class="line"><span class="built_in">print</span>(A.shape[<span class="number">0</span>])       <span class="comment"># 2</span></span><br><span class="line"><span class="built_in">print</span>(A.<span class="built_in">sum</span>(axis=<span class="number">0</span>))    <span class="comment"># tensor([1., 1., 1.])</span></span><br><span class="line"><span class="built_in">print</span>(A.mean(axis=<span class="number">0</span>))   <span class="comment"># tensor([0.5000, 0.5000, 0.5000])	平均值</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-8-dot"><a href="#2-3-8-dot" class="headerlink" title="2.3.8 dot"></a>2.3.8 dot</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">0.</span>,<span class="number">1.</span>,<span class="number">2.</span>,<span class="number">3.</span>])</span><br><span class="line">y = torch.tensor([<span class="number">1.</span>,<span class="number">1.</span>,<span class="number">1.</span>,<span class="number">1.</span>])</span><br><span class="line"><span class="built_in">print</span>(torch.dot(x, y))  <span class="comment"># tensor(6.)</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-9-mm、mv"><a href="#2-3-9-mm、mv" class="headerlink" title="2.3.9 mm、mv"></a>2.3.9 mm、mv</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">A = torch.tensor([[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">                  [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]])</span><br><span class="line">B = torch.tensor([[<span class="number">2</span>,<span class="number">2</span>],</span><br><span class="line">                  [<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">                  [<span class="number">0</span>,<span class="number">0</span>]])</span><br><span class="line">x = torch.tensor([<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.mv(A, x))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">向量积</span></span><br><span class="line"><span class="string">tensor([ 9, 36])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.mm(A, B))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">矩阵积</span></span><br><span class="line"><span class="string">tensor([[ 1,  1],</span></span><br><span class="line"><span class="string">        [10, 10]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-10-L1、L2、F范数"><a href="#2-3-10-L1、L2、F范数" class="headerlink" title="2.3.10  L1、L2、F范数"></a>2.3.10  L1、L2、F范数</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">3.0</span>, -<span class="number">4.0</span>])</span><br><span class="line"><span class="built_in">print</span>(torch.<span class="built_in">abs</span>(x).<span class="built_in">sum</span>())   <span class="comment"># 向量的L1范数: tensor(7.)  x中的每个元素绝对值的和</span></span><br><span class="line"><span class="built_in">print</span>(torch.norm(x))        <span class="comment"># 向量的L2范数: tensor(5.)  x中的每个元素平方的和开根号</span></span><br><span class="line"></span><br><span class="line">A = torch.ones((<span class="number">4</span>, <span class="number">9</span>))</span><br><span class="line"><span class="built_in">print</span>(torch.norm(A))        <span class="comment"># 矩阵的F范数:  tensor(6.)  A中的每个元素平方的和开根号</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-11-运算"><a href="#2-3-11-运算" class="headerlink" title="2.3.11  运算"></a>2.3.11  运算</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">A = torch.arange(<span class="number">20</span>, dtype=torch.float32)</span><br><span class="line">A = A.reshape(<span class="number">5</span>,<span class="number">4</span>)</span><br><span class="line">B = A.clone()   </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(B)        <span class="comment"># tensor([[ 0.,  1.,  2.,  3.],</span></span><br><span class="line">                <span class="comment">#         [ 4.,  5.,  6.,  7.],</span></span><br><span class="line">                <span class="comment">#         [ 8.,  9., 10., 11.],</span></span><br><span class="line">                <span class="comment">#         [12., 13., 14., 15.],</span></span><br><span class="line">                <span class="comment">#         [16., 17., 18., 19.]])</span></span><br><span class="line">                </span><br><span class="line"><span class="built_in">print</span>(A == B)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[True, True, True, True],</span></span><br><span class="line"><span class="string">        [True, True, True, True],</span></span><br><span class="line"><span class="string">        [True, True, True, True],</span></span><br><span class="line"><span class="string">        [True, True, True, True],</span></span><br><span class="line"><span class="string">        [True, True, True, True]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A + B)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[ 0.,  2.,  4.,  6.],</span></span><br><span class="line"><span class="string">        [ 8., 10., 12., 14.],</span></span><br><span class="line"><span class="string">        [16., 18., 20., 22.],</span></span><br><span class="line"><span class="string">        [24., 26., 28., 30.],</span></span><br><span class="line"><span class="string">        [32., 34., 36., 38.]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A * B)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[  0.,   1.,   4.,   9.],</span></span><br><span class="line"><span class="string">        [ 16.,  25.,  36.,  49.],</span></span><br><span class="line"><span class="string">        [ 64.,  81., 100., 121.],</span></span><br><span class="line"><span class="string">        [144., 169., 196., 225.],</span></span><br><span class="line"><span class="string">        [256., 289., 324., 361.]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-3-12-广播"><a href="#2-3-12-广播" class="headerlink" title="2.3.12 广播"></a>2.3.12 广播</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">A = torch.tensor([[<span class="number">1.</span>,<span class="number">2.</span>,<span class="number">3.</span>],</span><br><span class="line">                  [<span class="number">4.</span>,<span class="number">5.</span>,<span class="number">6.</span>]])</span><br><span class="line">B = A.<span class="built_in">sum</span>(axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(B)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[ 6.],</span></span><br><span class="line"><span class="string">        [15.]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A / B)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[0.1667, 0.3333, 0.5000],</span></span><br><span class="line"><span class="string">        [0.2667, 0.3333, 0.4000]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A + B)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[ 7.,  8.,  9.],</span></span><br><span class="line"><span class="string">        [19., 20., 21.]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(A * B)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">tensor([[ 6., 12., 18.],</span></span><br><span class="line"><span class="string">        [60., 75., 90.]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-05/" title="05-线性代数">https://pkunicor.github.io/2024/04/23/11-01-05/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-04/" rel="prev" title="04-数据读取和操作">
+                  <i class="fa fa-chevron-left"></i> 04-数据读取和操作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-06/" rel="next" title="06-矩阵计算">
+                  06-矩阵计算 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"6f7c58f8460e3a56659854a020f73598"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

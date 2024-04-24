@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐-07-链式法则与自动求导">
+<meta property="og:type" content="article">
+<meta property="og:title" content="07-链式法则与自动求导">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-07/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐-07-链式法则与自动求导">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-01">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-02">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-03">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-04">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-05">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-06">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-07">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-08">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-09">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-10">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-11">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-12">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-13">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-14">
+<meta property="article:published_time" content="2024-04-23T03:01:07.000Z">
+<meta property="article:modified_time" content="2024-04-24T03:52:14.895Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/imgs/07/image-01">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-07/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-07/","path":"2024/04/23/11-01-07/","title":"07-链式法则与自动求导"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>07-链式法则与自动求导 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#07-%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">1.</span> <span class="nav-text">07-链式法则与自动求导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%90%91%E9%87%8F%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.1.</span> <span class="nav-text">1. 向量链式法则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%A0%87%E9%87%8F%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 标量链式法则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%8B%93%E5%B1%95%E5%88%B0%E5%90%91%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 拓展到向量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B1%EF%BC%88%E6%A0%87%E9%87%8F%E5%AF%B9%E5%90%91%E9%87%8F%E6%B1%82%E5%AF%BC%EF%BC%89"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">例1（标量对向量求导）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B2%EF%BC%88%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9F%A9%E9%98%B5%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%89"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">例2（涉及到矩阵的情况）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">1.2.</span> <span class="nav-text">2. 自动求导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E8%AE%A1%E7%AE%97%E5%9B%BE"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 计算图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 自动求导的两种模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 复杂度比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="nav-number">1.3.</span> <span class="nav-text">3. 代码部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC-Q-amp-A"><span class="nav-number">1.4.</span> <span class="nav-text">4. 自动求导 Q&amp;A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%BB%83%E4%B9%A0"><span class="nav-number">1.5.</span> <span class="nav-text">5. 练习</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="07-链式法则与自动求导 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐-07-链式法则与自动求导">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          07-链式法则与自动求导
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:07" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:07+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 11:52:14" itemprop="dateModified" datetime="2024-04-24T11:52:14+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐-07-链式法则与自动求导</div>
+	<hr>
+        <h2 id="07-链式法则与自动求导"><a href="#07-链式法则与自动求导" class="headerlink" title="07-链式法则与自动求导"></a>07-链式法则与自动求导</h2><h3 id="1-向量链式法则"><a href="#1-向量链式法则" class="headerlink" title="1. 向量链式法则"></a>1. 向量链式法则</h3><ul>
+<li><h4 id="1-1-标量链式法则"><a href="#1-1-标量链式法则" class="headerlink" title="1.1 标量链式法则"></a>1.1 标量链式法则</h4></li>
+</ul>
+<p><img src="..\imgs\07\image-01" alt="image-20220107231957396" style="zoom:67%;" /></p>
+<ul>
+<li><h4 id="1-2-拓展到向量"><a href="#1-2-拓展到向量" class="headerlink" title="1.2 拓展到向量"></a>1.2 拓展到向量</h4><blockquote>
+<p>需要注意维数的变化</p>
+<p>下图三种情况分别对应：</p>
+<ol>
+<li>y为标量，x为向量</li>
+<li>y为标量，x为矩阵</li>
+<li>y、x为矩阵</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p><img src="..\imgs\07\image-02" alt="image-20220107231931153" style="zoom: 80%;" /></p>
+<hr>
+<h5 id="例1（标量对向量求导）"><a href="#例1（标量对向量求导）" class="headerlink" title="例1（标量对向量求导）"></a>例1（标量对向量求导）</h5><blockquote>
+<p>这里应该是用分子布局，所以是X转置</p>
+</blockquote>
+<p>​                                 <img src="..\imgs\07\image-03" alt="image-20220107233527373" style="zoom: 67%;" />          </p>
+<h5 id="例2（涉及到矩阵的情况）"><a href="#例2（涉及到矩阵的情况）" class="headerlink" title="例2（涉及到矩阵的情况）"></a>例2（涉及到矩阵的情况）</h5><blockquote>
+<p>X是mxn的矩阵,w为n维向量，y为m维向量；<br>z对Xw-y做L2 norm,为标量；<br>过程与例一大体一致；</p>
+</blockquote>
+<p>​                                   <img src="..\imgs\07\image-04" alt="image-20220107233753066" style="zoom: 67%;" />   </p>
+<hr>
+<blockquote>
+<p>由于在神经网络动辄几百层，手动进行链式求导是很困难的，因此我们需要借助自动求导</p>
+</blockquote>
+<hr>
+<h3 id="2-自动求导"><a href="#2-自动求导" class="headerlink" title="2. 自动求导"></a>2. 自动求导</h3><ul>
+<li><p>含义：计算一个函数在指定值上的导数</p>
+</li>
+<li><p>自动求导有别于</p>
+<ul>
+<li><p>符号求导</p>
+<p><img src="..\imgs\07\image-05" alt="image-20220107235547201" style="zoom: 50%;" /> </p>
+</li>
+<li><p>数值求导</p>
+<p><img src="..\imgs\07\image-06" alt="image-20220107235611767" style="zoom: 50%;" /> </p>
+</li>
+</ul>
+</li>
+</ul>
+<p>为了更好地理解自动求导，下面引入计算图的概念</p>
+<h4 id="2-1-计算图"><a href="#2-1-计算图" class="headerlink" title="2.1 计算图"></a>2.1 计算图</h4><ul>
+<li><p>将代码分解成操作子</p>
+</li>
+<li><p>将计算表示成一个<strong>无环图</strong></p>
+<blockquote>
+<p>下图自底向上其实就类似于链式求导过程</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="..\imgs\07\image-07" alt="image-20220107235918270" style="zoom: 67%;" /></p>
+<p>​     </p>
+<ul>
+<li><p>计算图有两种构造方式</p>
+<ul>
+<li><p>显示构造</p>
+<blockquote>
+<p>可以理解为先定义公式再代值</p>
+<p>Tensorflow/Theano/MXNet</p>
+</blockquote>
+<p>​                                  <img src="..\imgs\07\image-08" alt="image-20220108000740736" style="zoom:67%;" /></p>
+</li>
+<li><p>隐式构造</p>
+<blockquote>
+<p>系统将所有的计算记录下来</p>
+<p>Pytorch/MXNet</p>
+</blockquote>
+<p>​                                 <img src="..\imgs\07\image-09" alt="image-20220108001154208" style="zoom:67%;" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-自动求导的两种模式"><a href="#2-2-自动求导的两种模式" class="headerlink" title="2.2 自动求导的两种模式"></a>2.2 自动求导的两种模式</h4><ul>
+<li><p>正向累积</p>
+<p>​                                   <img src="..\imgs\07\image-10" alt="image-20220108001506326" style="zoom:67%;" /></p>
+</li>
+<li><p>反向累积（反向传递back propagation）</p>
+<p>​                                     <img src="..\imgs\07\image-11" alt="image-20220108001517029" style="zoom:67%;" /></p>
+</li>
+</ul>
+<p>​    <strong>反向累积计算过程</strong></p>
+<p><img src="..\imgs\07\image-12" alt="image-20220108001847175" style="zoom:67%;" /></p>
+<blockquote>
+<p>反向累积的正向过程：自底向上，需要存储中间结果</p>
+<p>反向累积的反向过程：自顶向下，可以去除不需要的枝（图中的x应为w）</p>
+<p>​            <img src="..\imgs\07\image-13" alt="image-20220108002228166" style="zoom:50%;" /></p>
+</blockquote>
+<h4 id="2-3-复杂度比较"><a href="#2-3-复杂度比较" class="headerlink" title="2.3 复杂度比较"></a>2.3 复杂度比较</h4><ul>
+<li><p>反向累积</p>
+<ul>
+<li>时间复杂度：O(n),n是操作子数<ul>
+<li>通常正向和反向的代价类似</li>
+</ul>
+</li>
+<li>空间复杂度：O(n)<ul>
+<li>存储正向过程所有的中间结果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>正向累积</p>
+<blockquote>
+<p>每次计算一个变量的梯度时都需要将所有节点扫一遍</p>
+</blockquote>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-代码部分"><a href="#3-代码部分" class="headerlink" title="3. 代码部分"></a>3. 代码部分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对y = x.Tx关于列向量x求导</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">x = torch.arange(<span class="number">4.0</span>)</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([0., 1., 2., 3.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#存储梯度</span></span><br><span class="line">x.requires_grad_(<span class="literal">True</span>)<span class="comment">#等价于x = torch.arange(4.0,requires_grad=True)</span></span><br><span class="line">x.grad<span class="comment">#默认值是None</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y = torch.dot(x,x)</span><br><span class="line">y</span><br><span class="line"><span class="comment">#PyTorch隐式地构造计算图，grad_fn用于记录梯度计算</span></span><br></pre></td></tr></table></figure>
+<pre><code>tensor(14., grad_fn=&lt;DotBackward0&gt;)
+</code></pre><p><strong>通过调用反向传播函数来自动计算y关于x每个分量的梯度</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y.backward()</span><br><span class="line">x.grad</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([0., 2., 4., 6.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.grad==<span class="number">2</span>*x<span class="comment">#验证</span></span><br></pre></td></tr></table></figure>
+<pre><code>tensor([True, True, True, True])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在默认情况下，PyTorch会累积梯度，我们需要清除之前的值</span></span><br><span class="line">x.grad.zero_()<span class="comment">#如果没有这一步结果就会加累上之前的梯度值，变为[1,5,9,13]</span></span><br><span class="line">y = x.<span class="built_in">sum</span>()</span><br><span class="line">y.backward()</span><br><span class="line">x.grad</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([1., 1., 1., 1.])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x.grad.zero_()</span><br><span class="line">y=x*x<span class="comment">#哈达玛积，对应元素相乘</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在深度学习中我们一般不计算微分矩阵</span></span><br><span class="line"><span class="comment">#而是计算批量中每个样本单独计算的偏导数之和</span></span><br><span class="line"></span><br><span class="line">y.<span class="built_in">sum</span>().backward()<span class="comment">#等价于y.backword(torch.ones(len(x)))</span></span><br><span class="line">x.grad</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([0., 2., 4., 6.])
+</code></pre><p><strong>将某些计算移动到记录的计算图之外</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 后可用于用于将神经网络的一些参数固定住</span></span><br><span class="line">x.grad.zero_()</span><br><span class="line">y = x*x</span><br><span class="line">u = y.detach()<span class="comment">#把y当作常数</span></span><br><span class="line">z = u*x</span><br><span class="line"></span><br><span class="line">z.<span class="built_in">sum</span>().backward()</span><br><span class="line">x.grad == u</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([True, True, True, True])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.grad.zero_()</span><br><span class="line">y.<span class="built_in">sum</span>().backward()</span><br><span class="line">x.grad == <span class="number">2</span>*x</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([True, True, True, True])
+</code></pre><p><strong>即使构建函数的计算图需要用过Python控制流，仍然可以计算得到的变量的梯度</strong></p>
+<p><strong>这也是隐式构造的优势，因为它会存储梯度计算的计算图，再次计算时执行反向过程就可以</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">a</span>):</span><br><span class="line">    b = a * <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> b.norm()&lt;<span class="number">1000</span>:</span><br><span class="line">        b = b * <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> b.<span class="built_in">sum</span>() &gt; <span class="number">0</span>:</span><br><span class="line">        c = b</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        c = <span class="number">100</span> * b</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line">a = torch.randn(size=(),requires_grad=<span class="literal">True</span>)</span><br><span class="line">d = f(a)</span><br><span class="line">d.backward()</span><br><span class="line"></span><br><span class="line">a.grad == d / a</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="4-自动求导-Q-amp-A"><a href="#4-自动求导-Q-amp-A" class="headerlink" title="4. 自动求导 Q&amp;A"></a>4. 自动求导 Q&amp;A</h3><p><strong><code>Q1：ppt上隐式构造和显式构造看起来为啥差不多？</code></strong></p>
+<blockquote>
+<p>显式和隐式的差别其实就是数学上求梯度和python求梯度计算上的差别，不用深究</p>
+<p>显式构造就是我们数学上正常求导数的求法，先把所有求导的表达式选出来再代值</p>
+</blockquote>
+<p><strong><code>Q2:需要正向和反向都算一遍吗？</code></strong></p>
+<blockquote>
+<p>需要正向先算一遍，自动求导时只进行反向就可以，因为正向的结果已经存储</p>
+</blockquote>
+<p><strong><code>Q3:为什么PyTorch会默认累积梯度</code></strong></p>
+<blockquote>
+<p>便于计算大批量；方便进一步设计</p>
+</blockquote>
+<p><strong><code>Q4:为什么深度学习中一般对标量求导而不是对矩阵或向量求导</code></strong></p>
+<blockquote>
+<p>loss一般都是标量</p>
+</blockquote>
+<p><strong><code>Q5:为什么获取.grad前需要backward</code></strong></p>
+<blockquote>
+<p>相当于告诉程序需要计算梯度，因为计算梯度的代价很大，默认不计算</p>
+</blockquote>
+<p><strong><code>Q6:pytorch或mxnet框架设计上可以实现矢量的求导吗</code></strong></p>
+<blockquote>
+<p>可以</p>
+</blockquote>
+<h3 id="5-练习"><a href="#5-练习" class="headerlink" title="5. 练习"></a>5. 练习</h3><p><strong>1.为什么计算二阶导数比一阶导数的开销要更大？</strong></p>
+<p>二阶导数是在一阶导数的基础上进行的，开销自然更大</p>
+<p><strong>2.在运行反向传播函数之后，立即再次运行它，看看会发生什么。</strong></p>
+<p>“RuntimeError: Trying to backward through the graph a second time (or directly access saved tensors after they have already been freed). Saved intermediate values of the graph are freed when you call .backward() or autograd.grad(). Specify retain_graph=True if you need to backward through the graph a second time or if you need to access saved tensors after calling backward.”</p>
+<p>说明不能连续两次运行,pytorch使用的是动态计算图,反向传播函数运行一次后计算图就被释放了</p>
+<p><strong>只需要在函数接口将参数retain_graph设为True即可</strong></p>
+<p>In [51]:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def f(a):</span><br><span class="line">    b = a * 2</span><br><span class="line">    while b.norm()&lt;1000:</span><br><span class="line">        b = b * 2</span><br><span class="line">    if b.sum() &gt; 0:</span><br><span class="line">        c = b</span><br><span class="line">    else:</span><br><span class="line">        c = 100 * b</span><br><span class="line">    return c</span><br><span class="line">a.grad.zero_()</span><br><span class="line">a = torch.randn(size=(),requires_grad=True)#size=0表示a是标量</span><br><span class="line">d = f(a)</span><br><span class="line">#d.backward(retain_graph=True)</span><br><span class="line">#a.grad</span><br><span class="line">d.backward()</span><br><span class="line">a.grad</span><br></pre></td></tr></table></figure>
+<p>Out[51]:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor(4096.)</span><br></pre></td></tr></table></figure>
+<p><strong>3.在控制流的例子中，我们计算d关于a的导数，如果我们将变量a更改为随机向量或矩阵，会发生什么？此时，计算结果f(a)不再是标量。结果会发生什么？我们如何分析这个结果？</strong></p>
+<p>backward函数的机制本身不允许张量对张量求导，如果输入是向量或矩阵，需要将其在各个分量上求和，变为标量；所以还需要传入一个与输入同型的张量</p>
+<p>In [53]:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def f(a):</span><br><span class="line">    b = a * 2</span><br><span class="line">    while b.norm()&lt;1000:</span><br><span class="line">        b = b * 2</span><br><span class="line">    if b.sum() &gt; 0:</span><br><span class="line">        c = b</span><br><span class="line">    else:</span><br><span class="line">        c = 100 * b</span><br><span class="line">    return c</span><br><span class="line">a.grad.zero_()</span><br><span class="line">a = torch.randn(10,requires_grad=True)</span><br><span class="line">d = f(a)</span><br><span class="line">#d.backward(retain_graph=True)</span><br><span class="line">#a.grad</span><br><span class="line">#d.backward()#RuntimeError: grad can be implicitly created only for scalar outputs</span><br><span class="line">d.sum().backward()#需要加上.sum()否则会报错 </span><br><span class="line">a.grad</span><br></pre></td></tr></table></figure>
+<p>Out[53]:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensor([51200., 51200., 51200., 51200., 51200., 51200., 51200., 51200., 51200.,</span><br><span class="line">        51200.])</span><br></pre></td></tr></table></figure>
+<p><strong>4.重新设计一个求控制流梯度的例子。运行并分析结果。</strong></p>
+<p>In [56]:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def h(x):</span><br><span class="line">    y = x * x</span><br><span class="line">    while y.norm() &lt; 2500:</span><br><span class="line">        y = y * 2</span><br><span class="line">    if y.sum() &lt; 0:</span><br><span class="line">        c = 100*y</span><br><span class="line">    else:</span><br><span class="line">        c = y</span><br><span class="line">    return c</span><br><span class="line">x.grad.zero_()</span><br><span class="line">x = torch.randn(size=(),requires_grad=True)</span><br><span class="line">y = h(x)</span><br><span class="line">y.backward()</span><br><span class="line">x.grad</span><br></pre></td></tr></table></figure>
+<p>Out[56]:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor(-3311.5398)</span><br></pre></td></tr></table></figure>
+<p><strong>5.使f(x)=sin(x)，绘制f(x)和df(x)/dx的图像，其中后者不使用f’(x)=\cos(x)。</strong></p>
+<p>In [66]:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">x = torch.arange(-20,20,0.1,requires_grad=True,dtype=torch.float32)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line">y.sum().backward()</span><br><span class="line">plt.plot(x.detach(),y.detach(),label=&#x27;y=sinx&#x27;)</span><br><span class="line">plt.plot(x.detach(),x.grad,label=&#x27;dy/dx&#x27;)</span><br><span class="line">plt.legend(loc=&#x27;lower right&#x27;)</span><br></pre></td></tr></table></figure>
+<p>Out[66]:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;matplotlib.legend.Legend at 0x1d627d00280&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="..\imgs\07\image-14" alt="img.png" style="zoom:50%;" /></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-07/" title="07-链式法则与自动求导">https://pkunicor.github.io/2024/04/23/11-01-07/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-06/" rel="prev" title="06-矩阵计算">
+                  <i class="fa fa-chevron-left"></i> 06-矩阵计算
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-08/" rel="next" title="08-线性回归+基础优化算法">
+                  08-线性回归+基础优化算法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"a23a245c33c5a2ae0f995592098c5aea"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

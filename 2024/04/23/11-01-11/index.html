@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11-模型选择+过拟合和欠拟合">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-11/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-01.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-02.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-03.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-04.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-05.png">
+<meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=O(Nlog_2N)">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-06.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-07.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-08.png">
+<meta property="article:published_time" content="2024-04-23T03:01:11.000Z">
+<meta property="article:modified_time" content="2024-04-24T03:56:08.759Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/11-01-11/11-01.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-11/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-11/","path":"2024/04/23/11-01-11/","title":"11-模型选择+过拟合和欠拟合"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>11-模型选择+过拟合和欠拟合 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9-%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.</span> <span class="nav-text">11-模型选择+过拟合和欠拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="nav-number">1.1.</span> <span class="nav-text">1. 模型选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90%EF%BC%9A%E9%A2%84%E6%B5%8B%E8%B0%81%E4%BC%9A%E5%81%BF%E8%BF%98%E8%B4%B7%E6%AC%BE"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 实例分析：预测谁会偿还贷款</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E8%AE%AD%E7%BB%83%E8%AF%AF%E5%B7%AE%E5%92%8C%E6%B3%9B%E5%8C%96%E8%AF%AF%E5%B7%AE"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 训练误差和泛化误差</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E9%AA%8C%E8%AF%81%E6%95%B0%E6%8D%AE%E9%9B%86%E5%92%8C%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 验证数据集和测试数据集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-K-%E5%88%99%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 K-则交叉验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.2.</span> <span class="nav-text">2. 过拟合和欠拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 什么是过拟合和欠拟合？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E6%A8%A1%E5%9E%8B%E5%AE%B9%E9%87%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 模型容量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%A8%A1%E5%9E%8B%E5%AE%B9%E9%87%8F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 模型容量的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E4%BC%B0%E8%AE%A1%E6%A8%A1%E5%9E%8B%E5%AE%B9%E9%87%8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 估计模型容量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-VC%E7%BB%B4"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 VC维</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-VC%E7%BB%B4%E7%9A%84%E7%94%A8%E5%A4%84"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6 VC维的用处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-%E6%95%B0%E6%8D%AE%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.7 数据复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.8.</span> <span class="nav-text">2.8 总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92"><span class="nav-number">1.3.</span> <span class="nav-text">3. 多项式回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%AF%BC%E5%85%A5%E5%BA%93"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 导入库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 生成数据集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-NumPyndarray%E8%BD%AC%E6%8D%A2%E4%B8%BAtensor"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 NumPyndarray转换为tensor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E5%AF%B9%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 对模型进行训练和测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E4%B8%89%E9%98%B6%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%87%BD%E6%95%B0%E6%8B%9F%E5%90%88-%E6%AD%A3%E6%80%81"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.5 [三阶多项式函数拟合(正态)]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E6%8B%9F%E5%90%88-%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.3.6.</span> <span class="nav-text">3.6 [线性函数拟合(欠拟合)]</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-%E9%AB%98%E9%98%B6%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%87%BD%E6%95%B0%E6%8B%9F%E5%90%88-%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-number">1.3.7.</span> <span class="nav-text">3.7 [高阶多项式函数拟合(过拟合)]</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="11-模型选择+过拟合和欠拟合 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          11-模型选择+过拟合和欠拟合
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:11" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:11+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 11:56:08" itemprop="dateModified" datetime="2024-04-24T11:56:08+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐</div>
+	<hr>
+        <h2 id="11-模型选择-过拟合和欠拟合"><a href="#11-模型选择-过拟合和欠拟合" class="headerlink" title="11-模型选择+过拟合和欠拟合"></a>11-模型选择+过拟合和欠拟合</h2><h3 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1. 模型选择"></a>1. 模型选择</h3><p>本小节主要介绍了评估模型的一些指标和方法</p>
+<h4 id="1-1-实例分析：预测谁会偿还贷款"><a href="#1-1-实例分析：预测谁会偿还贷款" class="headerlink" title="1.1 实例分析：预测谁会偿还贷款"></a>1.1 实例分析：预测谁会偿还贷款</h4><ul>
+<li>银行雇你来调查谁会偿还贷款，你得到了100个申请人的信息，其中五个人在3年内违约了。然后你惊讶的发现，<strong>所有的五个人在面试时都穿了蓝色衬衫</strong>。显然，你的模型也发现了这个强信号，这会有什么问题？</li>
+</ul>
+<p><strong>答案是，你的模型很有可能会认为所有来面试的人都会穿蓝色衬衫，而这当然是不对的。</strong></p>
+<h4 id="1-2-训练误差和泛化误差"><a href="#1-2-训练误差和泛化误差" class="headerlink" title="1.2 训练误差和泛化误差"></a>1.2 训练误差和泛化误差</h4><ul>
+<li>训练误差：模型在训练数据上的误差</li>
+<li>泛化误差：模型在新数据上的误差</li>
+<li><p>例子：根据模考成绩来预测未来考试分数</p>
+<ul>
+<li>在过去的考试中表现很好（<strong>训练误差</strong>）不代表未来会好（<strong>泛化误差</strong>）</li>
+<li>学生A通过背书在模考中拿到很好成绩</li>
+<li>学生B知道答案后面的原因</li>
+</ul>
+</li>
+<li><p><strong>其中，泛化误差是我们所最关心的</strong></p>
+</li>
+</ul>
+<h4 id="1-3-验证数据集和测试数据集"><a href="#1-3-验证数据集和测试数据集" class="headerlink" title="1.3 验证数据集和测试数据集"></a>1.3 验证数据集和测试数据集</h4><ul>
+<li>验证数据集：一个用来评估模型好坏的数据集<ul>
+<li>例如拿出50%的训练数据</li>
+<li>不要跟训练数据混在一起（常犯错误）</li>
+</ul>
+</li>
+<li><p>测试数据集：只用一次的数据集。例如：</p>
+<ul>
+<li>未来的考试</li>
+<li>我出价的房子的实际成交价</li>
+<li>用在kaggle私有排行榜中的数据集</li>
+</ul>
+</li>
+<li><p><strong>二者最大的区别就是，验证数据集可以那来用很多次，相当于平时的模拟考，而测试数据集则只能用一次来评估模型的性能，相当于最终的考试。</strong></p>
+</li>
+</ul>
+<h4 id="1-4-K-则交叉验证"><a href="#1-4-K-则交叉验证" class="headerlink" title="1.4 K-则交叉验证"></a>1.4 K-则交叉验证</h4><ul>
+<li>在没有足够多数据时使用（这是常态）</li>
+<li>算法：<ul>
+<li>将训练数据分割k块</li>
+<li>For i = 1，……，k<ul>
+<li>使用第i块作为验证数据集，其余的作为训练数据集</li>
+</ul>
+</li>
+<li>报告k个验证集误差的平均</li>
+</ul>
+</li>
+<li><p>常用：k = 5或10</p>
+</li>
+<li><p>K-则交叉验证的目的是在没有足够多数据使用时评估模型和超参数的性能，也就是说，<strong>K次训练和验证使用的是相同的超参数和模型</strong></p>
+</li>
+</ul>
+<h4 id="1-5-总结"><a href="#1-5-总结" class="headerlink" title="1.5 总结"></a>1.5 总结</h4><ul>
+<li>训练数据集：训练模型参数</li>
+<li>验证数据集：选择模型超参数</li>
+<li>非大数据集上通常使用k-则交叉验证</li>
+</ul>
+<h3 id="2-过拟合和欠拟合"><a href="#2-过拟合和欠拟合" class="headerlink" title="2. 过拟合和欠拟合"></a>2. 过拟合和欠拟合</h3><h4 id="2-1-什么是过拟合和欠拟合？"><a href="#2-1-什么是过拟合和欠拟合？" class="headerlink" title="2.1 什么是过拟合和欠拟合？"></a>2.1 什么是过拟合和欠拟合？</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型容量\数据</th>
+<th>简单</th>
+<th style="text-align:center">复杂</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低</td>
+<td>正常</td>
+<td style="text-align:center">欠拟合</td>
+</tr>
+<tr>
+<td>高</td>
+<td>过拟合</td>
+<td style="text-align:center">正常</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>tips：模型容量即模型的复杂度，也代表了模型拟合各种函数的能力</li>
+</ul>
+<h4 id="2-2-模型容量"><a href="#2-2-模型容量" class="headerlink" title="2.2 模型容量"></a>2.2 模型容量</h4><ul>
+<li>拟合各种函数的能力</li>
+<li>低容量的模型难以拟合训练数据</li>
+<li>高容量的模型可以记住所有的训练数据</li>
+</ul>
+<img src="/2024/04/23/11-01-11/11-01.png" class="">
+<ul>
+<li>显然，模型容量太低或太高都不好。太低（对应第一种）过于简单，模型分类效果差，太高（对应第二种）则过于复杂，把噪声全部都拟合住了，这是我们所不希望的。</li>
+</ul>
+<h4 id="2-3-模型容量的影响"><a href="#2-3-模型容量的影响" class="headerlink" title="2.3 模型容量的影响"></a>2.3 模型容量的影响</h4><img src="/2024/04/23/11-01-11/11-02.png" class="">
+<ul>
+<li>我们的核心任务就是把泛化误差往下降</li>
+</ul>
+<h4 id="2-4-估计模型容量"><a href="#2-4-估计模型容量" class="headerlink" title="2.4 估计模型容量"></a>2.4 估计模型容量</h4><ul>
+<li>难以在不同的种类算法之间比较<ul>
+<li>例如树模型和神经网络</li>
+</ul>
+</li>
+<li>给定一个模型种类，将有两个主要因素<ul>
+<li>参数的个数</li>
+<li>参数的选择范围</li>
+</ul>
+</li>
+</ul>
+<img src="/2024/04/23/11-01-11/11-03.png" class="">
+<h4 id="2-5-VC维"><a href="#2-5-VC维" class="headerlink" title="2.5 VC维"></a>2.5 VC维</h4><p>VC维是统计学习理论的一个核心思想，这里大致了解就行，因为很难计算之后学习的模型（如CNN,RNN)的VC维，故并不经常用</p>
+<ul>
+<li>定义：对于一个分类模型，VC维等于一个最大的数据集的大小，不管如何给定标号，都存在一个模型对它进行完美分类。即存在H个样本，模型能把H个样本的2^H种标号方式打散的H的最大值。</li>
+<li>例子：线性分类器的VC维<ul>
+<li>2维输入的感知机，VC维=3（对于三个点的任意标号都能分类，而任意四个点的样本都存在不能被打散的标号形式个，如之前讲过的XOR）</li>
+</ul>
+</li>
+</ul>
+<p>3个点：</p>
+<img src="/2024/04/23/11-01-11/11-04.png" class="">
+<p>4个点：</p>
+<img src="/2024/04/23/11-01-11/11-05.png" class="">
+<ul>
+<li>支持N维输入的感知机的VC维是N+1</li>
+<li>一些多层感知机的VC维是:<img src="http://chart.googleapis.com/chart?cht=tx&chl=O(Nlog_2N)" style="border:none;"></li>
+</ul>
+<h4 id="2-6-VC维的用处"><a href="#2-6-VC维的用处" class="headerlink" title="2.6 VC维的用处"></a>2.6 VC维的用处</h4><ul>
+<li>提供为什么一个模型好的理论依据<ul>
+<li>它可以衡量训练误差和泛化误差之间的间隔</li>
+</ul>
+</li>
+<li>但深度学习中很少使用<ul>
+<li>衡量不是很准确</li>
+<li>计算深度学习模型的VC维很困难</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-7-数据复杂度"><a href="#2-7-数据复杂度" class="headerlink" title="2.7 数据复杂度"></a>2.7 数据复杂度</h4><ul>
+<li>多个重要因素<ul>
+<li>样本的元素个数</li>
+<li>每个样本的元素个数</li>
+<li>时间、空间结构</li>
+<li>多样性</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-8-总结"><a href="#2-8-总结" class="headerlink" title="2.8 总结"></a>2.8 总结</h4><ul>
+<li>模型容量需要匹配数据复杂度，否则可能导致欠拟合和过拟合</li>
+<li>统计机器学习提供数学工具来衡量模型复杂度</li>
+<li>实际中一般考观察训练误差和验证误差</li>
+</ul>
+<h3 id="3-多项式回归"><a href="#3-多项式回归" class="headerlink" title="3. 多项式回归"></a>3. 多项式回归</h3><ul>
+<li>本小节使用多项式回归为例子，在pytorch上展示过拟合和欠拟合的实际表现</li>
+</ul>
+<h4 id="3-1-导入库"><a href="#3-1-导入库" class="headerlink" title="3.1 导入库"></a>3.1 导入库</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> d2l <span class="keyword">import</span> torch <span class="keyword">as</span> d2l</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-生成数据集"><a href="#3-2-生成数据集" class="headerlink" title="3.2 生成数据集"></a>3.2 生成数据集</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">max_degree = <span class="number">20</span>  <span class="comment"># 多项式的最大阶数</span></span><br><span class="line">n_train, n_test = <span class="number">100</span>, <span class="number">100</span>  <span class="comment"># 训练和测试数据集大小</span></span><br><span class="line">true_w = np.zeros(max_degree)  <span class="comment"># 分配大量的空间</span></span><br><span class="line">true_w[<span class="number">0</span>:<span class="number">4</span>] = np.array([<span class="number">5</span>, <span class="number">1.2</span>, -<span class="number">3.4</span>, <span class="number">5.6</span>])<span class="comment">#前五个参数是有用的已知的参数，其他都是0，是不希望被学习的参数</span></span><br><span class="line"></span><br><span class="line">features = np.random.normal(size=(n_train + n_test, <span class="number">1</span>))<span class="comment">#创建特征值</span></span><br><span class="line">np.random.shuffle(features)<span class="comment">#打乱顺序</span></span><br><span class="line">poly_features = np.power(features, np.arange(max_degree).reshape(<span class="number">1</span>, -<span class="number">1</span>))<span class="comment">#通过广播机制得到每个特征值的所有多项式值</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(max_degree):</span><br><span class="line">    poly_features[:, i] /= math.gamma(i + <span class="number">1</span>)  <span class="comment"># gamma(n)=(n-1)!，除以gamma防止梯度过大</span></span><br><span class="line"><span class="comment"># labels的维度:(n_train+n_test,)</span></span><br><span class="line">labels = np.dot(poly_features, true_w)<span class="comment">#将对应多项式值与其系数相乘</span></span><br><span class="line">labels += np.random.normal(scale=<span class="number">0.1</span>, size=labels.shape)<span class="comment">#加上噪声项</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-3-NumPyndarray转换为tensor"><a href="#3-3-NumPyndarray转换为tensor" class="headerlink" title="3.3 NumPyndarray转换为tensor"></a>3.3 NumPyndarray转换为tensor</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">true_w, features, poly_features, labels = [torch.tensor(x, dtype=</span><br><span class="line">    torch.float32) <span class="keyword">for</span> x <span class="keyword">in</span> [true_w, features, poly_features, labels]]</span><br></pre></td></tr></table></figure>
+<h4 id="3-4-对模型进行训练和测试"><a href="#3-4-对模型进行训练和测试" class="headerlink" title="3.4 对模型进行训练和测试"></a>3.4 对模型进行训练和测试</h4><p>首先让我们[实现一个函数来评估模型在给定数据集上的损失]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">evaluate_loss</span>(<span class="params">net, data_iter, loss</span>):  <span class="comment">#@save</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;评估给定数据集上模型的损失&quot;&quot;&quot;</span></span><br><span class="line">    metric = d2l.Accumulator(<span class="number">2</span>)  <span class="comment"># 损失的总和,样本数量</span></span><br><span class="line">    <span class="keyword">for</span> X, y <span class="keyword">in</span> data_iter:</span><br><span class="line">        out = net(X)<span class="comment">#预测值</span></span><br><span class="line">        y = y.reshape(out.shape)<span class="comment">#将y维度变为与out一样</span></span><br><span class="line">        l = loss(out, y)<span class="comment">#计算损失</span></span><br><span class="line">        metric.add(l.<span class="built_in">sum</span>(), l.numel())<span class="comment">#加入到迭代器中，进入下一个batch</span></span><br><span class="line">    <span class="keyword">return</span> metric[<span class="number">0</span>] / metric[<span class="number">1</span>]<span class="comment">#返回平均损失</span></span><br></pre></td></tr></table></figure>
+<p>现在[定义训练函数]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">train_features, test_features, train_labels, test_labels,</span></span><br><span class="line"><span class="params">          num_epochs=<span class="number">400</span></span>):</span><br><span class="line">    loss = nn.MSELoss()<span class="comment">#定义损失</span></span><br><span class="line">    input_shape = train_features.shape[-<span class="number">1</span>]</span><br><span class="line">    <span class="comment"># 不设置偏置，因为我们已经在多项式特征中实现了它（即x^0）</span></span><br><span class="line">    net = nn.Sequential(nn.Linear(input_shape, <span class="number">1</span>, bias=<span class="literal">False</span>))<span class="comment">#创建模型</span></span><br><span class="line">    batch_size = <span class="built_in">min</span>(<span class="number">10</span>, train_labels.shape[<span class="number">0</span>])</span><br><span class="line">    train_iter = d2l.load_array((train_features, train_labels.reshape(-<span class="number">1</span>,<span class="number">1</span>)),</span><br><span class="line">                                batch_size)<span class="comment">#训练集</span></span><br><span class="line">    test_iter = d2l.load_array((test_features, test_labels.reshape(-<span class="number">1</span>,<span class="number">1</span>)),</span><br><span class="line">                               batch_size, is_train=<span class="literal">False</span>)<span class="comment">#测试集</span></span><br><span class="line">    trainer = torch.optim.SGD(net.parameters(), lr=<span class="number">0.001</span>)<span class="comment">#设置优化器，这里使用SGD</span></span><br><span class="line">    animator = d2l.Animator(xlabel=<span class="string">&#x27;epoch&#x27;</span>, ylabel=<span class="string">&#x27;loss&#x27;</span>, yscale=<span class="string">&#x27;log&#x27;</span>,</span><br><span class="line">                            xlim=[<span class="number">1</span>, num_epochs], ylim=[<span class="number">1e-3</span>, <span class="number">1e2</span>],</span><br><span class="line">                            legend=[<span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;test&#x27;</span>])<span class="comment">#动画</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epochs):</span><br><span class="line">        d2l.train_epoch_ch3(net, train_iter, loss, trainer)<span class="comment">#训练</span></span><br><span class="line">        <span class="keyword">if</span> epoch == <span class="number">0</span> <span class="keyword">or</span> (epoch + <span class="number">1</span>) % <span class="number">20</span> == <span class="number">0</span>:</span><br><span class="line">            animator.add(epoch + <span class="number">1</span>, (evaluate_loss(net, train_iter, loss),</span><br><span class="line">                                     evaluate_loss(net, test_iter, loss)))<span class="comment">#将当前的训练集和测试集的损失存入animator中，用于绘图</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;weight:&#x27;</span>, net[<span class="number">0</span>].weight.data.numpy())<span class="comment">#打印训练后的参数</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-5-三阶多项式函数拟合-正态"><a href="#3-5-三阶多项式函数拟合-正态" class="headerlink" title="3.5 [三阶多项式函数拟合(正态)]"></a>3.5 [<strong>三阶多项式函数拟合(正态)</strong>]</h4><p>我们将首先使用三阶多项式函数，它与数据生成函数的阶数相同。 结果表明，该模型能有效降低训练损失和测试损失。 学习到的模型参数也接近真实值𝑤=[5,1.2,−3.4,5.6]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从多项式特征中选择前4个维度，即1,x,x^2/2!,x^3/3!</span></span><br><span class="line">train(poly_features[:n_train, :<span class="number">4</span>], poly_features[n_train:, :<span class="number">4</span>],</span><br><span class="line">      labels[:n_train], labels[n_train:])</span><br></pre></td></tr></table></figure>
+<img src="/2024/04/23/11-01-11/11-06.png" class="">
+<h4 id="3-6-线性函数拟合-欠拟合"><a href="#3-6-线性函数拟合-欠拟合" class="headerlink" title="3.6 [线性函数拟合(欠拟合)]"></a>3.6 [<strong>线性函数拟合(欠拟合)</strong>]</h4><p>让我们再看看线性函数拟合，减少该模型的训练损失相对困难。 在最后一个迭代周期完成后，训练损失仍然很高。 当用来拟合非线性模式（如这里的三阶多项式函数）时，线性模型容易欠拟合。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从多项式特征中选择前2个维度，即1和x</span></span><br><span class="line">train(poly_features[:n_train, :<span class="number">2</span>], poly_features[n_train:, :<span class="number">2</span>],</span><br><span class="line">      labels[:n_train], labels[n_train:])</span><br></pre></td></tr></table></figure>
+<img src="/2024/04/23/11-01-11/11-07.png" class="">
+<h4 id="3-7-高阶多项式函数拟合-过拟合"><a href="#3-7-高阶多项式函数拟合-过拟合" class="headerlink" title="3.7 [高阶多项式函数拟合(过拟合)]"></a>3.7 [<strong>高阶多项式函数拟合(过拟合)</strong>]</h4><p>现在，让我们尝试使用一个阶数过高的多项式来训练模型。 在这种情况下，没有足够的数据用于学到高阶系数应该具有接近于零的值。 因此，这个过于复杂的模型会轻易受到训练数据中噪声的影响。 虽然训练损失可以有效地降低，但测试损失仍然很高。 结果表明，复杂模型对数据造成了过拟合。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从多项式特征中选取所有维度</span></span><br><span class="line">train(poly_features[:n_train, :], poly_features[n_train:, :],</span><br><span class="line">      labels[:n_train], labels[n_train:], num_epochs=<span class="number">1500</span>)</span><br></pre></td></tr></table></figure>
+<img src="/2024/04/23/11-01-11/11-08.png" class="">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-11/" title="11-模型选择+过拟合和欠拟合">https://pkunicor.github.io/2024/04/23/11-01-11/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-10/" rel="prev" title="10-多层感知机">
+                  <i class="fa fa-chevron-left"></i> 10-多层感知机
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-12/" rel="next" title="12 权重衰退 Weight Decay">
+                  12 权重衰退 Weight Decay <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"a13dc91560ebc9e015870561ef041a46"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

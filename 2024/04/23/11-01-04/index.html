@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐-04">
+<meta property="og:type" content="article">
+<meta property="og:title" content="04-数据读取和操作">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-04/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐-04">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-23T03:01:04.000Z">
+<meta property="article:modified_time" content="2024-04-24T03:15:31.194Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-04/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-04/","path":"2024/04/23/11-01-04/","title":"04-数据读取和操作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>04-数据读取和操作 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E5%92%8C%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">04-数据读取和操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">1. 数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 基本操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E7%AE%80%E5%8D%95%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 简单运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 广播机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%87%E7%89%87"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 索引和切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E8%8A%82%E7%BA%A6%E5%86%85%E5%AD%98"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 节约内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%85%B6%E4%BB%96Python%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6 转换为其他Python对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 读取数据集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 处理缺失值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%BC%A0%E9%87%8F%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 转换为张量格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Q-amp-A"><span class="nav-number">1.3.</span> <span class="nav-text">3. Q&amp;A</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="04-数据读取和操作 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐-04">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          04-数据读取和操作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:04" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:04+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 11:15:31" itemprop="dateModified" datetime="2024-04-24T11:15:31+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐-04</div>
+	<hr>
+        <h2 id="04-数据读取和操作"><a href="#04-数据读取和操作" class="headerlink" title="04-数据读取和操作"></a>04-数据读取和操作</h2><h3 id="1-数据操作"><a href="#1-数据操作" class="headerlink" title="1. 数据操作"></a>1. 数据操作</h3><p>为了能够完成各种数据操作，我们需要某种方法来存储和操作数据。通常，我们需要做两件重要的事：</p>
+<ol>
+<li>获取数据；</li>
+<li>将数据读入计算机后对其进行处理。</li>
+</ol>
+<p>如果没有某种方法来存储数据，那么获取数据是没有意义的。</p>
+<p>首先，我们介绍 n 维数组，也称为<strong>张量</strong>（tensor）。PyTorch的<strong>张量类</strong>与Numpy的<code>ndarray</code>类似。但在深度学习框架中应用PyTorch的<strong>张量类</strong>，又比Numpy的<code>ndarray</code>多一些重要功能：</p>
+<ol>
+<li>tensor可以在很好地支持GPU加速计算，而NumPy仅支持CPU计算；</li>
+<li>tensor支持自动微分。</li>
+</ol>
+<p>这些功能使得张量类更适合深度学习。</p>
+<h4 id="1-1-基本操作"><a href="#1-1-基本操作" class="headerlink" title="1.1 基本操作"></a>1.1 基本操作</h4><p>[<strong>张量表示由一些数值组成的数组，这个数组可能有多个维度</strong>]。具有一个轴的张量对应数学上的<strong>向量</strong>（vector）；具有两个轴的张量对应数学上的<strong>矩阵</strong>（matrix）；具有两个轴以上的张量没有特殊的数学名称。</p>
+<p>我们可以使用<code>arange</code>创建一个行向量<code>x</code>。这个行向量包含从0开始的前12个整数，它们被<strong>默认创建为浮点数</strong>。张量中的每个值都称为张量的<strong>元素</strong>（element）。例如，张量<code>x</code>中有12个元素。除非额外指定，新的张量默认将存储在内存中，并采用基于CPU的计算。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = torch.arange(<span class="number">12</span>)</span><br><span class="line">	tensor([ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>])</span><br></pre></td></tr></table></figure>
+<p>[<strong>可以通过张量的<code>shape</code>属性来访问张量（沿每个轴的长度）的<em>形状</em></strong>]。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x.shape</span><br><span class="line">	torch.Size([<span class="number">12</span>])</span><br></pre></td></tr></table></figure>
+<p>如果只想知道张量中元素的总数，即形状的所有元素乘积，可以检查它的大小（size）。</p>
+<p>因为这里在处理的是一个向量，所以它的<code>shape</code>与它的<code>size</code>相同。在处理更高维度的的张量时，可以用这种方法获取张量中元素的个数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x.numel()</span><br><span class="line">	<span class="number">12</span></span><br></pre></td></tr></table></figure>
+<p>[<strong>要想改变一个张量的形状而不改变元素数量和元素值，可以调用<code>reshape</code>函数。</strong>]</p>
+<p>例如，可以把张量<code>x</code>从形状为（12,）的行向量转换为形状为（3,4）的矩阵。这个新的张量包含与转换前相同的值，但是它被看成一个3行4列的矩阵。值得注意的是，虽然张量的形状发生了改变，但其元素值并没有变。改变张量的形状时，张量中元素的个数不会改变。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = x.reshape(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">	tensor([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</span><br><span class="line">        	[ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</span><br><span class="line">        	[ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]])</span><br></pre></td></tr></table></figure>
+<p>我们不需要通过手动指定每个维度来改变形状。如果我们的目标形状是（高度 x 宽度），那么在知道宽度后，高度会被自动计算得出，不必我们自己做除法。我们可以通过<code>-1</code>来调用此自动计算出维度的功能即可以用<code>x.reshape(-1,4)</code>或<code>x.reshape(3,-1)</code>来取代<code>x.reshape(3,4)</code>。</p>
+<p>有时，我们希望[<strong>使用全0、全1、其他常量，或者从特定分布中随机采样的数字</strong>]来初始化矩阵。我们可以创建一个形状为（2,3,4）的张量，其中所有元素都设置为0或者1。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">	tensor([[[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">         	 [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">         	 [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]],</span><br><span class="line"></span><br><span class="line">        	[[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">         	 [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">         	 [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]]])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.ones((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">	tensor([[[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">         	 [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">         	 [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]],</span><br><span class="line"></span><br><span class="line">        	[[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">         	 [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">         	 [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]]])</span><br></pre></td></tr></table></figure>
+<p>有时我们想通过从某个特定的概率分布中随机采样来得到张量中每个元素的值。例如，当我们构造数组来作为神经网络中的参数时，我们通常会随机初始化参数的值。以下代码创建一个形状为（3,4）的张量。其中的每个元素都从均值为0、标准差为1的标准正态分布中随机采样。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.randn(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">	tensor([[ <span class="number">0.1364</span>,  <span class="number">0.3546</span>, -<span class="number">0.9091</span>, -<span class="number">1.8926</span>],</span><br><span class="line">        	[ <span class="number">0.5786</span>, -<span class="number">0.9019</span>, -<span class="number">0.1305</span>, -<span class="number">0.1899</span>],</span><br><span class="line">        	[ <span class="number">0.5696</span>,  <span class="number">1.1626</span>, -<span class="number">0.5987</span>,  <span class="number">0.4085</span>]])</span><br></pre></td></tr></table></figure>
+<p>我们还可以[<strong>通过提供包含数值的Python列表（或嵌套列表），来为所需张量中的每个元素赋予确定值</strong>]。在这里，最外层的列表对应于轴0，内层的列表对应于轴1。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.tensor([[<span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line">	tensor([[<span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>],</span><br><span class="line">        	[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">        	[<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-简单运算"><a href="#1-2-简单运算" class="headerlink" title="1.2 简单运算"></a>1.2 简单运算</h4><p>我们想在这些数据上执行数学运算，其中最简单且最有用的操作是<strong>按元素</strong>（elementwise）运算。它们将标准标量运算符应用于数组的每个元素。对于将两个数组作为输入的函数，按元素运算将二元运算符应用于两个数组中的每对位置对应的元素。我们可以基于任何从标量到标量的函数来创建按元素函数。我们通过将标量函数升级为按元素向量运算来生成向量值$F: \mathbb{R}^d, \mathbb{R}^d \rightarrow \mathbb{R}^d$。</p>
+<p>对于任意具有相同形状的张量，[<strong>常见的标准算术运算符（<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>和`</strong>`）都可以被升级为按元素运算**]。我们可以在同一形状的任意两个张量上调用按元素操作。我们使用逗号来表示一个具有5个元素的元组，其中每个元素都是按元素操作的结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = torch.tensor([<span class="number">1.0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>y = torch.tensor([<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x + y, x - y, x * y, x / y, x ** y</span><br><span class="line">	(tensor([ <span class="number">3.</span>,  <span class="number">4.</span>,  <span class="number">6.</span>, <span class="number">10.</span>]),</span><br><span class="line"> 	 tensor([-<span class="number">1.</span>,  <span class="number">0.</span>,  <span class="number">2.</span>,  <span class="number">6.</span>]),</span><br><span class="line"> 	 tensor([ <span class="number">2.</span>,  <span class="number">4.</span>,  <span class="number">8.</span>, <span class="number">16.</span>]),</span><br><span class="line"> 	 tensor([<span class="number">0.5000</span>, <span class="number">1.0000</span>, <span class="number">2.0000</span>, <span class="number">4.0000</span>]),</span><br><span class="line"> 	 tensor([ <span class="number">1.</span>,  <span class="number">4.</span>, <span class="number">16.</span>, <span class="number">64.</span>]))</span><br></pre></td></tr></table></figure>
+<p>(<strong>“按元素”方式可以应用更多的计算</strong>)，包括像求幂这样的一元运算符。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.exp(x)</span><br><span class="line">	tensor([<span class="number">2.7183e+00</span>, <span class="number">7.3891e+00</span>, <span class="number">5.4598e+01</span>, <span class="number">2.9810e+03</span>])</span><br></pre></td></tr></table></figure>
+<p>[<strong>我们也可以把多个张量<em>连结</em>（concatenate）在一起</strong>]，把它们端对端地叠起来形成一个更大的张量。我们只需要提供张量列表，并给出沿哪个轴连结。下面的例子分别演示了当我们沿行（轴-0，形状的第一个元素）和按列（轴-1，形状的第二个元素）连结两个矩阵时，会发生什么情况。我们可以看到，第一个输出张量的轴-0长度（$6$）是两个输入张量轴-0长度的总和（$3 + 3$）；第二个输出张量的轴-1长度（$8$）是两个输入张量轴-1长度的总和（$4 + 4$）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = torch.arange(<span class="number">12</span>, dtype=torch.float32).reshape((<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Y = torch.tensor([[<span class="number">2.0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.cat((X, Y), dim=<span class="number">0</span>), torch.cat((X, Y), dim=<span class="number">1</span>)</span><br><span class="line">	(tensor([[ <span class="number">0.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>],</span><br><span class="line">         	 [ <span class="number">4.</span>,  <span class="number">5.</span>,  <span class="number">6.</span>,  <span class="number">7.</span>],</span><br><span class="line">         	 [ <span class="number">8.</span>,  <span class="number">9.</span>, <span class="number">10.</span>, <span class="number">11.</span>],</span><br><span class="line">         	 [ <span class="number">2.</span>,  <span class="number">1.</span>,  <span class="number">4.</span>,  <span class="number">3.</span>],</span><br><span class="line">         	 [ <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>,  <span class="number">4.</span>],</span><br><span class="line">         	 [ <span class="number">4.</span>,  <span class="number">3.</span>,  <span class="number">2.</span>,  <span class="number">1.</span>]]),</span><br><span class="line"> 	 tensor([[ <span class="number">0.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>,  <span class="number">2.</span>,  <span class="number">1.</span>,  <span class="number">4.</span>,  <span class="number">3.</span>],</span><br><span class="line">         	 [ <span class="number">4.</span>,  <span class="number">5.</span>,  <span class="number">6.</span>,  <span class="number">7.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>,  <span class="number">4.</span>],</span><br><span class="line">         	 [ <span class="number">8.</span>,  <span class="number">9.</span>, <span class="number">10.</span>, <span class="number">11.</span>,  <span class="number">4.</span>,  <span class="number">3.</span>,  <span class="number">2.</span>,  <span class="number">1.</span>]]))</span><br></pre></td></tr></table></figure>
+<p>由上述例子可见，当需要按轴-x连结两个张量时，我们就在第x+1层括号内将两张量中的元素相组合。类似地，我们将两个三维张量相连结。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = torch.arange(<span class="number">12</span>, dtype=torch.float32).reshape((<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Y = torch.tensor([[[<span class="number">2.0</span>, <span class="number">1</span>], [<span class="number">4</span>, <span class="number">3</span>]], [[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]], [[<span class="number">4</span>, <span class="number">3</span>], [<span class="number">2</span>, <span class="number">1</span>]]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.cat((X, Y), dim=<span class="number">0</span>), torch.cat((X, Y), dim=<span class="number">1</span>), torch.cat((X, Y), dim=<span class="number">2</span>)</span><br><span class="line">	(tensor([[[ <span class="number">0.</span>,  <span class="number">1.</span>],</span><br><span class="line">          	  [ <span class="number">2.</span>,  <span class="number">3.</span>]],</span><br><span class="line"> </span><br><span class="line">         	 [[ <span class="number">4.</span>,  <span class="number">5.</span>],</span><br><span class="line">          	  [ <span class="number">6.</span>,  <span class="number">7.</span>]],</span><br><span class="line"> </span><br><span class="line">         	 [[ <span class="number">8.</span>,  <span class="number">9.</span>],</span><br><span class="line">          	  [<span class="number">10.</span>, <span class="number">11.</span>]],</span><br><span class="line"> </span><br><span class="line">         	 [[ <span class="number">2.</span>,  <span class="number">1.</span>],</span><br><span class="line">          	  [ <span class="number">4.</span>,  <span class="number">3.</span>]],</span><br><span class="line"> </span><br><span class="line">         	 [[ <span class="number">1.</span>,  <span class="number">2.</span>],</span><br><span class="line">          	  [ <span class="number">3.</span>,  <span class="number">4.</span>]],</span><br><span class="line"> </span><br><span class="line">         	 [[ <span class="number">4.</span>,  <span class="number">3.</span>],</span><br><span class="line">          	  [ <span class="number">2.</span>,  <span class="number">1.</span>]]]),</span><br><span class="line"> 	 tensor([[[ <span class="number">0.</span>,  <span class="number">1.</span>],</span><br><span class="line">          	  [ <span class="number">2.</span>,  <span class="number">3.</span>],</span><br><span class="line">          	  [ <span class="number">2.</span>,  <span class="number">1.</span>],</span><br><span class="line">          	  [ <span class="number">4.</span>,  <span class="number">3.</span>]],</span><br><span class="line"> </span><br><span class="line">         	 [[ <span class="number">4.</span>,  <span class="number">5.</span>],</span><br><span class="line">          	  [ <span class="number">6.</span>,  <span class="number">7.</span>],</span><br><span class="line">          	  [ <span class="number">1.</span>,  <span class="number">2.</span>],</span><br><span class="line">          	  [ <span class="number">3.</span>,  <span class="number">4.</span>]],</span><br><span class="line"> </span><br><span class="line">         	 [[ <span class="number">8.</span>,  <span class="number">9.</span>],</span><br><span class="line">         	  [<span class="number">10.</span>, <span class="number">11.</span>],</span><br><span class="line">         	  [ <span class="number">4.</span>,  <span class="number">3.</span>],</span><br><span class="line">          	  [ <span class="number">2.</span>,  <span class="number">1.</span>]]]),</span><br><span class="line"> 	 tensor([[[ <span class="number">0.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">1.</span>],</span><br><span class="line">          	  [ <span class="number">2.</span>,  <span class="number">3.</span>,  <span class="number">4.</span>,  <span class="number">3.</span>]],</span><br><span class="line"> </span><br><span class="line">        	 [[ <span class="number">4.</span>,  <span class="number">5.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>],</span><br><span class="line">          	  [ <span class="number">6.</span>,  <span class="number">7.</span>,  <span class="number">3.</span>,  <span class="number">4.</span>]],</span><br><span class="line"> </span><br><span class="line">         	 [[ <span class="number">8.</span>,  <span class="number">9.</span>,  <span class="number">4.</span>,  <span class="number">3.</span>],</span><br><span class="line">         	  [<span class="number">10.</span>, <span class="number">11.</span>,  <span class="number">2.</span>,  <span class="number">1.</span>]]]))</span><br></pre></td></tr></table></figure>
+<p>有时，我们想[<strong>通过<em>逻辑运算符</em>构建二元张量</strong>]。 以<code>X == Y</code>为例： 对于每个位置，如果<code>X</code>和<code>Y</code>在该位置相等，则新张量中相应项的值为1。 这意味着逻辑语句<code>X == Y</code>在该位置处为真，否则该位置为0。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X == Y</span><br><span class="line">	tensor([[<span class="literal">False</span>,  <span class="literal">True</span>, <span class="literal">False</span>,  <span class="literal">True</span>],</span><br><span class="line">        	[<span class="literal">False</span>, <span class="literal">False</span>, <span class="literal">False</span>, <span class="literal">False</span>],</span><br><span class="line">            [<span class="literal">False</span>, <span class="literal">False</span>, <span class="literal">False</span>, <span class="literal">False</span>]])</span><br></pre></td></tr></table></figure>
+<p>[<strong>对张量中的所有元素进行求和，会产生一个单元素张量。</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X.<span class="built_in">sum</span>()</span><br><span class="line">	tensor(<span class="number">66.</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-广播机制"><a href="#1-3-广播机制" class="headerlink" title="1.3 广播机制"></a>1.3 广播机制</h4><p>在上面的部分中，我们看到了如何在相同形状的两个张量上执行按元素操作。在某些情况下，[<strong>即使形状不同，我们仍然可以通过调用<em>广播机制</em>（broadcasting mechanism）来执行按元素操作</strong>]。这种机制的工作条件是：两个张量从后开始数，每个维度相等或者其中一个为1。这种机制的工作方式如下：首先，通过适当复制元素来扩展一个或两个数组，以便在转换之后，两个张量具有相同的形状。其次，对生成的数组执行按元素操作。在大多数情况下，我们将沿着数组中长度为1的轴进行广播，如下例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.arange(<span class="number">3</span>).reshape((<span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.arange(<span class="number">2</span>).reshape((<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a, b, a + b</span><br><span class="line">	(tensor([[<span class="number">0</span>],</span><br><span class="line">         	 [<span class="number">1</span>],</span><br><span class="line">         	 [<span class="number">2</span>]]),</span><br><span class="line"> 	 tensor([[<span class="number">0</span>, <span class="number">1</span>]]))</span><br><span class="line"> 	 tensor([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">        	 [<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        	 [<span class="number">2</span>, <span class="number">3</span>]])</span><br></pre></td></tr></table></figure>
+<p>由于<code>a</code>和<code>b</code>分别是$3\times1$和$1\times2$矩阵，如果让它们相加，它们的形状不匹配。我们将两个矩阵<strong>广播</strong>为一个更大的$3\times2$矩阵，矩阵<code>a</code>复制列，矩阵<code>b</code>复制行，然后再按元素相加。需要注意的是，广播机制只能扩展维度，而不能凭空增加张量的维度，例如在计算沿某个轴的均值时，若张量维度不同，则会报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>C = torch.arange(<span class="number">24</span>, dtype=torch.float32).reshape(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>C / C.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line">	RuntimeError: The size of tensor a (<span class="number">3</span>) must <span class="keyword">match</span> the size of tensor b (<span class="number">2</span>) at non-singleton dimension <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>此时我们需要将<code>keepdims</code>设为True，才能正确利用广播机制扩展<code>C.sum(axis=1)</code>的维度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>C / C.<span class="built_in">sum</span>(axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>)</span><br><span class="line">	tensor([[[<span class="number">0.0000</span>, <span class="number">0.0667</span>, <span class="number">0.1111</span>, <span class="number">0.1429</span>],</span><br><span class="line">         	 [<span class="number">0.3333</span>, <span class="number">0.3333</span>, <span class="number">0.3333</span>, <span class="number">0.3333</span>],</span><br><span class="line">         	 [<span class="number">0.6667</span>, <span class="number">0.6000</span>, <span class="number">0.5556</span>, <span class="number">0.5238</span>]],</span><br><span class="line"></span><br><span class="line">        	[[<span class="number">0.2500</span>, <span class="number">0.2549</span>, <span class="number">0.2593</span>, <span class="number">0.2632</span>],</span><br><span class="line">         	 [<span class="number">0.3333</span>, <span class="number">0.3333</span>, <span class="number">0.3333</span>, <span class="number">0.3333</span>],</span><br><span class="line">         	 [<span class="number">0.4167</span>, <span class="number">0.4118</span>, <span class="number">0.4074</span>, <span class="number">0.4035</span>]]])</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-索引和切片"><a href="#1-4-索引和切片" class="headerlink" title="1.4 索引和切片"></a>1.4 索引和切片</h4><p>就像在任何其他Python数组中一样，张量中的元素可以通过索引访问。与任何Python数组一样：第一个元素的索引是0，最后一个元素索引是-1；可以指定范围以包含第一个元素和最后一个之前的元素。如下所示，我们[<strong>可以用<code>[-1]</code>选择最后一个元素，可以用<code>[1:3]</code>选择第二个和第三个元素</strong>]：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X[-<span class="number">1</span>], X[<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">	(tensor([ <span class="number">8.</span>,  <span class="number">9.</span>, <span class="number">10.</span>, <span class="number">11.</span>]),</span><br><span class="line"> 	 tensor([[ <span class="number">4.</span>,  <span class="number">5.</span>,  <span class="number">6.</span>,  <span class="number">7.</span>],</span><br><span class="line">         	 [ <span class="number">8.</span>,  <span class="number">9.</span>, <span class="number">10.</span>, <span class="number">11.</span>]]))</span><br></pre></td></tr></table></figure>
+<p>我们[<strong>可以用<code>[::2]</code>每间隔一个元素选择一个元素，可以用<code>[::3]</code>每间隔两个元素选择一个元素</strong>]：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X[::<span class="number">2</span>, ::<span class="number">3</span>]</span><br><span class="line">	tensor([[ <span class="number">0.</span>,  <span class="number">3.</span>],</span><br><span class="line">          	[ <span class="number">8.</span>, <span class="number">11.</span>]])</span><br></pre></td></tr></table></figure>
+<p>[<strong>除读取外，我们还可以通过指定索引来将元素写入矩阵。</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X[<span class="number">1</span>, <span class="number">2</span>] = <span class="number">9</span></span><br><span class="line">	tensor([[ <span class="number">0.</span>,  <span class="number">1.</span>,  <span class="number">2.</span>,  <span class="number">3.</span>],</span><br><span class="line">        	[ <span class="number">4.</span>,  <span class="number">5.</span>,  <span class="number">9.</span>,  <span class="number">7.</span>],</span><br><span class="line">       	 	[ <span class="number">8.</span>,  <span class="number">9.</span>, <span class="number">10.</span>, <span class="number">11.</span>]])</span><br></pre></td></tr></table></figure>
+<p>如果我们想[<strong>为多个元素赋值相同的值，我们只需要索引所有元素，然后为它们赋值。</strong>]例如，<code>[0:2, :]</code>访问第1行和第2行，其中“:”代表沿轴1（列）的所有元素。虽然我们讨论的是矩阵的索引，但这也适用于向量和超过2个维度的张量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>X[<span class="number">0</span>:<span class="number">2</span>, :] = <span class="number">12</span></span><br><span class="line">	tensor([[<span class="number">12.</span>, <span class="number">12.</span>, <span class="number">12.</span>, <span class="number">12.</span>],</span><br><span class="line">        	[<span class="number">12.</span>, <span class="number">12.</span>, <span class="number">12.</span>, <span class="number">12.</span>],</span><br><span class="line">       	 	[ <span class="number">8.</span>,  <span class="number">9.</span>, <span class="number">10.</span>, <span class="number">11.</span>]])</span><br></pre></td></tr></table></figure>
+<h4 id="1-5-节约内存"><a href="#1-5-节约内存" class="headerlink" title="1.5 节约内存"></a>1.5 节约内存</h4><p>[<strong>如果在后续计算中没有重复使用<code>X</code>，我们也可以使用<code>X[:] = X + Y</code>或<code>X += Y</code>来减少操作的内存开销。</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>before = <span class="built_in">id</span>(X)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X += Y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">id</span>(X) == before</span><br><span class="line">	<span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h4 id="1-6-转换为其他Python对象"><a href="#1-6-转换为其他Python对象" class="headerlink" title="1.6 转换为其他Python对象"></a>1.6 转换为其他Python对象</h4><p>将深度学习框架定义的张量[<strong>转换为NumPy张量（<code>ndarray</code>）</strong>]很容易，反之也同样容易。torch张量和numpy数组将共享它们的底层内存，就地操作更改一个张量也会同时更改另一个张量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>A = X.numpy()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B = torch.tensor(A)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">type</span>(A), <span class="built_in">type</span>(B)</span><br><span class="line">	(numpy.ndarray, torch.Tensor)</span><br></pre></td></tr></table></figure>
+<p>要(<strong>将大小为1的张量转换为Python标量</strong>)，我们可以调用<code>item</code>函数或Python的内置函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">3.5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a, a.item(), <span class="built_in">float</span>(a), <span class="built_in">int</span>(a)</span><br><span class="line">	(tensor([<span class="number">3.5000</span>]), <span class="number">3.5</span>, <span class="number">3.5</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-数据预处理"><a href="#2-数据预处理" class="headerlink" title="2. 数据预处理"></a>2. 数据预处理</h3><p>为了能用深度学习来解决现实世界的问题，我们经常从预处理原始数据开始，而不是从那些准备好的张量格式数据开始。在Python中常用的数据分析工具中，我们通常使用<code>pandas</code>软件包。像庞大的Python生态系统中的许多其他扩展包一样，<code>pandas</code>可以与张量兼容。本节我们将简要介绍使用<code>pandas</code>预处理原始数据，并将原始数据转换为张量格式的步骤。</p>
+<h4 id="2-1-读取数据集"><a href="#2-1-读取数据集" class="headerlink" title="2.1 读取数据集"></a>2.1 读取数据集</h4><p>举一个例子，我们首先(<strong>创建一个人工数据集，并存储在CSV（逗号分隔值）文件</strong>)<code>../data/house_tiny.csv</code>中。以其他格式存储的数据也可以通过类似的方式进行处理。下面我们将数据集按行写入CSV文件中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> os</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os.makedirs(os.path.join(<span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;data&#x27;</span>), exist_ok=<span class="literal">True</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_file = os.path.join(<span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;data&#x27;</span>, <span class="string">&#x27;house_tiny.csv&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> <span class="built_in">open</span>(data_file, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    f.write(<span class="string">&#x27;NumRooms,Alley,Price\n&#x27;</span>)  <span class="comment"># 列名</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    f.write(<span class="string">&#x27;NA,Pave,127500\n&#x27;</span>)  <span class="comment"># 每行表示一个数据样本</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    f.write(<span class="string">&#x27;2,NA,106000\n&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    f.write(<span class="string">&#x27;4,NA,178100\n&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>    f.write(<span class="string">&#x27;NA,NA,140000\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>要[<strong>从创建的CSV文件中加载原始数据集</strong>]，我们导入<code>pandas</code>包并调用<code>read_csv</code>函数。该数据集有四行三列。其中每行描述了房间数量（“NumRooms”）、巷子类型（“Alley”）和房屋价格（“Price”）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data = pd.read_csv(data_file)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">NumRooms</th>
+<th style="text-align:center">Alley</th>
+<th style="text-align:center">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">Pave</td>
+<td style="text-align:center">127500</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2.0</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">106000</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4.0</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">178100</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">140000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="2-2-处理缺失值"><a href="#2-2-处理缺失值" class="headerlink" title="2.2 处理缺失值"></a>2.2 处理缺失值</h4><p>“NaN”项代表缺失值。[<strong>为了处理缺失的数据，典型的方法包括<em>插值法</em>和<em>删除法</em>，</strong>]其中插值法用一个替代值弥补缺失值，而删除法则直接忽略缺失值。通过位置索引<code>iloc</code>，我们将<code>data</code>分成<code>inputs</code>和<code>outputs</code>，其中前者为<code>data</code>的前两列，而后者为<code>data</code>的最后一列。对于<code>inputs</code>中缺少的数值，我们用同一列的均值替换“NaN”项。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>inputs, outputs = data.iloc[:, <span class="number">0</span>:<span class="number">2</span>], data.iloc[:, <span class="number">2</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>inputs = inputs.fillna(inputs.mean())</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">NumRooms</th>
+<th style="text-align:center">Alley</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3.0</td>
+<td style="text-align:center">Pave</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2.0</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4.0</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3.0</td>
+<td style="text-align:center">NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>利用删除法，我们删除缺失元素最多的一个样本。首先，<code>data.isnull()</code>矩阵统计每个元素是否缺失，之后在轴-1的方向上将<code>data.isnull()</code>元素求和，得到每个样本缺失元素个数，取得缺失元素个数最大的样本的序号，并将其删除。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>nan_numer = data.isnull().<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>nan_max_id = nan_numer.idxmax()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data_delete = data.drop([nan_max_id], axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">NumRooms</th>
+<th style="text-align:center">Alley</th>
+<th style="text-align:center">Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">Pave</td>
+<td style="text-align:center">127500</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2.0</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">106000</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4.0</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">178100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>一般情况下，利用<code>dropna</code>删除数据，其中•Axis哪个维度How如何删除，‘any’表示有nan即删除，‘all’表示全为nan删除，Thresh有多少个nan删除，Subset在哪些列中查找nan，Inplace是否原地修改。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dropna( axis=<span class="number">0</span>, how=‘<span class="built_in">any</span>’, thresh=<span class="literal">None</span>, subset=<span class="literal">None</span>, inplace=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>[<strong>对于<code>inputs</code>中的类别值或离散值，我们将“NaN”视为一个类别。</strong>]由于“巷子类型”（“Alley”）列只接受两种类型的类别值“Pave”和“NaN”，<code>pandas</code>可以自动将此列转换为两列“Alley_Pave”和“Alley_nan”。巷子类型为“Pave”的行会将“Alley_Pave”的值设置为1，“Alley_nan”的值设置为0。缺少巷子类型的行会将“Alley_Pave”和“Alley_nan”分别设置为0和1。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>inputs = pd.get_dummies(inputs, dummy_na=<span class="literal">True</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">NumRooms</th>
+<th style="text-align:center">Alley_Pave</th>
+<th style="text-align:center">Alley_nan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">3.0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2.0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4.0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3.0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="2-3-转换为张量格式"><a href="#2-3-转换为张量格式" class="headerlink" title="2.3 转换为张量格式"></a>2.3 转换为张量格式</h4><p>[<strong>现在<code>inputs</code>和<code>outputs</code>中的所有条目都是数值类型，它们可以转换为张量格式。</strong>]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> torch</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X, y = torch.tensor(inputs.values), torch.tensor(outputs.values)</span><br><span class="line">	(tensor([[<span class="number">3.</span>, <span class="number">1.</span>, <span class="number">0.</span>],</span><br><span class="line">         	 [<span class="number">2.</span>, <span class="number">0.</span>, <span class="number">1.</span>],</span><br><span class="line">         	 [<span class="number">4.</span>, <span class="number">0.</span>, <span class="number">1.</span>],</span><br><span class="line">         	 [<span class="number">3.</span>, <span class="number">0.</span>, <span class="number">1.</span>]], dtype=torch.float64),</span><br><span class="line"> 	 tensor([<span class="number">127500</span>, <span class="number">106000</span>, <span class="number">178100</span>, <span class="number">140000</span>]))</span><br></pre></td></tr></table></figure>
+<h3 id="3-Q-amp-A"><a href="#3-Q-amp-A" class="headerlink" title="3. Q&amp;A"></a>3. Q&amp;A</h3><p><strong><code>Q1：reshape和view的区别？</code></strong></p>
+<blockquote>
+<p>View为浅拷贝，只能作用于连续型张量；Contiguous函数将张量做深拷贝并转为连续型；Reshape在张量连续时和view相同，不连续时等价于先contiguous再view。</p>
+</blockquote>
+<p><strong><code>Q2：数组计算吃力怎么办？</code></strong></p>
+<blockquote>
+<p>学习numpy的知识。</p>
+</blockquote>
+<p><strong><code>Q3：如何快速区分维度？</code></strong></p>
+<blockquote>
+<p>利用<code>a.shape</code>或<code>a.dim()</code>。</p>
+</blockquote>
+<p><strong><code>Q4：Tensor和Array有什么区别？</code></strong></p>
+<blockquote>
+<p>Tensor是数学上定义的张量，Array是计算机概念数组，但在深度学习中有时将Tensor视为多维数组。</p>
+</blockquote>
+<p><strong><code>Q5：新分配了y的内存，那么之前y对应的内存会自动释放吗？</code></strong></p>
+<blockquote>
+<p>Python会在不需要时自动释放内存。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-04/" title="04-数据读取和操作">https://pkunicor.github.io/2024/04/23/11-01-04/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-03/" rel="prev" title="03-深度学习安装">
+                  <i class="fa fa-chevron-left"></i> 03-深度学习安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-05/" rel="next" title="05-线性代数">
+                  05-线性代数 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"c2c0894e6de1d4c4ffcb11a423b203ca"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

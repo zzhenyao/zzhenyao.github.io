@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18-预测房价竞赛总结">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-18/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-23T03:01:18.000Z">
+<meta property="article:modified_time" content="2024-04-24T03:14:23.344Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-18/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-18/","path":"2024/04/23/11-01-18/","title":"18-预测房价竞赛总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>18-预测房价竞赛总结 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#18-%E9%A2%84%E6%B5%8B%E6%88%BF%E4%BB%B7%E7%AB%9E%E8%B5%9B%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">18-预测房价竞赛总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.</span> <span class="nav-text">1.方法总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">2.分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%85%B3%E4%BA%8Eautoml"><span class="nav-number">1.3.</span> <span class="nav-text">3.关于automl</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 课程内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E8%A1%A5%E5%85%85%E5%86%85%E5%AE%B9"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 补充内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AutoGluon"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">AutoGluon</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.</span> <span class="nav-text">4.总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%A2%84%E6%B5%8B%E6%88%BF%E4%BB%B7%E7%AB%9E%E8%B5%9B%E6%80%BB%E7%BB%93-Q-amp-A"><span class="nav-number">1.5.</span> <span class="nav-text">5.预测房价竞赛总结 Q&amp;A</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="18-预测房价竞赛总结 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          18-预测房价竞赛总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:18" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:18+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 11:14:23" itemprop="dateModified" datetime="2024-04-24T11:14:23+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐</div>
+	<hr>
+        <h2 id="18-预测房价竞赛总结"><a href="#18-预测房价竞赛总结" class="headerlink" title="18-预测房价竞赛总结"></a>18-预测房价竞赛总结</h2><h3 id="1-方法总结"><a href="#1-方法总结" class="headerlink" title="1.方法总结"></a>1.方法总结</h3><blockquote>
+<p>下面提供了排行榜前几使用的方法介绍链接</p>
+</blockquote>
+<ul>
+<li><p>第二和第七：autogluon</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1rh411m7Hb/">https://www.bilibili.com/video/BV1rh411m7Hb/</a></p>
+</li>
+<li><p>第三：h2o</p>
+<p><a target="_blank" rel="noopener" href="https://www.kaggle.com/wuwawa/automl-using-h2o">https://www.kaggle.com/wuwawa/automl-using-h2o</a></p>
+</li>
+<li><p>第四：随机森林</p>
+<p><a target="_blank" rel="noopener" href="https://www.kaggle.com/jackzh/the-4th-place-approach-random-forest">https://www.kaggle.com/jackzh/the-4th-place-approach-random-forest</a></p>
+</li>
+</ul>
+<h3 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h3><ul>
+<li><p>已知的排名靠前的4个成绩均使用了集成学习</p>
+</li>
+<li><p>目前不知道是否有使用书中的mlp取得好成绩</p>
+<blockquote>
+<p>通过调参数，是能够取得很好的结果的</p>
+</blockquote>
+<p> 对于mlp来说，特征预处理和超参数的调节是取得好成绩的基础</p>
+</li>
+<li><p>数据的难点</p>
+<ul>
+<li><p>数值较大</p>
+<blockquote>
+<p>梯度相对较大，容易发生梯度爆炸</p>
+</blockquote>
+<p>一个解决方案是可以对数据取对数，再进行标准化</p>
+</li>
+<li><p>有文本特征（地址，介绍）</p>
+<blockquote>
+<p>这些文字可能含有较多的噪声，对模型产生影响</p>
+</blockquote>
+<p>解决办法日后会讲解，比如第二名用的transformer</p>
+</li>
+<li><p>训练数据是前6个月，公榜是后3个月，私榜是再往后3个月</p>
+<blockquote>
+<p>利用历史的数据进行训练，在实践中自然会有不同的影响（可能过拟合）</p>
+<p>因此公榜与私榜的排名有一定差异</p>
+</blockquote>
+<pre><code>       这个问题称为Covariate Shift，没有特别好的解决方案  ，可以让模型尽可能稳定，不去仔细调参
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-关于automl"><a href="#3-关于automl" class="headerlink" title="3.关于automl"></a>3.关于automl</h3><h4 id="3-1-课程内容"><a href="#3-1-课程内容" class="headerlink" title="3.1 课程内容"></a>3.1 课程内容</h4><blockquote>
+<p>这一部分李沐老师要表达的主要是我们应该深入去了解本后的原理，不要因为有”自动化”深度学习而产生一种依赖心理或者变得没有深究深度学习的动力，学习deep learning仍然是有意义的</p>
+</blockquote>
+<ul>
+<li><p>数据科学家80%时间在处理数据，20%调模型</p>
+<blockquote>
+<p>处理数据是automl不能做的，automl的作用主要在调模型这块，数据科学家仍然能大展身手</p>
+</blockquote>
+</li>
+<li><p>Automl现在能处理一些基础的情况</p>
+<blockquote>
+<p>目前节省10%时间，未来节省20%时间</p>
+</blockquote>
+</li>
+<li><p>为什么还要学习深度学习</p>
+<p>正如买菜只需要用到四则运算甚至不用，我们仍然需要学习三角函数去进行更深入的科学研究等其他事情。当人人都会用Automl的时候，我们仍然需要懂得一些底层的原理，毕竟Automl也是有局限性的，需要我们不断改进，或者想出其他算法。另一方面，我们也要肯定Automl带来的便利。</p>
+</li>
+</ul>
+<h4 id="3-2-补充内容"><a href="#3-2-补充内容" class="headerlink" title="3.2 补充内容"></a>3.2 补充内容</h4><h5 id="AutoGluon"><a href="#AutoGluon" class="headerlink" title="AutoGluon"></a>AutoGluon</h5><blockquote>
+<p>与大部分automl框架是基于超参数搜索技术的不同，Autogluon会利用多个机器学习包来训练模型</p>
+</blockquote>
+<ul>
+<li><p>房价预测竞赛中模型的改动</p>
+<blockquote>
+<p>1.对于数据中数值比较大且数据变化大的数值取log,CPU上训练2个小时，最终排第七</p>
+<p>2.房子描述里包含大量文本，使用mutimodal选项来用transformer提取特征，并做多模型融合,用GPU才跑得动，排名第二</p>
+</blockquote>
+</li>
+<li><p>AutoGluon背后的技术</p>
+<blockquote>
+<p>1.stacking</p>
+<p>2.k-则交叉bagging</p>
+<p>3.多层stacking</p>
+</blockquote>
+</li>
+<li><p>总结</p>
+<blockquote>
+<p>1.autogluon在合理的计算开销下得到还不错的模型</p>
+<p>2.虽然autogluon可以做自动特征抽取，但是当加入一些人工数据处理也是不错的方法</p>
+<p>3.对于比较大的数据集计算开销仍然是瓶颈，需要使用GPU甚至多台机器做分布式训练，这仍是AutoML未来的研究方向</p>
+<p>4.具体讲解可参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1F84y1F7Ps/?spm_id_from=333.788.recommend_more_video.1">https://www.bilibili.com/video/BV1F84y1F7Ps/?spm_id_from=333.788.recommend_more_video.1</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>这节课本身就是一次对预测房价竞赛的总结，主要介绍了排名的分布情况以及一些队伍使用的方法。</p>
+<h3 id="5-预测房价竞赛总结-Q-amp-A"><a href="#5-预测房价竞赛总结-Q-amp-A" class="headerlink" title="5.预测房价竞赛总结 Q&amp;A"></a>5.预测房价竞赛总结 Q&amp;A</h3><p><strong>Q1: 统计学专业本科生未来从事人工智能如何规划</strong></p>
+<blockquote>
+<p>注重动手能力的培养</p>
+</blockquote>
+<p><strong>Q2: 避免overfit是调参好还是不调参好？老师有何经验分享？</strong></p>
+<blockquote>
+<p>调参是需要的，首先最好有一个比较好的验证集；当你找到一个在验证集效果比较好的超参数值的时候，最好在这一值上调或下调一点看看是否敏感，如果比较敏感说明这点可能只是在这点凑巧效果好罢了，泛化性就不好；当然在实践中调参并没有像在竞赛中那么重要</p>
+</blockquote>
+<p><strong>Q3: 老师说的80%时间处理数据是指的找数据、清理数据这些？数据搭建pipeline不就好了， ？为什么改进模型等等不占主要时间？</strong></p>
+<blockquote>
+<p>处理数据并不是搭建pipeline就好了，你需要决定从哪里获取数据、怎样获取数据、如何处理噪音（清理数据）……这些都是很费时间的</p>
+</blockquote>
+<p><strong>Q4: AutoML与ML有严格的特征区别吗</strong></p>
+<blockquote>
+<p>AutoML可以看作是ML中的一类算法</p>
+</blockquote>
+<p><strong>Q5: 用mlp做竞赛时发现层数深的时候预测出来的房价全是一样的，层数浅一点还不会出现这个问题，为什么？</strong></p>
+<blockquote>
+<p>应该是梯度爆炸，或者梯度消失，也就是数值稳定性出现问题</p>
+</blockquote>
+<p><strong>Q6：MLP有值得精细调参的价值吗？</strong></p>
+<blockquote>
+<p>有。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-18/" title="18-预测房价竞赛总结">https://pkunicor.github.io/2024/04/23/11-01-18/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-17/" rel="prev" title="17-使用和购买GPU">
+                  <i class="fa fa-chevron-left"></i> 17-使用和购买GPU
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-19/" rel="next" title="19-卷积层">
+                  19-卷积层 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"0a1e821956043696f02eeb14e97c7d91"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

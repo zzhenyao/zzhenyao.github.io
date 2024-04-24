@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="14-数值稳定性+模型初始化和激活函数">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-14/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-01.png">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?h^{t-1}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?f_{t}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?W_{t}&space;">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?4\times&space;10^{17}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?2\times10^{-10}">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-02.png">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?h^{t}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?h^{t-1}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?f_{t}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?h^{t-1}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?\sigma&space;">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?h^{t}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?\sigma&space;">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?\sigma&space;">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?W_{t}h_{t-1}">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/14/14-03.png">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?\frac{\partial&space;W^{t}h^{t-1}}{\partial&space;h^{t-1}}=&space;W^{t}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?\left&space;(W^{t}&space;&space;\right&space;)^{T}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?W^{t}">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-04.png">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?W^{i}">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?\prod\left&space;(&space;W^{i}&space;\right&space;)&space;">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?W^{i}">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-05.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-06.png">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?\prod&space;diag\left&space;(&space;\sigma&space;^{">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-07.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-08.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-09.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-10.png">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?&space;n_{t-1}\gamma&space;_{t}=1&space;">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-11.png">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?&space;n_{t}\gamma&space;_{t}=1&space;">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?&space;n_{t-1}\gamma&space;_{t}=1&space;">
+<meta property="og:image" content="https://latex.codecogs.com/svg.image?&space;n_{t}\gamma&space;_{t}=1&space;">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/imgs/14/14-12.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-13.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-14.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-15.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-16.png">
+<meta property="article:published_time" content="2024-04-23T03:01:14.000Z">
+<meta property="article:modified_time" content="2024-04-24T03:58:24.137Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/11-01-14/14-01.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-14/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-14/","path":"2024/04/23/11-01-14/","title":"14-数值稳定性+模型初始化和激活函数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>14-数值稳定性+模型初始化和激活函数 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7-%E6%A8%A1%E5%9E%8B%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">14-数值稳定性+模型初始化和激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">1. 数值稳定性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A2%AF%E5%BA%A6"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 神经网络的梯度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7%E7%9A%84%E5%B8%B8%E8%A7%81%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 数值稳定性的常见两个问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E4%BE%8B%E5%AD%90%EF%BC%9AMLP"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 例子：MLP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.3 梯度爆炸</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-%E4%BD%BF%E7%94%A8ReLU%E4%BD%9C%E4%B8%BA%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">1.3.1 使用ReLU作为激活函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-2-%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">1.3.2 梯度爆炸问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.4 梯度消失</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-1-%E4%BD%BF%E7%94%A8Sigmoid%E4%BD%9C%E4%B8%BA%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">1.4.1 使用Sigmoid作为激活函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-2-%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">1.4.2 梯度消失的问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A8%A1%E5%9E%8B%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">2. 模型初始化和激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E8%AE%A9%E8%AE%AD%E7%BB%83%E6%9B%B4%E5%8A%A0%E7%A8%B3%E5%AE%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 让训练更加稳定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE%EF%BC%9A%E8%AE%A9%E6%AF%8F%E5%B1%82%E7%9A%84%E5%9D%87%E5%80%BC-%E6%96%B9%E5%B7%AE%E6%98%AF%E4%B8%80%E4%B8%AA%E5%B8%B8%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 基本假设：让每层的均值&#x2F;方差是一个常数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 权重初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E4%BE%8B%E5%AD%90%EF%BC%9AMLP"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 例子：MLP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-1-%E6%A8%A1%E5%9E%8B%E5%81%87%E8%AE%BE"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">2.4.1 模型假设</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-2-%E6%AD%A3%E5%90%91%E6%96%B9%E5%B7%AE"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">2.4.2 正向方差</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-3-%E5%8F%8D%E5%90%91%E5%9D%87%E5%80%BC%E5%92%8C%E6%96%B9%E5%B7%AE"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">2.4.3 反向均值和方差</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-4-Xavier%E5%88%9D%E5%A7%8B"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">2.4.4 Xavier初始</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-5-%E5%81%87%E8%AE%BE%E7%BA%BF%E6%80%A7%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">2.4.5 假设线性的激活函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-6-%E6%A3%80%E6%9F%A5%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.4.6.</span> <span class="nav-text">2.4.6 检查常用激活函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">3. 总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Q-amp-A"><span class="nav-number">1.4.</span> <span class="nav-text">4.Q&amp;A</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="14-数值稳定性+模型初始化和激活函数 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          14-数值稳定性+模型初始化和激活函数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:14" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:14+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 11:58:24" itemprop="dateModified" datetime="2024-04-24T11:58:24+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐</div>
+	<hr>
+        <h2 id="14-数值稳定性-模型初始化和激活函数"><a href="#14-数值稳定性-模型初始化和激活函数" class="headerlink" title="14-数值稳定性+模型初始化和激活函数"></a>14-数值稳定性+模型初始化和激活函数</h2><h3 id="1-数值稳定性"><a href="#1-数值稳定性" class="headerlink" title="1. 数值稳定性"></a>1. 数值稳定性</h3><p>数值稳定性是深度学习中比较重要的点，特别是当神经网络变得很深的时候，数值通常很容易变得不稳定。</p>
+<h4 id="1-1-神经网络的梯度"><a href="#1-1-神经网络的梯度" class="headerlink" title="1.1 神经网络的梯度"></a>1.1 神经网络的梯度</h4><img src="/2024/04/23/11-01-14/14-01.png" class="">
+<p><strong>考虑d层神经网络</strong></p>
+<ul>
+<li><p>t表示层数，<img src="https://latex.codecogs.com/svg.image?h^{t-1}" title="h^{t-1}" />表示第<em>t-1</em>层的输出，经过一个<img src="https://latex.codecogs.com/svg.image?f_{t}" title="f_{t}" />函数后，得到第<em>t</em>层的输出。</p>
+</li>
+<li><p>最终输出y的表示：输入x经过若干层(<em>d</em>层)的函数作用，最后被损失函数作用得到输出y。</p>
+</li>
+</ul>
+<p><strong>计算损失函数<em>L</em>关于第<em>t</em>层参数<img src="https://latex.codecogs.com/svg.image?W_{t}&space;" title="W_{t} " />的梯度</strong></p>
+<ul>
+<li><p>由链导法则得到上图中乘积公式</p>
+</li>
+<li><p>需要进行d-t次<strong>矩阵乘法</strong>（为什么是矩阵乘法？答：由于所有的<em>h</em>都是一些<strong>向量</strong>，导数中分子分母均为向量，所以求导得到的是矩阵，维数为[分子维度]x[分母维度]，可以参考第6节<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eZ4y1w7PY">视频</a>和<a href="./06-矩阵计算.md">笔记</a>）。这也是导致数值稳定性问题的<strong>主要因素</strong>，由于做了太多次的矩阵乘法。</p>
+</li>
+</ul>
+<h4 id="1-2-数值稳定性的常见两个问题"><a href="#1-2-数值稳定性的常见两个问题" class="headerlink" title="1.2 数值稳定性的常见两个问题"></a>1.2 数值稳定性的常见两个问题</h4><p><strong>梯度爆炸</strong></p>
+<p>假设梯度都是一些比1大的数比如1.5，做100次乘积之后得到<img src="https://latex.codecogs.com/svg.image?4\times&space;10^{17}" title="4\times 10^{17}" />，这个数字很容易带来一些浮点数上限的问题（需了解更多请参考计算机系统-计算机中浮点数的存储方式）。</p>
+<p><strong>梯度消失</strong></p>
+<p>假设梯度都是一些比1小的数比如0.8，做100次乘积之后得到<img src="https://latex.codecogs.com/svg.image?2\times10^{-10}" title="2\times10^{-10}" />，也可能会带来浮点数下溢的问题。</p>
+<h4 id="1-3-例子：MLP"><a href="#1-3-例子：MLP" class="headerlink" title="1.3 例子：MLP"></a>1.3 例子：MLP</h4><p>此处我们着重探讨<a href="#11-神经网络的梯度">1.1节</a>中所述的求梯度时所做的d-t次矩阵乘法，并以一个实例MLP来探讨其结果的具体形式。</p>
+<img src="/2024/04/23/11-01-14/14-02.png" class="">
+<ul>
+<li><p>第一行公式，定义<img src="https://latex.codecogs.com/svg.image?h^{t}" title="h^{t}" />和<img src="https://latex.codecogs.com/svg.image?h^{t-1}" title="h^{t-1}" />(均为向量)的函数关系<img src="https://latex.codecogs.com/svg.image?f_{t}" title="f_{t}" />，第t层的权重矩阵作用于t-1层的输出<img src="https://latex.codecogs.com/svg.image?h^{t-1}" title="h^{t-1}" />后经过激活函数<img src="https://latex.codecogs.com/svg.image?\sigma&space;" title="\sigma " />得到<img src="https://latex.codecogs.com/svg.image?h^{t}" title="h^{t}" />，注意激活函数<img src="https://latex.codecogs.com/svg.image?\sigma&space;" title="\sigma " />逐元素计算。</p>
+</li>
+<li><p>第二行公式：这里用到链导法则，激活函数<img src="https://latex.codecogs.com/svg.image?\sigma&space;" title="\sigma " />先对内部向量逐元素求导，然后把求导后这个向量变成对角矩阵（可以理解为链导法则中内部向量<img src="https://latex.codecogs.com/svg.image?W_{t}h_{t-1}" title="W_{t}h_{t-1}" />对自身进行求导，变成一个nxn的对角矩阵，更多请参考<a target="_blank" rel="noopener" href="https://nndl.github.io/nndl-book.pdf">邱锡鹏 《神经网络与深度学习》</a><sup><a href="#fn_ 图片1" id="reffn_ 图片1"> 图片1</a></sup>）</p>
+<div align="center">
+   <img src="../imgs/14/14-03.png" alt="image" align="center" width="500" />
+</div>
+
+</li>
+</ul>
+<blockquote id="fn_图片1">
+<sup>图片1</sup>. 引自<a target="_blank" rel="noopener" href="https://nndl.github.io/nndl-book.pdf">邱锡鹏 《神经网络与深度学习》</a>附录：数学基础 <a href="#reffn_图片1" title="Jump back to footnote [图片1] in the text."> &#8617;</a>
+</blockquote>
+<ul>
+<li>视频中<strong>勘误说明</strong>：链导法则中 <img src="https://latex.codecogs.com/svg.image?\frac{\partial&space;W^{t}h^{t-1}}{\partial&space;h^{t-1}}=&space;W^{t}" title="\frac{\partial W^{t}h^{t-1}}{\partial h^{t-1}}= W^{t}" /> 而不是<img src="https://latex.codecogs.com/svg.image?\left&space;(W^{t}&space;&space;\right&space;)^{T}" title="\left (W^{t} \right )^{T}" />（这点由分子分母维度也容易推出），故最终求导结果包含<img src="https://latex.codecogs.com/svg.image?W^{t}" title="W^{t}" />，而不是其转置。</li>
+</ul>
+<h4 id="1-3-梯度爆炸"><a href="#1-3-梯度爆炸" class="headerlink" title="1.3 梯度爆炸"></a>1.3 梯度爆炸</h4><h5 id="1-3-1-使用ReLU作为激活函数"><a href="#1-3-1-使用ReLU作为激活函数" class="headerlink" title="1.3.1 使用ReLU作为激活函数"></a>1.3.1 使用ReLU作为激活函数</h5><img src="/2024/04/23/11-01-14/14-04.png" class="">
+<p>由于激活函数Relu求导后或者是1或者是0，变为对角矩阵的斜对角线元素后，与<img src="https://latex.codecogs.com/svg.image?W^{i}" title="W^{i}" />做乘积，斜对角线为1的部分会使得W中元素保留，最终该连乘式中有一些元素来自<img src="https://latex.codecogs.com/svg.image?\prod\left&space;(&space;W^{i}&space;\right&space;)&space;" title="\prod\left ( W^{i} \right ) " />，如果大部分<img src="https://latex.codecogs.com/svg.image?W^{i}" title="W^{i}" />中 值都大于1，且层数比较大，那么连乘之后可能导致梯度爆炸的问题。</p>
+<h5 id="1-3-2-梯度爆炸问题"><a href="#1-3-2-梯度爆炸问题" class="headerlink" title="1.3.2 梯度爆炸问题"></a>1.3.2 梯度爆炸问题</h5><ul>
+<li><p>值超出值域（infinity）</p>
+<ul>
+<li>对于16位浮点数尤为严重（数值区间 [6e-5 , 6e4]），GPU用16位浮点数更快</li>
+</ul>
+</li>
+<li><p>对学习率敏感</p>
+<ul>
+<li><p>如果学习率太大→大参数值→更大的梯度，如此循环几次，容易导致梯度爆炸</p>
+</li>
+<li><p>如果学习率太小→训练无进展</p>
+</li>
+<li><p>我们可能需要在训练过程中不断调整学习率</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-4-梯度消失"><a href="#1-4-梯度消失" class="headerlink" title="1.4 梯度消失"></a>1.4 梯度消失</h4><h5 id="1-4-1-使用Sigmoid作为激活函数"><a href="#1-4-1-使用Sigmoid作为激活函数" class="headerlink" title="1.4.1 使用Sigmoid作为激活函数"></a>1.4.1 使用Sigmoid作为激活函数</h5><img src="/2024/04/23/11-01-14/14-05.png" class="">
+<ul>
+<li>蓝色曲线为函数值</li>
+<li>黄色曲线为梯度，注意到当输入x值取±6时，此时梯度已经变得很小，由图也可以看出，当输入值稍大或稍小都很容易引起小梯度。</li>
+</ul>
+<img src="/2024/04/23/11-01-14/14-06.png" class="">
+<p>所以最终连乘式中<img src="https://latex.codecogs.com/svg.image?\prod&space;diag\left&space;(&space;\sigma&space;^{'}\left&space;(&space;W^{i}h^{i-1}&space;\right&space;)&space;\right&space;)&space;" title="\prod diag\left ( \sigma ^{'}\left ( W^{i}h^{i-1} \right ) \right ) " />项乘出来会很小，导致整个梯度很小，产生梯度消失问题。</p>
+<h5 id="1-4-2-梯度消失的问题"><a href="#1-4-2-梯度消失的问题" class="headerlink" title="1.4.2 梯度消失的问题"></a>1.4.2 梯度消失的问题</h5><ul>
+<li><p>梯度值变为0</p>
+<ul>
+<li>对16位浮点数尤为严重</li>
+</ul>
+</li>
+<li><p>训练没有进展</p>
+<ul>
+<li>不管如何选择学习率，由于梯度已经为0了，学习率x梯度=0</li>
+</ul>
+</li>
+<li>对于底部层尤为严重<ul>
+<li>仅仅顶部层训练得较好。第<em>t</em>层导数包含d-t个矩阵乘积，越往底层走，t越小，乘得越多，梯度消失越严重，所以底部层效果更差。</li>
+<li>无法让神经网络更深。只能把顶部层训练得比较好，底部层跑不动，这和给一个浅的神经网络没有什么区别。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-模型初始化和激活函数"><a href="#2-模型初始化和激活函数" class="headerlink" title="2. 模型初始化和激活函数"></a>2. 模型初始化和激活函数</h3><h4 id="2-1-让训练更加稳定"><a href="#2-1-让训练更加稳定" class="headerlink" title="2.1 让训练更加稳定"></a>2.1 让训练更加稳定</h4><p>我们的一个核心目标是如何让训练更稳定，梯度值不要太大也不要太小</p>
+<ul>
+<li>目标：让梯度值在合理的范围内<ul>
+<li>例如 [1e-6, 1e3]</li>
+</ul>
+</li>
+<li><p>常用方法：</p>
+<ul>
+<li>将乘法变加法：<ul>
+<li>ResNet（跳跃连接，如果很多层，加入加法进去）</li>
+<li>LSTM（引入记忆细胞，更新门，遗忘门，通过门权重求和，控制下一步是否更新）</li>
+</ul>
+</li>
+<li><p>归一化：</p>
+<ul>
+<li><p>梯度归一化（归一化均值，方差）</p>
+</li>
+<li><p>梯度裁剪(clipping)：比如大于/小于一个固定的阈值，就让梯度等于这个阈值，将梯度限制在一个范围中。（可以缓解梯度爆炸）</p>
+</li>
+</ul>
+</li>
+<li>合理的权重初始和激活函数：本节课讲述重点</li>
+</ul>
+</li>
+</ul>
+<p><strong>下面我们重点探讨最后一种方法：合理的权重初始和激活函数</strong></p>
+<h4 id="2-2-基本假设：让每层的均值-方差是一个常数"><a href="#2-2-基本假设：让每层的均值-方差是一个常数" class="headerlink" title="2.2 基本假设：让每层的均值/方差是一个常数"></a>2.2 基本假设：让每层的均值/方差是一个常数</h4><ul>
+<li><p><strong>将每层的输出和梯度都看做随机变量</strong></p>
+<p>比如第i层有100维，就将输出和梯度分别看成100个随机变量</p>
+</li>
+<li><p><strong>让它们的均值和方差都保持一致</strong></p>
+<p>我们的目标，这样不管神经网络多深，最后一层总与第一层差不多，从而不会梯度爆炸和消失</p>
+</li>
+</ul>
+<p>根据我们的假设，可以列出如下方程式：</p>
+<img src="/2024/04/23/11-01-14/14-07.png" class="">
+<h4 id="2-3-权重初始化"><a href="#2-3-权重初始化" class="headerlink" title="2.3 权重初始化"></a>2.3 权重初始化</h4><ul>
+<li>在合理值区间里随机初始参数</li>
+<li>训练<strong>开始</strong>的时候更容易有数值不稳定<ul>
+<li>远离最优解的地方损失函数表面可能很复杂</li>
+<li>最优解附近表面会比较平</li>
+</ul>
+</li>
+<li>使用N(0, 0.01)分布来初始可能对小网络没问题，但不能保证深度神经网络</li>
+</ul>
+<h4 id="2-4-例子：MLP"><a href="#2-4-例子：MLP" class="headerlink" title="2.4 例子：MLP"></a>2.4 例子：MLP</h4><p>下面我们以MLP为例，考虑需要什么条件，才能满足<a href="#22-基本假设：让每层的均值/方差是一个常数">2.2节</a>的假设。</p>
+<h5 id="2-4-1-模型假设"><a href="#2-4-1-模型假设" class="headerlink" title="2.4.1 模型假设"></a>2.4.1 模型假设</h5><ul>
+<li>每一层<strong>权重</strong>中的变量均为<strong>独立同分布</strong>，并设出均值、方差。</li>
+<li>每一层<strong>输入</strong>的变量<strong>独立于</strong>该层<strong>权重</strong>变量。同时<strong>输入变量</strong>之间<strong>独立同分布</strong>。</li>
+<li>假设没有激活函数(先简化分析，之后会考虑有激活函数的情况)，可以求得该层输出的期望为0。</li>
+</ul>
+<img src="/2024/04/23/11-01-14/14-08.png" class="">
+<p>此处用到了一个重要性质：</p>
+<img src="/2024/04/23/11-01-14/14-09.png" class="">
+<p>更多均值、方差运算可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/MissXy_/article/details/80705828">期望、方差、协方差及相关系数的基本运算</a></p>
+<h5 id="2-4-2-正向方差"><a href="#2-4-2-正向方差" class="headerlink" title="2.4.2 正向方差"></a>2.4.2 正向方差</h5><img src="/2024/04/23/11-01-14/14-10.png" class="">
+<ul>
+<li><p>第二行的计算中仍然用到了<a href="241模型假设">2.4.1节</a>的期望的重要性质：如果两个变量独立，它们乘积的均值=均值的乘积，再结合w的期望为0(注意w和h独立，w之间独立同分布)，即有第二行末项期望为0。</p>
+</li>
+<li><p>最后一行由于wi,j独立同分布，方差相同，加上做了hj独立同分布的假设，所以可以写成 <strong>[t-1层输出维度] x [t层权重方差] x [t-1层输出方差]</strong> 的形式</p>
+</li>
+<li><p>此时，我们回过头来看我们的终极目标<a href="#22-基本假设：让每层的均值/方差是一个常数">2.2节</a>的假设，每层输出期望为0我们已经可以满足(2.4.1节已经推导出)，而方差相同这一目标，通过上图的推导，我们发现需要<img src="https://latex.codecogs.com/svg.image?&space;n_{t-1}\gamma&space;_{t}=1&space;" title=" n_{t-1}\gamma _{t}=1 " />。</p>
+</li>
+</ul>
+<h5 id="2-4-3-反向均值和方差"><a href="#2-4-3-反向均值和方差" class="headerlink" title="2.4.3 反向均值和方差"></a>2.4.3 反向均值和方差</h5><img src="/2024/04/23/11-01-14/14-11.png" class="">
+<p>反向的情况和正向的类似，不过此时我们需要满足的式子变为<img src="https://latex.codecogs.com/svg.image?&space;n_{t}\gamma&space;_{t}=1&space;" title=" n_{t}\gamma _{t}=1 " />。</p>
+<h5 id="2-4-4-Xavier初始"><a href="#2-4-4-Xavier初始" class="headerlink" title="2.4.4 Xavier初始"></a>2.4.4 Xavier初始</h5><ul>
+<li><p>上述推导带来的问题：难以同时满足<img src="https://latex.codecogs.com/svg.image?&space;n_{t-1}\gamma&space;_{t}=1&space;" title=" n_{t-1}\gamma _{t}=1 " />和<img src="https://latex.codecogs.com/svg.image?&space;n_{t}\gamma&space;_{t}=1&space;" title=" n_{t}\gamma _{t}=1 " />。（需要每层输出的维度都相同）</p>
+</li>
+<li><p>采用Xavier折中解决，不能同时满足上面两式，转而满足 [<strong>上面两式做加法后除以2</strong>] 得到的式子，用两种分布进行初始化（每层方差、均值满足推导式）。</p>
+<div align="center">
+   <img src="../imgs/14/14-12.png" alt="image" align="center" width="500" />
+</div>
+</li>
+<li><p>如果能确定每层输入、输出维度大小，则能确定该层权重的方差大小。</p>
+</li>
+<li>权重初始化方式：正态分布、均匀分布，均值/方差满足Xavier的假设。</li>
+</ul>
+<h5 id="2-4-5-假设线性的激活函数"><a href="#2-4-5-假设线性的激活函数" class="headerlink" title="2.4.5 假设线性的激活函数"></a>2.4.5 假设线性的激活函数</h5><p>真实情况下，我们并不会用线性的激活函数（这样相当于没有进行激活），这里为了简化问题，假设激活函数是线性的。</p>
+<ul>
+<li><strong>正向</strong></li>
+</ul>
+<img src="/2024/04/23/11-01-14/14-13.png" class="">
+<p>上述推导表明，为了使得前向传播的均值为0，方差固定的话，激活函数必须f(x)=x，这种恒等映射。</p>
+<ul>
+<li><strong>反向</strong></li>
+</ul>
+<img src="/2024/04/23/11-01-14/14-14.png" class="">
+<p>PPT上的推导似乎有点问题（上图中第二行方程），笔者重新进行了下述推导，读者也可自行推导验证：</p>
+<img src="/2024/04/23/11-01-14/14-15.png" class="">
+<p><strong>通过正向和反向的推导，我们可以得出的【结论】是：当激活函数为f(x)=x，这种恒等映射更有利于维持神经网络的稳定性。</strong></p>
+<h5 id="2-4-6-检查常用激活函数"><a href="#2-4-6-检查常用激活函数" class="headerlink" title="2.4.6 检查常用激活函数"></a>2.4.6 检查常用激活函数</h5><img src="/2024/04/23/11-01-14/14-16.png" class="">
+<p>对于常用激活函数：tanh，relu满足在零点附近有f(x)=x，而sigmoid函数在零点附近不满足要求，可以对sigmoid函数进行调整（根据Taylor展开式，调整其过原点）</p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><ul>
+<li>当数值过大或者过小时，会导致数值问题。</li>
+<li><p>常发生在深度模型中，因为其会对n个数累乘。</p>
+</li>
+<li><p>合理的权重初始值(如Xavier)和激活函数的选取(如relu, tanh, 调整后的sigmoid)可以提升数值稳定性。</p>
+</li>
+</ul>
+<h3 id="4-Q-amp-A"><a href="#4-Q-amp-A" class="headerlink" title="4.Q&amp;A"></a>4.Q&amp;A</h3><p><strong>问题：nan, inf是怎么产生的以及怎么解决的？</strong></p>
+<blockquote>
+<p>NaN和Inf怎么产生的：参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_16334327/article/details/86526854">出现nan、inf原因</a></p>
+<p>如何解决：参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011119817/article/details/103908065">深度学习中nan和inf的解决</a>以及<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/89588946#:~:text=一般来说，出现NaN有以下几种情况： 1.,如果在迭代的100轮以内，出现NaN，一般情况下的原因是因为你的学习率过高，需要降低学习率。 可以不断降低学习率直至不出现NaN为止，一般来说低于现有学习率1-10倍即可。">训练网络loss出现Nan解决办法 </a></p>
+</blockquote>
+<p><strong>问题：训练过程中，如果网络层的输出的中间层特征元素的值突然变成nan了，是发生梯度爆炸了吗？</strong></p>
+<blockquote>
+<p>参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/89588946#:~:text=一般来说，出现NaN有以下几种情况： 1.,如果在迭代的100轮以内，出现NaN，一般情况下的原因是因为你的学习率过高，需要降低学习率。 可以不断降低学习率直至不出现NaN为止，一般来说低于现有学习率1-10倍即可。">训练网络loss出现Nan解决办法 </a></p>
+</blockquote>
+<p><strong>问题：老师，让每层方差是一个常数的方法，您指的是batch normalization吗？想问一下bn层为什么要有伽马和贝塔？去掉可以吗</strong></p>
+<blockquote>
+<p>让每层方差是一个常数，和batch norm没有太多关系，(本节课介绍的方法是合理地初始化权重和设置激活函数)。batch norm可以让你的输出变成一个均值为0，方差差不多是一个固定值的东西，但它不一定能保证你的梯度。</p>
+</blockquote>
+<p>(此处节选几个重要的Q&amp;A，建议观看完整Q&amp;A，获得更深的理解)</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-14/" title="14-数值稳定性+模型初始化和激活函数">https://pkunicor.github.io/2024/04/23/11-01-14/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-13/" rel="prev" title="13-丢弃法">
+                  <i class="fa fa-chevron-left"></i> 13-丢弃法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-15/" rel="next" title="15-实战Kaggle比赛：预测房价">
+                  15-实战Kaggle比赛：预测房价 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"a7cb0a4f4f27abd7ad86a9d901c96d3d"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

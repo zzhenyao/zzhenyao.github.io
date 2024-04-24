@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐-06-矩阵计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06-矩阵计算">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-06/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐-06-矩阵计算">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-01.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-02.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-03.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-04.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-05.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-06.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-07.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-08.png">
+<meta property="og:image" content="https://pkunicor.github.io/style=zoom:%2040%25;float:left">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-11.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-12.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-13.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-14.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-15.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-16.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-17.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-18.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-19.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-20.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Ctext%7Bfunction%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=f">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-21.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-22.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cpmb%7BX%7D">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-23.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Ctext%7Bfunction%7D">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=m">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=f">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=n">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=f">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=m+%5Ctimes+n">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-24.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-25.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-26.png">
+<meta property="article:published_time" content="2024-04-23T03:01:06.000Z">
+<meta property="article:modified_time" content="2024-04-24T03:50:16.541Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/11-01-06/06-01.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-06/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-06/","path":"2024/04/23/11-01-06/","title":"06-矩阵计算"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>06-矩阵计算 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#06-%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">06-矩阵计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AF%BC%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. 导数的概念及几何意义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%A0%87%E9%87%8F%E5%AF%BC%E6%95%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 标量导数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E4%BA%9A%E5%AF%BC%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 亚导数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A0%87%E9%87%8F%EF%BC%8C%E5%90%91%E9%87%8F%EF%BC%8C%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.</span> <span class="nav-text">2. 函数与标量，向量，矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-f-%E4%B8%BA%E6%98%AF%E4%B8%80%E4%B8%AA%E6%A0%87%E9%87%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 f 为是一个标量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-input%E6%98%AF%E4%B8%80%E4%B8%AA%E6%A0%87%E9%87%8F"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">2.1.1 input是一个标量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-input%E6%98%AF%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2.1.2 input是一个向量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-3-input%E6%98%AF%E4%B8%80%E4%B8%AA%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">2.1.3 input是一个矩阵</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-f%E6%98%AF%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 f是一个向量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-input%E6%98%AF%E4%B8%80%E4%B8%AA%E6%A0%87%E9%87%8F"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.2.1 input是一个标量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-3-input%E6%98%AF%E4%B8%80%E4%B8%AA%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2.3 input是一个矩阵</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-F%E6%98%AF%E4%B8%80%E4%B8%AA%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 F是一个矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-1-input%E6%98%AF%E4%B8%80%E4%B8%AA%E6%A0%87%E9%87%8F"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">2.3.1 input是一个标量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-input%E6%98%AF%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2.3.2 input是一个向量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-3-input%E6%98%AF%E4%B8%80%E4%B8%AA%E5%90%91%E9%87%8F"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">2.3.3 input是一个向量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B1%82%E5%AF%BC%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.3.</span> <span class="nav-text">3. 求导的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC%E7%9A%84%E5%B8%83%E5%B1%80"><span class="nav-number">1.4.</span> <span class="nav-text">4. 矩阵求导的布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E5%88%86%E5%AD%90%E5%B8%83%E5%B1%80"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">4.1 分子布局</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E5%88%86%E6%AF%8D%E5%B8%83%E5%B1%80"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">4.2 分母布局</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="06-矩阵计算 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐-06-矩阵计算">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          06-矩阵计算
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:06" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:06+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 11:50:16" itemprop="dateModified" datetime="2024-04-24T11:50:16+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐-06-矩阵计算</div>
+	<hr>
+        <h2 id="06-矩阵计算"><a href="#06-矩阵计算" class="headerlink" title="06-矩阵计算"></a>06-矩阵计算</h2><h3 id="1-导数的概念及几何意义"><a href="#1-导数的概念及几何意义" class="headerlink" title="1. 导数的概念及几何意义"></a>1. 导数的概念及几何意义</h3><h4 id="1-1-标量导数"><a href="#1-1-标量导数" class="headerlink" title="1.1 标量导数"></a>1.1 标量导数</h4><ul>
+<li>导数是切线的斜率</li>
+</ul>
+<img src="/2024/04/23/11-01-06/06-01.png" class="">
+<ul>
+<li>指向值变化最大的方向</li>
+</ul>
+<img src="/2024/04/23/11-01-06/06-02.png" class="">
+<h4 id="1-2-亚导数"><a href="#1-2-亚导数" class="headerlink" title="1.2 亚导数"></a>1.2 亚导数</h4><ul>
+<li>将导数拓展到不可微的函数，在不可导的点的导数可以用一个范围内的数表示</li>
+</ul>
+<img src="/2024/04/23/11-01-06/06-03.png" class="">
+<h3 id="2-函数与标量，向量，矩阵"><a href="#2-函数与标量，向量，矩阵" class="headerlink" title="2. 函数与标量，向量，矩阵"></a>2. 函数与标量，向量，矩阵</h3><p>该部分结合课程视频和参考文章进行总结（参考了知乎文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/263777564">矩阵求导的本质与分子布局、分母布局的本质（矩阵求导——本质篇） - 知乎 (zhihu.com)</a>）</p>
+<ul>
+<li>当f，input为不同形式时，f(input)结果的表达形式</li>
+</ul>
+<h4 id="2-1-f-为是一个标量"><a href="#2-1-f-为是一个标量" class="headerlink" title="2.1 f 为是一个标量"></a>2.1 f 为是一个标量</h4><h5 id="2-1-1-input是一个标量"><a href="#2-1-1-input是一个标量" class="headerlink" title="2.1.1 input是一个标量"></a>2.1.1 input是一个标量</h5><img src="/2024/04/23/11-01-06/06-04.png" class="">
+<h5 id="2-1-2-input是一个向量"><a href="#2-1-2-input是一个向量" class="headerlink" title="2.1.2 input是一个向量"></a>2.1.2 input是一个向量</h5><img src="/2024/04/23/11-01-06/06-05.png" class="">
+<img src="/2024/04/23/11-01-06/06-06.png" class="">
+<h5 id="2-1-3-input是一个矩阵"><a href="#2-1-3-input是一个矩阵" class="headerlink" title="2.1.3 input是一个矩阵"></a>2.1.3 input是一个矩阵</h5><img src="/2024/04/23/11-01-06/06-07.png" class="">
+<img src="/2024/04/23/11-01-06/06-08.png" class="">
+<h4 id="2-2-f是一个向量"><a href="#2-2-f是一个向量" class="headerlink" title="2.2 f是一个向量"></a>2.2 f是一个向量</h4><ul>
+<li><strong>f</strong>是由若干个f(标量)组成的向量</li>
+</ul>
+<h5 id="2-2-1-input是一个标量"><a href="#2-2-1-input是一个标量" class="headerlink" title="2.2.1 input是一个标量"></a>2.2.1 input是一个标量</h5><img src="/style=zoom:%2040%25;float:left" class="06-09.png&quot; alt&#x3D;image" title="&#x2F;&gt; ##### 2.2.2 input是一个向量 {% asset_img &#x2F;2024&#x2F;04&#x2F;23&#x2F;11-01-06&#x2F;06-10.png">
+<img src="/2024/04/23/11-01-06/06-11.png" class="">
+<h5 id="2-2-3-input是一个矩阵"><a href="#2-2-3-input是一个矩阵" class="headerlink" title="2.2.3 input是一个矩阵"></a>2.2.3 input是一个矩阵</h5><img src="/2024/04/23/11-01-06/06-12.png" class="">
+<img src="/2024/04/23/11-01-06/06-13.png" class="">
+<h4 id="2-3-F是一个矩阵"><a href="#2-3-F是一个矩阵" class="headerlink" title="2.3 F是一个矩阵"></a>2.3 F是一个矩阵</h4><ul>
+<li><strong>F</strong>是一个由若干<strong>f</strong>组成的一个矩阵</li>
+</ul>
+<h5 id="2-3-1-input是一个标量"><a href="#2-3-1-input是一个标量" class="headerlink" title="2.3.1 input是一个标量"></a>2.3.1 input是一个标量</h5><img src="/2024/04/23/11-01-06/06-14.png" class="">
+<h5 id="2-3-2-input是一个向量"><a href="#2-3-2-input是一个向量" class="headerlink" title="2.3.2 input是一个向量"></a>2.3.2 input是一个向量</h5><img src="/2024/04/23/11-01-06/06-15.png" class="">
+<img src="/2024/04/23/11-01-06/06-16.png" class="">
+<h5 id="2-3-3-input是一个向量"><a href="#2-3-3-input是一个向量" class="headerlink" title="2.3.3 input是一个向量"></a>2.3.3 input是一个向量</h5><img src="/2024/04/23/11-01-06/06-17.png" class="">
+<img src="/2024/04/23/11-01-06/06-18.png" class="">
+<h3 id="3-求导的本质"><a href="#3-求导的本质" class="headerlink" title="3. 求导的本质"></a>3. 求导的本质</h3><img src="/2024/04/23/11-01-06/06-19.png" class="">
+<p><strong>可以将f对x1，x2，x3的偏导分别求出来，即</strong></p>
+<img src="/2024/04/23/11-01-06/06-20.png" class="">
+<ul>
+<li>矩阵求导也是一样的，<strong>本质就是</strong> <img src="https://www.zhihu.com/equation?tex=%5Ctext%7Bfunction%7D" alt="[公式]"> 中的<strong>每个</strong> <img src="https://www.zhihu.com/equation?tex=f" alt="[公式]"> <strong>分别对变元中的每个元素逐个求偏导，只不过写成了向量、矩阵形式而已。</strong></li>
+</ul>
+<img src="/2024/04/23/11-01-06/06-21.png" class="">
+<p>（课上是按行向量展开的）</p>
+<img src="/2024/04/23/11-01-06/06-22.png" class="">
+<p><strong>X为矩阵时</strong>，先把矩阵变元 <img src="https://www.zhihu.com/equation?tex=%5Cpmb%7BX%7D" alt="[公式]"> 进行<strong>转置</strong>，再对<strong>转置后</strong>的<strong>每个位置</strong>的元素逐个求偏导，结果布局和<strong>转置布局一样</strong>。（课上讲的是这种展开方式）</p>
+<img src="/2024/04/23/11-01-06/06-23.png" class="">
+<ul>
+<li>所以，如果 <img src="https://www.zhihu.com/equation?tex=%5Ctext%7Bfunction%7D" alt="[公式]"> 中有 <img src="https://www.zhihu.com/equation?tex=m" alt="[公式]"> 个 <img src="https://www.zhihu.com/equation?tex=f" alt="[公式]"> (标量)，变元中有 <img src="https://www.zhihu.com/equation?tex=n" alt="[公式]"> 个元素，那么，每个 <img src="https://www.zhihu.com/equation?tex=f" alt="[公式]"> 对变元中的每个元素逐个求偏导后，我们就会产生 <img src="https://www.zhihu.com/equation?tex=m+%5Ctimes+n" alt="[公式]"> 个结果。</li>
+</ul>
+<h3 id="4-矩阵求导的布局"><a href="#4-矩阵求导的布局" class="headerlink" title="4. 矩阵求导的布局"></a>4. 矩阵求导的布局</h3><ul>
+<li>经过上述对求导本质的推导，关于矩阵求导的问题，实质上就是对求导结果的进一步排布问题<br><strong>对于2.2（f为向量，input也为向量）中的情况，其求导结果有两种排布方式，一种是<code>分子布局</code>，一种是<code>分母布局</code></strong></li>
+</ul>
+<h5 id="4-1-分子布局"><a href="#4-1-分子布局" class="headerlink" title="4.1 分子布局"></a>4.1 分子布局</h5><p><strong>分子布局</strong>，就是分子是<strong>列向量</strong>形式，分母是<strong>行向量</strong>形式 （课上讲的）</p>
+<img src="/2024/04/23/11-01-06/06-24.png" class="">
+<h5 id="4-2-分母布局"><a href="#4-2-分母布局" class="headerlink" title="4.2 分母布局"></a>4.2 分母布局</h5><p>2.<strong>分母布局</strong>，就是分母是<strong>列向量</strong>形式，分子是<strong>行向量</strong>形式</p>
+<img src="/2024/04/23/11-01-06/06-25.png" class="">
+<p><strong>将求导推广到矩阵，由于矩阵可以看作由多个向量所组成，因此对矩阵的求导可以看作先对每个向量进行求导，然后再增加一个维度存放求导结果。</strong></p>
+<ul>
+<li>例如当F为矩阵，input为矩阵时，F中的每个元素f(标量）求导后均为一个矩阵（按照课上的展开方式），因此每个<strong>f</strong>（包含多个f（标量））求导后为存放多个矩阵的三维形状，再由于矩阵F由多个<strong>f</strong>组成，因此F求导后为存放多个<strong>f</strong>求导结果的四维形状。<br><strong>对于不同f和input求导后的维度情况总结如下图所示（课程中的截图）</strong></li>
+</ul>
+<img src="/2024/04/23/11-01-06/06-26.png" class="">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-06/" title="06-矩阵计算">https://pkunicor.github.io/2024/04/23/11-01-06/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-05/" rel="prev" title="05-线性代数">
+                  <i class="fa fa-chevron-left"></i> 05-线性代数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-07/" rel="next" title="07-链式法则与自动求导">
+                  07-链式法则与自动求导 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"fba66ba7caec5ee882462270d417dc17"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

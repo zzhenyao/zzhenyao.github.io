@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动手学深度学习李沐-02">
+<meta property="og:type" content="article">
+<meta property="og:title" content="02-深度学习介绍">
+<meta property="og:url" content="https://pkunicor.github.io/2024/04/23/11-01-02/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动手学深度学习李沐-02">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-01.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-02.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-03.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-04.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-05.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-06.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-07.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-08.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-09.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-10.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-11.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-12.png">
+<meta property="article:published_time" content="2024-04-23T03:01:02.000Z">
+<meta property="article:modified_time" content="2024-04-24T04:16:14.361Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="动手学深度学习, 深度学习, 李沐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/23/11-01-02/02-01.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/04/23/11-01-02/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/23/11-01-02/","path":"2024/04/23/11-01-02/","title":"02-深度学习介绍"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>02-深度学习介绍 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">02-深度学习介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1. 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-AI%E5%9C%B0%E5%9B%BE"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 AI地图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-AI%E5%9C%B0%E5%9B%BE%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 AI地图解读</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">2. 深度学习的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%9B%BE%E7%89%87%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 图片分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E5%88%86%E5%89%B2"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 物体检测和分割</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%A0%B7%E5%BC%8F%E8%BF%81%E7%A7%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 样式迁移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E4%BA%BA%E8%84%B8%E5%90%88%E6%88%90"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 人脸合成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E6%96%87%E5%AD%97%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 文字生成图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-%E6%96%87%E5%AD%97%E7%94%9F%E6%88%90"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.6 文字生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.7 无人驾驶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6%E2%80%94%E2%80%94%E5%B9%BF%E5%91%8A%E7%82%B9%E5%87%BB"><span class="nav-number">1.2.8.</span> <span class="nav-text">2.8 案例研究——广告点击</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-8-1-%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.2.8.1.</span> <span class="nav-text">2.8.1 步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-8-2-%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B%E4%B8%8E%E8%AE%AD%E7%BB%83"><span class="nav-number">1.2.8.2.</span> <span class="nav-text">2.8.2 模型的预测与训练</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-8-3-%E5%AE%8C%E6%95%B4%E7%9A%84%E6%95%85%E4%BA%8B"><span class="nav-number">1.2.8.3.</span> <span class="nav-text">2.8.3 完整的故事</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">3. 总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%BB%8B%E7%BB%8D-Q-amp-A"><span class="nav-number">1.4.</span> <span class="nav-text">4. 深度学习介绍 Q&amp;A</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/23/11-01-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="02-深度学习介绍 | 且听风吟">
+      <meta itemprop="description" content="动手学深度学习李沐-02">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          02-深度学习介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-23 11:01:02" itemprop="dateCreated datePublished" datetime="2024-04-23T11:01:02+08:00">2024-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-24 12:16:14" itemprop="dateModified" datetime="2024-04-24T12:16:14+08:00">2024-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">动手学深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动手学深度学习李沐-02</div>
+	<hr>
+        <h2 id="02-深度学习介绍"><a href="#02-深度学习介绍" class="headerlink" title="02-深度学习介绍"></a>02-深度学习介绍</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><h4 id="1-1-AI地图"><a href="#1-1-AI地图" class="headerlink" title="1.1 AI地图"></a>1.1 AI地图</h4><p>首先画一个简单的人工智能地图：</p>
+<img src="/2024/04/23/11-01-02/02-01.png" class="">
+<ul>
+<li><p>x轴表示不同的模式or方法：最早的是符号学，接下来是概率模型，之后是机器学习</p>
+</li>
+<li><p>y轴表示可以达到的层次：由底部向上依次是</p>
+<blockquote>
+<p>感知：了解是什么，比如能够可以看到物体，如面前的一块屏幕</p>
+<p>推理：基于感知到的现象，想象或推测未来会发生什么</p>
+<p>知识：根据看到的数据或者现象，形成自己的知识</p>
+<p>规划：根据学习到的知识，做出长远的规划</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="1-2-AI地图解读"><a href="#1-2-AI地图解读" class="headerlink" title="1.2 AI地图解读"></a>1.2 AI地图解读</h4><ul>
+<li><p>问题领域的一个简单分类</p>
+<ul>
+<li><p><strong>自然语言处理</strong>：</p>
+<ul>
+<li>停留在比较简单的<strong>感知</strong>层面，比如自然语言处理用的比较多的机器翻译，给一句中文翻译成英文，很多时候是人的潜意识里面大脑感知的一个问题。一般来说，人可以几秒钟内反应过来的东西，属于感知范围。</li>
+<li>自然语言处理最早使用的方法是<strong>符号学</strong>，由于语言具有符号性；之后一段时间比较流行的有<strong>概率模型</strong>，以及现在也用的比较多的<strong>机器学习</strong>。</li>
+</ul>
+</li>
+<li><p><strong>计算机视觉</strong>：</p>
+<ul>
+<li>在简单的感知层次之上，可以对图片做一些<strong>推理</strong>。 </li>
+<li>图片里都是一些像素，很难用符号学解释，所以一般采用<strong>概率模型</strong>和<strong>机器学习</strong>。</li>
+</ul>
+</li>
+<li><p><strong>深度学习</strong></p>
+<ul>
+<li>机器学习的一种，更深层的神经网络。</li>
+<li>可以做计算机视觉，自然语言处理，强化学习等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>过去八年最热的方向，也是本课程关心的重点：</p>
+<ul>
+<li>深度学习+计算机视觉 / 自然语言处理</li>
+</ul>
+</li>
+</ul>
+<p>本节课只关注AI中的一小部分领域，即深度学习背景下的视觉和自然语言处理相关的基础应用。</p>
+<hr>
+<h3 id="2-深度学习的应用"><a href="#2-深度学习的应用" class="headerlink" title="2. 深度学习的应用"></a>2. 深度学习的应用</h3><h4 id="2-1-图片分类"><a href="#2-1-图片分类" class="headerlink" title="2.1 图片分类"></a>2.1 图片分类</h4><p>深度学习最早是在图片分类上有比较大的突破，ImageNet是一个比较大的图片分类数据集，</p>
+<img src="/2024/04/23/11-01-02/02-02.png" class="">
+<p><code>x轴</code>：年份      <code>y轴</code>：错误率     <code>圆点</code>：表示某年份某研究工作/paper的错误率  <a target="_blank" rel="noopener" href="https://image-net.org/">IMAGENET</a>   <a target="_blank" rel="noopener" href="https://qz.com/1034972/the-data-that-changed-the-direction-of-ai-research-and-possibly-the-world/">数据来源</a></p>
+<blockquote>
+<p>在2010年时，错误率比较高，最好的工作错误率也在26%、%27左右；</p>
+<p>在2012年，有团队首次使用深度学习将错误率降到25%以下；</p>
+<p>在接下来几年中，使用深度学习可以将误差降到很低。</p>
+<p>2017年基本所有的团队可以将错误率降到5%以下，基本可以达到人类识别图片的精度。</p>
+</blockquote>
+<h4 id="2-2-物体检测和分割"><a href="#2-2-物体检测和分割" class="headerlink" title="2.2 物体检测和分割"></a>2.2 物体检测和分割</h4><p>当你不仅仅想知道图片里有什么内容，还想知道物体是什么，在什么位置，这就是<strong>物体检测</strong>。<strong>物体分割</strong>是指每一个像素属于什么，属于飞机还是属于人(如下图)，这是图像领域更深层次的一个应用。<br><img src="/2024/04/23/11-01-02/02-03.png" class=""><br>&lt;/div&gt;</p>
+<h4 id="2-3-样式迁移"><a href="#2-3-样式迁移" class="headerlink" title="2.3 样式迁移"></a>2.3 样式迁移</h4><p>原图片+想要迁移的风格=风格迁移后的图片，加了一个可以根据输入改变图片风格的滤镜。<br><img src="/2024/04/23/11-01-02/02-04.png" class=""><br>&lt;/div&gt;</p>
+<h4 id="2-4-人脸合成"><a href="#2-4-人脸合成" class="headerlink" title="2.4 人脸合成"></a>2.4 人脸合成</h4><p>下图中所有的人脸都是假的，由机器合成的图片：<br><img src="/2024/04/23/11-01-02/02-05.png" class=""><br>&lt;/div&gt;</p>
+<h4 id="2-5-文字生成图片"><a href="#2-5-文字生成图片" class="headerlink" title="2.5 文字生成图片"></a>2.5 文字生成图片</h4><ol>
+<li><p>描述：一个胡萝卜宝宝遛狗的图片。</p>
+</li>
+<li><p>描述：一个牛油果形状的靠背椅。</p>
+<img src="/2024/04/23/11-01-02/02-06.png" class="">
+<p>&lt;/div&gt;</p>
+</li>
+</ol>
+<h4 id="2-6-文字生成"><a href="#2-6-文字生成" class="headerlink" title="2.6 文字生成"></a>2.6 文字生成</h4><blockquote>
+<p>示例1：</p>
+<p>问题输入：如何举行一个有效的董事会议 </p>
+<p>机器输出：生成篇章回答</p>
+<p>示例2：</p>
+<p>输入：将Students从School这个table中选出来</p>
+<p>输出：用于查询的SQL语言</p>
+</blockquote>
+<img src="/2024/04/23/11-01-02/02-07.png" class="">
+<h4 id="2-7-无人驾驶"><a href="#2-7-无人驾驶" class="headerlink" title="2.7 无人驾驶"></a>2.7 无人驾驶</h4><p>识别车、道路以及各种障碍物等，并规划路线。</p>
+<img src="/2024/04/23/11-01-02/02-08.png" class="">
+<h4 id="2-8-案例研究——广告点击"><a href="#2-8-案例研究——广告点击" class="headerlink" title="2.8 案例研究——广告点击"></a>2.8 案例研究——广告点击</h4><blockquote>
+<p>用户输入想要搜索的广告内容，如：baby toy</p>
+<p>网站呈现最具有效益的广告(用户更可能点击，且给网站带来更高经济效益)</p>
+</blockquote>
+<img src="/2024/04/23/11-01-02/02-09.png" class="">
+<h5 id="2-8-1-步骤"><a href="#2-8-1-步骤" class="headerlink" title="2.8.1 步骤"></a>2.8.1 步骤</h5><img src="/2024/04/23/11-01-02/02-10.png" class="">
+<ol>
+<li>触发：用户输入关键词，机器先找到一些相关的广告</li>
+<li>点击率预估：   利用机器学习的模型预测用户对广告的点击率</li>
+<li>排序：利用点击率x竞价的结果进行排序呈现广告，排名高的在前面呈现</li>
+</ol>
+<h5 id="2-8-2-模型的预测与训练"><a href="#2-8-2-模型的预测与训练" class="headerlink" title="2.8.2 模型的预测与训练"></a>2.8.2 模型的<mark>预测与训练</mark></h5><p>上述步骤的第二步中涉及到模型预测用户的点击率，具体过程如下：<br><img src="/2024/04/23/11-01-02/02-11.png" class=""></p>
+<p><strong>模型预测</strong></p>
+<p>数据 (待预测广告) → 特征提取 → 模型 → 点击率预测</p>
+<p><strong>模型训练</strong></p>
+<p>训练数据 (过去广告展现和用户点击) → 特征(X)和用户点击(Y) → 喂给模型训练</p>
+<h5 id="2-8-3-完整的故事"><a href="#2-8-3-完整的故事" class="headerlink" title="2.8.3 完整的故事"></a>2.8.3 完整的故事</h5><img src="/2024/04/23/11-01-02/02-12.png" class="">
+<p><strong><font color="Navy">领域专家</font></strong>：对特定的应用有比较深的了解，根据展现情况以及用户点击分析用户的行为，期望模型对应用做一些拟合，符合真实数据和分析情况。</p>
+<p><strong><font color="Navy">数据科学家</font></strong>：利用数据训练模型，训练后模型投入使用，进行预测呈现。</p>
+<p><strong><font color="Navy">AI专家</font></strong>：应用规模扩大，用户数量增多，模型更加复杂，需要进一步提升精度和性能。</p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><ul>
+<li>通过AI地图，课程从纵向和横向两个维度解读了深度学习在重要问题领域的概况。</li>
+<li>介绍了深度学习在CV和NLP方面的一些应用</li>
+<li>简单分析并研究了深度学习实例——广告点击。</li>
+</ul>
+<hr>
+<h3 id="4-深度学习介绍-Q-amp-A"><a href="#4-深度学习介绍-Q-amp-A" class="headerlink" title="4. 深度学习介绍 Q&amp;A"></a>4. 深度学习介绍 Q&amp;A</h3><p>◆ <strong>Q1：机器学习的可解释性？机器学习在图片分割为什么有效，目前有没有定论？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A1</font>：模型的可解释性不管是深度学习还是机器学习都是非常受人关注的点，因为这像是一个黑盒，训练了一个模型，也不知道为什么work或者为什么不work。对于深度学习来说，模型的<strong>可解释性</strong>是做得不够好的；对于机器学习来说，我们对简单的模型可以理解，但当模型变得很深的时候，几乎只能放弃理解的过程。</p>
+<p>特别地，<strong>为什么有效</strong>和<strong>可解释性</strong>是两个不同的概念，所有提出的新模型都会解释一下为什么有效，可解释性是说人是不是能理解这个模型，理解模型为什么工作是一个方面，还需要知道它什么时候不工作以及在什么地方会出现偏差。</p>
+<p>目前来说，一个模型在一个应用/领域上为什么可以工作，会有一些解释，我们会在解释不同的模型的时候给大家进行讲解。</p>
+</blockquote>
+<p>◆ <strong>Q2：领域专家是什么意思？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A2</font>：举个例子，比如我要做农业上的物体识别，我种了一棵树，想要看今年的收成怎么样，我有很多很多土地，用人去一个个查看很费力，于是我用一个无人机，将农作物的情况拍下来，假设得到了树的一些图片，而数据科学家不知道农作物什么样的情况是好，什么样是坏，于是<strong>领域专家进行解释</strong>，比如多少叶子算是好，什么样不好。同时<strong>数据科学家</strong>将领域专家的<strong>问题翻译</strong>成机器学习能做的任务。所以可以认为<strong>领域专家</strong>是<strong>提需求</strong>的人<strong>甲方</strong>，而<strong>数据科学家</strong>是<strong>乙方</strong>。</p>
+</blockquote>
+<p>◆ <strong>Q3：MXNet的GPU版本的安装必须要卸载CPU版本的吗？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A3</font>：是的，但我们的课程是<strong>基于Pytorch</strong>，Pytorch会不一样一些。</p>
+</blockquote>
+<p>◆ <strong>Q4：深度学习无法用数学规范表述，只能用直觉理解是吗？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A4</font>：不一定，深度学习模型可以用<strong>数学形式表示</strong>，接下来也会讲到很多数学的东西，但是说具体用数学解释它<strong>为什么工作</strong>，<strong>为什么不工作</strong>，这个是目前我们做的不好的地方。</p>
+</blockquote>
+<p>◆ <strong>Q5：符号学可以和机器学习融合起来吗？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A5</font>：确实是可以的。目前来说，<strong>符号学</strong>在<strong>深度学习</strong>有一些新的进展，以前说符号学就是做一些符号上的推理，目前<strong>深度学习如图神经网络</strong>，可以做一些比较复杂的推理。</p>
+</blockquote>
+<p>◆ <strong>Q6：数据科学家和AI专家的主要区别在哪里？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A6</font>：我觉得没有太多区别。数据科学家很多时候关注的是给一个数据，赶紧出一个模型，能工作就好了，<strong>关注</strong>的是如何把领域专家的一个实际的业务问题，变成一个机器学习能做的任务，训练成一个还不错的模型。<strong>AI专家也可能是数据科学家</strong>，也就是说其不仅要训练出来一个模型能用，而且会<strong>关心</strong>如何把模型精度做得很高，或者可以说，<strong>资深数据科学家可以认为是AI专家</strong>。</p>
+<p>数据科学家可以有<strong>两条路线</strong>，一个是<strong>不断开拓新领域</strong>，比如机器学习在农业上的应用，在医疗上的应用等，这个是<strong>往广的走</strong>，<strong>往深的走</strong>的话可以称为是AI专家，在某一块方面了解得很深。</p>
+</blockquote>
+<p>◆ <strong>Q7：MAC是不是可以支持Pytorch？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A7</font>：可以。</p>
+</blockquote>
+<p>◆ <strong>Q8：说自然语言处理仅仅停留在感知层面似乎不太合适？因为语言的理解和产出不仅仅是感知，也涉及到语言知识和世界知识，也涉及到规划，比如机器规划下一步要做什么。</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A8</font>：确实是这样，语言当然是一个很复杂的过程，我只是想说，自然语言处理我们做得还很一般，虽然能做一些感知以外的东西，但是我感觉是说，<strong>不如</strong>深度学习特别机器学习，在图片上的应用做得好一些。当然AI地图上也只是一个<strong>大致的分类</strong>，大家不用特别纠结。</p>
+</blockquote>
+<p>◆ <strong>Q9：请问老师有考虑后面讲一讲如何寻找自己领域的paper的经验吗？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A9</font>：这是一个很好的问题，因为大家如果现在去读paper的话，可能每天都有一百篇paper出来，你怎么样去找到你想要的paper，总不能天天看朋友圈推文，这样只能知道别人读过的paper，不会有自己<strong>独特的见解</strong>，怎么样找到自己感兴趣和有启发性的论文，后面有机会和大家分享一下我的做法。</p>
+</blockquote>
+<p>◆ <strong>Q10：以无人驾驶为例，误判率在不断下降，但误判的影响还是很严重的，有可能从已有的判断case(样例)得到修正，从而完全避免这样的错误吗？</strong></p>
+<blockquote>
+<p><font color=MediumSeaGreen>A10</font>：<strong>无人驾驶</strong>中，任何一次出现的错误，都可能带来毁灭性的灾难。大家可能看到，特斯拉今天撞了，明天又撞了。所以说，无人驾驶对于<strong>错误率</strong>确实是非常注重的。</p>
+<p>机器学习在学术界现在有很多关于<strong>uncertainty</strong>或者<strong>robustness</strong>的研究，就是说模型在数据偏移或者极端情况下会不会给出很不好的答案，我们不会特别深入去讲这个事情，但是无人驾驶这一块确实会通过大量的技术，比如说把不同的模型融合在一起，不是仅仅train一个模型，用多个模型来做投票。汽车有很多雷达、摄像头，它会通过不同的传感器来进行模型的融合，从而降低误差。</p>
+<p>我们这个课程不会特别地讲，因为涉及到评价无人驾驶的特别技术，但在竞赛中我们会给大家看到如何通过<strong>融合多个模型提升精度</strong>的做法。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/04/23/11-01-02/" title="02-深度学习介绍">https://pkunicor.github.io/2024/04/23/11-01-02/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%89%8B%E5%AD%A6%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E6%9D%8E%E6%B2%90/" rel="tag"># 动手学深度学习, 深度学习, 李沐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-01/" rel="prev" title="01-深度学习课程安排">
+                  <i class="fa fa-chevron-left"></i> 01-深度学习课程安排
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/23/11-01-03/" rel="next" title="03-深度学习安装">
+                  03-深度学习安装 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"72a00b5111338282340695561ab05747"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
