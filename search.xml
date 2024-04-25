@@ -7679,13 +7679,16 @@ $\mathbf{w}_{t+1}=\mathbf{w}_{t}-\eta\frac{\partial{\ell(\mathbf{w}_t,b_t)} }{ {
   <entry>
     <title>git笔记</title>
     <url>/2023/03/08/14-59-55/</url>
-    <content><![CDATA[<p>克隆项目到当前文件夹</p>
-<ul>
+    <content><![CDATA[<h1 id="克隆项目到当前文件夹"><a href="#克隆项目到当前文件夹" class="headerlink" title="克隆项目到当前文件夹"></a>克隆项目到当前文件夹</h1><ul>
 <li><p>git clone https:// .</p>
 </li>
 <li><p>注意 .</p>
 </li>
 </ul>
+<h1 id="文件夹初始化为仓库上传"><a href="#文件夹初始化为仓库上传" class="headerlink" title="文件夹初始化为仓库上传"></a>文件夹初始化为仓库上传</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># 1. 在当前目录初始化一个新的Git仓库</span><br><span class="line">git init</span><br><span class="line"> </span><br><span class="line"># 2. 添加所有文件到暂存区</span><br><span class="line">git add .</span><br><span class="line"> </span><br><span class="line"># 3. 提交暂存区的内容到本地仓库</span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line"></span><br><span class="line"># 4. 添加远程仓库地址（以GitHub为例，替换成你的远程仓库URL）</span><br><span class="line">git remote add origin https://github.com/username/repository.git</span><br><span class="line"> </span><br><span class="line"># 5. 推送代码到远程仓库，同时设置远程仓库的主分支</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：如果使用https链接上传，需要令牌密码，使用ssh连接上传，只需要本地的ssh密码</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>工具</category>
