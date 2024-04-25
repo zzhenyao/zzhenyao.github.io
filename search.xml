@@ -24,14 +24,15 @@
 <li><a href="/2024/04/23/11-01-12/" title="12 权重衰退 Weight Decay">12-权重衰退</a></li>
 <li><a href="/2024/04/23/11-01-13/" title="13-丢弃法">13-丢弃法</a></li>
 <li><a href="/2024/04/23/11-01-14/" title="14-数值稳定性+模型初始化和激活函数">14-数值稳定性</a></li>
-<li><a href="/2024/04/23/11-01-15/" title="15-实战Kaggle比赛：预测房价">15-实战Kaggle比赛：预测房价</a></li>
-<li><a href="/2024/04/23/11-01-00/" title="00-深度学习预告">00-预告</a>
+<li><a href="/2024/04/23/11-01-15/" title="15-实战Kaggle比赛：预测房价">15-实战Kaggle比赛：预测房价</a>
 </li>
 </ul>
-<p><strong>d2l官网</strong>：<a href="https://zh-v2.d2l.ai/index.html">动手学深度学习</a><br><strong>笔记来源</strong>：<a href="https://github.com/MLNLP-World/DeepLearning-MuLi-Notes/tree/main">DeepLearning-MuLi-Notes</a></p>
+<blockquote>
+<p>暂停，开始读论文</p>
+</blockquote>
+<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><p><strong>d2l官网</strong>：<a href="https://zh-v2.d2l.ai/index.html">动手学深度学习</a><br><strong>笔记来源</strong>：<a href="https://github.com/MLNLP-World/DeepLearning-MuLi-Notes/tree/main">DeepLearning-MuLi-Notes</a><br><strong>小土堆笔记</strong>：<a href="https://github.com/AccumulateMore/CV/tree/main">含课程代码注释</a></p>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
 <li><code>!pip install git+https://github.com/d2l-ai/d2l-zh@release  # installing d2l</code>下载较慢，使用<code>!pip install d2l==1.0.3</code>。</li>
-<li></li>
 </ul>
 ]]></content>
       <categories>
@@ -3127,6 +3128,10 @@ True
 <h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
 <li><a href="/2024/04/24/12-18-34/" title="动手学深度学习笔记汇总">动手学深度学习笔记汇总</a>
 </li>
+</ul>
+<h3 id="课程练习，kaggle比赛"><a href="#课程练习，kaggle比赛" class="headerlink" title="课程练习，kaggle比赛"></a>课程练习，kaggle比赛</h3><ul>
+<li><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">kaggle</a></li>
+<li>有一份解决方案公布在论坛里</li>
 </ul>
 <h3 id="实战Kaggle比赛：预测房价"><a href="#实战Kaggle比赛：预测房价" class="headerlink" title="实战Kaggle比赛：预测房价"></a>实战Kaggle比赛：预测房价</h3><ul>
 <li><p>实际上这个时间竞赛已经结束了。</p>
