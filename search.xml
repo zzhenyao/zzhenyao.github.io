@@ -73,15 +73,17 @@
     <url>/2024/04/26/12-29-38/</url>
     <content><![CDATA[<h1 id="人体姿态估计"><a href="#人体姿态估计" class="headerlink" title="人体姿态估计"></a>人体姿态估计</h1><h2 id="github仓库"><a href="#github仓库" class="headerlink" title="github仓库"></a>github仓库</h2><h2 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h2><ul>
 <li><a href="https://2d3d.ai">2030AI-Peter</a><ul>
-<li><a href="https://2d3d.ai/index.php/2020/06/14/human-pose-estimation-hrnet/">HPE沙漏模型 HRNet + HigherHRNet</a><h2 id="知乎"><a href="#知乎" class="headerlink" title="知乎"></a>知乎</h2></li>
+<li><a href="https://2d3d.ai/index.php/2020/06/14/human-pose-estimation-hrnet/">HPE沙漏模型 HRNet + HigherHRNet</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="网页"><a href="#网页" class="headerlink" title="网页"></a>网页</h2><ul>
+<h2 id="知乎"><a href="#知乎" class="headerlink" title="知乎"></a>知乎</h2><h2 id="网页"><a href="#网页" class="headerlink" title="网页"></a>网页</h2><ul>
 <li><a href="https://blog.roboflow.com/pose-estimation-algorithms-history/">姿态估计算法：历史与演变</a><blockquote>
 <p>从传统算法到深度学习算法</p>
-<h2 id="youtube"><a href="#youtube" class="headerlink" title="youtube"></a>youtube</h2></blockquote>
+</blockquote>
 </li>
+</ul>
+<h2 id="youtube"><a href="#youtube" class="headerlink" title="youtube"></a>youtube</h2><ul>
 <li><a href="https://www.youtube.com/playlist?list=PLoEMreTa9CNmPGaVQYDWydc2ZmEt6zdrV">Pose Estimation | Applied Deep Learning</a><blockquote>
 <p>解读深度学习算法的相关论文</p>
 </blockquote>
@@ -122,11 +124,6 @@
       <tags>
         <tag>人体姿态估计, HPE, 工具, 论文</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>接</title>
-    <url>/2024/04/26/12-29-38/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>机器学习笔记五 神经网络的学习</title>
