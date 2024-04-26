@@ -69,6 +69,66 @@
       </tags>
   </entry>
   <entry>
+    <title>人体姿态估计相关链接</title>
+    <url>/2024/04/26/12-29-38/</url>
+    <content><![CDATA[<h1 id="人体姿态估计"><a href="#人体姿态估计" class="headerlink" title="人体姿态估计"></a>人体姿态估计</h1><h2 id="github仓库"><a href="#github仓库" class="headerlink" title="github仓库"></a>github仓库</h2><h2 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h2><ul>
+<li><a href="https://2d3d.ai">2030AI-Peter</a><ul>
+<li><a href="https://2d3d.ai/index.php/2020/06/14/human-pose-estimation-hrnet/">HPE沙漏模型 HRNet + HigherHRNet</a><h2 id="知乎"><a href="#知乎" class="headerlink" title="知乎"></a>知乎</h2></li>
+</ul>
+</li>
+</ul>
+<h2 id="网页"><a href="#网页" class="headerlink" title="网页"></a>网页</h2><ul>
+<li><a href="https://blog.roboflow.com/pose-estimation-algorithms-history/">姿态估计算法：历史与演变</a><blockquote>
+<p>从传统算法到深度学习算法</p>
+<h2 id="youtube"><a href="#youtube" class="headerlink" title="youtube"></a>youtube</h2></blockquote>
+</li>
+<li><a href="https://www.youtube.com/playlist?list=PLoEMreTa9CNmPGaVQYDWydc2ZmEt6zdrV">Pose Estimation | Applied Deep Learning</a><blockquote>
+<p>解读深度学习算法的相关论文</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="课题组"><a href="#课题组" class="headerlink" title="课题组"></a>课题组</h2><h3 id="北京大学王亦洲"><a href="#北京大学王亦洲" class="headerlink" title="北京大学王亦洲"></a>北京大学王亦洲</h3><blockquote>
+<p>三维人体姿态估计</p>
+</blockquote>
+<h3 id="北京大学刘宏"><a href="#北京大学刘宏" class="headerlink" title="北京大学刘宏"></a>北京大学刘宏</h3><ul>
+<li>课题组 <a href="https://robotics.pkusz.edu.cn/">网页</a></li>
+</ul>
+<h4 id="李文豪-博士生"><a href="#李文豪-博士生" class="headerlink" title="李文豪-博士生"></a>李文豪-博士生</h4><ul>
+<li>个人简介<a href="https://vegetebird.github.io/">主页</a><blockquote>
+<p>3D人体姿态估计</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="哈工大张盛平"><a href="#哈工大张盛平" class="headerlink" title="哈工大张盛平"></a>哈工大张盛平</h3><ul>
+<li>课题组 <a href="https://homepage.hit.edu.cn/zhangshengping">网页</a><blockquote>
+<p>3D人体姿态估计</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="厦门大学曾鸣"><a href="#厦门大学曾鸣" class="headerlink" title="厦门大学曾鸣"></a>厦门大学曾鸣</h3><ul>
+<li>课题组<a href="https://vcg.xmu.edu.cn/">网页</a></li>
+</ul>
+<h4 id="郑英林-博士生MSRA"><a href="#郑英林-博士生MSRA" class="headerlink" title="郑英林-博士生MSRA"></a>郑英林-博士生MSRA</h4><ul>
+<li>个人简介<a href="https://yinglinzheng.netlify.app/">主页</a><blockquote>
+<p>多人人体姿态估计，人脸识别</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h1><h2 id="论文可视化探索"><a href="#论文可视化探索" class="headerlink" title="论文可视化探索"></a>论文可视化探索</h2><p><a href="https://www.connectedpapers.com/">connectedpapers</a></p>
+]]></content>
+      <categories>
+        <category>人体姿态估计</category>
+      </categories>
+      <tags>
+        <tag>人体姿态估计, HPE, 工具, 论文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>接</title>
+    <url>/2024/04/26/12-29-38/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>机器学习笔记五 神经网络的学习</title>
     <url>/2024/04/23/12-43-40/</url>
     <content><![CDATA[<p>更新历史</p>
