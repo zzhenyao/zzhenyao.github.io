@@ -1755,7 +1755,7 @@ pre code {
 .post-body img,
 .post-body video,
 .post-body embed {
-  max-width: 100%; /* 设置图片最大宽度为容器宽度 */
+  max-width: 70%; /* 设置图片最大宽度为容器宽度 */
   width: auto; /* 设置宽度为自动，即保持原始宽度 */
   height: auto; /* 保持图片原始的宽高比 */
   margin-bottom: 20px;
@@ -2590,7 +2590,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #dff;
+  background: #ff827a;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
