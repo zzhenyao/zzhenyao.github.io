@@ -200,7 +200,7 @@ h6 {
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.4;
-  margin: 10px 0 7px;
+  margin: 13px 0 7px;
 }
 h1 {
   font-size: 1.5em;
@@ -221,7 +221,7 @@ h6 {
   font-size: 0.875em;
 }
 p {
-  margin: 0 0 0px;
+  margin: 0 0 20px;
 }
 a {
   border-bottom: 1px solid #ccc;
@@ -1755,6 +1755,9 @@ pre code {
 .post-body img,
 .post-body video,
 .post-body embed {
+  max-width: 100%; /* 设置图片最大宽度为容器宽度 */
+  width: auto; /* 设置宽度为自动，即保持原始宽度 */
+  height: auto; /* 保持图片原始的宽高比 */
   margin-bottom: 20px;
 }
 .post-body .video-container {
@@ -2587,7 +2590,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ffffd9;
+  background: #dff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
