@@ -43,6 +43,112 @@
       </tags>
   </entry>
   <entry>
+    <title>计算机视觉概论 图像特征</title>
+    <url>/2024/05/02/13-20-59/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.05.02：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/27/08-42-03/" title="Ud810 Intro-to-cv 笔记汇总">计算机视觉概率-笔记汇总</a>
+</li>
+</ul>
+<h2 id="特征检测"><a href="#特征检测" class="headerlink" title="特征检测"></a>特征检测</h2><p>一种寻找对应关系的方法</p>
+<h4 id="图像点匹配问题"><a href="#图像点匹配问题" class="headerlink" title="图像点匹配问题"></a>图像点匹配问题</h4><p>Local Features：局部特征<br>目标：在其他图像中找到点的精确位置</p>
+<p>特征匹配的过程：</p>
+<ol>
+<li>检测一些兴趣点(特征)</li>
+<li>匹配两张图中的特征点</li>
+<li>使用对应点，对齐图像</li>
+</ol>
+<img src="/2024/05/02/13-20-59/QQ20240502-132909@2x.png" class="">
+<p>特征匹配的问题：</p>
+<ol>
+<li>独立的特征， 需要重复检测器</li>
+<li>重复相似匹配，使用特征描述符descriptor</li>
+</ol>
+<h4 id="好的特征"><a href="#好的特征" class="headerlink" title="好的特征"></a>好的特征</h4><p>可重复性：Repeatability/Precision<br>好的特征应该在同一场景的不同图片中被检测出来</p>
+<p>显著性/可匹配性：Saliency/Matchability<br>有不同的区分描述</p>
+<p>紧凑型和效率：Compactness and efficiency<br>比图像像素更少的特征</p>
+<p>局部性：Locality<br>描述具有好的局部性,可以解决遮挡</p>
+<h2 id="寻找角点"><a href="#寻找角点" class="headerlink" title="寻找角点"></a>寻找角点</h2><p>一个白墙上有一个黑色方块：<br>黑块不是一个好特征，无法定位。<br>边缘也不是好特征，角是一个好特征。</p>
+<img src="/2024/05/02/13-20-59/QQ20240502-142106@2x.png" class="">
+<p>角是一个梯度变换的地方。</p>
+<h4 id="哈里斯角-Harris-Corners"><a href="#哈里斯角-Harris-Corners" class="headerlink" title="哈里斯角 Harris Corners:"></a>哈里斯角 Harris Corners:</h4><p>$E\left(u,\nu\right)=\sum_{x,y}w\left(x,y\right)\left[I\left(x+u,y+\nu\right)-I\left(x,y\right)\right]^{2}$</p>
+<ul>
+<li>$w\left(x,y\right)$ 是一个窗口<img src="/2024/05/02/13-20-59/QQ20240502-142537@2x.png" class="">
+</li>
+</ul>
+<p>哈里斯角图：</p>
+<img src="/2024/05/02/13-20-59/QQ20240502-142639@2x.png" class="">
+<ul>
+<li>误差为0，是黑色</li>
+<li>左图中红色方块是角图中心，误差为0，绿色移动后，出现误差</li>
+</ul>
+<p>哈里斯角在很小的移动会产生误差：<br>二阶泰勒展开：<br>$F\left(\delta x\right)\approx F\left(0\right)+\delta x\cdot\frac{dF\left(0\right)}{dx}+\frac12\delta x^2\cdot\frac{d^2F\left(0\right)}{dx^2}$</p>
+<p>二维泰勒展开：<br><img src="/2024/05/02/13-20-59/QQ20240502-143009@2x.png" class=""></p>
+<p>推导过程：<br>$E_u\left(u,\nu\right)=\sum_{x,y}2w\left(x,y\right)\left[I\left(x+u,y+\nu\right)-I\left(x,y\right)\right]I_x\left(x+u,y+v\right)$</p>
+<p>$\begin{split}<br>E_{\textit{ u }\nu}\left(u,\nu\right)&amp; =\sum_{x,y}2w(x,y)I_y(x+u,y+v)I_x(x+u,y+v) \\<br>&amp;+\sum_{x,y}2w(x,y)\Big[I(x+u,y+v)-I(x,y)\Big]I_{xy}(x+u,y+v)<br>\end{split}$</p>
+<p>$\begin{split}E_{u\nu}(u,\nu)&amp;=\sum_{x,y}2w(x,y)I_y(x+u,y+v)I_x(x+u,y+v)\\&amp;+\sum_{x,y}2w(x,y)\Big[I(x+u,y+v)-I(x,y)\Big]I_{xy}(x+u,y+v)\end{split}$</p>
+<p>带入点$(0,0)$，消去得：</p>
+<p>$E\left(u ,\nu\right) \approx \begin{bmatrix}u&amp;\nu\end{bmatrix} M\quad\begin{bmatrix}u\\\nu\end{bmatrix}$</p>
+<p>$M=\sum_{x,y}w(x,y)\begin{bmatrix}I_x^2&amp;&amp;I_xI_y\\I_xI_y&amp;&amp;I_y^2\end{bmatrix}$</p>
+<p>当没有权重$w(x,y)$时：</p>
+<p>$M=\begin{bmatrix}\sum I_xI_x&amp;\sum I_xI_y\\\sum I_xI_y&amp;\sum I_yI_y\end{bmatrix}=\sum\left(\begin{bmatrix}I_x\\I_y\end{bmatrix}-\begin{bmatrix}I_x&amp;I_y\end{bmatrix}\right)=\sum\nabla I\left(\nabla I\right)^T$</p>
+<p>其中$\nabla I$：是一个秩为1的列向量，所有等式右边是一个秩为1的二阶方阵。</p>
+<p>? 必须让窗口内所有方向都有梯度，才可以求和后得到一个满秩矩阵？？</p>
+<h4 id="解释二阶近似方程"><a href="#解释二阶近似方程" class="headerlink" title="解释二阶近似方程"></a>解释二阶近似方程</h4><p>代数表达式：椭圆方程<br>$\sum I_x^2u^2+2\sum I_xI_yu\nu+\sum I_y^2\nu^2=k$</p>
+<p>椭圆图：<br><img src="/2024/05/02/13-20-59/QQ20240502-145419@2x.png" class=""></p>
+<p>考虑，窗口内的梯度永远是水平或垂直，所有$I_xI_y$为0。<br>化简：<br>$M=\sum_{x,y}w(x,y)\begin{bmatrix}I_x^2&amp;&amp;I_xI_y\\I_xI_y&amp;&amp;I_y^2\end{bmatrix}=\begin{bmatrix}\lambda&amp;0\\0&amp;\lambda_2\end{bmatrix}$</p>
+<p>$M$可以被相似对角化：<br>$M~=~R^{-1}\left[\begin{array}{cc}\lambda&amp;0\\0&amp;\lambda_2\end{array}\right]R$</p>
+<p>特征值的作用：<br><img src="/2024/05/02/13-20-59/QQ20240502-145313@2x.png" class=""><br>在短边处：变换很快，长边处变换速度很慢，需要移动很多才有变化。</p>
+<h4 id="解释特征值"><a href="#解释特征值" class="headerlink" title="解释特征值"></a>解释特征值</h4><p>计算哈里斯矩阵：<br><img src="/2024/05/02/13-20-59/QQ20240502-150536@2x.png" class=""></p>
+<ul>
+<li>平坦区域：flat<br>梯度为0，怎么移动都不会变化。</li>
+<li>如果一个特征值特别大<br>朝这个方向的边缘移动，变换很快</li>
+<li>两个特征值大小相似<br>角：在任何方向变化相同</li>
+</ul>
+<h4 id="哈里斯响应函数："><a href="#哈里斯响应函数：" class="headerlink" title="哈里斯响应函数："></a>哈里斯响应函数：</h4><p>$R=\det(M^2)-\alpha\mathrm{~trace}(M)^2=\lambda_1\lambda_2-\alpha(\lambda_1+\lambda_2)^2$<br>$\alpha$:特别小 0.04 to 0.06</p>
+<p>$R$取决于特征值，但不需要计算特征值，<br>原因：</p>
+<ul>
+<li>角：两个特征值都很大，$R$正的大数</li>
+<li>边：一个特征值很大,$R$是负的大数</li>
+<li>平坦：$R$ 的绝对值很小</li>
+</ul>
+<h4 id="哈里斯函数如何工作"><a href="#哈里斯函数如何工作" class="headerlink" title="哈里斯函数如何工作"></a>哈里斯函数如何工作</h4><p>低纹理区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151651@2x.png" class=""></p>
+<p>边缘区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151730@2x.png" class=""></p>
+<p>高纹理区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151825@2x.png" class=""></p>
+<h4 id="哈里斯检测器算法："><a href="#哈里斯检测器算法：" class="headerlink" title="哈里斯检测器算法："></a>哈里斯检测器算法：</h4><img src="/2024/05/02/13-20-59/QQ20240502-152016@2x.png" class="">
+<p>例子：<br><img src="/2024/05/02/13-20-59/QQ20240502-152156@2x.png" class=""></p>
+<p>响应函数图：<br><img src="/2024/05/02/13-20-59/QQ20240502-152223@2x.png" class=""></p>
+<p>非极大值抑制：<br><img src="/2024/05/02/13-20-59/QQ20240502-152309@2x.png" class=""></p>
+<p>局部最大值的像素点：<br><img src="/2024/05/02/13-20-59/QQ20240502-152430@2x.png" class=""></p>
+<p>在原图中的位置：<br><img src="/2024/05/02/13-20-59/QQ20240502-152454@2x.png" class=""></p>
+<p>最终发现很多相同的特征点。</p>
+<h2 id="尺度不变性-Scale-invariance"><a href="#尺度不变性-Scale-invariance" class="headerlink" title="尺度不变性  Scale invariance"></a>尺度不变性  Scale invariance</h2><h4 id="哈里斯检测器的一些特性"><a href="#哈里斯检测器的一些特性" class="headerlink" title="哈里斯检测器的一些特性"></a>哈里斯检测器的一些特性</h4><ul>
+<li>对于旋转不变</li>
+<li>图像强度：加法乘法不改变<br>加法：导数不变<br>乘法：导数整体变化</li>
+<li>缩放，会改变</li>
+</ul>
+<h4 id="尺度不变性的检测"><a href="#尺度不变性的检测" class="headerlink" title="尺度不变性的检测"></a>尺度不变性的检测</h4><img src="/2024/05/02/13-20-59/QQ20240502-153839@2x.png" class="">
+<p>增大窗口，保持尺度不变</p>
+<p>领域大小对函数的影响：<br><img src="/2024/05/02/13-20-59/QQ20240502-154050@2x.png" class=""><br>$S_1$, $S_2$，具有相同的缩放比例</p>
+<h4 id="一个好的尺寸检测函数"><a href="#一个好的尺寸检测函数" class="headerlink" title="一个好的尺寸检测函数"></a>一个好的尺寸检测函数</h4><img src="/2024/05/02/13-20-59/QQ20240502-154434@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240502-154635@2x.png" class="">
+<p>拉普拉斯差和高斯差几乎相同，选择高斯简化计算。</p>
+<h4 id="关键点定位"><a href="#关键点定位" class="headerlink" title="关键点定位"></a>关键点定位</h4><p><strong>SIFT</strong>: Scale Invariant Feature Transform<br>尺度不变特征变换<br><img src="/2024/05/02/13-20-59/QQ20240502-154917@2x.png" class=""><br>取不同尺寸的图像，不断模糊图像，两两相减，计算他们的高斯图像差异。<br>像素与周围九个像素比较，以及不同比例邻居上的比较，的看是不是极值。</p>
+<img src="/2024/05/02/13-20-59/QQ20240502-155145@2x.png" class="">
+<p>例子：<br><img src="/2024/05/02/13-20-59/QQ20240502-155601@2x.png" class=""></p>
+<p><strong>哈里斯-拉普拉斯算法：</strong><br>先试用哈里斯角点检测<br>然后在看尺度方向上的拉普拉斯算子，找空间极值</p>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉，图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机视觉概论 相机和图像</title>
     <url>/2024/04/29/16-24-21/</url>
     <content><![CDATA[<p>更新历史</p>
@@ -210,13 +316,59 @@ Data term:  $E_\text{ data }=\sum_i\left(W_1(i)-W_2(i+D(i))\right)^2$<br>Smoothn
 <li>长宽像素缩放比不相同</li>
 </ul>
 <p>改善转换方程：<br>齐次坐标法：</p>
-<p>\begin{split}\begin{pmatrix}z^<em>u\\\\z^</em>\nu\\\\z\end{pmatrix}=\begin{pmatrix}\alpha&amp;-\alpha\cot(\theta)&amp;u_0&amp;0\\\\0&amp;\frac{\beta}{\sin(\theta)}&amp;\nu_0&amp;0\\\\0&amp;0&amp;1&amp;0\end{pmatrix}\begin{pmatrix}x\\\\y\\\\z\\\\1\end{pmatrix}\\\vec{\boldsymbol{p}^{\prime}}=\text{K}^c\vec{\boldsymbol{p}}\end{split}</p>
+<p>\begin{split}<br>\begin{pmatrix}z^*u\\\\z^*\\\\nu\\\\z\end{pmatrix}=\begin{pmatrix}\alpha&amp;-\alpha\cot(\theta)&amp;u_0&amp;0\\\\0&amp;\frac{\beta}{\sin(\theta)}&amp;\nu_0&amp;0\\\\0&amp;0&amp;1&amp;0\end{pmatrix}\begin{pmatrix}x\\\\y\\\\z\\\\1\end{pmatrix}\\\vec{p^{\prime}}=K^c\vec{p}<br>\end{split}</p>
 <p>5个自由度：<br><img src="/2024/04/29/16-24-21/QQ20240501-150253@2x.png" class=""></p>
 <h4 id="结合内部参数和外部参数"><a href="#结合内部参数和外部参数" class="headerlink" title="结合内部参数和外部参数"></a>结合内部参数和外部参数</h4><img src="/2024/04/29/16-24-21/QQ20240501-150413@2x.png" class="">
 <h4 id="相机的全部参数"><a href="#相机的全部参数" class="headerlink" title="相机的全部参数"></a>相机的全部参数</h4><p>11个自由度：<br><img src="/2024/04/29/16-24-21/QQ20240501-150520@2x.png" class=""></p>
 <h2 id="使用光谱校准相机"><a href="#使用光谱校准相机" class="headerlink" title="使用光谱校准相机"></a>使用光谱校准相机</h2><h4 id="校准方法"><a href="#校准方法" class="headerlink" title="校准方法"></a>校准方法</h4><p>利用已知点进行校准</p>
 <p>切割法校准：<br>获取一些已知点，建立世界坐标系，测量设置点的坐标在世界中的相对位置，然后回恢复校准坐标。</p>
-<h4 id="直线校准"><a href="#直线校准" class="headerlink" title="直线校准"></a>直线校准</h4><img src="/2024/04/29/16-24-21/QQ20240501-151052@2x.png" class="">
+<h4 id="齐次校准"><a href="#齐次校准" class="headerlink" title="齐次校准"></a>齐次校准</h4><img src="/2024/04/29/16-24-21/QQ20240501-151052@2x.png" class="">
+<p>坐标系下的直线校准：<br><img src="/2024/04/29/16-24-21/QQ20240502-121531@2x.png" class=""></p>
+<p><strong>SVD分解</strong>:奇异值分解</p>
+<img src="/2024/04/29/16-24-21/QQ20240502-121634@2x.png" class="">
+<img src="/2024/04/29/16-24-21/QQ20240502-121827@2x.png" class="">
+<p>非齐次方法</p>
+<h2 id="误差函数"><a href="#误差函数" class="headerlink" title="误差函数"></a>误差函数</h2><p>$\text{minimize }E=\sum_id(x_i^\prime,\hat{x}_i^\prime)$</p>
+<p>如果有复杂的映射：<br>$\min_\mathbf{M}\sum_id(x_i^{\prime},\mathbf{MX}_i)$<br>用参数$M$修正</p>
+<h4 id="黄金标准算法："><a href="#黄金标准算法：" class="headerlink" title="黄金标准算法："></a>黄金标准算法：</h4><p>标准归一化：<br>$\tilde{\mathbf{X}}_i=\mathbf{U}\mathbf{X}_i\tilde{\mathbf{x}}_i=\mathbf{T}\mathbf{x}_i$</p>
+<p>$\min_\mathbf{M}\sum_id\left(\tilde{\mathbf{x}}_i,\tilde{\mathbf{M}}\tilde{\mathbf{X}}_i\right)$</p>
+<p>$\mathbf{M}=\mathbf{T}^{-1}\tilde{\mathbf{M}}\mathbf{U}$</p>
+<p>类似特征向量，转换为标准正交基上</p>
+<h4 id="从M中找3D相机中心"><a href="#从M中找3D相机中心" class="headerlink" title="从M中找3D相机中心"></a>从M中找3D相机中心</h4><p>直接的方法：<br>如果能找到一个点$C$， 使得$\textbf{M C = 0}$，就是相机中心。<br>原理：<br>$\mathbf{X}=\lambda\mathbf{P}+(1-\lambda)\mathbf{C}$<br>$\mathbf{x}=\mathbf{M}\mathbf{X}=\lambda\mathbf{M}\mathbf{P}+(1-\lambda)\mathbf{M}\mathbf{C}$</p>
+<p>简单的方法：<br>$\mathbf{C}=\begin{pmatrix}-\mathbf{Q}^{-1}\mathbf{b}\\\\1\end{pmatrix}$</p>
+<h4 id="多平面校准"><a href="#多平面校准" class="headerlink" title="多平面校准"></a>多平面校准</h4><p>目前最常使用的：</p>
+<p>优点：</p>
+<ol>
+<li>只需要一张纸</li>
+<li>不需要知道相机内部参数</li>
+<li>代码是公开的</li>
+</ol>
+<h2 id="多视角"><a href="#多视角" class="headerlink" title="多视角"></a>多视角</h2><h4 id="图像到图像投影"><a href="#图像到图像投影" class="headerlink" title="图像到图像投影"></a>图像到图像投影</h4><p>2D变换：<br><img src="/2024/04/29/16-24-21/QQ20240502-123620@2x.png" class=""></p>
+<p>特殊投影变换：<br>变换：<br><img src="/2024/04/29/16-24-21/QQ20240502-123832@2x.png" class=""></p>
+<p>刚体变换：<br><img src="/2024/04/29/16-24-21/QQ20240502-123903@2x.png" class=""></p>
+<p>相似变换：<br><img src="/2024/04/29/16-24-21/QQ20240502-123927@2x.png" class=""></p>
+<p>仿射变换：Affine transform<br><img src="/2024/04/29/16-24-21/QQ20240502-123942@2x.png" class=""></p>
+<p>一般投影变换：<br><img src="/2024/04/29/16-24-21/QQ20240502-124130@2x.png" class=""></p>
+<h2 id="马赛克"><a href="#马赛克" class="headerlink" title="马赛克"></a>马赛克</h2><p>平面图：<br><img src="/2024/04/29/16-24-21/QQ20240502-124454@2x.png" class=""><br>射线上任一点，投影到平面上，都是交点重合。</p>
+<h4 id="图像重影"><a href="#图像重影" class="headerlink" title="图像重影"></a>图像重影</h4><p>相机中心相同，拍摄了两张照片：<br><img src="/2024/04/29/16-24-21/QQ20240502-124653@2x.png" class=""></p>
+<p>全景图像：<br>保存相机中心不变，移动水平角度，拍摄照片，重合起来就是全景图像。</p>
+<p>自然几何：<br><img src="/2024/04/29/16-24-21/QQ20240502-125002@2x.png" class=""><br>将图像投影到大平面上，组成全景图像，重叠部分混合。</p>
+<p>相同位置的不同坐标：<br><img src="/2024/04/29/16-24-21/QQ20240502-125348@2x.png" class=""></p>
+<p>关键是求解：<br><img src="/2024/04/29/16-24-21/QQ20240502-125433@2x.png" class=""></p>
+<p>转换图像(图像扭曲)：是一种插值<br><img src="/2024/04/29/16-24-21/QQ20240502-125553@2x.png" class=""></p>
+<p>全景图像方法：可以用于去除图像中元素<br><img src="/2024/04/29/16-24-21/QQ20240502-125804@2x.png" class=""></p>
+<h4 id="3D图像"><a href="#3D图像" class="headerlink" title="3D图像"></a>3D图像</h4><img src="/2024/04/29/16-24-21/QQ20240502-125917@2x.png" class="">
+<h4 id="两种图像扭曲方法"><a href="#两种图像扭曲方法" class="headerlink" title="两种图像扭曲方法"></a>两种图像扭曲方法</h4><p>向前扭曲：错误方式<br><img src="/2024/04/29/16-24-21/QQ20240502-130407@2x.png" class=""></p>
+<p>像素离散化时，某一点的像素位置移动了，需要分散给其他像素。<br><img src="/2024/04/29/16-24-21/QQ20240502-130543@2x.png" class=""></p>
+<p>反向扭曲：<br><img src="/2024/04/29/16-24-21/QQ20240502-130652@2x.png" class=""></p>
+<p>中间像素的插值法：<br><img src="/2024/04/29/16-24-21/QQ20240502-130719@2x.png" class=""></p>
+<h2 id="投影几何"><a href="#投影几何" class="headerlink" title="投影几何"></a>投影几何</h2><p>基本平面知识</p>
+<h2 id="基本矩阵"><a href="#基本矩阵" class="headerlink" title="基本矩阵"></a>基本矩阵</h2><img src="/2024/04/29/16-24-21/QQ20240502-131351@2x.png" class="">
+<img src="/2024/04/29/16-24-21/QQ20240502-131523@2x.png" class="">
+<img src="/2024/04/29/16-24-21/QQ20240502-131532@2x.png" class="">
+<h2 id="基础矩阵"><a href="#基础矩阵" class="headerlink" title="基础矩阵"></a>基础矩阵</h2><h4 id="弱校准"><a href="#弱校准" class="headerlink" title="弱校准"></a>弱校准</h4><img src="/2024/04/29/16-24-21/QQ20240502-131844@2x.png" class="">
+<img src="/2024/04/29/16-24-21/QQ20240502-131901@2x.png" class="">
+<img src="/2024/04/29/16-24-21/QQ20240502-131918@2x.png" class="">
 ]]></content>
       <categories>
         <category>计算机视觉</category>
@@ -784,7 +936,8 @@ Data term:  $E_\text{ data }=\sum_i\left(W_1(i)-W_2(i+D(i))\right)^2$<br>Smoothn
 <h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
 <li><a href="/2024/04/27/08-38-57/" title="计算机视觉概论 什么是计算机视觉">计算机视觉概率笔记-第一章 什么是计算机视觉</a></li>
 <li><a href="/2024/04/27/09-07-10/" title="计算机视觉概论 计算机视觉的图像处理">计算机视觉概率笔记-第二章 计算机视觉的图像处理</a></li>
-<li><a href="/2024/04/29/16-24-21/" title="计算机视觉概论 相机和图像">计算机视觉概率笔记-第三章 相机和图像</a>
+<li><a href="/2024/04/29/16-24-21/" title="计算机视觉概论 相机和图像">计算机视觉概率笔记-第三章 相机和图像</a></li>
+<li><a href="/2024/05/02/13-20-59/" title="计算机视觉概论 图像特征">计算机视觉概率笔记-第四章 图像特征</a>
 </li>
 </ul>
 <h2 id="课程简介"><a href="#课程简介" class="headerlink" title="课程简介"></a>课程简介</h2><ol>

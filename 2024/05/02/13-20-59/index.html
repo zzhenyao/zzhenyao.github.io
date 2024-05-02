@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Udacity计算机视觉概论 第四章 图像特征，常见的特征提取方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机视觉概论 图像特征">
+<meta property="og:url" content="https://pkunicor.github.io/2024/05/02/13-20-59/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="Udacity计算机视觉概论 第四章 图像特征，常见的特征提取方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-132909@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-142106@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-142537@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-142639@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-143009@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-145419@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-145313@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-150536@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-151651@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-151730@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-151825@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-152016@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-152156@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-152223@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-152309@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-152430@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-152454@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-153839@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-154050@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-154434@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-154635@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-154917@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-155145@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-155601@2x.png">
+<meta property="article:published_time" content="2024-05-02T05:20:59.000Z">
+<meta property="article:modified_time" content="2024-05-02T08:01:07.056Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="计算机视觉，图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/05/02/13-20-59/QQ20240502-132909@2x.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/05/02/13-20-59/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/05/02/13-20-59/","path":"2024/05/02/13-20-59/","title":"计算机视觉概论 图像特征"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机视觉概论 图像特征 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B"><span class="nav-number">2.</span> <span class="nav-text">特征检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%82%B9%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98"><span class="nav-number">2.0.1.</span> <span class="nav-text">图像点匹配问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A5%BD%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">2.0.2.</span> <span class="nav-text">好的特征</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E8%A7%92%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">寻找角点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E9%87%8C%E6%96%AF%E8%A7%92-Harris-Corners"><span class="nav-number">3.0.1.</span> <span class="nav-text">哈里斯角 Harris Corners:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E4%BA%8C%E9%98%B6%E8%BF%91%E4%BC%BC%E6%96%B9%E7%A8%8B"><span class="nav-number">3.0.2.</span> <span class="nav-text">解释二阶近似方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E7%89%B9%E5%BE%81%E5%80%BC"><span class="nav-number">3.0.3.</span> <span class="nav-text">解释特征值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E9%87%8C%E6%96%AF%E5%93%8D%E5%BA%94%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number">3.0.4.</span> <span class="nav-text">哈里斯响应函数：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E9%87%8C%E6%96%AF%E5%87%BD%E6%95%B0%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.0.5.</span> <span class="nav-text">哈里斯函数如何工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E9%87%8C%E6%96%AF%E6%A3%80%E6%B5%8B%E5%99%A8%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">3.0.6.</span> <span class="nav-text">哈里斯检测器算法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BA%E5%BA%A6%E4%B8%8D%E5%8F%98%E6%80%A7-Scale-invariance"><span class="nav-number">4.</span> <span class="nav-text">尺度不变性  Scale invariance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E9%87%8C%E6%96%AF%E6%A3%80%E6%B5%8B%E5%99%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%80%A7"><span class="nav-number">4.0.1.</span> <span class="nav-text">哈里斯检测器的一些特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%BA%E5%BA%A6%E4%B8%8D%E5%8F%98%E6%80%A7%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-number">4.0.2.</span> <span class="nav-text">尺度不变性的检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E5%B0%BA%E5%AF%B8%E6%A3%80%E6%B5%8B%E5%87%BD%E6%95%B0"><span class="nav-number">4.0.3.</span> <span class="nav-text">一个好的尺寸检测函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9%E5%AE%9A%E4%BD%8D"><span class="nav-number">4.0.4.</span> <span class="nav-text">关键点定位</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/05/02/13-20-59/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算机视觉概论 图像特征 | 且听风吟">
+      <meta itemprop="description" content="Udacity计算机视觉概论 第四章 图像特征，常见的特征提取方法">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机视觉概论 图像特征
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-02 13:20:59 / 修改时间：16:01:07" itemprop="dateCreated datePublished" datetime="2024-05-02T13:20:59+08:00">2024-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">Udacity计算机视觉概论 第四章 图像特征，常见的特征提取方法</div>
+	<hr>
+        <p>更新历史</p>
+<ul>
+<li>24.05.02：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/27/08-42-03/" title="Ud810 Intro-to-cv 笔记汇总">计算机视觉概率-笔记汇总</a>
+</li>
+</ul>
+<h2 id="特征检测"><a href="#特征检测" class="headerlink" title="特征检测"></a>特征检测</h2><p>一种寻找对应关系的方法</p>
+<h4 id="图像点匹配问题"><a href="#图像点匹配问题" class="headerlink" title="图像点匹配问题"></a>图像点匹配问题</h4><p>Local Features：局部特征<br>目标：在其他图像中找到点的精确位置</p>
+<p>特征匹配的过程：</p>
+<ol>
+<li>检测一些兴趣点(特征)</li>
+<li>匹配两张图中的特征点</li>
+<li>使用对应点，对齐图像</li>
+</ol>
+<img src="/2024/05/02/13-20-59/QQ20240502-132909@2x.png" class="">
+<p>特征匹配的问题：</p>
+<ol>
+<li>独立的特征， 需要重复检测器</li>
+<li>重复相似匹配，使用特征描述符descriptor</li>
+</ol>
+<h4 id="好的特征"><a href="#好的特征" class="headerlink" title="好的特征"></a>好的特征</h4><p>可重复性：Repeatability/Precision<br>好的特征应该在同一场景的不同图片中被检测出来</p>
+<p>显著性/可匹配性：Saliency/Matchability<br>有不同的区分描述</p>
+<p>紧凑型和效率：Compactness and efficiency<br>比图像像素更少的特征</p>
+<p>局部性：Locality<br>描述具有好的局部性,可以解决遮挡</p>
+<h2 id="寻找角点"><a href="#寻找角点" class="headerlink" title="寻找角点"></a>寻找角点</h2><p>一个白墙上有一个黑色方块：<br>黑块不是一个好特征，无法定位。<br>边缘也不是好特征，角是一个好特征。</p>
+<img src="/2024/05/02/13-20-59/QQ20240502-142106@2x.png" class="">
+<p>角是一个梯度变换的地方。</p>
+<h4 id="哈里斯角-Harris-Corners"><a href="#哈里斯角-Harris-Corners" class="headerlink" title="哈里斯角 Harris Corners:"></a>哈里斯角 Harris Corners:</h4><p>$E\left(u,\nu\right)=\sum_{x,y}w\left(x,y\right)\left[I\left(x+u,y+\nu\right)-I\left(x,y\right)\right]^{2}$</p>
+<ul>
+<li>$w\left(x,y\right)$ 是一个窗口<img src="/2024/05/02/13-20-59/QQ20240502-142537@2x.png" class="">
+</li>
+</ul>
+<p>哈里斯角图：</p>
+<img src="/2024/05/02/13-20-59/QQ20240502-142639@2x.png" class="">
+<ul>
+<li>误差为0，是黑色</li>
+<li>左图中红色方块是角图中心，误差为0，绿色移动后，出现误差</li>
+</ul>
+<p>哈里斯角在很小的移动会产生误差：<br>二阶泰勒展开：<br>$F\left(\delta x\right)\approx F\left(0\right)+\delta x\cdot\frac{dF\left(0\right)}{dx}+\frac12\delta x^2\cdot\frac{d^2F\left(0\right)}{dx^2}$</p>
+<p>二维泰勒展开：<br><img src="/2024/05/02/13-20-59/QQ20240502-143009@2x.png" class=""></p>
+<p>推导过程：<br>$E_u\left(u,\nu\right)=\sum_{x,y}2w\left(x,y\right)\left[I\left(x+u,y+\nu\right)-I\left(x,y\right)\right]I_x\left(x+u,y+v\right)$</p>
+<p>$\begin{split}<br>E_{\textit{ u }\nu}\left(u,\nu\right)&amp; =\sum_{x,y}2w(x,y)I_y(x+u,y+v)I_x(x+u,y+v) \\<br>&amp;+\sum_{x,y}2w(x,y)\Big[I(x+u,y+v)-I(x,y)\Big]I_{xy}(x+u,y+v)<br>\end{split}$</p>
+<p>$\begin{split}E_{u\nu}(u,\nu)&amp;=\sum_{x,y}2w(x,y)I_y(x+u,y+v)I_x(x+u,y+v)\\&amp;+\sum_{x,y}2w(x,y)\Big[I(x+u,y+v)-I(x,y)\Big]I_{xy}(x+u,y+v)\end{split}$</p>
+<p>带入点$(0,0)$，消去得：</p>
+<p>$E\left(u ,\nu\right) \approx \begin{bmatrix}u&amp;\nu\end{bmatrix} M\quad\begin{bmatrix}u\\\nu\end{bmatrix}$</p>
+<p>$M=\sum_{x,y}w(x,y)\begin{bmatrix}I_x^2&amp;&amp;I_xI_y\\I_xI_y&amp;&amp;I_y^2\end{bmatrix}$</p>
+<p>当没有权重$w(x,y)$时：</p>
+<p>$M=\begin{bmatrix}\sum I_xI_x&amp;\sum I_xI_y\\\sum I_xI_y&amp;\sum I_yI_y\end{bmatrix}=\sum\left(\begin{bmatrix}I_x\\I_y\end{bmatrix}-\begin{bmatrix}I_x&amp;I_y\end{bmatrix}\right)=\sum\nabla I\left(\nabla I\right)^T$</p>
+<p>其中$\nabla I$：是一个秩为1的列向量，所有等式右边是一个秩为1的二阶方阵。</p>
+<p>? 必须让窗口内所有方向都有梯度，才可以求和后得到一个满秩矩阵？？</p>
+<h4 id="解释二阶近似方程"><a href="#解释二阶近似方程" class="headerlink" title="解释二阶近似方程"></a>解释二阶近似方程</h4><p>代数表达式：椭圆方程<br>$\sum I_x^2u^2+2\sum I_xI_yu\nu+\sum I_y^2\nu^2=k$</p>
+<p>椭圆图：<br><img src="/2024/05/02/13-20-59/QQ20240502-145419@2x.png" class=""></p>
+<p>考虑，窗口内的梯度永远是水平或垂直，所有$I_xI_y$为0。<br>化简：<br>$M=\sum_{x,y}w(x,y)\begin{bmatrix}I_x^2&amp;&amp;I_xI_y\\I_xI_y&amp;&amp;I_y^2\end{bmatrix}=\begin{bmatrix}\lambda&amp;0\\0&amp;\lambda_2\end{bmatrix}$</p>
+<p>$M$可以被相似对角化：<br>$M~=~R^{-1}\left[\begin{array}{cc}\lambda&amp;0\\0&amp;\lambda_2\end{array}\right]R$</p>
+<p>特征值的作用：<br><img src="/2024/05/02/13-20-59/QQ20240502-145313@2x.png" class=""><br>在短边处：变换很快，长边处变换速度很慢，需要移动很多才有变化。</p>
+<h4 id="解释特征值"><a href="#解释特征值" class="headerlink" title="解释特征值"></a>解释特征值</h4><p>计算哈里斯矩阵：<br><img src="/2024/05/02/13-20-59/QQ20240502-150536@2x.png" class=""></p>
+<ul>
+<li>平坦区域：flat<br>梯度为0，怎么移动都不会变化。</li>
+<li>如果一个特征值特别大<br>朝这个方向的边缘移动，变换很快</li>
+<li>两个特征值大小相似<br>角：在任何方向变化相同</li>
+</ul>
+<h4 id="哈里斯响应函数："><a href="#哈里斯响应函数：" class="headerlink" title="哈里斯响应函数："></a>哈里斯响应函数：</h4><p>$R=\det(M^2)-\alpha\mathrm{~trace}(M)^2=\lambda_1\lambda_2-\alpha(\lambda_1+\lambda_2)^2$<br>$\alpha$:特别小 0.04 to 0.06</p>
+<p>$R$取决于特征值，但不需要计算特征值，<br>原因：</p>
+<ul>
+<li>角：两个特征值都很大，$R$正的大数</li>
+<li>边：一个特征值很大,$R$是负的大数</li>
+<li>平坦：$R$ 的绝对值很小</li>
+</ul>
+<h4 id="哈里斯函数如何工作"><a href="#哈里斯函数如何工作" class="headerlink" title="哈里斯函数如何工作"></a>哈里斯函数如何工作</h4><p>低纹理区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151651@2x.png" class=""></p>
+<p>边缘区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151730@2x.png" class=""></p>
+<p>高纹理区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151825@2x.png" class=""></p>
+<h4 id="哈里斯检测器算法："><a href="#哈里斯检测器算法：" class="headerlink" title="哈里斯检测器算法："></a>哈里斯检测器算法：</h4><img src="/2024/05/02/13-20-59/QQ20240502-152016@2x.png" class="">
+<p>例子：<br><img src="/2024/05/02/13-20-59/QQ20240502-152156@2x.png" class=""></p>
+<p>响应函数图：<br><img src="/2024/05/02/13-20-59/QQ20240502-152223@2x.png" class=""></p>
+<p>非极大值抑制：<br><img src="/2024/05/02/13-20-59/QQ20240502-152309@2x.png" class=""></p>
+<p>局部最大值的像素点：<br><img src="/2024/05/02/13-20-59/QQ20240502-152430@2x.png" class=""></p>
+<p>在原图中的位置：<br><img src="/2024/05/02/13-20-59/QQ20240502-152454@2x.png" class=""></p>
+<p>最终发现很多相同的特征点。</p>
+<h2 id="尺度不变性-Scale-invariance"><a href="#尺度不变性-Scale-invariance" class="headerlink" title="尺度不变性  Scale invariance"></a>尺度不变性  Scale invariance</h2><h4 id="哈里斯检测器的一些特性"><a href="#哈里斯检测器的一些特性" class="headerlink" title="哈里斯检测器的一些特性"></a>哈里斯检测器的一些特性</h4><ul>
+<li>对于旋转不变</li>
+<li>图像强度：加法乘法不改变<br>加法：导数不变<br>乘法：导数整体变化</li>
+<li>缩放，会改变</li>
+</ul>
+<h4 id="尺度不变性的检测"><a href="#尺度不变性的检测" class="headerlink" title="尺度不变性的检测"></a>尺度不变性的检测</h4><img src="/2024/05/02/13-20-59/QQ20240502-153839@2x.png" class="">
+<p>增大窗口，保持尺度不变</p>
+<p>领域大小对函数的影响：<br><img src="/2024/05/02/13-20-59/QQ20240502-154050@2x.png" class=""><br>$S_1$, $S_2$，具有相同的缩放比例</p>
+<h4 id="一个好的尺寸检测函数"><a href="#一个好的尺寸检测函数" class="headerlink" title="一个好的尺寸检测函数"></a>一个好的尺寸检测函数</h4><img src="/2024/05/02/13-20-59/QQ20240502-154434@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240502-154635@2x.png" class="">
+<p>拉普拉斯差和高斯差几乎相同，选择高斯简化计算。</p>
+<h4 id="关键点定位"><a href="#关键点定位" class="headerlink" title="关键点定位"></a>关键点定位</h4><p><strong>SIFT</strong>: Scale Invariant Feature Transform<br>尺度不变特征变换<br><img src="/2024/05/02/13-20-59/QQ20240502-154917@2x.png" class=""><br>取不同尺寸的图像，不断模糊图像，两两相减，计算他们的高斯图像差异。<br>像素与周围九个像素比较，以及不同比例邻居上的比较，的看是不是极值。</p>
+<img src="/2024/05/02/13-20-59/QQ20240502-155145@2x.png" class="">
+<p>例子：<br><img src="/2024/05/02/13-20-59/QQ20240502-155601@2x.png" class=""></p>
+<p><strong>哈里斯-拉普拉斯算法：</strong><br>先试用哈里斯角点检测<br>然后在看尺度方向上的拉普拉斯算子，找空间极值</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/05/02/13-20-59/" title="计算机视觉概论 图像特征">https://pkunicor.github.io/2024/05/02/13-20-59/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%EF%BC%8C%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"># 计算机视觉，图像处理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/29/16-24-21/" rel="prev" title="计算机视觉概论 相机和图像">
+                  <i class="fa fa-chevron-left"></i> 计算机视觉概论 相机和图像
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"963d6c709280a8dc33c5621368adcce3"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
