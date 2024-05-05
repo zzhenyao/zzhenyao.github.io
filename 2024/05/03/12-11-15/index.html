@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Udacity计算机视觉概论 第五章 光反射成像，亮度，阴影">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机视觉概论 光反射成像，亮度，阴影">
+<meta property="og:url" content="https://pkunicor.github.io/2024/05/03/12-11-15/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="Udacity计算机视觉概论 第五章 光反射成像，亮度，阴影">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-101936@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-102048@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-102428@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-102527@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-102622@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-103332@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-103403@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-103443@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-103722@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-104119@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-104452@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-104912@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-105128@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-105533@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-105617@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-105812@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-105812@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-110117@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-110352@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-110431@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-110637@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-110754@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-111110@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-111242@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-111441@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-111924@2x.png">
+<meta property="article:published_time" content="2024-05-03T04:11:15.000Z">
+<meta property="article:modified_time" content="2024-05-05T03:24:09.860Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="计算机视觉，图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-101936@2x.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/05/03/12-11-15/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/05/03/12-11-15/","path":"2024/05/03/12-11-15/","title":"计算机视觉概论 光反射成像，亮度，阴影"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机视觉概论 光反射成像，亮度，阴影 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E6%88%90%E5%83%8F"><span class="nav-number">2.</span> <span class="nav-text">图像的成像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E9%9D%A2%E7%BA%B9%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">表面纹理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%90%E5%B0%84%E7%8E%87"><span class="nav-number">2.1.1.</span> <span class="nav-text">辐射率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%90%91%E5%8F%8D%E5%B0%84%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0-BRDF"><span class="nav-number">2.1.2.</span> <span class="nav-text">双向反射分布函数 BRDF</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">反射模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambertian-BRDF"><span class="nav-number">2.2.1.</span> <span class="nav-text">Lambertian BRDF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%89%E6%B3%BDBRDF-Glossy"><span class="nav-number">2.2.2.</span> <span class="nav-text">光泽BRDF  Glossy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phong-%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">Phong 反射模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%AE%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">亮度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%AE%E5%BA%A6%E5%81%87%E8%AE%BE"><span class="nav-number">3.0.1.</span> <span class="nav-text">亮度假设</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%92%99%E5%BE%B7%E9%87%8C%E5%AE%89%E4%B8%96%E7%95%8C-The-Mondrian-world"><span class="nav-number">3.1.</span> <span class="nav-text">蒙德里安世界 The Mondrian world</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%86%E7%BD%91%E8%86%9C%E8%89%B2%E7%B4%A0-Land%E2%80%99s-Retinex-Theory"><span class="nav-number">3.1.1.</span> <span class="nav-text">视网膜色素 Land’s Retinex Theory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E6%81%92%E5%AE%9A%E7%8E%87%EF%BC%8C%E5%BC%BA%E5%BA%A6%E6%81%92%E5%AE%9A%E7%8E%87"><span class="nav-number">3.1.2.</span> <span class="nav-text">颜色恒定率，强度恒定率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B4%E5%BD%B1"><span class="nav-number">4.</span> <span class="nav-text">阴影</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/05/03/12-11-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算机视觉概论 光反射成像，亮度，阴影 | 且听风吟">
+      <meta itemprop="description" content="Udacity计算机视觉概论 第五章 光反射成像，亮度，阴影">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机视觉概论 光反射成像，亮度，阴影
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-03 12:11:15" itemprop="dateCreated datePublished" datetime="2024-05-03T12:11:15+08:00">2024-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-05 11:24:09" itemprop="dateModified" datetime="2024-05-05T11:24:09+08:00">2024-05-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">Udacity计算机视觉概论 第五章 光反射成像，亮度，阴影</div>
+	<hr>
+        <p>更新历史</p>
+<ul>
+<li>24.05.03：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/27/08-42-03/" title="Ud810 Intro-to-cv 笔记汇总">计算机视觉概率-笔记汇总</a>
+</li>
+</ul>
+<h2 id="图像的成像"><a href="#图像的成像" class="headerlink" title="图像的成像"></a>图像的成像</h2><h3 id="表面纹理"><a href="#表面纹理" class="headerlink" title="表面纹理"></a>表面纹理</h3><img src="/2024/05/03/12-11-15/QQ20240505-101936@2x.png" class="">
+<p>图像由：一小块表面法线，表面折射率，照明组成。</p>
+<h4 id="辐射率"><a href="#辐射率" class="headerlink" title="辐射率"></a>辐射率</h4><img src="/2024/05/03/12-11-15/QQ20240505-102048@2x.png" class="">
+<p>辐射率：单位面积上吸收的能量<br>单位：瓦每平方米 $Wm^{-2}Sr^{-1}$</p>
+<p>到达表面的能量：E<br>单位：$Wm^{-2}$</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-102428@2x.png" class="">
+<h4 id="双向反射分布函数-BRDF"><a href="#双向反射分布函数-BRDF" class="headerlink" title="双向反射分布函数 BRDF"></a>双向反射分布函数 BRDF</h4><p>入射，反射<br><img src="/2024/05/03/12-11-15/QQ20240505-102527@2x.png" class=""><br><img src="/2024/05/03/12-11-15/QQ20240505-102622@2x.png" class=""></p>
+<p>BRDF公式：$f(\theta_i,\varphi_i;\theta_r,\varphi_r)=\frac{L^{surface}(\theta_r,\varphi_r)}{E^{surface}(\theta_i,\varphi_i)}$<br>反射与入射的比例</p>
+<p>重要属性：<br>交换光源和照相机，比例不变：<br>$f(\theta_i,\varphi_i;\theta_r,\varphi_r)=f(\theta_r,\varphi_r;\theta_i,\varphi_i)$</p>
+<p>旋转对称性：<br>$f(\theta_i,\varphi_i;\theta_r,\varphi_r)=f(\theta_i,\theta_r,\varphi_i-\varphi_r)$<br>表明公式与绝对角度无关，只有他们之间的相对角度有关。</p>
+<h3 id="反射模型"><a href="#反射模型" class="headerlink" title="反射模型"></a>反射模型</h3><p>漫反射<br><img src="/2024/05/03/12-11-15/QQ20240505-103332@2x.png" class=""></p>
+<p>镜面反射<br><img src="/2024/05/03/12-11-15/QQ20240505-103403@2x.png" class=""></p>
+<p>反射光强度</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-103443@2x.png" class="">
+<h4 id="Lambertian-BRDF"><a href="#Lambertian-BRDF" class="headerlink" title="Lambertian BRDF"></a>Lambertian BRDF</h4><p>所有方向看起来一样亮</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-103722@2x.png" class="">
+<p>光的反射是按照角度衰减的。<br>为什么看到的光亮度相同？<br>因为垂直角度看到的面积小，但亮度高，接近平行的面积大，亮度低，总体看起来亮度相同。</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-104119@2x.png" class="">
+<p>光的反射率是一个常数<br>$albedo$:$f\left(\theta_i,\varphi_i;\theta_r,\varphi_r\right)=\rho_d$</p>
+<p>表面辐射：$L=\rho_d I\cos\theta_i=\rho_d I ( \vec{n} \cdot\vec{s})$</p>
+<p>镜面BRDF：<br><img src="/2024/05/03/12-11-15/QQ20240505-104452@2x.png" class=""><br>BRDF:$f(\theta_i,\phi_i;\theta_v,\phi_v)=\rho_s\delta(\theta_i-\theta_v)\delta(\phi_i+\pi-\phi_v)$<br>表面辐射：$L=I\rho_S\delta(\theta_i-\theta_v)\delta(\varphi_i+\pi-\varphi_v)$</p>
+<p>另一种写法：$L=I\rho_s\delta(\vec{m}-\vec{v})\mathrm{~or~}I\rho_s\delta(\vec{n}-\vec{h})$<br>$\vec{h}$：半角</p>
+<h4 id="光泽BRDF-Glossy"><a href="#光泽BRDF-Glossy" class="headerlink" title="光泽BRDF  Glossy"></a>光泽BRDF  Glossy</h4><img src="/2024/05/03/12-11-15/QQ20240505-104912@2x.png" class="">
+<p>表面辐射：$L=I\rho_s(\vec{m}\cdot\vec{v})^k$</p>
+<h3 id="Phong-反射模型"><a href="#Phong-反射模型" class="headerlink" title="Phong 反射模型"></a>Phong 反射模型</h3><img src="/2024/05/03/12-11-15/QQ20240505-105128@2x.png" class="">
+<h2 id="亮度"><a href="#亮度" class="headerlink" title="亮度"></a>亮度</h2><h4 id="亮度假设"><a href="#亮度假设" class="headerlink" title="亮度假设"></a>亮度假设</h4><img src="/2024/05/03/12-11-15/QQ20240505-105533@2x.png" class="">
+<img src="/2024/05/03/12-11-15/QQ20240505-105617@2x.png" class="">
+<p>实际上两个方块的亮度是相同的，但大脑一直在补偿阴影。</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-105812@2x.png" class="">
+<img src="/2024/05/03/12-11-15/QQ20240505-105812@2x.png" class="">
+<p>亮度：等于反射率乘能量<br><img src="/2024/05/03/12-11-15/QQ20240505-110117@2x.png" class=""></p>
+<h3 id="蒙德里安世界-The-Mondrian-world"><a href="#蒙德里安世界-The-Mondrian-world" class="headerlink" title="蒙德里安世界 The Mondrian world"></a>蒙德里安世界 The Mondrian world</h3><p>计算机的假设：</p>
+<ol>
+<li>光是缓慢变化的</li>
+<li>反射率是常数</li>
+<li>物体之间的反射率变化急剧<img src="/2024/05/03/12-11-15/QQ20240505-110352@2x.png" class="">
+</li>
+</ol>
+<p>强度恒定的斑块：<br><img src="/2024/05/03/12-11-15/QQ20240505-110431@2x.png" class=""></p>
+<p>假设光照强度是低频的，缓慢变化。<br>边缘的反射率是恒定的。<br>图像相加？：<br><img src="/2024/05/03/12-11-15/QQ20240505-110637@2x.png" class=""></p>
+<p>如何恢复反射率：<br><img src="/2024/05/03/12-11-15/QQ20240505-110754@2x.png" class=""></p>
+<h4 id="视网膜色素-Land’s-Retinex-Theory"><a href="#视网膜色素-Land’s-Retinex-Theory" class="headerlink" title="视网膜色素 Land’s Retinex Theory"></a>视网膜色素 Land’s Retinex Theory</h4><p>展示了人类如何感知不同色素<br>目标：消除缓慢变化<br>$\log(L(x,y))~=~\log(R(x,y))~+~\log(E(x,y))$<br>高通滤波保留高波，去掉阀值。</p>
+<p>一维亮度：<br><img src="/2024/05/03/12-11-15/QQ20240505-111110@2x.png" class=""><br>处理阀值，整合成反射率，但是多一个常数。<br><img src="/2024/05/03/12-11-15/QQ20240505-111242@2x.png" class=""></p>
+<p>例子：彩色视网膜<br><img src="/2024/05/03/12-11-15/QQ20240505-111441@2x.png" class=""><br>重新校准强度</p>
+<h4 id="颜色恒定率，强度恒定率"><a href="#颜色恒定率，强度恒定率" class="headerlink" title="颜色恒定率，强度恒定率"></a>颜色恒定率，强度恒定率</h4><img src="/2024/05/03/12-11-15/QQ20240505-111924@2x.png" class="">
+<p>颜色恒定率：某种颜色，在不用光照下，仍然可以看到颜色<br>强度恒定率：在不同环境，可以感知相同的强度。</p>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/05/03/12-11-15/" title="计算机视觉概论 光反射成像，亮度，阴影">https://pkunicor.github.io/2024/05/03/12-11-15/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%EF%BC%8C%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"># 计算机视觉，图像处理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/05/02/13-20-59/" rel="prev" title="计算机视觉概论 图像特征">
+                  <i class="fa fa-chevron-left"></i> 计算机视觉概论 图像特征
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"37a15091ff072f3ce647883b828b9b94"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

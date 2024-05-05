@@ -43,6 +43,71 @@
       </tags>
   </entry>
   <entry>
+    <title>计算机视觉概论 光反射成像，亮度，阴影</title>
+    <url>/2024/05/03/12-11-15/</url>
+    <content><![CDATA[<p>更新历史</p>
+<ul>
+<li>24.05.03：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/04/27/08-42-03/" title="Ud810 Intro-to-cv 笔记汇总">计算机视觉概率-笔记汇总</a>
+</li>
+</ul>
+<h2 id="图像的成像"><a href="#图像的成像" class="headerlink" title="图像的成像"></a>图像的成像</h2><h3 id="表面纹理"><a href="#表面纹理" class="headerlink" title="表面纹理"></a>表面纹理</h3><img src="/2024/05/03/12-11-15/QQ20240505-101936@2x.png" class="">
+<p>图像由：一小块表面法线，表面折射率，照明组成。</p>
+<h4 id="辐射率"><a href="#辐射率" class="headerlink" title="辐射率"></a>辐射率</h4><img src="/2024/05/03/12-11-15/QQ20240505-102048@2x.png" class="">
+<p>辐射率：单位面积上吸收的能量<br>单位：瓦每平方米 $Wm^{-2}Sr^{-1}$</p>
+<p>到达表面的能量：E<br>单位：$Wm^{-2}$</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-102428@2x.png" class="">
+<h4 id="双向反射分布函数-BRDF"><a href="#双向反射分布函数-BRDF" class="headerlink" title="双向反射分布函数 BRDF"></a>双向反射分布函数 BRDF</h4><p>入射，反射<br><img src="/2024/05/03/12-11-15/QQ20240505-102527@2x.png" class=""><br><img src="/2024/05/03/12-11-15/QQ20240505-102622@2x.png" class=""></p>
+<p>BRDF公式：$f(\theta_i,\varphi_i;\theta_r,\varphi_r)=\frac{L^{surface}(\theta_r,\varphi_r)}{E^{surface}(\theta_i,\varphi_i)}$<br>反射与入射的比例</p>
+<p>重要属性：<br>交换光源和照相机，比例不变：<br>$f(\theta_i,\varphi_i;\theta_r,\varphi_r)=f(\theta_r,\varphi_r;\theta_i,\varphi_i)$</p>
+<p>旋转对称性：<br>$f(\theta_i,\varphi_i;\theta_r,\varphi_r)=f(\theta_i,\theta_r,\varphi_i-\varphi_r)$<br>表明公式与绝对角度无关，只有他们之间的相对角度有关。</p>
+<h3 id="反射模型"><a href="#反射模型" class="headerlink" title="反射模型"></a>反射模型</h3><p>漫反射<br><img src="/2024/05/03/12-11-15/QQ20240505-103332@2x.png" class=""></p>
+<p>镜面反射<br><img src="/2024/05/03/12-11-15/QQ20240505-103403@2x.png" class=""></p>
+<p>反射光强度</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-103443@2x.png" class="">
+<h4 id="Lambertian-BRDF"><a href="#Lambertian-BRDF" class="headerlink" title="Lambertian BRDF"></a>Lambertian BRDF</h4><p>所有方向看起来一样亮</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-103722@2x.png" class="">
+<p>光的反射是按照角度衰减的。<br>为什么看到的光亮度相同？<br>因为垂直角度看到的面积小，但亮度高，接近平行的面积大，亮度低，总体看起来亮度相同。</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-104119@2x.png" class="">
+<p>光的反射率是一个常数<br>$albedo$:$f\left(\theta_i,\varphi_i;\theta_r,\varphi_r\right)=\rho_d$</p>
+<p>表面辐射：$L=\rho_d I\cos\theta_i=\rho_d I ( \vec{n} \cdot\vec{s})$</p>
+<p>镜面BRDF：<br><img src="/2024/05/03/12-11-15/QQ20240505-104452@2x.png" class=""><br>BRDF:$f(\theta_i,\phi_i;\theta_v,\phi_v)=\rho_s\delta(\theta_i-\theta_v)\delta(\phi_i+\pi-\phi_v)$<br>表面辐射：$L=I\rho_S\delta(\theta_i-\theta_v)\delta(\varphi_i+\pi-\varphi_v)$</p>
+<p>另一种写法：$L=I\rho_s\delta(\vec{m}-\vec{v})\mathrm{~or~}I\rho_s\delta(\vec{n}-\vec{h})$<br>$\vec{h}$：半角</p>
+<h4 id="光泽BRDF-Glossy"><a href="#光泽BRDF-Glossy" class="headerlink" title="光泽BRDF  Glossy"></a>光泽BRDF  Glossy</h4><img src="/2024/05/03/12-11-15/QQ20240505-104912@2x.png" class="">
+<p>表面辐射：$L=I\rho_s(\vec{m}\cdot\vec{v})^k$</p>
+<h3 id="Phong-反射模型"><a href="#Phong-反射模型" class="headerlink" title="Phong 反射模型"></a>Phong 反射模型</h3><img src="/2024/05/03/12-11-15/QQ20240505-105128@2x.png" class="">
+<h2 id="亮度"><a href="#亮度" class="headerlink" title="亮度"></a>亮度</h2><h4 id="亮度假设"><a href="#亮度假设" class="headerlink" title="亮度假设"></a>亮度假设</h4><img src="/2024/05/03/12-11-15/QQ20240505-105533@2x.png" class="">
+<img src="/2024/05/03/12-11-15/QQ20240505-105617@2x.png" class="">
+<p>实际上两个方块的亮度是相同的，但大脑一直在补偿阴影。</p>
+<img src="/2024/05/03/12-11-15/QQ20240505-105812@2x.png" class="">
+<img src="/2024/05/03/12-11-15/QQ20240505-105812@2x.png" class="">
+<p>亮度：等于反射率乘能量<br><img src="/2024/05/03/12-11-15/QQ20240505-110117@2x.png" class=""></p>
+<h3 id="蒙德里安世界-The-Mondrian-world"><a href="#蒙德里安世界-The-Mondrian-world" class="headerlink" title="蒙德里安世界 The Mondrian world"></a>蒙德里安世界 The Mondrian world</h3><p>计算机的假设：</p>
+<ol>
+<li>光是缓慢变化的</li>
+<li>反射率是常数</li>
+<li>物体之间的反射率变化急剧<img src="/2024/05/03/12-11-15/QQ20240505-110352@2x.png" class="">
+</li>
+</ol>
+<p>强度恒定的斑块：<br><img src="/2024/05/03/12-11-15/QQ20240505-110431@2x.png" class=""></p>
+<p>假设光照强度是低频的，缓慢变化。<br>边缘的反射率是恒定的。<br>图像相加？：<br><img src="/2024/05/03/12-11-15/QQ20240505-110637@2x.png" class=""></p>
+<p>如何恢复反射率：<br><img src="/2024/05/03/12-11-15/QQ20240505-110754@2x.png" class=""></p>
+<h4 id="视网膜色素-Land’s-Retinex-Theory"><a href="#视网膜色素-Land’s-Retinex-Theory" class="headerlink" title="视网膜色素 Land’s Retinex Theory"></a>视网膜色素 Land’s Retinex Theory</h4><p>展示了人类如何感知不同色素<br>目标：消除缓慢变化<br>$\log(L(x,y))~=~\log(R(x,y))~+~\log(E(x,y))$<br>高通滤波保留高波，去掉阀值。</p>
+<p>一维亮度：<br><img src="/2024/05/03/12-11-15/QQ20240505-111110@2x.png" class=""><br>处理阀值，整合成反射率，但是多一个常数。<br><img src="/2024/05/03/12-11-15/QQ20240505-111242@2x.png" class=""></p>
+<p>例子：彩色视网膜<br><img src="/2024/05/03/12-11-15/QQ20240505-111441@2x.png" class=""><br>重新校准强度</p>
+<h4 id="颜色恒定率，强度恒定率"><a href="#颜色恒定率，强度恒定率" class="headerlink" title="颜色恒定率，强度恒定率"></a>颜色恒定率，强度恒定率</h4><img src="/2024/05/03/12-11-15/QQ20240505-111924@2x.png" class="">
+<p>颜色恒定率：某种颜色，在不用光照下，仍然可以看到颜色<br>强度恒定率：在不同环境，可以感知相同的强度。</p>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2>]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>计算机视觉，图像处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机视觉概论 图像特征</title>
     <url>/2024/05/02/13-20-59/</url>
     <content><![CDATA[<p>更新历史</p>
@@ -1009,7 +1074,8 @@ Data term:  $E_\text{ data }=\sum_i\left(W_1(i)-W_2(i+D(i))\right)^2$<br>Smoothn
 <li><a href="/2024/04/27/08-38-57/" title="计算机视觉概论 什么是计算机视觉">计算机视觉概率笔记-第一章 什么是计算机视觉</a></li>
 <li><a href="/2024/04/27/09-07-10/" title="计算机视觉概论 计算机视觉的图像处理">计算机视觉概率笔记-第二章 计算机视觉的图像处理</a></li>
 <li><a href="/2024/04/29/16-24-21/" title="计算机视觉概论 相机和图像">计算机视觉概率笔记-第三章 相机和图像</a></li>
-<li><a href="/2024/05/02/13-20-59/" title="计算机视觉概论 图像特征">计算机视觉概率笔记-第四章 图像特征</a>
+<li><a href="/2024/05/02/13-20-59/" title="计算机视觉概论 图像特征">计算机视觉概率笔记-第四章 图像特征</a></li>
+<li><a href="/2024/05/03/12-11-15/" title="计算机视觉概论 光反射成像，亮度，阴影">计算机视觉概率笔记-第四章 图像</a>
 </li>
 </ul>
 <h2 id="课程简介"><a href="#课程简介" class="headerlink" title="课程简介"></a>课程简介</h2><ol>
