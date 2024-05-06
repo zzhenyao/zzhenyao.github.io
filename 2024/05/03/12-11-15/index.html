@@ -52,8 +52,23 @@
 <meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-111242@2x.png">
 <meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-111441@2x.png">
 <meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240505-111924@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-093432@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-093505@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-093838@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-093909@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-093921@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-094225@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-094504@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-094718@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-094852@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-094911@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-095328@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-095430@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-095508@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-095523@2x.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/03/12-11-15/QQ20240506-095554@2x.png">
 <meta property="article:published_time" content="2024-05-03T04:11:15.000Z">
-<meta property="article:modified_time" content="2024-05-05T03:24:09.860Z">
+<meta property="article:modified_time" content="2024-05-06T01:59:46.889Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="计算机视觉，图像处理">
 <meta name="twitter:card" content="summary">
@@ -167,7 +182,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E6%88%90%E5%83%8F"><span class="nav-number">2.</span> <span class="nav-text">图像的成像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E9%9D%A2%E7%BA%B9%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">表面纹理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%90%E5%B0%84%E7%8E%87"><span class="nav-number">2.1.1.</span> <span class="nav-text">辐射率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%90%91%E5%8F%8D%E5%B0%84%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0-BRDF"><span class="nav-number">2.1.2.</span> <span class="nav-text">双向反射分布函数 BRDF</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">反射模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambertian-BRDF"><span class="nav-number">2.2.1.</span> <span class="nav-text">Lambertian BRDF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%89%E6%B3%BDBRDF-Glossy"><span class="nav-number">2.2.2.</span> <span class="nav-text">光泽BRDF  Glossy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phong-%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">Phong 反射模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%AE%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">亮度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%AE%E5%BA%A6%E5%81%87%E8%AE%BE"><span class="nav-number">3.0.1.</span> <span class="nav-text">亮度假设</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%92%99%E5%BE%B7%E9%87%8C%E5%AE%89%E4%B8%96%E7%95%8C-The-Mondrian-world"><span class="nav-number">3.1.</span> <span class="nav-text">蒙德里安世界 The Mondrian world</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%86%E7%BD%91%E8%86%9C%E8%89%B2%E7%B4%A0-Land%E2%80%99s-Retinex-Theory"><span class="nav-number">3.1.1.</span> <span class="nav-text">视网膜色素 Land’s Retinex Theory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E6%81%92%E5%AE%9A%E7%8E%87%EF%BC%8C%E5%BC%BA%E5%BA%A6%E6%81%92%E5%AE%9A%E7%8E%87"><span class="nav-number">3.1.2.</span> <span class="nav-text">颜色恒定率，强度恒定率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B4%E5%BD%B1"><span class="nav-number">4.</span> <span class="nav-text">阴影</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%9A%84%E6%88%90%E5%83%8F"><span class="nav-number">2.</span> <span class="nav-text">图像的成像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E9%9D%A2%E7%BA%B9%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">表面纹理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%90%E5%B0%84%E7%8E%87"><span class="nav-number">2.1.1.</span> <span class="nav-text">辐射率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%90%91%E5%8F%8D%E5%B0%84%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0-BRDF"><span class="nav-number">2.1.2.</span> <span class="nav-text">双向反射分布函数 BRDF</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">反射模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambertian-BRDF"><span class="nav-number">2.2.1.</span> <span class="nav-text">Lambertian BRDF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%89%E6%B3%BDBRDF-Glossy"><span class="nav-number">2.2.2.</span> <span class="nav-text">光泽BRDF  Glossy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phong-%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">Phong 反射模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%AE%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">亮度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%AE%E5%BA%A6%E5%81%87%E8%AE%BE"><span class="nav-number">3.0.1.</span> <span class="nav-text">亮度假设</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%92%99%E5%BE%B7%E9%87%8C%E5%AE%89%E4%B8%96%E7%95%8C-The-Mondrian-world"><span class="nav-number">3.1.</span> <span class="nav-text">蒙德里安世界 The Mondrian world</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%86%E7%BD%91%E8%86%9C%E8%89%B2%E7%B4%A0-Land%E2%80%99s-Retinex-Theory"><span class="nav-number">3.1.1.</span> <span class="nav-text">视网膜色素 Land’s Retinex Theory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E6%81%92%E5%AE%9A%E7%8E%87%EF%BC%8C%E5%BC%BA%E5%BA%A6%E6%81%92%E5%AE%9A%E7%8E%87"><span class="nav-number">3.1.2.</span> <span class="nav-text">颜色恒定率，强度恒定率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B4%E5%BD%B1"><span class="nav-number">4.</span> <span class="nav-text">阴影</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B4%E5%BD%B1%E7%9A%84%E5%BD%A2%E7%8A%B6"><span class="nav-number">4.1.</span> <span class="nav-text">阴影的形状</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E7%8E%87%E5%9B%BE"><span class="nav-number">4.1.1.</span> <span class="nav-text">反射率图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E7%90%83%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%A9%BA%E9%97%B4%E6%8A%95%E5%BD%B1"><span class="nav-number">4.1.2.</span> <span class="nav-text">高斯球和梯度空间投影</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BA%90%E5%90%91%E9%87%8F%E6%A2%AF%E5%BA%A6%E7%A9%BA%E9%97%B4%E5%92%8C%E6%B3%95%E5%90%91%E9%87%8F%E6%A2%AF%E5%BA%A6%E7%A9%BA%E9%97%B4"><span class="nav-number">4.1.3.</span> <span class="nav-text">源向量梯度空间和法向量梯度空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B4%E5%BD%B1%E5%BD%A2%E7%8A%B6%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">4.2.</span> <span class="nav-text">阴影形状的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%97%E4%BC%AF%E6%A1%88%E4%BE%8B"><span class="nav-number">4.2.1.</span> <span class="nav-text">朗伯案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E5%BA%A6%E7%AB%8B%E4%BD%93"><span class="nav-number">4.3.</span> <span class="nav-text">光度立体</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -264,7 +279,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-05 11:24:09" itemprop="dateModified" datetime="2024-05-05T11:24:09+08:00">2024-05-05</time>
+      <time title="修改时间：2024-05-06 09:59:46" itemprop="dateModified" datetime="2024-05-06T09:59:46+08:00">2024-05-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -351,7 +366,25 @@
 <p>例子：彩色视网膜<br><img src="/2024/05/03/12-11-15/QQ20240505-111441@2x.png" class=""><br>重新校准强度</p>
 <h4 id="颜色恒定率，强度恒定率"><a href="#颜色恒定率，强度恒定率" class="headerlink" title="颜色恒定率，强度恒定率"></a>颜色恒定率，强度恒定率</h4><img src="/2024/05/03/12-11-15/QQ20240505-111924@2x.png" class="">
 <p>颜色恒定率：某种颜色，在不用光照下，仍然可以看到颜色<br>强度恒定率：在不同环境，可以感知相同的强度。</p>
-<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><h3 id="阴影的形状"><a href="#阴影的形状" class="headerlink" title="阴影的形状"></a>阴影的形状</h3><p>阴影作为恢复形状的提示</p>
+<h4 id="反射率图"><a href="#反射率图" class="headerlink" title="反射率图"></a>反射率图</h4><img src="/2024/05/03/12-11-15/QQ20240506-093432@2x.png" class="">
+<img src="/2024/05/03/12-11-15/QQ20240506-093505@2x.png" class="">
+<p>曲线法向量：$\mathbf{n}=\frac N{\left\|N\right\|}=\frac{t_x\times t_y}{\left\|t_x\times t_y\right\|}=\frac1{\sqrt{p^2+q^2+1}}\left(p,q,1\right)^T$</p>
+<h4 id="高斯球和梯度空间投影"><a href="#高斯球和梯度空间投影" class="headerlink" title="高斯球和梯度空间投影"></a>高斯球和梯度空间投影</h4><p>存在从所有法线到高斯球的映射：<br><img src="/2024/05/03/12-11-15/QQ20240506-093838@2x.png" class=""><br><img src="/2024/05/03/12-11-15/QQ20240506-093909@2x.png" class=""><br><img src="/2024/05/03/12-11-15/QQ20240506-093921@2x.png" class=""></p>
+<h4 id="源向量梯度空间和法向量梯度空间"><a href="#源向量梯度空间和法向量梯度空间" class="headerlink" title="源向量梯度空间和法向量梯度空间"></a>源向量梯度空间和法向量梯度空间</h4><img src="/2024/05/03/12-11-15/QQ20240506-094225@2x.png" class="">
+<p>单位法向量：$\mathbf{n=\frac N{|N|}=\frac{(p,q,1)}{\sqrt{p^2+q^2+1}}}$</p>
+<p>单位源向量：$\mathbf{s}=\frac{\mathbf{S}}{|\mathbf{S}|}=\frac{(p_S,q_S,1)}{\sqrt{p_S^2+q_S^2+1}}$</p>
+<p>向量夹角：$\cos\theta_i=\mathbf{n}\cdot\mathbf{s}=\frac{(pp_S+qq_S+1)}{\sqrt{p^2+q^2+1}\sqrt{p_S^2+q_S^2+1}}$</p>
+<h3 id="阴影形状的定义"><a href="#阴影形状的定义" class="headerlink" title="阴影形状的定义"></a>阴影形状的定义</h3><img src="/2024/05/03/12-11-15/QQ20240506-094504@2x.png" class="">
+<h4 id="朗伯案例"><a href="#朗伯案例" class="headerlink" title="朗伯案例"></a>朗伯案例</h4><img src="/2024/05/03/12-11-15/QQ20240506-094718@2x.png" class="">
+<p>反射图：<br><img src="/2024/05/03/12-11-15/QQ20240506-094852@2x.png" class=""></p>
+<p>Iso 亮度轮廓：<br><img src="/2024/05/03/12-11-15/QQ20240506-094911@2x.png" class=""></p>
+<h3 id="光度立体"><a href="#光度立体" class="headerlink" title="光度立体"></a>光度立体</h3><p>相同的物体，不同的光照<br><img src="/2024/05/03/12-11-15/QQ20240506-095328@2x.png" class=""></p>
+<img src="/2024/05/03/12-11-15/QQ20240506-095430@2x.png" class="">
+<img src="/2024/05/03/12-11-15/QQ20240506-095508@2x.png" class="">
+<img src="/2024/05/03/12-11-15/QQ20240506-095523@2x.png" class="">
+<p>最终pq空间图：<br><img src="/2024/05/03/12-11-15/QQ20240506-095554@2x.png" class=""></p>
+
     </div>
 
     
