@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="密歇根大学EECS498 计算机视觉 第一章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机视觉 Python常用库">
+<meta property="og:url" content="https://pkunicor.github.io/2024/05/06/10-28-38/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="密歇根大学EECS498 计算机视觉 第一章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/06/10-28-38/ff5f35bdb1a53c5e8dd5a16b391f63df_b.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/06/10-28-38/47169e8280088396107e0c62d7689e07_b.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/06/10-28-38/955a7bcd45981728e91693961c21fbae_b.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/06/10-28-38/c2abf551074a0db7445067f460417a08_b.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/05/06/10-28-38/81197033afe9b507dea565ed558a6239_b.png">
+<meta property="article:published_time" content="2024-05-06T02:28:38.000Z">
+<meta property="article:modified_time" content="2024-05-06T07:22:29.597Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="计算机视觉, 图像处理, 深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/05/06/10-28-38/ff5f35bdb1a53c5e8dd5a16b391f63df_b.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/05/06/10-28-38/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/05/06/10-28-38/","path":"2024/05/06/10-28-38/","title":"计算机视觉 Python常用库"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机视觉 Python常用库 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python"><span class="nav-number">2.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E7%89%88%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">Python版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8Containers"><span class="nav-number">5.</span> <span class="nav-text">容器Containers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8Lists"><span class="nav-number">6.</span> <span class="nav-text">列表Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E5%85%B8Dictionaries"><span class="nav-number">6.1.</span> <span class="nav-text">字典Dictionaries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88Sets"><span class="nav-number">6.2.</span> <span class="nav-text">集合Sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%BB%84Tuples"><span class="nav-number">6.3.</span> <span class="nav-text">元组Tuples</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0Functions"><span class="nav-number">7.</span> <span class="nav-text">函数Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BBClasses"><span class="nav-number">8.</span> <span class="nav-text">类Classes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84Arrays"><span class="nav-number">9.</span> <span class="nav-text">数组Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%95%B0%E7%BB%84"><span class="nav-number">10.</span> <span class="nav-text">访问数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">11.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E8%AE%A1%E7%AE%97"><span class="nav-number">12.</span> <span class="nav-text">数组计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E6%92%ADBroadcasting"><span class="nav-number">13.</span> <span class="nav-text">广播Broadcasting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numpy%E6%96%87%E6%A1%A3"><span class="nav-number">14.</span> <span class="nav-text">Numpy文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">15.</span> <span class="nav-text">图像操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MATLAB%E6%96%87%E4%BB%B6"><span class="nav-number">16.</span> <span class="nav-text">MATLAB文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="nav-number">17.</span> <span class="nav-text">点之间的距离</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%98%E5%9B%BE"><span class="nav-number">17.1.</span> <span class="nav-text">绘图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%A4%9A%E4%B8%AA%E5%9B%BE%E5%83%8F"><span class="nav-number">18.</span> <span class="nav-text">绘制多个图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F"><span class="nav-number">19.</span> <span class="nav-text">图像</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/05/06/10-28-38/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算机视觉 Python常用库 | 且听风吟">
+      <meta itemprop="description" content="密歇根大学EECS498 计算机视觉 第一章">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机视觉 Python常用库
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-06 10:28:38 / 修改时间：15:22:29" itemprop="dateCreated datePublished" datetime="2024-05-06T10:28:38+08:00">2024-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" itemprop="url" rel="index"><span itemprop="name">计算机视觉</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">密歇根大学EECS498 计算机视觉 第一章</div>
+	<hr>
+        <p>更新历史</p>
+<ul>
+<li>24.05.06：初稿</li>
+</ul>
+<h2 id="系列"><a href="#系列" class="headerlink" title="系列"></a>系列</h2><ul>
+<li><a href="/2024/05/06/10-28-51/" title="eecs498 ML-DL-CV 笔记汇总">计算机视觉-笔记汇总</a>
+</li>
+</ul>
+<p>我们将使用Python编程语言来完成本课程的所有作业。Python是一门伟大的通用编程语言，在一些常用库（numpy, scipy, matplotlib）的帮助下，它又会变成一个强大的科学计算环境。</p>
+<p>内容列表：</p>
+<ul>
+<li>Python<ul>
+<li>基本数据类型</li>
+<li>容器</li>
+<li>函数</li>
+<li>类</li>
+</ul>
+</li>
+<li>Numpy<ul>
+<li>数组</li>
+<li>访问数组</li>
+<li>数据类型</li>
+<li>数组计算</li>
+<li>广播</li>
+</ul>
+</li>
+<li>SciPy<ul>
+<li>图像操作</li>
+<li>MATLAB文件</li>
+<li>点之间的距离</li>
+</ul>
+</li>
+<li>Matplotlib<ul>
+<li>绘制图形</li>
+<li>绘制多个图形</li>
+<li>图像</li>
+</ul>
+</li>
+</ul>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>Python是一种高级的，动态类型的多范型编程语言。很多时候，大家会说Python看起来简直和伪代码一样，这是因为你能够通过很少行数的代码表达出很有力的思想。举个例子，下面是用Python实现的经典的quicksort算法例子：  </p>
+<pre><code class="lang-py">    def quicksort(arr):
+        if len(arr) &lt;= 1:
+            return arr
+        pivot = arr[len(arr) / 2]
+        left = [x for x in arr if x &lt; pivot]
+        middle = [x for x in arr if x == pivot]
+        right = [x for x in arr if x &gt; pivot]
+        return quicksort(left) + middle + quicksort(right)
+
+    print quicksort([3,6,8,10,1,2,1])
+    # Prints &quot;[1, 1, 2, 3, 6, 8, 10]&quot;
+</code></pre>
+<h2 id="Python版本"><a href="#Python版本" class="headerlink" title="Python版本"></a>Python版本</h2><p>Python有两个支持的版本，分别是2.7和3.4。这有点让人迷惑，3.0向语言中引入了很多不向后兼容的变化，2.7下的代码有时候在3.4下是行不通的。在这个课程中，我们使用的是2.7版本。</p>
+<p>如何查看版本呢？使用<strong>python —version</strong>命令。</p>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>和大多数编程语言一样，Python拥有一系列的基本数据类型，比如整型、浮点型、布尔型和字符串等。这些类型的使用方式和在其他语言中的使用方式是类似的。</p>
+<p><strong>数字</strong>：整型和浮点型的使用与其他语言类似。</p>
+<pre><code class="lang-py">    x = 3
+    print type(x) # Prints &quot;&quot;
+    print x       # Prints &quot;3&quot;
+    print x + 1   # Addition; prints &quot;4&quot;
+    print x - 1   # Subtraction; prints &quot;2&quot;
+    print x * 2   # Multiplication; prints &quot;6&quot;
+    print x ** 2  # Exponentiation; prints &quot;9&quot;
+    x += 1
+    print x  # Prints &quot;4&quot;
+    x *= 2
+    print x  # Prints &quot;8&quot;
+    y = 2.5
+    print type(y) # Prints &quot;&quot;
+    print y, y + 1, y * 2, y ** 2 # Prints &quot;2.5 3.5 5.0 6.25&quot;
+</code></pre>
+<p>需要注意的是，Python中没有 x++ 和 x— 的操作符。</p>
+<p><strong>布尔型</strong>：Python实现了所有的布尔逻辑，但用的是英语，而不是我们习惯的操作符（比如&amp;&amp;和||等）。</p>
+<pre><code class="lang-py">    t = True
+    f = False
+    print type(t) # Prints &quot;&quot;
+    print t and f # Logical AND; prints &quot;False&quot;
+    print t or f  # Logical OR; prints &quot;True&quot;
+    print not t   # Logical NOT; prints &quot;False&quot;
+    print t != f  # Logical XOR; prints &quot;True&quot;
+</code></pre>
+<p><strong>字符串</strong>：Python对字符串的支持非常棒。  </p>
+<pre><code class="lang-py">    hello = &#39;hello&#39;   # String literals can use single quotes
+    world = &quot;world&quot;   # or double quotes; it does not matter.
+    print hello       # Prints &quot;hello&quot;
+    print len(hello)  # String length; prints &quot;5&quot;
+    hw = hello + &#39; &#39; + world  # String concatenation
+    print hw  # prints &quot;hello world&quot;
+    hw12 = &#39;%s %s %d&#39; % (hello, world, 12)  # sprintf style string formatting
+    print hw12  # prints &quot;hello world 12&quot;
+</code></pre>
+<p>字符串对象有一系列有用的方法，比如：  </p>
+<pre><code class="lang-py">    s = &quot;hello&quot;
+    print s.capitalize()  # Capitalize a string; prints &quot;Hello&quot;
+    print s.upper()       # Convert a string to uppercase; prints &quot;HELLO&quot;
+    print s.rjust(7)      # Right-justify a string, padding with spaces; prints &quot;  hello&quot;
+    print s.center(7)     # Center a string, padding with spaces; prints &quot; hello &quot;
+    print s.replace(&#39;l&#39;, &#39;(ell)&#39;)  # Replace all instances of one substring with another;
+                                   # prints &quot;he(ell)(ell)o&quot;
+    print &#39;  world &#39;.strip()  # Strip leading and trailing whitespace; prints &quot;world&quot;
+</code></pre>
+<h2 id="容器Containers"><a href="#容器Containers" class="headerlink" title="容器Containers"></a>容器Containers</h2><p><strong>译者注</strong>：有知友建议container翻译为复合数据类型，供读者参考。</p>
+<p>Python有以下几种容器类型：列表（lists）、字典（dictionaries）、集合（sets）和元组（tuples）。</p>
+<h2 id="列表Lists"><a href="#列表Lists" class="headerlink" title="列表Lists"></a>列表Lists</h2><p>列表就是Python中的数组，但是列表长度可变，且能包含不同类型元素。</p>
+<pre><code class="lang-py">    xs = [3, 1, 2]   # Create a list
+    print xs, xs[2]  # Prints &quot;[3, 1, 2] 2&quot;
+    print xs[-1]     # Negative indices count from the end of the list; prints &quot;2&quot;
+    xs[2] = &#39;foo&#39;    # Lists can contain elements of different types
+    print xs         # Prints &quot;[3, 1, &#39;foo&#39;]&quot;
+    xs.append(&#39;bar&#39;) # Add a new element to the end of the list
+    print xs         # Prints 
+    x = xs.pop()     # Remove and return the last element of the list
+    print x, xs      # Prints &quot;bar [3, 1, &#39;foo&#39;]&quot;
+</code></pre>
+<p><strong>切片Slicing</strong>：为了一次性地获取列表中的元素，Python提供了一种简洁的语法，这就是切片。  </p>
+<pre><code class="lang-py">    nums = range(5)    # range is a built-in function that creates a list of integers
+    print nums         # Prints &quot;[0, 1, 2, 3, 4]&quot;
+    print nums[2:4]    # Get a slice from index 2 to 4 (exclusive); prints &quot;[2, 3]&quot;
+    print nums[2:]     # Get a slice from index 2 to the end; prints &quot;[2, 3, 4]&quot;
+    print nums[:2]     # Get a slice from the start to index 2 (exclusive); prints &quot;[0, 1]&quot;
+    print nums[:]      # Get a slice of the whole list; prints [&quot;0, 1, 2, 3, 4]&quot;
+    print nums[:-1]    # Slice indices can be negative; prints [&quot;0, 1, 2, 3]&quot;
+    nums[2:4] = [8, 9] # Assign a new sublist to a slice
+    print nums         # Prints &quot;[0, 1, 8, 8, 4]&quot;
+</code></pre>
+<p>在Numpy数组的内容中，我们会再次看到切片语法。</p>
+<p><strong>循环Loops</strong>：我们可以这样遍历列表中的每一个元素：</p>
+<pre><code class="lang-py">    animals = [&#39;cat&#39;, &#39;dog&#39;, &#39;monkey&#39;]
+    for animal in animals:
+        print animal
+    # Prints &quot;cat&quot;, &quot;dog&quot;, &quot;monkey&quot;, each on its own line.
+</code></pre>
+<p>如果想要在循环体内访问每个元素的指针，可以使用内置的<strong>enumerate</strong>函数  </p>
+<pre><code class="lang-py">    animals = [&#39;cat&#39;, &#39;dog&#39;, &#39;monkey&#39;]
+    for idx, animal in enumerate(animals):
+        print &#39;#%d: %s&#39; % (idx + 1, animal)
+    # Prints &quot;#1: cat&quot;, &quot;#2: dog&quot;, &quot;#3: monkey&quot;, each on its own line
+</code></pre>
+<p><strong>列表推导List comprehensions</strong>：在编程的时候，我们常常想要将一种数据类型转换为另一种。下面是一个简单例子，将列表中的每个元素变成它的平方。  </p>
+<pre><code class="lang-py">    nums = [0, 1, 2, 3, 4]
+    squares = []
+    for x in nums:
+        squares.append(x ** 2)
+    print squares   # Prints [0, 1, 4, 9, 16]
+</code></pre>
+<p>使用列表推导，你就可以让代码简化很多：  </p>
+<pre><code class="lang-py">    nums = [0, 1, 2, 3, 4]
+    squares = [x ** 2 for x in nums]
+    print squares   # Prints [0, 1, 4, 9, 16]
+</code></pre>
+<p>列表推导还可以包含条件：  </p>
+<pre><code class="lang-py">    nums = [0, 1, 2, 3, 4]
+    even_squares = [x ** 2 for x in nums if x % 2 == 0]
+    print even_squares  # Prints &quot;[0, 4, 16]&quot;
+</code></pre>
+<h3 id="字典Dictionaries"><a href="#字典Dictionaries" class="headerlink" title="字典Dictionaries"></a>字典Dictionaries</h3><p>字典用来储存（键, 值）对，这和Java中的Map差不多。你可以这样使用它：</p>
+<pre><code class="lang-py">    d = &#123;&#39;cat&#39;: &#39;cute&#39;, &#39;dog&#39;: &#39;furry&#39;&#125;  # Create a new dictionary with some data
+    print d[&#39;cat&#39;]       # Get an entry from a dictionary; prints &quot;cute&quot;
+    print &#39;cat&#39; in d     # Check if a dictionary has a given key; prints &quot;True&quot;
+    d[&#39;fish&#39;] = &#39;wet&#39;    # Set an entry in a dictionary
+    print d[&#39;fish&#39;]      # Prints &quot;wet&quot;
+    # print d[&#39;monkey&#39;]  # KeyError: &#39;monkey&#39; not a key of d
+    print d.get(&#39;monkey&#39;, &#39;N/A&#39;)  # Get an element with a default; prints &quot;N/A&quot;
+    print d.get(&#39;fish&#39;, &#39;N/A&#39;)    # Get an element with a default; prints &quot;wet&quot;
+    del d[&#39;fish&#39;]        # Remove an element from a dictionary
+    print d.get(&#39;fish&#39;, &#39;N/A&#39;) # &quot;fish&quot; is no longer a key; prints &quot;N/A&quot;
+</code></pre>
+<p><strong>循环Loops</strong>：在字典中，用键来迭代更加容易。</p>
+<pre><code class="lang-py">    d = &#123;&#39;person&#39;: 2, &#39;cat&#39;: 4, &#39;spider&#39;: 8&#125;
+    for animal in d:
+        legs = d[animal]
+        print &#39;A %s has %d legs&#39; % (animal, legs)
+    # Prints &quot;A person has 2 legs&quot;, &quot;A spider has 8 legs&quot;, &quot;A cat has 4 legs&quot;
+</code></pre>
+<p>如果你想要访问键和对应的值，那就使用<strong>iteritems</strong>方法：  </p>
+<pre><code class="lang-py">    d = &#123;&#39;person&#39;: 2, &#39;cat&#39;: 4, &#39;spider&#39;: 8&#125;
+    for animal, legs in d.iteritems():
+        print &#39;A %s has %d legs&#39; % (animal, legs)
+    # Prints &quot;A person has 2 legs&quot;, &quot;A spider has 8 legs&quot;, &quot;A cat has 4 legs&quot;
+</code></pre>
+<p><strong>字典推导Dictionary comprehensions</strong>：和列表推导类似，但是允许你方便地构建字典。  </p>
+<pre><code class="lang-py">    nums = [0, 1, 2, 3, 4]
+    even_num_to_square = &#123;x: x ** 2 for x in nums if x % 2 == 0&#125;
+    print even_num_to_square  # Prints &quot;&#123;0: 0, 2: 4, 4: 16&#125;&quot;
+</code></pre>
+<h3 id="集合Sets"><a href="#集合Sets" class="headerlink" title="集合Sets"></a>集合Sets</h3><p>集合是独立不同个体的无序集合。示例如下：  </p>
+<pre><code class="lang-py">    animals = &#123;&#39;cat&#39;, &#39;dog&#39;&#125;
+    print &#39;cat&#39; in animals   # Check if an element is in a set; prints &quot;True&quot;
+    print &#39;fish&#39; in animals  # prints &quot;False&quot;
+    animals.add(&#39;fish&#39;)      # Add an element to a set
+    print &#39;fish&#39; in animals  # Prints &quot;True&quot;
+    print len(animals)       # Number of elements in a set; prints &quot;3&quot;
+    animals.add(&#39;cat&#39;)       # Adding an element that is already in the set does nothing
+    print len(animals)       # Prints &quot;3&quot;
+    animals.remove(&#39;cat&#39;)    # Remove an element from a set
+    print len(animals)       # Prints &quot;2&quot;
+</code></pre>
+<p><strong>循环Loops</strong>：在集合中循环的语法和在列表中一样，但是集合是无序的，所以你在访问集合的元素的时候，不能做关于顺序的假设。</p>
+<pre><code class="lang-py">    animals = &#123;&#39;cat&#39;, &#39;dog&#39;, &#39;fish&#39;&#125;
+    for idx, animal in enumerate(animals):
+        print &#39;#%d: %s&#39; % (idx + 1, animal)
+    # Prints &quot;#1: fish&quot;, &quot;#2: dog&quot;, &quot;#3: cat&quot;
+</code></pre>
+<p><strong>集合推导**</strong>Set comprehensions**：和字典推导一样，可以很方便地构建集合：</p>
+<pre><code class="lang-py">    from math import sqrt
+    nums = &#123;int(sqrt(x)) for x in range(30)&#125;
+    print nums  # Prints &quot;set([0, 1, 2, 3, 4, 5])&quot;
+</code></pre>
+<h3 id="元组Tuples"><a href="#元组Tuples" class="headerlink" title="元组Tuples"></a>元组Tuples</h3><p>元组是一个值的有序列表（不可改变）。从很多方面来说，元组和列表都很相似。和列表最重要的不同在于，元组可以在字典中用作键，还可以作为集合的元素，而列表不行。例子如下：  </p>
+<pre><code class="lang-py">    d = &#123;(x, x + 1): x for x in range(10)&#125;  # Create a dictionary with tuple keys
+    print d
+    t = (5, 6)       # Create a tuple
+    print type(t)    # Prints &quot;&quot;
+    print d[t]       # Prints &quot;5&quot;
+    print d[(1, 2)]  # Prints &quot;1&quot;
+</code></pre>
+<h2 id="函数Functions"><a href="#函数Functions" class="headerlink" title="函数Functions"></a>函数Functions</h2><p>Python函数使用def来定义函数：  </p>
+<pre><code class="lang-py">    def sign(x):
+        if x &gt; 0:
+            return &#39;positive&#39;
+        elif x &lt; 0:
+            return &#39;negative&#39;
+        else:
+            return &#39;zero&#39;
+
+    for x in [-1, 0, 1]:
+        print sign(x)
+    # Prints &quot;negative&quot;, &quot;zero&quot;, &quot;positive&quot;
+</code></pre>
+<p>我们常常使用可选参数来定义函数：  </p>
+<pre><code class="lang-py">    def hello(name, loud=False):
+        if loud:
+            print &#39;HELLO, %s&#39; % name.upper()
+        else:
+            print &#39;Hello, %s!&#39; % name
+
+    hello(&#39;Bob&#39;) # Prints &quot;Hello, Bob&quot;
+    hello(&#39;Fred&#39;, loud=True)  # Prints &quot;HELLO, FRED!&quot;
+</code></pre>
+<h2 id="类Classes"><a href="#类Classes" class="headerlink" title="类Classes"></a>类Classes</h2><p>Python对于类的定义是简单直接的：</p>
+<pre><code class="lang-py">    class Greeter(object):
+
+        # Constructor
+        def __init__(self, name):
+            self.name = name  # Create an instance variable
+
+        # Instance method
+        def greet(self, loud=False):
+            if loud:
+                print &#39;HELLO, %s!&#39; % self.name.upper()
+            else:
+                print &#39;Hello, %s&#39; % self.name
+
+    g = Greeter(&#39;Fred&#39;)  # Construct an instance of the Greeter class
+    g.greet()            # Call an instance method; prints &quot;Hello, Fred&quot;
+    g.greet(loud=True)   # Call an instance method; prints &quot;HELLO, FRED!&quot;
+</code></pre>
+<p>Numpy是Python中用于科学计算的核心库。它提供了高性能的多维数组对象，以及相关工具。</p>
+<h2 id="数组Arrays"><a href="#数组Arrays" class="headerlink" title="数组Arrays"></a>数组Arrays</h2><p>一个numpy数组是一个由不同数值组成的网格。网格中的数据都是同一种数据类型，可以通过非负整型数的元组来访问。维度的数量被称为数组的阶，数组的大小是一个由整型数构成的元组，可以描述数组不同维度上的大小。</p>
+<p>我们可以从列表创建数组，然后利用方括号访问其中的元素：</p>
+<pre><code class="lang-py">    import numpy as np
+
+    a = np.array([1, 2, 3])  # Create a rank 1 array
+    print type(a)            # Prints &quot;&quot;
+    print a.shape            # Prints &quot;(3,)&quot;
+    print a[0], a[1], a[2]   # Prints &quot;1 2 3&quot;
+    a[0] = 5                 # Change an element of the array
+    print a                  # Prints &quot;[5, 2, 3]&quot;
+
+    b = np.array([[1,2,3],[4,5,6]])   # Create a rank 2 array
+    print b                           # 显示一下矩阵b
+    print b.shape                     # Prints &quot;(2, 3)&quot;
+    print b[0, 0], b[0, 1], b[1, 0]   # Prints &quot;1 2 4&quot;
+</code></pre>
+<p>Numpy还提供了很多其他创建数组的方法：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    a = np.zeros((2,2))  # Create an array of all zeros
+    print a              # Prints &quot;[[ 0.  0.]
+                         #          [ 0.  0.]]&quot;
+
+    b = np.ones((1,2))   # Create an array of all ones
+    print b              # Prints &quot;[[ 1.  1.]]&quot;
+
+    c = np.full((2,2), 7) # Create a constant array
+    print c               # Prints &quot;[[ 7.  7.]
+                          #          [ 7.  7.]]&quot;
+
+    d = np.eye(2)        # Create a 2x2 identity matrix
+    print d              # Prints &quot;[[ 1.  0.]
+                         #          [ 0.  1.]]&quot;
+
+    e = np.random.random((2,2)) # Create an array filled with random values
+    print e                     # Might print &quot;[[ 0.91940167  0.08143941]
+                                #               [ 0.68744134  0.87236687]]&quot;
+</code></pre>
+<h2 id="访问数组"><a href="#访问数组" class="headerlink" title="访问数组"></a>访问数组</h2><p>Numpy提供了多种访问数组的方法。</p>
+<p><strong>切片</strong>：和Python列表类似，numpy数组可以使用切片语法。因为数组可以是多维的，所以你<strong>必须</strong>为每个维度指定好切片。</p>
+<pre><code class="lang-py">    import numpy as np
+
+    # Create the following rank 2 array with shape (3, 4)
+    # [[ 1  2  3  4]
+    #  [ 5  6  7  8]
+    #  [ 9 10 11 12]]
+    a = np.array([[1,2,3,4], [5,6,7,8], [9,10,11,12]])
+
+    # Use slicing to pull out the subarray consisting of the first 2 rows
+    # and columns 1 and 2; b is the following array of shape (2, 2):
+    # [[2 3]
+    #  [6 7]]
+    b = a[:2, 1:3]
+
+    # A slice of an array is a view into the same data, so modifying it
+    # will modify the original array.
+    print a[0, 1]   # Prints &quot;2&quot;
+    b[0, 0] = 77    # b[0, 0] is the same piece of data as a[0, 1]
+    print a[0, 1]   # Prints &quot;77&quot;
+</code></pre>
+<p>你可以同时使用整型和切片语法来访问数组。但是，这样做会产生一个比原数组低阶的新数组。需要注意的是，这里和MATLAB中的情况是不同的：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    # Create the following rank 2 array with shape (3, 4)
+    # [[ 1  2  3  4]
+    #  [ 5  6  7  8]
+    #  [ 9 10 11 12]]
+    a = np.array([[1,2,3,4], [5,6,7,8], [9,10,11,12]])
+
+    # Two ways of accessing the data in the middle row of the array.
+    # Mixing integer indexing with slices yields an array of lower rank,
+    # while using only slices yields an array of the same rank as the
+    # original array:
+    row_r1 = a[1, :]    # Rank 1 view of the second row of a  
+    row_r2 = a[1:2, :]  # Rank 2 view of the second row of a
+    print row_r1, row_r1.shape  # Prints &quot;[5 6 7 8] (4,)&quot;
+    print row_r2, row_r2.shape  # Prints &quot;[[5 6 7 8]] (1, 4)&quot;
+
+    # We can make the same distinction when accessing columns of an array:
+    col_r1 = a[:, 1]
+    col_r2 = a[:, 1:2]
+    print col_r1, col_r1.shape  # Prints &quot;[ 2  6 10] (3,)&quot;
+    print col_r2, col_r2.shape  # Prints &quot;[[ 2]
+                                #          [ 6]
+                                #          [10]] (3, 1)&quot;
+</code></pre>
+<p><strong>整型数组访问</strong>：当我们使用切片语法访问数组时，得到的总是原数组的一个子集。整型数组访问允许我们利用其它数组的数据构建一个新的数组：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    a = np.array([[1,2], [3, 4], [5, 6]])
+
+    # An example of integer array indexing.
+    # The returned array will have shape (3,) and 
+    print a[[0, 1, 2], [0, 1, 0]]  # Prints &quot;[1 4 5]&quot;
+
+    # The above example of integer array indexing is equivalent to this:
+    print np.array([a[0, 0], a[1, 1], a[2, 0]])  # Prints &quot;[1 4 5]&quot;
+
+    # When using integer array indexing, you can reuse the same
+    # element from the source array:
+    print a[[0, 0], [1, 1]]  # Prints &quot;[2 2]&quot;
+
+    # Equivalent to the previous integer array indexing example
+    print np.array([a[0, 1], a[0, 1]])  # Prints &quot;[2 2]&quot;
+</code></pre>
+<p>整型数组访问语法还有个有用的技巧，可以用来选择或者更改矩阵中每行中的一个元素：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    # Create a new array from which we will select elements
+    a = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
+
+    print a  # prints &quot;array([[ 1,  2,  3],
+             #                [ 4,  5,  6],
+             #                [ 7,  8,  9],
+             #                [10, 11, 12]])&quot;
+
+    # Create an array of indices
+    b = np.array([0, 2, 0, 1])
+
+    # Select one element from each row of a using the indices in b
+    print a[np.arange(4), b]  # Prints &quot;[ 1  6  7 11]&quot;
+
+    # Mutate one element from each row of a using the indices in b
+    a[np.arange(4), b] += 10
+
+    print a  # prints &quot;array([[11,  2,  3],
+             #                [ 4,  5, 16],
+             #                [17,  8,  9],
+             #                [10, 21, 12]])
+</code></pre>
+<p><strong>布尔型数组访问</strong>：布尔型数组访问可以让你选择数组中任意元素。通常，这种访问方式用于选取数组中满足某些条件的元素，举例如下：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    a = np.array([[1,2], [3, 4], [5, 6]])
+
+    bool_idx = (a &gt; 2)  # Find the elements of a that are bigger than 2;
+                        # this returns a numpy array of Booleans of the same
+                        # shape as a, where each slot of bool_idx tells
+                        # whether that element of a is &gt; 2.
+
+    print bool_idx      # Prints &quot;[[False False]
+                        #          [ True  True]
+                        #          [ True  True]]&quot;
+
+    # We use boolean array indexing to construct a rank 1 array
+    # consisting of the elements of a corresponding to the True values
+    # of bool_idx
+    print a[bool_idx]  # Prints &quot;[3 4 5 6]&quot;
+
+    # We can do all of the above in a single concise statement:
+    print a[a &gt; 2]     # Prints &quot;[3 4 5 6]&quot;
+</code></pre>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>每个Numpy数组都是数据类型相同的元素组成的网格。Numpy提供了很多的数据类型用于创建数组。当你创建数组的时候，Numpy会尝试猜测数组的数据类型，你也可以通过参数直接指定数据类型，例子如下：</p>
+<pre><code class="lang-py">    import numpy as np
+
+    x = np.array([1, 2])  # Let numpy choose the datatype
+    print x.dtype         # Prints &quot;int64&quot;
+
+    x = np.array([1.0, 2.0])  # Let numpy choose the datatype
+    print x.dtype             # Prints &quot;float64&quot;
+
+    x = np.array([1, 2], dtype=np.int64)  # Force a particular datatype
+    print x.dtype                         # Prints &quot;int64&quot;
+</code></pre>
+<h2 id="数组计算"><a href="#数组计算" class="headerlink" title="数组计算"></a>数组计算</h2><p>基本数学计算函数会对数组中元素逐个进行计算，既可以利用操作符重载，也可以使用函数方式：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    x = np.array([[1,2],[3,4]], dtype=np.float64)
+    y = np.array([[5,6],[7,8]], dtype=np.float64)
+
+    # Elementwise sum; both produce the array
+    # [[ 6.0  8.0]
+    #  [10.0 12.0]]
+    print x + y
+    print np.add(x, y)
+
+    # Elementwise difference; both produce the array
+    # [[-4.0 -4.0]
+    #  [-4.0 -4.0]]
+    print x - y
+    print np.subtract(x, y)
+
+    # Elementwise product; both produce the array
+    # [[ 5.0 12.0]
+    #  [21.0 32.0]]
+    print x * y
+    print np.multiply(x, y)
+
+    # Elementwise division; both produce the array
+    # [[ 0.2         0.33333333]
+    #  [ 0.42857143  0.5       ]]
+    print x / y
+    print np.divide(x, y)
+
+    # Elementwise square root; produces the array
+    # [[ 1.          1.41421356]
+    #  [ 1.73205081  2.        ]]
+    print np.sqrt(x)
+</code></pre>
+<p>和MATLAB不同，*是元素逐个相乘，而不是矩阵乘法。在Numpy中使用dot来进行矩阵乘法：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    x = np.array([[1,2],[3,4]])
+    y = np.array([[5,6],[7,8]])
+
+    v = np.array([9,10])
+    w = np.array([11, 12])
+
+    # Inner product of vectors; both produce 219
+    print v.dot(w)
+    print np.dot(v, w)
+
+    # Matrix / vector product; both produce the rank 1 array [29 67]
+    print x.dot(v)
+    print np.dot(x, v)
+
+    # Matrix / matrix product; both produce the rank 2 array
+    # [[19 22]
+    #  [43 50]]
+    print x.dot(y)
+    print np.dot(x, y)
+</code></pre>
+<p>Numpy提供了很多计算数组的函数，其中最常用的一个是<strong>sum</strong>：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    x = np.array([[1,2],[3,4]])
+
+    print np.sum(x)  # Compute sum of all elements; prints &quot;10&quot;
+    print np.sum(x, axis=0)  # Compute sum of each column; prints &quot;[4 6]&quot;
+    print np.sum(x, axis=1)  # Compute sum of each row; prints &quot;[3 7]&quot;
+</code></pre>
+<p>除了计算，我们还常常改变数组或者操作其中的元素。其中将矩阵转置是常用的一个，在Numpy中，使用<strong>T</strong>来转置矩阵：</p>
+<pre><code class="lang-py">    import numpy as np
+
+    x = np.array([[1,2], [3,4]])
+    print x    # Prints &quot;[[1 2]
+               #          [3 4]]&quot;
+    print x.T  # Prints &quot;[[1 3]
+               #          [2 4]]&quot;
+
+    # Note that taking the transpose of a rank 1 array does nothing:
+    v = np.array([1,2,3])
+    print v    # Prints &quot;[1 2 3]&quot;
+    print v.T  # Prints &quot;[1 2 3]&quot;
+</code></pre>
+<h2 id="广播Broadcasting"><a href="#广播Broadcasting" class="headerlink" title="广播Broadcasting"></a>广播Broadcasting</h2><p>广播是一种强有力的机制，它让Numpy可以让不同大小的矩阵在一起进行数学计算。我们常常会有一个小的矩阵和一个大的矩阵，然后我们会需要用小的矩阵对大的矩阵做一些计算。</p>
+<p>举个例子，如果我们想要把一个向量加到矩阵的每一行，我们可以这样做：</p>
+<pre><code class="lang-py">    import numpy as np
+
+    # We will add the vector v to each row of the matrix x,
+    # storing the result in the matrix y
+    x = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
+    v = np.array([1, 0, 1])
+    y = np.empty_like(x)   # Create an empty matrix with the same shape as x
+
+    # Add the vector v to each row of the matrix x with an explicit loop
+    for i in range(4):
+        y[i, :] = x[i, :] + v
+
+    # Now y is the following
+    # [[ 2  2  4]
+    #  [ 5  5  7]
+    #  [ 8  8 10]
+    #  [11 11 13]]
+    print y
+</code></pre>
+<p>这样是行得通的，但是当x矩阵非常大，利用循环来计算就会变得很慢很慢。我们可以换一种思路：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    # We will add the vector v to each row of the matrix x,
+    # storing the result in the matrix y
+    x = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
+    v = np.array([1, 0, 1])
+    vv = np.tile(v, (4, 1))  # Stack 4 copies of v on top of each other
+    print vv                 # Prints &quot;[[1 0 1]
+                             #          [1 0 1]
+                             #          [1 0 1]
+                             #          [1 0 1]]&quot;
+    y = x + vv  # Add x and vv elementwise
+    print y  # Prints &quot;[[ 2  2  4
+             #          [ 5  5  7]
+             #          [ 8  8 10]
+             #          [11 11 13]]&quot;
+</code></pre>
+<p>Numpy广播机制可以让我们不用创建vv，就能直接运算，看看下面例子：  </p>
+<pre><code class="lang-py">    import numpy as np
+
+    # We will add the vector v to each row of the matrix x,
+    # storing the result in the matrix y
+    x = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
+    v = np.array([1, 0, 1])
+    y = x + v  # Add v to each row of x using broadcasting
+    print y  # Prints &quot;[[ 2  2  4]
+             #          [ 5  5  7]
+             #          [ 8  8 10]
+             #          [11 11 13]]&quot;
+</code></pre>
+<p>对两个数组使用广播机制要遵守下列规则：</p>
+<ol>
+<li>如果数组的秩不同，使用1来将秩较小的数组进行扩展，直到两个数组的尺寸的长度都一样。</li>
+<li>如果两个数组在某个维度上的长度是一样的，或者其中一个数组在该维度上长度为1，那么我们就说这两个数组在该维度上是<strong>相容</strong>的。</li>
+<li>如果两个数组在所有维度上都是相容的，他们就能使用广播。</li>
+<li>如果两个输入数组的尺寸不同，那么注意其中较大的那个尺寸。因为广播之后，两个数组的尺寸将和那个较大的尺寸一样。</li>
+<li>在任何一个维度上，如果一个数组的长度为1，另一个数组长度大于1，那么在该维度上，就好像是对第一个数组进行了复制。</li>
+</ol>
+<p>支持广播机制的函数是全局函数。</p>
+<p>下面是一些广播机制的使用：</p>
+<pre><code class="lang-py">    import numpy as np
+
+    # Compute outer product of vectors
+    v = np.array([1,2,3])  # v has shape (3,)
+    w = np.array([4,5])    # w has shape (2,)
+    # To compute an outer product, we first reshape v to be a column
+    # vector of shape (3, 1); we can then broadcast it against w to yield
+    # an output of shape (3, 2), which is the outer product of v and w:
+    # [[ 4  5]
+    #  [ 8 10]
+    #  [12 15]]
+    print np.reshape(v, (3, 1)) * w
+
+    # Add a vector to each row of a matrix
+    x = np.array([[1,2,3], [4,5,6]])
+    # x has shape (2, 3) and v has shape (3,) so they broadcast to (2, 3),
+    # giving the following matrix:
+    # [[2 4 6]
+    #  [5 7 9]]
+    print x + v
+
+    # Add a vector to each column of a matrix
+    # x has shape (2, 3) and w has shape (2,).
+    # If we transpose x then it has shape (3, 2) and can be broadcast
+    # against w to yield a result of shape (3, 2); transposing this result
+    # yields the final result of shape (2, 3) which is the matrix x with
+    # the vector w added to each column. Gives the following matrix:
+    # [[ 5  6  7]
+    #  [ 9 10 11]]
+    print (x.T + w).T
+
+    # Another solution is to reshape w to be a row vector of shape (2, 1);
+    # we can then broadcast it directly against x to produce the same
+    # output.
+    print x + np.reshape(w, (2, 1))
+
+    # Multiply a matrix by a constant:
+    # x has shape (2, 3). Numpy treats scalars as arrays of shape ();
+    # these can be broadcast together to shape (2, 3), producing the
+    # following array:
+    # [[ 2  4  6]
+    #  [ 8 10 12]]
+    print x * 2
+</code></pre>
+<p>广播机制能够让你的代码更简洁更迅速，能够用的时候请尽量使用！  </p>
+<h2 id="Numpy文档"><a href="#Numpy文档" class="headerlink" title="Numpy文档"></a>Numpy文档</h2><p>这篇教程涉及了你需要了解的numpy中的一些重要内容，但是numpy远不止如此。</p>
+<p>Numpy提供了高性能的多维数组，以及计算和操作数组的基本工具。SciPy基于Numpy，提供了大量的计算和操作数组的函数，这些函数对于不同类型的科学和工程计算非常有用。</p>
+<p>熟悉SciPy的最好方法就是阅读文档。我们会强调对于本课程有用的部分。</p>
+<h2 id="图像操作"><a href="#图像操作" class="headerlink" title="图像操作"></a>图像操作</h2><p>SciPy提供了一些操作图像的基本函数。比如，它提供了将图像从硬盘读入到数组的函数，也提供了将数组中数据写入的硬盘成为图像的函数。下面是一个简单的例子：</p>
+<pre><code class="lang-py">    from scipy.misc import imread, imsave, imresize
+
+    # Read an JPEG image into a numpy array
+    img = imread(&#39;assets/cat.jpg&#39;)
+    print img.dtype, img.shape  # Prints &quot;uint8 (400, 248, 3)&quot;
+
+    # We can tint the image by scaling each of the color channels
+    # by a different scalar constant. The image has shape (400, 248, 3);
+    # we multiply it by the array [1, 0.95, 0.9] of shape (3,);
+    # numpy broadcasting means that this leaves the red channel unchanged,
+    # and multiplies the green and blue channels by 0.95 and 0.9
+    # respectively.
+    img_tinted = img * [1, 0.95, 0.9]
+
+    # Resize the tinted image to be 300 by 300 pixels.
+    img_tinted = imresize(img_tinted, (300, 300))
+
+    # Write the tinted image back to disk
+    imsave(&#39;assets/cat_tinted.jpg&#39;, img_tinted)
+</code></pre>
+<img src="/2024/05/06/10-28-38/ff5f35bdb1a53c5e8dd5a16b391f63df_b.png" class="">
+<p>左边是原始图片，右边是变色和变形的图片。</p>
+<h2 id="MATLAB文件"><a href="#MATLAB文件" class="headerlink" title="MATLAB文件"></a>MATLAB文件</h2><p>函数<strong>scipy.io.loadmat</strong>和<strong>scipy.io.savemat</strong>能够让你读和写MATLAB文件。</p>
+<h2 id="点之间的距离"><a href="#点之间的距离" class="headerlink" title="点之间的距离"></a>点之间的距离</h2><p>SciPy定义了一些有用的函数，可以计算集合中点之间的距离。</p>
+<p>函数<strong>scipy.spatial.distance.pdist</strong>能够计算集合中所有两点之间的距离：</p>
+<pre><code class="lang-py">    import numpy as np
+    from scipy.spatial.distance import pdist, squareform
+
+    # Create the following array where each row is a point in 2D space:
+    # [[0 1]
+    #  [1 0]
+    #  [2 0]]
+    x = np.array([[0, 1], [1, 0], [2, 0]])
+    print x
+
+    # Compute the Euclidean distance between all rows of x.
+    # d[i, j] is the Euclidean distance between x[i, :] and x[j, :],
+    # and d is the following array:
+    # [[ 0.          1.41421356  2.23606798]
+    #  [ 1.41421356  0.          1.        ]
+    #  [ 2.23606798  1.          0.        ]]
+    d = squareform(pdist(x, &#39;euclidean&#39;))
+    print d
+</code></pre>
+<p>函数<strong>scipy.spatial.distance.cdist</strong>可以计算不同集合中点的距离，## Matplotlib</p>
+<p>Matplotlib是一个作图库。这里简要介绍<strong>matplotlib.pyplot</strong>模块，功能和MATLAB的作图功能类似。</p>
+<h3 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h3><p>matplotlib库中最重要的函数是<strong>Plot</strong>。该函数允许你做出2D图形，如下：  </p>
+<pre><code class="lang-py">    import numpy as np
+    import matplotlib.pyplot as plt
+
+    # Compute the x and y coordinates for points on a sine curve
+    x = np.arange(0, 3 * np.pi, 0.1)
+    y = np.sin(x)
+
+    # Plot the points using matplotlib
+    plt.plot(x, y)
+    plt.show()  # You must call plt.show() to make graphics appear.
+</code></pre>
+<p>运行上面代码会产生下面的作图：  </p>
+<img src="/2024/05/06/10-28-38/47169e8280088396107e0c62d7689e07_b.png" class="">
+<p>只需要少量工作，就可以一次画不同的线，加上标签，坐标轴标志等。  </p>
+<pre><code class="lang-py">    import numpy as np
+    import matplotlib.pyplot as plt
+
+    # Compute the x and y coordinates for points on sine and cosine curves
+    x = np.arange(0, 3 * np.pi, 0.1)
+    y_sin = np.sin(x)
+    y_cos = np.cos(x)
+
+    # Plot the points using matplotlib
+    plt.plot(x, y_sin)
+    plt.plot(x, y_cos)
+    plt.xlabel(&#39;x axis label&#39;)
+    plt.ylabel(&#39;y axis label&#39;)
+    plt.title(&#39;Sine and Cosine&#39;)
+    plt.legend([&#39;Sine&#39;, &#39;Cosine&#39;])
+    plt.show()
+</code></pre>
+<img src="/2024/05/06/10-28-38/955a7bcd45981728e91693961c21fbae_b.png" class="">
+<h2 id="绘制多个图像"><a href="#绘制多个图像" class="headerlink" title="绘制多个图像"></a>绘制多个图像</h2><p>可以使用<strong>subplot</strong>函数来在一幅图中画不同的东西：  </p>
+<pre><code class="lang-py">    import numpy as np
+    import matplotlib.pyplot as plt
+
+    # Compute the x and y coordinates for points on sine and cosine curves
+    x = np.arange(0, 3 * np.pi, 0.1)
+    y_sin = np.sin(x)
+    y_cos = np.cos(x)
+
+    # Set up a subplot grid that has height 2 and width 1,
+    # and set the first such subplot as active.
+    plt.subplot(2, 1, 1)
+
+    # Make the first plot
+    plt.plot(x, y_sin)
+    plt.title(&#39;Sine&#39;)
+
+    # Set the second subplot as active, and make the second plot.
+    plt.subplot(2, 1, 2)
+    plt.plot(x, y_cos)
+    plt.title(&#39;Cosine&#39;)
+
+    # Show the figure.
+    plt.show()
+</code></pre>
+<img src="/2024/05/06/10-28-38/c2abf551074a0db7445067f460417a08_b.png" class="">
+<h2 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h2><p>你可以使用<strong>imshow</strong>函数来显示图像，如下所示：  </p>
+<pre><code class="lang-py">    import numpy as np
+    from scipy.misc import imread, imresize
+    import matplotlib.pyplot as plt
+
+    img = imread(&#39;assets/cat.jpg&#39;)
+    img_tinted = img * [1, 0.95, 0.9]
+
+    # Show the original image
+    plt.subplot(1, 2, 1)
+    plt.imshow(img)
+
+    # Show the tinted image
+    plt.subplot(1, 2, 2)
+
+    # A slight gotcha with imshow is that it might give strange results
+    # if presented with data that is not uint8. To work around this, we
+    # explicitly cast the image to uint8 before displaying it.
+    plt.imshow(np.uint8(img_tinted))
+    plt.show()
+</code></pre>
+<img src="/2024/05/06/10-28-38/81197033afe9b507dea565ed558a6239_b.png" class="">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/05/06/10-28-38/" title="计算机视觉 Python常用库">https://pkunicor.github.io/2024/05/06/10-28-38/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89-%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 计算机视觉, 图像处理, 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/05/03/12-11-15/" rel="prev" title="计算机视觉概论 光反射成像，亮度，阴影">
+                  <i class="fa fa-chevron-left"></i> 计算机视觉概论 光反射成像，亮度，阴影
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/05/06/10-28-51/" rel="next" title="eecs498 ML-DL-CV 笔记汇总">
+                  eecs498 ML-DL-CV 笔记汇总 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"8aed0b5ec3a68fb68e8995e43dbeb985"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
