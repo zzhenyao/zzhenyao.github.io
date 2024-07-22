@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="2013年发表在IJCV上的一篇文章，被引1871次，介绍了DT（密集轨迹）算法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dense trajectories and motion boundary descriptors for action recognition - 密集轨迹DT算法">
+<meta property="og:url" content="https://pkunicor.github.io/2024/07/22/12-24-41/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="2013年发表在IJCV上的一篇文章，被引1871次，介绍了DT（密集轨迹）算法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-22T04:24:41.000Z">
+<meta property="article:modified_time" content="2024-07-22T04:36:38.930Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="论文阅读, 计算机视觉, 行为识别">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/07/22/12-24-41/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/07/22/12-24-41/","path":"2024/07/22/12-24-41/","title":"Dense trajectories and motion boundary descriptors for action recognition - 密集轨迹DT算法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Dense trajectories and motion boundary descriptors for action recognition - 密集轨迹DT算法 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%86%E9%9B%86%E8%BD%A8%E8%BF%B9%E7%AE%97%E6%B3%95%EF%BC%88DT%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">密集轨迹算法（DT算法）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">描述子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HOG-histograms-of-oriented-gradients-%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">HOG (histograms of oriented gradients) ：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/07/22/12-24-41/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Dense trajectories and motion boundary descriptors for action recognition - 密集轨迹DT算法 | 且听风吟">
+      <meta itemprop="description" content="2013年发表在IJCV上的一篇文章，被引1871次，介绍了DT（密集轨迹）算法。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Dense trajectories and motion boundary descriptors for action recognition - 密集轨迹DT算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-22 12:24:41 / 修改时间：12:36:38" itemprop="dateCreated datePublished" datetime="2024-07-22T12:24:41+08:00">2024-07-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">2013年发表在IJCV上的一篇文章，被引1871次，介绍了DT（密集轨迹）算法。</div>
+	<hr>
+        <p>论文：Dense trajectories and motion boundary descriptors for action recognition</p>
+<h1 id="密集轨迹算法（DT算法）"><a href="#密集轨迹算法（DT算法）" class="headerlink" title="密集轨迹算法（DT算法）"></a>密集轨迹算法（DT算法）</h1><p>1.1算法基本框架</p>
+<p>如图所示即为算法的基本框架，包括密集采样特征点，特征点轨迹跟踪和基于轨迹的特征提取几个部分。后续的特征编码和分类过程则没有在图中画出。下面分别介绍一下这几个部分：</p>
+<p>密集采样特征点：<br>DT方法通过网格划分的方式在图片的多个尺度上分别密集采样特征点。在多个空间尺度上采样能保证采样的特征点覆盖了所有空间位置和尺度，通常8个空间尺度已经非常足够了，若图像很大，可以适当增加。后续的特征提取也是在各个尺度上分别进行的。特征点采样的间隔（即网格的大小）W根据经验通常取W=5（其实W=5是可以通用的一个比较好的值）。</p>
+<p>由于下一步的目标是在时间序列上跟踪这些特征点，但在没有任何结构的均匀区域（比如一块白色墙壁中间的点，或者一件黑色大衣中的点）中跟踪特征点是无法实现的。因此在进行特征点跟踪前要先去除一些这样的特征点。</p>
+<p>此处的方法是计算每个像素点自相关矩阵的特征值，并设置阈值去除低于阈值的特征点。阈值由下式决定，式中0.001是经验值，(λ1i,λ2i)是图像I中像素点<br>i 的特征值：</p>
+<p>应用上式，下图即为密集采样的一个示例效果图片，可以看出，同质区域的大部分采样点已被删除。</p>
+<p>特征点轨迹跟踪：<br>得到了密集采样后的特征点，现在我们要对这些点进行跟踪得到轨迹，对轨迹的追踪是通过光流。设上一步中密集采样到的某个特征点的坐标为Pt=(xt,yt),则我们用下式来计算该特征点在下一帧图像中的位置，这样该点在后续连续帧的位置连起来就形成了一个轨迹。</p>
+<p>式中ωt=(ut,vt)为密集光流场，是由It和It+1计算得到的，u和v分别代表光流的水平和垂直分量。而M则代表中值滤波器，尺寸为3*3。也就是说该式是通过计算特征点邻域内的光流中值来得到特征点的运动方向的。</p>
+<p>另外作者提到，由于特征点的跟踪得到的轨迹随着时间会存在漂移现象，也就是从初始位置移动到很远的地方，故长时间的跟踪是不可靠的，所以每L帧要重新密集采样一次特征点，重新进行跟踪。在DT/iDT算法中，选取L=15。这个漂移现象我觉得解释应该是说，跟踪本身就不是绝对的，因为要计算光流场，也取决于中值滤波器的平滑操作，越跟踪，跟踪得到的轨迹可能与原始绝对轨迹之间存在更大误差，进而导致作者所说的长时间的跟踪是不可靠的，需要L帧重新采样一次再跟踪。</p>
+<p>对于每个帧，如果在W×W邻域中找不到跟踪点，则会采样一个新点并将其添加到跟踪过程中，以确保轨迹的密集覆盖。至于为什么要在没有跟踪点的W <em> W邻域添加新点然后跟踪它？我认为就是要保证每一帧的W </em> W邻域都要有跟踪点，这样来实现密集轨迹，后续在得到众多轨迹后，会删除静态的轨迹和突出增大位移的轨迹，保留正常轨迹。</p>
+<p>轨迹描述子<br>（1）轨迹形状描述子：</p>
+<p>轨迹本身也可以构成轨迹形状特征描述子。对于一个长度为L的轨迹，其形状可以用<br>来描述，其中位移矢量ΔPt=(Pt+1−Pt)=<br>。在进行正则化后就可以得到轨迹特征描述子了。正则化方式为：</p>
+<p>最终得到的轨迹特征为15*2=30维向量。</p>
+<p>除了轨迹形状信息，我们还设计了描述子来嵌入外观 ( appearence ) 和运动 ( Motion ) 信息。</p>
+<p>下图展示了HOG/HOF/MBH描述子捕获信息的图示：摄像机从右向左移动，而该人正从摄像机中走开。渐变/流动方向由颜色（色调）和饱和度大小表示。通过光流计算得到的HOF光流信息（第一行第二列这个图），在背景中显示出恒定的运动，（可以看出光流整体向右流动）说明这是由于相机的运动，但是作者觉得还不够完善，因为我们知道有相机的运动，但同时人也在从车里走出，和背景之间本身也会有一个相对运动，为了在一定程度上克服相机运动的影响，我们主要应该看的其实就是背景和前景之间的相对运动，于是作者使用了MBH描述子（不是作者提出的）。运动边界MBH（最右边这一列的两张图）编码人与背景之间的相对运动。</p>
+<p>（2）在1.1节中的算法框架中右边就是对轨迹描述子的可视化，包括HOG/HOF/MBH。首先在1.1节这个图中，是在NNL（实验设置N：32像素、L：15帧）的时空体范围内去计算描述子的。而描述子的计算范围是nσ <em> nσ </em> nτ（σ：2 、τ：3）这样一个细分的时空网格。</p>
+<h1 id="描述子"><a href="#描述子" class="headerlink" title="描述子"></a>描述子</h1><h2 id="HOG-histograms-of-oriented-gradients-："><a href="#HOG-histograms-of-oriented-gradients-：" class="headerlink" title="HOG (histograms of oriented gradients) ："></a>HOG (histograms of oriented gradients) ：</h2><p>目标检测的图像特征提取之（一）HOG特征<br>HOG特征描述子的主要思想是：在一副图像中，局部目标的表象和形状（appearance and shape）能够被梯度或边缘的方向密度分布很好地描述。（本质：梯度的统计信息，而梯度主要存在于边缘的地方）在上图中也能看出，经过HOG计算后，图像的轮廓得到了展现。<br>HOG的实现方法：首先将图像分成小的连通区域，我们把它叫细胞单元cell。然后采集细胞单元中各像素点的梯度的或边缘的方向直方图。最后把这些直方图组合起来就可以构成特征描述器。</p>
+<p>HOF (histograms of optical flow)：光流直方图。<br>同样参考下面这篇博客：HOF特征<br>HOF(Histogramsof Oriented Optical Flow)与HOG类似，是对光流方向进行加权统计，得到光流方向信息直方图。通常用于动作识别中。由于目标的尺寸会随着时间发生变化，相应的光流特征描述子的维度也会变化，同时，光流的计算对背景噪声、尺度变化以及运动方向都较敏感，因此需要寻找一种基于光流的既能表征时域动作信息，又对尺度和运动方向不敏感的特征。HOF则是基于此需求提出来的。</p>
+<p>MBH（Motion boundary histograms）：作者认为如果只计算光流信息来描述运动信息的话，光流表示两帧之间的绝对运动，其中包含来自多个来源的运动，即前景对象运动和背景相机运动。 如果将摄影机运动视为动作运动，则可能会破坏动作分类。在真实视频中可以观察到各种类型的相机运动，例如缩放、倾斜、旋转等。在许多情况下，相机运动是局部平移的，并且在图像平面上平滑变化。（这是作者在这篇文章考虑的相机运动情况，被称为DT算法，但是后面作者又提出了改进克服相机运动的考虑，更好的克服了相机运动的影响，因此改进的DT被称为iDT算法。）<br>由于MBH代表光流的梯度，因此去除了局部恒定的摄像机运动，并保留了关于流场变化（即运动边界）的信息。MBH对摄像机运动的鲁棒性比光流更强，因此对动作识别更具辨别力。</p>
+<p>小结：DT算法介绍了一种基于密集轨迹和运动边界直方图描述子的高效视频描述方法。<br>解决了上一篇博客的疑问：</p>
+<p>如何对输入视频获得密集轨迹：密集采样特征点，通过计算密集光流场对采样得到的特征点进行密集跟踪（同时也解决了另外的一个疑问：为什么在基于时空体方法做车辆异常检测的论文中需要两个输入，一个是stvv时空视频体，一个是对应的光流场？因为得到密集轨迹对它跟踪需要计算密集光流场）<br>对获得的密集轨迹进行外观和运动的描述：HOG、MBH描述子</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/07/22/12-24-41/" title="Dense trajectories and motion boundary descriptors for action recognition - 密集轨迹DT算法">https://pkunicor.github.io/2024/07/22/12-24-41/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89-%E8%A1%8C%E4%B8%BA%E8%AF%86%E5%88%AB/" rel="tag"># 论文阅读, 计算机视觉, 行为识别</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/05/17/13-57-26/" rel="prev" title="计算机视觉 卷积神经网络">
+                  <i class="fa fa-chevron-left"></i> 计算机视觉 卷积神经网络
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d67d657a34731a5fda94458491614b93"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
