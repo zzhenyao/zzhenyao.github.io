@@ -26,11 +26,13 @@
 <meta property="og:site_name" content="且听风吟">
 <meta property="og:description" content="2013年发表在IJCV上的一篇文章，被引1871次，介绍了DT（密集轨迹）算法。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/07/22/12-24-41/v2-db0e86f06f7145d93b56851ea0649562_r.jpg">
 <meta property="article:published_time" content="2024-07-22T04:24:41.000Z">
-<meta property="article:modified_time" content="2024-07-22T04:36:38.930Z">
+<meta property="article:modified_time" content="2024-07-23T04:07:54.466Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="论文阅读, 计算机视觉, 行为识别">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/07/22/12-24-41/v2-db0e86f06f7145d93b56851ea0649562_r.jpg">
 
 
 <link rel="canonical" href="https://pkunicor.github.io/2024/07/22/12-24-41/">
@@ -140,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%86%E9%9B%86%E8%BD%A8%E8%BF%B9%E7%AE%97%E6%B3%95%EF%BC%88DT%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">密集轨迹算法（DT算法）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">描述子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HOG-histograms-of-oriented-gradients-%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">HOG (histograms of oriented gradients) ：</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%86%E9%9B%86%E8%BD%A8%E8%BF%B9%E7%AE%97%E6%B3%95%EF%BC%88DT%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">密集轨迹算法（DT算法）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-%E7%89%B9%E5%BE%81%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">基础知识-特征描述符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HOG-histograms-of-oriented-gradients-%EF%BC%9A%E6%96%B9%E5%90%91%E6%A2%AF%E5%BA%A6%E7%9B%B4%E6%96%B9%E5%9B%BE"><span class="nav-number">2.1.</span> <span class="nav-text">HOG (histograms of oriented gradients) ：方向梯度直方图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HOF-histograms-of-optical-flow-%EF%BC%9A%E5%85%89%E6%B5%81%E7%9B%B4%E6%96%B9%E5%9B%BE%E3%80%82"><span class="nav-number">2.2.</span> <span class="nav-text">HOF (histograms of optical flow)：光流直方图。</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,9 +231,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-07-22 12:24:41 / 修改时间：12:36:38" itemprop="dateCreated datePublished" datetime="2024-07-22T12:24:41+08:00">2024-07-22</time>
+      <time title="创建时间：2024-07-22 12:24:41" itemprop="dateCreated datePublished" datetime="2024-07-22T12:24:41+08:00">2024-07-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-23 12:07:54" itemprop="dateModified" datetime="2024-07-23T12:07:54+08:00">2024-07-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -281,8 +289,10 @@
 <p>除了轨迹形状信息，我们还设计了描述子来嵌入外观 ( appearence ) 和运动 ( Motion ) 信息。</p>
 <p>下图展示了HOG/HOF/MBH描述子捕获信息的图示：摄像机从右向左移动，而该人正从摄像机中走开。渐变/流动方向由颜色（色调）和饱和度大小表示。通过光流计算得到的HOF光流信息（第一行第二列这个图），在背景中显示出恒定的运动，（可以看出光流整体向右流动）说明这是由于相机的运动，但是作者觉得还不够完善，因为我们知道有相机的运动，但同时人也在从车里走出，和背景之间本身也会有一个相对运动，为了在一定程度上克服相机运动的影响，我们主要应该看的其实就是背景和前景之间的相对运动，于是作者使用了MBH描述子（不是作者提出的）。运动边界MBH（最右边这一列的两张图）编码人与背景之间的相对运动。</p>
 <p>（2）在1.1节中的算法框架中右边就是对轨迹描述子的可视化，包括HOG/HOF/MBH。首先在1.1节这个图中，是在NNL（实验设置N：32像素、L：15帧）的时空体范围内去计算描述子的。而描述子的计算范围是nσ <em> nσ </em> nτ（σ：2 、τ：3）这样一个细分的时空网格。</p>
-<h1 id="描述子"><a href="#描述子" class="headerlink" title="描述子"></a>描述子</h1><h2 id="HOG-histograms-of-oriented-gradients-："><a href="#HOG-histograms-of-oriented-gradients-：" class="headerlink" title="HOG (histograms of oriented gradients) ："></a>HOG (histograms of oriented gradients) ：</h2><p>目标检测的图像特征提取之（一）HOG特征<br>HOG特征描述子的主要思想是：在一副图像中，局部目标的表象和形状（appearance and shape）能够被梯度或边缘的方向密度分布很好地描述。（本质：梯度的统计信息，而梯度主要存在于边缘的地方）在上图中也能看出，经过HOG计算后，图像的轮廓得到了展现。<br>HOG的实现方法：首先将图像分成小的连通区域，我们把它叫细胞单元cell。然后采集细胞单元中各像素点的梯度的或边缘的方向直方图。最后把这些直方图组合起来就可以构成特征描述器。</p>
-<p>HOF (histograms of optical flow)：光流直方图。<br>同样参考下面这篇博客：HOF特征<br>HOF(Histogramsof Oriented Optical Flow)与HOG类似，是对光流方向进行加权统计，得到光流方向信息直方图。通常用于动作识别中。由于目标的尺寸会随着时间发生变化，相应的光流特征描述子的维度也会变化，同时，光流的计算对背景噪声、尺度变化以及运动方向都较敏感，因此需要寻找一种基于光流的既能表征时域动作信息，又对尺度和运动方向不敏感的特征。HOF则是基于此需求提出来的。</p>
+<h1 id="基础知识-特征描述符"><a href="#基础知识-特征描述符" class="headerlink" title="基础知识-特征描述符"></a>基础知识-特征描述符</h1><h2 id="HOG-histograms-of-oriented-gradients-：方向梯度直方图"><a href="#HOG-histograms-of-oriented-gradients-：方向梯度直方图" class="headerlink" title="HOG (histograms of oriented gradients) ：方向梯度直方图"></a>HOG (histograms of oriented gradients) ：方向梯度直方图</h2><p>目标检测的图像特征提取之（一）HOG特征<br>HOG特征描述子的主要思想是：在一副图像中，局部目标的表象和形状（appearance and shape）能够被梯度或边缘的方向密度分布很好地描述。<br>HOG的实现方法：首先将图像分成小的连通区域，我们把它叫细胞单元cell。然后采集细胞单元中各像素点的梯度的或边缘的方向直方图。最后把这些直方图组合起来就可以构成特征描述器。</p>
+<img src="/2024/07/22/12-24-41/v2-db0e86f06f7145d93b56851ea0649562_r.jpg" class="">
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zouxy09/article/details/7929348/">HOG相关链接</a></p>
+<h2 id="HOF-histograms-of-optical-flow-：光流直方图。"><a href="#HOF-histograms-of-optical-flow-：光流直方图。" class="headerlink" title="HOF (histograms of optical flow)：光流直方图。"></a>HOF (histograms of optical flow)：光流直方图。</h2><p>同样参考下面这篇博客：HOF特征<br>HOF(Histogramsof Oriented Optical Flow)与HOG类似，是对光流方向进行加权统计，得到光流方向信息直方图。通常用于动作识别中。由于目标的尺寸会随着时间发生变化，相应的光流特征描述子的维度也会变化，同时，光流的计算对背景噪声、尺度变化以及运动方向都较敏感，因此需要寻找一种基于光流的既能表征时域动作信息，又对尺度和运动方向不敏感的特征。HOF则是基于此需求提出来的。</p>
 <p>MBH（Motion boundary histograms）：作者认为如果只计算光流信息来描述运动信息的话，光流表示两帧之间的绝对运动，其中包含来自多个来源的运动，即前景对象运动和背景相机运动。 如果将摄影机运动视为动作运动，则可能会破坏动作分类。在真实视频中可以观察到各种类型的相机运动，例如缩放、倾斜、旋转等。在许多情况下，相机运动是局部平移的，并且在图像平面上平滑变化。（这是作者在这篇文章考虑的相机运动情况，被称为DT算法，但是后面作者又提出了改进克服相机运动的考虑，更好的克服了相机运动的影响，因此改进的DT被称为iDT算法。）<br>由于MBH代表光流的梯度，因此去除了局部恒定的摄像机运动，并保留了关于流场变化（即运动边界）的信息。MBH对摄像机运动的鲁棒性比光流更强，因此对动作识别更具辨别力。</p>
 <p>小结：DT算法介绍了一种基于密集轨迹和运动边界直方图描述子的高效视频描述方法。<br>解决了上一篇博客的疑问：</p>
 <p>如何对输入视频获得密集轨迹：密集采样特征点，通过计算密集光流场对采样得到的特征点进行密集跟踪（同时也解决了另外的一个疑问：为什么在基于时空体方法做车辆异常检测的论文中需要两个输入，一个是stvv时空视频体，一个是对应的光流场？因为得到密集轨迹对它跟踪需要计算密集光流场）<br>对获得的密集轨迹进行外观和运动的描述：HOG、MBH描述子</p>
@@ -324,6 +334,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/08/08/07-02-12/" rel="next" title="行为识别基础模型总结">
+                  行为识别基础模型总结 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
