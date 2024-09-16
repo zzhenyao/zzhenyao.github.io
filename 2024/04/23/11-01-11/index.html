@@ -374,11 +374,11 @@
 <li>低容量的模型难以拟合训练数据</li>
 <li>高容量的模型可以记住所有的训练数据</li>
 </ul>
-<img src="/2024/04/23/11-01-11/11-01.png" class="">
+<img src="/2024/04/23/11-01-11/11-01.png" class>
 <ul>
 <li>显然，模型容量太低或太高都不好。太低（对应第一种）过于简单，模型分类效果差，太高（对应第二种）则过于复杂，把噪声全部都拟合住了，这是我们所不希望的。</li>
 </ul>
-<h4 id="2-3-模型容量的影响"><a href="#2-3-模型容量的影响" class="headerlink" title="2.3 模型容量的影响"></a>2.3 模型容量的影响</h4><img src="/2024/04/23/11-01-11/11-02.png" class="">
+<h4 id="2-3-模型容量的影响"><a href="#2-3-模型容量的影响" class="headerlink" title="2.3 模型容量的影响"></a>2.3 模型容量的影响</h4><img src="/2024/04/23/11-01-11/11-02.png" class>
 <ul>
 <li>我们的核心任务就是把泛化误差往下降</li>
 </ul>
@@ -393,7 +393,7 @@
 </ul>
 </li>
 </ul>
-<img src="/2024/04/23/11-01-11/11-03.png" class="">
+<img src="/2024/04/23/11-01-11/11-03.png" class>
 <h4 id="2-5-VC维"><a href="#2-5-VC维" class="headerlink" title="2.5 VC维"></a>2.5 VC维</h4><p>VC维是统计学习理论的一个核心思想，这里大致了解就行，因为很难计算之后学习的模型（如CNN,RNN)的VC维，故并不经常用</p>
 <ul>
 <li>定义：对于一个分类模型，VC维等于一个最大的数据集的大小，不管如何给定标号，都存在一个模型对它进行完美分类。即存在H个样本，模型能把H个样本的2^H种标号方式打散的H的最大值。</li>
@@ -403,9 +403,9 @@
 </li>
 </ul>
 <p>3个点：</p>
-<img src="/2024/04/23/11-01-11/11-04.png" class="">
+<img src="/2024/04/23/11-01-11/11-04.png" class>
 <p>4个点：</p>
-<img src="/2024/04/23/11-01-11/11-05.png" class="">
+<img src="/2024/04/23/11-01-11/11-05.png" class>
 <ul>
 <li>支持N维输入的感知机的VC维是N+1</li>
 </ul>
@@ -446,13 +446,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">train_features, test_features, train_labels, test_labels,</span></span><br><span class="line"><span class="params">          num_epochs=<span class="number">400</span></span>):</span><br><span class="line">    loss = nn.MSELoss()<span class="comment">#定义损失</span></span><br><span class="line">    input_shape = train_features.shape[-<span class="number">1</span>]</span><br><span class="line">    <span class="comment"># 不设置偏置，因为我们已经在多项式特征中实现了它（即x^0）</span></span><br><span class="line">    net = nn.Sequential(nn.Linear(input_shape, <span class="number">1</span>, bias=<span class="literal">False</span>))<span class="comment">#创建模型</span></span><br><span class="line">    batch_size = <span class="built_in">min</span>(<span class="number">10</span>, train_labels.shape[<span class="number">0</span>])</span><br><span class="line">    train_iter = d2l.load_array((train_features, train_labels.reshape(-<span class="number">1</span>,<span class="number">1</span>)),</span><br><span class="line">                                batch_size)<span class="comment">#训练集</span></span><br><span class="line">    test_iter = d2l.load_array((test_features, test_labels.reshape(-<span class="number">1</span>,<span class="number">1</span>)),</span><br><span class="line">                               batch_size, is_train=<span class="literal">False</span>)<span class="comment">#测试集</span></span><br><span class="line">    trainer = torch.optim.SGD(net.parameters(), lr=<span class="number">0.001</span>)<span class="comment">#设置优化器，这里使用SGD</span></span><br><span class="line">    animator = d2l.Animator(xlabel=<span class="string">&#x27;epoch&#x27;</span>, ylabel=<span class="string">&#x27;loss&#x27;</span>, yscale=<span class="string">&#x27;log&#x27;</span>,</span><br><span class="line">                            xlim=[<span class="number">1</span>, num_epochs], ylim=[<span class="number">1e-3</span>, <span class="number">1e2</span>],</span><br><span class="line">                            legend=[<span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;test&#x27;</span>])<span class="comment">#动画</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epochs):</span><br><span class="line">        d2l.train_epoch_ch3(net, train_iter, loss, trainer)<span class="comment">#训练</span></span><br><span class="line">        <span class="keyword">if</span> epoch == <span class="number">0</span> <span class="keyword">or</span> (epoch + <span class="number">1</span>) % <span class="number">20</span> == <span class="number">0</span>:</span><br><span class="line">            animator.add(epoch + <span class="number">1</span>, (evaluate_loss(net, train_iter, loss),</span><br><span class="line">                                     evaluate_loss(net, test_iter, loss)))<span class="comment">#将当前的训练集和测试集的损失存入animator中，用于绘图</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;weight:&#x27;</span>, net[<span class="number">0</span>].weight.data.numpy())<span class="comment">#打印训练后的参数</span></span><br></pre></td></tr></table></figure>
 <h4 id="3-5-三阶多项式函数拟合-正态"><a href="#3-5-三阶多项式函数拟合-正态" class="headerlink" title="3.5 [三阶多项式函数拟合(正态)]"></a>3.5 [<strong>三阶多项式函数拟合(正态)</strong>]</h4><p>我们将首先使用三阶多项式函数，它与数据生成函数的阶数相同。 结果表明，该模型能有效降低训练损失和测试损失。 学习到的模型参数也接近真实值𝑤=[5,1.2,−3.4,5.6]。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从多项式特征中选择前4个维度，即1,x,x^2/2!,x^3/3!</span></span><br><span class="line">train(poly_features[:n_train, :<span class="number">4</span>], poly_features[n_train:, :<span class="number">4</span>],</span><br><span class="line">      labels[:n_train], labels[n_train:])</span><br></pre></td></tr></table></figure>
-<img src="/2024/04/23/11-01-11/11-06.png" class="">
+<img src="/2024/04/23/11-01-11/11-06.png" class>
 <h4 id="3-6-线性函数拟合-欠拟合"><a href="#3-6-线性函数拟合-欠拟合" class="headerlink" title="3.6 [线性函数拟合(欠拟合)]"></a>3.6 [<strong>线性函数拟合(欠拟合)</strong>]</h4><p>让我们再看看线性函数拟合，减少该模型的训练损失相对困难。 在最后一个迭代周期完成后，训练损失仍然很高。 当用来拟合非线性模式（如这里的三阶多项式函数）时，线性模型容易欠拟合。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从多项式特征中选择前2个维度，即1和x</span></span><br><span class="line">train(poly_features[:n_train, :<span class="number">2</span>], poly_features[n_train:, :<span class="number">2</span>],</span><br><span class="line">      labels[:n_train], labels[n_train:])</span><br></pre></td></tr></table></figure>
-<img src="/2024/04/23/11-01-11/11-07.png" class="">
+<img src="/2024/04/23/11-01-11/11-07.png" class>
 <h4 id="3-7-高阶多项式函数拟合-过拟合"><a href="#3-7-高阶多项式函数拟合-过拟合" class="headerlink" title="3.7 [高阶多项式函数拟合(过拟合)]"></a>3.7 [<strong>高阶多项式函数拟合(过拟合)</strong>]</h4><p>现在，让我们尝试使用一个阶数过高的多项式来训练模型。 在这种情况下，没有足够的数据用于学到高阶系数应该具有接近于零的值。 因此，这个过于复杂的模型会轻易受到训练数据中噪声的影响。 虽然训练损失可以有效地降低，但测试损失仍然很高。 结果表明，复杂模型对数据造成了过拟合。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从多项式特征中选取所有维度</span></span><br><span class="line">train(poly_features[:n_train, :], poly_features[n_train:, :],</span><br><span class="line">      labels[:n_train], labels[n_train:], num_epochs=<span class="number">1500</span>)</span><br></pre></td></tr></table></figure>
-<img src="/2024/04/23/11-01-11/11-08.png" class="">
+<img src="/2024/04/23/11-01-11/11-08.png" class>
 
     </div>
 

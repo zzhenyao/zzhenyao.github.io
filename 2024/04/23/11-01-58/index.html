@@ -278,7 +278,7 @@
 <h3 id="1-深层循环神经网络"><a href="#1-深层循环神经网络" class="headerlink" title="1.深层循环神经网络"></a>1.深层循环神经网络</h3><p>之前讲的RNN都只有一个隐藏层（序列变长不算是深度），而一个隐藏层的RNN一旦做的很宽就容易出现过拟合。因此我们考虑将网络做的更深而非更宽，每层都只做一点非线性，靠层数叠加得到更加非线性的模型。</p>
 <p>浅RNN：输入-隐层-输出</p>
 <p>深RNN：输入-隐层-隐层-…-输出</p>
-<img src="/2024/04/23/11-01-58/58-01.png" class="">
+<img src="/2024/04/23/11-01-58/58-01.png" class>
 <p>（课程视频中的图片有错误，最后输出层后一时间步是不受前一步影响的，即没有箭头）</p>
 <h3 id="2-公式"><a href="#2-公式" class="headerlink" title="2.公式"></a>2.公式</h3><div align="center">
 
@@ -289,11 +289,11 @@
 <p><em>第一层的第t步状态是关于第一层第t-1步状态和第t步输入的函数</em></p>
 <div align="center">
 
-<p><img src="http://latex.codecogs.com/svg.latex?\mathbf{H}_t^j=f_j(\mathbf{H_{t-1}^j},\mathbf{H_{t}^{j-1}" alt="">})</p>
+<p><img src="http://latex.codecogs.com/svg.latex?\mathbf{H}_t^j=f_j(\mathbf{H_{t-1}^j},\mathbf{H_{t}^{j-1}" alt>})</p>
 <p>&lt;/div&gt;<br><em>第j层的第t步状态是关于当前层上一步步状态和上一层当前步的函数</em></p>
 <div align="center">
 
-<p><img src="http://latex.codecogs.com/svg.latex?\mathbf{O}_t=g(\mathbf{H}_t^L" alt="">)</p>
+<p><img src="http://latex.codecogs.com/svg.latex?\mathbf{O}_t=g(\mathbf{H}_t^L" alt>)</p>
 <p>&lt;/div&gt;<br><em>由最后一个隐藏层得到输出</em></p>
 <h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
 <li>深度循环神经网络使用多个隐藏层来获得更多的非线性性</li>
@@ -319,7 +319,7 @@
 <blockquote>
 <p>分类的任务在最后的全连接层完成</p>
 </blockquote>
-
+</div></div>
     </div>
 
     

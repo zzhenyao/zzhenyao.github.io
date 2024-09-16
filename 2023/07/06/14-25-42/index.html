@@ -320,7 +320,7 @@
 </ul>
 <h1 id="Exploiting-Instruction-Level-Parallelism"><a href="#Exploiting-Instruction-Level-Parallelism" class="headerlink" title="Exploiting Instruction-Level Parallelism"></a>Exploiting Instruction-Level Parallelism</h1><p>采用指令级并行，适用于各种机器的通用优化方法</p>
 <h2 id="Benchmark-Example"><a href="#Benchmark-Example" class="headerlink" title="Benchmark Example"></a>Benchmark Example</h2><p>基准例子，使用一个抽象的数据结构。</p>
-<img src="/2023/07/06/14-25-42/WX20230706-153904@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230706-153904@2x.png" class>
 <p><strong>Basic Optimizations</strong></p>
 <ul>
 <li><p>计算数组长度移出循环</p>
@@ -330,44 +330,44 @@
 <li><p>引入局部变量</p>
 </li>
 </ul>
-<img src="/2023/07/06/14-25-42/WX20230706-154041@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230706-154041@2x.png" class>
 <p>优化后性能：</p>
-<img src="/2023/07/06/14-25-42/WX20230706-154316@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230706-154316@2x.png" class>
 <p><code>优化的基本限制</code>: 程序限制了整数和浮点数的乘法必须顺序执行，所需要的周期为3和5。</p>
 <p><strong>Modern CPU Design</strong></p>
-<img src="/2023/07/06/14-25-42/WX20230706-163939@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230706-163939@2x.png" class>
 <p> 1995年的CPU，了解流程。</p>
 <p> 超标量乱序执行：顺序指令分解重组，实现指令级并行。</p>
 <p>Superscalar Processor：超标量处理器</p>
 <p><strong>Pipelined Functional Units</strong></p>
-<img src="/2023/07/06/14-25-42/WX20230706-170033@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230706-170033@2x.png" class>
 <p>指令流水线：<code>这里假设指令需要三个阶段完成</code></p>
 <h2 id="Loop-Unrolling"><a href="#Loop-Unrolling" class="headerlink" title="Loop Unrolling"></a>Loop Unrolling</h2><p><code>循环展开</code>: 循环中计算多个值，而不是计算一次。</p>
-<img src="/2023/07/06/14-25-42/WX20230707-094102@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230707-094102@2x.png" class>
 <blockquote>
 <p>每次循环计算两个操作数</p>
 <p><code>limit</code>: n-1, 循环i跳出时满足 i + 1 &lt; (n - 1) + 1 = n; </p>
 </blockquote>
-<img src="/2023/07/06/14-25-42/WX20230707-094654@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230707-094654@2x.png" class>
 <blockquote>
 <p>只有加法的CPE有了提升，降低了循环计数的消耗。其他没用提升是因为接近了延迟界限。</p>
 </blockquote>
 <p>调整循环展开的计算顺序：</p>
 <p><code>x = x OP (d[i] OP d[i+1])</code></p>
-<img src="/2023/07/06/14-25-42/WX20230707-105030@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230707-105030@2x.png" class>
 <p>吞吐量突破了延迟界限，浮点数两个乘法器，一个加法器。</p>
-<img src="/2023/07/06/14-25-42/WX20230707-105355@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230707-105355@2x.png" class>
 <p>减少了计算的依赖，两个元素的计算不需要等上一个x的结果。浮点数不满足结合律，改变括号可能会发生舍入溢出，结果发生变化。</p>
 <p><code>Latency Bound</code>：严格顺序执行时，一条指令需要花费的全部时间。</p>
 <p><code>Throughput Bound</code>：基于硬件数量和性能限制，<code>只有两个load单元，吞吐量为0.5</code></p>
 <p><strong>Separate Accumulators</strong></p>
 <p>多累加器，改变元素组合的顺序，如奇偶分开。</p>
-<img src="/2023/07/06/14-25-42/WX20230707-112901@2x.png" class="">
+<img src="/2023/07/06/14-25-42/WX20230707-112901@2x.png" class>
 <p><strong>Unrolling &amp; Accumulating</strong></p>
 <p>以K为因子展开一个L长度的数组，CPE可以接近吞吐界限</p>
 <h2 id="Programming-with-AVX2"><a href="#Programming-with-AVX2" class="headerlink" title="Programming with AVX2"></a>Programming with AVX2</h2><p><strong>YMM Registers</strong></p>
 <p>总共有16个32字节的寄存器 ，是%XMM的二倍。</p>
-<h2 id="SIMD-Operations"><a href="#SIMD-Operations" class="headerlink" title="SIMD Operations"></a>SIMD Operations</h2><img src="/2023/07/06/14-25-42/WX20230707-114005@2x.png" class="">
+<h2 id="SIMD-Operations"><a href="#SIMD-Operations" class="headerlink" title="SIMD Operations"></a>SIMD Operations</h2><img src="/2023/07/06/14-25-42/WX20230707-114005@2x.png" class>
 <p><code>Vector Instructions</code>矢量指令：并行执行八次单精度或四次双精度浮点操作</p>
 <p>矢量指令是为处理视频，声音，图形引入的</p>
 <p>gcc对矢量指令的优化是有限的</p>

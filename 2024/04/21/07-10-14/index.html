@@ -285,7 +285,7 @@
 </li>
 </ul>
 <h1 id="4-多变量线性回归（Linear-Regression-with-Multiple-Variables）"><a href="#4-多变量线性回归（Linear-Regression-with-Multiple-Variables）" class="headerlink" title="4 多变量线性回归（Linear Regression with Multiple Variables）"></a>4 多变量线性回归（Linear Regression with Multiple Variables）</h1><h2 id="4-1-多特征（Multiple-Features）"><a href="#4-1-多特征（Multiple-Features）" class="headerlink" title="4.1 多特征（Multiple Features）"></a>4.1 多特征（Multiple Features）</h2><p>不同维度的多个特征。</p>
-<img src="/2024/04/21/07-10-14/20180107_234509.png" class="">
+<img src="/2024/04/21/07-10-14/20180107_234509.png" class>
 <p>这里由于特征不再只有一个，引入一些新的记号</p>
 <blockquote>
 <p>$n$: 特征的总数</p>
@@ -321,7 +321,7 @@
 </blockquote>
 <h2 id="4-3-梯度下降实践1-特征值缩放（Gradient-Descent-in-Practice-I-Feature-Scaling）"><a href="#4-3-梯度下降实践1-特征值缩放（Gradient-Descent-in-Practice-I-Feature-Scaling）" class="headerlink" title="4.3 梯度下降实践1-特征值缩放（Gradient Descent in Practice I - Feature Scaling）"></a>4.3 梯度下降实践1-特征值缩放（Gradient Descent in Practice I - Feature Scaling）</h2><p>在应用梯度下降算法实践时，由于各特征值的范围不一，可能会影响代价函数收敛速度。</p>
 <p>房屋面积大小和房间数量这两个特征。</p>
-<img src="/2024/04/21/07-10-14/20180108_100751.png" class="">
+<img src="/2024/04/21/07-10-14/20180108_100751.png" class>
 <p>为了优化梯度下降的收敛速度，采用特征缩放的技巧，使各特征值的<strong>范围尽量一致</strong>。</p>
 <p>除了以上图人工选择并除以一个参数的方式，<strong>均值归一化（Mean normalization</strong>方法更为便捷，可采用它来对所有特征值统一缩放：</p>
 <p> $x_i:=\frac{x_i-average(x)}{maximum(x)-minimum(x)}$, 使得  $x_i \in (-1,1)$</p>
@@ -343,16 +343,16 @@
 </ul>
 <p>对于梯度下降，一般采用多次迭代收敛法来得出最小化代价函数的参数值，自动化测试收敛法（如设定 $J\left(\theta\right) &lt; {10}^{-3}$ 时判定收敛）则几乎不会被使用。</p>
 <p>我们可以通过绘制<strong>代价函数关于迭代次数的图像</strong>，可视化梯度下降的执行过程，借助直观的图形来发现代价函数趋向于多少时能趋于收敛，依据图像变化情况，确定诸如学习速率的取值，迭代次数的大小等问题。</p>
-<img src="/2024/04/21/07-10-14/20180108_103357.png" class="">
+<img src="/2024/04/21/07-10-14/20180108_103357.png" class>
 <p>对于学习速率 $\alpha$，一般上图展现的为适中情况，下图中，左图可能表明 <strong>$\alpha$ 过大</strong>，代价函数<strong>无法收敛</strong>，右图可能表明 <strong>$\alpha$ 过小</strong>，代价函数<strong>收敛的太慢</strong>。当然，$\alpha$ 足够小时，代价函数在每轮迭代后一定会减少。</p>
-<img src="/2024/04/21/07-10-14/20180108_104701.png" class="">
+<img src="/2024/04/21/07-10-14/20180108_104701.png" class>
 <p>通过不断改变 $\alpha$ 值，绘制并观察图像，并以此来确定合适的学习速率。 尝试时可取 $\alpha$ 如 $\dots\;0,001,\;0.003,\;0.01,\;0.03,\;0.1,\;\dots$</p>
 <h2 id="4-5-特征和多项式回归（Features-and-Polynomial-Regression）"><a href="#4-5-特征和多项式回归（Features-and-Polynomial-Regression）" class="headerlink" title="4.5 特征和多项式回归（Features and Polynomial Regression）"></a>4.5 特征和多项式回归（Features and Polynomial Regression）</h2><p>在特征选取时，我们也可以自己归纳总结，定义一个新的特征，用来<strong>取代或拆分</strong>旧的一个或多个特征。比如，对于房屋面积特征来说，我们可以将其拆分为长度和宽度两个特征，反之，我们也可以合并长度和宽度这两个特征为面积这一个特征。</p>
 <p>线性回归只能以直线来对数据进行拟合，有时候需要使用<strong>曲线</strong>来对数据进行拟合，即<strong>多项式回归（Polynomial Regression）</strong>。</p>
 <p>比如一个二次方模型：$h_{\theta}\left( x \right)={\theta_{0} }+{\theta_{1} }{x_{1} }+{\theta_{2} }{x_{2}^2}$</p>
 <p>或者三次方模型：$h_{\theta}\left( x \right)={\theta_{0} }+{\theta_{1} }{x_{1} }+{\theta_{2} }{x_{2}^2}+{\theta_{3} }{x_{3}^3}$ </p>
 <p>或者平方根模型： $h_{\theta}\left( x \right)={\theta_{0} }+{\theta_{1} }{x_{1} }+{\theta_{2} }{x_{2}^2}+{\theta_{3} }{\sqrt{x_3} }$</p>
-<img src="/2024/04/21/07-10-14/20180108_113132.png" class="">
+<img src="/2024/04/21/07-10-14/20180108_113132.png" class>
 <p>在使用多项式回归时，要记住非常有必要进行特征缩放，比如 $x_1$ 的范围为 1-1000，那么 $x_1^2$ 的范围则为 1- 1000000，不使用特征缩放的话，范围不一致，也更易影响效率。</p>
 <blockquote>
 <p>多特征下的特征值缩放按照$x$还是$x^3$ ？</p>

@@ -321,7 +321,7 @@
 <h1 id="默认情况下，张量是在CPU上创建的"><a href="#默认情况下，张量是在CPU上创建的" class="headerlink" title="默认情况下，张量是在CPU上创建的"></a>默认情况下，张量是在CPU上创建的</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 注意：无论何时我们要对多个项进行操作， 它们都必须在同一个设备上。 例如，如果我们对两个张量求和， 我们需要确保两个张量都位于同一个设备上， 否则框架将不知道在哪里存储结果，甚至不知道在哪里执行计算。</span><br><span class="line"></span><br><span class="line">- 存储在GPU上：</span><br><span class="line"></span><br><span class="line">  ```python</span><br><span class="line">  &quot;&quot;&quot;我们在第一个gpu上创建张量变量X&quot;&quot;&quot; </span><br><span class="line">  X = torch.ones(2, 3, device=try_gpu())</span><br><span class="line">  &quot;&quot;&quot;</span><br><span class="line">  tensor([[1., 1., 1.],</span><br><span class="line">          [1., 1., 1.]], device=&#x27;cuda:0&#x27;)</span><br><span class="line">  &quot;&quot;&quot;</span><br><span class="line">  </span><br><span class="line">  &quot;&quot;&quot;假设你至少有两个GPU，下面的代码将在第二个GPU上创建一个随机张量&quot;&quot;&quot;</span><br><span class="line">  Y = torch.rand(2, 3, device=try_gpu(1))</span><br><span class="line">  &quot;&quot;&quot;</span><br><span class="line">  tensor([[0.3432, 0.4088, 0.7725],</span><br><span class="line">          [0.0571, 0.3341, 0.2544]], device=&#x27;cuda:1&#x27;)</span><br><span class="line">  &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>复制：如果我们要计算<code>X + Y</code>，我们需要决定在哪里执行这个操作。 例如，如下图所示， 我们可以将<code>X</code>传输到第二个GPU并在那里执行操作。 <em>不要</em>简单地<code>X</code>加上<code>Y</code>，因为这会导致异常， 运行时引擎不知道该怎么做：它在同一设备上找不到数据会导致失败。 由于<code>Y</code>位于第二个GPU上，所以我们需要将<code>X</code>移到那里， 然后才能执行相加运算。</p>
-<img src="/2024/04/23/11-01-17/17-01.png" class="">
+<img src="/2024/04/23/11-01-17/17-01.png" class>
 </li>
 </ul>
 </li>
@@ -368,14 +368,14 @@ True
 <p>对于大多数用户来说，只需看看计算能力就足够了。请注意，许多GPU提供不同类型的加速。例如，NVIDIA的Tensor Cores将操作符子集的速度提高了5×</p>
 <p>。确保你的库支持这一点。GPU内存应不小于4GB（8GB更好）。尽量避免将GPU也用于显示GUI（改用内置显卡）。如果无法避免，请添加额外的2GB RAM以确保安全。</p>
 <p>下图比较了各种GTX 900、GTX 1000和RTX 2000系列的（GFlops）和价格（Price）。价格是维基百科上的建议价格。</p>
-<img src="/2024/04/23/11-01-17/17-02.png" class="">
+<img src="/2024/04/23/11-01-17/17-02.png" class>
 <p>我们可以看到很多事情：</p>
 <ol>
 <li>在每个系列中，价格和性能大致成比例。Titan因拥有大GPU内存而有相当的溢价。然而，通过比较980 Ti和1080 Ti可以看出，较新型号具有更好的成本效益。RTX 2000系列的价格似乎没有多大提高。然而，它们提供了更优秀的低精度性能（FP16、INT8和INT4）。</li>
 <li>GTX 1000系列的性价比大约是900系列的两倍。</li>
 <li>对于RTX 2000系列，浮点计算能力是价格的“仿射”函数。</li>
 </ol>
-<img src="/2024/04/23/11-01-17/17-03.png" class="">
+<img src="/2024/04/23/11-01-17/17-03.png" class>
 <p>上图显示了能耗与计算量基本成线性关系。其次，后一代更有效率。这似乎与对应于RTX 2000系列的图表相矛盾。然而，这是TensorCore不成比例的大能耗的结果。</p>
 
     </div>

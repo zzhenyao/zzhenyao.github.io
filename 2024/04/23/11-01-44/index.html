@@ -295,7 +295,7 @@
 <li><p>使用Rol池化层对每个锚框（将在原图片中搜索到的锚框，映射到CNN得到的结果上），生成固定长度的特征</p>
 </li>
 </ul>
-<img src="/2024/04/23/11-01-44/44-01.png" class="">
+<img src="/2024/04/23/11-01-44/44-01.png" class>
 <h4 id="1-3-Faster-RCNN"><a href="#1-3-Faster-RCNN" class="headerlink" title="1.3 Faster RCNN"></a>1.3 Faster RCNN</h4><ul>
 <li>在Fast RCNN基础上变得更快</li>
 <li>使用一个 <strong>区域提议网络来替代启发式搜索获得更好的锚框</strong></li>
@@ -308,13 +308,13 @@
 </ol>
 </li>
 </ul>
-<img src="/2024/04/23/11-01-44/44-02.png" class="">
+<img src="/2024/04/23/11-01-44/44-02.png" class>
 <h4 id="1-4-Mask-RCNN"><a href="#1-4-Mask-RCNN" class="headerlink" title="1.4 Mask RCNN"></a>1.4 Mask RCNN</h4><ul>
 <li>如果有<strong>像素级别的标号</strong>，使用FCN（fully convolutional network）利用这些信息。可以提升CNN的性能</li>
 <li><strong>Rol align</strong>。之前的Rol进行池化的时候，如果没法整除，可以直接取整。但是像素级别的标号预测的时候，会造成偏差的累积，导致边界预测不准确。未来避免这种情况，使用Rol align，也就是当没法整除，对每个像素值进行按比例分配。</li>
 <li>具体来说，Mask R-CNN将兴趣区域汇聚层替换为了<em>兴趣区域对齐</em>层，使用<em>双线性插值</em>（bilinear interpolation）来保留特征图上的空间信息，从而更适于像素级预测。 兴趣区域对齐层的输出包含了所有与兴趣区域的形状相同的特征图。 它们不仅被用于预测每个兴趣区域的类别和边界框，还通过额外的全卷积网络预测目标的像素级位置。</li>
 </ul>
-<img src="/2024/04/23/11-01-44/44-03.png" class="">
+<img src="/2024/04/23/11-01-44/44-03.png" class>
 <h4 id="1-5-总结"><a href="#1-5-总结" class="headerlink" title="1.5 总结"></a>1.5 总结</h4><ul>
 <li>R-CNN是最早也是最有名的一类基于锚框和CNN的目标检测算法</li>
 <li>Fast/Faster RCNN 持续提升性能</li>
@@ -338,7 +338,7 @@
 </ul>
 </li>
 </ul>
-<img src="/2024/04/23/11-01-44/44-04.png" class="">
+<img src="/2024/04/23/11-01-44/44-04.png" class>
 <ul>
 <li>总结<ul>
 <li>速度快，精度很低。这么多年，作者没有持续的提升，但是启发了后面的一系列工作，实现上相对比较简单。</li>

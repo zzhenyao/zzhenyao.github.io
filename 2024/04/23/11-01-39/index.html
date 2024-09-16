@@ -301,7 +301,7 @@
 <p>使用随机梯度下降和学习率规划来训练模型，以更快达到收敛。</p>
 <h3 id="7-训练和验证模型"><a href="#7-训练和验证模型" class="headerlink" title="7.训练和验证模型"></a>7.训练和验证模型</h3><p>以下所有超参数都可以调节</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">devices, num_epochs, lr, wd = d2l.try_all_gpus(), <span class="number">20</span>, <span class="number">2e-4</span>, <span class="number">5e-4</span></span><br><span class="line">lr_period, lr_decay, net = <span class="number">4</span>, <span class="number">0.9</span>, get_net()</span><br><span class="line">train(net, train_iter, valid_iter, num_epochs, lr, wd, devices, lr_period,</span><br><span class="line">      lr_decay)</span><br></pre></td></tr></table></figure>
-<img src="/2024/04/23/11-01-39/39-01.png" class="">
+<img src="/2024/04/23/11-01-39/39-01.png" class>
 <h3 id="8-Q-amp-A"><a href="#8-Q-amp-A" class="headerlink" title="8.Q&amp;A"></a>8.Q&amp;A</h3><h5 id="Q1-深度学习的损失函数一般是非凸的吗？"><a href="#Q1-深度学习的损失函数一般是非凸的吗？" class="headerlink" title="Q1:深度学习的损失函数一般是非凸的吗？"></a>Q1:深度学习的损失函数一般是非凸的吗？</h5><blockquote>
 <p>损失函数一般是凸的，但是神经网络是非凸的(非单层)。凸函数表示能力有限。</p>
 </blockquote>

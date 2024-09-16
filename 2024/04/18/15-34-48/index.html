@@ -332,7 +332,7 @@
 
 </li>
 <li><p>分类问题（Classification）<br>分类问题即为预测一系列的<strong>离散值</strong>。<br>即根据数据预测被预测对象属于哪个分类。<br>视频中举了癌症肿瘤这个例子，针对诊断结果，分别分类为良性或恶性。还例如垃圾邮件分类问题，也同样属于监督学习中的分类问题。</p>
-<img src="/2024/04/18/15-34-48/20180105_194839.png" class="">
+<img src="/2024/04/18/15-34-48/20180105_194839.png" class>
 </li>
 </ol>
 <p>视频中提到<strong>支持向量机</strong>这个算法，旨在解决当特征量很大的时候（特征即如癌症例子中的肿块大小，颜色，气味等各种特征），计算机内存一定会不够用的情况。<strong>支持向量机能让计算机处理无限多个特征。</strong></p>
@@ -355,7 +355,7 @@
 <p><strong>新闻聚合</strong></p>
 <p>在例如谷歌新闻这样的网站中，每天后台都会收集成千上万的新闻，然后将这些新闻分组成一个个的新闻专题，这样一个又一个聚类，就是应用了无监督学习的结果。</p>
 <p><strong>鸡尾酒问题</strong></p>
- <img src="/2024/04/18/15-34-48/20180105_201639.png" class="">
+ <img src="/2024/04/18/15-34-48/20180105_201639.png" class>
 <p>在鸡尾酒会上，大家说话声音彼此重叠，几乎很难分辨出面前的人说了什么。我们很难对于这个问题进行数据标注，而这里的通过机器学习的无监督学习算法，就可以将说话者的声音同背景音乐分离出来。</p>
 <h1 id="2-单变量线性回归（Linear-Regression-with-One-Variable）"><a href="#2-单变量线性回归（Linear-Regression-with-One-Variable）" class="headerlink" title="2 单变量线性回归（Linear Regression with One Variable）"></a>2 单变量线性回归（Linear Regression with One Variable）</h1><h2 id="2-1-模型表示（Model-Representation）"><a href="#2-1-模型表示（Model-Representation）" class="headerlink" title="2.1 模型表示（Model Representation）"></a>2.1 模型表示（Model Representation）</h2><ol>
 <li>房价预测训练集</li>
@@ -395,7 +395,7 @@
 <p>房价预测训练集中，同时给出了输入 $x$ 和输出结果 $y$，即给出了人为标注的<strong>“正确结果”</strong>，且预测的量是连续的，属于监督学习中的回归问题。</p>
 <ol>
 <li><p><strong>问题解决模型</strong></p>
-<img src="/2024/04/18/15-34-48/20180105_212048.png" class="">
+<img src="/2024/04/18/15-34-48/20180105_212048.png" class>
 </li>
 </ol>
 <p>其中 $h$ 代表结果函数，也称为<strong>假设（hypothesis）</strong> 。假设函数根据输入（房屋的面积），给出预测结果输出（房屋的价格），即是一个 $X\to Y$ 的映射。</p>
@@ -418,7 +418,7 @@
 <p>$\left(x, y\right)$: 训练集中的实例</p>
 <p>$\left(x^{\left(i\right)},y^{\left(i\right)}\right)$: 训练集中的第 $i$ 个样本实例</p>
 </blockquote>
-<img src="/2024/04/18/15-34-48/20180105_224648.png" class="">
+<img src="/2024/04/18/15-34-48/20180105_224648.png" class>
 <p>上图展示了当 $\theta$ 取不同值时，$h_\theta\left(x\right)$ 对数据集的拟合情况，蓝色虚线部分代表<strong>建模误差</strong>。</p>
 <p>为了求解最小值，引入代价函数（Cost Function）概念，用于度量建模误差。考虑到要计算最小值，应用二次函数对求和式建模，即应用统计学中的平方损失函数（最小二乘法）：</p>
 <p>$$<br>J(\theta_0, \theta_1)= \dfrac{ 1 }{ 2m } \displaystyle \sum_ {i=1}^m\left(\hat{y}_{i}-y_{i} \right)^2=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(h_\theta(x_{i})-y_{i}\right)^2<br>$$</p>
@@ -435,21 +435,21 @@
 <li>目标（Goal）: $\underset{\theta_0, \theta_1}{\text{minimize} } J \left(\theta_0, \theta_1 \right)$</li>
 </ul>
 <p>为了直观理解代价函数到底是在做什么，先假设 $\theta_0 = 0$，并假设训练集有三个数据，分别为$\left(1, 1\right), \left(2, 2\right), \left(3, 3\right)$，这样在平面坐标系中绘制出 $h_\theta\left(x\right)$ ，并分析 $J\left(\theta_0, \theta_1\right)$ 的变化。</p>
-<img src="/2024/04/18/15-34-48/20180106_085915.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_085915.png" class>
 <p>右图 $J\left(\theta_0, \theta_1\right)$ 随着 $\theta_1$ 的变化而变化，可见<strong>当 $\theta_1 = 1$ 时，$J\left(\theta_0, \theta_1 \right) = 0$，取得最小值，</strong>对应于左图青色直线，即函数 $h$ 拟合程度最好的情况。</p>
-<h2 id="2-4-代价函数-直观理解2（Cost-Function-Intuition-II）"><a href="#2-4-代价函数-直观理解2（Cost-Function-Intuition-II）" class="headerlink" title="2.4 代价函数 - 直观理解2（Cost Function - Intuition II）"></a>2.4 代价函数 - 直观理解2（Cost Function - Intuition II）</h2><p>给定数据集：<br><img src="/2024/04/18/15-34-48/20180106_091307.png" class=""></p>
+<h2 id="2-4-代价函数-直观理解2（Cost-Function-Intuition-II）"><a href="#2-4-代价函数-直观理解2（Cost-Function-Intuition-II）" class="headerlink" title="2.4 代价函数 - 直观理解2（Cost Function - Intuition II）"></a>2.4 代价函数 - 直观理解2（Cost Function - Intuition II）</h2><p>给定数据集：<br><img src="/2024/04/18/15-34-48/20180106_091307.png" class></p>
 <p>参数在 $\theta_0$ 不恒为 $0$ 时代价函数 $J\left(\theta\right)$ 关于 $\theta_0, \theta_1$ 的3-D图像，图像中的高度为代价函数的值。</p>
-<img src="/2024/04/18/15-34-48/20180106_090904.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_090904.png" class>
 <p>由于3-D图形不便于标注，所以将3-D图形转换为<strong>轮廓图（contour plot）</strong>，下面用轮廓图（下图中的右图）来作直观理解，其中相同颜色的一个圈代表着同一高度（同一 $J\left(\theta\right)$ 值）。</p>
 <p>$\theta_0 = 360, \theta_1 =0$ 时：</p>
-<img src="/2024/04/18/15-34-48/0f38a99c8ceb8aa5b90a5f12136fdf43.png" class="">
+<img src="/2024/04/18/15-34-48/0f38a99c8ceb8aa5b90a5f12136fdf43.png" class>
 <p>大概在 $\theta_0 = 0.12, \theta_1 =250$ 时：</p>
-<img src="/2024/04/18/15-34-48/20180106_092119.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_092119.png" class>
 <p>上图中最中心的点（红点），近乎为图像中的最低点，也即代价函数的最小值，此时对应 $h_\theta\left(x\right)$ 对数据的拟合情况如左图所示。</p>
 <h2 id="2-5-梯度下降（Gradient-Descent）"><a href="#2-5-梯度下降（Gradient-Descent）" class="headerlink" title="2.5 梯度下降（Gradient Descent）"></a>2.5 梯度下降（Gradient Descent）</h2><p>在特征量很大的情况下，即便是借用计算机来生成图像，人工的方法也很难读出 $J\left(\theta\right)$ 的最小值，并且大多数情况无法进行可视化，故引入<strong>梯度下降（Gradient Descent）方法，让计算机自动找出最小化代价函数时对应的 $\theta$ 值。</strong></p>
 <p>梯度下降背后的思想是：开始时，我们随机选择一个参数组合$\left( {\theta_{0} },{\theta_{1} },……,{\theta_{n} } \right)$即起始点，计算代价函数，然后寻找下一个能使得代价函数下降最多的参数组合。不断迭代，直到找到一个<strong>局部最小值（local minimum）</strong>，由于下降的情况只考虑当前参数组合周围的情况，所以无法确定当前的局部最小值是否就是<strong>全局最小值（global minimum）</strong>，不同的初始参数组合，可能会产生不同的局部最小值。</p>
 <p>下图根据不同的起始点，产生了两个不同的局部最小值。</p>
-<img src="/2024/04/18/15-34-48/db48c81304317847870d486ba5bb2015.jpg" class="">
+<img src="/2024/04/18/15-34-48/db48c81304317847870d486ba5bb2015.jpg" class>
 <p>视频中举了下山的例子，即我们在山顶上的某个位置，为了下山，就不断地看一下周围<strong>下一步往哪走</strong>下山比较快，然后就<strong>迈出那一步</strong>，一直重复，直到我们到达山下的某一处<strong>陆地</strong>。</p>
 <p>梯度下降公式：</p>
 <p>$$<br>\begin{split}<br>&amp; \text{Repeat until convergence:} \; \lbrace \\<br>&amp;{ {\theta }_{j} }:={ {\theta }_{j} }-\alpha \frac{\partial }{\partial { {\theta }_{j} } }J\left( {\theta_{0} },{\theta_{1} }  \right) \\<br>\rbrace<br>\end{split}<br>$$</p>
@@ -460,26 +460,26 @@
 <p>$\frac{\partial }{\partial { {\theta }_{j} } }J\left( \theta_0, \theta_j  \right)$: $J\left( \theta_0, \theta_j \right)$ 的偏导</p>
 </blockquote>
 <p>公式中，学习速率决定了参数值变化的速率即”<strong>走多少距离</strong>“，而偏导这部分决定了下降的方向即”<strong>下一步往哪里</strong>“走（当然实际上的走多少距离是由偏导值给出的，学习速率起到调整后决定的作用），收敛处的局部最小值又叫做极小值，即”<strong>陆地</strong>“。</p>
-<img src="/2024/04/18/15-34-48/20180106_101659.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_101659.png" class>
 <p>注意，在计算时要<strong>批量更新 $\theta$ 值</strong>，即如上图中的左图所示，否则结果上会有所出入，原因不做细究。</p>
 <h2 id="2-6-梯度下降直观理解（Gradient-Descent-Intuition）"><a href="#2-6-梯度下降直观理解（Gradient-Descent-Intuition）" class="headerlink" title="2.6 梯度下降直观理解（Gradient Descent Intuition）"></a>2.6 梯度下降直观理解（Gradient Descent Intuition）</h2><p>该节探讨 $\theta_1$ 的梯度下降更新过程，即 $\theta_1 := \theta_1 - \alpha\frac{d}{d\theta_1}J\left(\theta_1\right)$。</p>
-<img src="/2024/04/18/15-34-48/20180106_184926.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_184926.png" class>
 <p>直线的斜率，表示了函数 $J\left(\theta\right)$ 在初始点处有<strong>正斜率</strong>，也就是说它有<strong>正导数</strong>，会<strong>向左边移动</strong>。不断重复，直到收敛。</p>
 <p>初始 $\theta$ 值（初始点）是任意的。</p>
 <p>对于学习速率 $\alpha$，需要选取一个合适的值才能使得梯度下降算法运行良好。</p>
 <ul>
 <li><p>学习速率过小图示：</p>
-<img src="/2024/04/18/15-34-48/20180106_190944.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_190944.png" class>
 <p>收敛的太慢，需要更多次的迭代。</p>
 </li>
 <li><p>学习速率过大图示：</p>
-<img src="/2024/04/18/15-34-48/20180106_191023.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_191023.png" class>
 <p>可能越过最低点，甚至导致无法收敛。</p>
 </li>
 </ul>
 <p><strong>学习速率只需选定即可</strong>，不需要动态改变，随着斜率越来越接近于0，代价函数的变化幅度会越来越小，直到收敛到局部极小值。</p>
 <p>代价函数随着迭代的进行，变化的幅度越来越小。</p>
-<img src="/2024/04/18/15-34-48/20180106_191956.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_191956.png" class>
 <h2 id="2-7-线性回归中的梯度下降（Gradient-Descent-For-Linear-Regression）"><a href="#2-7-线性回归中的梯度下降（Gradient-Descent-For-Linear-Regression）" class="headerlink" title="2.7 线性回归中的梯度下降（Gradient Descent For Linear Regression）"></a>2.7 线性回归中的梯度下降（Gradient Descent For Linear Regression）</h2><p>线性回归模型</p>
 <ul>
 <li>$h_\theta(x)=\theta_0+\theta_1x$</li>
@@ -487,7 +487,7 @@
 </ul>
 <p>梯度下降算法<br>$$<br>\begin{split}<br>  &amp; \text{Repeat until convergence:} \; \lbrace \\<br>  &amp;{ {\theta }_{j} }:={ {\theta }_{j} }-\alpha \frac{\partial }{\partial { {\theta }_{j} } }J\left( {\theta_{0} },{\theta_{1} }  \right) \\<br>  \rbrace<br>  \end{split}<br>$$</p>
 <p>直接将线性回归模型公式代入梯度下降公式可得出公式</p>
-<img src="/2024/04/18/15-34-48/20180106_203726.png" class="">
+<img src="/2024/04/18/15-34-48/20180106_203726.png" class>
 <p>当 $j = 0, j = 1$ 时，<strong>线性回归中代价函数求导的推导过程（：</strong></p>
 <p>$$<br>\begin{split}<br>\frac{\partial}{\partial\theta_j} J(\theta_1, \theta_1)&amp;=\frac{\partial}{\partial\theta_j} \left(\frac{1}{2m}\sum\limits_{i=1}^{m}{ {\left( { {h}_{\theta } }\left( { {x}^{(i)} } \right)-{ {y}^{(i)} } \right)}^{2} } \right)\\<br>&amp;=\left(\frac{1}{2m}*2\sum\limits_{i=1}^{m}{ {\left( { {h}_{\theta } }\left( { {x}^{(i)} } \right)-{ {y}^{(i)} } \right)} } \right)*\frac{\partial}{\partial\theta_j}{ {\left( { {h}_{\theta } }\left( { {x}^{(i)} } \right)-{ {y}^{(i)} } \right)} } \\<br>&amp;=\left(\frac{1}{m}\sum\limits_{i=1}^{m}{ {\left( { {h}_{\theta } }\left( { {x}^{(i)} } \right)-{ {y}^{(i)} } \right)} } \right)*\frac{\partial}{\partial\theta_j} {\left( \theta_0 + \theta_1{x_1^{(i)} }-{ {y}^{(i)} } \right)}<br>\end{split}<br>$$</p>
 <p>所以当 $j = 0$ 时：</p>
@@ -496,7 +496,7 @@
 <p>$$<br>\frac{\partial}{\partial\theta_1} J(\theta)=\frac{1}{m}\sum\limits_{i=1}^{m}{ {\left( { {h}_{\theta } }\left( { {x}^{(i)} } \right)-{ {y}^{(i)} } \right)} } *x_1^{(i)}<br>$$</p>
 <p>上文中所提到的梯度下降，都为批量梯度下降（Batch Gradient Descent），即每次计算都使用<strong>所有</strong>的数据集 $\left(\sum\limits_{i=1}^{m}\right)$ 更新。</p>
 <p>由于线性回归函数呈现<strong>碗状</strong>，且<strong>只有一个</strong>全局的最优值，所以函数<strong>一定总会</strong>收敛到全局最小值（学习速率不可过大）。同时，函数 $J$ 被称为<strong>凸二次函数</strong>，而线性回归函数求解最小值问题属于<strong>凸函数优化问题</strong>。</p>
-<img src="/2024/04/18/15-34-48/24e9420f16fdd758ccb7097788f879e7.png" class="">
+<img src="/2024/04/18/15-34-48/24e9420f16fdd758ccb7097788f879e7.png" class>
 <p>另外，使用循环求解，代码较为冗余，后面会讲到如何使用<strong>向量化（Vectorization）</strong>来简化代码并优化计算，使梯度下降运行的更快更好。</p>
 
     </div>

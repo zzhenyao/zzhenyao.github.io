@@ -296,22 +296,22 @@
 <h1 id="8-神经网络：表达（Neural-Networks-Representation）"><a href="#8-神经网络：表达（Neural-Networks-Representation）" class="headerlink" title="8 神经网络：表达（Neural Networks: Representation）"></a>8 神经网络：表达（Neural Networks: Representation）</h1><h2 id="8-1-非线性假设（Non-linear-Hypotheses）"><a href="#8-1-非线性假设（Non-linear-Hypotheses）" class="headerlink" title="8.1 非线性假设（Non-linear Hypotheses）"></a>8.1 非线性假设（Non-linear Hypotheses）</h2><p>理论上我们可以用多项式函数去近似任意函数（泰勒极数（Taylor series）），从而可得到任意问题的拟合曲线。</p>
 <p>在实际处理时，特征量通常会很多，如果再构造高阶多项式等，特征数量将会急剧增加，这使得回归模型的复杂度太高，可见并不合适。神经网络无需构造高阶多项式，在特征量很大时也可以处理的很好。</p>
 <p>那特征能有多大呢？下面是一个计算机视觉中的例子：</p>
-<img src="/2024/04/22/13-37-13/20180115_084326.png" class="">
+<img src="/2024/04/22/13-37-13/20180115_084326.png" class>
 <p>如上图，如果选取一小块 $50 * 50$ 像素的灰度图片（一个像素只有亮度一个值），选择每个像素点作为特征，则特征总量 $n=2500$（换成 RGB（一个像素有三个值），则 $n = 7500$），如果将其两两组合作为新特征，则特征数量将为 $C_{2500}^{2} \approx 3\ million$。</p>
 <h2 id="8-2-神经网络和大脑（Neurons-and-the-Brain）"><a href="#8-2-神经网络和大脑（Neurons-and-the-Brain）" class="headerlink" title="8.2 神经网络和大脑（Neurons and the Brain）"></a>8.2 神经网络和大脑（Neurons and the Brain）</h2><p>脑科学家通过对动物实验，发现大脑中专用于处理听觉信号的脑皮层也能处理其他诸如视觉等信号，即如果切断其与耳朵的联系，将其与眼睛相连，则这块负责听觉的脑皮层区域也能接受并处理视觉信号，从而学会“看”。脑科学家通过这类换源实验，就推论假设大脑的学习算法只有一种（“one learning algorithm” hypothesis）。那么如果能找出这种学习算法并应用于计算机中，那梦想中和人一样的人工智能就成真了。</p>
 <p>神经网络就源于<strong>模拟人类大脑</strong>，但其需要的计算量很大。随着计算机硬件性能的提高，神经网络逐渐从衰落变为流行，如今已广泛地被应用在各行各业中。</p>
 <p>下图是根据研究做的一些应用（有兴趣可回顾视频）：</p>
-<img src="/2024/04/22/13-37-13/20180115_101441.png" class="">
+<img src="/2024/04/22/13-37-13/20180115_101441.png" class>
 <p>BrainPort  系统：帮助失明人士通过摄像头以及舌尖感官“看”东西</p>
-<img src="/2024/04/22/13-37-13/20180115_101442.png" class="">
+<img src="/2024/04/22/13-37-13/20180115_101442.png" class>
 <p>触觉皮带：在朝北时蜂鸣器会发出声响，可使人拥有方向感（声音信号转换为方向信号）。</p>
 <h2 id="8-3-模型表示1（Model-Representation-I）"><a href="#8-3-模型表示1（Model-Representation-I）" class="headerlink" title="8.3 模型表示1（Model Representation I）"></a>8.3 模型表示1（Model Representation I）</h2><p>大脑神经元</p>
-<img src="/2024/04/22/13-37-13/20141213201613758.jpg" class="">
+<img src="/2024/04/22/13-37-13/20141213201613758.jpg" class>
 <p>想象一下印刷厂中流水线的工人，每个工人都有特定的任务，比如装订，塑封，贴防伪标识等等，工人们看到书本并处理完自己的任务后，就回放回传送带，紧接着传送带就传给下一个环节的工人，如此不断重复从而完成一个又一个环节，直到一本书印制完成。</p>
 <p>那么类比一下，把上图中的<strong>细胞核（nucleus）</strong>类比成工人，<strong>轴突（axon）</strong>类比传送带，<strong>树突（dendrite）</strong>则比类比成工人的双眼。一个又一个细胞体，从树突接收需要处理的信息，对其进行处理后，再经由轴突通过电信号把处理完的信息传递出去，直到理解信息的内容。</p>
 <p>人工神经网络中，树突对应<strong>输入（input）</strong>，细胞核对应<strong>激活单元（activation unit）</strong>，轴突对应<strong>输出（output）</strong>。</p>
 <p>我们一般把神经网络划分为三部分（注意，不是只有三层！），即输入层（input layer），隐藏层（hidden layer）和输出层（output layer）。</p>
-<img src="/2024/04/22/13-37-13/20180116_001543.png" class="">
+<img src="/2024/04/22/13-37-13/20180116_001543.png" class>
 <p>图中的一个圈表示神经网络中的一个激活单元，输入层对应输入单元，隐藏层对应中间单元，输出层则对应输出单元。中间激活单元应用<strong>激活函数</strong>处理数据。</p>
 <p>下面列出一些已有概念在神经网络中的别称：</p>
 <ul>
@@ -336,7 +336,7 @@
 <p>依据本节所给模型，有：</p>
 <p>$Size(\Theta^{(1)})=s_{j+1} \times (s_j + 1) =s_2 \times (s_1 + 1) = 3 \times 4$</p>
 <p>$Size(\Theta^{(2)})=s_3 \times (s_2 + 1) = 1 \times 4$</p>
-<h2 id="8-4-模型表示2（Model-Representation-II）"><a href="#8-4-模型表示2（Model-Representation-II）" class="headerlink" title="8.4 模型表示2（Model Representation II）"></a>8.4 模型表示2（Model Representation II）</h2><img src="/2024/04/22/13-37-13/20180116_001543.png" class="">
+<h2 id="8-4-模型表示2（Model-Representation-II）"><a href="#8-4-模型表示2（Model-Representation-II）" class="headerlink" title="8.4 模型表示2（Model Representation II）"></a>8.4 模型表示2（Model Representation II）</h2><img src="/2024/04/22/13-37-13/20180116_001543.png" class>
 <p>对输入层（Layer 1）的所有激活单元应用激活函数，从而得到隐藏层（Layer 2）中激活单元的值：</p>
 <p>$$<br>\begin{split} a_1^{(2)} = g(\Theta_{10}^{(1)}x_0 + \Theta_{11}^{(1)}x_1 + \Theta_{12}^{(1)}x_2 + \Theta_{13}^{(1)}x_3)\\<br>a_2^{(2)} = g(\Theta_{20}^{(1)}x_0 + \Theta_{21}^{(1)}x_1 + \Theta_{22}^{(1)}x_2 + \Theta_{23}^{(1)}x_3)\\<br>a_3^{(2)} = g(\Theta_{30}^{(1)}x_0 + \Theta_{31}^{(1)}x_1 + \Theta_{32}^{(1)}x_2 + \Theta_{33}^{(1)}x_3)<br>\end{split}<br>$$<br>对 Layer 2 中的所有激活单元应用激活函数，从而得到输出：</p>
 <p>$h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{(2)} + \Theta_{12}^{(2)}a_2^{(2)} + \Theta_{13}^{(2)}a_3^{(2)})$</p>
@@ -358,32 +358,32 @@
 <p>$s_2$: 第二层神经网络中激活单元的数量</p>
 </blockquote>
 <p>当然，神经网络可有多层，每层的激活单元数量也并不固定：</p>
-<img src="/2024/04/22/13-37-13/20180116_105545.png" class="">
+<img src="/2024/04/22/13-37-13/20180116_105545.png" class>
 <blockquote>
 <p>我们习惯于将输入层称为神经网络的第 0 层，如上图的神经网络被称为三层网络。</p>
 </blockquote>
 <h2 id="8-5-例子和直观理解1（Examples-and-Intuitions-I）"><a href="#8-5-例子和直观理解1（Examples-and-Intuitions-I）" class="headerlink" title="8.5 例子和直观理解1（Examples and Intuitions I）"></a>8.5 例子和直观理解1（Examples and Intuitions I）</h2><p>为了更好的理解神经网络，举例单层神经网络进行逻辑运算的例子。</p>
 <p>下面的例子中，$x_1,x_2$ 为二进制数。</p>
 <p>逻辑与（AND）运算（都为真值则结果才为真）神经网络：</p>
-<img src="/2024/04/22/13-37-13/20180117_000612.png" class="">
+<img src="/2024/04/22/13-37-13/20180117_000612.png" class>
 <p>$\Theta^{(1)} =\begin{bmatrix}-30 &amp; 20 &amp; 20\end{bmatrix}$，$h_\Theta(x) = g(-30+20x_1+20x_2)$。</p>
 <p>回顾 sigmoid 函数图像，根据输入则有上图中右边的表格，即 $h_\theta(x)\approx x_1\ \text{AND}\ x_2$。这样就实现了一个能够进行与运算的神经网络。 </p>
-<img src="/2024/04/22/13-37-13/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class="">
+<img src="/2024/04/22/13-37-13/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class>
 <p>再举一例，逻辑或（OR）运算（有一个真值则结果就为真）神经网络：</p>
-<img src="/2024/04/22/13-37-13/20180117_000349.png" class="">
+<img src="/2024/04/22/13-37-13/20180117_000349.png" class>
 <h2 id="8-6-例子和直观理解2（Examples-and-Intuitions-II）"><a href="#8-6-例子和直观理解2（Examples-and-Intuitions-II）" class="headerlink" title="8.6 例子和直观理解2（Examples and Intuitions II）"></a>8.6 例子和直观理解2（Examples and Intuitions II）</h2><p>下面逐步构建复杂一点的神经网络</p>
-<img src="/2024/04/22/13-37-13/20180117_004820.png" class="">
+<img src="/2024/04/22/13-37-13/20180117_004820.png" class>
 <p>如上图，我们分别构建了三个单层神经网络，将这三个网络组合起来，可得到一个新的神经网络，其可完成逻辑运算中的异或（XNOR）操作：</p>
-<img src="/2024/04/22/13-37-13/20180116_235545.png" class="">
+<img src="/2024/04/22/13-37-13/20180116_235545.png" class>
 <p>这里的组合即为 $\text{XNOR}=( \text{x}_1\, \text{AND}\, \text{x}_2 )\, \text{OR} \left( \left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right) \right)$</p>
 <p>$\Theta^{(1)} =\begin{bmatrix}-30 &amp; 20 &amp; 20 \newline 10 &amp; -20 &amp; -20\end{bmatrix}$，$\Theta^{(2)} =\begin{bmatrix}-10 &amp; 20 &amp; 20\end{bmatrix}$，$\begin{split}&amp; a^{(2)} = g(\Theta^{(1)} \cdot x) \newline&amp; a^{(3)} = g(\Theta^{(2)} \cdot a^{(2)}) \newline&amp; h_\Theta(x) = a^{(3)}\end{split}$</p>
 <p>可见，特征值能不断升级，并抽取出更多信息，直到计算出结果。而如此不断组合，我们就可以逐渐构造出越来越复杂、强大的神经网络，比如用于手写识别的神经网络。</p>
 <h2 id="8-7-多类别分类（Multiclass-Classification）"><a href="#8-7-多类别分类（Multiclass-Classification）" class="headerlink" title="8.7 多类别分类（Multiclass Classification）"></a>8.7 多类别分类（Multiclass Classification）</h2><p>之前讨论的都是预测结果为单值情况下的神经网络，要实现多类别分类，其实只要修改一下输出层，让输出层包含多个输出单元即可。</p>
 <p>举一个 4 分类问题的实例：</p>
-<img src="/2024/04/22/13-37-13/20180117_010904.png" class="">
+<img src="/2024/04/22/13-37-13/20180117_010904.png" class>
 <p>有四种分类情况，那么就让输出层包含 4 个输出单元即可，则 $h_\Theta$ 为 4 维向量。 </p>
 <p>神经网络中的多分类算法算是对 one-vs-all 思想的扩展，定义预测结果一共有 4 种情况：</p>
-<img src="/2024/04/22/13-37-13/20180117_011331.png" class="">
+<img src="/2024/04/22/13-37-13/20180117_011331.png" class>
 <p>如果预测结果 $h_\Theta(x) =\begin{bmatrix}0 \newline 0 \newline 1 \newline 0 \newline\end{bmatrix}$，那么表示 $h_\Theta(x)_3$，即分为第 3 类，对应于图中的摩托车（Motorcycle）。</p>
 <p><strong>总结一下</strong></p>
 <p>多分类问题，要分为 $K$ 类，就在输出层放置 $K$ 个输出单元，对于单个样本实例，预测向量 $h_\Theta(x)$ 为 $K$ 维向量，我们则依据这个预测向量，得出该实例属于哪个类 $y^{(i)}$。注意，神经网络中的预测和结果都是 $K$ 维向量，而不再只是一个实数了。</p>

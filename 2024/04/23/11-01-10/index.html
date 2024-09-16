@@ -287,7 +287,7 @@
 </li>
 </ul>
 <h2 id="多层感知机"><a href="#多层感知机" class="headerlink" title="多层感知机"></a>多层感知机</h2><h3 id="感知机"><a href="#感知机" class="headerlink" title="感知机"></a>感知机</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>从现在的观点来看，感知机实际上就是神经网络中的一个神经单元</p>
-<img src="/2024/04/23/11-01-10/%E6%84%9F%E7%9F%A5%E6%9C%BA.png" class="">
+<img src="/2024/04/23/11-01-10/%E6%84%9F%E7%9F%A5%E6%9C%BA.png" class>
 <p>感知机能解决二分类问题，但与线性回归和softmax回归有所区别：线性回归与softmax回归的输出均为实数，softmax回归的输出同时还满足概率公理。</p>
 <h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><p>训练感知机的伪代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">initialize w = <span class="number">0</span> <span class="keyword">and</span> b = <span class="number">0</span></span><br><span class="line">repeat</span><br><span class="line">    <span class="comment">#此处表达式小于0代表预测结果错误</span></span><br><span class="line">    <span class="keyword">if</span> y_i[&lt;w,x_i&gt;+b] &lt;= <span class="number">0</span> then</span><br><span class="line">        w=w + yixi</span><br><span class="line">        b=b + yi</span><br><span class="line">    end <span class="keyword">if</span></span><br><span class="line">until <span class="built_in">all</span> classified correctly</span><br></pre></td></tr></table></figure>
@@ -296,7 +296,7 @@
 <h4 id="收敛定理"><a href="#收敛定理" class="headerlink" title="收敛定理"></a>收敛定理</h4><p>设数据在特征空间能被半径为r的圆（球）覆盖，并且分类时有余量（即$\sigma$函数的输入不会取使输出模棱两可的值）$y(\boldsymbol x^T\boldsymbol w)\geq \rho$，若初始参数满足$\|\boldsymbol w\|^2+b^2 \leq 1$，则感知机保证在$\frac{r^2+1}{\rho ^2}$步内收敛</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46762820">收敛性的证明</a></p>
 <h3 id="线性模型的缺陷"><a href="#线性模型的缺陷" class="headerlink" title="线性模型的缺陷"></a>线性模型的缺陷</h3><p>在前面的课程中我们学习了softmax回归，线性回归，他们有将输入向量与一个权重向量做内积再与一个偏置相加得到一个值的过程：<br>$$<br>O =W^TX+b<br>$$<br>这个过程被称为仿射变换，它是一个带有偏置项的线性变换，它最终产生的模型被称为线性模型，线性模型的特点是只能以线性的方式对特征空间进行划分：</p>
-<img src="/2024/04/23/11-01-10/%E7%BA%BF%E6%80%A7%E5%88%92%E5%88%86.png" class="">
+<img src="/2024/04/23/11-01-10/%E7%BA%BF%E6%80%A7%E5%88%92%E5%88%86.png" class>
 <p>然而，这种线性划分依赖于线性假设，是非常不可靠的</p>
 <ul>
 <li>线性假设意味着单调假设，这是不可靠的：<ul>
@@ -313,15 +313,15 @@
 </li>
 </ul>
 <p>课程中所提到的例子是XOR问题，即希望模型能预测出XOR分类（分割图片中的一三象限与二四象限）：</p>
-<img src="/2024/04/23/11-01-10/XOR%E9%97%AE%E9%A2%98.png" class="">
+<img src="/2024/04/23/11-01-10/XOR%E9%97%AE%E9%A2%98.png" class>
 <h3 id="多层感知机-1"><a href="#多层感知机-1" class="headerlink" title="多层感知机"></a>多层感知机</h3><h4 id="XOR问题的多层次解决"><a href="#XOR问题的多层次解决" class="headerlink" title="XOR问题的多层次解决"></a>XOR问题的多层次解决</h4><p>仍以XOR问题为例，XOR问题的一个解决思路是分类两次，先按x轴分类为+和-，再按y轴分类为+和-，最后将两个分类结果相乘，+即为一三象限，-即为二四象限：</p>
-<img src="/2024/04/23/11-01-10/%E5%A4%9A%E5%B1%82%E5%88%86%E7%B1%BBXOR1.png" class="">
-<img src="/2024/04/23/11-01-10/%E5%A4%9A%E5%B1%82%E5%88%86%E7%B1%BBXOR2.png" class="">
+<img src="/2024/04/23/11-01-10/%E5%A4%9A%E5%B1%82%E5%88%86%E7%B1%BBXOR1.png" class>
+<img src="/2024/04/23/11-01-10/%E5%A4%9A%E5%B1%82%E5%88%86%E7%B1%BBXOR2.png" class>
 <p>这实际上将信息进行了多层次的传递：</p>
-<img src="/2024/04/23/11-01-10/XOR%E4%BF%A1%E6%81%AF%E5%A4%9A%E5%B1%82%E6%AC%A1%E4%BC%A0%E9%80%92.png" class="">
+<img src="/2024/04/23/11-01-10/XOR%E4%BF%A1%E6%81%AF%E5%A4%9A%E5%B1%82%E6%AC%A1%E4%BC%A0%E9%80%92.png" class>
 <p>其中蓝色为按X坐标的正负进行的分类，橙色为按Y坐标的正负进行的分类，灰色为将二者信息的综合，这就实现了用多层次的线性模型对非线性进行预测</p>
 <h4 id="多层感知机-2"><a href="#多层感知机-2" class="headerlink" title="多层感知机"></a>多层感知机</h4><p>有了XOR问题的解决经验，可以想到如果将多个感知机堆叠起来，形成具有多个层次的结构，如图：</p>
-<img src="/2024/04/23/11-01-10/%E5%8D%95%E9%9A%90%E8%97%8F%E5%B1%82.png" class="">
+<img src="/2024/04/23/11-01-10/%E5%8D%95%E9%9A%90%E8%97%8F%E5%B1%82.png" class>
 <p>这里的模型称为多层感知机，第一层圆圈$x_1,x_2,x_3,x_4$称为输入（实际上他并非感知机），之后的一层称为隐藏层，由5个感知机构成，他们均以前一层的信息作为输入，最后是输出层，以前一层隐藏层的结果作为输入。除了输入的信息和最后一层的感知机以外，其余的层均称为隐藏层，隐藏层的设置为模型一个重要的超参数，这里的模型有一个隐藏层。</p>
 <h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><p>但是仅仅有线性变换是不够的，如果我们简单的将多个线性变换按层次叠加，由于线性变换的结果仍为线性变换，所以最终的结果等价于线性变换，与单个感知机并无区别，反而加大了模型，浪费了资源，为了防止这个问题，需要对每个单元（感知机）的输出通过激活函数进行处理再交由下一层的感知机进行运算，这些激活函数就是解决非线性问题的关键。</p>
 <p><em>激活函数</em>（activation function）通过计算加权和并加上偏置来确定神经元是否应该被激活，它们将输入信号转换为输出的可微运算。大多数激活函数都是非线性的。</p>

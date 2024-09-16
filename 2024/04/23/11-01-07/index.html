@@ -296,7 +296,7 @@
 <h2 id="07-链式法则与自动求导"><a href="#07-链式法则与自动求导" class="headerlink" title="07-链式法则与自动求导"></a>07-链式法则与自动求导</h2><h3 id="1-向量链式法则"><a href="#1-向量链式法则" class="headerlink" title="1. 向量链式法则"></a>1. 向量链式法则</h3><ul>
 <li><h4 id="1-1-标量链式法则"><a href="#1-1-标量链式法则" class="headerlink" title="1.1 标量链式法则"></a>1.1 标量链式法则</h4></li>
 </ul>
-<img src="/2024/04/23/11-01-07/image-01.png" class="">
+<img src="/2024/04/23/11-01-07/image-01.png" class>
 <ul>
 <li><h4 id="1-2-拓展到向量"><a href="#1-2-拓展到向量" class="headerlink" title="1.2 拓展到向量"></a>1.2 拓展到向量</h4><blockquote>
 <p>需要注意维数的变化</p>
@@ -309,16 +309,16 @@
 </blockquote>
 </li>
 </ul>
-<img src="/2024/04/23/11-01-07/image-02.png" class="">
+<img src="/2024/04/23/11-01-07/image-02.png" class>
 <hr>
 <h5 id="例1（标量对向量求导）"><a href="#例1（标量对向量求导）" class="headerlink" title="例1（标量对向量求导）"></a>例1（标量对向量求导）</h5><blockquote>
 <p>这里应该是用分子布局，所以是X转置</p>
 </blockquote>
-<p>​                                 <img src="/2024/04/23/11-01-07/image-03.png" class="">   </p>
+<p>​                                 <img src="/2024/04/23/11-01-07/image-03.png" class>   </p>
 <h5 id="例2（涉及到矩阵的情况）"><a href="#例2（涉及到矩阵的情况）" class="headerlink" title="例2（涉及到矩阵的情况）"></a>例2（涉及到矩阵的情况）</h5><blockquote>
 <p>X是mxn的矩阵,w为n维向量，y为m维向量；<br>z对Xw-y做L2 norm,为标量；<br>过程与例一大体一致；</p>
 </blockquote>
-<p>​                                   <img src="/2024/04/23/11-01-07/image-04.png" class=""></p>
+<p>​                                   <img src="/2024/04/23/11-01-07/image-04.png" class></p>
 <hr>
 <blockquote>
 <p>由于在神经网络动辄几百层，手动进行链式求导是很困难的，因此我们需要借助自动求导</p>
@@ -330,10 +330,10 @@
 <li><p>自动求导有别于</p>
 <ul>
 <li><p>符号求导</p>
-<img src="/2024/04/23/11-01-07/image-05.png" class="">
+<img src="/2024/04/23/11-01-07/image-05.png" class>
 </li>
 <li><p>数值求导</p>
-<img src="/2024/04/23/11-01-07/image-06.png" class="">
+<img src="/2024/04/23/11-01-07/image-06.png" class>
 </li>
 </ul>
 </li>
@@ -348,7 +348,7 @@
 </blockquote>
 </li>
 </ul>
-<img src="/2024/04/23/11-01-07/image-07.png" class="">
+<img src="/2024/04/23/11-01-07/image-07.png" class>
 <p>​     </p>
 <ul>
 <li><p>计算图有两种构造方式<br>计算与上图无关</p>
@@ -358,32 +358,32 @@
 <p>可以理解为先定义公式再代值</p>
 <p>Tensorflow/Theano/MXNet</p>
 </blockquote>
-<img src="/2024/04/23/11-01-07/image-08.png" class="">
+<img src="/2024/04/23/11-01-07/image-08.png" class>
 </li>
 <li><p>隐式构造</p>
 <blockquote>
 <p>系统将所有的计算记录下来</p>
 <p>Pytorch/MXNet</p>
 </blockquote>
-<img src="/2024/04/23/11-01-07/image-09.png" class="">
+<img src="/2024/04/23/11-01-07/image-09.png" class>
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="2-2-自动求导的两种模式"><a href="#2-2-自动求导的两种模式" class="headerlink" title="2.2 自动求导的两种模式"></a>2.2 自动求导的两种模式</h4><ul>
 <li><p>正向累积</p>
- <img src="/2024/04/23/11-01-07/image-10.png" class="">
+ <img src="/2024/04/23/11-01-07/image-10.png" class>
 </li>
 <li><p>反向累积（反向传递back propagation）</p>
-<img src="/2024/04/23/11-01-07/image-11.png" class="">
+<img src="/2024/04/23/11-01-07/image-11.png" class>
 </li>
 </ul>
 <p>​    <strong>反向累积计算过程</strong></p>
-<img src="/2024/04/23/11-01-07/image-12.png" class="">
+<img src="/2024/04/23/11-01-07/image-12.png" class>
 <blockquote>
 <p>反向累积的正向过程：自底向上，需要存储中间结果</p>
 <p>反向累积的反向过程：自顶向下，可以去除不需要的枝（图中的x应为w）</p>
-<img src="/2024/04/23/11-01-07/image-13.png" class="">
+<img src="/2024/04/23/11-01-07/image-13.png" class>
 </blockquote>
 <h4 id="2-3-复杂度比较"><a href="#2-3-复杂度比较" class="headerlink" title="2.3 复杂度比较"></a>2.3 复杂度比较</h4><ul>
 <li><p>反向累积</p>
@@ -483,7 +483,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">x = torch.arange(-20,20,0.1,requires_grad=True,dtype=torch.float32)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line">y.sum().backward()</span><br><span class="line">plt.plot(x.detach(),y.detach(),label=&#x27;y=sinx&#x27;)</span><br><span class="line">plt.plot(x.detach(),x.grad,label=&#x27;dy/dx&#x27;)</span><br><span class="line">plt.legend(loc=&#x27;lower right&#x27;)</span><br></pre></td></tr></table></figure>
 <p>Out[66]:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;matplotlib.legend.Legend at 0x1d627d00280&gt;</span><br></pre></td></tr></table></figure>
-<img src="/2024/04/23/11-01-07/image-14.png" class="">
+<img src="/2024/04/23/11-01-07/image-14.png" class>
 
     </div>
 

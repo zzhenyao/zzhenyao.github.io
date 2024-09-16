@@ -307,8 +307,8 @@
 <h2 id="Phase-Rotate"><a href="#Phase-Rotate" class="headerlink" title="Phase Rotate"></a>Phase Rotate</h2><p>原函数：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">naive_rotate</span><span class="params">(<span class="type">int</span> dim, pixel *src, pixel *dst)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; dim; i++)</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; dim; j++)</span><br><span class="line">        dst[RIDX(dim<span class="number">-1</span>-j, i, dim)] = src[RIDX(i, j, dim)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>汇编：</p>
-<img src="/2023/07/07/16-27-21/QQ20230719-190626@2x.jpg" class="">
-<img src="/2023/07/07/16-27-21/QQ20230719-190641@2x.jpg" class="">
+<img src="/2023/07/07/16-27-21/QQ20230719-190626@2x.jpg" class>
+<img src="/2023/07/07/16-27-21/QQ20230719-190641@2x.jpg" class>
 <blockquote>
 <p><del>之前的lab里讲过实验环境在32位shark机器下，这里汇编代码在push占用了8个字节，不太明白是不是我的环境不对</del></p>
 <p><code>已解决</code>：确实环境不对，没有32位依赖，更新之后push占用4个字节</p>

@@ -292,20 +292,20 @@
 <li>回归估计一个连续值</li>
 <li>分类预测一个离散类别</li>
 </ul>
-<img src="/2024/04/23/11-01-09/09-01.png" class="">
+<img src="/2024/04/23/11-01-09/09-01.png" class>
 <h4 id="1-1-从回归到多类分类："><a href="#1-1-从回归到多类分类：" class="headerlink" title="1.1 从回归到多类分类："></a>1.1 从回归到多类分类：</h4><h5 id="回归："><a href="#回归：" class="headerlink" title="回归："></a>回归：</h5><ul>
 <li>单连续数值输出</li>
 <li>自然区间R</li>
 <li>跟真实值的区别作为损失</li>
 </ul>
-<img src="/2024/04/23/11-01-09/09-02.png" class="">
+<img src="/2024/04/23/11-01-09/09-02.png" class>
 <h5 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h5><ul>
 <li><p>通常多个输出</p>
 </li>
 <li><p>输出i是预测为第i类的置信度</p>
 </li>
 </ul>
-<img src="/2024/04/23/11-01-09/09-03.png" class="">
+<img src="/2024/04/23/11-01-09/09-03.png" class>
 <h5 id="均方损失："><a href="#均方损失：" class="headerlink" title="均方损失："></a>均方损失：</h5><ul>
 <li><p>对类别进行一位有效编码</p>
 <p>$y=[y_{1},y_{2},…,y_{n}]^{T}$<br>$y_{i}=\begin{cases}<br>1&amp;i=y\\<br>2&amp;otherwise<br>\end{cases}$</p>
@@ -346,18 +346,18 @@
 <p>使用Softmax操作子得到每个类的预测置信度</p>
 <p>使用交叉熵来衡量和预测标号的区别</p>
 </blockquote>
-<h3 id="2-损失函数"><a href="#2-损失函数" class="headerlink" title="2.损失函数"></a>2.损失函数</h3><img src="/2024/04/23/11-01-09/09-04.png" class="">
+<h3 id="2-损失函数"><a href="#2-损失函数" class="headerlink" title="2.损失函数"></a>2.损失函数</h3><img src="/2024/04/23/11-01-09/09-04.png" class>
 <h4 id="2-1-L2-Loss-均方损失"><a href="#2-1-L2-Loss-均方损失" class="headerlink" title="2.1 L2 Loss  均方损失"></a>2.1 L2 Loss  均方损失</h4><p>$<br>l(y,y^{‘})=\frac{1}{2}(y-y^{‘})^2<br>$</p>
-<img src="/2024/04/23/11-01-09/09-05.png" class="">
+<img src="/2024/04/23/11-01-09/09-05.png" class>
 <blockquote>
 <p>蓝色：y=0<br>绿色似然函数,高斯分布<br>损失函数的梯度，一次函数<br>梯度会随着结果逼近而下降</p>
 </blockquote>
 <h4 id="2-2-L1-Loss-绝对值损失函数"><a href="#2-2-L1-Loss-绝对值损失函数" class="headerlink" title="2.2 L1 Loss  绝对值损失函数"></a>2.2 L1 Loss  绝对值损失函数</h4><p>$<br>l(y,y^{‘})=\lvert y-y^{‘}\rvert<br>$</p>
-<img src="/2024/04/23/11-01-09/09-06.png" class="">
+<img src="/2024/04/23/11-01-09/09-06.png" class>
 <blockquote>
 <p>梯度保持不变，但在0处梯度随机</p>
 </blockquote>
-<h4 id="2-3Huber’s-Robust-Loss-鲁棒损失"><a href="#2-3Huber’s-Robust-Loss-鲁棒损失" class="headerlink" title="2.3Huber’s Robust Loss   鲁棒损失"></a>2.3Huber’s Robust Loss   鲁棒损失</h4><img src="/2024/04/23/11-01-09/09-07.png" class="">
+<h4 id="2-3Huber’s-Robust-Loss-鲁棒损失"><a href="#2-3Huber’s-Robust-Loss-鲁棒损失" class="headerlink" title="2.3Huber’s Robust Loss   鲁棒损失"></a>2.3Huber’s Robust Loss   鲁棒损失</h4><img src="/2024/04/23/11-01-09/09-07.png" class>
 <blockquote>
 <p>结合L1 Loss和L2 Loss的优点</p>
 </blockquote>
@@ -376,7 +376,7 @@
 <ul>
 <li><p>显示数据集图像</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 画2行每行9个，titles拿出</span><br><span class="line">X,y = next(iter(data.DataLoader(mnist_train,batch_size=18)))</span><br><span class="line">show_images(X.reshape(18,28,28),2,9,titles=get_fashion_mnist_labels(y))</span><br></pre></td></tr></table></figure>
-<img src="/2024/04/23/11-01-09/09-08.png" class="">
+<img src="/2024/04/23/11-01-09/09-08.png" class>
 </li>
 </ul>
 <ul>
@@ -413,7 +413,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">predict_ch3</span>(<span class="params">net, test_iter, n=<span class="number">6</span></span>):  </span><br><span class="line">    <span class="string">&quot;&quot;&quot;预测标签（定义见第3章）&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> X, y <span class="keyword">in</span> test_iter:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    trues = d2l.get_fashion_mnist_labels(y)</span><br><span class="line">    preds = d2l.get_fashion_mnist_labels(net(X).argmax(axis=<span class="number">1</span>))</span><br><span class="line">    titles = [true +<span class="string">&#x27;\n&#x27;</span> + pred <span class="keyword">for</span> true, pred <span class="keyword">in</span> <span class="built_in">zip</span>(trues, preds)]</span><br><span class="line">    d2l.show_images(</span><br><span class="line">        X[<span class="number">0</span>:n].reshape((n, <span class="number">28</span>, <span class="number">28</span>)), <span class="number">1</span>, n, titles=titles[<span class="number">0</span>:n])</span><br><span class="line"></span><br><span class="line">predict_ch3(net, test_iter)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<img src="/2024/04/23/11-01-09/09-09.png" class="">
+<img src="/2024/04/23/11-01-09/09-09.png" class>
 <ol>
 <li>动画<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animator</span>: </span><br><span class="line">  <span class="string">&quot;&quot;&quot;在动画中绘制数据&quot;&quot;&quot;</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, xlabel=<span class="literal">None</span>, ylabel=<span class="literal">None</span>, legend=<span class="literal">None</span>, xlim=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">               ylim=<span class="literal">None</span>, xscale=<span class="string">&#x27;linear&#x27;</span>, yscale=<span class="string">&#x27;linear&#x27;</span>,</span></span><br><span class="line"><span class="params">               fmts=(<span class="params"><span class="string">&#x27;-&#x27;</span>, <span class="string">&#x27;m--&#x27;</span>, <span class="string">&#x27;g-.&#x27;</span>, <span class="string">&#x27;r:&#x27;</span></span>), nrows=<span class="number">1</span>, ncols=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">               figsize=(<span class="params"><span class="number">3.5</span>, <span class="number">2.5</span></span>)</span>):</span><br><span class="line">      <span class="comment"># 增量地绘制多条线</span></span><br><span class="line">      <span class="keyword">if</span> legend <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">          legend = []</span><br><span class="line">      d2l.use_svg_display()</span><br><span class="line">      self.fig, self.axes = d2l.plt.subplots(nrows, ncols, figsize=figsize)</span><br><span class="line">      <span class="keyword">if</span> nrows * ncols == <span class="number">1</span>:</span><br><span class="line">          self.axes = [self.axes, ]</span><br><span class="line">      <span class="comment"># 使用lambda函数捕获参数</span></span><br><span class="line">      self.config_axes = <span class="keyword">lambda</span>: d2l.set_axes(</span><br><span class="line">          self.axes[<span class="number">0</span>], xlabel, ylabel, xlim, ylim, xscale, yscale, legend)</span><br><span class="line">      self.X, self.Y, self.fmts = <span class="literal">None</span>, <span class="literal">None</span>, fmts</span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">self, x, y</span>):</span><br><span class="line">      <span class="comment"># 向图表中添加多个数据点</span></span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">hasattr</span>(y, <span class="string">&quot;__len__&quot;</span>):</span><br><span class="line">          y = [y]</span><br><span class="line">      n = <span class="built_in">len</span>(y)</span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">hasattr</span>(x, <span class="string">&quot;__len__&quot;</span>):</span><br><span class="line">          x = [x] * n</span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> self.X:</span><br><span class="line">          self.X = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> self.Y:</span><br><span class="line">          self.Y = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">      <span class="keyword">for</span> i, (a, b) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(x, y)):</span><br><span class="line">          <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> b <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">              self.X[i].append(a)</span><br><span class="line">              self.Y[i].append(b)</span><br><span class="line">      self.axes[<span class="number">0</span>].cla()</span><br><span class="line">      <span class="keyword">for</span> x, y, fmt <span class="keyword">in</span> <span class="built_in">zip</span>(self.X, self.Y, self.fmts):</span><br><span class="line">          self.axes[<span class="number">0</span>].plot(x, y, fmt)</span><br><span class="line">      self.config_axes()</span><br><span class="line">      display.display(self.fig)</span><br><span class="line">      display.clear_output(wait=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>

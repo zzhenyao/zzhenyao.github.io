@@ -302,7 +302,7 @@
 <h1 id="相关内容"><a href="#相关内容" class="headerlink" title="相关内容"></a>相关内容</h1><ol>
 <li><p>Cache</p>
 <blockquote>
-<img src="/2024/03/09/16-34-34/QQ20240309-165258@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240309-165258@2x.png" class>
 <p>不需要关注 <code>b</code> bits，使用LRU替换策略。</p>
 <p>Cache是一个二维数组cache[S][E]，S=2^s，组数。</p>
 <p>每一个cache行包含：Valid bit， Tag， LRU counter。</p>
@@ -332,7 +332,7 @@
 </li>
 <li><p>建议代码像参考模拟器显示输出，方便测试。</p>
 </li>
-<li><p>使用<code>getopt</code>分析命令行参数。需包含头文件<getopt.h>，<unistd.h>，<stdlib.h>。可以获取函数参数。</p>
+<li><p>使用<code>getopt</code>分析命令行参数。需包含头文件<getopt.h>，<unistd.h>，<stdlib.h>。可以获取函数参数。</stdlib.h></unistd.h></getopt.h></p>
 </li>
 <li><p>使用<code>fscanf</code>按行读取文件</p>
 </li>
@@ -358,7 +358,7 @@
 </li>
 <li><p>只有三种形式的矩阵，32*32，64*64，61*67。</p>
 </li>
-<li><img src="/2024/03/09/16-34-34/QQ20240310-152729@2x.png" class=""> 
+<li><img src="/2024/03/09/16-34-34/QQ20240310-152729@2x.png" class> 
 <p>矩阵乘法的分块技术</p>
 </li>
 <li><p>两个数组的第一个数据，在cache中存储到相同位置，数组按照行优先存储，数据是对齐的</p>
@@ -369,12 +369,12 @@
 </li>
 </ul>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>数据是对齐的，所以一个cache行包含32个字节，存储8个int数据，cache能存储256个int数据，根据<del><code>3B^2 &lt;&lt; C</code>，块长为B=8</del>。根据<code>2B^2 &lt;&lt; C</code>，块长&lt;=11，由于cache行可以存8个数据，所以选择块长8。</p>
-<img src="/2024/03/09/16-34-34/QQ20240310-191918@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240310-191918@2x.png" class>
 <p>以32*32的矩阵为例，除了处于对角线上的块会产生冲突不命中，其他块都可以优化不命中情况</p>
 <p>以上这种情况对32*32是成立的，64*64和61*67不成立，所以重新思考了这道题的解法，根据data lab中数据的操作都是在内存中进行的。</p>
 <p><strong>数组的首地址给出后，行优先数据为一维连续存储形式</strong></p>
 <p>这道题可以转换为数组A[N][M]在内存中连续存放，每一个位置x的数根据相同的转换方式保存到数组B[M][N]的位置y，转换公式为<code>i_a = x / M</code>，<code>j_a = x % M</code>，<code>y = j_a * N + i_a * M</code>。于是存储公式为<code>B(y) = A(x)</code>。</p>
-<img src="/2024/03/09/16-34-34/QQ20240312-145802@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240312-145802@2x.png" class>
 <blockquote>
 <p>示意图如上，cache行存2个数据，3*3的数组中，无法直观看出内存区别，而cache的分块目的是为了在内存中读取到cache时减少miss次数，所以我们根据内存进行重排数组，改为5*2的数组。</p>
 </blockquote>
@@ -398,7 +398,7 @@
 </blockquote>
 <p><strong>结果</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> M, <span class="type">int</span> N, <span class="type">int</span> A[N][M], <span class="type">int</span> B[M][N])</span> &#123;</span><br><span class="line">  <span class="comment">//int t_1, t_2, t_3;</span></span><br><span class="line">  <span class="type">int</span> t_4, t_5;</span><br><span class="line">  <span class="type">int</span> i, j, ii, jj;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i += <span class="number">8</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; M; j += <span class="number">8</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (ii = i; ii &lt; ((i + <span class="number">8</span>) &lt; N ? i + <span class="number">8</span> : N); ii++) &#123;</span><br><span class="line">        <span class="comment">//标记没有访问冲突</span></span><br><span class="line">        t_4 = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (jj = j; jj &lt; ((j + <span class="number">8</span>) &lt; M ? j + <span class="number">8</span> : M); jj++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (ii * M + jj == jj * N + ii) &#123;</span><br><span class="line">            <span class="keyword">if</span> (t_4 == <span class="number">-1</span>) &#123;</span><br><span class="line">              t_4 = ii;</span><br><span class="line">              t_5 = jj;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// printf(&quot;**  2-- %d  3--  %d\n&quot;, t_2, t_3);</span></span><br><span class="line">          B[jj][ii] = A[ii][jj];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (t_4 != <span class="number">-1</span>) &#123;</span><br><span class="line">          B[t_5][t_4] = A[t_4][t_5];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2024/03/09/16-34-34/QQ20240312-183951@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240312-183951@2x.png" class>
 <p>miss数量287，满分</p>
 <h3 id="64-x-64"><a href="#64-x-64" class="headerlink" title="64 x 64"></a>64 x 64</h3><p>出现一个cache行中两次相同映射的问题</p>
 <p><strong>分析原因</strong></p>
@@ -410,7 +410,7 @@
 <p>继续添加一个局部变量记录冲突位置，一行遍历完后再处理。</p>
 <p>继续出现了只遍历到了32，在64 X 64的数组转换为32列时，行数为128。</p>
 </blockquote>
-<img src="/2024/03/09/16-34-34/QQ20240312-225626@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240312-225626@2x.png" class>
 <p>miss数量为4611，还需要继续调低。</p>
 <p><strong>分析原因</strong></p>
 
@@ -418,32 +418,32 @@
 <p>64X64中，改了内存排列后，第二行与第一行的转置不在同一cache行内。</p>
 <p>按照左上右上，左下，右下顺序。</p>
 <p><strong>结果</strong></p>
-<img src="/2024/03/09/16-34-34/QQ20240313-183244@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240313-183244@2x.png" class>
 <p><strong>分析原因</strong></p>
 <blockquote>
 <p>没有拿到满分，按照上下划分为两个4X8的数组</p>
-<p>下边的4X8数组，一行中的后四列在B数组中会cache冲突行，如图<img src="/2024/03/09/16-34-34/QQ20240313-191649@2x.png" class=""></p>
+<p>下边的4X8数组，一行中的后四列在B数组中会cache冲突行，如图<img src="/2024/03/09/16-34-34/QQ20240313-191649@2x.png" class></p>
 <p>注意：</p>
 <p>上四行转置之后，B数组的下四行正在cache中，为了不换出，先转置A数组的右下，再左下。</p>
 </blockquote>
 <p><strong>结果</strong></p>
-<img src="/2024/03/09/16-34-34/QQ20240313-193617@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240313-193617@2x.png" class>
 <p>减少到1547，但是还没有满分。</p>
 <p>继续修改</p>
 <blockquote>
 <p>题目要求减少miss数量，可以利用cache中空闲的地方保存数据  最后在替换出去</p>
-<img src="/2024/03/09/16-34-34/QQ20240313-202434@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240313-202434@2x.png" class>
 <p>如图，A的上半部分的后四列存到B的后四列中</p>
-<img src="/2024/03/09/16-34-34/QQ20240313-202818@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240313-202818@2x.png" class>
 <p>下半部分的第一列，先把B数组的第一行后四列保存到下部分的第一行，这样第一个cache就替换完成，依次完成其他行，最后把右下角转置过去。</p>
 </blockquote>
 <p><strong>结果</strong></p>
-<img src="/2024/03/09/16-34-34/QQ20240313-210554@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240313-210554@2x.png" class>
 <p>miss数1339，差39次满分，没有找到优化位置。</p>
 <h3 id="61-X-67"><a href="#61-X-67" class="headerlink" title="61 X 67"></a>61 X 67</h3><p><strong>结果</strong></p>
-<img src="/2024/03/09/16-34-34/QQ20240313-210917@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240313-210917@2x.png" class>
 <p><strong>最终得分</strong></p>
-<img src="/2024/03/09/16-34-34/QQ20240314-144148@2x.png" class="">
+<img src="/2024/03/09/16-34-34/QQ20240314-144148@2x.png" class>
 <p>拿到了51.5分，之后有时间再来查代码优化的地方。</p>
 
     </div>

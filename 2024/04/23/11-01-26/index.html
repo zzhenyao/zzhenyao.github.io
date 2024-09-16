@@ -279,12 +279,12 @@
 <li><strong>卷积层</strong>需要的<strong>参数较少</strong></li>
 <li>而卷积层后的第一个<strong>全连接层</strong>的<strong>参数较多</strong></li>
 </ul>
-<img src="/2024/04/23/11-01-26/26-01.png" class="">
+<img src="/2024/04/23/11-01-26/26-01.png" class>
 <p>以VGG为例(图示)，全连接层需要先Flatten，输入维度为512x7x7，输出维度为4096，则需要参数个数为512x7x7x4096=102M。</p>
 <h3 id="2-NiN块"><a href="#2-NiN块" class="headerlink" title="2. NiN块"></a>2. NiN块</h3><ul>
 <li>核心思想：一个卷积层后面跟两个1x1的卷积层，后两层起到全连接层的作用。</li>
 </ul>
-<img src="/2024/04/23/11-01-26/26-02.png" class="">
+<img src="/2024/04/23/11-01-26/26-02.png" class>
 <h3 id="3-NiN架构"><a href="#3-NiN架构" class="headerlink" title="3. NiN架构"></a>3. NiN架构</h3><ul>
 <li>无全连接层</li>
 <li>交替使用NiN块和步幅为2的最大池化层<ul>
@@ -296,7 +296,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="4-NiN-Networks"><a href="#4-NiN-Networks" class="headerlink" title="4. NiN Networks"></a>4. NiN Networks</h3><img src="/2024/04/23/11-01-26/26-03.png" class="">
+<h3 id="4-NiN-Networks"><a href="#4-NiN-Networks" class="headerlink" title="4. NiN Networks"></a>4. NiN Networks</h3><img src="/2024/04/23/11-01-26/26-03.png" class>
 <p>NiN架构如上图右边所示，若干个NiN块(图示中为4个块)+池化层；前3个块后接最大池化层，最后一块连接一个全局平均池化层。</p>
 <h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3><ul>
 <li>NiN块结构：使用卷积层加两个1x1卷积层<ul>

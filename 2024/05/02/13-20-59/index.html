@@ -328,7 +328,7 @@
 <li>匹配两张图中的特征点</li>
 <li>使用对应点，对齐图像</li>
 </ol>
-<img src="/2024/05/02/13-20-59/QQ20240502-132909@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240502-132909@2x.png" class>
 <p>特征匹配的问题：</p>
 <ol>
 <li>独立的特征， 需要重复检测器</li>
@@ -339,21 +339,21 @@
 <p>紧凑型和效率：Compactness and efficiency<br>比图像像素更少的特征</p>
 <p>局部性：Locality<br>描述具有好的局部性,可以解决遮挡</p>
 <h2 id="寻找角点"><a href="#寻找角点" class="headerlink" title="寻找角点"></a>寻找角点</h2><p>一个白墙上有一个黑色方块：<br>黑块不是一个好特征，无法定位。<br>边缘也不是好特征，角是一个好特征。</p>
-<img src="/2024/05/02/13-20-59/QQ20240502-142106@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240502-142106@2x.png" class>
 <p>角是一个梯度变换的地方。</p>
 <h4 id="哈里斯角-Harris-Corners"><a href="#哈里斯角-Harris-Corners" class="headerlink" title="哈里斯角 Harris Corners:"></a>哈里斯角 Harris Corners:</h4><p>$E\left(u,\nu\right)=\sum_{x,y}w\left(x,y\right)\left[I\left(x+u,y+\nu\right)-I\left(x,y\right)\right]^{2}$</p>
 <ul>
-<li>$w\left(x,y\right)$ 是一个窗口<img src="/2024/05/02/13-20-59/QQ20240502-142537@2x.png" class="">
+<li>$w\left(x,y\right)$ 是一个窗口<img src="/2024/05/02/13-20-59/QQ20240502-142537@2x.png" class>
 </li>
 </ul>
 <p>哈里斯角图：</p>
-<img src="/2024/05/02/13-20-59/QQ20240502-142639@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240502-142639@2x.png" class>
 <ul>
 <li>误差为0，是黑色</li>
 <li>左图中红色方块是角图中心，误差为0，绿色移动后，出现误差</li>
 </ul>
 <p>哈里斯角在很小的移动会产生误差：<br>二阶泰勒展开：<br>$F\left(\delta x\right)\approx F\left(0\right)+\delta x\cdot\frac{dF\left(0\right)}{dx}+\frac12\delta x^2\cdot\frac{d^2F\left(0\right)}{dx^2}$</p>
-<p>二维泰勒展开：<br><img src="/2024/05/02/13-20-59/QQ20240502-143009@2x.png" class=""></p>
+<p>二维泰勒展开：<br><img src="/2024/05/02/13-20-59/QQ20240502-143009@2x.png" class></p>
 <p>推导过程：<br>$E_u\left(u,\nu\right)=\sum_{x,y}2w\left(x,y\right)\left[I\left(x+u,y+\nu\right)-I\left(x,y\right)\right]I_x\left(x+u,y+v\right)$</p>
 <p>$\begin{split}<br>E_{\textit{ u }\nu}\left(u,\nu\right)&amp; =\sum_{x,y}2w(x,y)I_y(x+u,y+v)I_x(x+u,y+v) \\<br>&amp;+\sum_{x,y}2w(x,y)\Big[I(x+u,y+v)-I(x,y)\Big]I_{xy}(x+u,y+v)<br>\end{split}$</p>
 <p>$\begin{split}E_{u\nu}(u,\nu)&amp;=\sum_{x,y}2w(x,y)I_y(x+u,y+v)I_x(x+u,y+v)\\&amp;+\sum_{x,y}2w(x,y)\Big[I(x+u,y+v)-I(x,y)\Big]I_{xy}(x+u,y+v)\end{split}$</p>
@@ -365,11 +365,11 @@
 <p>其中$\nabla I$：是一个秩为1的列向量，所有等式右边是一个秩为1的二阶方阵。</p>
 <p>? 必须让窗口内所有方向都有梯度，才可以求和后得到一个满秩矩阵？？</p>
 <h4 id="解释二阶近似方程"><a href="#解释二阶近似方程" class="headerlink" title="解释二阶近似方程"></a>解释二阶近似方程</h4><p>代数表达式：椭圆方程<br>$\sum I_x^2u^2+2\sum I_xI_yu\nu+\sum I_y^2\nu^2=k$</p>
-<p>椭圆图：<br><img src="/2024/05/02/13-20-59/QQ20240502-145419@2x.png" class=""></p>
+<p>椭圆图：<br><img src="/2024/05/02/13-20-59/QQ20240502-145419@2x.png" class></p>
 <p>考虑，窗口内的梯度永远是水平或垂直，所有$I_xI_y$为0。<br>化简：<br>$M=\sum_{x,y}w(x,y)\begin{bmatrix}I_x^2&amp;&amp;I_xI_y\\I_xI_y&amp;&amp;I_y^2\end{bmatrix}=\begin{bmatrix}\lambda&amp;0\\0&amp;\lambda_2\end{bmatrix}$</p>
 <p>$M$可以被相似对角化：<br>$M~=~R^{-1}\left[\begin{array}{cc}\lambda&amp;0\\0&amp;\lambda_2\end{array}\right]R$</p>
-<p>特征值的作用：<br><img src="/2024/05/02/13-20-59/QQ20240502-145313@2x.png" class=""><br>在短边处：变换很快，长边处变换速度很慢，需要移动很多才有变化。</p>
-<h4 id="解释特征值"><a href="#解释特征值" class="headerlink" title="解释特征值"></a>解释特征值</h4><p>计算哈里斯矩阵：<br><img src="/2024/05/02/13-20-59/QQ20240502-150536@2x.png" class=""></p>
+<p>特征值的作用：<br><img src="/2024/05/02/13-20-59/QQ20240502-145313@2x.png" class><br>在短边处：变换很快，长边处变换速度很慢，需要移动很多才有变化。</p>
+<h4 id="解释特征值"><a href="#解释特征值" class="headerlink" title="解释特征值"></a>解释特征值</h4><p>计算哈里斯矩阵：<br><img src="/2024/05/02/13-20-59/QQ20240502-150536@2x.png" class></p>
 <ul>
 <li>平坦区域：flat<br>梯度为0，怎么移动都不会变化。</li>
 <li>如果一个特征值特别大<br>朝这个方向的边缘移动，变换很快</li>
@@ -382,30 +382,30 @@
 <li>边：一个特征值很大,$R$是负的大数</li>
 <li>平坦：$R$ 的绝对值很小</li>
 </ul>
-<h4 id="哈里斯函数如何工作"><a href="#哈里斯函数如何工作" class="headerlink" title="哈里斯函数如何工作"></a>哈里斯函数如何工作</h4><p>低纹理区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151651@2x.png" class=""></p>
-<p>边缘区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151730@2x.png" class=""></p>
-<p>高纹理区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151825@2x.png" class=""></p>
-<h4 id="哈里斯检测器算法："><a href="#哈里斯检测器算法：" class="headerlink" title="哈里斯检测器算法："></a>哈里斯检测器算法：</h4><img src="/2024/05/02/13-20-59/QQ20240502-152016@2x.png" class="">
-<p>例子：<br><img src="/2024/05/02/13-20-59/QQ20240502-152156@2x.png" class=""></p>
-<p>响应函数图：<br><img src="/2024/05/02/13-20-59/QQ20240502-152223@2x.png" class=""></p>
-<p>非极大值抑制：<br><img src="/2024/05/02/13-20-59/QQ20240502-152309@2x.png" class=""></p>
-<p>局部最大值的像素点：<br><img src="/2024/05/02/13-20-59/QQ20240502-152430@2x.png" class=""></p>
-<p>在原图中的位置：<br><img src="/2024/05/02/13-20-59/QQ20240502-152454@2x.png" class=""></p>
+<h4 id="哈里斯函数如何工作"><a href="#哈里斯函数如何工作" class="headerlink" title="哈里斯函数如何工作"></a>哈里斯函数如何工作</h4><p>低纹理区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151651@2x.png" class></p>
+<p>边缘区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151730@2x.png" class></p>
+<p>高纹理区域：<br><img src="/2024/05/02/13-20-59/QQ20240502-151825@2x.png" class></p>
+<h4 id="哈里斯检测器算法："><a href="#哈里斯检测器算法：" class="headerlink" title="哈里斯检测器算法："></a>哈里斯检测器算法：</h4><img src="/2024/05/02/13-20-59/QQ20240502-152016@2x.png" class>
+<p>例子：<br><img src="/2024/05/02/13-20-59/QQ20240502-152156@2x.png" class></p>
+<p>响应函数图：<br><img src="/2024/05/02/13-20-59/QQ20240502-152223@2x.png" class></p>
+<p>非极大值抑制：<br><img src="/2024/05/02/13-20-59/QQ20240502-152309@2x.png" class></p>
+<p>局部最大值的像素点：<br><img src="/2024/05/02/13-20-59/QQ20240502-152430@2x.png" class></p>
+<p>在原图中的位置：<br><img src="/2024/05/02/13-20-59/QQ20240502-152454@2x.png" class></p>
 <p>最终发现很多相同的特征点。</p>
 <h2 id="尺度不变性-Scale-invariance"><a href="#尺度不变性-Scale-invariance" class="headerlink" title="尺度不变性  Scale invariance"></a>尺度不变性  Scale invariance</h2><h4 id="哈里斯检测器的一些特性"><a href="#哈里斯检测器的一些特性" class="headerlink" title="哈里斯检测器的一些特性"></a>哈里斯检测器的一些特性</h4><ul>
 <li>对于旋转不变</li>
 <li>图像强度：加法乘法不改变<br>加法：导数不变<br>乘法：导数整体变化</li>
 <li>缩放，会改变</li>
 </ul>
-<h4 id="尺度不变性的检测"><a href="#尺度不变性的检测" class="headerlink" title="尺度不变性的检测"></a>尺度不变性的检测</h4><img src="/2024/05/02/13-20-59/QQ20240502-153839@2x.png" class="">
+<h4 id="尺度不变性的检测"><a href="#尺度不变性的检测" class="headerlink" title="尺度不变性的检测"></a>尺度不变性的检测</h4><img src="/2024/05/02/13-20-59/QQ20240502-153839@2x.png" class>
 <p>增大窗口，保持尺度不变</p>
-<p>领域大小对函数的影响：<br><img src="/2024/05/02/13-20-59/QQ20240502-154050@2x.png" class=""><br>$S_1$, $S_2$，具有相同的缩放比例</p>
-<h4 id="一个好的尺寸检测函数"><a href="#一个好的尺寸检测函数" class="headerlink" title="一个好的尺寸检测函数"></a>一个好的尺寸检测函数</h4><img src="/2024/05/02/13-20-59/QQ20240502-154434@2x.png" class="">
-<img src="/2024/05/02/13-20-59/QQ20240502-154635@2x.png" class="">
+<p>领域大小对函数的影响：<br><img src="/2024/05/02/13-20-59/QQ20240502-154050@2x.png" class><br>$S_1$, $S_2$，具有相同的缩放比例</p>
+<h4 id="一个好的尺寸检测函数"><a href="#一个好的尺寸检测函数" class="headerlink" title="一个好的尺寸检测函数"></a>一个好的尺寸检测函数</h4><img src="/2024/05/02/13-20-59/QQ20240502-154434@2x.png" class>
+<img src="/2024/05/02/13-20-59/QQ20240502-154635@2x.png" class>
 <p>拉普拉斯差和高斯差几乎相同，选择高斯简化计算。</p>
-<h4 id="关键点定位"><a href="#关键点定位" class="headerlink" title="关键点定位"></a>关键点定位</h4><p><strong>SIFT</strong>: Scale Invariant Feature Transform<br>尺度不变特征变换<br><img src="/2024/05/02/13-20-59/QQ20240502-154917@2x.png" class=""><br>取不同尺寸的图像，不断模糊图像，两两相减，计算他们的高斯图像差异。<br>像素与周围九个像素比较，以及不同比例邻居上的比较，的看是不是极值。</p>
-<img src="/2024/05/02/13-20-59/QQ20240502-155145@2x.png" class="">
-<p>例子：<br><img src="/2024/05/02/13-20-59/QQ20240502-155601@2x.png" class=""></p>
+<h4 id="关键点定位"><a href="#关键点定位" class="headerlink" title="关键点定位"></a>关键点定位</h4><p><strong>SIFT</strong>: Scale Invariant Feature Transform<br>尺度不变特征变换<br><img src="/2024/05/02/13-20-59/QQ20240502-154917@2x.png" class><br>取不同尺寸的图像，不断模糊图像，两两相减，计算他们的高斯图像差异。<br>像素与周围九个像素比较，以及不同比例邻居上的比较，的看是不是极值。</p>
+<img src="/2024/05/02/13-20-59/QQ20240502-155145@2x.png" class>
+<p>例子：<br><img src="/2024/05/02/13-20-59/QQ20240502-155601@2x.png" class></p>
 <p><strong>哈里斯-拉普拉斯算法：</strong><br>先试用哈里斯角点检测<br>然后在看尺度方向上的拉普拉斯算子，找空间极值</p>
 <h2 id="特征描述"><a href="#特征描述" class="headerlink" title="特征描述"></a>特征描述</h2><p>描述符：对领域进行描述</p>
 <ul>
@@ -419,39 +419,39 @@
 <li>图像内容是一组特征：对于平移，旋转,放缩等图像处理操作是不变的</li>
 <li>描述符是稳健的</li>
 </ul>
-<img src="/2024/05/02/13-20-59/QQ20240503-094607@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240503-094607@2x.png" class>
 <h4 id="总体SIFT识别过程"><a href="#总体SIFT识别过程" class="headerlink" title="总体SIFT识别过程"></a>总体SIFT识别过程</h4><ol>
 <li>确定关键点尺寸</li>
 <li>定位关键点</li>
 <li>找到领域的局部的方向</li>
 <li>关键点描述</li>
 </ol>
-<img src="/2024/05/02/13-20-59/QQ20240503-094908@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240503-094908@2x.png" class>
 <p>右图中的方向箭头，就是局部方向。</p>
-<h4 id="计算局部方向"><a href="#计算局部方向" class="headerlink" title="计算局部方向"></a>计算局部方向</h4><img src="/2024/05/02/13-20-59/QQ20240503-095051@2x.png" class="">
+<h4 id="计算局部方向"><a href="#计算局部方向" class="headerlink" title="计算局部方向"></a>计算局部方向</h4><img src="/2024/05/02/13-20-59/QQ20240503-095051@2x.png" class>
 <p>图中是方向直方图</p>
 <p>找到一个峰值，就是主导方向，我们需要使用的方向，以这个方向为北方。</p>
 <h4 id="关键点描述符"><a href="#关键点描述符" class="headerlink" title="关键点描述符"></a>关键点描述符</h4><p>标准化：<br>旋转到新的北方朝上<br>放缩到相同尺寸</p>
-<p>SIFT特征向量：<br><img src="/2024/05/02/13-20-59/QQ20240503-095512@2x.png" class=""><br>右图是一个：2X2的图，最好是使用4X4的直方图，一个里面有8个方向，叠加到一起，一个特征会有128个向量<br>将所有的向量，标准化到内积为1。</p>
+<p>SIFT特征向量：<br><img src="/2024/05/02/13-20-59/QQ20240503-095512@2x.png" class><br>右图是一个：2X2的图，最好是使用4X4的直方图，一个里面有8个方向，叠加到一起，一个特征会有128个向量<br>将所有的向量，标准化到内积为1。</p>
 <p>梯度：直方图加权梯度，方向最大的权最高</p>
 <p>评估SIFT描述符:<br>通常一个直方图有8个方向，采用4X4的直方图，向量长128。</p>
 <h3 id="匹配特征点"><a href="#匹配特征点" class="headerlink" title="匹配特征点"></a>匹配特征点</h3><p>如何在两个图的特征中，找到匹配的特征点？</p>
 <h4 id="最邻近算法匹配"><a href="#最邻近算法匹配" class="headerlink" title="最邻近算法匹配"></a>最邻近算法匹配</h4><p>best-bin-first 算法基于k-d树</p>
-<img src="/2024/05/02/13-20-59/QQ20240503-101702@2x.png" class="">
-<h4 id="基于小波的散列"><a href="#基于小波的散列" class="headerlink" title="基于小波的散列"></a>基于小波的散列</h4><img src="/2024/05/02/13-20-59/QQ20240503-101843@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240503-101702@2x.png" class>
+<h4 id="基于小波的散列"><a href="#基于小波的散列" class="headerlink" title="基于小波的散列"></a>基于小波的散列</h4><img src="/2024/05/02/13-20-59/QQ20240503-101843@2x.png" class>
 <p>小波：是一种接近滤波器的形式，从三个滤波器里输出三个数。</p>
-<p>思想类似局部敏感哈希：<br><img src="/2024/05/02/13-20-59/QQ20240503-102231@2x.png" class=""><br>考虑了空间两点的距离</p>
-<h4 id="例子-3D物体识别"><a href="#例子-3D物体识别" class="headerlink" title="例子 3D物体识别"></a>例子 3D物体识别</h4><img src="/2024/05/02/13-20-59/QQ20240503-102435@2x.png" class="">
-<p>从测试图中匹配：<br><img src="/2024/05/02/13-20-59/QQ20240503-102518@2x.png" class=""></p>
+<p>思想类似局部敏感哈希：<br><img src="/2024/05/02/13-20-59/QQ20240503-102231@2x.png" class><br>考虑了空间两点的距离</p>
+<h4 id="例子-3D物体识别"><a href="#例子-3D物体识别" class="headerlink" title="例子 3D物体识别"></a>例子 3D物体识别</h4><img src="/2024/05/02/13-20-59/QQ20240503-102435@2x.png" class>
+<p>从测试图中匹配：<br><img src="/2024/05/02/13-20-59/QQ20240503-102518@2x.png" class></p>
 <h4 id="例子-遮挡下的识别"><a href="#例子-遮挡下的识别" class="headerlink" title="例子 遮挡下的识别"></a>例子 遮挡下的识别</h4><p>通过部分关键点，预测其他点去哪里了。</p>
 <h2 id="鲁棒误差函数"><a href="#鲁棒误差函数" class="headerlink" title="鲁棒误差函数"></a>鲁棒误差函数</h2><p>SSD：差的平方和<br>NN: 最近邻居</p>
-<h4 id="Lowe-a-better-way"><a href="#Lowe-a-better-way" class="headerlink" title="Lowe a better way"></a>Lowe a better way</h4><img src="/2024/05/02/13-20-59/QQ20240503-104558@2x.png" class="">
+<h4 id="Lowe-a-better-way"><a href="#Lowe-a-better-way" class="headerlink" title="Lowe a better way"></a>Lowe a better way</h4><img src="/2024/05/02/13-20-59/QQ20240503-104558@2x.png" class>
 <p>意义：<br>如果最佳匹配被遮挡了，第一和第二匹配相差不大，说明没有找到正确的匹配。</p>
 <h3 id="模型拟合"><a href="#模型拟合" class="headerlink" title="模型拟合"></a>模型拟合</h3><h4 id="最小二乘线拟合-Typical-least-squares-line-fitting"><a href="#最小二乘线拟合-Typical-least-squares-line-fitting" class="headerlink" title="最小二乘线拟合 Typical least squares line fitting"></a>最小二乘线拟合 Typical least squares line fitting</h4><p>机器学习内容<br>只是$y$方向上的拟合。</p>
-<h4 id="总体最小二乘法"><a href="#总体最小二乘法" class="headerlink" title="总体最小二乘法"></a>总体最小二乘法</h4><p>$ax+by=d$<br>$E=\sum_{i=1}^n(ax_i+by_i-d)^2$<br><img src="/2024/05/02/13-20-59/QQ20240503-105511@2x.png" class=""></p>
+<h4 id="总体最小二乘法"><a href="#总体最小二乘法" class="headerlink" title="总体最小二乘法"></a>总体最小二乘法</h4><p>$ax+by=d$<br>$E=\sum_{i=1}^n(ax_i+by_i-d)^2$<br><img src="/2024/05/02/13-20-59/QQ20240503-105511@2x.png" class></p>
 <p>推导公式：<br>\begin{split}<br>\frac{\partial E}{\partial d}=\sum_{i=1}^n-2\left(ax_i+by_i-d\right)=0\\<br>\Rightarrow d=\frac an\sum_{i=1}^nx_i+\frac bn\sum_{i=1}^nx_i=a\overline{x}+b\overline{y}<br>\end{split}</p>
 <p>\begin{split}<br>&amp;E = \sum_{i=1}^{n}(a (x_{i}-\overline{x})+b (y_{i}-<br>\overline{y}))^{2}\\<br>&amp;=\left\|\begin{bmatrix}x_{i}-\overline{x}&amp;y_{i}-<br>\overline{y}\\<br>\vdots&amp;\vdots&amp;\vdots\\<br>\lfloor x_{i}-\overline{x}&amp;y_{i}-\overline{y}\rfloor<br>\end{bmatrix}\begin{bmatrix}a\\<br>b\end{bmatrix}\right\|^{2} \\<br>&amp;=\left(U \mathbf{h}\right)^{T}\left(U \mathbf{h}\right)\\<br>&amp;\frac{dE}{d\mathbf{h}}=2(U^TU)\mathbf{h}=0<br>\end{split}</p>
-<img src="/2024/05/02/13-20-59/QQ20240503-110151@2x.png" class="">
+<img src="/2024/05/02/13-20-59/QQ20240503-110151@2x.png" class>
 <ul>
 <li>实际测量点$(x,y)$ 等于真实点$(u,v)$垂直于$a,b$方向上的偏动。</li>
 <li>符合高斯噪声</li>
@@ -461,24 +461,24 @@
 <li>$r_i\left(x_i,\theta_1\right)$：代表残差值,该点距离拟合曲线的距离</li>
 <li>$\rho$：有尺度参数$\sigma$鲁棒函数</li>
 </ul>
-<p>一种鲁棒函数：<br><img src="/2024/05/02/13-20-59/QQ20240503-110931@2x.png" class=""></p>
+<p>一种鲁棒函数：<br><img src="/2024/05/02/13-20-59/QQ20240503-110931@2x.png" class></p>
 <ul>
 <li>当$u$很小的时候：</li>
 <li>当$u$很大的时候：误差很大</li>
 </ul>
 <h2 id="RANSAC算法-RANdom-SAmple-Consensus"><a href="#RANSAC算法-RANdom-SAmple-Consensus" class="headerlink" title="RANSAC算法 RANdom SAmple Consensus"></a>RANSAC算法 RANdom SAmple Consensus</h2><h3 id="一般模型"><a href="#一般模型" class="headerlink" title="一般模型"></a>一般模型</h3><p>选取模型的最小集点数量：<br>距离阀值：<br>$f(d)=\frac{\sqrt{2}e^{-(\frac{d^2}{2\sigma^2})} }<br>{\sqrt{\pi}\sigma},d\geq0$</p>
-<h4 id="计算N"><a href="#计算N" class="headerlink" title="计算N"></a>计算N</h4><img src="/2024/05/02/13-20-59/QQ20240503-112533@2x.png" class="">
+<h4 id="计算N"><a href="#计算N" class="headerlink" title="计算N"></a>计算N</h4><img src="/2024/05/02/13-20-59/QQ20240503-112533@2x.png" class>
 <p>模型所需的样本点数：<br>$N &gt; \log(1 - p ) / \log(1 - (1 - e )^S )$</p>
-<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>两个匹配的特征：<br><img src="/2024/05/02/13-20-59/QQ20240503-113228@2x.png" class=""></p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>两个匹配的特征：<br><img src="/2024/05/02/13-20-59/QQ20240503-113228@2x.png" class></p>
 <ul>
 <li>有5个特征匹配，2个不匹配，认为这两张图是相同的，错误</li>
 <li>因为匹配特征中有噪音</li>
 </ul>
-<p>RANSAC算法<br><img src="/2024/05/02/13-20-59/QQ20240503-113151@2x.png" class=""></p>
+<p>RANSAC算法<br><img src="/2024/05/02/13-20-59/QQ20240503-113151@2x.png" class></p>
 <ul>
 <li>去除高斯噪音，选择平均值</li>
 </ul>
-<h4 id="RANSAC算法-循环"><a href="#RANSAC算法-循环" class="headerlink" title="RANSAC算法 循环"></a>RANSAC算法 循环</h4><img src="/2024/05/02/13-20-59/QQ20240503-113501@2x.png" class="">
+<h4 id="RANSAC算法-循环"><a href="#RANSAC算法-循环" class="headerlink" title="RANSAC算法 循环"></a>RANSAC算法 循环</h4><img src="/2024/05/02/13-20-59/QQ20240503-113501@2x.png" class>
 
     </div>
 

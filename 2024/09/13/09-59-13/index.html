@@ -283,20 +283,20 @@
 	<hr>
         <p>博客链接：<a target="_blank" rel="noopener" href="https://distill.pub/2021/gnn-intro/">GNN博客</a></p>
 <h1 id="图是什么"><a href="#图是什么" class="headerlink" title="图是什么?"></a>图是什么?</h1><p>实体（顶点 node）之间的关系（边 edge）。A graph represents the relations (edges) between a colelction of entities(nodes). </p>
-<img src="/2024/09/13/09-59-13/ef7de1a9117a2b8046f5962c517559369153e850.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/ef7de1a9117a2b8046f5962c517559369153e850.png@620w_!web-note.png" class>
 <p>Q2: attributes in V E U 重要吗？</p>
 <p>！关心图的整个架构</p>
 <p>！更关心 每个顶点、每条边、和 整个图表示的信息</p>
 <p>Q3: attribute 如何表示呢？</p>
-<img src="/2024/09/13/09-59-13/49dd0d770ef736cee57d5d85b15e28e8dc1785df.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/49dd0d770ef736cee57d5d85b15e28e8dc1785df.png@620w_!web-note.png" class>
 <p>Q4：数据如何表示成图？</p>
 <p>图片如何表示成图？</p>
 <p> 244 <em> 244 </em> 3通道，3维度的tensor</p>
 <p>把图片看作一张图，一个像素是一个点；一个像素跟我是连接关系的话，像素之间连一条边。</p>
-<img src="/2024/09/13/09-59-13/909d5904a2de4cc989ee7760cafe4143fcfd0f91.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/909d5904a2de4cc989ee7760cafe4143fcfd0f91.png@620w_!web-note.png" class>
 <p>把图片上的像素 映射到 图上的每一个点</p>
 <p>0-0 2-2</p>
-<img src="/2024/09/13/09-59-13/74a28726ded8422863321b9a13f283272cd11c3e.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/74a28726ded8422863321b9a13f283272cd11c3e.png@620w_!web-note.png" class>
 <p>蓝色点 表示 adjacent matrix，白色点表示无连接；通常是很大的sparse matrix</p>
 <h2 id="什么可以表示为图"><a href="#什么可以表示为图" class="headerlink" title="什么可以表示为图"></a>什么可以表示为图</h2><p>文本的顺序：图的有向路</p>
 <p>Q5：除了图片、文本，还有什么数据可以表示成图？</p>
@@ -314,13 +314,13 @@
 <p>3个MLP f_Un, f_Vn, f_En 组成一个 GNN 的层。</p>
 <p>graph-in, graph out</p>
 <p>MLP f_Un, f_Vn, f_En  分别对输入的 Un 全局向量, Vn 顶点向量, En 边向量 计算，得到更新 Un+1 全局向量, Vn+1 顶点向量, En+1 边向量 。</p>
-<img src="/2024/09/13/09-59-13/58b51ce69eb62a7a67d381ab5d1fe9e3989de776.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/58b51ce69eb62a7a67d381ab5d1fe9e3989de776.png@620w_!web-note.png" class>
 <h2 id="GNN-predictions-by-pooling-information"><a href="#GNN-predictions-by-pooling-information" class="headerlink" title="GNN predictions by pooling information"></a>GNN predictions by pooling information</h2><p>最后一层的输出，怎么得到预测值？</p>
 <p>simplest: nodes prediction 顶点预测</p>
 <p>分类预测: i.e., 空手道俱乐部喜欢 A 老师还是 B 老师</p>
 <p>和 NN 类似，node embeddings 向量 接入 输出维度为 2 or n 的全连接层 + 一个 softmax，得到分类结果；输出维度为 1，得到回归结果。</p>
 <p>最后一层的顶点进入 图中的 C_V_{i,n} classification 全连接网络，得到顶点的分类。</p>
-<img src="/2024/09/13/09-59-13/3222c2a50c031b6fe61c40eea4cb6a85a552c347.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/3222c2a50c031b6fe61c40eea4cb6a85a552c347.png@620w_!web-note.png" class>
 <p>Note: 所有顶点共享一个全连接层 C_V_{i,n} 的参数。</p>
 <p>GNN 之前的层，不论图有多大，一层里面只有 3 个MLP</p>
 <ul>
@@ -333,9 +333,9 @@
 <p>pooling 汇聚 （似 CNN 的 pooling）</p>
 <p>与缺失点连接的边的向量 4个 + 全局向量 1 个 == 代表这个缺失点的向量，再做一个全连接层的预测输出。</p>
 <p>假设：所有顶点、边、全局向量的维度一致；不一致，需要做投影。</p>
-<img src="/2024/09/13/09-59-13/71411099ddffd12967a5d1255744c79cf70bbd72.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/71411099ddffd12967a5d1255744c79cf70bbd72.png@620w_!web-note.png" class>
 <p>别的缺失点，连接关系不一样，最后的向量也不一样。</p>
-<img src="/2024/09/13/09-59-13/83d55b86bb0e6bd45f2992eddd76b16659f7cab1.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/83d55b86bb0e6bd45f2992eddd76b16659f7cab1.png@620w_!web-note.png" class>
 <p>V_n 是只有边、没有顶点的向量</p>
 <p>E_n 是边的向量</p>
 <p>Rho_{E_n —&gt; V_n} 通过 pooling 汇聚从 边 +全局 到 顶点的信息， 进入顶点共享的分类层 C_V_n 之前，每个顶点都有自己的向量 embedding</p>
@@ -343,13 +343,13 @@
 <p>Rho_{V_n —&gt; E_n} 把 node embeddings 汇聚到 vertex 边上。</p>
 <p>一条边，连接两个顶点，2个顶点向量相加 （+ 全局向量）== 得到 边的向量，然后进入边共享的一个 MLP 预测分类网络，得到边的预测输出。</p>
 <p>Q: 没有全局向量 U, 有 node embeddings, 对整个图做预测？</p>
-<img src="/2024/09/13/09-59-13/83d32576fb6bd47389a7892c2a77125e5f00686a.png@620w_!web-note.png" class="">
+<img src="/2024/09/13/09-59-13/83d32576fb6bd47389a7892c2a77125e5f00686a.png@620w_!web-note.png" class>
 <p>把所有的 node embeddings 加起来，得到一个全局的向量，进入全局的MLP，得到一个全局的预测输出。</p>
 <p><strong>总结：不论缺少哪一类 V E U attributes，pooling 汇聚得到缺失值 embeddings，进入MLP，得到预测值。</strong></p>
 <h2 id="最简单的-GNN-示意图"><a href="#最简单的-GNN-示意图" class="headerlink" title="最简单的 GNN 示意图"></a>最简单的 GNN 示意图</h2><p>input graph 经过 GNN blocks （每一个 block 里面有 3个 MLP对 V顶点 E边 U全局 attributes 更新）得到 一个同结构的 transformed graph, 但 V E U 属性值已被更新。</p>
 <p>(if 某类 embeddings 缺失，通过其它 embeddings pooling 汇聚而来)</p>
 <p>最后根据 V E U 某类属性做预测，接一个 MLP classification layer 输出预测信息。</p>
-<img src="/2024/09/13/09-59-13/QQ20240913-103019.png" class="">
+<img src="/2024/09/13/09-59-13/QQ20240913-103019.png" class>
 <p>Q: simplest GNN 有什么问题？</p>
 <p>GNN blocks 没有使用图结构信息：使用 MLP 更新属性值时，没有看到 V 顶点 E 边 的交互信息，只是 V 进 MLP_V, E 进 MLP_E, U 进 MLP_U，忽略了点边之间的连接信息。</p>
 <p>overlook information: 一个顶点与哪些边相连，一个顶点与哪些顶点相连；一条边与哪些顶点相连，一条边与哪些边相连</p>
@@ -357,12 +357,12 @@
 <p>Q: 如何改进 GNN blocks 以考虑图的结构信息？</p>
 <p>信息传递<br>Passing messages between parts of the graph</p>
 <p>类似 pooling 汇聚<br>顶点的向量和邻居的向量相加，进行MLP变换。</p>
-<p>对图中顶点进行更新，<br><img src="/2024/09/13/09-59-13/QQ20240913-103203.png" class=""></p>
+<p>对图中顶点进行更新，<br><img src="/2024/09/13/09-59-13/QQ20240913-103203.png" class></p>
 <p>和卷积的不同，卷积的核权重每一个都不一样，GNN权重都是一样的，直接相加。</p>
 <h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>GNN 对超参数比较敏感：</p>
 <p>多少层、attribute的embedding的维度、汇聚使用什么操作max average、怎样传递消息</p>
 <h2 id="相关技术"><a href="#相关技术" class="headerlink" title="相关技术"></a>相关技术</h2><h3 id="除-GNN-外，还有别的图吗？"><a href="#除-GNN-外，还有别的图吗？" class="headerlink" title="除 GNN 外，还有别的图吗？"></a>除 GNN 外，还有别的图吗？</h3><p>Multigraph</p>
-<p>一张图中的多种边：有向边、无向边；分层图，一些顶点是子图的<br><img src="/2024/09/13/09-59-13/QQ20240913-103857.png" class=""></p>
+<p>一张图中的多种边：有向边、无向边；分层图，一些顶点是子图的<br><img src="/2024/09/13/09-59-13/QQ20240913-103857.png" class></p>
 <p>不同的图结构 影响 message passing 的操作</p>
 <h3 id="Sampling-graphs-and-batching-in-GNNs"><a href="#Sampling-graphs-and-batching-in-GNNs" class="headerlink" title="Sampling graphs and batching in GNNs"></a>Sampling graphs and batching in GNNs</h3><p>Why sample graphs？</p>
 <p>i.e., 一个有很多层、很大的图</p>
@@ -375,19 +375,19 @@
 <h3 id="sample-graph-的方法有哪些呢？"><a href="#sample-graph-的方法有哪些呢？" class="headerlink" title="sample graph 的方法有哪些呢？"></a>sample graph 的方法有哪些呢？</h3><ol>
 <li>random node sampling</li>
 </ol>
-<p>采样 4 个黄色nodes，得到 1-degree neighbor 红色点<br>只在 sample 出来的子图上做计算，避免图特别大、内存存不了<br><img src="/2024/09/13/09-59-13/QQ20240913-104144.png" class=""></p>
+<p>采样 4 个黄色nodes，得到 1-degree neighbor 红色点<br>只在 sample 出来的子图上做计算，避免图特别大、内存存不了<br><img src="/2024/09/13/09-59-13/QQ20240913-104144.png" class></p>
 <ol>
 <li>random walk sampling </li>
 </ol>
-<p>随机游走<br>从某一个顶点开始，随机找一条边，然后沿着这条边走到下一个节点<br>规定最多随机走多少步，得到一个sample子图<br><img src="/2024/09/13/09-59-13/QQ20240913-104206.png" class=""></p>
+<p>随机游走<br>从某一个顶点开始，随机找一条边，然后沿着这条边走到下一个节点<br>规定最多随机走多少步，得到一个sample子图<br><img src="/2024/09/13/09-59-13/QQ20240913-104206.png" class></p>
 <ol>
 <li>1 + 2 </li>
 </ol>
-<p>随机走三步，走到的节点的邻居也考虑进来<br><img src="/2024/09/13/09-59-13/QQ20240913-104231.png" class=""></p>
+<p>随机走三步，走到的节点的邻居也考虑进来<br><img src="/2024/09/13/09-59-13/QQ20240913-104231.png" class></p>
 <ol>
 <li>BFS</li>
 </ol>
-<p>取一个点及其一阶、二阶邻居，然后再往前走 k 步，得到子图<br><img src="/2024/09/13/09-59-13/QQ20240913-104255.png" class=""></p>
+<p>取一个点及其一阶、二阶邻居，然后再往前走 k 步，得到子图<br><img src="/2024/09/13/09-59-13/QQ20240913-104255.png" class></p>
 <p><strong>4 种 sample graphs 的方法取决于数据集的形式</strong></p>
 <h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2><p>卷积神经网络：假设空间变换不变性<br>循环神经网络：假设时序延续性<br>图神经网络：假设保持图的对称性：不管怎么交换顶点顺序，GNN的作用都不变。</p>
 <p>GCN:图卷积神经网络，图神经网络做了汇聚操作。</p>

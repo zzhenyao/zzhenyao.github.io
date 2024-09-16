@@ -421,12 +421,12 @@
 <li><a href="/2024/04/27/08-42-03/" title="Ud810 Intro-to-cv 笔记汇总">计算机视觉概率-笔记汇总</a>
 </li>
 </ul>
-<h2 id="图像作为函数"><a href="#图像作为函数" class="headerlink" title="图像作为函数"></a>图像作为函数</h2><h4 id="理解图像函数"><a href="#理解图像函数" class="headerlink" title="理解图像函数"></a>理解图像函数</h4><img src="/2024/04/27/09-07-10/QQ20240427-092957@2x.png" class="">
+<h2 id="图像作为函数"><a href="#图像作为函数" class="headerlink" title="图像作为函数"></a>图像作为函数</h2><h4 id="理解图像函数"><a href="#理解图像函数" class="headerlink" title="理解图像函数"></a>理解图像函数</h4><img src="/2024/04/27/09-07-10/QQ20240427-092957@2x.png" class>
 <p>通常我们认为图像就是看到的东西，实际上，图像是一个函数$I(x, y)$，值为像素值。</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-093048@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-093048@2x.png" class>
 <p>上面两种形式是一个相同的函数，只是展示方式不同。</p>
-<p>对图像做平滑处理，函数变为：<br><img src="/2024/04/27/09-07-10/QQ20240427-093326@2x.png" class=""></p>
-<p>对图像做模糊处理，函数变为：<br><img src="/2024/04/27/09-07-10/QQ20240427-093357@2x.png" class=""></p>
+<p>对图像做平滑处理，函数变为：<br><img src="/2024/04/27/09-07-10/QQ20240427-093326@2x.png" class></p>
+<p>对图像做模糊处理，函数变为：<br><img src="/2024/04/27/09-07-10/QQ20240427-093357@2x.png" class></p>
 <h4 id="图像函数"><a href="#图像函数" class="headerlink" title="图像函数"></a>图像函数</h4><p>$f(x, y)$：是图像在点$(x, y)$处的光强度或值<br>限制$x$,$y$的范围，以及强度的范围：$f:[a, b] x[c, d] \rightarrow[\min , \max ]$</p>
 <blockquote>
 <p>图像定义：$x$为列，$y$为行, 原点在图像左上角</p>
@@ -438,26 +438,26 @@
 <p>彩色图像：</p>
 <p>\begin{split}<br>f(x, y)=\left[\begin{array}{l}<br>r(x, y) \\<br>g(x, y) \\<br>b(x, y)<br>\end{array}\right]<br>\end{split}</p>
 <p>每个像素为一个向量，RGB：值分别为，红，绿，蓝的颜色强度。</p>
-<h4 id="真实的菲利斯"><a href="#真实的菲利斯" class="headerlink" title="真实的菲利斯"></a>真实的菲利斯</h4><img src="/2024/04/27/09-07-10/QQ20240427-095451@2x.png" class="">
+<h4 id="真实的菲利斯"><a href="#真实的菲利斯" class="headerlink" title="真实的菲利斯"></a>真实的菲利斯</h4><img src="/2024/04/27/09-07-10/QQ20240427-095451@2x.png" class>
 <p>这与眼睛看到的图像是相同的函数。</p>
 <h4 id="数字图像"><a href="#数字图像" class="headerlink" title="数字图像"></a>数字图像</h4><p>Sample：采样，对2D图像进行采样, 即像素<br>Quantize：量化，用一个有限数量的位数来表示它</p>
 <blockquote>
 <p>量化使用浮点图像？</p>
 </blockquote>
-<img src="/2024/04/27/09-07-10/QQ20240427-095943@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-095943@2x.png" class>
 <p>图像由$(x,y)$确定，而计算中的$(i,j)$，为行，列值，与$x$,$y$，相反。</p>
 <p>有时图像也可用一维信号表示。</p>
 <h4 id="图像是矩阵存储"><a href="#图像是矩阵存储" class="headerlink" title="图像是矩阵存储"></a>图像是矩阵存储</h4><blockquote>
 <p>课程使用的MATLAB，目前多使用OpenCV，所以不记笔记。</p>
 </blockquote>
 <h4 id="图像噪声"><a href="#图像噪声" class="headerlink" title="图像噪声"></a>图像噪声</h4><p>$\vec{I}^{\prime}(x, y)=\vec{I}(x, y)+\vec{\eta}(x, y)$</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-100924@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-100924@2x.png" class>
 <p>椒盐噪声: 产生黑白像素点</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-101112@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-101112@2x.png" class>
 <p>脉冲噪声: 产生白色像素点</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-101206@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-101206@2x.png" class>
 <p>高斯噪声或正态分布噪声: 产生某些正态分布或某些高斯分布独立同分布的值</p>
-<h4 id="Sigma-对高斯噪声的影响"><a href="#Sigma-对高斯噪声的影响" class="headerlink" title="Sigma 对高斯噪声的影响"></a>Sigma 对高斯噪声的影响</h4><img src="/2024/04/27/09-07-10/QQ20240427-101547@2x.png" class="">
+<h4 id="Sigma-对高斯噪声的影响"><a href="#Sigma-对高斯噪声的影响" class="headerlink" title="Sigma 对高斯噪声的影响"></a>Sigma 对高斯噪声的影响</h4><img src="/2024/04/27/09-07-10/QQ20240427-101547@2x.png" class>
 <p>不同sigma的图像函数。</p>
 <ul>
 <li>噪声有什么意思？<br>“零”<br>对于负值图像，错误的想法是0是黑色，255是白色，黑色白色，只是值范围内的最小值与最大值，0代表的是两者之间，灰色。非常小的sigma，是一个恒灰函数。</li>
@@ -468,24 +468,24 @@
 <li>真实像素值可能与周围像素值相近</li>
 <li>每个像素的噪声相互独立<br>意味着如果取噪声的平均值，噪声将为0</li>
 </ul>
-<h4 id="加权移动平均线"><a href="#加权移动平均线" class="headerlink" title="加权移动平均线"></a>加权移动平均线</h4><img src="/2024/04/27/09-07-10/QQ20240427-103425@2x.png" class="">
+<h4 id="加权移动平均线"><a href="#加权移动平均线" class="headerlink" title="加权移动平均线"></a>加权移动平均线</h4><img src="/2024/04/27/09-07-10/QQ20240427-103425@2x.png" class>
 <p>非均匀权重：距离像素越近，权重越大，可以使图像更平滑。</p>
-<h4 id="2D-移动平均线"><a href="#2D-移动平均线" class="headerlink" title="2D 移动平均线"></a>2D 移动平均线</h4><img src="/2024/04/27/09-07-10/1.png" class="">
+<h4 id="2D-移动平均线"><a href="#2D-移动平均线" class="headerlink" title="2D 移动平均线"></a>2D 移动平均线</h4><img src="/2024/04/27/09-07-10/1.png" class>
 <p>简单的平均权重</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-103933@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-103933@2x.png" class>
 <p>移动平均之后的结果</p>
 <h4 id="相关过滤"><a href="#相关过滤" class="headerlink" title="相关过滤"></a>相关过滤</h4><p>上述过滤为统一权重过滤，公式为：<br>核的size： 2 * k + 1；</p>
 <p>$G[i, j]=\frac{1}{(2 k+1)^2} \sum_{u=-k}^k \sum_{v=-k}^k F[i+u, j+v]$</p>
 <p>非均值权重的公式为：<br>$G[i, j]=\sum_{u=-k}^k \sum_{v=-k}^k H[u, v] F[i+u, j+v]$</p>
-<h4 id="平均滤波器"><a href="#平均滤波器" class="headerlink" title="平均滤波器"></a>平均滤波器</h4><img src="/2024/04/27/09-07-10/QQ20240427-104618@2x.png" class="">
-<p>均值平滑后的结果：<br><img src="/2024/04/27/09-07-10/QQ20240427-104655@2x.png" class=""></p>
-<p>效果不好的原因：<br>  如果一个两点失去了焦点，看起来就像是：<br><img src="/2024/04/27/09-07-10/QQ20240427-104815@2x.png" class=""></p>
-<h4 id="高斯过滤"><a href="#高斯过滤" class="headerlink" title="高斯过滤"></a>高斯过滤</h4><p>高斯函数：<br><img src="/2024/04/27/09-07-10/QQ20240427-105107@2x.png" class=""></p>
-<p>高斯过滤后的图像：更加平滑<br><img src="/2024/04/27/09-07-10/QQ20240427-105212@2x.png" class=""><br>不会出现尖锐的部分</p>
-<h4 id="方差与标准差"><a href="#方差与标准差" class="headerlink" title="方差与标准差"></a>方差与标准差</h4><p>sigma越大，模糊程度越高, 是高斯的高度，平方是高斯的方差。<br>关注的有两点，矩阵大小和sigma的值。<br>高斯过滤:<br>不同的sigma：<br><img src="/2024/04/27/09-07-10/QQ20240427-105612@2x.png" class=""><br>sigma越大，过滤的内容越多。</p>
-<p>不同的内核大小：<br><img src="/2024/04/27/09-07-10/QQ20240427-105651@2x.png" class=""></p>
+<h4 id="平均滤波器"><a href="#平均滤波器" class="headerlink" title="平均滤波器"></a>平均滤波器</h4><img src="/2024/04/27/09-07-10/QQ20240427-104618@2x.png" class>
+<p>均值平滑后的结果：<br><img src="/2024/04/27/09-07-10/QQ20240427-104655@2x.png" class></p>
+<p>效果不好的原因：<br>  如果一个两点失去了焦点，看起来就像是：<br><img src="/2024/04/27/09-07-10/QQ20240427-104815@2x.png" class></p>
+<h4 id="高斯过滤"><a href="#高斯过滤" class="headerlink" title="高斯过滤"></a>高斯过滤</h4><p>高斯函数：<br><img src="/2024/04/27/09-07-10/QQ20240427-105107@2x.png" class></p>
+<p>高斯过滤后的图像：更加平滑<br><img src="/2024/04/27/09-07-10/QQ20240427-105212@2x.png" class><br>不会出现尖锐的部分</p>
+<h4 id="方差与标准差"><a href="#方差与标准差" class="headerlink" title="方差与标准差"></a>方差与标准差</h4><p>sigma越大，模糊程度越高, 是高斯的高度，平方是高斯的方差。<br>关注的有两点，矩阵大小和sigma的值。<br>高斯过滤:<br>不同的sigma：<br><img src="/2024/04/27/09-07-10/QQ20240427-105612@2x.png" class><br>sigma越大，过滤的内容越多。</p>
+<p>不同的内核大小：<br><img src="/2024/04/27/09-07-10/QQ20240427-105651@2x.png" class></p>
 <p>内核更大，平滑效果越好，</p>
-<h4 id="两种高斯直线"><a href="#两种高斯直线" class="headerlink" title="两种高斯直线"></a>两种高斯直线</h4><img src="/2024/04/27/09-07-10/QQ20240427-110026@2x.png" class="">
+<h4 id="两种高斯直线"><a href="#两种高斯直线" class="headerlink" title="两种高斯直线"></a>两种高斯直线</h4><img src="/2024/04/27/09-07-10/QQ20240427-110026@2x.png" class>
 <ul>
 <li>sigma越大，噪音越大</li>
 <li>高斯过滤，相同平滑量的噪声量较小的会更加平滑</li>
@@ -495,10 +495,10 @@
 </blockquote>
 <h2 id="线性算子和卷积"><a href="#线性算子和卷积" class="headerlink" title="线性算子和卷积"></a>线性算子和卷积</h2><p>线性变换特点：可加性, 倍乘性</p>
 <p>线性算子如何影响整个图像？</p>
-<p>脉冲函数：<br><img src="/2024/04/27/09-07-10/QQ20240427-131003@2x.png" class=""><br>脉冲是一个很小的信号，体积为1。</p>
-<p>输入一个脉冲，在黑盒中输出一个响应。<br><img src="/2024/04/27/09-07-10/QQ20240427-131216@2x.png" class=""></p>
+<p>脉冲函数：<br><img src="/2024/04/27/09-07-10/QQ20240427-131003@2x.png" class><br>脉冲是一个很小的信号，体积为1。</p>
+<p>输入一个脉冲，在黑盒中输出一个响应。<br><img src="/2024/04/27/09-07-10/QQ20240427-131216@2x.png" class></p>
 <p>如果知道黑盒如何影响单个脉冲，就可以解释影响整个图像。</p>
-<h4 id="过滤脉冲信号"><a href="#过滤脉冲信号" class="headerlink" title="过滤脉冲信号"></a>过滤脉冲信号</h4><img src="/2024/04/27/09-07-10/QQ20240427-131451@2x.png" class="">
+<h4 id="过滤脉冲信号"><a href="#过滤脉冲信号" class="headerlink" title="过滤脉冲信号"></a>过滤脉冲信号</h4><img src="/2024/04/27/09-07-10/QQ20240427-131451@2x.png" class>
 <p>展示了脉冲过滤的翻转情况，假设中心元素为脉冲元素e。</p>
 <h4 id="互相关和卷积"><a href="#互相关和卷积" class="headerlink" title="互相关和卷积"></a>互相关和卷积</h4><p><strong>互相关</strong><br>直接应用过滤器：<br>$G[i, j]=\sum_{u=-k}^k \sum_{v=-k}^k H[u, v] F[i+u, j+v]$</p>
 <p>$G=H \otimes F$</p>
@@ -508,8 +508,8 @@
 </blockquote>
 <p>$G[i, j]=\sum_{u=-k}^k \sum_{v=-k}^k H[u, v] F[i-u, j-v]$</p>
 <p>$G=H \star F$</p>
-<p>翻转过程为：(*为了方便看到翻转效果)<br><img src="/2024/04/27/09-07-10/QQ20240427-132224@2x.png" class=""></p>
-<img src="/2024/04/27/09-07-10/QQ20240427-132133@2x.png" class="">
+<p>翻转过程为：(*为了方便看到翻转效果)<br><img src="/2024/04/27/09-07-10/QQ20240427-132224@2x.png" class></p>
+<img src="/2024/04/27/09-07-10/QQ20240427-132133@2x.png" class>
 <p>卷积实际是一种物理学</p>
 <ul>
 <li>在对称滤波器中，两种操作都是结果都是相同的</li>
@@ -523,88 +523,88 @@
 <li>单位脉冲和整个脉冲操作相同</li>
 <li>微分性质<br>卷积的导数等于第一个元素的导数与第二个元素的卷积<br>$\frac\partial{\partial x}(f*g)=\frac{\partial f}{\partial x}*g$<br>边缘检测和梯度查找会用到</li>
 </ul>
-<h4 id="计算的复杂性和可分离性"><a href="#计算的复杂性和可分离性" class="headerlink" title="计算的复杂性和可分离性"></a>计算的复杂性和可分离性</h4><img src="/2024/04/27/09-07-10/QQ20240427-134946@2x.png" class="">
+<h4 id="计算的复杂性和可分离性"><a href="#计算的复杂性和可分离性" class="headerlink" title="计算的复杂性和可分离性"></a>计算的复杂性和可分离性</h4><img src="/2024/04/27/09-07-10/QQ20240427-134946@2x.png" class>
 <p>乘法的操作次数需要：$N<em>N</em>W*W$</p>
-<p>线性可分离核：<br><img src="/2024/04/27/09-07-10/QQ20240427-135116@2x.png" class=""><br>假设其他位置元素为0，结果为一列向量乘行向量。</p>
+<p>线性可分离核：<br><img src="/2024/04/27/09-07-10/QQ20240427-135116@2x.png" class><br>假设其他位置元素为0，结果为一列向量乘行向量。</p>
 <p>可分离卷积操作：<br>$G=H*F=(C*R)*F=C*(R*F)$<br>乘法操作次数为：$2{\cdot}W{\cdot}N^2&lt;&lt;W^2{\cdot}N^2$</p>
-<h4 id="边界问题"><a href="#边界问题" class="headerlink" title="边界问题"></a>边界问题</h4><p>过滤器会不会从边界掉下去？<br>一共有三种边界处理方式：<br><img src="/2024/04/27/09-07-10/QQ20240427-140836@2x.png" class=""></p>
+<h4 id="边界问题"><a href="#边界问题" class="headerlink" title="边界问题"></a>边界问题</h4><p>过滤器会不会从边界掉下去？<br>一共有三种边界处理方式：<br><img src="/2024/04/27/09-07-10/QQ20240427-140836@2x.png" class></p>
 <p>具体的方法：</p>
 <ul>
 <li><p>剪辑-clip filter<br>假设边缘是黑的，结果会让边缘变暗，因为黑色渗入了</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-141058@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-141058@2x.png" class>
 </li>
 <li><p>环绕法-wrap around<br>与傅里叶分析有关<br>假设图片一周围绕的像素与图像边缘有关：右边填充为左边的图像，上边填充为下边的图像</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-141413@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-141413@2x.png" class>
 <p>过滤效果：</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-141603@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-141603@2x.png" class>
 <p>图像的上边缘会泛红，来源于下边</p>
 <blockquote>
 <p>类似一种周期性信号，但是在图像过滤中效果不好</p>
 </blockquote>
 </li>
 <li><p>边缘复制法-copy edge<br>填充复制图像边缘</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-141754@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240427-141754@2x.png" class>
 <p>效果: 图像基本保持不变，是一个合理的结果</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-141927@2x.png" class=""> 
+<img src="/2024/04/27/09-07-10/QQ20240427-141927@2x.png" class> 
 </li>
 <li><p>反射法-reflect across edge<br>填充的是边缘的反射</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-142124@2x.png" class=""> 
+<img src="/2024/04/27/09-07-10/QQ20240427-142124@2x.png" class> 
 <p>效果也是很好：</p>
-<img src="/2024/04/27/09-07-10/QQ20240427-142207@2x.png" class=""> 
+<img src="/2024/04/27/09-07-10/QQ20240427-142207@2x.png" class> 
 </li>
 </ul>
-<h4 id="联联系线性滤波器"><a href="#联联系线性滤波器" class="headerlink" title="联联系线性滤波器"></a>联联系线性滤波器</h4><p>用脉冲对图像过滤，得到的还是原图像：<br><img src="/2024/04/27/09-07-10/QQ20240427-142606@2x.png" class=""></p>
-<p>使用向右移动了一位的脉冲，过滤结果：<strong>图中进行的是相关操作</strong><br><img src="/2024/04/27/09-07-10/QQ20240427-142802@2x.png" class=""></p>
+<h4 id="联联系线性滤波器"><a href="#联联系线性滤波器" class="headerlink" title="联联系线性滤波器"></a>联联系线性滤波器</h4><p>用脉冲对图像过滤，得到的还是原图像：<br><img src="/2024/04/27/09-07-10/QQ20240427-142606@2x.png" class></p>
+<p>使用向右移动了一位的脉冲，过滤结果：<strong>图中进行的是相关操作</strong><br><img src="/2024/04/27/09-07-10/QQ20240427-142802@2x.png" class></p>
 <blockquote>
 <p>取向左还是向右，取决于做相关还是卷积操作：</p>
 </blockquote>
-<p>模糊的平滑滤镜：<br><img src="/2024/04/27/09-07-10/QQ20240427-143056@2x.png" class=""></p>
-<p>特殊的过滤器：(脉冲的两倍，减去模糊)<br><img src="/2024/04/27/09-07-10/QQ20240427-143220@2x.png" class=""></p>
+<p>模糊的平滑滤镜：<br><img src="/2024/04/27/09-07-10/QQ20240427-143056@2x.png" class></p>
+<p>特殊的过滤器：(脉冲的两倍，减去模糊)<br><img src="/2024/04/27/09-07-10/QQ20240427-143220@2x.png" class></p>
 <blockquote>
-<p>锐化图像，强调差异<br>  应用：<br>  <img src="/2024/04/27/09-07-10/QQ20240427-143339@2x.png" class=""> </p>
+<p>锐化图像，强调差异<br>  应用：<br>  <img src="/2024/04/27/09-07-10/QQ20240427-143339@2x.png" class> </p>
 </blockquote>
 <p>非锐化滤镜:(unsharp mask)<br>类似冲洗胶片，将白光照射，得到底片的负片。</p>
 <p>对应上图的锐化：底片的负片减去模糊的部分，得到的是更清晰的图片。</p>
 <p>模糊的部分是不清晰的蒙版，加入图像后得到了更清晰的图像。</p>
-<h4 id="其他类型的噪音与对应的非线性过滤器"><a href="#其他类型的噪音与对应的非线性过滤器" class="headerlink" title="其他类型的噪音与对应的非线性过滤器"></a>其他类型的噪音与对应的非线性过滤器</h4><p>高斯噪音与椒盐噪音<br><img src="/2024/04/27/09-07-10/QQ20240427-144017@2x.png" class=""><br>过滤的本质是从周围的像素点找一个局部平均值替换。</p>
+<h4 id="其他类型的噪音与对应的非线性过滤器"><a href="#其他类型的噪音与对应的非线性过滤器" class="headerlink" title="其他类型的噪音与对应的非线性过滤器"></a>其他类型的噪音与对应的非线性过滤器</h4><p>高斯噪音与椒盐噪音<br><img src="/2024/04/27/09-07-10/QQ20240427-144017@2x.png" class><br>过滤的本质是从周围的像素点找一个局部平均值替换。</p>
 <p>当噪音趋于0时，可以很好的过滤噪音，如果把完全随机的值加入图像，就需要其他过滤方法，比如中值过滤器。</p>
-<p>中值过滤器：(median filter)<br>将中间的白色像素90，替换为中值，非线性的，不可以复原.<br><img src="/2024/04/27/09-07-10/QQ20240427-145325@2x.png" class=""> </p>
-<p>对椒盐噪音效果很好：<br><img src="/2024/04/27/09-07-10/QQ20240427-145558@2x.png" class=""> </p>
-<p>非线性的过滤：<br><img src="/2024/04/27/09-07-10/QQ20240427-145725@2x.png" class=""><br>有时也称为边缘保留</p>
+<p>中值过滤器：(median filter)<br>将中间的白色像素90，替换为中值，非线性的，不可以复原.<br><img src="/2024/04/27/09-07-10/QQ20240427-145325@2x.png" class> </p>
+<p>对椒盐噪音效果很好：<br><img src="/2024/04/27/09-07-10/QQ20240427-145558@2x.png" class> </p>
+<p>非线性的过滤：<br><img src="/2024/04/27/09-07-10/QQ20240427-145725@2x.png" class><br>有时也称为边缘保留</p>
 <blockquote>
 <p>相对于均值过滤，它保留了图像像素边缘非平滑。</p>
 </blockquote>
 <h2 id="过滤用作模式匹配"><a href="#过滤用作模式匹配" class="headerlink" title="过滤用作模式匹配"></a>过滤用作模式匹配</h2><p>归一化相关性<br>两件事：1. 对过滤器进行标准化。2.用过滤器将box内的像素变为标准差为1。</p>
-<h4 id="1D-信号"><a href="#1D-信号" class="headerlink" title="1D 信号"></a>1D 信号</h4><img src="/2024/04/27/09-07-10/QQ20240427-153302@2x.png" class=""> 
+<h4 id="1D-信号"><a href="#1D-信号" class="headerlink" title="1D 信号"></a>1D 信号</h4><img src="/2024/04/27/09-07-10/QQ20240427-153302@2x.png" class> 
 <p>用所示的滤波器，对信号进行归一化相关：<br>滤波器来源于信号的某一段，在此处，归一化相关后得到峰值。</p>
 <blockquote>
 <p>原理，在归一化处理后的正负图像中，乘一个自己相同的滤波器，得到的值最大，负负为正。峰值处：正值与正值对齐，负值与负值对齐。</p>
 </blockquote>
-<p>对应于图像：<br><img src="/2024/04/27/09-07-10/QQ20240427-154142@2x.png" class=""> </p>
-<p>相关后的图像函数图，在相似位置的值为峰值<br><img src="/2024/04/27/09-07-10/QQ20240427-154201@2x.png" class=""> </p>
+<p>对应于图像：<br><img src="/2024/04/27/09-07-10/QQ20240427-154142@2x.png" class> </p>
+<p>相关后的图像函数图，在相似位置的值为峰值<br><img src="/2024/04/27/09-07-10/QQ20240427-154201@2x.png" class> </p>
 <blockquote>
 <p>解释了过滤器如何用作模式匹配。</p>
 </blockquote>
-<h4 id="模式识别"><a href="#模式识别" class="headerlink" title="模式识别"></a>模式识别</h4><p>简单的例子：<br><img src="/2024/04/27/09-07-10/QQ20240428-104609@2x.png" class=""> </p>
-<p>使用相关性进行检测：<br><img src="/2024/04/27/09-07-10/QQ20240428-104723@2x.png" class=""> </p>
+<h4 id="模式识别"><a href="#模式识别" class="headerlink" title="模式识别"></a>模式识别</h4><p>简单的例子：<br><img src="/2024/04/27/09-07-10/QQ20240428-104609@2x.png" class> </p>
+<p>使用相关性进行检测：<br><img src="/2024/04/27/09-07-10/QQ20240428-104723@2x.png" class> </p>
 <p>最亮的点就是检测到的位置。</p>
-<p>沃尔多在哪里？<br><img src="/2024/04/27/09-07-10/QQ20240428-104903@2x.png" class=""> </p>
-<img src="/2024/04/27/09-07-10/QQ20240428-104923@2x.png" class="">
+<p>沃尔多在哪里？<br><img src="/2024/04/27/09-07-10/QQ20240428-104903@2x.png" class> </p>
+<img src="/2024/04/27/09-07-10/QQ20240428-104923@2x.png" class>
 <p>相同的结果：找到最亮的点。</p>
-<p>图像不同的情况：<br><img src="/2024/04/27/09-07-10/QQ20240428-105048@2x.png" class=""> </p>
-<img src="/2024/04/27/09-07-10/QQ20240428-104923@2x.png" class="">
+<p>图像不同的情况：<br><img src="/2024/04/27/09-07-10/QQ20240428-105048@2x.png" class> </p>
+<img src="/2024/04/27/09-07-10/QQ20240428-104923@2x.png" class>
 <blockquote>
 <p>匹配错误。</p>
 </blockquote>
 <h2 id="边缘检测：梯度"><a href="#边缘检测：梯度" class="headerlink" title="边缘检测：梯度"></a>边缘检测：梯度</h2><p>如果事先不知道要找的图像模板，如何在图像中找到有用的信息，图像的特征。</p>
 <p>简化图像：</p>
 <p>图中的所有信息大多来源于边缘。</p>
-<img src="/2024/04/27/09-07-10/QQ20240428-105632@2x.png" class="">
-<p>边缘：<br><img src="/2024/04/27/09-07-10/QQ20240428-105718@2x.png" class=""></p>
+<img src="/2024/04/27/09-07-10/QQ20240428-105632@2x.png" class>
+<p>边缘：<br><img src="/2024/04/27/09-07-10/QQ20240428-105718@2x.png" class></p>
 <p>上图中分别有深度边缘，阴影边缘，颜色的边缘，形状的边缘。</p>
-<img src="/2024/04/27/09-07-10/QQ20240428-105810@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-105810@2x.png" class>
 <p>图中包含了纹理边缘。</p>
-<p>边缘检测：<br>找出图像函数的边缘像素：<br><img src="/2024/04/27/09-07-10/QQ20240428-110004@2x.png" class=""></p>
+<p>边缘检测：<br>找出图像函数的边缘像素：<br><img src="/2024/04/27/09-07-10/QQ20240428-110004@2x.png" class></p>
 <p>从高度函数中可以看到，急剧变化的位置就是边缘像素。</p>
 <p>边缘检测的问题：</p>
 <ol>
@@ -612,63 +612,63 @@
 <li>变化的范围是多少</li>
 </ol>
 <p><strong>导数和边缘</strong></p>
-<img src="/2024/04/27/09-07-10/QQ20240428-110311@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-110311@2x.png" class>
 <p>右图中的一阶导数函数图，极值点对应的就是图像边缘像素。</p>
 <p><strong>什么是梯度</strong></p>
-<img src="/2024/04/27/09-07-10/QQ20240428-111127@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-111127@2x.png" class>
 <p>梯度是：图像变化最快的方向。大小是单位长度上变化的强度。</p>
 <p>图像的梯度：$\nabla f = [\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}]$</p>
 <p>梯度的方向：$\theta^2=\tan^{-1}(\frac{\partial f}{\partial y}/\frac{\partial f}{\partial x})$</p>
 <p>边缘变化的强度：$\left\|\nabla f\right\|=\sqrt{(\frac{\partial f}{\partial x})^2+(\frac{\partial f}{\partial y})^2}$</p>
 <p>幅度检测：</p>
 <p>离散梯度：（在离散数中，极限无法靠近，只能使用有限差分）<br>定义为：<br>\begin{split}<br>\frac{\partial f\left(x,y\right)}{\partial x}&amp;\approx\frac{f\left(x+1,y\right)-f\left(x,y\right)}1\\&amp;\approx f\left(x+1,y\right)-f\left(x,y\right)<br>\end{split}</p>
-<p>梯度是对$x$，还是$y$做偏导？<br><img src="/2024/04/27/09-07-10/QQ20240428-111919@2x.png" class=""></p>
+<p>梯度是对$x$，还是$y$做偏导？<br><img src="/2024/04/27/09-07-10/QQ20240428-111919@2x.png" class></p>
 <p>上图中可以看出，在垂直方向对x的梯度可以求出边缘像素，但是在水平方向的边缘像素效果不好。<strong>上图是一个对x的有限差分</strong><br>上图也是一个正负图，负数为黑色，正数为白色，零是灰色。</p>
-<p><strong>图像的偏导数</strong><br><img src="/2024/04/27/09-07-10/QQ20240428-112419@2x.png" class=""><br>很容易可以看出：左边是对x的偏导图，右边是对y的偏导图。</p>
+<p><strong>图像的偏导数</strong><br><img src="/2024/04/27/09-07-10/QQ20240428-112419@2x.png" class><br>很容易可以看出：左边是对x的偏导图，右边是对y的偏导图。</p>
 <p>使用的相关过滤器：</p>
 <ul>
 <li>对x：将右边的像素减去左边的像素，增强对比。</li>
 <li>对y：有两种，取决于想让y上升还是下降</li>
 </ul>
-<p>离散梯度：使用运算符$H$实现<br>由公式可以得出，梯度为左边的像素减去自己的像素。<br><img src="/2024/04/27/09-07-10/QQ20240428-113714@2x.png" class=""></p>
+<p>离散梯度：使用运算符$H$实现<br>由公式可以得出，梯度为左边的像素减去自己的像素。<br><img src="/2024/04/27/09-07-10/QQ20240428-113714@2x.png" class></p>
 <ul>
 <li>第一种运算符：没有中间元素，且只输出了右边的梯度</li>
 <li>第二种运算符：输出左边和右边的梯度平均值<br>公式推导：</li>
 </ul>
 <p>\begin{split}<br>\frac{\partial f\left(x,y\right)}{\partial x} \\<br>&amp;\approx\frac{1}{2}\{(f\left(x+1,y\right)-f\left(x,y\right) + f\left(x,y\right)-f\left(x - 1,y\right)\}\\<br>&amp;\approx\frac{1}{2}\{f\left(x+1,y\right)-f\left(x - 1,y\right)\}<br>\end{split}</p>
-<p>经典的边缘算法：Sobel算子<br><img src="/2024/04/27/09-07-10/QQ20240428-123328@2x.png" class=""></p>
+<p>经典的边缘算法：Sobel算子<br><img src="/2024/04/27/09-07-10/QQ20240428-123328@2x.png" class></p>
 <ul>
 <li>$S_x$：左右和左上右上，左下右下的方向导数。</li>
 <li>$S_y$：同理</li>
 </ul>
 <p>梯度：$\nabla\mathbf{I}=[\mathbf{g}_\mathbf{X}\quad\mathbf{g}_\mathbf{y}]^\mathbf{T}$<br>强度：$\mathrm{g=(g_X^2+g_y^2)^{1/2}}$<br>方向：$\theta=\operatorname{atan2}(\mathfrak{g}_\mathrm{y},\mathfrak{g}_\mathrm{x})$</p>
 <p>Sobel古老的例子：X windows</p>
-<img src="/2024/04/27/09-07-10/QQ20240428-123839@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-123839@2x.png" class>
 <blockquote>
 <p>右边的图像是做了阀值化thresholded</p>
 </blockquote>
-<p>著名的边缘算子：<br><img src="/2024/04/27/09-07-10/QQ20240428-123955@2x.png" class=""></p>
-<h4 id="现实世界"><a href="#现实世界" class="headerlink" title="现实世界"></a>现实世界</h4><p>上述算子在现实中不会起作用，噪声太多。<br><img src="/2024/04/27/09-07-10/QQ20240428-124215@2x.png" class=""><br>所以必须先处理噪音，在边缘化。</p>
-<p>解决方案：平滑<br><img src="/2024/04/27/09-07-10/QQ20240428-124357@2x.png" class=""><br>山峰就是边缘像素。</p>
+<p>著名的边缘算子：<br><img src="/2024/04/27/09-07-10/QQ20240428-123955@2x.png" class></p>
+<h4 id="现实世界"><a href="#现实世界" class="headerlink" title="现实世界"></a>现实世界</h4><p>上述算子在现实中不会起作用，噪声太多。<br><img src="/2024/04/27/09-07-10/QQ20240428-124215@2x.png" class><br>所以必须先处理噪音，在边缘化。</p>
+<p>解决方案：平滑<br><img src="/2024/04/27/09-07-10/QQ20240428-124357@2x.png" class><br>山峰就是边缘像素。</p>
 <p><strong>算子的线性结合性</strong><br>利用卷积的求导公式: $\frac\partial{\partial x}(f*g)=\frac{\partial f}{\partial x}*g$</p>
-<img src="/2024/04/27/09-07-10/QQ20240428-124636@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-124636@2x.png" class>
 <p><strong>二阶导数</strong></p>
-<img src="/2024/04/27/09-07-10/QQ20240428-124732@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-124732@2x.png" class>
 <blockquote>
 <p>零强度的位置就是边缘像素，不需要再找峰值了</p>
 </blockquote>
-<h2 id="2D边缘检测"><a href="#2D边缘检测" class="headerlink" title="2D边缘检测"></a>2D边缘检测</h2><h4 id="二维高斯滤波器的导数"><a href="#二维高斯滤波器的导数" class="headerlink" title="二维高斯滤波器的导数"></a>二维高斯滤波器的导数</h4><img src="/2024/04/27/09-07-10/QQ20240428-125006@2x.png" class="">
+<h2 id="2D边缘检测"><a href="#2D边缘检测" class="headerlink" title="2D边缘检测"></a>2D边缘检测</h2><h4 id="二维高斯滤波器的导数"><a href="#二维高斯滤波器的导数" class="headerlink" title="二维高斯滤波器的导数"></a>二维高斯滤波器的导数</h4><img src="/2024/04/27/09-07-10/QQ20240428-125006@2x.png" class>
 <ul>
 <li>公式：$(I\otimes g)\otimes h=I\otimes(g\otimes h)$<br>根据结合性</li>
 <li>$h$: 只对x求导</li>
 <li>$g$: 高斯平滑</li>
 </ul>
-<p>高斯滤波器的导数：<br><img src="/2024/04/27/09-07-10/QQ20240428-125509@2x.png" class=""></p>
+<p>高斯滤波器的导数：<br><img src="/2024/04/27/09-07-10/QQ20240428-125509@2x.png" class></p>
 <ul>
 <li>左图：可以看出是一个相关操作,因为往右增为正方向。</li>
 <li>右图：</li>
 </ul>
-<p>sigma的大小：<br><img src="/2024/04/27/09-07-10/QQ20240428-125956@2x.png" class=""> </p>
+<p>sigma的大小：<br><img src="/2024/04/27/09-07-10/QQ20240428-125956@2x.png" class> </p>
 <p>不同的sigma对于图像边缘的影响：较小的值，有精细的特征,而较大的值仅仅检测到较大尺度的边缘。</p>
 <h4 id="如何找到边缘？"><a href="#如何找到边缘？" class="headerlink" title="如何找到边缘？"></a>如何找到边缘？</h4><p>Canny算子:</p>
 <ol>
@@ -676,16 +676,16 @@
 <li>找幅度最大的方向，进行非极大值抑制，即细化操作</li>
 <li>连接操作，将边缘连接起来<br>定义了两个阀值：极大阀值和极小阀值</li>
 </ol>
-<p>原图：<br><img src="/2024/04/27/09-07-10/QQ20240428-130730@2x.png" class=""> </p>
-<p>梯度图：<br><img src="/2024/04/27/09-07-10/QQ20240428-130742@2x.png" class=""> </p>
-<p>阀值处理图：消除一部分梯度够高的像素<br><img src="/2024/04/27/09-07-10/QQ20240428-130804@2x.png" class=""> </p>
-<p>细化处理：(非极大值抑制)<br><img src="/2024/04/27/09-07-10/QQ20240428-130903@2x.png" class=""> </p>
+<p>原图：<br><img src="/2024/04/27/09-07-10/QQ20240428-130730@2x.png" class> </p>
+<p>梯度图：<br><img src="/2024/04/27/09-07-10/QQ20240428-130742@2x.png" class> </p>
+<p>阀值处理图：消除一部分梯度够高的像素<br><img src="/2024/04/27/09-07-10/QQ20240428-130804@2x.png" class> </p>
+<p>细化处理：(非极大值抑制)<br><img src="/2024/04/27/09-07-10/QQ20240428-130903@2x.png" class> </p>
 <p>做法：某个局部有很多梯度点，只保留极值最高的点，抑制非极大值</p>
-<p>为什么要进行细化操作：<br><img src="/2024/04/27/09-07-10/QQ20240428-131216@2x.png" class=""> </p>
+<p>为什么要进行细化操作：<br><img src="/2024/04/27/09-07-10/QQ20240428-131216@2x.png" class> </p>
 <p>超过阀值的粗部分,只保留极大值，细化为一条直线。</p>
-<img src="/2024/04/27/09-07-10/QQ20240428-131343@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-131343@2x.png" class>
 <p>在梯度方向找到极大值</p>
-<p>另一个问题：下巴的边缘没有检测出来？<br><img src="/2024/04/27/09-07-10/QQ20240428-131520@2x.png" class=""><br>阀值太高，下巴的梯度没有通过阀值。</p>
+<p>另一个问题：下巴的边缘没有检测出来？<br><img src="/2024/04/27/09-07-10/QQ20240428-131520@2x.png" class><br>阀值太高，下巴的梯度没有通过阀值。</p>
 <p>Canny阀值滞后:</p>
 <ol>
 <li>用高阀值检测边缘,找出强边缘像素</li>
@@ -696,12 +696,12 @@
 </blockquote>
 </li>
 </ol>
-<p>Canny 算子的结果：<br><img src="/2024/04/27/09-07-10/QQ20240428-132327@2x.png" class=""></p>
+<p>Canny 算子的结果：<br><img src="/2024/04/27/09-07-10/QQ20240428-132327@2x.png" class></p>
 <p>什么样的边缘图是好的？取决于你想用什么样的边缘图。</p>
-<h4 id="简单的二维边缘检测滤波器"><a href="#简单的二维边缘检测滤波器" class="headerlink" title="简单的二维边缘检测滤波器"></a>简单的二维边缘检测滤波器</h4><img src="/2024/04/27/09-07-10/QQ20240428-132553@2x.png" class="">
+<h4 id="简单的二维边缘检测滤波器"><a href="#简单的二维边缘检测滤波器" class="headerlink" title="简单的二维边缘检测滤波器"></a>简单的二维边缘检测滤波器</h4><img src="/2024/04/27/09-07-10/QQ20240428-132553@2x.png" class>
 <p>偏导有多种顺序</p>
 <p><strong>拉普拉斯算子</strong>用于求二阶偏导</p>
-<img src="/2024/04/27/09-07-10/QQ20240428-132734@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-132734@2x.png" class>
 <p>公式：$\nabla^2h^2=\frac{\partial^2f}{\partial x^2}+\frac{\partial^2f}{\partial y^2}$</p>
 <ul>
 <li>$\nabla^2$: 拉普拉斯算子</li>
@@ -709,8 +709,8 @@
 </ul>
 <h2 id="霍夫变换（Hough-transform）-直线"><a href="#霍夫变换（Hough-transform）-直线" class="headerlink" title="霍夫变换（Hough transform）:直线"></a>霍夫变换（Hough transform）:直线</h2><p>如何找到任意形状？</p>
 <h4 id="参数模型（Parametric-model）"><a href="#参数模型（Parametric-model）" class="headerlink" title="参数模型（Parametric model）"></a>参数模型（Parametric model）</h4><p>参数模型是一个类</p>
-<p>直线匹配：<br><img src="/2024/04/27/09-07-10/QQ20240428-133955@2x.png" class=""></p>
-<p>边缘图：<br><img src="/2024/04/27/09-07-10/QQ20240428-133947@2x.png" class=""><br>困难：</p>
+<p>直线匹配：<br><img src="/2024/04/27/09-07-10/QQ20240428-133955@2x.png" class></p>
+<p>边缘图：<br><img src="/2024/04/27/09-07-10/QQ20240428-133947@2x.png" class><br>困难：</p>
 <ul>
 <li>有很其他形状,多种模型</li>
 <li>线不连续</li>
@@ -736,18 +736,18 @@
 <li>找票数最多线</li>
 <li>追踪票，可以找到属于线的点有哪些</li>
 </ul>
-<h4 id="霍夫空间Hough-parameter-space"><a href="#霍夫空间Hough-parameter-space" class="headerlink" title="霍夫空间Hough (parameter) space"></a>霍夫空间Hough (parameter) space</h4><img src="/2024/04/27/09-07-10/QQ20240428-135111@2x.png" class="">
+<h4 id="霍夫空间Hough-parameter-space"><a href="#霍夫空间Hough-parameter-space" class="headerlink" title="霍夫空间Hough (parameter) space"></a>霍夫空间Hough (parameter) space</h4><img src="/2024/04/27/09-07-10/QQ20240428-135111@2x.png" class>
 <p>对于一个点$(x,y)$，穿过这个点的直线为:$y_0=mx_0+b$，$m$,$b$为任意值。<br>所以对应霍夫空间的函数为：$b^2=-x_0m^2+y_0$</p>
 <blockquote>
 <p>将空间中的一点，对应到霍夫空间中的一条直线</p>
 </blockquote>
-<img src="/2024/04/27/09-07-10/QQ20240428-135421@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-135421@2x.png" class>
 <ul>
 <li>霍夫空间中的交点，对应的参数，是过两点的直线</li>
 <li>这就是从点中找线的方法</li>
 </ul>
 <p><strong>霍夫算法</strong></p>
-<img src="/2024/04/27/09-07-10/QQ20240428-135710@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-135710@2x.png" class>
 <p>点对应于霍夫空间中的线：</p>
 <ul>
 <li>每个点都对自己经过的分区投票</li>
@@ -757,7 +757,7 @@
 </li>
 </ul>
 <p>为了防止出现垂直直线的表示，采用极坐标法表示图像</p>
-<img src="/2024/04/27/09-07-10/QQ20240428-140007@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240428-140007@2x.png" class>
 <ul>
 <li>$d$:原点到点距离</li>
 <li>$\theta$: 表示到$x$轴的角度</li>
@@ -766,15 +766,15 @@
 <blockquote>
 <p>可以表示任何的直线<br>图像空间中的点是霍夫空间中的正弦曲线</p>
 </blockquote>
-<h4 id="基本霍夫变换算法"><a href="#基本霍夫变换算法" class="headerlink" title="基本霍夫变换算法"></a>基本霍夫变换算法</h4><p>霍夫累加器数组（收集投票的数组）：<br><img src="/2024/04/27/09-07-10/QQ20240428-140657@2x.png" class=""></p>
-<p>霍夫算法：<br><img src="/2024/04/27/09-07-10/QQ20240428-140911@2x.png" class=""></p>
+<h4 id="基本霍夫变换算法"><a href="#基本霍夫变换算法" class="headerlink" title="基本霍夫变换算法"></a>基本霍夫变换算法</h4><p>霍夫累加器数组（收集投票的数组）：<br><img src="/2024/04/27/09-07-10/QQ20240428-140657@2x.png" class></p>
+<p>霍夫算法：<br><img src="/2024/04/27/09-07-10/QQ20240428-140911@2x.png" class></p>
 <p>霍夫变化的复杂性：<br>空间复杂性和时间复杂性都很大</p>
-<p>直线的霍夫空间：<br>无噪音的直线<br><img src="/2024/04/27/09-07-10/QQ20240428-141342@2x.png" class=""><br>最亮的点：是像素最多的直线</p>
-<p>正方形的霍夫空间：<br><img src="/2024/04/27/09-07-10/QQ20240428-141150@2x.png" class=""></p>
-<h4 id="噪音对霍夫变化的影响"><a href="#噪音对霍夫变化的影响" class="headerlink" title="噪音对霍夫变化的影响"></a>噪音对霍夫变化的影响</h4><img src="/2024/04/27/09-07-10/QQ20240428-141725@2x.png" class="">
+<p>直线的霍夫空间：<br>无噪音的直线<br><img src="/2024/04/27/09-07-10/QQ20240428-141342@2x.png" class><br>最亮的点：是像素最多的直线</p>
+<p>正方形的霍夫空间：<br><img src="/2024/04/27/09-07-10/QQ20240428-141150@2x.png" class></p>
+<h4 id="噪音对霍夫变化的影响"><a href="#噪音对霍夫变化的影响" class="headerlink" title="噪音对霍夫变化的影响"></a>噪音对霍夫变化的影响</h4><img src="/2024/04/27/09-07-10/QQ20240428-141725@2x.png" class>
 <p>峰值不明确了</p>
-<p>更多的噪音：<br><img src="/2024/04/27/09-07-10/QQ20240428-141839@2x.png" class=""></p>
-<h4 id="霍夫变化的扩展"><a href="#霍夫变化的扩展" class="headerlink" title="霍夫变化的扩展"></a>霍夫变化的扩展</h4><p>使用<strong>梯度</strong>优化霍夫变换算法<br><img src="/2024/04/27/09-07-10/QQ20240428-142259@2x.png" class=""></p>
+<p>更多的噪音：<br><img src="/2024/04/27/09-07-10/QQ20240428-141839@2x.png" class></p>
+<h4 id="霍夫变化的扩展"><a href="#霍夫变化的扩展" class="headerlink" title="霍夫变化的扩展"></a>霍夫变化的扩展</h4><p>使用<strong>梯度</strong>优化霍夫变换算法<br><img src="/2024/04/27/09-07-10/QQ20240428-142259@2x.png" class></p>
 <blockquote>
 <p>优化的霍夫变换的地方？</p>
 </blockquote>
@@ -783,15 +783,15 @@
 <p>课上的算法对现实是不起作用的<br>论文中的算法也是不起作用，要把故事讲得好听<br>关键是理解原理</p>
 </blockquote>
 <h2 id="霍夫变换（Hough-transform）-圆"><a href="#霍夫变换（Hough-transform）-圆" class="headerlink" title="霍夫变换（Hough transform）:圆"></a>霍夫变换（Hough transform）:圆</h2><p>圆的方程：$\left(x_i-a\right)^2+\left(y_i-b\right)^2=r^2$</p>
-<p>圆的霍夫空间：<br><img src="/2024/04/27/09-07-10/QQ20240429-091353@2x.png" class=""></p>
-<p>使用更大的投票箱：<br><img src="/2024/04/27/09-07-10/QQ20240429-091756@2x.png" class=""></p>
-<h4 id="圆的霍夫变换"><a href="#圆的霍夫变换" class="headerlink" title="圆的霍夫变换"></a>圆的霍夫变换</h4><p>投票箱在3D空间中：<br><img src="/2024/04/27/09-07-10/QQ20240429-091605@2x.png" class=""></p>
-<p>梯度优化：<br><img src="/2024/04/27/09-07-10/QQ20240429-092109@2x.png" class=""></p>
+<p>圆的霍夫空间：<br><img src="/2024/04/27/09-07-10/QQ20240429-091353@2x.png" class></p>
+<p>使用更大的投票箱：<br><img src="/2024/04/27/09-07-10/QQ20240429-091756@2x.png" class></p>
+<h4 id="圆的霍夫变换"><a href="#圆的霍夫变换" class="headerlink" title="圆的霍夫变换"></a>圆的霍夫变换</h4><p>投票箱在3D空间中：<br><img src="/2024/04/27/09-07-10/QQ20240429-091605@2x.png" class></p>
+<p>梯度优化：<br><img src="/2024/04/27/09-07-10/QQ20240429-092109@2x.png" class></p>
 <ul>
 <li>过这点的圆心只可能在：点和圆心的连线，即梯度垂线上</li>
 <li>这样就过滤掉其他位置的圆心投票</li>
 </ul>
-<p>算法：<br><img src="/2024/04/27/09-07-10/QQ20240429-091847@2x.png" class=""></p>
+<p>算法：<br><img src="/2024/04/27/09-07-10/QQ20240429-091847@2x.png" class></p>
 <h4 id="投票的实用技巧"><a href="#投票的实用技巧" class="headerlink" title="投票的实用技巧"></a>投票的实用技巧</h4><ul>
 <li>剪枝，不要投没用得票</li>
 <li>选一个合理的投票网格<ul>
@@ -814,7 +814,7 @@
 <li>非常规形状，投票很复杂</li>
 </ul>
 <h2 id="广义霍夫变换"><a href="#广义霍夫变换" class="headerlink" title="广义霍夫变换"></a>广义霍夫变换</h2><h4 id="非分析模型"><a href="#非分析模型" class="headerlink" title="非分析模型"></a>非分析模型</h4><p>霍夫表：<br>用于给非规则形状投票</p>
-<p>建表：<br><img src="/2024/04/27/09-07-10/QQ20240429-093857@2x.png" class=""></p>
+<p>建表：<br><img src="/2024/04/27/09-07-10/QQ20240429-093857@2x.png" class></p>
 <ul>
 <li>$c$：是一个定位点</li>
 <li>$r$：位移矢量</li>
@@ -822,29 +822,29 @@
 <li>把$r$放入由$\theta$索引的表</li>
 </ul>
 <p>识别：</p>
-<img src="/2024/04/27/09-07-10/QQ20240429-093933@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-093933@2x.png" class>
 <ul>
 <li>计算边界点的梯度方向$\theta$</li>
 <li>在表格中找出所有该方向的位移向量</li>
 <li>给位移向量的终点投票？</li>
 </ul>
 <p>样例：</p>
-<img src="/2024/04/27/09-07-10/QQ20240429-101040@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-101040@2x.png" class>
 <p>底部的边有相同的$\theta$，但是不一样的位移，对所有的位移投票。</p>
-<img src="/2024/04/27/09-07-10/QQ20240429-101252@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-101252@2x.png" class>
 <p>当下这个像素点的位移图，来源于它相同$\theta$的投票，做了平移，他们公用一个索引点，最终底部的所有像素点投票得出了一条直线。</p>
-<img src="/2024/04/27/09-07-10/QQ20240429-101605@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-101605@2x.png" class>
 <p>这条直线中，中心的投票数是最多的，通过对另一条边做相同操作，交点为中心点。</p>
 <p>算法：默认不知道方向</p>
-<img src="/2024/04/27/09-07-10/QQ20240429-102147@2x.png" class="">
-<p>不知道比例：<br><img src="/2024/04/27/09-07-10/QQ20240429-102238@2x.png" class=""></p>
-<p><strong>识别中的应用</strong><br>基于视觉代码的索引：<br><img src="/2024/04/27/09-07-10/QQ20240429-102508@2x.png" class=""></p>
-<p>生成代码块：<br><img src="/2024/04/27/09-07-10/QQ20240429-102615@2x.png" class=""><br>像素按蔟分类</p>
-<p>生成特征：<br><img src="/2024/04/27/09-07-10/QQ20240429-102705@2x.png" class=""></p>
-<p>生成位移投票：<br><img src="/2024/04/27/09-07-10/QQ20240429-102750@2x.png" class=""><br>在投票箱中，相同特征的投票数量就是特征的个数。<br>看轮胎投了几票</p>
+<img src="/2024/04/27/09-07-10/QQ20240429-102147@2x.png" class>
+<p>不知道比例：<br><img src="/2024/04/27/09-07-10/QQ20240429-102238@2x.png" class></p>
+<p><strong>识别中的应用</strong><br>基于视觉代码的索引：<br><img src="/2024/04/27/09-07-10/QQ20240429-102508@2x.png" class></p>
+<p>生成代码块：<br><img src="/2024/04/27/09-07-10/QQ20240429-102615@2x.png" class><br>像素按蔟分类</p>
+<p>生成特征：<br><img src="/2024/04/27/09-07-10/QQ20240429-102705@2x.png" class></p>
+<p>生成位移投票：<br><img src="/2024/04/27/09-07-10/QQ20240429-102750@2x.png" class><br>在投票箱中，相同特征的投票数量就是特征的个数。<br>看轮胎投了几票</p>
 <h2 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h2><p>计算视觉将图像视为数据，而不是信号，但频率分析的思想很有用。</p>
 <p>basis sets：标准基(线代的定义)</p>
-<p>应用到图像的标准基：<br>把图像视为非常大的空间中的点，例如一个N*N的图像，可以认为是一个一维的向量。<br>另一种做法：<br><img src="/2024/04/27/09-07-10/QQ20240429-140527@2x.png" class=""></p>
+<p>应用到图像的标准基：<br>把图像视为非常大的空间中的点，例如一个N*N的图像，可以认为是一个一维的向量。<br>另一种做法：<br><img src="/2024/04/27/09-07-10/QQ20240429-140527@2x.png" class></p>
 <ul>
 <li>同一位置的图像：类似正弦余弦</li>
 </ul>
@@ -855,13 +855,13 @@
 <li>$\omega$：频率</li>
 <li>$\varphi$：相位</li>
 </ul>
-<img src="/2024/04/27/09-07-10/QQ20240429-141002@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-141002@2x.png" class>
 <p>频率是最重要的，频率越高，摆动速度越快</p>
-<h4 id="时间和频率"><a href="#时间和频率" class="headerlink" title="时间和频率"></a>时间和频率</h4><p>$g(t)=\sin(2\pi ft)+\frac13\sin(2\pi(3f)t)$<br><img src="/2024/04/27/09-07-10/QQ20240429-141307@2x.png" class=""></p>
+<h4 id="时间和频率"><a href="#时间和频率" class="headerlink" title="时间和频率"></a>时间和频率</h4><p>$g(t)=\sin(2\pi ft)+\frac13\sin(2\pi(3f)t)$<br><img src="/2024/04/27/09-07-10/QQ20240429-141307@2x.png" class></p>
 <p>一种绘制光谱的方式</p>
-<img src="/2024/04/27/09-07-10/QQ20240429-141409@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-141409@2x.png" class>
 <p>f越大，越接近方波</p>
-<p>方波的正弦公式：$A\sum\limits_{k=1}^{\infty}\frac{1}{k}\sin\left(2\pi kt\right)$<br>图像：<br><img src="/2024/04/27/09-07-10/QQ20240429-141517@2x.png" class=""><br>不考虑相位</p>
+<p>方波的正弦公式：$A\sum\limits_{k=1}^{\infty}\frac{1}{k}\sin\left(2\pi kt\right)$<br>图像：<br><img src="/2024/04/27/09-07-10/QQ20240429-141517@2x.png" class><br>不考虑相位</p>
 <h4 id="傅里叶变换-1"><a href="#傅里叶变换-1" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h4><p>$f(x)\longrightarrow\boxed{\begin{array}{c}\text{Fourier}\\\text{Transform}\end{array}}\longrightarrow F(\omega)$</p>
 <p>复数：$\begin{aligned}F\left(\omega\right)&amp;=R\left(\omega\right)+iI\left(\omega\right)\end{aligned}$<br>性质：</p>
 <ul>
@@ -877,78 +877,78 @@
 <li>如果$u == \omega$：积分为无穷</li>
 <li>如果$u \neq \omega$：积分为0 </li>
 </ul>
-<p>得到脉冲图：<br><img src="/2024/04/27/09-07-10/QQ20240429-143042@2x.png" class=""></p>
+<p>得到脉冲图：<br><img src="/2024/04/27/09-07-10/QQ20240429-143042@2x.png" class></p>
 <p>被称作与余弦对应的脉冲</p>
 <p>如果是正弦，左边将会是负的脉冲：$\sin(-x) = -\sin(x)$</p>
 <h4 id="傅里叶变换通用定义"><a href="#傅里叶变换通用定义" class="headerlink" title="傅里叶变换通用定义"></a>傅里叶变换通用定义</h4><p>定义：$F\left(u^2\right)=\int_{-\infty}^{\infty}f\left(x^2\right)e^{-i2\pi ux}dx$<br>其中：$e^{ik}=\text{ cos }k+i\sin k\quad i=\sqrt{-1}$</p>
 <p>作用：从空间域转换到频域</p>
 <p>傅里叶逆变换：$f\left(x\right)=\int_{-\infty}^\infty F\left(u\right)e^{i2\pi ux}du$<br>可以恢复信号</p>
-<h4 id="频谱"><a href="#频谱" class="headerlink" title="频谱"></a>频谱</h4><p>常用频谱：<br><img src="/2024/04/27/09-07-10/QQ20240429-144050@2x.png" class=""><br>最后一个是幂频谱</p>
-<p>频谱图：<br><img src="/2024/04/27/09-07-10/QQ20240429-144135@2x.png" class=""></p>
+<h4 id="频谱"><a href="#频谱" class="headerlink" title="频谱"></a>频谱</h4><p>常用频谱：<br><img src="/2024/04/27/09-07-10/QQ20240429-144050@2x.png" class><br>最后一个是幂频谱</p>
+<p>频谱图：<br><img src="/2024/04/27/09-07-10/QQ20240429-144135@2x.png" class></p>
 <p>局限性：<br>傅里叶级数积分有界</p>
 <h4 id="傅里叶变换到傅里叶级数"><a href="#傅里叶变换到傅里叶级数" class="headerlink" title="傅里叶变换到傅里叶级数"></a>傅里叶变换到傅里叶级数</h4><p>级数：$F\left(k\right)=\frac1N\sum_{x=0}^{x=N-1}f\left(x\right)e^{-i\frac{2\pi kx}N}$</p>
 <p>积分的另一种写法：离散化</p>
 <h4 id="二维的傅里叶"><a href="#二维的傅里叶" class="headerlink" title="二维的傅里叶"></a>二维的傅里叶</h4><p>$F\left(u,\nu\right)=\int_{-\infty}^\infty\int_{-\infty}^\infty f\left(x,y\right)e^{-i2\pi\left(ux+\nu y\right)}dxdy\frac12$</p>
 <p>离散：$F\left(k_x,k_y\right)=\frac1N\sum_{x=0}^{x=N-1}\sum_{y=0}^{y=N-1}f\left(x,y\right)e^{-i\frac{2\pi\left(k_xx+k_yy\right)}N}$</p>
-<p>例子：<br>一个正弦曲线，处于特定的频率， 仅仅有垂直线组成：<br><img src="/2024/04/27/09-07-10/QQ20240429-144821@2x.png" class=""></p>
+<p>例子：<br>一个正弦曲线，处于特定的频率， 仅仅有垂直线组成：<br><img src="/2024/04/27/09-07-10/QQ20240429-144821@2x.png" class></p>
 <p>右图是它的傅里叶频谱和功能谱。<br>亮点就是频率的尖峰</p>
-<p>一个余弦曲线，频率更快：<br><img src="/2024/04/27/09-07-10/QQ20240429-145050@2x.png" class=""></p>
+<p>一个余弦曲线，频率更快：<br><img src="/2024/04/27/09-07-10/QQ20240429-145050@2x.png" class></p>
 <blockquote>
 <p>频率分量更高，峰值靠外</p>
 </blockquote>
-<p>线性：傅里叶变换是一个线性变换<br><img src="/2024/04/27/09-07-10/QQ20240429-145222@2x.png" class=""></p>
-<h4 id="真实图像的光谱"><a href="#真实图像的光谱" class="headerlink" title="真实图像的光谱"></a>真实图像的光谱</h4><img src="/2024/04/27/09-07-10/QQ20240429-145348@2x.png" class="">
+<p>线性：傅里叶变换是一个线性变换<br><img src="/2024/04/27/09-07-10/QQ20240429-145222@2x.png" class></p>
+<h4 id="真实图像的光谱"><a href="#真实图像的光谱" class="headerlink" title="真实图像的光谱"></a>真实图像的光谱</h4><img src="/2024/04/27/09-07-10/QQ20240429-145348@2x.png" class>
 <blockquote>
 <p>自然图像有相同的光谱<br>重建图像才需要相位<br>用部分光谱重建图像，图像的变化如右图<br>高频率：告诉边缘在哪里，高频越亮，越清晰<br>明亮线垂直于轮廓线</p>
 </blockquote>
-<img src="/2024/04/27/09-07-10/QQ20240429-145542@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-145542@2x.png" class>
 <p>人造场景：</p>
-<img src="/2024/04/27/09-07-10/QQ20240429-145613@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-145613@2x.png" class>
 <p>思考：</p>
 <ul>
 <li>如果不是周期函数，光谱会有倾斜</li>
 <li></li>
 </ul>
 <h2 id="频率分析中的卷积"><a href="#频率分析中的卷积" class="headerlink" title="频率分析中的卷积"></a>频率分析中的卷积</h2><h4 id="傅里叶变换与卷积"><a href="#傅里叶变换与卷积" class="headerlink" title="傅里叶变换与卷积"></a>傅里叶变换与卷积</h4><p>卷积：$g = f * h$<br>傅里叶变换：<br>\begin{split}<br>G\left(u\right)&amp;=\int_{-\infty}^{\infty}g\left(x\right)e^{-i2\pi ux}dx \\<br>&amp;=\int_{-\infty}^\infty\int_{-\infty}^\infty f\left(\tau\right)h\left(x-\tau\right)e^{-i2\pi ux}d\tau dx \\<br>&amp;=\int_{-\infty}^\infty\int_{-\infty}^\infty\left[f\left(\tau\right)e^{-i2\pi u\tau}d\tau\right]\left[h\left(x-\tau\right)e^{-i2\pi u\left(x-\tau\right)}dx\right] \\<br>&amp;=\int_{-\infty}^{\infty}\left[f\left(\tau\right)e^{-i2\pi u\tau}d\tau\right]\int_{-\infty}^{\infty}\left[h\left(x^{\prime}\right)e^{-i2\pi ux^{\prime}}dx^{\prime}\right] \\<br>&amp;=F\left(\begin{array}{c}u\\\end{array}\right)H\left(\begin{array}{c}u\\\end{array}\right)<br>\end{split}</p>
-<img src="/2024/04/27/09-07-10/QQ20240429-152239@2x.png" class="">
+<img src="/2024/04/27/09-07-10/QQ20240429-152239@2x.png" class>
 <p><strong>空间中乘积$\Leftrightarrow$频率空间中卷积</strong></p>
 <blockquote>
 <p>大掩码的空间域卷积很复杂，用快速傅里叶变换可以转换为频率域乘法，避免卷积。</p>
 </blockquote>
-<h4 id="平滑和模糊中的应用"><a href="#平滑和模糊中的应用" class="headerlink" title="平滑和模糊中的应用"></a>平滑和模糊中的应用</h4><img src="/2024/04/27/09-07-10/QQ20240429-152734@2x.png" class="">
-<img src="/2024/04/27/09-07-10/QQ20240429-152812@2x.png" class="">
+<h4 id="平滑和模糊中的应用"><a href="#平滑和模糊中的应用" class="headerlink" title="平滑和模糊中的应用"></a>平滑和模糊中的应用</h4><img src="/2024/04/27/09-07-10/QQ20240429-152734@2x.png" class>
+<img src="/2024/04/27/09-07-10/QQ20240429-152812@2x.png" class>
 <p><strong>瘦高斯的傅里叶是胖的</strong><br>原因：<br>如果高斯很瘦，就希望保留所有的频率，傅里叶就很胖。<br>高斯很胖，模糊了一切，就只保留一点点低频率，几乎没有高频率。<br>作用：<br>保存低频率，降低高频率。</p>
 <blockquote>
 <p>空间采样频率越低，傅里叶频率越高.<br>傅里叶的放缩原理</p>
 </blockquote>
-<p>效果图；<br><img src="/2024/04/27/09-07-10/QQ20240429-153249@2x.png" class=""></p>
-<h4 id="傅里叶变换的性质"><a href="#傅里叶变换的性质" class="headerlink" title="傅里叶变换的性质"></a>傅里叶变换的性质</h4><img src="/2024/04/27/09-07-10/QQ20240429-153642@2x.png" class="">
-<p>傅里叶对：<br><img src="/2024/04/27/09-07-10/QQ20240429-153804@2x.png" class=""></p>
+<p>效果图；<br><img src="/2024/04/27/09-07-10/QQ20240429-153249@2x.png" class></p>
+<h4 id="傅里叶变换的性质"><a href="#傅里叶变换的性质" class="headerlink" title="傅里叶变换的性质"></a>傅里叶变换的性质</h4><img src="/2024/04/27/09-07-10/QQ20240429-153642@2x.png" class>
+<p>傅里叶对：<br><img src="/2024/04/27/09-07-10/QQ20240429-153804@2x.png" class></p>
 <h2 id="混叠-Aliasing"><a href="#混叠-Aliasing" class="headerlink" title="混叠 Aliasing"></a>混叠 Aliasing</h2><p>傅里叶基是如何混叠的？</p>
-<h4 id="脉冲串的概念"><a href="#脉冲串的概念" class="headerlink" title="脉冲串的概念"></a>脉冲串的概念</h4><p>脉冲串的傅里叶变换是另一个脉冲串<br><img src="/2024/04/27/09-07-10/QQ20240429-154529@2x.png" class=""></p>
+<h4 id="脉冲串的概念"><a href="#脉冲串的概念" class="headerlink" title="脉冲串的概念"></a>脉冲串的概念</h4><p>脉冲串的傅里叶变换是另一个脉冲串<br><img src="/2024/04/27/09-07-10/QQ20240429-154529@2x.png" class></p>
 <blockquote>
 <p>空间中脉冲距离越远，频率中脉冲越接近</p>
 </blockquote>
-<h4 id="采样和重构"><a href="#采样和重构" class="headerlink" title="采样和重构"></a>采样和重构</h4><img src="/2024/04/27/09-07-10/QQ20240429-154812@2x.png" class="">
-<p>采样是计算机如何存储连续信号提出的,如何重建原始信号？<br><img src="/2024/04/27/09-07-10/QQ20240429-154933@2x.png" class=""></p>
+<h4 id="采样和重构"><a href="#采样和重构" class="headerlink" title="采样和重构"></a>采样和重构</h4><img src="/2024/04/27/09-07-10/QQ20240429-154812@2x.png" class>
+<p>采样是计算机如何存储连续信号提出的,如何重建原始信号？<br><img src="/2024/04/27/09-07-10/QQ20240429-154933@2x.png" class></p>
 <p>在离散位置如何将信号连续起来。</p>
-<p>样例：<br><img src="/2024/04/27/09-07-10/QQ20240429-155039@2x.png" class=""></p>
+<p>样例：<br><img src="/2024/04/27/09-07-10/QQ20240429-155039@2x.png" class></p>
 <p>采样密度不够，无法恢复图像。</p>
 <p>如何防止锯齿出现？<br>过滤高频率，降低采样量。</p>
-<h4 id="脉冲"><a href="#脉冲" class="headerlink" title="脉冲"></a>脉冲</h4><p>一维脉冲函数：$comb_M[x]=\sum_{k=-\infty}^{\infty}\delta[x-kM]$<br>图像：<br><img src="/2024/04/27/09-07-10/QQ20240429-155942@2x.png" class=""></p>
+<h4 id="脉冲"><a href="#脉冲" class="headerlink" title="脉冲"></a>脉冲</h4><p>一维脉冲函数：$comb_M[x]=\sum_{k=-\infty}^{\infty}\delta[x-kM]$<br>图像：<br><img src="/2024/04/27/09-07-10/QQ20240429-155942@2x.png" class></p>
 <p>二维脉冲函数：$comb_{M,N}(x,y)\equiv\sum_{k=-\infty}^\infty\sum_{l=-\infty}^\infty\delta\left(x-kM,y-lN\right)$<br>傅里叶变换：<br>$\sum_{k=-\infty}^n\sum_{l=-\infty}^n\delta\left(x-kM,y-lN\right)\Leftrightarrow\frac1{MN}\sum_{k=-\infty}^\infty\sum_{l=-\infty}^\infty\delta\left(u-\frac kM,\nu-\frac lN\right)$</p>
-<h4 id="采样低频信号"><a href="#采样低频信号" class="headerlink" title="采样低频信号"></a>采样低频信号</h4><img src="/2024/04/27/09-07-10/QQ20240429-160402@2x.png" class="">
+<h4 id="采样低频信号"><a href="#采样低频信号" class="headerlink" title="采样低频信号"></a>采样低频信号</h4><img src="/2024/04/27/09-07-10/QQ20240429-160402@2x.png" class>
 <p>采样：连续信号乘离散梳函数</p>
 <p>如果功能频率$W$满足：$W&lt;\frac1{2M}$，就可以恢复。</p>
 <blockquote>
 <p>这里有一些采样定理的内容</p>
 </blockquote>
-<h4 id="采样高频信号"><a href="#采样高频信号" class="headerlink" title="采样高频信号"></a>采样高频信号</h4><img src="/2024/04/27/09-07-10/QQ20240429-160831@2x.png" class="">
+<h4 id="采样高频信号"><a href="#采样高频信号" class="headerlink" title="采样高频信号"></a>采样高频信号</h4><img src="/2024/04/27/09-07-10/QQ20240429-160831@2x.png" class>
 <p>高频信号采样重叠了，采样之前，必须去处高频，以防重叠。</p>
-<p>如何去处高频？<br><strong>梳状滤波器</strong><br><img src="/2024/04/27/09-07-10/QQ20240429-161033@2x.png" class=""></p>
+<p>如何去处高频？<br><strong>梳状滤波器</strong><br><img src="/2024/04/27/09-07-10/QQ20240429-161033@2x.png" class></p>
 <h4 id="图像中的重叠"><a href="#图像中的重叠" class="headerlink" title="图像中的重叠"></a>图像中的重叠</h4><p>图像缩小，如果直接丢掉行列，图像会变小。放大图像后，图像不像是缩小的图像，很模糊。</p>
-<p>正确的做法是：用高斯滤波。<br><img src="/2024/04/27/09-07-10/QQ20240429-161449@2x.png" class=""><br>高斯滤波做了抗锯齿，所以效果更好。</p>
-<h4 id="对比度敏感"><a href="#对比度敏感" class="headerlink" title="对比度敏感"></a>对比度敏感</h4><img src="/2024/04/27/09-07-10/QQ20240429-161728@2x.png" class="">
+<p>正确的做法是：用高斯滤波。<br><img src="/2024/04/27/09-07-10/QQ20240429-161449@2x.png" class><br>高斯滤波做了抗锯齿，所以效果更好。</p>
+<h4 id="对比度敏感"><a href="#对比度敏感" class="headerlink" title="对比度敏感"></a>对比度敏感</h4><img src="/2024/04/27/09-07-10/QQ20240429-161728@2x.png" class>
 <p>人类的视觉对高频不敏感。</p>
 <h4 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h4><p>DCT：离散余弦变换<br>不保留高频信息，降低图像质量时，只保存低频率信息。</p>
 

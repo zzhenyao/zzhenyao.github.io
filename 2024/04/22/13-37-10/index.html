@@ -299,7 +299,7 @@
 <li>肿瘤诊断</li>
 </ul>
 <p>讨论肿瘤诊断问题：</p>
-<img src="/2024/04/22/13-37-10/20180109_144040.png" class="">
+<img src="/2024/04/22/13-37-10/20180109_144040.png" class>
 <p>肿瘤诊断问题的目的是告诉病人<strong>是否</strong>为恶性肿瘤，是一个<strong>二元分类问题（binary class problems）</strong>，则定义 $ y \in\lbrace 0, 1\rbrace$，其中 0 表示<strong>负向类（negative class）</strong>，代表恶性肿瘤（”-“），1 为<strong>正向类（positive class）</strong>，代表良性肿瘤（”+”）。如图，定义最右边的样本为<strong>偏差项</strong>。</p>
 <p>在未加入偏差项时，线性回归算法给出了品红色的拟合直线，若规定</p>
 <p>$h_\theta(x) \geqslant 0.5$ ，预测为 $y = 1$，即正向类；</p>
@@ -311,7 +311,7 @@
 <h2 id="6-2-假设函数表示（Hypothesis-Representation"><a href="#6-2-假设函数表示（Hypothesis-Representation" class="headerlink" title="6.2 假设函数表示（Hypothesis Representation"></a>6.2 假设函数表示（Hypothesis Representation</h2><p>为了使 $h_\theta(x) \in \left(0, 1\right)$，引入逻辑回归模型，定义假设函数<br>$$<br>h_\theta \left( x \right)=g(z)=g\left(\theta^{T}x \right)<br>$$<br>对比线性回归函数 $h_\theta \left( x \right)=\theta^{T}x$，$g$ 表示逻辑函数logistic function，复合起来，则称为逻辑回归函数。</p>
 <p>逻辑函数是 S 形函数，会将所有实数映射到 $(0, 1)$ 范围。</p>
 <p>sigmoid 函数（如下图）是逻辑函数的特殊情 况，其公式为 $g\left( z \right)=\frac{1}{1+{ {e}^{-z} } }$。 </p>
-<img src="/2024/04/22/13-37-10/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class="">
+<img src="/2024/04/22/13-37-10/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class>
 <p>应用 sigmoid 函数，则逻辑回归模型：$$h_{\theta}(x)=g(\theta^Tx) =\frac{1}{1+e^{-\theta^Tx} }$$</p>
 <p>逻辑回归模型中，$h_\theta \left( x \right)$ 的作用是，根据输入 $x$ 以及参数 $\theta$，计算得出”输出 $y=1$“的可能性（estimated probability），概率学中表示为：</p>
 <p>$$<br>\begin{split}<br>&amp; h_\theta(x) = P(y=1 | x ; \theta) = 1 - P(y=0 | x ; \theta) \\<br>&amp; P(y = 0 | x;\theta) + P(y = 1 | x ; \theta) = 1<br>\end{split}<br>$$<br>以肿瘤诊断为例，$h_\theta \left( x \right)=0.7$ 表示病人有 $70\%$ 的概率得了恶性肿瘤。</p>
@@ -319,29 +319,29 @@
 <p>在逻辑回归中，有假设函数 $h_\theta \left( x \right)=g(z)=g\left(\theta^{T}x \right)$。</p>
 <p>为了得出分类的结果，这里和前面一样，规定以 $0.5$ 为阈值：</p>
 <p>$$<br>\begin{split}<br>&amp; h_\theta(x) \geq 0.5 \rightarrow y = 1 \\<br>&amp; h_\theta(x) &lt; 0.5 \rightarrow y = 0 \\<br>\end{split}<br>$$<br>回忆一下 sigmoid 函数的图像：</p>
-<img src="/2024/04/22/13-37-10/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class="">
+<img src="/2024/04/22/13-37-10/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png" class>
 <p>观察可得当 $g(z) \geq 0.5$ 时，有 $z \geq 0$，即 $\theta^Tx \geq 0$。</p>
 <p>同线性回归模型的不同点在于：<br>$$<br>\begin{split}<br>z \to +\infty, e^{-\infty} \to 0 \Rightarrow g(z)=1 \\<br>z \to -\infty, e^{\infty}\to \infty \Rightarrow g(z)=0<br>\end{split}<br>$$<br>直观一点来个例子，${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2} }{x_{2} }\right)$ 是下图模型的假设函数：</p>
-<img src="/2024/04/22/13-37-10/20180111_000814.png" class="">
+<img src="/2024/04/22/13-37-10/20180111_000814.png" class>
 <p>根据上面的讨论，要进行分类，那么只要 $ {\theta_0}+{\theta_1}{x_1}+{\theta_{2} }{x_{2} }\geq0$ 时，就预测 $y = 1$，即预测为正向类。</p>
 <p>如果取 $\theta = \begin{bmatrix} -3\\1\\1\end{bmatrix}$，则有 $z = -3+{x_1}+{x_2}$，当 $z \geq 0$ 即 ${x_1}+{x_2} \geq 3$ 时，易绘制图中的品红色直线即<strong>决策边界</strong>，为正向类（以红叉标注的数据）给出 $y=1$ 的分类预测结果。</p>
 <p>上面讨论了逻辑回归模型中线性拟合的例子，下面则是一个多项式拟合的例子，和线性回归中的情况也是类似的。</p>
 <p>为了拟合下图数据，建模多项式假设函数：</p>
 <p>$$<br>{h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2} }{x_{2} }+{\theta_{3} }x_{1}^{2}+{\theta_{4} }x_{2}^{2} \right)<br>$$<br>这里取 $\theta = \begin{bmatrix} -1\\0\\0\\1\\1\end{bmatrix}$，决策边界对应了一个在原点处的单位圆（${x_1}^2+{x_2}^2 = 1$），如此便可给出分类结果，如图中品红色曲线：</p>
-<img src="/2024/04/22/13-37-10/20180111_000653.png" class="">
+<img src="/2024/04/22/13-37-10/20180111_000653.png" class>
 <p>当然，通过一些更为复杂的多项式，还能拟合那些图像显得非常怪异的数据，使得决策边界形似碗状、爱心状等等。</p>
 <p>简单来说，决策边界就是<strong>分类的分界线</strong>。</p>
 <h2 id="6-4-代价函数（Cost-Function）"><a href="#6-4-代价函数（Cost-Function）" class="headerlink" title="6.4 代价函数（Cost Function）"></a>6.4 代价函数（Cost Function）</h2><p>那我们怎么知道决策边界是啥样？$\theta$ 多少时能很好的拟合数据？当然，见招拆招，总要来个 $J(\theta)$。</p>
 <p>如果直接套用线性回归的代价函数： $J\left( {\theta} \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{ { {\left( h_{\theta} \left({x}^{\left( i \right)} \right)-{y}^{\left( i \right)} \right)}^{2} } }$</p>
 <p>其中 $h_\theta(x) = g\left(\theta^{T}x \right)$，可绘制关于 $J(\theta)$ 的图像，如下图</p>
-<img src="/2024/04/22/13-37-10/20180111_080314.png" class="">
+<img src="/2024/04/22/13-37-10/20180111_080314.png" class>
 <p><strong>同济高数教材关于凸函数的定义是反的</strong><br>回忆线性回归中的平方损失函数，其是一个二次凸函数（碗状），二次凸函数的重要性质是只有一个局部最小点即全局最小点。上图中有许多局部最小点，这样将使得梯度下降算法无法确定收敛点是全局最优。</p>
-<img src="/2024/04/22/13-37-10/20180111_080514.png" class="">
+<img src="/2024/04/22/13-37-10/20180111_080514.png" class>
 <p>如果此处的损失函数也是一个凸函数，是否也有同样的性质，从而最优化？这类讨论凸函数最优值的问题，被称为<strong>凸优化问题（Convex optimization）</strong>。</p>
 <p>当然，损失函数不止平方损失函数一种。</p>
 <p>对于逻辑回归，更换平方损失函数为<strong>对数损失函数</strong>，可由统计学中的最大似然估计方法推出代价函数 $J(\theta)$：</p>
 <p>$$<br>\begin{split}<br>&amp; J(\theta) = \dfrac{1}{m} \sum_{i=1}^m \mathrm{Cost}(h_\theta(x^{(i)}),y^{(i)}) \\<br>&amp; \mathrm{Cost}(h_\theta(x),y) = -\log(h_\theta(x)) \; &amp; \text{if y = 1} \\<br>&amp; \mathrm{Cost}(h_\theta(x),y) = -\log(1-h_\theta(x)) \; &amp; \text{if y = 0}<br>\end{split}<br>$$<br>则有关于 $J(\theta)$ 的图像如下：</p>
-<img src="/2024/04/22/13-37-10/20180111_080614.png" class="">
+<img src="/2024/04/22/13-37-10/20180111_080614.png" class>
 <p>如左图，当训练集的结果为 $y=1$（正样本）时，随着假设函数趋向于 $1$，代价函数的值会趋于 $0$，即意味着拟合程度很好。如果假设函数此时趋于 $0$，则会给出一个<strong>很高的代价</strong>，拟合程度<strong>差</strong>，算法会根据其迅速纠正 $\theta$ 值，右图 $y=0$ 同理。</p>
 <p>区别于平方损失函数，对数损失函数也是一个凸函数，但没有局部最优值。</p>
 <h2 id="6-5-简化的成本函数和梯度下降（Simplified-Cost-Function-and-Gradient-Descent）"><a href="#6-5-简化的成本函数和梯度下降（Simplified-Cost-Function-and-Gradient-Descent）" class="headerlink" title="6.5 简化的成本函数和梯度下降（Simplified Cost Function and Gradient Descent）"></a>6.5 简化的成本函数和梯度下降（Simplified Cost Function and Gradient Descent）</h2><p>不分类讨论，对于二元分类问题，我们可把代价函数<strong>简化</strong>为一个函数：<br>$Cost\left( {h_\theta}\left( x \right),y \right)=-y\times log\left( {h_\theta}\left( x \right) \right)-(1-y)\times log\left( 1-{h_\theta}\left( x \right) \right)$</p>
@@ -401,7 +401,7 @@
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">optTheta =</span><br><span class="line"></span><br><span class="line">     5</span><br><span class="line">     5</span><br><span class="line"></span><br><span class="line">functionVal = 0</span><br><span class="line"></span><br><span class="line">exitFlag = 1</span><br></pre></td></tr></table></figure>
 <h2 id="6-7-多类别分类-一对多（Multiclass-Classification-One-vs-all）"><a href="#6-7-多类别分类-一对多（Multiclass-Classification-One-vs-all）" class="headerlink" title="6.7 多类别分类: 一对多（Multiclass Classification: One-vs-all）"></a>6.7 多类别分类: 一对多（Multiclass Classification: One-vs-all）</h2><p>一直在讨论二元分类问题，这里谈谈多类别分类问题（比如天气预报）。</p>
-<img src="/2024/04/22/13-37-10/20180112_001720.png" class="">
+<img src="/2024/04/22/13-37-10/20180112_001720.png" class>
 <p>原理是，转化多类别分类问题为<strong>多个二元分类问题</strong>，这种方法被称为 One-vs-all。</p>
 <p>正式定义：$h_\theta^{\left( i \right)}\left( x \right)=p\left( y=i|x;\theta  \right), i=\left( 1,2,3….k \right)$</p>
 <blockquote>
@@ -422,8 +422,8 @@
 <p>能很好甚至完美拟合训练集中的数据，即 $J(\theta) \to 0$，但是对于不在训练集中的<strong>新数据</strong>，预测值和实际值的误差会很大，<strong>泛化能力弱</strong>，这类情况被称为过拟合。拟合模型过于复杂（特征选多了）时易出现这类情况。</p>
 </li>
 </ul>
-<p>线性模型中的拟合情况（左图欠拟合，右图过拟合）：<br><img src="/2024/04/22/13-37-10/20180112_091654.png" class=""></p>
-<p>逻辑分类模型中的拟合情况：<br><img src="/2024/04/22/13-37-10/20180112_092027.png" class=""></p>
+<p>线性模型中的拟合情况（左图欠拟合，右图过拟合）：<br><img src="/2024/04/22/13-37-10/20180112_091654.png" class></p>
+<p>逻辑分类模型中的拟合情况：<br><img src="/2024/04/22/13-37-10/20180112_092027.png" class></p>
 <p>为了度量拟合表现，引入：</p>
 <ul>
 <li><p>偏差（bias）</p>
@@ -433,7 +433,7 @@
 <p>指模型预测值的<strong>离散程度或者变化范围</strong>。方差越大，数据的分布越分散，函数波动越大，泛化能力越差。方差低意味着拟合曲线的稳定性高，波动小。</p>
 </li>
 </ul>
-<p>据此，我们有对同一数据的各类拟合情况如下图：<br><img src="/2024/04/22/13-37-10/20180112_085630.png" class=""></p>
+<p>据此，我们有对同一数据的各类拟合情况如下图：<br><img src="/2024/04/22/13-37-10/20180112_085630.png" class></p>
 <p>据上图，高偏差意味着欠拟合，高方差意味着过拟合。</p>
 <p>我们应尽量使得拟合模型处于低方差（较好地拟合数据）状态且同时处于低偏差（较好地预测新值）的状态。</p>
 <p>避免过拟合的方法有：</p>
@@ -459,7 +459,7 @@
 </ul>
 <p>$$<br>min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2<br>$$</p>
 <p>上式中，我们在代价函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项（penalty term）$1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化代价函数，那么势必需要极大地<strong>减小 $\theta_3$、$\theta_4$</strong>，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就<strong>变得简单</strong>了，从而在保留各参数的情况下避免了过拟合问题。</p>
-<img src="/2024/04/22/13-37-10/20180114_090054.png" class="">
+<img src="/2024/04/22/13-37-10/20180114_090054.png" class>
 <p>根据上面的讨论，有时也无法决定要减少哪个参数，故统一惩罚除了 $\theta_0$ 外的所有参数。</p>
 <p>代价函数：</p>
 <p>$$<br>J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}{ { {({h_\theta}({ {x}^{(i)} })-{ {y}^{(i)} })}^{2} }+\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2} }]}<br>$$</p>

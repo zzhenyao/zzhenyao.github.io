@@ -276,8 +276,8 @@
     <div class="post-body" itemprop="articleBody">
             <div class="post-description">动手学深度学习李沐</div>
 	<hr>
-        <h2 id="72-优化算法"><a href="#72-优化算法" class="headerlink" title="72.优化算法"></a>72.优化算法</h2><h3 id="1-优化问题"><a href="#1-优化问题" class="headerlink" title="1.优化问题"></a>1.优化问题</h3><img src="/2024/04/23/11-06-12/72-01.png" class="">
-<h3 id="2-局部最小-vs-全局最小"><a href="#2-局部最小-vs-全局最小" class="headerlink" title="2.局部最小 vs 全局最小"></a>2.局部最小 vs 全局最小</h3><img src="/2024/04/23/11-06-12/72-02.png" class="">
+        <h2 id="72-优化算法"><a href="#72-优化算法" class="headerlink" title="72.优化算法"></a>72.优化算法</h2><h3 id="1-优化问题"><a href="#1-优化问题" class="headerlink" title="1.优化问题"></a>1.优化问题</h3><img src="/2024/04/23/11-06-12/72-01.png" class>
+<h3 id="2-局部最小-vs-全局最小"><a href="#2-局部最小-vs-全局最小" class="headerlink" title="2.局部最小 vs 全局最小"></a>2.局部最小 vs 全局最小</h3><img src="/2024/04/23/11-06-12/72-02.png" class>
 <h3 id="3-凸集和凸函数"><a href="#3-凸集和凸函数" class="headerlink" title="3.凸集和凸函数"></a>3.凸集和凸函数</h3><ul>
 <li>凸集：形象化来说，就是这个集合上任意两个点连一条线，这个线在集合里面</li>
 <li>凸函数：形象上来说函数上任取两个点连线，函数都在该线下面</li>
@@ -305,19 +305,19 @@
 <li>使用平滑过的梯度对权重更新，不容易震荡</li>
 <li>momentum</li>
 </ul>
-<img src="/2024/04/23/11-06-12/72-03.png" class="">
+<img src="/2024/04/23/11-06-12/72-03.png" class>
 <h3 id="6-Adam"><a href="#6-Adam" class="headerlink" title="6.Adam"></a>6.Adam</h3><ul>
 <li>非常平滑，对于学习率不敏感</li>
 <li>对于t比较小的时候，由于$v_0=0$,所以会导致一开始值比较小，做了一个修正。</li>
 </ul>
-<img src="/2024/04/23/11-06-12/72-04.png" class="">
+<img src="/2024/04/23/11-06-12/72-04.png" class>
 <ul>
 <li>为什么除以$\sqrt{\widehat{s}_t}+\epsilon$？<ul>
 <li>在nlp里面常用，起到正则化的作用，控制每个维度的值在合适的大小。</li>
 </ul>
 </li>
 </ul>
-<img src="/2024/04/23/11-06-12/72-05.png" class="">
+<img src="/2024/04/23/11-06-12/72-05.png" class>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
 <li>深度学习模型大部分是非凸的</li>
 <li>小批量随机梯度下降是最常见的优化算法</li>
