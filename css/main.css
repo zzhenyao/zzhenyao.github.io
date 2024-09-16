@@ -199,8 +199,8 @@ h5,
 h6 {
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
-  line-height: 1.4;
-  margin: 13px 0 7px;
+  line-height: 1.5;
+  margin: 30px 0 15px;
 }
 h1 {
   font-size: 1.5em;
@@ -247,18 +247,18 @@ embed {
 hr {
   background-image: repeating-linear-gradient(-45deg, #ddd, #ddd 4px, transparent 4px, transparent 8px);
   border: 0;
-  height: 2px;
-  margin: 10px 0;
+  height: 3px;
+  margin: 40px 0;
 }
 blockquote {
   border-left: 4px solid #91f191;
   color: var(--blockquote-color);
   margin: 0;
-  padding: 0 6px;
+  padding: 0 15px;
 }
 blockquote cite::before {
   content: '-';
-  padding: 0 2px;
+  padding: 0 5px;
 }
 dt {
   font-weight: bold;
@@ -1349,20 +1349,6 @@ pre code {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.post-toc .nav .nav-child {
-  --height: 0;
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition-property: height, opacity, visibility;
-  transition: 0.2s ease-in-out;
-  visibility: hidden;
-}
-.post-toc .nav .active > .nav-child {
-  height: var(--height, auto);
-  opacity: 1;
-  visibility: unset;
 }
 .post-toc .nav .active > a {
   border-bottom-color: #87daff;
@@ -2590,7 +2576,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #bfffc7;
+  background: #082b54;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
