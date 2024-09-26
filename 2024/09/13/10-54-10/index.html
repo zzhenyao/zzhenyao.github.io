@@ -29,8 +29,15 @@
 <meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/31983eeeb54690c58ff568866b3d2f13.png">
 <meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/c837aa026e5755538d5406dd26bdb6d2.png">
 <meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/2cd7d888fa671be10bd482949b831e2d.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/QQ_1726535732803.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/QQ_1726535781943.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/QQ_1726535863661.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/QQ_1726538726736.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/QQ_1726539528840.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/QQ_1726539633950.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/09/13/10-54-10/QQ_1726562068335.png">
 <meta property="article:published_time" content="2024-09-13T02:54:10.000Z">
-<meta property="article:modified_time" content="2024-09-16T07:56:50.288Z">
+<meta property="article:modified_time" content="2024-09-19T23:39:33.665Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="深度学习, 计算机视觉">
 <meta name="twitter:card" content="summary">
@@ -144,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">论文笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="nav-number">1.2.</span> <span class="nav-text">主要贡献</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ST-GCN%EF%BC%9A%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E5%8A%A8%E6%80%81%E9%AA%A8%E9%AA%BC%E5%BB%BA%E6%A8%A1%E9%80%9A%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">ST-GCN：基于图的动态骨骼建模通用公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ST-GCN-%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">ST-GCN 模型中的组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">空间图卷积神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.4.</span> <span class="nav-text">分区策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%AD%A6%E4%B9%A0%E8%BE%B9%E7%BC%98%E9%87%8D%E8%A6%81%E6%80%A7%E5%8A%A0%E6%9D%83"><span class="nav-number">1.2.5.</span> <span class="nav-text">可学习边缘重要性加权</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-ST-GCN"><span class="nav-number">1.3.</span> <span class="nav-text">实现 ST-GCN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">公式计算过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">代码复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">相关命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E5%8F%82%E6%95%B0%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">调整参数文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#train-yaml"><span class="nav-number">2.2.1.</span> <span class="nav-text">train.yaml</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">论文笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="nav-number">1.2.</span> <span class="nav-text">主要贡献</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ST-GCN%EF%BC%9A%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E5%8A%A8%E6%80%81%E9%AA%A8%E9%AA%BC%E5%BB%BA%E6%A8%A1%E9%80%9A%E7%94%A8%E5%85%AC%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">ST-GCN：基于图的动态骨骼建模通用公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ST-GCN-%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">ST-GCN 模型中的组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">空间图卷积神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.4.</span> <span class="nav-text">分区策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%AD%A6%E4%B9%A0%E8%BE%B9%E7%BC%98%E9%87%8D%E8%A6%81%E6%80%A7%E5%8A%A0%E6%9D%83"><span class="nav-number">1.2.5.</span> <span class="nav-text">可学习边缘重要性加权</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-ST-GCN"><span class="nav-number">1.3.</span> <span class="nav-text">实现 ST-GCN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">公式计算过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%AE%AD%E7%BB%83"><span class="nav-number">1.3.2.</span> <span class="nav-text">网络架构与训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.3.3.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%A0%87%E5%87%86"><span class="nav-number">1.3.4.</span> <span class="nav-text">数据集与评估标准</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%90%86%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">论文理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E7%89%B9%E5%BE%81%E7%9A%84%E6%8F%90%E5%8F%96"><span class="nav-number">2.0.1.</span> <span class="nav-text">空间特征的提取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ST-GCN%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">ST-GCN的缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">源码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#net-utils-graph-py"><span class="nav-number">3.2.</span> <span class="nav-text">net&#x2F;utils&#x2F;graph.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">3.3.</span> <span class="nav-text">相关命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,7 +166,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -170,7 +177,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -241,7 +248,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-16 15:56:50" itemprop="dateModified" datetime="2024-09-16T15:56:50+08:00">2024-09-16</time>
+      <time title="修改时间：2024-09-20 07:39:33" itemprop="dateModified" datetime="2024-09-20T07:39:33+08:00">2024-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -333,11 +340,19 @@
 <h3 id="分区策略"><a href="#分区策略" class="headerlink" title="分区策略"></a>分区策略</h3><p>标签映射：将相邻的接点映射到标签内。<br>标签划分：如何确定接点的属于哪个标签。</p>
 <img src="/2024/09/13/10-54-10/2cd7d888fa671be10bd482949b831e2d.png" class>
 <p>上图是构造卷积运算的划分策略。从左到右：</p>
-<p>（a）输入骨架示例帧。身体关节用蓝点绘制。D=1 的过滤器的接受域用红色虚线圈绘制。<br>（b）单标签分区策略，即一个邻域内的所有节点都有相同的标签(绿色)。<br>（c）距离分区策略，这两个子集是距离为0的根节点本身(绿色)和距离为1的其他相邻点(蓝色)。<br>（d）空间结构分区策略，节点根据与骨架重心(黑色十字)的距离与根节点(绿色)的距离进行标记，向心节点的距离较短(蓝色)，而离心节点的距离较长(黄色)。</p>
+<p>（a）输入骨架示例帧。身体关节用蓝点绘制。D=1 的过滤器的接受域用红色虚线圈绘制。</p>
+<p>（b）单标签分区策略，即一个邻域内的所有节点都有相同的标签(绿色)。</p>
+<p>（c）距离分区策略，这两个子集是距离为0的根节点本身(绿色)和距离为1的其他相邻点(蓝色)。</p>
+<p>（d）空间结构分区策略，节点根据与骨架重心(黑色十字)的距离分为：根节点(绿色)的距离最近，向心节点的距离较短(蓝色)，而离心节点的距离较长(黄色)。</p>
 <p>相同标签的子集，使用相同的权重。</p>
 <h4 id="Uni-labeling-单标签分区策略"><a href="#Uni-labeling-单标签分区策略" class="headerlink" title="Uni-labeling 单标签分区策略"></a>Uni-labeling 单标签分区策略</h4><p>所有节点一个标签，只有一种权重。</p>
 <h4 id="istance-partitioning-距离分区策略"><a href="#istance-partitioning-距离分区策略" class="headerlink" title="istance partitioning 距离分区策略"></a>istance partitioning 距离分区策略</h4><p>$D$ = 1,的情况下，只有两种权重，分为两个子集。</p>
-<h4 id="Spatial-configuration-partitioning-空间结构分区策略"><a href="#Spatial-configuration-partitioning-空间结构分区策略" class="headerlink" title="Spatial configuration partitioning 空间结构分区策略"></a>Spatial configuration partitioning 空间结构分区策略</h4><p>将邻居集分为三个子集：1)根节点本身；2)向心群：比根节点更接近骨架重心的相邻节点；3)否则为离心群。</p>
+<h4 id="Spatial-configuration-partitioning-空间结构分区策略"><a href="#Spatial-configuration-partitioning-空间结构分区策略" class="headerlink" title="Spatial configuration partitioning 空间结构分区策略"></a>Spatial configuration partitioning 空间结构分区策略</h4><p>将节点集分为三个子集：<br>1)根节点；距离中心节点最近的节点</p>
+<p>2)近节点：距离跟第二近的节点</p>
+<p>3)否则远连接。其他节点</p>
+<p>将连接集分为三个子集：<br>1)根连接；如果两个节点与中心节点跳距相同，视为根连接<br>具有对称性</p>
+<p>2)近连接：一个节点比另一个节点距离中心节点更近<br>j&gt;i,则$adj[j][i]$属于近连接，看终点的距离 </p>
+<p>3)否则远连接。</p>
 <p>\begin{split}<br>l_{ti}\left(v_{tj}\right)=<br>\begin{cases}<br>0, &amp; r_j=r_i \\<br>1, &amp; r_j &lt; r_i \\<br>2, &amp; r_j &gt; r_i<br>\end{cases}<br>\end{split}</p>
 <p>其中 $r_i$​ 是训练集中所有帧中从重心到关节 $i$ 的平均距离。</p>
 <blockquote>
@@ -377,24 +392,73 @@
 <blockquote>
 <p>使用自连接矩阵，是为了用邻接矩阵算度？</p>
 </blockquote>
-<p> 其中$\Lambda^{ii}=\sum_j(A^{ij}+I^{ij})$，</p>
-<h1 id="代码复现"><a href="#代码复现" class="headerlink" title="代码复现"></a>代码复现</h1><h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">usage: main.py recognition [-h] [-w WORK_DIR] [-c CONFIG] [--phase PHASE] [--save_result SAVE_RESULT] [--start_epoch START_EPOCH] [--num_epoch NUM_EPOCH]</span><br><span class="line">                           [--use_gpu USE_GPU] [--device DEVICE [DEVICE ...]] [--log_interval LOG_INTERVAL] [--save_interval SAVE_INTERVAL]</span><br><span class="line">                           [--eval_interval EVAL_INTERVAL] [--save_log SAVE_LOG] [--print_log PRINT_LOG] [--pavi_log PAVI_LOG] [--feeder FEEDER]</span><br><span class="line">                           [--num_worker NUM_WORKER] [--train_feeder_args TRAIN_FEEDER_ARGS] [--test_feeder_args TEST_FEEDER_ARGS] [--batch_size BATCH_SIZE]</span><br><span class="line">                           [--test_batch_size TEST_BATCH_SIZE] [--debug] [--model MODEL] [--model_args MODEL_ARGS] [--weights WEIGHTS]</span><br><span class="line">                           [--ignore_weights IGNORE_WEIGHTS [IGNORE_WEIGHTS ...]] [--show_topk SHOW_TOPK [SHOW_TOPK ...]] [--base_lr BASE_LR]</span><br><span class="line">                           [--step STEP [STEP ...]] [--optimizer OPTIMIZER] [--nesterov NESTEROV] [--weight_decay WEIGHT_DECAY]</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  -w WORK_DIR, --work_dir WORK_DIR</span><br><span class="line">                        the work folder for storing results</span><br><span class="line">  -c CONFIG, --config CONFIG</span><br><span class="line">                        path to the configuration file</span><br><span class="line">  --phase PHASE         must be train or test</span><br><span class="line">  --save_result SAVE_RESULT</span><br><span class="line">                        if ture, the output of the model will be stored</span><br><span class="line">  --start_epoch START_EPOCH</span><br><span class="line">                        start training from which epoch</span><br><span class="line">  --num_epoch NUM_EPOCH</span><br><span class="line">                        stop training in which epoch</span><br><span class="line">  --use_gpu USE_GPU     use GPUs or not</span><br><span class="line">  --device DEVICE [DEVICE ...]</span><br><span class="line">                        the indexes of GPUs for training or testing</span><br><span class="line">  --log_interval LOG_INTERVAL</span><br><span class="line">                        the interval for printing messages (#iteration)</span><br><span class="line">  --save_interval SAVE_INTERVAL</span><br><span class="line">                        the interval for storing models (#iteration)</span><br><span class="line">  --eval_interval EVAL_INTERVAL</span><br><span class="line">                        the interval for evaluating models (#iteration)</span><br><span class="line">  --save_log SAVE_LOG   save logging or not</span><br><span class="line">  --print_log PRINT_LOG</span><br><span class="line">                        print logging or not</span><br><span class="line">  --pavi_log PAVI_LOG   logging on pavi or not</span><br><span class="line">  --feeder FEEDER       data loader will be used</span><br><span class="line">  --num_worker NUM_WORKER</span><br><span class="line">                        the number of worker per gpu for data loader</span><br><span class="line">  --train_feeder_args TRAIN_FEEDER_ARGS</span><br><span class="line">                        the arguments of data loader for training</span><br><span class="line">  --test_feeder_args TEST_FEEDER_ARGS</span><br><span class="line">                        the arguments of data loader for test</span><br><span class="line">  --batch_size BATCH_SIZE</span><br><span class="line">                        training batch size</span><br><span class="line">  --test_batch_size TEST_BATCH_SIZE</span><br><span class="line">                        test batch size</span><br><span class="line">  --debug               less data, faster loading</span><br><span class="line">  --model MODEL         the model will be used</span><br><span class="line">  --model_args MODEL_ARGS</span><br><span class="line">                        the arguments of model</span><br><span class="line">  --weights WEIGHTS     the weights for network initialization</span><br><span class="line">  --ignore_weights IGNORE_WEIGHTS [IGNORE_WEIGHTS ...]</span><br><span class="line">                        the name of weights which will be ignored in the initialization</span><br><span class="line">  --show_topk SHOW_TOPK [SHOW_TOPK ...]</span><br><span class="line">                        which Top K accuracy will be shown</span><br><span class="line">  --base_lr BASE_LR     initial learning rate</span><br><span class="line">  --step STEP [STEP ...]</span><br><span class="line">                        the epoch where optimizer reduce the learning rate</span><br><span class="line">  --optimizer OPTIMIZER</span><br><span class="line">                        type of optimizer</span><br><span class="line">  --nesterov NESTEROV   use nesterov or not</span><br><span class="line">  --weight_decay WEIGHT_DECAY</span><br><span class="line">                        weight decay for optimizer</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> 其中$\Lambda^{ii}=\sum_j(A^{ij}+I^{ij})$，度矩阵。$\mathbf{W}$多个通道叠加的权重。<br>实际中在时空的情况下，输入维度为$(C,V,T)$的特征张量。</p>
+<p>在有多个子集的分区中，将邻接矩阵分解为几个矩阵：例如距离划分策略中，$\mathbf{A}_0=\mathbf{I}$$   ，\mathbf{A}_1=\mathbf{A}$ 表达式带入得到：<br>$\mathbf{f}_{out}=\sum_j\boldsymbol{\Lambda}_j^{-\frac12}\mathbf{A}_j\boldsymbol{\Lambda}_j^{-\frac12}\mathbf{f}_{in}\mathbf{W}_j$<br>将$\Lambda_j^{ii}=\sum_k(A_j^{ik})+\alpha $，$\alpha = 0.001$,避免度矩阵出现空行。</p>
+<p>科学系边缘重要性加权的实现：使用一个可学习掩码权重矩阵$\text{M}$，与矩阵进行一个对应位置相乘的算法。用$(\mathbf{A}+\mathbf{I})\otimes\mathbf{M}$代替$(\mathbf{A}+\mathbf{I})$，用$\mathbf{A}_j\otimes\mathbf{M}$代替$\mathbf{A}_j$。$\text{M}$被初始化为全1的矩阵。</p>
+<h3 id="网络架构与训练"><a href="#网络架构与训练" class="headerlink" title="网络架构与训练"></a>网络架构与训练</h3><p>由于 ST-GCN 在不同节点上共享权重，因此在不同节点上保持输入数据的比例一致是很重要的。首先将输入骨架提供给批处理规范化层来规范化数据。</p>
+<p>ST-GCN 模型由9层时空图卷积算子(ST-GCN 单元)组成。前三层有64个输出通道，接着三层有128个输出通道，最后三层有256个输出通道。这些层有9个时间内核大小。<strong>Resnet 机制应用于每个 ST-GCN 单元</strong>。</p>
+<p>在每个 ST-GCN 单元后，我们<strong>以0.5概率随机剔除特征，以避免过拟合</strong>。第4和第7时序卷积层的步长设为2作为池化层。然后对得到的张量进行全局池化，得到每个序列的256维特征向量。最后，我们将它们输入 <strong>SoftMax</strong> 分类器。使用随机梯度下降学习模型，学习率为0.01。我们在每10个 epoch 之后将学习率衰减0.1。</p>
+<p>为了避免过拟合，我们在动力学数据集上训练时执行<strong>两种增强</strong>来替换掉层(Kay et al 2017)。</p>
+<p>首先，为了模拟相机运动，我们对所有帧的骨架序列执行随机仿射变换。特别是从第一帧到最后一帧，我们选取了几个固定的角度、平移和比例因子作为候选因子，然后随机采样三个因子的两个组合来生成仿射变换。这种转换被插入到中间帧中，以产生一种效果，就好像我们在回放过程中平滑地移动视点一样。我们把这种增强称为随机移动。</p>
+<p>其次，我们在训练中从原始骨架序列中随机抽取片段，并在测试中使用所有帧。网络顶部的全局池使网络能够处理不确定长度的输入序列。</p>
+<blockquote>
+<p>不确定长度的输入序列，长视频？</p>
+</blockquote>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>两个数据集：Kinetics 人类动作数据集(Kinetics) (Kay et al 2017)，NTURGB+D (Shahroudy et al 2016)。</p>
+<p>首先对动力学数据集进行详细的<strong>消融研究</strong>，以检查所提出的模型组件对识别性能的贡献。</p>
+<p>为了验证我们在无约束设置中获得的经验是否具有普遍性，我们对 NTURGB+D 上的约束设置进行了实验，并将 ST-GCN 与其他最先进的方法进行了比较。所有实验均在 PyTorch 深度学习框架上进行，并配有8个 TITANX 图形处理器。</p>
+<h3 id="数据集与评估标准"><a href="#数据集与评估标准" class="headerlink" title="数据集与评估标准"></a>数据集与评估标准</h3><p><strong>Kinetics-skeleton数据集</strong></p>
+<p>该数据集包含从YouTube检索的大约300000个视频片段。且划分240000个视频片段为训练集、20000个视频片段为验证集。这些视频涵盖了多达400个人类动作类，从日常活动、体育场景到复杂的互动动作。每个视频片段大约10秒。该数据集仅提供没有骨架数据的原始视频片段。</p>
+<p>为了获得骨架数据，作者首先将所有视频的分辨率调整为$340×256$，并将帧速率转换为$30 FPS$。然后，作者使用OpenPose姿态估计工具来估计视频片段中的每个帧上的18个关节的位置。OpenPose给出了像素坐标系中的$2D$坐标$(X，Y)$和18个人体关节的置信度得分。因此，作者使用一个元组($X，Y，C)$来表示每个关节，一个骨架帧被记录为一个18元组的数组。对于多人情况，作者在每个片段中选择平均联合置信度最高的2个人。</p>
+<h1 id="论文理解"><a href="#论文理解" class="headerlink" title="论文理解"></a>论文理解</h1><p>ST-GCN 这篇论文算是 GCN 在骨骼行为识别里面的开山之作了，他提供了一种新的思路和实现方式，解决了以前方法的局限性并取得了较好的效果。虽然他只是2018年发表的，但是这篇论文给了很详细的代码，2019年发表在 CVPR 上的 AS-GCN 和 2s-AGCN 都是在该代码的基础上改进的。</p>
+<h3 id="空间特征的提取"><a href="#空间特征的提取" class="headerlink" title="空间特征的提取"></a>空间特征的提取</h3><h4 id="1-图卷积"><a href="#1-图卷积" class="headerlink" title="1. 图卷积"></a>1. 图卷积</h4><p>特征提取器，输入结点特征和图结构，输出结点最终的特征表达。</p>
+<p><img src="/2024/09/13/10-54-10/QQ_1726535732803.png" alt></p>
+<p>主要的框架就是这样，图卷积相比于图像卷积，只是多左乘了一个邻接矩阵 <strong>A</strong>，后面就是一些细节。</p>
+<p><img src="/2024/09/13/10-54-10/QQ_1726535781943.png" alt></p>
+<h4 id="2-感受野"><a href="#2-感受野" class="headerlink" title="2. 感受野"></a>2. 感受野</h4><p>一般图像二维卷积最小的卷积核就是 3×3 的卷积核，感受野就是一个中心点和周围八个元素共九个元素的组合。</p>
+<p>这里和CNN相似，定义离中心点距离 <em>D</em>=1 ，也就是<strong>与中心点直接相连的点</strong>为一个卷积核的<strong>感受野</strong>。如图（a）所示：</p>
+<p><img src="/2024/09/13/10-54-10/QQ_1726535863661.png" alt></p>
+<h4 id="3-卷积核"><a href="#3-卷积核" class="headerlink" title="3. 卷积核"></a>3. 卷积核</h4><p>对应论文中的分区策略。选择的空间结构分区策略</p>
+<p>选择合适的感受野和卷积核之后就能够像 CNN 那样<strong>一个点一个点的卷积计算</strong>了，<strong>卷积的过程就是提取特征的过程</strong>。</p>
+<h4 id="4-注意力机制"><a href="#4-注意力机制" class="headerlink" title="4. 注意力机制"></a>4. 注意力机制</h4><p>就是增加的可学习权重掩码。</p>
+<h4 id="时间特征的提取"><a href="#时间特征的提取" class="headerlink" title="时间特征的提取"></a>时间特征的提取</h4><p><img src="/2024/09/13/10-54-10/QQ_1726538726736.png" alt=" "></p>
+<h4 id="整体网络架构"><a href="#整体网络架构" class="headerlink" title="整体网络架构"></a>整体网络架构</h4><p><img src="/2024/09/13/10-54-10/QQ_1726539528840.png" alt=" "></p>
+<p><img src="/2024/09/13/10-54-10/QQ_1726539633950.png" alt=" "></p>
+<h2 id="ST-GCN的缺点"><a href="#ST-GCN的缺点" class="headerlink" title="ST-GCN的缺点"></a>ST-GCN的缺点</h2><p>在上述ST-GCN网络模型的表述中，不难发现，虽然其拥有许多优点，但是ST-GCN的缺点也十分明显：</p>
 <ul>
+<li><p>ST-GCN中的人体骨架图是人为手工定义的，限制后面的网络学习到骨架图中的必要关联与新建连接，例如：在识别如“鼓掌”，“阅读”等与人为手工定义的人体骨架图空间上相距甚远的双手间的关系至关重要的动作时[3]，网络很难学习到其中的关联，也很难对该原本不存在的边进行新建以建立连接，很大程度上降低了动作识别的精度；</p>
+</li>
+<li><p>除此之外，ST-GCN中的网络结构是分层结构，每一层都代表了不同层次的语义信息[4]，然而作者所采用的是一个全局固定的网络拓扑结构图，导致该网络无法灵活的对各层中的语义进行建模，且由于固定的全局网络拓扑结构，其感受野野不够灵活[5]，也无法提取多尺度的信息[6]；</p>
+</li>
+<li><p>ST-GCN计算复杂度过高，且由于图卷积各节点之间的信息相互聚合，传统dropout对其无效，导致过拟合，根据此项工作，许多科研人员在此基础上做了大量的相关工作，由于手工定义图的局限性，2s-AGCN与MS-AAGCN引入了多种自适应的拓扑图，而对于分层结构，为方便对各层语义进行建模，SGCN提出了一个通道融合模块 (CAMM)；最后由于高计算复杂度shiftGCN将shift操作引入图卷积代替卷积的特征融合操作，除此之外DC-GCN_ADG提出了DC-GCN（DeCoupling Graph Convolutional Network）图卷积网络，可以在不增加计算量的同时增强图卷积的表达能力，并提出了ADG（attention-guided DropGraph）取代原始dropout，解决了图卷积过拟合的问题。</p>
+</li>
+</ul>
+<h1 id="代码复现"><a href="#代码复现" class="headerlink" title="代码复现"></a>代码复现</h1><h2 id="源码结构"><a href="#源码结构" class="headerlink" title="源码结构"></a>源码结构</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">config/					包含不同模型训练的配置文件</span><br><span class="line"> data/						用于数据加载，处理骨架数据集。</span><br><span class="line"> feeder/					数据预处理模块，读取并规范化骨架数据。</span><br><span class="line"> models/					训练好的模型参数</span><br><span class="line"> net/						包含ST-GCN网络的具体实现和其他模型文件</span><br><span class="line">   utils/				utilities实用工具，</span><br><span class="line">   							包含一些通用函数，类或模块</span><br><span class="line">   	graph.py		图的定义，节点分集</span><br><span class="line">   	tgcn.py			时间图卷积网络</span><br><span class="line">   __init__.py 	导入utils包</span><br><span class="line">   st_gcn.py 		</span><br><span class="line">   st_gcn_twostream.py</span><br><span class="line"> processor/</span><br><span class="line"> resource/				辅助工具，如骨架数据可视化。</span><br><span class="line"> tools/					训练、测试和评估的脚本。</span><br><span class="line"> torchlight/	</span><br><span class="line"> main.py					项目的主入口。</span><br><span class="line"> requirements.txt		项目所需软件包</span><br></pre></td></tr></table></figure>
+<h2 id="net-utils-graph-py"><a href="#net-utils-graph-py" class="headerlink" title="net/utils/graph.py"></a>net/utils/graph.py</h2><p>图的定义函数：</p>
+<p><img src="/2024/09/13/10-54-10/QQ_1726562068335.png" alt=" "></p>
+<p>上图表示，openpose关节点邻接顺序。</p>
+<p>矩阵的幂运算：<code>np.linalg.matrix_power(A, d)</code>:表示邻接矩阵的d跳可达关系。</p>
+<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><ul>
 <li>测试命令：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./bin/python main.py recognition --phase test --work_dir ./work_dir/recognition/kinetics_skeleton --config ./config/kinetics.yaml --weights ./models/model.pth --test_batch_size 64 --device 0 --save_result True</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/python3.8 main.py recognition -c config/st_gcn/kinetics-skeleton/test.yaml</span><br></pre></td></tr></table></figure>
 <p> -训练命令<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/python3.8 main.py recognition -c config/st_gcn/kinetics-skeleton/train.yaml</span><br></pre></td></tr></table></figure></p>
 <p>测试命令<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/python3.8 main.py recognition -c config/st_gcn/kinetics-skeleton/test.yaml --weights ./models/st_gcn.kinetics.pt</span><br></pre></td></tr></table></figure></p>
-<h2 id="调整参数文件"><a href="#调整参数文件" class="headerlink" title="调整参数文件"></a>调整参数文件</h2><h3 id="train-yaml"><a href="#train-yaml" class="headerlink" title="train.yaml"></a>train.yaml</h3><ul>
-<li>feeder 通常是指数据加载器（Data Feeder）</li>
-</ul>
+<p>训练相关</p>
+<p>train.yaml</p>
 <ul>
-<li>修改config文件夹内的，train.yaml，设置显卡编号为单显卡。</li>
+<li><p>feeder 通常是指数据加载器（Data Feeder）</p>
+</li>
+<li><p>修改config文件夹内的，train.yaml，设置显卡编号为单显卡。</p>
+</li>
 <li>减少batch_size = 128</li>
 </ul>
 <h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1801.07455.pdf">论文地址</a><br><a target="_blank" rel="noopener" href="https://github.com/yysijie/st-gcn">论文代码</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoyuting999/article/details/130039164?spm=1001.2014.3001.5506">论文解读</a></p>
+<p>论文解读博客：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoyuting999/article/details/130039164?spm=1001.2014.3001.5506">一杯水果茶！-ST-GCN 论文解读</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36756312/article/details/121351721?spm=1001.2014.3001.5506">Relissc_Cao-AAAI2018||ST-GCN：Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action Recognition</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/409348916">yyxy-清晰图解，一图看懂图卷积GCN、时空图卷积ST-GCN</a></p>
 
     </div>
 

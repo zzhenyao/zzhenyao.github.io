@@ -27,7 +27,7 @@
 <meta property="og:description" content="常用的Linux命令，ssh命令。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-11T07:22:24.000Z">
-<meta property="article:modified_time" content="2024-04-13T01:39:10.274Z">
+<meta property="article:modified_time" content="2024-09-20T05:31:17.412Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="ssh">
@@ -142,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">linux命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ln%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">ln链接文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">pwd命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">SSH命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">scp传输文件</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">linux命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ln%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">ln链接文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">pwd命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wget-%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">wget 下载命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">SSH命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">scp传输文件</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -239,7 +239,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-13 09:39:10" itemprop="dateModified" datetime="2024-04-13T09:39:10+08:00">2024-04-13</time>
+      <time title="修改时间：2024-09-20 13:31:17" itemprop="dateModified" datetime="2024-09-20T13:31:17+08:00">2024-09-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -274,6 +274,7 @@
 	<hr>
         <h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="ln链接文件"><a href="#ln链接文件" class="headerlink" title="ln链接文件"></a>ln链接文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s 源文件  目的文件    #建立软链接</span><br><span class="line">ln    源文件  目的文件    #硬链接</span><br></pre></td></tr></table></figure>
 <h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p>显示当前地址</p>
+<h2 id="wget-下载命令"><a href="#wget-下载命令" class="headerlink" title="wget 下载命令"></a>wget 下载命令</h2><p>指定代理<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget -e use_proxy=yes -e http_proxy=http://127.0.0.1:7897 -c https:</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 <h1 id="SSH命令"><a href="#SSH命令" class="headerlink" title="SSH命令"></a>SSH命令</h1><h2 id="scp传输文件"><a href="#scp传输文件" class="headerlink" title="scp传输文件"></a>scp传输文件</h2><p><code>注意要在本地使用这个命令，ssh登录后使用，文件从服务器下载到服务器了</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp username@ip_address:/home/username/filename ~/   #从服务器下载到本地</span><br><span class="line"># 参数 -P 端口号   要大写</span><br><span class="line"># 参数 -r 文件夹</span><br><span class="line">scp -P2222 -r</span><br></pre></td></tr></table></figure>
 
