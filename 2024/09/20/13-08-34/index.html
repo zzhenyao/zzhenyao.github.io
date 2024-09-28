@@ -27,7 +27,7 @@
 <meta property="og:description" content="学习yolo目标检测笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-09-20T05:08:34.000Z">
-<meta property="article:modified_time" content="2024-09-23T09:36:27.403Z">
+<meta property="article:modified_time" content="2024-09-28T00:59:31.888Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="深度学习, 机器学习, yolo">
 <meta name="twitter:card" content="summary">
@@ -237,7 +237,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-23 17:36:27" itemprop="dateModified" datetime="2024-09-23T17:36:27+08:00">2024-09-23</time>
+      <time title="修改时间：2024-09-28 08:59:31" itemprop="dateModified" datetime="2024-09-28T08:59:31+08:00">2024-09-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -270,7 +270,7 @@
     <div class="post-body" itemprop="articleBody">
             <div class="post-description">学习yolo目标检测笔记</div>
 	<hr>
-        <h1 id="源码阅读"><a href="#源码阅读" class="headerlink" title="源码阅读"></a>源码阅读</h1><h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data/</span><br><span class="line">models/</span><br><span class="line">utils/</span><br><span class="line">README.me									运行说明</span><br><span class="line">detect.py									检测代码</span><br><span class="line">requirements.txt					环境包</span><br><span class="line">train.py	   							训练代码</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+        <h1 id="源码阅读"><a href="#源码阅读" class="headerlink" title="源码阅读"></a>源码阅读</h1><h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">datasets/									子集的数据集</span><br><span class="line">data/											超参数的配置文件</span><br><span class="line">models/</span><br><span class="line">utils/</span><br><span class="line">README.me									运行说明</span><br><span class="line">detect.py									检测代码</span><br><span class="line">requirements.txt					环境包</span><br><span class="line">train.py	   							训练代码</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
 <h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>下载源码，安装环境，下载环境包</p>
 <h3 id="下载模型权重"><a href="#下载模型权重" class="headerlink" title="下载模型权重"></a>下载模型权重</h3><p>在README.md中，点击下载需要的模型权重。</p>
 <p>存放到./文件夹中。</p>
@@ -278,7 +278,7 @@
 <li><p>测试图片存放位置：data/images/<br>一共有两张图片</p>
 </li>
 <li><p>运行检测代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Terminal</span> </span><br><span class="line">python3.8 detect.py --source data/images/ --weights yolov5x6.pt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Terminal</span> </span><br><span class="line">python detect.py --source data/images/ --weights yolov5x6.pt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出参数、配置等</span></span><br><span class="line">detect: weights=[&#x27;yolov5x6.pt&#x27;], source=data/images/, data=data/coco128.yaml, imgsz=[640, 640], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_format=0, save_csv=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=False, dnn=False, vid_stride=1</span><br><span class="line">YOLOv5 🚀 v7.0-366-gf7322921 Python-3.8.20 torch-2.4.1+cu121 CUDA:0 (NVIDIA GeForce RTX 3080, 11938MiB)</span><br><span class="line"></span><br><span class="line">Fusing layers... </span><br><span class="line">YOLOv5x6 summary: 574 layers, 140730220 parameters, 0 gradients, 209.6 GFLOPs</span><br><span class="line">image 1/2 /root/share/HorizontalProject/yolov5/data/images/bus.jpg: 640x512 4 persons, 1 bicycle, 1 bus, 38.1ms</span><br><span class="line">image 2/2 /root/share/HorizontalProject/yolov5/data/images/zidane.jpg: 384x640 3 persons, 3 ties, 35.4ms</span><br><span class="line">Speed: 0.5ms pre-process, 36.8ms inference, 27.1ms NMS per image at shape (1, 3, 640, 640)</span><br><span class="line">Results saved to runs/detect/exp2</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -311,7 +311,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class_id:类别的id编号</span><br><span class="line">x:目标的中心点x坐标（横向)/图片总宽度</span><br><span class="line">y:目标的中心的y坐标(纵向)/图片总高度</span><br><span class="line">w:目标框的宽度/图片总宽度</span><br><span class="line">h:目标框的高度/图片总高度</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/553043506"> [CV - Object Detection - Code]目标检测YOLO系列 - YOLOv5第一阶段工作（1）- 成功运行预测代码</a></p>
+<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43334693/article/details/129312409?spm=1001.2014.3001.5506">【YOLO系列】YOLOv5超详细解读（源码详解＋入门实践＋改进）</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/553043506"> [CV - Object Detection - Code]目标检测YOLO系列 - YOLOv5第一阶段工作（1）- 成功运行预测代码</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/553176141">[CV - Object Detection - Code]目标检测YOLO系列 - YOLOv5第二阶段工作（2）- 运行训练代码</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38252409/article/details/135585593">yolov5模型Detection输出内容与源码详细解读</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/501798155">保姆式yolov5教程，训练你自己的数据集</a></p>
