@@ -166,13 +166,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -325,7 +325,7 @@
 <img src="/2024/05/07/12-17-20/d0cbce2f2654b8e70fe201fec2982c7d_b.png" class>
 <p>左边是生物神经元，右边是数学模型。  </p>
 <p>一个神经元前向传播的实例代码如下：  </p>
-<p>​<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Neuron</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">  <span class="comment"># ... </span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">inputs</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot; 假设输入和权重是1-D的numpy数组，偏差是一个数字 &quot;&quot;&quot;</span></span><br><span class="line">    cell_body_sum = np.<span class="built_in">sum</span>(inputs * self.weights) + self.bias</span><br><span class="line">    firing_rate = <span class="number">1.0</span> / (<span class="number">1.0</span> + math.exp(-cell_body_sum)) <span class="comment"># sigmoid激活函数</span></span><br><span class="line">    <span class="keyword">return</span> firing_rate</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>​<br><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Neuron</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">  <span class="comment"># ... </span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">inputs</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot; 假设输入和权重是1-D的numpy数组，偏差是一个数字 &quot;&quot;&quot;</span></span><br><span class="line">    cell_body_sum = np.<span class="built_in">sum</span>(inputs * self.weights) + self.bias</span><br><span class="line">    firing_rate = <span class="number">1.0</span> / (<span class="number">1.0</span> + math.exp(-cell_body_sum)) <span class="comment"># sigmoid激活函数</span></span><br><span class="line">    <span class="keyword">return</span> firing_rate</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 <p>换句话说，每个神经元都对它的输入和权重进行点积，然后加上偏差，最后使用非线性函数（或称为激活函数）。本例中使用的是sigmoid函数$\sigma(x)=1/(1+e^{-x})$。在本节的末尾部分将介绍不同激活函数的细节。</p>
 <p><strong>粗糙模型</strong>：要注意这个对于生物神经元的建模是非常粗糙的：在实际中，有很多不同类型的神经元，每种都有不同的属性。生物神经元的树突可以进行复杂的非线性计算。突触并不就是一个简单的权重，它们是复杂的非线性动态系统。很多系统中，输出的峰值信号的精确时间点非常重要，说明速率编码的近似是不够全面的。鉴于所有这些已经介绍和更多未介绍的简化，如果你画出人类大脑和神经网络之间的类比，有神经科学背景的人对你的板书起哄也是非常自然的。</p>
 <h2 id="作为线性分类器的单个神经元"><a href="#作为线性分类器的单个神经元" class="headerlink" title="作为线性分类器的单个神经元"></a>作为线性分类器的单个神经元</h2><p>神经元模型的前向计算数学公式看起来可能比较眼熟。就像在线性分类器中看到的那样，神经元有能力”喜欢”（激活函数值接近1），或者不喜欢（激活函数值接近0）输入空间中的某些线性区域。因此，只要在神经元的输出端有一个合适的损失函数，就能让单个神经元变成一个线性分类器。</p>

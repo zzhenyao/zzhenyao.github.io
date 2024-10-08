@@ -155,13 +155,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -276,7 +276,7 @@
 <li><p>注意 .</p>
 </li>
 </ul>
-<h1 id="文件夹初始化为仓库上传"><a href="#文件夹初始化为仓库上传" class="headerlink" title="文件夹初始化为仓库上传"></a>文件夹初始化为仓库上传</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 1. 在当前目录初始化一个新的Git仓库</span><br><span class="line">git init</span><br><span class="line"> </span><br><span class="line"># 2. 添加所有文件到暂存区</span><br><span class="line">git add .</span><br><span class="line"> </span><br><span class="line"># 3. 提交暂存区的内容到本地仓库</span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line"></span><br><span class="line"># 4. 添加远程仓库地址（以GitHub为例，替换成你的远程仓库URL）</span><br><span class="line">git remote add origin https://github.com/username/repository.git</span><br><span class="line"> </span><br><span class="line"># 5. 推送代码到远程仓库，同时设置远程仓库的主分支</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line">使用临时代理git clone</span><br><span class="line">git -c http.proxy=&#x27;http://127.0.0.1:7897&#x27; clone https://github.com/user/repo.git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="文件夹初始化为仓库上传"><a href="#文件夹初始化为仓库上传" class="headerlink" title="文件夹初始化为仓库上传"></a>文件夹初始化为仓库上传</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># 1. 在当前目录初始化一个新的Git仓库</span><br><span class="line">git init</span><br><span class="line"> </span><br><span class="line"># 2. 添加所有文件到暂存区</span><br><span class="line">git add .</span><br><span class="line"> </span><br><span class="line"># 3. 提交暂存区的内容到本地仓库</span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line"></span><br><span class="line"># 4. 添加远程仓库地址（以GitHub为例，替换成你的远程仓库URL）</span><br><span class="line">git remote add origin https://github.com/username/repository.git</span><br><span class="line"> </span><br><span class="line"># 5. 推送代码到远程仓库，同时设置远程仓库的主分支</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line">使用临时代理git clone</span><br><span class="line">git -c http.proxy=&#x27;http://127.0.0.1:7897&#x27; clone https://github.com/user/repo.git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注意：如果使用https链接上传，需要令牌密码，使用ssh连接上传，只需要本地的ssh密码</p>
 </blockquote>

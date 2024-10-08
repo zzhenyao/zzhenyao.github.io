@@ -163,13 +163,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -290,7 +290,7 @@
 <img src="/2024/04/23/11-01-10/%E6%84%9F%E7%9F%A5%E6%9C%BA.png" class>
 <p>感知机能解决二分类问题，但与线性回归和softmax回归有所区别：线性回归与softmax回归的输出均为实数，softmax回归的输出同时还满足概率公理。</p>
 <h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><p>训练感知机的伪代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">initialize w = <span class="number">0</span> <span class="keyword">and</span> b = <span class="number">0</span></span><br><span class="line">repeat</span><br><span class="line">    <span class="comment">#此处表达式小于0代表预测结果错误</span></span><br><span class="line">    <span class="keyword">if</span> y_i[&lt;w,x_i&gt;+b] &lt;= <span class="number">0</span> then</span><br><span class="line">        w=w + yixi</span><br><span class="line">        b=b + yi</span><br><span class="line">    end <span class="keyword">if</span></span><br><span class="line">until <span class="built_in">all</span> classified correctly</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">initialize w = <span class="number">0</span> <span class="keyword">and</span> b = <span class="number">0</span></span><br><span class="line">repeat</span><br><span class="line">    <span class="comment">#此处表达式小于0代表预测结果错误</span></span><br><span class="line">    <span class="keyword">if</span> y_i[&lt;w,x_i&gt;+b] &lt;= <span class="number">0</span> then</span><br><span class="line">        w=w + yixi</span><br><span class="line">        b=b + yi</span><br><span class="line">    end <span class="keyword">if</span></span><br><span class="line">until <span class="built_in">all</span> classified correctly</span><br></pre></td></tr></table></figure>
 <p>可以看出这等价于使用如下损失函数的随机梯度下降（batch_size=1）:<br>$$<br>\ell(y, \boldsymbol x,\boldsymbol w)=max(0,-y&lt;\boldsymbol w,\boldsymbol x&gt;)\\<br>=max(0,-y\boldsymbol w^T\boldsymbol x)<br>$$<br>当预测错误时，偏导数为<br>$$<br>\frac{\partial \ell}{\partial \boldsymbol w}=-y\cdot \boldsymbol x<br>$$</p>
 <p>注：此处为了方便计算，将偏置项b归入w中的最后一维，并在特征x中相应的最后一维加入常数1</p>
 <h4 id="收敛定理"><a href="#收敛定理" class="headerlink" title="收敛定理"></a>收敛定理</h4><p>设数据在特征空间能被半径为r的圆（球）覆盖，并且分类时有余量（即$\sigma$函数的输入不会取使输出模棱两可的值）$y(\boldsymbol x^T\boldsymbol w)\geq \rho$，若初始参数满足$\|\boldsymbol w\|^2+b^2 \leq 1$，则感知机保证在$\frac{r^2+1}{\rho ^2}$步内收敛</p>

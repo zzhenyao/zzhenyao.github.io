@@ -157,13 +157,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -283,35 +283,35 @@
 \max(4, 5, 7, 8)=8.\\</script><p>池化窗口形状为$p \times q$的池化层称为$p \times q$池化层，池化操作称为$p \times q$池化。</p>
 <p>回到本节开头提到的对象边缘检测示例，现在我们将使用卷积层的输出作为$2\times 2$最大池化的输入。<br>设置卷积层输入为<code>X</code>，池化层输出为<code>Y</code>。<br>无论<code>X[i, j]</code>和<code>X[i, j + 1]</code>的值是否不同，或<code>X[i, j + 1]</code>和<code>X[i, j + 2]</code>的值是否不同，池化层始终输出<code>Y[i, j] = 1</code>。<br>也就是说，使用$2\times 2$最大池化层，即使在高度或宽度上移动一个元素，卷积层仍然可以识别到模式。</p>
 <p>在下面的代码中的<code>pool2d</code>函数，我们(<strong>实现池化层的前向传播</strong>)。然而，这里我们没有卷积核，输出为输入中每个区域的最大值或平均值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> d2l <span class="keyword">import</span> torch <span class="keyword">as</span> d2l</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">pool2d</span>(<span class="params">X, pool_size, mode=<span class="string">&#x27;max&#x27;</span></span>):</span><br><span class="line">    p_h, p_w = pool_size</span><br><span class="line">    Y = torch.zeros((X.shape[<span class="number">0</span>] - p_h + <span class="number">1</span>, X.shape[<span class="number">1</span>] - p_w + <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(Y.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(Y.shape[<span class="number">1</span>]):  <span class="comment"># 枚举输出的每个位置，[i,j]对应输入的位置[i至i+p_h,j至j+p_w]</span></span><br><span class="line">            <span class="keyword">if</span> mode == <span class="string">&#x27;max&#x27;</span>:  <span class="comment"># 最大池化</span></span><br><span class="line">                Y[i, j] = X[i: i + p_h, j: j + p_w].<span class="built_in">max</span>()  <span class="comment"># max函数返回最大值</span></span><br><span class="line">            <span class="keyword">elif</span> mode == <span class="string">&#x27;avg&#x27;</span>:  <span class="comment"># 平均池化</span></span><br><span class="line">                Y[i, j] = X[i: i + p_h, j: j + p_w].mean()  <span class="comment"># mean函数返回平均值</span></span><br><span class="line">    <span class="keyword">return</span> Y</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> d2l <span class="keyword">import</span> torch <span class="keyword">as</span> d2l</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">pool2d</span>(<span class="params">X, pool_size, mode=<span class="string">&#x27;max&#x27;</span></span>):</span><br><span class="line">    p_h, p_w = pool_size</span><br><span class="line">    Y = torch.zeros((X.shape[<span class="number">0</span>] - p_h + <span class="number">1</span>, X.shape[<span class="number">1</span>] - p_w + <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(Y.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(Y.shape[<span class="number">1</span>]):  <span class="comment"># 枚举输出的每个位置，[i,j]对应输入的位置[i至i+p_h,j至j+p_w]</span></span><br><span class="line">            <span class="keyword">if</span> mode == <span class="string">&#x27;max&#x27;</span>:  <span class="comment"># 最大池化</span></span><br><span class="line">                Y[i, j] = X[i: i + p_h, j: j + p_w].<span class="built_in">max</span>()  <span class="comment"># max函数返回最大值</span></span><br><span class="line">            <span class="keyword">elif</span> mode == <span class="string">&#x27;avg&#x27;</span>:  <span class="comment"># 平均池化</span></span><br><span class="line">                Y[i, j] = X[i: i + p_h, j: j + p_w].mean()  <span class="comment"># mean函数返回平均值</span></span><br><span class="line">    <span class="keyword">return</span> Y</span><br></pre></td></tr></table></figure>
 <p>我们可以构建上图中的输入张量<code>X</code>，[<strong>验证二维最大池化层的输出</strong>]。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X = torch.tensor([[<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">2.0</span>], [<span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>], [<span class="number">6.0</span>, <span class="number">7.0</span>, <span class="number">8.0</span>]])</span><br><span class="line">pool2d(X, (<span class="number">2</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X = torch.tensor([[<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">2.0</span>], [<span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>], [<span class="number">6.0</span>, <span class="number">7.0</span>, <span class="number">8.0</span>]])</span><br><span class="line">pool2d(X, (<span class="number">2</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[4., 5.],
         [7., 8.]])
 </code></pre><p>此外，我们还可以(<strong>验证平均池化层</strong>)。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pool2d(X, (<span class="number">2</span>, <span class="number">2</span>), <span class="string">&#x27;avg&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pool2d(X, (<span class="number">2</span>, <span class="number">2</span>), <span class="string">&#x27;avg&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[2., 3.],
         [5., 6.]])
 </code></pre><h2 id="填充和步幅"><a href="#填充和步幅" class="headerlink" title="填充和步幅"></a>填充和步幅</h2><p>与卷积层一样，池化层也可以改变输出形状。和以前一样，我们可以通过填充和步幅以获得所需的输出形状。<br>下面，我们用深度学习框架中内置的二维最大池化层，来演示池化层中填充和步幅的使用。<br>我们首先构造了一个输入张量<code>X</code>，它有四个维度，其中样本数和通道数都是1。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X = torch.arange(<span class="number">16</span>, dtype=torch.float32).reshape(</span><br><span class="line">    (<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>))  <span class="comment"># 维度[batch_size，通道数，H，W]</span></span><br><span class="line">X</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X = torch.arange(<span class="number">16</span>, dtype=torch.float32).reshape(</span><br><span class="line">    (<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>))  <span class="comment"># 维度[batch_size，通道数，H，W]</span></span><br><span class="line">X</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[[[ 0.,  1.,  2.,  3.],
           [ 4.,  5.,  6.,  7.],
           [ 8.,  9., 10., 11.],
           [12., 13., 14., 15.]]]])
 </code></pre><p>默认情况下，(<strong>深度学习框架中的步幅与池化窗口的大小相同</strong>)。<br>因此，如果我们使用形状为<code>(3, 3)</code>的池化窗口，那么默认情况下，我们得到的步幅形状为<code>(3, 3)</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pool2d = nn.MaxPool2d(<span class="number">3</span>)</span><br><span class="line">pool2d(X)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pool2d = nn.MaxPool2d(<span class="number">3</span>)</span><br><span class="line">pool2d(X)</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[[[10.]]]])
 </code></pre><p>[<strong>填充和步幅可以手动设定</strong>]。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pool2d = nn.MaxPool2d(<span class="number">3</span>, padding=<span class="number">1</span>, stride=<span class="number">2</span>)</span><br><span class="line">pool2d(X)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pool2d = nn.MaxPool2d(<span class="number">3</span>, padding=<span class="number">1</span>, stride=<span class="number">2</span>)</span><br><span class="line">pool2d(X)</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[[[ 5.,  7.],
           [13., 15.]]]])
 </code></pre><p>当然，我们可以(<strong>设定一个任意大小的矩形池化窗口，并分别设定填充和步幅的高度和宽度</strong>)。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pool2d = nn.MaxPool2d((<span class="number">2</span>, <span class="number">3</span>), stride=(<span class="number">2</span>, <span class="number">3</span>), padding=(<span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line">pool2d(X)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pool2d = nn.MaxPool2d((<span class="number">2</span>, <span class="number">3</span>), stride=(<span class="number">2</span>, <span class="number">3</span>), padding=(<span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line">pool2d(X)</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[[[ 5.,  7.],
           [13., 15.]]]])
 </code></pre><h2 id="多个通道"><a href="#多个通道" class="headerlink" title="多个通道"></a>多个通道</h2><p>在处理多通道输入数据时，[<strong>池化层在每个输入通道上单独运算</strong>]，而不是像卷积层一样在通道上对输入进行汇总。<br>这意味着池化层的输出通道数与输入通道数相同。<br>下面，我们将在通道维度上连结张量<code>X</code>和<code>X + 1</code>，以构建具有2个通道的输入。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X = torch.cat((X, X + <span class="number">1</span>), <span class="number">1</span>)  <span class="comment"># 在第一个维度也就是通道维度拼接</span></span><br><span class="line">X</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X = torch.cat((X, X + <span class="number">1</span>), <span class="number">1</span>)  <span class="comment"># 在第一个维度也就是通道维度拼接</span></span><br><span class="line">X</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[[[ 0.,  1.,  2.,  3.],
           [ 4.,  5.,  6.,  7.],
           [ 8.,  9., 10., 11.],
@@ -322,7 +322,7 @@
           [ 9., 10., 11., 12.],
           [13., 14., 15., 16.]]]])
 </code></pre><p>如下所示，池化后输出通道的数量仍然是2。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pool2d = nn.MaxPool2d(<span class="number">3</span>, padding=<span class="number">1</span>, stride=<span class="number">2</span>)</span><br><span class="line">pool2d(X)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pool2d = nn.MaxPool2d(<span class="number">3</span>, padding=<span class="number">1</span>, stride=<span class="number">2</span>)</span><br><span class="line">pool2d(X)</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[[[ 5.,  7.],
           [13., 15.]],
 

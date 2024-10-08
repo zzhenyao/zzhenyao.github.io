@@ -155,13 +155,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -300,7 +300,7 @@
 <p>在安装深度学习框架之前，请先检查你的计算机上是否有可用的GPU（为笔记本电脑上显示器提供输出的GPU不算）。 例如，你可以查看计算机是否装有NVIDIA GPU并已安装<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads">CUDA</a>。 如果你的机器没有任何GPU，没有必要担心，因为你的CPU在前几章完全够用。 但是，如果你想流畅地学习全部章节，请提早获取GPU并且安装深度学习框架的GPU版本。</p>
 <ul>
 <li><p>你可以按如下方式安装PyTorch的CPU或GPU版本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install torch==1.8.1</span><br><span class="line">pip install torchvision==0.9.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install torch==1.8.1</span><br><span class="line">pip install torchvision==0.9.1</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>也可以访问官网 <strong><em><a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></em></strong> 选择适合自己电脑pytorch版本下载!</p>
 </li>
@@ -317,7 +317,7 @@
 <li>本节主要介绍<strong>安装Miniconda</strong>、<strong>CPU环境下的Pytorch</strong>和其它课程所需<strong>软件包</strong>(d2l, jupyter)。对于前面几节来说，CPU已经够用了。<ul>
 <li>如果您<strong>已经安装</strong>了Miniconda/Anaconda, Pytorch框架和jupyter记事本, 您只需再安装<strong>d2l包</strong>，就可以跳过本节视频了<strong>开启深度学习之旅</strong>了; 如果希望后续章节在<strong>GPU下跑深度学习</strong>, 可以<strong>新建环境</strong>安装<strong>CUDA版本的Pytorch</strong>。</li>
 <li>如果需要在Windows下<strong>安装CUDA和Pytorch</strong>(cuda版本)，用<strong>本地GPU跑深度学习</strong>，可以参考李沐老师<a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1363284223420436480">Windows下安装CUDA和Pytorch跑深度学习</a>，如果网慢总失败的同学可以参考<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/425647129/answer/2278290137">cuda11.0如何安装pytorch？ - Glenn1Q84的回答 - 知乎</a>。当然，如果不方便在本地进行配置(如无GPU, GPU显存过低等)，也可以选择<a target="_blank" rel="noopener" href="https://colab.research.google.com/">Colab</a>(需要科学上网)，或其它<strong>云服务器</strong>GPU跑深度学习。</li>
-<li>如果pip安装比较慢，可以用镜像源安装：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install torch torchvision -i http://mirrors.aliyun.com/pypi/simple/  --trusted-host mirrors.aliyun.com</span><br></pre></td></tr></table></figure></li>
+<li>如果pip安装比较慢，可以用镜像源安装：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install torch torchvision -i http://mirrors.aliyun.com/pypi/simple/  --trusted-host mirrors.aliyun.com</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>如果安装时经常报错, 可以参考课程评论区部分。</li>
