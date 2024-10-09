@@ -26,11 +26,16 @@
 <meta property="og:site_name" content="且听风吟">
 <meta property="og:description" content="卷积神经网络公式推导，以及经典的ResNet残差网络">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/10/08/15-15-24/convolution-mlp-mapping.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/10/08/15-15-24/cnn_gradient_finger.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/10/08/15-15-24/konwolucja.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/10/08/15-15-24/screenshot-from-2016-04-17-212043.png">
 <meta property="article:published_time" content="2024-10-08T07:15:24.000Z">
-<meta property="article:modified_time" content="2024-10-08T13:12:14.775Z">
+<meta property="article:modified_time" content="2024-10-09T01:29:58.680Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="深度学习, 计算机视觉">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/10/08/15-15-24/convolution-mlp-mapping.png">
 
 
 <link rel="canonical" href="https://pkunicor.github.io/2024/10/08/15-15-24/">
@@ -140,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82%E8%BE%93%E5%87%BA"><span class="nav-number">1.1.</span> <span class="nav-text">卷积层输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E5%8D%B7%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">二维卷积公式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%BE%AE%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">矩阵微分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.1.1.</span> <span class="nav-text">连接</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">1.1.</span> <span class="nav-text">卷积层前向传播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E7%A7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">点积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E5%8D%B7%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">二维卷积公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5"><span class="nav-number">1.1.3.</span> <span class="nav-text">链接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%BE%AE%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">矩阵微分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">链接</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -229,9 +234,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-10-08 15:15:24 / 修改时间：21:12:14" itemprop="dateCreated datePublished" datetime="2024-10-08T15:15:24+08:00">2024-10-08</time>
+      <time title="创建时间：2024-10-08 15:15:24" itemprop="dateCreated datePublished" datetime="2024-10-08T15:15:24+08:00">2024-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-09 09:29:58" itemprop="dateModified" datetime="2024-10-09T09:29:58+08:00">2024-10-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -264,11 +275,37 @@
     <div class="post-body" itemprop="articleBody">
             <div class="post-description">卷积神经网络公式推导，以及经典的ResNet残差网络</div>
 	<hr>
-        <h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><h2 id="卷积层输出"><a href="#卷积层输出" class="headerlink" title="卷积层输出"></a>卷积层输出</h2><p>前向传播：</p>
-<p>$<br>\begin{aligned}a^l_{i,j}=\sum_{k=0}^{K-1}\sum_{m,n=0}^{H-1}x^l_{i+m,j+n}w^l_{m,n,k}+b_{m,n}\end{aligned}<br>$</p>
-<p>K个通道卷积叠加。</p>
-<p>$<br>\begin{aligned}<br>&amp;net^l =W^l \times a^{l-1}+w_b \\<br>&amp;a_{i,j}^{l-1} =f^{l-1}(net_{i,j}^{l-1})<br>\end{aligned}<br>$</p>
-<h3 id="二维卷积公式"><a href="#二维卷积公式" class="headerlink" title="二维卷积公式"></a>二维卷积公式</h3><p>卷积，翻转180度，变成互相关操作。</p>
+        <h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><h2 id="卷积层前向传播"><a href="#卷积层前向传播" class="headerlink" title="卷积层前向传播"></a>卷积层前向传播</h2><p><img src="/2024/10/08/15-15-24/convolution-mlp-mapping.png" alt></p>
+<p><img src="/2024/10/08/15-15-24/cnn_gradient_finger.png" alt></p>
+<h3 id="点积"><a href="#点积" class="headerlink" title="点积"></a>点积</h3><p><img src="/2024/10/08/15-15-24/konwolucja.png" alt></p>
+<p>反向传播使用了这种点积操作，将权值矩阵旋转180度，而梯度矩阵会进行填充为：</p>
+<p>$\left.\left[\begin{array}{llll}\mathbf{0}&amp;\mathbf{0}&amp;\mathbf{0}&amp;\mathbf{0}\\\mathbf{0}&amp;\delta_{11}^l&amp;\delta_{12}^l&amp;\mathbf{0}\\\mathbf{0}&amp;\delta_{21}^l&amp;\delta_{22}^l&amp;\mathbf{0}\\\mathbf{0}&amp;\mathbf{0}&amp;\mathbf{0}&amp;\mathbf{0}\end{array}\right.\right]$</p>
+<p>下图是反向传播的更新梯度，(图片没有填充)：</p>
+<p><img src="/2024/10/08/15-15-24/screenshot-from-2016-04-17-212043.png" alt></p>
+<p>点积将卷积核旋转180度，然后进行操作。</p>
+<h3 id="二维卷积公式"><a href="#二维卷积公式" class="headerlink" title="二维卷积公式"></a>二维卷积公式</h3><p>卷积的数学概念需要翻转，而深度学习中的卷积是互相关操作。</p>
+<p>前馈神经网络中：神经元$j$的误差定义为：</p>
+<p>$\delta_j^l=\frac{\partial C}{\partial z_j^l}$</p>
+<p>其中：$z_j^l=\sum_kw_{kj}^la_k^{l-1}+b_k^l$</p>
+<p>$a_j^l=\sigma(z_j^l)$，激活函数</p>
+<p>其中$w_{kj}^l$:是第$l-1$与$l$层之间的输入$k$节点与输出$j$节点的权重，</p>
+<p>对于CNN：</p>
+<p>前向传播公式为：</p>
+<p>$<br>\begin{aligned}<br>z_{x,y}^{l+1} = w^{l+1}*\sigma(z_{x,y}^l)+b_{x,y}^{l+1} = \sum_{a}\sum_{b}w_{a,b}^{l+1}\sigma(z_{x-a,y-b}^l) +b_{x,y}^{l+1}<br>\end{aligned}<br>$</p>
+<p>其中$z_{x-a,y-b}^l$：就代表了核翻转，是数学意义上的卷积。</p>
+<p>定义误差梯度：</p>
+<p>$\delta_{x,y}^l=\frac{\partial C}{\partial z_{x,y}^l}=\sum_{x^{\prime}}\sum_{y^{\prime}}\frac{\partial C}{\partial z_{x^{\prime},y^{\prime}}^{l+1}}\frac{\partial z_{x^{\prime},y^{\prime}}^{l+1}}{\partial z_{x,y}^l}$</p>
+<p>将前向传播带入公式：</p>
+<p>$\frac{\partial C}{\partial z_{x,y}^l}=\sum_{x^{\prime}}\sum_{y^{\prime}}\frac{\partial C}{\partial z_{x^{\prime},y^{\prime}}^{l+1}}\frac{\partial z_{x^{\prime},y^{\prime}}^{l+1}}{\partial z_{x,y}^{l}}=\sum_{x^{\prime}}\sum_{y^{\prime}}\delta_{x^{\prime},y^{\prime}}^{l+1}\frac{\partial(\sum_{a}\sum_{b}w_{a,b}^{l+1}\sigma(z_{x^{\prime}-a,y^{\prime}-b}^{l})+b_{x^{\prime},y^{\prime}}^{l+1})}{\partial z_{x,y}^{l}}$</p>
+<p>对公式右边进行展开，只有$x = x^{\prime} - a$和$y = y^{\prime} -b$时偏导不为0，故重新整理后得，将$a = x^{\prime} - x$和$b = y^{\prime} -y$代入：</p>
+<p>$\begin{aligned}\sum_{x’}\sum_{y’}\delta_{x’,y’}^{l+1}w_{a,b}^{l+1}\sigma’(z_{x,y}^l)&amp;=\sum_{x’}\sum_{y’}\delta_{x’,y’}^{l+1}w_{x’-x,y’-y}^{l+1}\sigma’(z_{x,y}^l)\end{aligned}$</p>
+<p>而右边第一项就是梯度反向传播的公式：</p>
+<p>$\begin{aligned}\delta^{l+1}*w_{-x,-y}^{l+1} = \sum_{x’}\sum_{y’}\delta_{x’,y’}^{l+1}w_{x’-x,y’-y}^{l+1}\end{aligned}$</p>
+<p>所以最终的反向传播误差公式：</p>
+<p>$\delta_{x,y}^l=\delta^{l+1}*ROT180(w_{x,y}^{l+1})\sigma^{\prime}(z_{x,y}^l)$</p>
+<p>成本函数的梯度：</p>
+<p>$\frac{\partial C}{\partial w_{a,b}^l}=\delta_{a,b}^l*\sigma(ROT180(z_{a,b}^{l-1}))$</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a target="_blank" rel="noopener" href="https://grzegorzgwardys.wordpress.com/2016/04/22/8/#unique-identifier2">卷积神经网络反向传播：从直觉到推导</a></p>
 <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="矩阵微分"><a href="#矩阵微分" class="headerlink" title="矩阵微分"></a>矩阵微分</h2><p>矩阵：$f(\boldsymbol{X}),\boldsymbol{X}_{m\times n}=(x_{ij})_{i=1,j=1}^{m,n}$</p>
 <p>多元函数设为可微：<br>$<br>\begin{aligned}<br>\mathrm{d}f(\boldsymbol{X})&amp; =\frac{\partial f}{\partial x_{11}}\mathrm{d}x_{11}+\frac{\partial f}{\partial x_{12}}\mathrm{d}x_{12}+\cdots+\frac{\partial f}{\partial x_{1n}}\mathrm{d}x_{1n} \\<br>&amp;+\frac{\partial f}{\partial x_{21}}\mathrm{d}x_{21}+\frac{\partial f}{\partial x_{22}}\mathrm{d}x_{22}+\cdots+\frac{\partial f}{\partial x_{2n}}\mathrm{d}x_{2n} \\<br>&amp;+\ldots \\<br>&amp;+\frac{\partial f}{\partial x_{m1}}\mathrm{d}x_{m1}+\frac{\partial f}{\partial x_{m2}}\mathrm{d}x_{m2}+\cdots+\frac{\partial f}{\partial x_{mn}}\mathrm{d}x_{mn}<br>\end{aligned}<br>$</p>
 <p>相当于：</p>
@@ -276,7 +313,7 @@
 <p>Jacobian矩阵形式:<br>即先把矩阵变元$X$进行转置，再对转置后的每个位置的元素逐个求偏导，结果布局和转置布局一样<br>$<br>\begin{aligned}<br>\operatorname{D}_\boldsymbol{X}f(\boldsymbol{X})&amp; =\frac{\partial f(\boldsymbol{X})}{\partial\boldsymbol{X}_{\boldsymbol{m}\times\boldsymbol{n}}^T} \\<br>&amp;=\begin{bmatrix}\frac{\partial f}{\partial x_{11}}&amp;\frac{\partial f}{\partial x_{21}}&amp;\cdots&amp;\frac{\partial f}{\partial x_{m1}}\\\frac{\partial f}{\partial x_{12}}&amp;\frac{\partial f}{\partial x_{22}}&amp;\cdots&amp;\frac{\partial f}{\partial x_{m2}}\\\vdots&amp;\vdots&amp;\vdots&amp;\vdots\\\frac{\partial f}{\partial x_{1n}}&amp;\frac{\partial f}{\partial x_{2n}}&amp;\cdots&amp;\frac{\partial f}{\partial x_{mn}}\end{bmatrix}_{n\times m}<br>\end{aligned}<br>$</p>
 <p>$\boldsymbol{X}_{m\times n}$的矩阵微分：<br>$<br>\begin{aligned}\mathrm{d}\boldsymbol{X}_{m\times n}=\begin{bmatrix}\mathrm{d}x_{11}&amp;\mathrm{d}x_{12}&amp;\cdots&amp;\mathrm{d}x_{1n}\\\mathrm{d}x_{21}&amp;\mathrm{d}x_{22}&amp;\cdots&amp;\mathrm{d}x_{2n}\\\vdots&amp;\vdots&amp;\vdots&amp;\vdots\\\mathrm{d}x_{m1}&amp;\mathrm{d}x_{m2}&amp;\cdots&amp;\mathrm{d}x_{mn}\end{bmatrix}_{m\times n}\end{aligned}<br>$</p>
 <p>于是，矩阵微分形式为：<br>$<br>\begin{aligned}\mathrm{d}f(\boldsymbol{X})=\mathrm{tr}(\frac{\partial f(\boldsymbol{X})}{\partial\boldsymbol{X}^T}\mathrm{d}\boldsymbol{X})<br>\end{aligned}<br>$</p>
-<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1318542724966715392">Iterator的专栏「工科数学」</a></p>
+<h3 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1318542724966715392">Iterator的专栏「工科数学」</a></p>
 
     </div>
 
