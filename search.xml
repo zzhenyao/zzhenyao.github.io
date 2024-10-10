@@ -46,14 +46,14 @@
     <title>经典卷积神经网络-ResNet</title>
     <url>/2024/10/08/15-15-24/</url>
     <content><![CDATA[<h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><h2 id="卷积层前向传播"><a href="#卷积层前向传播" class="headerlink" title="卷积层前向传播"></a>卷积层前向传播</h2><p><img src="/2024/10/08/15-15-24/convolution-mlp-mapping.png" alt></p>
-<p><img src="/2024/10/08/15-15-24/cnn_gradient_finger.png" alt></p>
-<h3 id="点积"><a href="#点积" class="headerlink" title="点积"></a>点积</h3><p><img src="/2024/10/08/15-15-24/konwolucja.png" alt></p>
-<p>反向传播使用了这种点积操作，将权值矩阵旋转180度，而梯度矩阵会进行填充为：</p>
+<h3 id="梯度反向传播的卷积"><a href="#梯度反向传播的卷积" class="headerlink" title="梯度反向传播的卷积"></a>梯度反向传播的卷积</h3><p><img src="/2024/10/08/15-15-24/cnn_gradient_finger.png" alt=" "></p>
+<p><img src="/2024/10/08/15-15-24/konwolucja.png" alt></p>
+<p>反向传播使用了这种卷积操作，将权值矩阵旋转180度，而梯度矩阵会进行填充为：</p>
 <p>$\left.\left[\begin{array}{llll}\mathbf{0}&amp;\mathbf{0}&amp;\mathbf{0}&amp;\mathbf{0}\\\mathbf{0}&amp;\delta_{11}^l&amp;\delta_{12}^l&amp;\mathbf{0}\\\mathbf{0}&amp;\delta_{21}^l&amp;\delta_{22}^l&amp;\mathbf{0}\\\mathbf{0}&amp;\mathbf{0}&amp;\mathbf{0}&amp;\mathbf{0}\end{array}\right.\right]$</p>
 <p>下图是反向传播的更新梯度，(图片没有填充)：</p>
 <p><img src="/2024/10/08/15-15-24/screenshot-from-2016-04-17-212043.png" alt></p>
-<p>点积将卷积核旋转180度，然后进行操作。</p>
-<h3 id="二维卷积公式"><a href="#二维卷积公式" class="headerlink" title="二维卷积公式"></a>二维卷积公式</h3><p>卷积的数学概念需要翻转，而深度学习中的卷积是互相关操作。</p>
+<p>卷积将卷积核旋转180度，然后进行互相关操作。</p>
+<h3 id="二维卷积公式"><a href="#二维卷积公式" class="headerlink" title="二维卷积公式"></a>二维卷积公式</h3><p>深度学习中的卷积是先旋转180度，然后互相关操作。</p>
 <p>前馈神经网络中：神经元$j$的误差定义为：</p>
 <p>$\delta_j^l=\frac{\partial C}{\partial z_j^l}$</p>
 <p>其中：$z_j^l=\sum_kw_{kj}^la_k^{l-1}+b_k^l$</p>
@@ -62,20 +62,33 @@
 <p>对于CNN：</p>
 <p>前向传播公式为：</p>
 <p>$<br>\begin{aligned}<br>z_{x,y}^{l+1} = w^{l+1}*\sigma(z_{x,y}^l)+b_{x,y}^{l+1} = \sum_{a}\sum_{b}w_{a,b}^{l+1}\sigma(z_{x-a,y-b}^l) +b_{x,y}^{l+1}<br>\end{aligned}<br>$</p>
-<p>其中$z_{x-a,y-b}^l$：就代表了核翻转，是数学意义上的卷积。</p>
+<p>其中$z_{x-a,y-b}^l$：相当于对核翻转。</p>
 <p>定义误差梯度：</p>
-<p>$\delta_{x,y}^l=\frac{\partial C}{\partial z_{x,y}^l}=\sum_{x^{\prime}}\sum_{y^{\prime}}\frac{\partial C}{\partial z_{x^{\prime},y^{\prime}}^{l+1}}\frac{\partial z_{x^{\prime},y^{\prime}}^{l+1}}{\partial z_{x,y}^l}$</p>
+<p>$\begin{aligned}\delta_{x,y}^l=\frac{\partial C}{\partial z_{x,y}^l}=\sum_{x^{\prime}}\sum_{y^{\prime}}\frac{\partial C}{\partial z_{x^{\prime},y^{\prime}}^{l+1}}\frac{\partial z_{x^{\prime},y^{\prime}}^{l+1}}{\partial z_{x,y}^l}\end{aligned}$</p>
+<blockquote>
+<p>其中$x^{\prime},y^{\prime}$，取决于前向传播卷积的示意图中，$l$层每个节点$x,y$，影响的$l+1$层的$x^{\prime},y^{\prime}$不同。</p>
+</blockquote>
 <p>将前向传播带入公式：</p>
-<p>$\frac{\partial C}{\partial z_{x,y}^l}=\sum_{x^{\prime}}\sum_{y^{\prime}}\frac{\partial C}{\partial z_{x^{\prime},y^{\prime}}^{l+1}}\frac{\partial z_{x^{\prime},y^{\prime}}^{l+1}}{\partial z_{x,y}^{l}}=\sum_{x^{\prime}}\sum_{y^{\prime}}\delta_{x^{\prime},y^{\prime}}^{l+1}\frac{\partial(\sum_{a}\sum_{b}w_{a,b}^{l+1}\sigma(z_{x^{\prime}-a,y^{\prime}-b}^{l})+b_{x^{\prime},y^{\prime}}^{l+1})}{\partial z_{x,y}^{l}}$</p>
+<p>$\begin{aligned}<br>\frac{\partial C}{\partial z_{x,y}^l} &amp; =\sum_{x^{\prime}}\sum_{y^{\prime}}\frac{\partial C}{\partial z_{x^{\prime},y^{\prime}}^{l+1}}\frac{\partial z_{x^{\prime},y^{\prime}}^{l+1}}{\partial z_{x,y}^{l}} \\<br>&amp;=\sum_{x^{\prime} }\sum_{y^{\prime}}\delta_{x^{\prime},y^{\prime} }^{l+1}\frac{\partial(\displaystyle\sum_{a}\displaystyle\sum_{b}w_{a,b}^{l+1}\sigma(z_{x^{\prime}-a,y^{\prime}-b}^{l})+b_{x^{\prime},y^{\prime}}^{l+1}) }{\partial z_{x,y}^{l}}<br>\end{aligned}$</p>
 <p>对公式右边进行展开，只有$x = x^{\prime} - a$和$y = y^{\prime} -b$时偏导不为0，故重新整理后得，将$a = x^{\prime} - x$和$b = y^{\prime} -y$代入：</p>
 <p>$\begin{aligned}\sum_{x’}\sum_{y’}\delta_{x’,y’}^{l+1}w_{a,b}^{l+1}\sigma’(z_{x,y}^l)&amp;=\sum_{x’}\sum_{y’}\delta_{x’,y’}^{l+1}w_{x’-x,y’-y}^{l+1}\sigma’(z_{x,y}^l)\end{aligned}$</p>
+<blockquote>
+<p>上述式子中：$x’-x$不会超出范围，因为$x’$与$x$具有关联，所以一定会在$w$的矩阵范围内。</p>
+</blockquote>
 <p>而右边第一项就是梯度反向传播的公式：</p>
 <p>$\begin{aligned}\delta^{l+1}*w_{-x,-y}^{l+1} = \sum_{x’}\sum_{y’}\delta_{x’,y’}^{l+1}w_{x’-x,y’-y}^{l+1}\end{aligned}$</p>
+<p>理解上面这个公式：</p>
+<p><img src="/2024/10/08/15-15-24/QQ_1728452268383.png" alt=" "></p>
+<p>$\delta_{1,2}^{l}$，只影响了下一层的$\delta_{1,1}^{l+1}$$\delta_{1,2}^{l+1}$，所以$x’,y’$取值范围只有$(1,1),(1,2)$，得到的$w$下标${x’-x,y’-y}$，取值为:$(0,-1),(0,0)$</p>
+<p>推导公式：</p>
 <p>所以最终的反向传播误差公式：</p>
 <p>$\delta_{x,y}^l=\delta^{l+1}*ROT180(w_{x,y}^{l+1})\sigma^{\prime}(z_{x,y}^l)$</p>
 <p>成本函数的梯度：</p>
 <p>$\frac{\partial C}{\partial w_{a,b}^l}=\delta_{a,b}^l*\sigma(ROT180(z_{a,b}^{l-1}))$</p>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="https://grzegorzgwardys.wordpress.com/2016/04/22/8/#unique-identifier2">卷积神经网络反向传播：从直觉到推导</a></p>
+<p><a href="https://pavisj.medium.com/convolutions-and-backpropagations-46026a8f5d2c#6042">卷积和反向传播</a></p>
+<p><a href="https://www.pycodemates.com/2023/07/backward-pass-in-convolutional-neural-network-explained.html">Derivation of Backpropagation in Convolutional Neural Network (CNN)</a></p>
+<p><a href="https://zzutk.github.io/docs/reports/2016.10%20-%20Derivation%20of%20Backpropagation%20in%20Convolutional%20Neural%20Network%20(CNN">Derivation of Backpropagation in Convolutional Neural Network zhangzhifei</a>.pdf)</p>
 <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="矩阵微分"><a href="#矩阵微分" class="headerlink" title="矩阵微分"></a>矩阵微分</h2><p>矩阵：$f(\boldsymbol{X}),\boldsymbol{X}_{m\times n}=(x_{ij})_{i=1,j=1}^{m,n}$</p>
 <p>多元函数设为可微：<br>$<br>\begin{aligned}<br>\mathrm{d}f(\boldsymbol{X})&amp; =\frac{\partial f}{\partial x_{11}}\mathrm{d}x_{11}+\frac{\partial f}{\partial x_{12}}\mathrm{d}x_{12}+\cdots+\frac{\partial f}{\partial x_{1n}}\mathrm{d}x_{1n} \\<br>&amp;+\frac{\partial f}{\partial x_{21}}\mathrm{d}x_{21}+\frac{\partial f}{\partial x_{22}}\mathrm{d}x_{22}+\cdots+\frac{\partial f}{\partial x_{2n}}\mathrm{d}x_{2n} \\<br>&amp;+\ldots \\<br>&amp;+\frac{\partial f}{\partial x_{m1}}\mathrm{d}x_{m1}+\frac{\partial f}{\partial x_{m2}}\mathrm{d}x_{m2}+\cdots+\frac{\partial f}{\partial x_{mn}}\mathrm{d}x_{mn}<br>\end{aligned}<br>$</p>
 <p>相当于：</p>
@@ -651,7 +664,7 @@
     <title>研一课程笔记内容</title>
     <url>/2024/09/12/07-49-36/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="6e9b764d37e39dd0c150fd427aeba07b47be79cbbacf82e9aedb043febb3a1c8">1cc37a9b4bf89818b07fff6360960bb856aa952e31d1416348243144b6168bb9be55c914eb9242e24784d27713704de0d78d52714faaad71383ea2ab6ebc02035524d20fe21718414dc59f03136ffd9d4cc9ebab281d0e5511768aaf09274e8ccec4d536140a138621bbdb7a55d3f929b9963535e52b364ae95b3168cec4edc43acdcb56e54cbff2e843939bc4737d2e6ec64f3ff16a958d181bfcb0a0bc45cb3e3b2d5a471acd50c5e7659f6c519311693cdb2ebebf795ee102cb6915da3dd1b6dc880dc2ba924c3d469da3fc2187f022e8e6b1742a95ec2cee454c696f73309e370ebf20d41ebcdd0a7929d4763836a44fff2a6ecd23b7af275e1e14c5a1093dbf4e7a55841f7a6e4c5a1baae012674c8d53433190a003eb7d94c3603143d9296c60e70a6d9b6031988930c240a57aa83dede712da6fa4733800bee5aa210b42646a1e8bb319bd54517b48dfcff78666c45d7ea5cea4f7a0e44be20e470cd94e4315a95e7c57f742cbd47ebb468e5910c6dd47363fbb3828bafeb1f72ecf9e07efec2cd816b3661bd0a516564134c410cf72d9107fcc904f9a88a5288408decfb5d9b4eead58e90763f4352291eb181ee6a601d37eb9a97bb8ab1cab79629d5f2a79afa2422597c6d884fd8bd9c2bf3813c9ed64b0bc08d3fd3a7dd0e08fada1911866c561985260e1f57588d9c1d29559c5d26523e678e9da86120c6b3ff5f14c924e2a13854b64f10aea3679b14f3d84fa18881c67113fa6e0b16f46e35bc6c3e152b03f0833449baff778f5788c52df1603317d84f0881e18cacefd6f4ff3b92c9fcdfab7085df8c25eb4eb2ed794bfb39782ad9b6fc53dfd682b056a978ae5b794a59768205e0172364ded3d0b32f4133b087ede81866a30b8969b8caf5bc43c33b27cd7504ff44585bc6bb5131b440c2845cd943dfd131645ac4123a8996ccf4461c6436100442f18348f535a004a62f1a79076815fddf52bd8583ac841535e097fa3d54c237ed3e84092c5eecae3aac8aad37f8a51a2c414dc5226143f5067acb0a6c91430a4066549ee3d27a49e243201b196664af72d4b32d16b75c12217f16557df94dfd20fae2bcfd314ac351565cf0f8c637a45b4b38d40006cf5624c37bc6e042e0169f0960cf486067dece0ceed359399f5abb1cbda6de2d8a34501fffe26482b376f84acd143846acfe2f562eeabc8c30a3c6be0fc729c57d2957ec6f34743b760b8f78fe3ceecba265d3f37bbc2f5b8c90c014f530e57b3e5edc0a7323c85c3adbfa88668d00ea0f8893939514727c30ad919e503d14edf31829bf563a01fed2a6ea88ac64efcd2048da5caab59669ef6257f1b2e0b986ee01e332cb8967ee515ab1f91265c9d898f047cfa1bbfa158ebf288dae92280f78a1476052bf3795ecf58e89f5314679d5a050515bbfdb1af9569d41c72f3c3768677fe0f5174f23b8e43d68cb62a238d1005d48a22302f780665fa0bcee8b7ab0ef168ed8ad73b3a44f022ec01d922ce1672b5aee475583d57ee0943c95f5c8e9b9dfc811b66f8488584fcc9195a9448c1ce32aab1d08bcd17b5831952ef1cafa755f954ecc5a7df1d6e2d5b0035981b5894d24534a99fe5a91ed7215c50e12974d9e187e2658a607c7f6171806b021ddb0a18bfdd780ef36bf226f409345d4148f4d762c3bb6cd000b26981de6aee63709714bf386f7f1ae0eb6cbcbb2eb2addf43965eff58fb8abff8ecc4392ca58be3dbdc284ddcf81d0c3158b646a526700f0a3740d799ff811387261c69bcb6f4dc0bd3f50e912dc76635667e746a8c09b970614407d251c65d89eb88f2e7e53b8dfdf82e99ffa6baf8da52129f0f3f015ef63a9f7a82f92959c68bcf490255f26e29ae0364864dbeeccb9601051c177610d1159207bc8ff57c69ae446ab183bd0d40de1ecc8e1113623f94ec75ffc302d55f5b9da6b83110ee2eb608d2d053e06862af584bc4ba4289cf1ba50381cdfc17c33687582d3e9d1ac4b382ee24f5323e141a2984097683a13cda4677feac1d7c192e6f61cf1370740225e79b360cf2443e3011f8aeeb9d953647bb46db69e859de109f9c9f87dc92020db81ebb4ee35487fdd2d54f013fb116a731e5f57e287047e13dfb9364108ed097a489dc4c75937fd358b1a5586bf99d7565f986c9c907c487e3a5f5779acb273bc633a093749a94c0da10c933b4a5b1bd4bd41b1329ff5b9f59554c8df9763843311a974af918989bf0f71855339469abb91b32c6cdb502e50f33b54214f4992da671e09200c17e2b235ffc79cef7db2e13f7e21d3e84a836e699ddf1092a653efddaf516a3be553095e5be49e5c8ddf70740955d11b337089cdf34d78903930bdf0b2c671039eae55a36d639aa4463da1c866523fa98ddde7e2af5e953fd934014cab48a97cf7f8a929f86d490b21421e21638c3279ad3cf38e3d092337bac36fe63db80451443ba52f77d65b03954991e3df146fdf714a4199ea9305a83532bd2d8f7f09720e6b3be842c91bb382f63ed584393b12d0ff371d97bf1ea17c2791a54f9a17650a1f327b13c02e348859d7fe8637dcd366a7821f560390713edd4953a6fe978ca78d361c72991b1240dac1ebdd48fa3883c716f9ce365ec3ac7090cc0dfe20a410abd6e03fc56ffaf53c8c1057fdbc0c6144fc0939b1d5917b7bcdc34e7a022eff29e2d20a740ecbe8395dcc3fd723cdc0e4b0963d0ab268ba27251d6b05434f74cbc2bd3bf193e063e22dc273cbe406b44973d5dae635ebe39df97a79b6e5e002ce56a910631f07f4741a160082e46df58c5e9703405df8d12fc22003b911ca362bba05c71119764c989b4e916ac73c629afd1fd3005c8e9adcb8e8a2f8fa34d63e45e14abd35d2cb2368a94098c8aa9edcf334051ac5518404a7c9de0e1f8f2547b4322339eeb2c7f380d668e91bc461f011ea59f6862f1d70526533a3697dba6d4b91bccc0265c11cc8db902d1db6d0a5a8a4e41574547d26621d081aa1cb2f9a8dfa77d4194c06ad49330b5427a7b479eb13262d492b9ccf13c1cb611f90fd11939a7810262ffbeef948cd4bbeb1a9093be7ed3c55f6d07e12f24745fe0ad5d12335de09545dc5d5ba832f0e9fcb69f9a1eff8aec3d11cc8f1ded24c54bc0b9a76bba382be0339054258e981715d981392273ba074f1e76bf90950c03736752268f8a63fc7c1bbe12cd549daad110cfd94dfc2c8db6b82bb31735fd8f3f7f0b61968b6cf211e71ab715a7124895be68efd407cff88397e151c09103c1aefca6433412174211950f4bcf55ee869f7b832ab65fae8a1eca4740919909f44e2f598d3935064cb1905bd52604dcba8cd0a2bb2d73e49106ed5223d2e718589bdb1fa9f08cc72491c67efbda4899d24964e94c01361424880953623f0e37af1b61f5f969e566a42670534f8be88968190b5092e56976edc0bb6be4ddcd5149e560238d55de5aae380e3bc0e4366217ff2ac5bd984b4231569e011efae8a7b020aea5961bdb4fcb57e3c3aa6b500a1e9decaeb901d8f0eaa1101ac962c94073cf2281005de9dbd9e51494024e654d60049e699be6ed2be91c1e157ccb3e7b47b093fd86f436c448916dc70a992fc5be7f4c5229e0619007be9f98416384db279cb2ba9382a68dd591d9b0dd48ae179ea01dda78e275513b765b6b396c4c386c5d8307886f36546d7d00a48642dda19db6ae447086ba85466fafe3368988410427ccc6251236607c7794a5946ff068352d27ef83269c34a33f2780114886d86a572c8ea23d1bc5b1577688a19dcd8ce3dcc24f38d458ca981dc7b3e08dccc8a249eea4b09033d1504b166c56300d10a5576cba3615e91065f9b07b2810f5100d210d1c740e005a20f4b9a90de96de3ede950d1159e654c4a801ed034b34f7f1f193058de38ad820a3e2596f50448de16cbd89e8dd2eb100012528c1178577fb7750e82b9d8a963e06a1e61bb51dff8a1a06389ac15f580f1a1879b41125e14b6e14e0169488d66ebd9f37e48c4f56cfde5f30cea99fff7cb6b226f5f6cd26978f0b60871e36bc37f9d4af72dee65f94aeda79be44971499729f89de2868941648396aa32dcd9bb2804d4e53af0f19cb68feed943cd19c50343cbe283972f82bc4f18d63dfd440b7f04fbe0c58843b005a29915ee04e84fd3513d3385399dc1be42d6697ce63180fbc85ad4533d08885594849b9cf71d5dce1935f409ba634ba31b5ad7e810cbfbc109449c35221ba1f0100dbca6ddd4b61e6f25d10412a14f3a2ea64bafabae454b108d9c4ac2c036aa289df0bb6c7e173d7e0569d8c7bc83177d3f8cf29f18ce9e86d5d1be6d14bc8624ecb5ccb2d1e6ae1e5fcd4af4237106892f2fca4e934ea49e05150b3842e54db0aff2e44e6a0e4a1ff98aa5f9039b8f093e447be6d692ecd2deaf7d99a12a0584f0c56c14cf9b5ecbd4dcf5aa58c434c782517b6ee7791c4b40a6329abc3ac73fefe121a17e9eef73ef9fbcfc6aafc8190a671bd9014390f6658cf3208e27f6276d2ef70bda6a338174fad7e224caed73ad4f1b942fb69ea5b1a927bd46ddd794b95c7382524a6e96427991ea033b2b7877f8a476978643dcc94d567ca6dda2ffd8250a0b7917c73bdfd63118db15491501ade457d9d6bb8965541753b74c6cec547701ddb21afe77c1df96191e5df2c7b6b5e9a50b5ada0a6be95f5a917981f6342586d288ddda565c88a9d92542684e3668b4b01f001f24b797db18996a0e5c5f0a299d61855625e359612c0650b0e1e5a053fd26f4cbf327b916075fe700be8b51ce075e9069ec7456203f09ff57702a284181ccb73266ffdd562a82b4a4f198eb06634fc1d9e87d62ffdcfc66a984e944705f2ce16a49ea3ff09411156a59630b87d42d254c5b5ef6412e1fab433fcb80e16af5943961f817c6da15510d0830ca48c3ff880ecf6420404f20c4e4f78f47318379913abbab93e4eeb1f75e4409ca47b9a2e2e28d67ba477bf51244a7</script>
+  <script id="hbeData" type="hbeData" data-hmacdigest="5d011d1088b7787956e9bb79fcd7965dbcd258bf3b3882f4af0a637c02e493fa">1cc37a9b4bf89818b07fff6360960bb856aa952e31d1416348243144b6168bb9be55c914eb9242e24784d27713704de0d78d52714faaad71383ea2ab6ebc02035524d20fe21718414dc59f03136ffd9d4cc9ebab281d0e5511768aaf09274e8ccec4d536140a138621bbdb7a55d3f929b9963535e52b364ae95b3168cec4edc43acdcb56e54cbff2e843939bc4737d2e6ec64f3ff16a958d181bfcb0a0bc45cb3e3b2d5a471acd50c5e7659f6c519311693cdb2ebebf795ee102cb6915da3dd1b6dc880dc2ba924c3d469da3fc2187f022e8e6b1742a95ec2cee454c696f73309e370ebf20d41ebcdd0a7929d4763836a44fff2a6ecd23b7af275e1e14c5a1093dbf4e7a55841f7a6e4c5a1baae012674c8d53433190a003eb7d94c3603143d9296c60e70a6d9b6031988930c240a57aa83dede712da6fa4733800bee5aa210b42646a1e8bb319bd54517b48dfcff78666c45d7ea5cea4f7a0e44be20e470cd94e4315a95e7c57f742cbd47ebb468e5910c6dd47363fbb3828bafeb1f72ecf9e07efec2cd816b3661bd0a516564134c410cf72d9107fcc904f9a88a5288408decfb5d9b4eead58e90763f4352291eb181ee6a601d37eb9a97bb8ab1cab79629d5f2a79afa2422597c6d884fd8bd9c2bf3813c9ed64b0bc08d3fd3a7dd0e08fada1911866c561985260e1f57588d9c1d29559c5d26523e678e9da86120c6b3ff5f14c924e2a13854b64f10aea3679b14f3d84fa18881c67113fa6e0b16f46e35bc6c3e152b03f0833449baff778f5788c52df1603317d84f0881e18cacefd6f4ff3b92c9fcdfab7085df8c25eb4eb2ed794bfb39782ad9b6fc53dfd682b056a978ae5b794a59768205e0172364ded3d0b32f4133b087ede81866a30b8969b8caf5bc43c33b27cd7504ff44585bc6bb5131b440c2845cd943dfd131645ac4123a8996ccf4461c6436100442f18348f535a004a62f1a79076815fddf52bd8583ac841535e097fa3d54c237ed3e84092c5eecae3aac8aad37f8a51a2c414dc5226143f5067acb0a6c91430a4066549ee3d27a49e243201b196664af72d4b32d16b75c12217f16557df94dfd20fae2bcfd314ac351565cf0f8c637a45b4b38d40006cf5624c37bc6e042e0169f0960cf486067dece0ceed359399f5abb1cbda6de2d8a34501fffe26482b376f84acd143846acfe2f562eeabc8c30a3c6be0fc729c57d2957ec6f34743b760b8f78fe3ceecba265d3f37bbc2f5b8c90c014f530e57b3e5edc0a7323c85c3adbfa88668d00ea0f8893939514727c30ad919e503d14edf31829bf563a01fed2a6ea88ac64efcd2048da5caab59669ef6257f1b2e0b986ee01e332cb8967ee515ab1f91265c9d898f047cfa1bbfa158ebf288dae92280f78a1476052bf3795ecf58e89f5314679d5a050515bbfdb1af9569d41c72f3c3768677fe0f5174f23b8e43d68cb62a238d1005d48a22302f780665fa0bcee8b7ab0ef168ed8ad73b3a44f022ec01d922ce1672b5aee475583d57ee0943c95f5c8e9b9dfc811b66f8488584fcc9195a9448c1ce32aab1d08bcd17b5831952ef1cafa755f954ecc5a7df1d6e2d5b0035981b5894d24534a99fe5a91ed7215c50e12974d9e187e2658a607c7f6171806b021ddb0a18bfdd780ef36bf226f409345d4148f4d762c3bb6cd000b26981de6aee63709714bf386f7f1ae0eb6cbcbb2eb2addf43965eff58fb8abff8ecc4392ca58be3dbdc284ddcf81d0c3158b646a526700f0a3740d799ff811387261c69bcb6f4dc0bd3f50e912dc76635667e746a8c09b970614407d251c65d89eb88f2e7e53b8dfdf82e99ffa6baf8da52129f0f3f015ef63a9f7a82f92959c68bcf490255f26e29ae0364864dbeeccb9601051c177610d1159207bc8ff57c69ae446ab183bd0d40de1ecc8e1113623f94ec75ffc302d55f5b9da6b83110ee2eb608d2d053e06862af584bc4ba4289cf1ba50381cdfc17c33687582d3e9d1ac4b382ee24f5323e141a2984097683a13cda4677feac1d7c192e6f61cf1370740225e79b360cf2443e3011f8aeeb9d953647bb46db69e859de109f9c9f87dc92020db81ebb4ee35487fdd2d54f013fb116a731e5f57e287047e13dfb9364108ed097a489dc4c75937fd358b1a5586bf99d7565f986c9c907c487e3a5f5779acb273bc633a093749a94c0da10c933b4a5b1bd4bd41b1329ff5b9f59554c8df9763843311a974af918989bf0f71855339469abb91b32c6cdb502e50f33b54214f4992da671e09200c17e2b235ffc79cef7db2e13f7e21d3e84a836e699ddf1092a653efddaf516a3be553095e5be49e5c8ddf70740955d11b337089cdf34d78903930bdf0b2c671039eae55a36d639aa4463da1c866523fa98ddde7e2af5e953fd934014cab48a97cf7f8a929f86d490b21421e21638c3279ad3cf38e3d092337bac36fe63db80451443ba52f77d65b03954991e3df146fdf714a4199ea9305a83532bd2d8f7f09720e6b3be842c91bb382f63ed584393b12d0ff371d97bf1ea17c2791a54f9a17650a1f327b13c02e348859d7fe8637dcd366a7821f560390713edd4953a6fe978ca78d361c72991b1240dac1ebdd48fa3883c716f9ce365ec3ac7090cc0dfe20a410abd6e03fc56ffaf53c8c1057fdbc0c6144fc0939b1d5917b7bcdc34e7a022eff29e2d20a740ecbe8395dcc3fd723cdc0e4b0963d0ab268ba27251d6b05434f74cbc2bd3bf193e063e22dc273cbe406b44973d5dae635ebe39df97a79b6e5e002ce56a910631f07f4741a160082e46df58c5e9703405df8d12fc22003b911ca362bba05c71119764c989b4e916ac73c629afd1fd3005c8e9adcb8e8a2f8fa34d63e45e14abd35d2cb2368a94098c8aa9edcf334051ac5518404a7c9de0e1f8f2547b4322339eeb2c7f380d668e91bc461f011ea59f6862f1d70526533a3697dba6d4b91bccc0265c11cc8db902d1db6d0a5a8a4e41574547d26621d081aa1cb2f9a8dfa77d4194c06ad49330b5427a7b479eb13262d492b9ccf13c1cb611f90fd11939a7810262ffbeef948cd4bbeb1a9093be7ed3c55f6d07e12f24745fe0ad5d12335de09545dc5d5ba832f0e9fcb69f9a1eff8aec3d11cc8f1ded24c54bc0b9a76bba382be0339054258e981715d981392273ba074f1e76bf90950c03736752268f8a63fc7c1bbe12cd549daad110cfd94dfc2c8db6b82bb31735fd8f3f7f0b61968b6cf211e71ab715a7124895be68efd407cff88397e151c09103c1aefca6433412174211950f4bcf55ee869f7b832ab65fae8a1eca4740919909f44e2f598d3935064cb1905bd52604dcba8cd0a2bb2d73e49106ed5223d2e718589bdb1fa9f08cc72491c67efbda4899d24964e94c01361424880953623f0e37af1b61f5f969e566a42670534f8be88968190b5092e56976edc0bb6be4ddcd5149e560238d55de5aae380e3bc0e4366217ff2ac5bd984b4231569e011efae8a7b020aea5961bdb4fcb57e3c3aa6b500a1e9decaeb901d8f0eaa1101ac962c94073cf2281005de9dbd9e51494024e654d60049e699be6ed2be91c1e157ccb3e7b47b093fd86f436c448916dc70a992fc5be7f4c5229e0619007be9f98416384db279cb2ba9382a68dd591d9b0dd48ae179ea01dda78e275513b765b6b396c4c386c5d8307886f36546d7d00a48642dda19db6ae447086ba85466fafe3368988410427ccc6251236607c7794a5946ff068352d27ef83269c34a33f2780114886d86a572c8ea23d1bc5b1577688a19dcd8ce3dcc24f38d458ca981dc7b3e08dccc8a249eea4b09033d1504b166c56300d10a5576cba3615e91065f9b07b2810f5100d210d1c740e005a20f4b9a90de96de3ede950d1159e654c4a801ed034b34f7f1f193058de38ad820a3e2596f50448de16cbd89e8dd2eb100012528c1178577fb7750e82b9d8a963e06a1e61bb51dff8a1a06389ac15f580f1a1879b41125e14b6e14e0169488d66ebd9f37e48c4f56cfde5f30cea99fff7cb6b226f5f6cd26978f0b60871e36bc37f9d4af72dee65f94aeda79be44971499729f89de2868941648396aa32dcd9bb2804d4e53af0f19cb68feed943cd19c50343cbe283972f82bc4f18d63dfd440b7f04fbe0c58843b005a29915ee04e84fd3513d3385399dc1be42d6697ce63180fbc85ad4533d08885594849b9cf71d5dce1935f409ba634ba31b5ad7e810cbfbc109449c35221ba1f0100dbca6ddd4b61e6f25d10412a14f3a2ea64bafabae454b108d9c4ac2c036aa289df0bb6c7e173d7e0569d8c7bc83177d3f8cf29f18ce9e86d5d1be6d14bc8624ecb5ccb2d1e6ae1e5fcd4af4237106892f2fca4e934ea49e05150b3842e54db0aff2e44e6a0e4a1ff98aa5f9039b8f093e447be6d692ecd2deaf7d99a12a0584f0c56c14cf9b5ecbd4dcf5aa58c434c782517b6ee7791c4b40a6329abc3ac73fefe121a17e9eef73ef9fbcfc6aafc8190a671bd9014390f6658cf3208e27f6276d2ef70bda6a338174fad7e224caed73ad4f1b942fb69ea5b1a927bd46ddd794b95c7382524a6e96427991ea033b2b7877f8a476978643dcc94d567ca6dda2ffd8250a0b7917c73bdfd63118db15491501ade457d9d6bb8965541753b74c6cec547701ddb21afe77c1df96191e5df2c7b6b5e9a50b5ada0a6be95f5a917981f6342586d288ddda565c88a9d92542684e3668b4b01f001f24b797db18996a0e5c5f0a299d61855625e359612c0650b0e1e5a053fd26f4cbf327b916075fe700be8b51ce075e9069ec7456203f09ff57702a284181ccb73266ffdd562a82b4a4f198eb06634fc1d9e87d62ffdcfc66a984e944705f2ce16a49ea3ff09411156a59630b87d42d254c5b5ef6412e1fab433fcb80e16af5943961f817c6da15510d0830ca48c3ff880ecf6420404f20c4e4f78f47318379913abbab93e4eeb1f75e445d4251bff7b2ec55d177143b3bd1faefa9c80e30c0bdfcc3311a3cfcd6f881b870ee4756cd7a038173653a5292648cc17c9741341380ae52074b4cb664e2bd67d66d31da056fb18d7462ef0edf3779dc2ec923179d8e86a623c46d439d4c18e545580dd3d0099898b8adcc0ca80f9e075db901fb20136bfb5548d65c796c2da408f0ada5f1c95fc621d2a0e8f9d7303fa6cc5e9b378d747e8ae54d09e34a075ab5f444e3c4d3acde2c1869da7970b7ffad0153d5b7bc266c7ced0dcb413192683f9e83ab12884f6d011ceaffec6cdfeed31907c223680a1dce09ae28ff4fcb8995df4f4c23259cff2f08b8d1691712b66edb118cb6a8038d41592120b680531bc9fb6f995c343ba1a3680682c6e65ec481c3c9950db4ecdce81720be8a85961ba946f3fc938e53571458cc94d978f1d69e30ec8511ebc46c191bab77ea9f21e057eb60402e7cd4115a004e5f6a5939294680cbed7db59985dffb301f87522d1bdd801333764019bb136062962a41229b4d634dc5d373c3247ce60bbbec47075c9a0a8064ad4fc0d70cf4039c59748b57ab0bc63ef421cdab65cad89e07fc746db1d9c3c97cf5f83bd383206d0b773872c0f060c40d67899767400f9f42e49fd3d0af4188ee13053409b07657637d8093e1836f714861d98a25e83f5de158674d</script>
   <div class="hbe hbe-content">
     <div class="hbe hbe-input hbe-input-default">
       <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
@@ -5387,6 +5400,44 @@ y_{t'} = \operatorname*{argmax}_{y \in \mathcal{Y}} P(y \mid y_1, \ldots, y_{t'-
       </tags>
   </entry>
   <entry>
+    <title>33-单机多卡并行</title>
+    <url>/2024/04/23/11-01-34/</url>
+    <content><![CDATA[<h2 id="单机多卡并行"><a href="#单机多卡并行" class="headerlink" title="单机多卡并行"></a>单机多卡并行</h2><p>一台机器可以安装多个GPU（一般为1-16个），在训练和预测时可以将一个小批量计算切分到多个GPU上来达到加速目的，常用的切分方案有数据并行，模型并行，通道并行。</p>
+<h3 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h3><p>将小批量的数据分为n块，每个GPU拿到完整的参数，对这一块的数据进行前向传播与反向传播，计算梯度。</p>
+<p>数据并行通常性能比模型并行更好，因为对数据进行划分使得各个GPU的计算内容更加均匀。</p>
+<h4 id="数据并行的大致流程"><a href="#数据并行的大致流程" class="headerlink" title="数据并行的大致流程"></a>数据并行的大致流程</h4><img src="/2024/04/23/11-01-34/DataParallel.png" class>
+<p>主要分为五部</p>
+<ul>
+<li>1：每个GPU读取一个数据块（灰色部分）</li>
+<li>2：每个GPU读取当前模型的参数（橙色部分）</li>
+<li>3：每个GPU计算自己拿到数据块的梯度（绿色部分）</li>
+<li>4：GPU将计算得到的梯度传给内存（CPU）（绿色箭头）</li>
+<li>5：利用梯度对模型参数进行更新（橙色箭头）</li>
+</ul>
+<p>数据并行并行性较好，主要因为当每个GPU拿到的数据量相同时计算量也相似，各个GPU的运算时间相近，幸能较好</p>
+<h3 id="模型并行"><a href="#模型并行" class="headerlink" title="模型并行"></a>模型并行</h3><p>将整个模型分为n个部分，每个GPU拿到这个部分的参数和负责上一个部分的GPU的输出作为输入来进行计算，反向传播同理。</p>
+<p>模型并行通常用于模型十分巨大，参数众多，即使在每个mini-batch只有一个样本的情况下单个GPU的显存仍然不够的情况，但并行性较差，可能有时会有GPU处于等待状态。</p>
+<h3 id="通道并行"><a href="#通道并行" class="headerlink" title="通道并行"></a>通道并行</h3><p>通道并行是数据并行和模型并行同时进行</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>当一个模型能用单卡计算时，通常使用数据并行扩展到多卡</li>
+<li>模型并行则用在超大模型上</li>
+</ul>
+<h3 id="Q-amp-A（部分有价值的）"><a href="#Q-amp-A（部分有价值的）" class="headerlink" title="Q&amp;A（部分有价值的）"></a>Q&amp;A（部分有价值的）</h3><ul>
+<li>问1：若有4块GPU，两块显存大两块显存小怎么办？</li>
+<li>答1：<br>若GPU运算性能相同，则训练取决于小显存的GPU的显存大小，更大的显存相当于浪费掉<br>若GPU运算性能不同，一般即为显存大的GPU性能更好，可以在分配数据时多分配一点</li>
+<li></li>
+<li>问2：数据拆分后，需存储的数据量会变大吗？会降低性能吗？</li>
+<li>答2：每个GPU都单独存储了一份模型，这部分的数据量变大了，但如果只考虑运算时的中间变量，则中间变量的大小与数据量呈线性关系，每个GPU的数据小了，中间变量也会变小，所有GPU的中间变量加起来大小是不变的。<br>数据拆分后性能会变低，在下节课讲解（数据通讯的开销，每个GPU的batch-size变小可能无法跑满GPU，总batch-size变大则相同计算量下训练次数变少）</li>
+</ul>
+]]></content>
+      <categories>
+        <category>动手学深度学习</category>
+      </categories>
+      <tags>
+        <tag>动手学深度学习, 深度学习, 李沐</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>34-多GPU训练实现</title>
     <url>/2024/04/23/11-01-34/</url>
     <content><![CDATA[<h2 id="34-多GPU训练实现"><a href="#34-多GPU训练实现" class="headerlink" title="34 多GPU训练实现"></a>34 多GPU训练实现</h2><p>本讲内容为代码实现，这里整理QA，其余内容参考代码部分。</p>
@@ -5462,44 +5513,6 @@ y_{t'} = \operatorname*{argmax}_{y \in \mathcal{Y}} P(y \mid y_1, \ldots, y_{t'-
 <blockquote>
 <p>可能是学习率太大，也可考虑加入batch normalization。</p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>动手学深度学习</category>
-      </categories>
-      <tags>
-        <tag>动手学深度学习, 深度学习, 李沐</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>33-单机多卡并行</title>
-    <url>/2024/04/23/11-01-34/</url>
-    <content><![CDATA[<h2 id="单机多卡并行"><a href="#单机多卡并行" class="headerlink" title="单机多卡并行"></a>单机多卡并行</h2><p>一台机器可以安装多个GPU（一般为1-16个），在训练和预测时可以将一个小批量计算切分到多个GPU上来达到加速目的，常用的切分方案有数据并行，模型并行，通道并行。</p>
-<h3 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h3><p>将小批量的数据分为n块，每个GPU拿到完整的参数，对这一块的数据进行前向传播与反向传播，计算梯度。</p>
-<p>数据并行通常性能比模型并行更好，因为对数据进行划分使得各个GPU的计算内容更加均匀。</p>
-<h4 id="数据并行的大致流程"><a href="#数据并行的大致流程" class="headerlink" title="数据并行的大致流程"></a>数据并行的大致流程</h4><img src="/2024/04/23/11-01-34/DataParallel.png" class>
-<p>主要分为五部</p>
-<ul>
-<li>1：每个GPU读取一个数据块（灰色部分）</li>
-<li>2：每个GPU读取当前模型的参数（橙色部分）</li>
-<li>3：每个GPU计算自己拿到数据块的梯度（绿色部分）</li>
-<li>4：GPU将计算得到的梯度传给内存（CPU）（绿色箭头）</li>
-<li>5：利用梯度对模型参数进行更新（橙色箭头）</li>
-</ul>
-<p>数据并行并行性较好，主要因为当每个GPU拿到的数据量相同时计算量也相似，各个GPU的运算时间相近，幸能较好</p>
-<h3 id="模型并行"><a href="#模型并行" class="headerlink" title="模型并行"></a>模型并行</h3><p>将整个模型分为n个部分，每个GPU拿到这个部分的参数和负责上一个部分的GPU的输出作为输入来进行计算，反向传播同理。</p>
-<p>模型并行通常用于模型十分巨大，参数众多，即使在每个mini-batch只有一个样本的情况下单个GPU的显存仍然不够的情况，但并行性较差，可能有时会有GPU处于等待状态。</p>
-<h3 id="通道并行"><a href="#通道并行" class="headerlink" title="通道并行"></a>通道并行</h3><p>通道并行是数据并行和模型并行同时进行</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>当一个模型能用单卡计算时，通常使用数据并行扩展到多卡</li>
-<li>模型并行则用在超大模型上</li>
-</ul>
-<h3 id="Q-amp-A（部分有价值的）"><a href="#Q-amp-A（部分有价值的）" class="headerlink" title="Q&amp;A（部分有价值的）"></a>Q&amp;A（部分有价值的）</h3><ul>
-<li>问1：若有4块GPU，两块显存大两块显存小怎么办？</li>
-<li>答1：<br>若GPU运算性能相同，则训练取决于小显存的GPU的显存大小，更大的显存相当于浪费掉<br>若GPU运算性能不同，一般即为显存大的GPU性能更好，可以在分配数据时多分配一点</li>
-<li></li>
-<li>问2：数据拆分后，需存储的数据量会变大吗？会降低性能吗？</li>
-<li>答2：每个GPU都单独存储了一份模型，这部分的数据量变大了，但如果只考虑运算时的中间变量，则中间变量的大小与数据量呈线性关系，每个GPU的数据小了，中间变量也会变小，所有GPU的中间变量加起来大小是不变的。<br>数据拆分后性能会变低，在下节课讲解（数据通讯的开销，每个GPU的batch-size变小可能无法跑满GPU，总batch-size变大则相同计算量下训练次数变少）</li>
-</ul>
 ]]></content>
       <categories>
         <category>动手学深度学习</category>
