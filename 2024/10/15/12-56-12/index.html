@@ -27,7 +27,7 @@
 <meta property="og:description" content="长视频下的AQA花样滑冰。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-15T04:56:12.000Z">
-<meta property="article:modified_time" content="2024-10-17T00:06:33.772Z">
+<meta property="article:modified_time" content="2024-10-25T09:47:23.803Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="ST-GCN, AQA, LSTM">
 <meta name="twitter:card" content="summary">
@@ -140,7 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">论文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%90%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">源码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">训练命令</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">论文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%90%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">源码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">训练命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">运行流程</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -237,7 +237,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-17 08:06:33" itemprop="dateModified" datetime="2024-10-17T08:06:33+08:00">2024-10-17</time>
+      <time title="修改时间：2024-10-25 17:47:23" itemprop="dateModified" datetime="2024-10-25T17:47:23+08:00">2024-10-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,10 +271,30 @@
             <div class="post-description">长视频下的AQA花样滑冰。</div>
 	<hr>
         <h1 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h1><h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p>代码结构：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AQAForFS/</span><br><span class="line">├── requirements.txt       # 项目依赖的库和版本</span><br><span class="line">├── main.py                </span><br><span class="line">├── visualization.py       # 可视化</span><br><span class="line">├── config/                # 参数配置文件</span><br><span class="line">    ├── test.yaml</span><br><span class="line">    └── train.taml</span><br><span class="line">├── data/                  # 源代码目录</span><br><span class="line">├── src/                   # 源代码目录</span><br><span class="line">├── src/                   # 源代码目录</span><br><span class="line">├── src/                   # 源代码目录</span><br><span class="line">    ├── __init__.py</span><br><span class="line">    ├── main.py             # 源代码目录</span><br><span class="line">    ├── model/</span><br><span class="line">    │   ├── __init__.py    # 源代码目录</span><br><span class="line">    │   ├── model.py</span><br><span class="line">    │   └── layers.py</span><br><span class="line">    ├── utils/</span><br><span class="line">    │   ├── __init__.py</span><br><span class="line">    │   ├── data_loader.py</span><br><span class="line">    │   └── metrics.py</span><br><span class="line">    └── config.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AQAForFS/</span><br><span class="line">├── requirements.txt       # 项目依赖的库和版本</span><br><span class="line">├── main.py                # 入口 </span><br><span class="line">├── visualization.py       # 可视化</span><br><span class="line">├── config/                # 参数配置文件</span><br><span class="line">    ├── test.yaml</span><br><span class="line">    └── train.taml</span><br><span class="line">├── data/                  # 训练数据</span><br><span class="line">├── src/                   # 源代码目录</span><br><span class="line">├── src/                   # 源代码目录</span><br><span class="line">├── src/                   # 源代码目录</span><br><span class="line">    ├── __init__.py</span><br><span class="line">    ├── main.py             # 源代码目录</span><br><span class="line">    ├── model/</span><br><span class="line">    │   ├── __init__.py    # 源代码目录</span><br><span class="line">    │   ├── model.py</span><br><span class="line">    │   └── layers.py</span><br><span class="line">    ├── utils/</span><br><span class="line">    │   ├── __init__.py</span><br><span class="line">    │   ├── data_loader.py</span><br><span class="line">    │   └── metrics.py</span><br><span class="line">    └── config.py</span><br></pre></td></tr></table></figure>
+<pre class="mermaid">graph TD;
+    main--> ASESS_processor;
+    ASESS_processor-->Processor;
+    Processor-->__init__
+    __init__-->load_arg(argv)
+    __init__-->init_environment</pre>
+
+<pre class="mermaid">graph TD
+    main-->ASESS_processor
+    subgraph class ASESS_processor
+    ASESS_processor-->Processor.__init__(__init__)
+    end
+    subgraph class Processor
+    Processor.__init__(__init__) --> Processor.load_arg(load_arg)
+        Processor.load_arg(load_arg) --> Processor.init_environment(init_environment)
+    end</pre>
+
+
+
 <h2 id="训练命令"><a href="#训练命令" class="headerlink" title="训练命令"></a>训练命令</h2><p>```shell</p>
 <p> python main.py assess —config config/train.yaml</p>
 <p>```</p>
+<h3 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h3><p>通过获取参数，’assess’：选取’processor.assessment.ASESS_processor’处理器，然后将后续的参数对传递处理器，初始化。</p>
 
     </div>
 
@@ -392,6 +412,8 @@
 <script src="/js/third-party/search/local-search.js"></script>
 
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.4.0/mermaid.min.js","integrity":"sha256-3JloMMI/ZQx6ryuhhZTsQJQmGAkXeni6PkshX7UUO2s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
 
 
 

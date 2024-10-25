@@ -648,6 +648,10 @@ pre code {
     transform: translate(1pt, -2pt) rotate(-1deg);
   }
 }
+.mermaid {
+  margin-bottom: 20px;
+  text-align: center;
+}
 .post-body .note {
   border-radius: 3px;
   margin-bottom: 20px;
@@ -2576,7 +2580,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #c195ff;
+  background: #ffa882;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
