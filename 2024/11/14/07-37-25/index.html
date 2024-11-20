@@ -21,14 +21,14 @@
 
     <meta name="description" content="第一篇持续学习的AQA论文，2024年ECCV">
 <meta property="og:type" content="article">
-<meta property="og:title" content="24年论文阅读&#x2F;MAGR-CAQA持续学习">
+<meta property="og:title" content="MAGR-CAQA持续学习">
 <meta property="og:url" content="https://pkunicor.github.io/2024/11/14/07-37-25/index.html">
 <meta property="og:site_name" content="且听风吟">
 <meta property="og:description" content="第一篇持续学习的AQA论文，2024年ECCV">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pkunicor.github.io/2024/11/14/07-37-25/QQ_1731649890669.png">
 <meta property="article:published_time" content="2024-11-13T23:37:25.000Z">
-<meta property="article:modified_time" content="2024-11-15T06:39:11.122Z">
+<meta property="article:modified_time" content="2024-11-20T02:57:06.028Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="持续学习, AQA, CAQA">
 <meta name="twitter:card" content="summary">
@@ -39,10 +39,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/11/14/07-37-25/","path":"2024/11/14/07-37-25/","title":"24年论文阅读/MAGR-CAQA持续学习"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/11/14/07-37-25/","path":"2024/11/14/07-37-25/","title":"MAGR-CAQA持续学习"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>24年论文阅读/MAGR-CAQA持续学习 | 且听风吟</title>
+<title>MAGR-CAQA持续学习 | 且听风吟</title>
   
 
 
@@ -142,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">论文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">1.1.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.</span> <span class="nav-text">持续学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">代码复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">2.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF"><span class="nav-number">2.2.</span> <span class="nav-text">错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSError"><span class="nav-number">2.2.1.</span> <span class="nav-text">OSError</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">2.3.</span> <span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">训练</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">论文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">1.1.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.</span> <span class="nav-text">持续学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mammoth%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">Mammoth库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">代码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getting-started"><span class="nav-number">2.2.</span> <span class="nav-text">getting started</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fist-steps"><span class="nav-number">2.2.1.</span> <span class="nav-text">fist steps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Validation-and-Testing"><span class="nav-number">2.2.2.</span> <span class="nav-text">Training, Validation, and Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Load-and-save-checkpoints"><span class="nav-number">2.2.3.</span> <span class="nav-text">Load and save checkpoints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fast-training-amp-optimizations"><span class="nav-number">2.2.4.</span> <span class="nav-text">Fast training &amp; optimizations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scripts"><span class="nav-number">2.2.5.</span> <span class="nav-text">Scripts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Registration-of-backbones-and-datasets"><span class="nav-number">2.2.6.</span> <span class="nav-text">Registration of backbones and datasets</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contents"><span class="nav-number">2.3.</span> <span class="nav-text">contents</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Models"><span class="nav-number">2.3.1.</span> <span class="nav-text">Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datasets"><span class="nav-number">2.3.2.</span> <span class="nav-text">datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#backbones"><span class="nav-number">2.3.3.</span> <span class="nav-text">backbones</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">3.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF"><span class="nav-number">3.2.</span> <span class="nav-text">错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSError"><span class="nav-number">3.2.1.</span> <span class="nav-text">OSError</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E4%B8%80%E7%9B%B4%E5%9C%A8%E8%A2%AB%E6%94%B9%E5%8F%98%EF%BC%9F"><span class="nav-number">3.3.</span> <span class="nav-text">预训练模型一直在被改变？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">3.4.</span> <span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83-1"><span class="nav-number">3.4.1.</span> <span class="nav-text">训练</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -216,12 +216,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="24年论文阅读/MAGR-CAQA持续学习 | 且听风吟">
+      <meta itemprop="name" content="MAGR-CAQA持续学习 | 且听风吟">
       <meta itemprop="description" content="第一篇持续学习的AQA论文，2024年ECCV">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          24年论文阅读/MAGR-CAQA持续学习
+          MAGR-CAQA持续学习
         </h1>
 
         <div class="post-meta-container">
@@ -239,7 +239,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-15 14:39:11" itemprop="dateModified" datetime="2024-11-15T14:39:11+08:00">2024-11-15</time>
+      <time title="修改时间：2024-11-20 10:57:06" itemprop="dateModified" datetime="2024-11-20T10:57:06+08:00">2024-11-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -302,11 +302,33 @@
 <p>图正则化：通过构建一个图，其中每个节点表示一个图像类别，边表示类别间的相似性（例如，猫和狗可能有相似的特征，可以有较强的边连接），模型在学习新类别（如马、鱼）时，通过图正则化避免过度更新与旧类别（如猫、狗）之间的边。</p>
 <p>评价指标：</p>
 <p><img src="/2024/11/14/07-37-25/QQ_1731649890669.png" alt=" "></p>
+<h1 id="Mammoth库"><a href="#Mammoth库" class="headerlink" title="Mammoth库"></a>Mammoth库</h1><h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><p>使用的mammoth库，<a target="_blank" rel="noopener" href="https://github.com/aimagelab/mammoth">github</a></p>
+<p>代码结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mammoth/</span><br><span class="line">├── requirements.txt       # 项目依赖的库和版本</span><br><span class="line">├── main.py*                # 入口 </span><br><span class="line">├── backbone/              # 骨干网络</span><br><span class="line">    ├── test.yaml</span><br><span class="line">    └── train.taml</span><br><span class="line">├── datasets/              # 数据定义</span><br><span class="line">├── models/                # 各种数据模型？</span><br><span class="line">├── utils/                 # 辅助模块</span><br><span class="line">├── scripts/               # 脚本</span><br><span class="line">├── tests/                 # 测试模块</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ├── __init__.py</span><br><span class="line">    ├── main.py             # 源代码目录</span><br><span class="line">    ├── model/</span><br><span class="line">    │   ├── __init__.py    # 源代码目录</span><br><span class="line">    │   ├── model.py</span><br><span class="line">    │   └── layers.py</span><br><span class="line">    ├── utils/</span><br><span class="line">    │   ├── __init__.py</span><br><span class="line">    │   ├── data_loader.py</span><br><span class="line">    │   └── metrics.py</span><br><span class="line">    └── config.py</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://aimagelab.github.io/mammoth/getting_started/index.html">getting started</a></p>
+<h2 id="getting-started"><a href="#getting-started" class="headerlink" title="getting started"></a>getting started</h2><h3 id="fist-steps"><a href="#fist-steps" class="headerlink" title="fist steps"></a>fist steps</h3><p>logs: under the <code>data/results</code>, change by <code>base_path</code> in CONF.<br>    organized: <em><setting>/<dataset>/<model>/logs.pyd.</model></dataset></setting></em></p>
+<p>WandB:</p>
+<p>use: <code>--wandb_project</code>, <code>--wandb_entity</code><br>add in the <strong>observe</strong>,  like:loss = loss1 + loss2</p>
+<h3 id="Training-Validation-and-Testing"><a href="#Training-Validation-and-Testing" class="headerlink" title="Training, Validation, and Testing"></a>Training, Validation, and Testing</h3><p>the validation set is <strong>disabled</strong>,only test and train.</p>
+<h3 id="Load-and-save-checkpoints"><a href="#Load-and-save-checkpoints" class="headerlink" title="Load and save checkpoints"></a>Load and save checkpoints</h3><p>training: <code>--savecheck</code>and <code>--loadcheck</code> arguments.<br><code>python utils/main.py --savecheck=last</code>:<br>last: save after last task<br>task: save after each task<br><code>python utils/main.py –loadcheck=&lt;path to checkpoint&gt;.pt</code></p>
+<h3 id="Fast-training-amp-optimizations"><a href="#Fast-training-amp-optimizations" class="headerlink" title="Fast training &amp; optimizations"></a>Fast training &amp; optimizations</h3><p>use: <code>–code_optimization 2</code> or <code>-O 2</code></p>
+<p>distrubuted training: use <code>–distributed=dp</code></p>
+<h3 id="Scripts"><a href="#Scripts" class="headerlink" title="Scripts"></a>Scripts</h3><p>scripts/prepare_grid.py: contains a <code>grid_combinations</code> dictionary</p>
+<p>scripts/local_launcher.py: launch on local machine</p>
+<p>scripts/slurm_sbatcher.py: launch  on a SLURM cluster.</p>
+<p>scripts/wandb_sync.py:  syncing the logs produced by WandB</p>
+<h3 id="Registration-of-backbones-and-datasets"><a href="#Registration-of-backbones-and-datasets" class="headerlink" title="Registration of backbones and datasets"></a>Registration of backbones and datasets</h3><p>..</p>
+<h2 id="contents"><a href="#contents" class="headerlink" title="contents"></a>contents</h2><h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p>training and testing<br>named  <strong><model_name>.py</model_name></strong><br>implemented <strong>observe</strong> method</p>
+<p>Evaluation<br><strong>forward</strong> method in the base class <strong>ContinualModel</strong> by default</p>
+<h4 id="Attributes-and-utility-methods"><a href="#Attributes-and-utility-methods" class="headerlink" title="Attributes and utility methods"></a>Attributes and utility methods</h4><p>Automatic attributes: provides a few properties that are automatically set during the incremental training</p>
+<h4 id="Module-attributes-and-functions"><a href="#Module-attributes-and-functions" class="headerlink" title="Module attributes and functions"></a>Module attributes and functions</h4><p>models.get_model(args, backbone, loss, transform,dataset):<br>PARAMETERS:<br>args (Namespace) – the arguments which contains the –model attribute<br>backbone (nn.Module) – the backbone of the model<br>loss – the loss function<br>transform – the transform function<br>dataset – the instance of the dataset</p>
+<p>utils<br>models.utils.load_model_config(args, buffer_size=None):<br>Loads the configuration file for the model</p>
+<h3 id="datasets"><a href="#datasets" class="headerlink" title="datasets"></a>datasets</h3><h3 id="backbones"><a href="#backbones" class="headerlink" title="backbones"></a>backbones</h3><p>Features and logits<br>returnt=’out’: the backbone returns the logits produced after the classification layer.<br>returnt=’features’: the backbone returns the features extracted immediately before the classification layer.<br>returnt=’both’: the backbone returns both the logits and the features (a tuple (logits, feature)).</p>
 <h1 id="代码复现"><a href="#代码复现" class="headerlink" title="代码复现"></a>代码复现</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">torch</span><br><span class="line">torchvision</span><br><span class="line">torchaudio</span><br><span class="line">numpy</span><br><span class="line">scipy</span><br><span class="line">tqdm</span><br><span class="line">pandas</span><br><span class="line">scikit-learn</span><br><span class="line">protobuf</span><br><span class="line">PyYAML</span><br></pre></td></tr></table></figure>
 <h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="OSError"><a href="#OSError" class="headerlink" title="OSError"></a>OSError</h3><p><code>OSError: image file is truncated</code></p>
 <p>在class_seven.py中添加：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFile</span><br><span class="line">ImageFile.LOAD_TRUNCATED_IMAGES = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python main.py \</span><br><span class="line">  --config ./configs/seven.yaml \</span><br><span class="line">   --minibatch_size 1 --n_tasks 5 \</span><br><span class="line">    --fewshot True --buffer_size 10 \</span><br><span class="line">    --gpus 0</span><br></pre></td></tr></table></figure>
+<h2 id="预训练模型一直在被改变？"><a href="#预训练模型一直在被改变？" class="headerlink" title="预训练模型一直在被改变？"></a>预训练模型一直在被改变？</h2><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h3 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python main.py \</span><br><span class="line">  --config ./configs/rg.yaml \</span><br><span class="line">   --minibatch_size 2 --n_tasks 5 \</span><br><span class="line">    --fewshot False --buffer_size 10 \</span><br><span class="line">    --gpus 0</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -324,7 +346,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://pkunicor.github.io/2024/11/14/07-37-25/" title="24年论文阅读&#x2F;MAGR-CAQA持续学习">https://pkunicor.github.io/2024/11/14/07-37-25/</a>
+      <a href="https://pkunicor.github.io/2024/11/14/07-37-25/" title="MAGR-CAQA持续学习">https://pkunicor.github.io/2024/11/14/07-37-25/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
