@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="动态选择骨架的特征">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Else-Net基于骨架的连续动作识别弹性特征选择">
+<meta property="og:url" content="https://pkunicor.github.io/2024/11/24/16-26-10/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="动态选择骨架的特征">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pkunicor.github.io/2024/11/24/16-26-10/QQ_1732510011895.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/11/24/16-26-10/QQ_1732514917546.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/11/24/16-26-10/QQ_1732515066509.png">
+<meta property="og:image" content="https://pkunicor.github.io/2024/11/24/16-26-10/QQ_1731649890669.png">
+<meta property="article:published_time" content="2024-11-24T08:26:10.000Z">
+<meta property="article:modified_time" content="2024-11-25T06:23:54.035Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="skeleton, AR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pkunicor.github.io/2024/11/24/16-26-10/QQ_1732510011895.png">
+
+
+<link rel="canonical" href="https://pkunicor.github.io/2024/11/24/16-26-10/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/11/24/16-26-10/","path":"2024/11/24/16-26-10/","title":"Else-Net基于骨架的连续动作识别弹性特征选择"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Else-Net基于骨架的连续动作识别弹性特征选择 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87"><span class="nav-number">1.</span> <span class="nav-text">论文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">1. 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">2. 相关工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 持续学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E9%AA%A8%E6%9E%B6%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 骨架动作识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%8A%A8%E6%80%81%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 动态网络架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BC%B9%E6%80%A7%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9C-Else-Net"><span class="nav-number">1.3.</span> <span class="nav-text">3. 弹性语义网络 (Else-Net)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%A8%A1%E5%9D%97%E6%9E%B6%E6%9E%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 模块架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Pathway-Construction-for-Body-Part-Branches"><span class="nav-number">1.4.</span> <span class="nav-text">3.2 Pathway Construction for Body Part Branches</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Training-and-Testing"><span class="nav-number">1.5.</span> <span class="nav-text">3.3 Training and Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E4%BC%98%E5%8C%96"><span class="nav-number">1.5.1.</span> <span class="nav-text">外部优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E4%BC%98%E5%8C%96"><span class="nav-number">1.5.2.</span> <span class="nav-text">内部优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.6.</span> <span class="nav-text">4. 实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.6.1.</span> <span class="nav-text">4.1 数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="nav-number">1.6.2.</span> <span class="nav-text">4.2 评估指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">1.6.3.</span> <span class="nav-text">4.3 结果分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.6.4.</span> <span class="nav-text">4.4 消融实验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%BB%93%E8%AE%BA"><span class="nav-number">1.7.</span> <span class="nav-text">5. 结论</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PKunicor" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PKunicor" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/11/24/16-26-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Else-Net基于骨架的连续动作识别弹性特征选择 | 且听风吟">
+      <meta itemprop="description" content="动态选择骨架的特征">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Else-Net基于骨架的连续动作识别弹性特征选择
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-24 16:26:10" itemprop="dateCreated datePublished" datetime="2024-11-24T16:26:10+08:00">2024-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-25 14:23:54" itemprop="dateModified" datetime="2024-11-25T14:23:54+08:00">2024-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/skeleton/" itemprop="url" rel="index"><span itemprop="name">skeleton</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">动态选择骨架的特征</div>
+	<hr>
+        <h1 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h1><h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><ul>
+<li><p><strong>背景</strong>:<br>现有动作识别方法多为离线学习，需要所有类别数据同时可用。然而，实际应用中，如人机交互和安防监控，模型需处理连续流式的新动作数据，这对模型提出了持续学习的挑战。</p>
+</li>
+<li><p><strong>问题</strong>:<br>持续学习面临 <strong>灾难性遗忘 (Catastrophic Forgetting)</strong> 问题，新学习的动作会覆盖之前学到的知识。</p>
+</li>
+<li><p><strong>灵感来源</strong>:<br>人类大脑通过在多重新皮层区域搜索并巩固相关记忆，避免遗忘旧知识，同时学习新知识。</p>
+</li>
+<li><p><strong>核心思想</strong>:<br>提出 <strong>Elastic Semantic Network (Else-Net)</strong>，通过动态搜索最相关的学习块，并使用新块存储新知识，有效避免灾难性遗忘。</p>
+</li>
+</ul>
+<hr>
+<h2 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2. 相关工作"></a>2. 相关工作</h2><h3 id="2-1-持续学习"><a href="#2-1-持续学习" class="headerlink" title="2.1 持续学习"></a>2.1 持续学习</h3><ul>
+<li>持续学习旨在模拟人类智能，持续学习新任务而不遗忘旧知识。</li>
+<li>现有方法多集中在图像分类领域：<ul>
+<li><strong>GEM (Gradient Episodic Memory)</strong>: 使用梯度记忆缓解遗忘。</li>
+<li><strong>ReMind</strong>: 通过压缩表示回放以减少输入样本需求。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-骨架动作识别"><a href="#2-2-骨架动作识别" class="headerlink" title="2.2 骨架动作识别"></a>2.2 骨架动作识别</h3><ul>
+<li>主流方法：基于 CNN、图卷积网络 (GCN)、时空图卷积网络 (ST-GCN)。</li>
+<li>挑战：需设计能处理新任务且避免遗忘的网络。</li>
+</ul>
+<h3 id="2-3-动态网络架构"><a href="#2-3-动态网络架构" class="headerlink" title="2.3 动态网络架构"></a>2.3 动态网络架构</h3><ul>
+<li>SkipNet 和 MutualNet 等动态网络可根据输入数据调整架构。</li>
+<li>Else-Net 的动态学习块搜索功能受此启发，结合动作语义进行动态路径选择。</li>
+</ul>
+<hr>
+<h2 id="3-弹性语义网络-Else-Net"><a href="#3-弹性语义网络-Else-Net" class="headerlink" title="3. 弹性语义网络 (Else-Net)"></a>3. 弹性语义网络 (Else-Net)</h2><h3 id="3-1-模块架构"><a href="#3-1-模块架构" class="headerlink" title="3.1 模块架构"></a>3.1 模块架构</h3><p><img src="/2024/11/24/16-26-10/QQ_1732510011895.png" alt=" "></p>
+<p>假设 Else-Net 包含 $N$ 个弹性单元（Elastic Units），每个弹性单元 $n$（$n \in \{1, 2, \dots, N\}$）由若干学习块（Learning Blocks）和一个切换块（Switch Block）组成。学习块表示为：</p>
+<script type="math/tex; mode=display">\{f_{\theta_{i,n}}(\cdot)\}_{i=1}^{B_n},</script><p>其中，$\theta_{i,n}$ 是第 $i$ 个学习块的参数，$B_n$ 是第 $n$ 个弹性单元中的学习块数量。为了捕获新知识，第 $n$ 个弹性单元临时添加一个新学习块 $f_{\theta_{B_n+1,n}}(\cdot)$，以便存储新知识。</p>
+<p>输入特征 $x_n$ 被传递给第 $n$ 个弹性单元中的所有学习块，生成对应的潜在特征：</p>
+<script type="math/tex; mode=display">z_{i,n} = f_{\theta_{i,n}}(x_n), \quad i \in \{1, \dots, B_n + 1\}.</script><p>这些特征通过切换块的门控模块 $g$ 和 Gumbel Softmax，生成一个 one-hot 匹配向量 $b_n$：</p>
+<script type="math/tex; mode=display">b_n = \text{Gumbel Softmax}(g(z_{1,n}), g(z_{2,n}), \dots, g(z_{B_n+1,n})).</script><p>如果输入特征 $x_n$ 与第 $i$ 个学习块最匹配，则 $g(z_{i,n})$ 的输出值会高于其他块，并通过 Gumbel Softmax 将该块激活。</p>
+<p><strong>Gumbel Softmax</strong>：</p>
+<p>假设给定概率分布 $ p = (p_1, p_2, \dots, p_n) $，Gumbel Softmax 通过以下步骤生成一个平滑的离散随机变量：</p>
+<ol>
+<li><p><strong>生成 Gumbel 噪声：</strong><br>对于每个类别 $ i $，从 Gumbel 分布中采样 $ g_i \sim \text{Gumbel}(0, 1) $。</p>
+</li>
+<li><p><strong>计算加噪声的 logits：</strong>  </p>
+<script type="math/tex; mode=display">
+y_i = \frac{\log(p_i) + g_i}{\tau}</script><p>其中，$ p_i $ 是类别 $ i $ 的概率，$ g_i $ 是对应的 Gumbel 噪声，$ \tau $ 是温度参数。</p>
+</li>
+<li><p><strong>使用 Softmax 函数进行归一化：</strong>  </p>
+<script type="math/tex; mode=display">
+y_i = \frac{\exp\left( \frac{\log(p_i) + g_i}{\tau} \right)}{\sum_{j=1}^n \exp\left( \frac{\log(p_j) + g_j}{\tau} \right)}</script><p>这是一个平滑的概率分布，经过温度调节，可以用来近似离散采样。</p>
+</li>
+<li><p><strong>采样：</strong><br>通过这个平滑的概率分布，我们可以进行采样，得到一个类别的近似选择。</p>
+</li>
+</ol>
+<ul>
+<li><strong>可微性：</strong> Gumbel Softmax 使得离散变量的选择过程可导，可以通过反向传播进行梯度优化。</li>
+<li><strong>平滑近似：</strong> 温度参数 $ \tau $ 控制了采样过程的离散度，当 $ \tau \to 0 $ 时，结果趋近于 one-hot 向量；而当 $ \tau \to \infty $ 时，结果变得平滑。</li>
+</ul>
+<p>Gumbel Softmax 广泛应用于以下领域：</p>
+<ol>
+<li><strong>生成模型：</strong> 如生成对抗网络（GANs）和变分自编码器（VAEs）中，生成离散数据时，使用 Gumbel Softmax 来近似离散采样。</li>
+<li><strong>强化学习：</strong> 在强化学习中，使用 Gumbel Softmax 来处理离散动作空间，使得离散动作的选择可导。</li>
+<li><strong>自然语言处理：</strong> 在文本生成等任务中，使用 Gumbel Softmax 来平滑采样。</li>
+</ol>
+<p>假设有三个类别的概率分布 $ p = [0.7, 0.2, 0.1] $，我们可以用 Gumbel Softmax 来选择一个类别：</p>
+<ol>
+<li>为每个类别生成 Gumbel 噪声 $ g_1, g_2, g_3 $。</li>
+<li>计算加噪声的 logits $ y_1, y_2, y_3 $。</li>
+<li>用 Softmax 函数归一化并生成平滑的概率分布。</li>
+</ol>
+<p>在给定温度 $ \tau = 0.5 $ 时，得到的 $ y_i $ 值接近于一个 one-hot 向量，表示选择某个类别。</p>
+<p>Gumbel-Softmax 和 硬选择（Hardmax） 的区别</p>
+<p>Gumbel-Softmax（$\tau \to 0$）:</p>
+<ul>
+<li><strong>概率分布</strong>：平滑的概率分布，温度趋近于 0 时，逐渐接近 one-hot 向量。</li>
+<li><strong>随机性</strong>：具有随机性，即使在温度较低时，输出仍然是基于概率的。</li>
+<li><strong>平滑性</strong>：随着温度的降低，逐渐过渡到硬选择，避免突然的离散化。</li>
+<li><strong>训练过程</strong>：避免了梯度问题，支持平滑的梯度传递，适合连续的训练过程。</li>
+<li><strong>适用场景</strong>：适合需要探索不同选择、避免过拟合的训练过程。</li>
+</ul>
+<p>硬选择（Hardmax）:</p>
+<ul>
+<li><strong>概率分布</strong>：直接选择最大概率类别，输出一个离散的 one-hot 向量。</li>
+<li><strong>随机性</strong>：没有随机性，始终选择最大概率的类别。</li>
+<li><strong>平滑性</strong>：没有平滑，直接进行硬选择，不能避免离散化过渡。</li>
+<li><strong>训练过程</strong>：由于没有梯度，可能导致训练不稳定。</li>
+<li><strong>适用场景</strong>：适用于需要明确选择类别且不需要平滑过渡的情况。</li>
+</ul>
+<p>关键区别</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>特点</strong></th>
+<th><strong>Gumbel-Softmax（$\tau \to 0$）</strong></th>
+<th><strong>硬选择（Hardmax）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>概率分布</strong></td>
+<td>平滑的概率分布</td>
+<td>直接产生一个 one-hot 向量</td>
+</tr>
+<tr>
+<td><strong>是否具有随机性</strong></td>
+<td>具有一定的随机性</td>
+<td>没有随机性，固定选择</td>
+</tr>
+<tr>
+<td><strong>平滑性</strong></td>
+<td>在 $\tau$ 很低时趋近于 one-hot</td>
+<td>没有平滑，直接选择最大值</td>
+</tr>
+<tr>
+<td><strong>训练过程</strong></td>
+<td>能够避免梯度问题</td>
+<td>由于没有梯度，可能会导致训练不稳定</td>
+</tr>
+<tr>
+<td><strong>实现复杂性</strong></td>
+<td>需要计算 Gumbel 噪声并进行 softmax</td>
+<td>直接取最大值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>总结</p>
+<ul>
+<li><strong>Gumbel-Softmax</strong> 提供了平滑的过渡，避免梯度问题，适合需要探索的训练过程。</li>
+<li><strong>硬选择</strong> 是完全离散的，没有随机性和渐进的平滑过渡，适合需要明确类别选择的情况。</li>
+</ul>
+<p>对于参数更新，仅更新与当前输入最相关的学习块参数，其余块的参数保持冻结。更新规则如下：</p>
+<script type="math/tex; mode=display">\theta_{i,n} \leftarrow \theta_{i,n} - \alpha \nabla_{\theta_{i,n}} [-b_{i,n} \cdot y_k \log \hat{y}_k],</script><p>其中，$y_k$ 和 $\hat{y}_k$ 分别是当前输入的真实标签和预测标签，$b_{i,n}$ 是匹配分数（$1$ 表示最佳匹配块，$0$ 表示其他块），$\alpha$ 是学习率。</p>
+<p><strong>交叉熵解释</strong></p>
+<p>该公式是交叉熵损失函数的一部分。在交叉熵损失函数中，每个类别的损失被计算为：<br>$\sum_{k} y_k \log \hat{y}_k$<br>这里，$(y_k)$是真实标签（one-hot 编码），而 $( \hat{y}_k )$ 是模型的预测值。<br>如果 ( k ) 是真实类别，则 ( y_k = 1 )，此时损失函数成为：<br>$\log \hat{y}_k$<br>这意味着，如果模型对正确类别的预测概率较高，损失较小；如果模型对正确类别的预测概率较低，损失会变大。</p>
+<p>通过 $N$ 个弹性单元的最相关学习块连接起来，Else-Net 构建了一个最优的语义路径，利用已有知识高效地学习新动作。</p>
+<hr>
+<h2 id="3-2-Pathway-Construction-for-Body-Part-Branches"><a href="#3-2-Pathway-Construction-for-Body-Part-Branches" class="headerlink" title="3.2 Pathway Construction for Body Part Branches"></a>3.2 Pathway Construction for Body Part Branches</h2><p><img src="/2024/11/24/16-26-10/QQ_1732514917546.png" alt=" "></p>
+<p><img src="/2024/11/24/16-26-10/QQ_1732515066509.png" alt=" "></p>
+<p>考虑到全身动作可能与先前动作差异显著，而局部身体部分可能存在共享的特征，Else-Net 将输入特征分解为五个身体部位特征：</p>
+<script type="math/tex; mode=display">\{x_{p_j}\}_{j=1}^5,</script><p>对应左臂、右臂、躯干、左腿和右腿。每个身体部位分支的架构与全身分支相同，每个分支包含 $N$ 个弹性单元。<br>每个分支独立搜索和构建与当前输入特征最匹配的语义路径，分别生成每个部位的潜在特征：</p>
+<script type="math/tex; mode=display">\{x'_{p_j}\}_{j=1}^5.</script><p>最终，通过将这些部位特征拼接，得到完整的全身特征：</p>
+<script type="math/tex; mode=display">x' = \text{concat}(x'_{p_1}, x'_{p_2}, x'_{p_3}, x'_{p_4}, x'_{p_5}).</script><p>这种结构设计能够有效利用局部共享特征，提升对新动作的学习能力，同时缓解遗忘问题。</p>
+<blockquote>
+<p>如何分解特征。</p>
+</blockquote>
+<hr>
+<h2 id="3-3-Training-and-Testing"><a href="#3-3-Training-and-Testing" class="headerlink" title="3.3 Training and Testing"></a>3.3 Training and Testing</h2><p>训练阶段包括两个优化步骤：外部优化和内部优化。</p>
+<h3 id="外部优化"><a href="#外部优化" class="headerlink" title="外部优化"></a>外部优化</h3><p>冻结所有学习块的参数，仅更新切换块的参数：</p>
+<script type="math/tex; mode=display">\theta_g \leftarrow \theta_g - \alpha \nabla_{\theta_g} [-y_k \log \hat{y}_k].</script><h3 id="内部优化"><a href="#内部优化" class="headerlink" title="内部优化"></a>内部优化</h3><p>冻结切换块的参数，仅更新选中学习块的参数：</p>
+<script type="math/tex; mode=display">\theta_m \leftarrow \theta_m - \alpha \nabla_{\theta_m} [-b \cdot y_k \log \hat{y}_k].</script><p>其中，$\theta_g$ 和 $\theta_m$ 分别是切换块和学习块的参数，$b$ 是学习块的匹配分数。</p>
+<p>测试阶段，输入动作通过语义路径搜索最相关的学习块，并生成全局特征，用于动作分类。</p>
+<hr>
+<h2 id="4-实验"><a href="#4-实验" class="headerlink" title="4. 实验"></a>4. 实验</h2><h3 id="4-1-数据集"><a href="#4-1-数据集" class="headerlink" title="4.1 数据集"></a>4.1 数据集</h3><ul>
+<li><strong>NTU RGB+D</strong>: 60 类动作，56,880 视频，分为交叉视角和交叉主体两种评估协议。</li>
+<li><strong>PKU-MMD</strong>: 51 类动作，1,076 视频，类似评估协议。</li>
+</ul>
+<h3 id="4-2-评估指标"><a href="#4-2-评估指标" class="headerlink" title="4.2 评估指标"></a>4.2 评估指标</h3><ul>
+<li><strong>平均准确率 (ACC)</strong>: 学完所有任务后，对所有任务的平均识别准确率。<br>$\begin{aligned}ACC=\frac1T\sum_{q=1}^Ta_{T,q}\end{aligned}$</li>
+<li><strong>遗忘度 (FM)</strong>: 表征模型对旧任务的遗忘程度，越低越好。<br>$\begin{aligned}FM&amp;=\frac{1}{T-1}\sum_{q=1}^{T-1}\max_{t\in\{1,2,…,T-1\}}\{a_{t,q}-a_{T,q}\}\end{aligned}$</li>
+<li><strong>学习准确率 (LA)</strong>: 表征模型对当前任务的学习能力。<br>$\begin{aligned}LA=\frac1T\sum_{q=1}^Ta_{q,q}\end{aligned}$</li>
+</ul>
+<p><img src="/2024/11/24/16-26-10/QQ_1731649890669.png" alt=" "></p>
+<h3 id="4-3-结果分析"><a href="#4-3-结果分析" class="headerlink" title="4.3 结果分析"></a>4.3 结果分析</h3><ul>
+<li><strong>持续学习</strong>:<br>Else-Net 在两个数据集上均显著优于现有方法（如 GEM 和 ReMind）。</li>
+<li><strong>离线学习</strong>:<br>Else-Net 在离线学习设置下也取得与最优方法相当的结果。</li>
+</ul>
+<h3 id="4-4-消融实验"><a href="#4-4-消融实验" class="headerlink" title="4.4 消融实验"></a>4.4 消融实验</h3><ul>
+<li><strong>弹性单元数量</strong>: 增加单元数量可提升性能，但超过 3 层时增益减少。</li>
+<li><strong>部件路径的作用</strong>: 使用语义分支显著降低遗忘度，提高学习性能。</li>
+<li><strong>块搜索的作用</strong>: 动态块搜索避免混合噪声，提高知识保留能力。</li>
+<li><strong>选择性更新</strong>: 仅更新最相关块有助于知识保留和有效学习。</li>
+</ul>
+<hr>
+<h2 id="5-结论"><a href="#5-结论" class="headerlink" title="5. 结论"></a>5. 结论</h2><ul>
+<li>Else-Net 模拟人类大脑，动态选择最相关学习块学习新动作，同时保留旧知识。</li>
+<li>通过分解语义路径的构建，能更有效地捕获人体局部同质特征，缓解灾难性遗忘问题。</li>
+<li>实验结果验证了 Else-Net 在持续动作识别中的有效性。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pkunicor.github.io/2024/11/24/16-26-10/" title="Else-Net基于骨架的连续动作识别弹性特征选择">https://pkunicor.github.io/2024/11/24/16-26-10/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/skeleton-AR/" rel="tag"># skeleton, AR</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/24/11-18-59/" rel="prev" title="掩码与压缩：持续学习中基于骨架的高效动作识别">
+                  <i class="fa fa-chevron-left"></i> 掩码与压缩：持续学习中基于骨架的高效动作识别
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/11/24/18-13-44/" rel="next" title="PECoP动作质量评估的参数预训练">
+                  PECoP动作质量评估的参数预训练 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.4.0/mermaid.min.js","integrity":"sha256-3JloMMI/ZQx6ryuhhZTsQJQmGAkXeni6PkshX7UUO2s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"9b82928710d00f337b23f9c69ec67f3c"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
