@@ -17,170 +17,170 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"pkunicor.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zzhenyao.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Udacity计算机视觉概论 第二章 计算机视觉的图像处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机视觉概论 计算机视觉的图像处理">
-<meta property="og:url" content="https://pkunicor.github.io/2024/04/27/09-07-10/index.html">
+<meta property="og:url" content="https://zzhenyao.github.io/2024/04/27/09-07-10/index.html">
 <meta property="og:site_name" content="且听风吟">
 <meta property="og:description" content="Udacity计算机视觉概论 第二章 计算机视觉的图像处理">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-092957@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-093048@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-093326@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-093357@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-095451@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-095943@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-100924@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-101112@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-101206@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-101547@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-103425@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/1.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-103933@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-104618@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-104655@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-104815@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-105107@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-105212@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-105612@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-105651@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-110026@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-131003@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-131216@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-131451@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-132224@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-132133@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-134946@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-135116@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-140836@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-141058@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-141413@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-141603@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-141754@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-141927@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-142124@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-142207@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-142606@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-142802@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-143056@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-143220@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-143339@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-144017@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-145325@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-145558@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-145725@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-153302@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-154142@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-154201@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-104609@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-104723@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-104903@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-104923@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-105048@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-104923@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-105632@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-105718@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-105810@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-110004@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-110311@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-111127@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-111919@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-112419@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-113714@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-123328@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-123839@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-123955@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-124215@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-124357@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-124636@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-124732@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-125006@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-125509@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-125956@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-130730@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-130742@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-130804@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-130903@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-131216@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-131343@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-131520@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-132327@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-132553@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-132734@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-133955@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-133947@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-135111@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-135421@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-135710@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-140007@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-140657@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-140911@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-141342@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-141150@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-141725@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-141839@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240428-142259@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-091353@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-091756@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-091605@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-092109@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-091847@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-093857@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-093933@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-101040@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-101252@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-101605@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-102147@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-102238@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-102508@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-102615@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-102705@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-102750@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-140527@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-141002@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-141307@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-141409@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-141517@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-143042@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-144050@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-144135@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-144821@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-145050@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-145222@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-145348@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-145542@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-145613@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-152239@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-152734@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-152812@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-153249@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-153642@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-153804@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-154529@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-154812@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-154933@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-155039@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-155942@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-160402@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-160831@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-161033@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-161449@2x.png">
-<meta property="og:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240429-161728@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-092957@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-093048@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-093326@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-093357@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-095451@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-095943@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-100924@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-101112@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-101206@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-101547@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-103425@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/1.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-103933@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-104618@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-104655@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-104815@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-105107@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-105212@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-105612@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-105651@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-110026@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-131003@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-131216@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-131451@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-132224@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-132133@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-134946@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-135116@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-140836@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-141058@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-141413@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-141603@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-141754@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-141927@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-142124@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-142207@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-142606@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-142802@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-143056@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-143220@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-143339@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-144017@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-145325@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-145558@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-145725@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-153302@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-154142@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-154201@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-104609@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-104723@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-104903@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-104923@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-105048@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-104923@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-105632@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-105718@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-105810@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-110004@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-110311@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-111127@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-111919@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-112419@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-113714@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-123328@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-123839@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-123955@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-124215@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-124357@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-124636@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-124732@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-125006@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-125509@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-125956@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-130730@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-130742@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-130804@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-130903@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-131216@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-131343@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-131520@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-132327@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-132553@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-132734@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-133955@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-133947@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-135111@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-135421@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-135710@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-140007@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-140657@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-140911@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-141342@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-141150@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-141725@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-141839@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240428-142259@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-091353@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-091756@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-091605@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-092109@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-091847@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-093857@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-093933@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-101040@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-101252@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-101605@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-102147@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-102238@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-102508@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-102615@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-102705@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-102750@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-140527@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-141002@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-141307@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-141409@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-141517@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-143042@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-144050@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-144135@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-144821@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-145050@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-145222@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-145348@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-145542@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-145613@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-152239@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-152734@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-152812@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-153249@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-153642@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-153804@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-154529@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-154812@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-154933@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-155039@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-155942@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-160402@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-160831@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-161033@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-161449@2x.png">
+<meta property="og:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240429-161728@2x.png">
 <meta property="article:published_time" content="2024-04-27T01:07:10.000Z">
 <meta property="article:modified_time" content="2024-05-06T02:30:32.878Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="计算机视觉, 图像处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pkunicor.github.io/2024/04/27/09-07-10/QQ20240427-092957@2x.png">
+<meta name="twitter:image" content="https://zzhenyao.github.io/2024/04/27/09-07-10/QQ20240427-092957@2x.png">
 
 
-<link rel="canonical" href="https://pkunicor.github.io/2024/04/27/09-07-10/">
+<link rel="canonical" href="https://zzhenyao.github.io/2024/04/27/09-07-10/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pkunicor.github.io/2024/04/27/09-07-10/","path":"2024/04/27/09-07-10/","title":"计算机视觉概论 计算机视觉的图像处理"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zzhenyao.github.io/2024/04/27/09-07-10/","path":"2024/04/27/09-07-10/","title":"计算机视觉概论 计算机视觉的图像处理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>计算机视觉概论 计算机视觉的图像处理 | 且听风吟</title>
@@ -298,7 +298,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">135</span>
+          <span class="site-state-item-count">142</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -344,7 +344,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://pkunicor.github.io/2024/04/27/09-07-10/">
+    <link itemprop="mainEntityOfPage" href="https://zzhenyao.github.io/2024/04/27/09-07-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo.png">
@@ -968,7 +968,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://pkunicor.github.io/2024/04/27/09-07-10/" title="计算机视觉概论 计算机视觉的图像处理">https://pkunicor.github.io/2024/04/27/09-07-10/</a>
+      <a href="https://zzhenyao.github.io/2024/04/27/09-07-10/" title="计算机视觉概论 计算机视觉的图像处理">https://zzhenyao.github.io/2024/04/27/09-07-10/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
