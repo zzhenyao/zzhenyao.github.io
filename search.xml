@@ -12527,9 +12527,9 @@ graph TB
         <category>工具</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>ssh</tag>
         <tag>mac</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -12934,9 +12934,9 @@ graph TB
       </categories>
       <tags>
         <tag>ssh</tag>
-        <tag>mac</tag>
         <tag>ubuntu</tag>
         <tag>wsl2</tag>
+        <tag>mac</tag>
       </tags>
   </entry>
 </search>
