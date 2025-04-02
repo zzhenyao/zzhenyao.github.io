@@ -27,7 +27,7 @@
 <meta property="og:description" content="长视频下的AQA花样滑冰。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-15T04:56:12.000Z">
-<meta property="article:modified_time" content="2024-10-30T08:05:01.269Z">
+<meta property="article:modified_time" content="2025-03-06T06:34:49.731Z">
 <meta property="article:author" content="yao">
 <meta property="article:tag" content="ST-GCN, AQA, LSTM">
 <meta name="twitter:card" content="summary">
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">142</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -237,7 +237,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-30 16:05:01" itemprop="dateModified" datetime="2024-10-30T16:05:01+08:00">2024-10-30</time>
+      <time title="修改时间：2025-03-06 14:34:49" itemprop="dateModified" datetime="2025-03-06T14:34:49+08:00">2025-03-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -327,7 +327,7 @@
 <p>```</p>
 <h2 id="net"><a href="#net" class="headerlink" title="net"></a>net</h2><h3 id="st-gcn-py"><a href="#st-gcn-py" class="headerlink" title="st_gcn.py"></a>st_gcn.py</h3><h1 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h1><p>数据采样300帧。</p>
 <h2 id="datainfo-MIT-npy"><a href="#datainfo-MIT-npy" class="headerlink" title="datainfo/MIT.npy"></a>datainfo/MIT.npy</h2><p>数据预览</p>
-<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">字典类型</span><br><span class="line">dict_keys([&#x27;test_sample_name&#x27;, &#x27;video_num&#x27;, &#x27;test_video_num&#x27;, &#x27;test_index&#x27;, &#x27;video_label&#x27;])</span><br><span class="line"></span><br><span class="line"> test_sample_name:</span><br><span class="line"> &lt;class &#x27;list&#x27;&gt;</span><br><span class="line">[&#x27;59_7.json&#x27;, &#x27;106_1.json&#x27;, &#x27;106_10.json&#x27;, &#x27;106_11.json&#x27;, &#x27;106_12.json&#x27;]</span><br><span class="line"></span><br><span class="line">video_num: &lt;class &#x27;int&#x27;&gt; 171</span><br><span class="line"></span><br><span class="line">test_video_num: &lt;class &#x27;int&#x27;&gt; 71</span><br><span class="line"></span><br><span class="line">test_index: &lt;class &#x27;list&#x27;&gt;</span><br><span class="line">[5, 7, 13, 16, 17]</span><br><span class="line"></span><br><span class="line">应该是分数</span><br><span class="line">video_label: &lt;class &#x27;list&#x27;&gt;</span><br><span class="line">[49.74, 41.94, 43.84, 36.1, 52.16]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">字典类型</span><br><span class="line">dict_keys([&#x27;test_sample_name&#x27;, &#x27;video_num&#x27;, &#x27;test_video_num&#x27;, &#x27;test_index&#x27;, &#x27;video_label&#x27;])</span><br><span class="line"></span><br><span class="line"> test_sample_name:</span><br><span class="line"> &lt;class &#x27;list&#x27;&gt;</span><br><span class="line">[&#x27;59_7.json&#x27;, &#x27;106_1.json&#x27;, &#x27;106_10.json&#x27;, &#x27;106_11.json&#x27;, &#x27;106_12.json&#x27;]</span><br><span class="line"></span><br><span class="line">video_num: &lt;class &#x27;int&#x27;&gt; 171</span><br><span class="line"></span><br><span class="line">test_video_num: &lt;class &#x27;int&#x27;&gt; 71</span><br><span class="line"></span><br><span class="line">test_index: &lt;class &#x27;list&#x27;&gt;</span><br><span class="line">[5, 7, 13, 16, 17]</span><br><span class="line"></span><br><span class="line">应该是分数</span><br><span class="line">Fisv：</span><br><span class="line">对应的所有标签的分数，然后在按照下标从中间选。</span><br><span class="line">video_label: &lt;class &#x27;list&#x27;&gt;</span><br><span class="line">[49.74, 41.94, 43.84, 36.1, 52.16]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="datainfo-tes-train-data-npy"><a href="#datainfo-tes-train-data-npy" class="headerlink" title="datainfo/tes/train_data.npy"></a>datainfo/tes/train_data.npy</h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">type: &lt;class &#x27;numpy.ndarray&#x27;&gt;</span><br><span class="line">shape: (5710, 3, 300, 18, 2)</span><br><span class="line">        # N: 批量大小 (batch size)</span><br><span class="line">        # C: 通道数 (channels)</span><br><span class="line">        # T: 帧</span><br><span class="line">        # V: 节点数 (vertices)</span><br><span class="line">        # M: 一帧中的实例, 人体骨架数量 (可能存在多个人体骨架)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="datainfo-tes-train-label-pkl"><a href="#datainfo-tes-train-label-pkl" class="headerlink" title="datainfo/tes/train_label.pkl"></a>datainfo/tes/train_label.pkl</h2><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">是一个元组，有两个list元素</span><br><span class="line">info: &lt;class &#x27;tuple&#x27;&gt;</span><br><span class="line">Element 0: Type: &lt;class &#x27;list&#x27;&gt;, value: [&#x27;1_1.json&#x27;, &#x27;1_10.json&#x27;]</span><br><span class="line">Element 1: Type: &lt;class &#x27;list&#x27;&gt;, value: [28.71, 28.71]</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
