@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zzhenyao.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="系统梳理了动作质量评估（Action Quality Assessment, AQA）领域自 1995 年至今的主要方法演进脉络，涵盖从早期的计算机视觉手工特征阶段，到传统机器学习框架，再到深度学习时代的时空建模、多模态融合与连续学习（CAQA）等关键技术路线。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AQA（动作质量评估）方法发展时间线">
+<meta property="og:url" content="https://zzhenyao.github.io/2025/11/18/13-26-24/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="系统梳理了动作质量评估（Action Quality Assessment, AQA）领域自 1995 年至今的主要方法演进脉络，涵盖从早期的计算机视觉手工特征阶段，到传统机器学习框架，再到深度学习时代的时空建模、多模态融合与连续学习（CAQA）等关键技术路线。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-18T05:26:24.000Z">
+<meta property="article:modified_time" content="2025-11-18T05:28:27.056Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="AQA, 深度学习">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zzhenyao.github.io/2025/11/18/13-26-24/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zzhenyao.github.io/2025/11/18/13-26-24/","path":"2025/11/18/13-26-24/","title":"AQA（动作质量评估）方法发展时间线"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AQA（动作质量评估）方法发展时间线 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AQA%EF%BC%88%E5%8A%A8%E4%BD%9C%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BC%B0%EF%BC%89%E6%96%B9%E6%B3%95%E5%8F%91%E5%B1%95%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="nav-number">1.</span> <span class="nav-text">AQA（动作质量评估）方法发展时间线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%951%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%9F%BA%E7%A1%80%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.1.</span> <span class="nav-text">方法1：计算机视觉基础方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%952%EF%BC%9AL-SVR%EF%BC%88%E7%BA%BF%E6%80%A7%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E5%9B%9E%E5%BD%92%EF%BC%89"><span class="nav-number">1.0.2.</span> <span class="nav-text">方法2：L-SVR（线性支持向量回归）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%953%EF%BC%9AJIGSAWS%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8EHMM-SDL"><span class="nav-number">1.0.3.</span> <span class="nav-text">方法3：JIGSAWS数据集与HMM-SDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%954%EF%BC%9A%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95%E4%B8%8E%E6%97%B6%E9%A2%91%E5%9F%9F%E7%89%B9%E5%BE%81"><span class="nav-number">1.0.4.</span> <span class="nav-text">方法4：分类方法与时频域特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%955%EF%BC%9ALearning-to-Score-Olympic-Events"><span class="nav-number">1.0.5.</span> <span class="nav-text">方法5：Learning to Score Olympic Events</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%956%EF%BC%9AC3D%E7%B3%BB%E5%88%97%EF%BC%88%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AA%81%E7%A0%B4%EF%BC%89"><span class="nav-number">1.0.6.</span> <span class="nav-text">方法6：C3D系列（深度学习突破）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%957%EF%BC%9ALSTM-GM%EF%BC%88%E5%AF%B9%E6%AF%94%E6%8E%92%E5%BA%8F%E5%AD%A6%E4%B9%A0%EF%BC%89"><span class="nav-number">1.0.7.</span> <span class="nav-text">方法7：LSTM-GM（对比排序学习）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%958%EF%BC%9AScoringNet%EF%BC%88%E5%85%B3%E9%94%AE%E7%89%87%E6%AE%B5%E4%B8%8E%E6%8E%92%E5%BA%8F%E6%8D%9F%E5%A4%B1%EF%BC%89"><span class="nav-number">1.0.8.</span> <span class="nav-text">方法8：ScoringNet（关键片段与排序损失）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%959%EF%BC%9A2S-CNN%EF%BC%88%E6%97%B6%E7%A9%BA%E5%88%86%E5%89%B2%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.9.</span> <span class="nav-text">方法9：2S-CNN（时空分割卷积网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9510%EF%BC%9AS3D%EF%BC%88%E5%A0%86%E5%8F%A03D%E5%9B%9E%E5%BD%92%E5%99%A8%EF%BC%89"><span class="nav-number">1.0.10.</span> <span class="nav-text">方法10：S3D（堆叠3D回归器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9511%EF%BC%9AC3D-AVG-MTL%EF%BC%88%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6%EF%BC%89"><span class="nav-number">1.0.11.</span> <span class="nav-text">方法11：C3D-AVG-MTL（多任务学习框架）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9512%EF%BC%9ARAA%EF%BC%88%E6%8E%92%E5%90%8D%E6%84%9F%E7%9F%A5%E6%B3%A8%E6%84%8F%E5%8A%9B%EF%BC%89"><span class="nav-number">1.0.12.</span> <span class="nav-text">方法12：RAA（排名感知注意力）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9513%EF%BC%9AJR-GCN%EF%BC%88%E5%85%B3%E8%8A%82%E5%85%B3%E7%B3%BB%E5%9B%BE%E5%8D%B7%E7%A7%AF%EF%BC%89"><span class="nav-number">1.0.13.</span> <span class="nav-text">方法13：JR-GCN（关节关系图卷积）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9514%EF%BC%9AUSDL%EF%BC%88%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%84%9F%E7%9F%A5%E8%AF%84%E5%88%86%E5%88%86%E5%B8%83%E5%AD%A6%E4%B9%A0%EF%BC%89"><span class="nav-number">1.0.14.</span> <span class="nav-text">方法14：USDL（不确定性感知评分分布学习）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9515%EF%BC%9AMS-LSTM%EF%BC%88%E5%A4%9A%E5%B0%BA%E5%BA%A6LSTM%EF%BC%89"><span class="nav-number">1.0.15.</span> <span class="nav-text">方法15：MS-LSTM（多尺度LSTM）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9516%EF%BC%9AACTION-Net%EF%BC%88%E5%8A%A8%E4%BD%9C-%E9%9D%99%E6%80%81%E4%B8%8A%E4%B8%8B%E6%96%87%E6%B3%A8%E6%84%8F%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.16.</span> <span class="nav-text">方法16：ACTION-Net（动作-静态上下文注意网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9517%EF%BC%9AAIM%EF%BC%88%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%85%B3%E7%B3%BB%E5%BB%BA%E6%A8%A1%EF%BC%89"><span class="nav-number">1.0.17.</span> <span class="nav-text">方法17：AIM（非对称关系建模）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9518%EF%BC%9ACoRe%EF%BC%88%E5%AF%B9%E6%AF%94%E5%9B%9E%E5%BD%92%E6%A1%86%E6%9E%B6%EF%BC%89"><span class="nav-number">1.0.18.</span> <span class="nav-text">方法18：CoRe（对比回归框架）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9519%EF%BC%9ASportCap%EF%BC%88%E8%BF%90%E5%8A%A8%E6%8D%95%E6%8D%89%E4%B8%8E%E7%BB%86%E7%B2%92%E5%BA%A6%E7%90%86%E8%A7%A3%EF%BC%89"><span class="nav-number">1.0.19.</span> <span class="nav-text">方法19：SportCap（运动捕捉与细粒度理解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9520%EF%BC%9AST-GCN%EF%BC%88%E6%97%B6%E7%A9%BA%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.20.</span> <span class="nav-text">方法20：ST-GCN（时空图卷积网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9521%EF%BC%9AEAGLE-Eye%EF%BC%88%E6%9E%81%E7%AB%AF%E5%A7%BF%E6%80%81%E5%8A%A8%E4%BD%9C%E8%AF%84%E5%88%86%E5%99%A8%EF%BC%89"><span class="nav-number">1.0.21.</span> <span class="nav-text">方法21：EAGLE-Eye（极端姿态动作评分器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9522%EF%BC%9ARGR%EF%BC%88%E5%8F%82%E8%80%83%E5%AF%BC%E5%90%91%E5%9B%9E%E5%BD%92%EF%BC%89"><span class="nav-number">1.0.22.</span> <span class="nav-text">方法22：RGR（参考导向回归）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9523%EF%BC%9ATSA-Net%EF%BC%88%E7%AE%A1%E8%87%AA%E6%B3%A8%E6%84%8F%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.23.</span> <span class="nav-text">方法23：TSA-Net（管自注意网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9524%EF%BC%9ATAL%EF%BC%88%E6%97%B6%E9%97%B4%E6%B3%A8%E6%84%8F%E5%AD%A6%E4%B9%A0%EF%BC%89"><span class="nav-number">1.0.24.</span> <span class="nav-text">方法24：TAL（时间注意学习）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9525%EF%BC%9AFineDiving%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8ETSA%EF%BC%88%E6%97%B6%E9%97%B4%E5%88%86%E5%89%B2%E6%B3%A8%E6%84%8F%E5%8A%9B%EF%BC%89"><span class="nav-number">1.0.25.</span> <span class="nav-text">方法25：FineDiving数据集与TSA（时间分割注意力）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9526%EF%BC%9AGDLT%EF%BC%88%E7%AD%89%E7%BA%A7%E8%A7%A3%E8%80%A6Likert-Transformer%EF%BC%89"><span class="nav-number">1.0.26.</span> <span class="nav-text">方法26：GDLT（等级解耦Likert Transformer）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9527%EF%BC%9ATPT%EF%BC%88%E6%97%B6%E9%97%B4%E8%A7%A3%E6%9E%90Transformer%EF%BC%89"><span class="nav-number">1.0.27.</span> <span class="nav-text">方法27：TPT（时间解析Transformer）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9528%EF%BC%9AI3D-Transformer"><span class="nav-number">1.0.28.</span> <span class="nav-text">方法28：I3D-Transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9529%EF%BC%9AI3D-TA%EF%BC%88%E6%97%B6%E9%97%B4%E6%84%9F%E7%9F%A5%E6%B3%A8%E6%84%8F%EF%BC%89"><span class="nav-number">1.0.29.</span> <span class="nav-text">方法29：I3D-TA（时间感知注意）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9530%EF%BC%9AUD-AQA%EF%BC%88%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E9%A9%B1%E5%8A%A8%E7%9A%84AQA%EF%BC%89"><span class="nav-number">1.0.30.</span> <span class="nav-text">方法30：UD-AQA（不确定性驱动的AQA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9531%EF%BC%9APCLN%EF%BC%88%E9%85%8D%E5%AF%B9%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.31.</span> <span class="nav-text">方法31：PCLN（配对对比学习网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9532%EF%BC%9AMD%E4%B8%8ECVCSPC%EF%BC%88%E8%BF%90%E5%8A%A8%E8%A7%A3%E7%BC%A0%E7%BB%95%EF%BC%89"><span class="nav-number">1.0.32.</span> <span class="nav-text">方法32：MD与CVCSPC（运动解缠绕）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%EF%BC%9AAdaptive-Net%EF%BC%88%E8%87%AA%E9%80%82%E5%BA%94%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.33.</span> <span class="nav-text">方法：Adaptive Net（自适应网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9533%EF%BC%9AFSPN%EF%BC%88%E7%BB%86%E7%B2%92%E5%BA%A6%E6%97%B6%E7%A9%BA%E8%A7%A3%E6%9E%90%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.34.</span> <span class="nav-text">方法33：FSPN（细粒度时空解析网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9534%EF%BC%9AMSRM%E4%B8%8ESSRMM%EF%BC%88%E5%A4%9A%E9%98%B6%E6%AE%B5%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9D%97%EF%BC%89"><span class="nav-number">1.0.35.</span> <span class="nav-text">方法34：MSRM与SSRMM（多阶段回归模块）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9535%EF%BC%9ATECN%EF%BC%88%E9%AB%98%E6%96%AF%E5%BC%95%E5%AF%BC%E5%B8%A7%E5%BA%8F%E5%88%97%E7%BC%96%E7%A0%81%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.36.</span> <span class="nav-text">方法35：TECN（高斯引导帧序列编码网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9536%EF%BC%9ADAE%EF%BC%88%E5%88%86%E5%B8%83%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8%EF%BC%89"><span class="nav-number">1.0.37.</span> <span class="nav-text">方法36：DAE（分布自编码器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9537%EF%BC%9ALUSD-Net%EF%BC%88%E5%AE%9A%E4%BD%8D%E8%BE%85%E5%8A%A9%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E8%AF%84%E5%88%86%E8%A7%A3%E7%BC%A0%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.38.</span> <span class="nav-text">方法37：LUSD-Net（定位辅助不确定性评分解缠网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9538%EF%BC%9AASTRM%EF%BC%88%E8%B7%A8%E9%98%B6%E6%AE%B5%E6%97%B6%E9%97%B4%E6%8E%A8%E7%90%86%E6%A8%A1%E5%9D%97%EF%BC%89"><span class="nav-number">1.0.39.</span> <span class="nav-text">方法38：ASTRM（跨阶段时间推理模块）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9539%EF%BC%9ARG-AQA%EF%BC%88%E5%9B%9E%E6%94%BE%E5%BC%95%E5%AF%BC%E7%9A%84%E5%8A%A8%E4%BD%9C%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BC%B0%EF%BC%89"><span class="nav-number">1.0.40.</span> <span class="nav-text">方法39：RG-AQA（回放引导的动作质量评估）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9540%EF%BC%9APSL%EF%BC%88%E4%BC%AA%E5%AD%90%E8%AF%84%E5%88%86%E5%AD%A6%E4%B9%A0%EF%BC%89"><span class="nav-number">1.0.41.</span> <span class="nav-text">方法40：PSL（伪子评分学习）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9541%EF%BC%9AGOAT%EF%BC%88%E7%BE%A4%E4%BD%93%E6%84%9F%E7%9F%A5%E6%B3%A8%E6%84%8F%EF%BC%89"><span class="nav-number">1.0.42.</span> <span class="nav-text">方法41：GOAT（群体感知注意）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9542%EF%BC%9AHGCN%EF%BC%88%E5%88%86%E5%B1%82%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.43.</span> <span class="nav-text">方法42：HGCN（分层图卷积网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9543%EF%BC%9AMS-GCN%EF%BC%88%E5%A4%9A%E9%AA%A8%E6%9E%B6%E7%BB%93%E6%9E%84GCN%EF%BC%89"><span class="nav-number">1.0.44.</span> <span class="nav-text">方法43：MS-GCN（多骨架结构GCN）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9544%EF%BC%9ASkating-Mixer%EF%BC%88%E9%95%BF%E6%9C%9F%E8%BF%90%E5%8A%A8%E9%9F%B3%E9%A2%91-%E8%A7%86%E8%A7%89%E5%BB%BA%E6%A8%A1%EF%BC%89"><span class="nav-number">1.0.45.</span> <span class="nav-text">方法44：Skating-Mixer（长期运动音频-视觉建模）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9545%EF%BC%9AAdaST%EF%BC%88%E8%87%AA%E9%80%82%E5%BA%94%E9%98%B6%E6%AE%B5%E6%84%9F%E7%9F%A5%E8%AF%84%E4%BC%B0%E6%8A%80%E8%83%BD%E8%BD%AC%E7%A7%BB%EF%BC%89"><span class="nav-number">1.0.46.</span> <span class="nav-text">方法45：AdaST（自适应阶段感知评估技能转移）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9546%EF%BC%9ASGN%EF%BC%88%E8%AF%AD%E4%B9%89%E5%BC%95%E5%AF%BC%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.47.</span> <span class="nav-text">方法46：SGN（语义引导网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9547%EF%BC%9AMCoRe%EF%BC%88%E5%A4%9A%E9%98%B6%E6%AE%B5%E5%AF%B9%E6%AF%94%E5%9B%9E%E5%BD%92%EF%BC%89"><span class="nav-number">1.0.48.</span> <span class="nav-text">方法47：MCoRe（多阶段对比回归）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9548%EF%BC%9AT2CR%EF%BC%88%E5%8F%8C%E8%B7%AF%E5%BE%84%E7%9B%AE%E6%A0%87%E6%84%9F%E7%9F%A5%E5%AF%B9%E6%AF%94%E5%9B%9E%E5%BD%92%EF%BC%89"><span class="nav-number">1.0.49.</span> <span class="nav-text">方法48：T2CR（双路径目标感知对比回归）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9549%EF%BC%9ASSPR%EF%BC%88%E8%AF%AD%E4%B9%89%E5%BA%8F%E5%88%97%E6%80%A7%E8%83%BD%E5%9B%9E%E5%BD%92%EF%BC%89"><span class="nav-number">1.0.50.</span> <span class="nav-text">方法49：SSPR（语义序列性能回归）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9550%EF%BC%9AFineParser%EF%BC%88%E7%BB%86%E7%B2%92%E5%BA%A6%E6%97%B6%E7%A9%BA%E5%8A%A8%E4%BD%9C%E8%A7%A3%E6%9E%90%E5%99%A8%EF%BC%89"><span class="nav-number">1.0.51.</span> <span class="nav-text">方法50：FineParser（细粒度时空动作解析器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9551%EF%BC%9ASTSA%EF%BC%88%E6%97%B6%E7%A9%BA%E5%88%86%E5%89%B2%E6%B3%A8%E6%84%8F%EF%BC%89"><span class="nav-number">1.0.52.</span> <span class="nav-text">方法51：STSA（时空分割注意）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9552%EF%BC%9ARhythmer%EF%BC%88%E8%8A%82%E5%A5%8F%E6%84%9F%E7%9F%A5Transformer%EF%BC%89"><span class="nav-number">1.0.53.</span> <span class="nav-text">方法52：Rhythmer（节奏感知Transformer）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9553%EF%BC%9APAMFN%EF%BC%88%E6%B8%90%E8%BF%9B%E8%87%AA%E9%80%82%E5%BA%94%E5%A4%9A%E6%A8%A1%E6%80%81%E8%9E%8D%E5%90%88%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.54.</span> <span class="nav-text">方法53：PAMFN（渐进自适应多模态融合网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9554%EF%BC%9ANAE-AQA%EF%BC%88%E5%8F%99%E8%BF%B0%E6%80%A7%E5%8A%A8%E4%BD%9C%E8%AF%84%E4%BC%B0%EF%BC%89"><span class="nav-number">1.0.55.</span> <span class="nav-text">方法54：NAE-AQA（叙述性动作评估）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9555%EF%BC%9AVATP-Net%EF%BC%88%E8%A7%86%E8%A7%89-%E8%AF%AD%E4%B9%89%E5%AF%B9%E9%BD%90%E6%97%B6%E9%97%B4%E8%A7%A3%E6%9E%90%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.56.</span> <span class="nav-text">方法55：VATP-Net（视觉-语义对齐时间解析网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9556%EF%BC%9A2M-AF%EF%BC%88%E5%A4%9A%E6%A8%A1%E6%80%81%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6%EF%BC%89"><span class="nav-number">1.0.57.</span> <span class="nav-text">方法56：2M-AF（多模态评估框架）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9557%EF%BC%9AEGCN%EF%BC%88%E9%9B%86%E6%88%90%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.58.</span> <span class="nav-text">方法57：EGCN（集成图卷积网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9558%EF%BC%9AEK-GCN%EF%BC%88%E4%B8%93%E5%AE%B6%E7%9F%A5%E8%AF%86%E5%BC%95%E5%AF%BC%E7%9A%84%E5%9B%BE%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.59.</span> <span class="nav-text">方法58：EK-GCN（专家知识引导的图卷积网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9559%EF%BC%9ADNLA%EF%BC%88%E5%88%A4%E5%88%AB%E6%80%A7%E9%9D%9E%E5%B1%80%E9%83%A8%E6%B3%A8%E6%84%8F%EF%BC%89"><span class="nav-number">1.0.60.</span> <span class="nav-text">方法59：DNLA（判别性非局部注意）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9560%EF%BC%9ANS-AQA%EF%BC%88%E7%A5%9E%E7%BB%8F%E7%AC%A6%E5%8F%B7AQA%EF%BC%89"><span class="nav-number">1.0.61.</span> <span class="nav-text">方法60：NS-AQA（神经符号AQA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9561%EF%BC%9ARICA2%EF%BC%88%E8%A7%84%E5%88%99%E7%9F%A5%E6%83%85%E6%A0%A1%E5%87%86%E8%AF%84%E4%BC%B0%EF%BC%89"><span class="nav-number">1.0.62.</span> <span class="nav-text">方法61：RICA2（规则知情校准评估）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9562%EF%BC%9ADuRA%EF%BC%88%E5%8F%8C%E5%8F%82%E8%80%83%E8%BE%85%E5%8A%A9%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.63.</span> <span class="nav-text">方法62：DuRA（双参考辅助网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9563%EF%BC%9ASAP-Net%EF%BC%88%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%90%E5%8A%A8%E4%BD%9C%E8%A7%A3%E6%9E%90%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="nav-number">1.0.64.</span> <span class="nav-text">方法63：SAP-Net（自监督子动作解析网络）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9564%EF%BC%9ATRS%EF%BC%88%E6%95%99%E5%B8%88-%E5%8F%82%E8%80%83-%E5%AD%A6%E7%94%9F%E6%9E%B6%E6%9E%84%EF%BC%89"><span class="nav-number">1.0.65.</span> <span class="nav-text">方法64：TRS（教师-参考-学生架构）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9565%EF%BC%9APECoP%EF%BC%88%E5%8F%82%E6%95%B0%E9%AB%98%E6%95%88%E8%BF%9E%E7%BB%AD%E9%A2%84%E8%AE%AD%E7%BB%83%EF%BC%89"><span class="nav-number">1.0.66.</span> <span class="nav-text">方法65：PECoP（参数高效连续预训练）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9566%EF%BC%9AContinual-AQA%EF%BC%88%E8%BF%9E%E7%BB%AD%E5%AD%A6%E4%B9%A0AQA%EF%BC%89"><span class="nav-number">1.0.67.</span> <span class="nav-text">方法66：Continual-AQA（连续学习AQA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9567%EF%BC%9AMAGR%EF%BC%88%E6%B5%81%E5%BD%A2%E5%AF%B9%E9%BD%90%E5%9B%BE%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%89"><span class="nav-number">1.0.68.</span> <span class="nav-text">方法67：MAGR（流形对齐图正则化）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9568%EF%BC%9ACoFInAl%EF%BC%88%E7%B2%97%E7%BB%86%E6%8C%87%E4%BB%A4%E5%AF%B9%E9%BD%90%EF%BC%89"><span class="nav-number">1.0.69.</span> <span class="nav-text">方法68：CoFInAl（粗细指令对齐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9569%EF%BC%9AZEAL%EF%BC%88%E9%9B%B6%E6%A0%B7%E6%9C%AC%E5%A4%96%E7%A7%91%E6%8A%80%E8%83%BD%E8%AF%84%E4%BC%B0%EF%BC%89"><span class="nav-number">1.0.70.</span> <span class="nav-text">方法69：ZEAL（零样本外科技能评估）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9570%EF%BC%9ALucidAction%EF%BC%88%E5%88%86%E5%B1%82%E5%A4%9A%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%89"><span class="nav-number">1.0.71.</span> <span class="nav-text">方法70：LucidAction（分层多模型数据集）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9571%EF%BC%9AGAIA%EF%BC%88AI%E7%94%9F%E6%88%90%E8%A7%86%E9%A2%91%E7%9A%84AQA%EF%BC%89"><span class="nav-number">1.0.72.</span> <span class="nav-text">方法71：GAIA（AI生成视频的AQA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9572%EF%BC%9ACLN%EF%BC%88%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0%E5%BA%B7%E5%A4%8D%E8%AF%84%E4%BC%B0%EF%BC%89"><span class="nav-number">1.0.73.</span> <span class="nav-text">方法72：CLN（对比学习康复评估）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9573%EF%BC%9ADPFL-FS%EF%BC%88%E9%AA%A8%E6%9E%B6%E6%B7%B1%E5%BA%A6%E5%A7%BF%E6%80%81%E7%89%B9%E5%BE%81-%E8%8A%B1%E6%A0%B7%E6%BB%91%E5%86%B0%EF%BC%89"><span class="nav-number">1.0.74.</span> <span class="nav-text">方法73：DPFL-FS（骨架深度姿态特征-花样滑冰）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9574%EF%BC%9ASSTDT%EF%BC%88%E9%AA%A8%E6%9E%B6%E6%97%B6%E7%A9%BA%E8%A7%A3%E8%80%A6Transformer%EF%BC%89"><span class="nav-number">1.0.75.</span> <span class="nav-text">方法74：SSTDT（骨架时空解耦Transformer）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9575%EF%BC%9AVL-AKL%EF%BC%88%E8%AF%AD%E4%B9%89%E6%84%9F%E7%9F%A5%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%EF%BC%89"><span class="nav-number">1.0.76.</span> <span class="nav-text">方法75：VL-AKL（语义感知视觉语言知识学习）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9576%EF%BC%9AHP-MSCR%EF%BC%88%E5%B1%82%E7%BA%A7%E5%A7%BF%E6%80%81%E5%BC%95%E5%AF%BC%E7%9A%84%E5%A4%9A%E9%98%B6%E6%AE%B5%E5%AF%B9%E6%AF%94%E5%9B%9E%E5%BD%92%EF%BC%89"><span class="nav-number">1.0.77.</span> <span class="nav-text">方法76：HP-MSCR（层级姿态引导的多阶段对比回归）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9577%EF%BC%9APHI%EF%BC%88%E6%B8%90%E8%BF%9B%E5%B1%82%E7%BA%A7%E6%8C%87%E4%BB%A4%EF%BC%89"><span class="nav-number">1.0.78.</span> <span class="nav-text">方法77：PHI（渐进层级指令）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9578%EF%BC%9AHC-FGAQA%EF%BC%88%E4%BB%A5%E4%BA%BA%E4%B8%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E7%BB%86%E7%B2%92%E5%BA%A6AQA%EF%BC%89"><span class="nav-number">1.0.79.</span> <span class="nav-text">方法78：HC-FGAQA（以人为中心的细粒度AQA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9579%EF%BC%9AQuality-Guided-Vision-Language-Learning"><span class="nav-number">1.0.80.</span> <span class="nav-text">方法79：Quality-Guided Vision-Language Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9580%EF%BC%9AB2S%EF%BC%88%E4%BB%8E%E8%8A%82%E6%8B%8D%E5%88%B0%E8%AF%84%E5%88%86%EF%BC%89"><span class="nav-number">1.0.81.</span> <span class="nav-text">方法80：B2S（从节拍到评分）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9581%EF%BC%9AFineCausal%EF%BC%88%E5%8F%AF%E8%A7%A3%E9%87%8A%E5%9B%A0%E6%9E%9C%E7%BB%86%E7%B2%92%E5%BA%A6AQA%EF%BC%89"><span class="nav-number">1.0.82.</span> <span class="nav-text">方法81：FineCausal（可解释因果细粒度AQA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9582%EF%BC%9ATS-MambaPyramid%EF%BC%88%E4%B8%A4%E6%B5%81Mamba%E9%87%91%E5%AD%97%E5%A1%94%EF%BC%89"><span class="nav-number">1.0.83.</span> <span class="nav-text">方法82：TS-MambaPyramid（两流Mamba金字塔）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9583%EF%BC%9ADanceFix%EF%BC%88%E7%BE%A4%E8%88%9E%E6%95%B4%E9%BD%90%E5%BA%A6%E8%AF%84%E4%BC%B0%EF%BC%89"><span class="nav-number">1.0.84.</span> <span class="nav-text">方法83：DanceFix（群舞整齐度评估）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9585%EF%BC%9AQG-VL-AQA%EF%BC%88%E8%B4%A8%E9%87%8F%E5%BC%95%E5%AF%BC%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%EF%BC%89"><span class="nav-number">1.0.85.</span> <span class="nav-text">方法85：QG-VL-AQA（质量引导视觉语言）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9586%EF%BC%9ASBS%EF%BC%88%E5%B0%BA%E5%BA%A6%E5%8C%96%E8%83%8C%E6%99%AF%E7%BD%AE%E6%8D%A2%EF%BC%89"><span class="nav-number">1.0.86.</span> <span class="nav-text">方法86：SBS（尺度化背景置换）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9587%EF%BC%9AAST-GTN%EF%BC%88%E8%87%AA%E9%80%82%E5%BA%94%E6%97%B6%E7%A9%BA%E5%9B%BETransformer%EF%BC%89"><span class="nav-number">1.0.87.</span> <span class="nav-text">方法87：AST-GTN（自适应时空图Transformer）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9588%EF%BC%9AMB-AQA%EF%BC%88%E5%A4%9A%E5%88%86%E6%94%AF%E7%BB%BC%E5%90%88%E5%BB%BA%E6%A8%A1%EF%BC%89"><span class="nav-number">1.0.88.</span> <span class="nav-text">方法88：MB-AQA（多分支综合建模）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9589%EF%BC%9AAQA%E7%BB%BC%E8%BF%B0%EF%BC%88%E6%96%B9%E6%B3%95%E4%B8%8E%E5%9F%BA%E5%87%86%EF%BC%89"><span class="nav-number">1.0.89.</span> <span class="nav-text">方法89：AQA综述（方法与基准）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9590%EF%BC%9AAQA%E7%B3%BB%E7%BB%9F%E6%80%A7%E7%BB%BC%E8%BF%B0%EF%BC%88ESWA%EF%BC%89"><span class="nav-number">1.0.90.</span> <span class="nav-text">方法90：AQA系统性综述（ESWA）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9591%EF%BC%9AAQA%E5%8D%81%E5%B9%B4%E5%9B%9E%E9%A1%BE%EF%BC%88%E7%B3%BB%E7%BB%9F%E7%BB%BC%E8%BF%B0%EF%BC%89"><span class="nav-number">1.0.91.</span> <span class="nav-text">方法91：AQA十年回顾（系统综述）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9592%EF%BC%9AResFNN%EF%BC%88%E6%AE%8B%E5%B7%AE%E5%89%8D%E9%A6%88%E7%BD%91%E7%BB%9CAQA%EF%BC%89"><span class="nav-number">1.0.92.</span> <span class="nav-text">方法92：ResFNN（残差前馈网络AQA）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E6%BC%94%E5%8C%96"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 特征提取演化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A8%A1%E5%9E%8B%E8%8C%83%E5%BC%8F%E6%BC%94%E5%8C%96"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 模型范式演化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%A8%A1%E6%80%81%E8%8C%83%E5%9B%B4%E6%89%A9%E5%B1%95"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 模态范围扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%90%86%E8%AE%BA%E6%B7%B1%E5%BA%A6%E6%8F%90%E5%8D%87"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 理论深度提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%89%A9%E5%B1%95"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 应用场景扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%BB%86%E7%B2%92%E5%BA%A6%E7%A8%8B%E5%BA%A6%E6%8F%90%E5%8D%87"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 细粒度程度提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E8%B7%A8%E5%9F%9F%E8%83%BD%E5%8A%9B%E8%BF%9B%E6%AD%A5"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 跨域能力进步</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">148</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zzhenyao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zzhenyao" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zzhenyao.github.io/2025/11/18/13-26-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AQA（动作质量评估）方法发展时间线 | 且听风吟">
+      <meta itemprop="description" content="系统梳理了动作质量评估（Action Quality Assessment, AQA）领域自 1995 年至今的主要方法演进脉络，涵盖从早期的计算机视觉手工特征阶段，到传统机器学习框架，再到深度学习时代的时空建模、多模态融合与连续学习（CAQA）等关键技术路线。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AQA（动作质量评估）方法发展时间线
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-11-18 13:26:24 / 修改时间：13:28:27" itemprop="dateCreated datePublished" datetime="2025-11-18T13:26:24+08:00">2025-11-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AQA/" itemprop="url" rel="index"><span itemprop="name">AQA</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">系统梳理了动作质量评估（Action Quality Assessment, AQA）领域自 1995 年至今的主要方法演进脉络，涵盖从早期的计算机视觉手工特征阶段，到传统机器学习框架，再到深度学习时代的时空建模、多模态融合与连续学习（CAQA）等关键技术路线。</div>
+	<hr>
+        <h1 id="AQA（动作质量评估）方法发展时间线"><a href="#AQA（动作质量评估）方法发展时间线" class="headerlink" title="AQA（动作质量评估）方法发展时间线"></a>AQA（动作质量评估）方法发展时间线</h1><h3 id="方法1：计算机视觉基础方法"><a href="#方法1：计算机视觉基础方法" class="headerlink" title="方法1：计算机视觉基础方法"></a>方法1：计算机视觉基础方法</h3><p><strong>方法名称：</strong> Computer Vision-Based Action Quality Tracking<a href="zotero://select/library/items/E6G4K6YN">📚</a></p>
+<p><strong>论文标题：</strong> Automated video assessment of human performance</p>
+<p><strong>核心技术：</strong> 光学字符识别(OCR)与手工特征提取</p>
+<p><strong>使用数据集：</strong> 无公开数据集（早期探索）</p>
+<p><strong>性能指标：</strong> 定性评估，无量化指标</p>
+<p><strong>主要贡献：</strong> 首次将计算机视觉技术应用于AQA领域</p>
+<p><strong>应用背景：</strong> 初期探索，主要关注理论可行性与手工设计特征</p>
+<p><strong>优缺点：</strong> ✅ 开创性工作；❌ 特征提取方式原始，泛化能力极弱</p>
+<p><strong>演变与进步：</strong> 为后续有监督/无监督学习框架奠定基础</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">@article&#123;Gordon-AutomatedVideoAssessment-,</span><br><span class="line">  title = &#123;Automated Video Assessment of Human Performance&#125;,</span><br><span class="line">  author = &#123;Gordon, Andrew S&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="方法2：L-SVR（线性支持向量回归）"><a href="#方法2：L-SVR（线性支持向量回归）" class="headerlink" title="方法2：L-SVR（线性支持向量回归）"></a>方法2：L-SVR（线性支持向量回归）</h3><p><strong>方法名称：</strong> L-SVR <a href="zotero://select/library/items/H8E33VWV">📚</a></p>
+<p><strong>论文标题：</strong> Assessing the quality of actions</p>
+<p><strong>核心技术：</strong> HOG（方向梯度直方图）+ MBH（运动边界直方图）+ 线性SVR</p>
+<p><strong>数据集：</strong> MIT-Dive, MIT-Skate</p>
+<p><strong>主要贡献：</strong> 开创性地建立了第一个AQA数据集和有监督回归框架，引入了Spearman秩相关系数(SRC)作为标准评估指标，定义了AQA任务的基本问题设置</p>
+<p><strong>应用背景：</strong> 花样滑冰/跳水等裁判评分项目的客观化评估</p>
+<p><strong>优缺点：</strong> ✅ 开启AQA研究，建立评估指标体系；❌ 依赖手工特征，鲁棒性与可迁移性有限，数据规模小</p>
+<p><strong>演变与进步：</strong> 为后续深度学习、时空建模与不确定性学习奠定任务框架与评估指标</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@incollection&#123;Pirsiavash-AssessingQualityActions-2014,</span><br><span class="line">  title = &#123;Assessing the Quality of Actions&#125;,</span><br><span class="line">  booktitle = &#123;Computer Vision -- ECCV 2014&#125;,</span><br><span class="line">  author = &#123;Pirsiavash, Hamed and Vondrick, Carl and Torralba, Antonio&#125;,</span><br><span class="line">  editor = &#123;Fleet, David and Pajdla, Tomas and Schiele, Bernt and Tuytelaars, Tinne&#125;,</span><br><span class="line">  year = 2014,</span><br><span class="line">  volume = &#123;8694&#125;,</span><br><span class="line">  pages = &#123;556--571&#125;,</span><br><span class="line">  publisher = &#123;Springer International Publishing&#125;,</span><br><span class="line">  address = &#123;Cham&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-319-10599-4_36&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法3：JIGSAWS数据集与HMM-SDL"><a href="#方法3：JIGSAWS数据集与HMM-SDL" class="headerlink" title="方法3：JIGSAWS数据集与HMM-SDL"></a>方法3：JIGSAWS数据集与HMM-SDL</h3><p><strong>方法名称：</strong>  HMM-SDL<a href="zotero://select/library/items/WPMPMMPL">📚</a></p>
+<p><strong>论文标题：</strong> JHU-ISI Gesture and Skill Assessment Working Set (JIGSAWS)</p>
+<p><strong>核心技术：</strong> 运动捕捉(MoCap)系统 + Hidden Markov Model + 稀疏字典学习</p>
+<p><strong>数据集：</strong> JIGSAWS（手术技能评估）</p>
+<p><strong>实验环境：</strong> 真实手术室环境，采用标准化的缝合/打结/打线外科技能</p>
+<p><strong>主要贡献：</strong> 建立了首个外科手术技能评估数据集，采用运动捕捉系统和HMM进行手术姿态识别与技能分级，为医疗领域AQA奠基</p>
+<p><strong>应用背景：</strong> 医疗康复与外科技能培训</p>
+<p><strong>优缺点：</strong> ✅ 首个医疗AQA数据集，结构化标注；❌ 需要专业设备与标注，数据规模有限</p>
+<p><strong>演变与进步：</strong> 促进了医疗AQA领域的发展，衍生出众多JIGSAWS相关改进方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Gao-JHUISIGestureSkill-,</span><br><span class="line">  title = &#123;JHU-ISI Gesture and Skill Assessment Working Set (JIGSAWS): A Surgical Activity Dataset for Human Motion Modeling&#125;,</span><br><span class="line">  author = &#123;Gao, Yixin and Vedula, S Swaroop and Reiley, Carol E and Ahmidi, Narges and Varadarajan, Balakrishnan and Lin, Henry C and Tao, Lingling and Zappella, Luca and Bejar, Benjam&#123;\i&#125;n and Yuh, David D and Chen, Chi Chiung Grace and Vidal, Rene and Khudanpur, Sanjeev and Hager, Gregory D&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法4：分类方法与时频域特征"><a href="#方法4：分类方法与时频域特征" class="headerlink" title="方法4：分类方法与时频域特征"></a>方法4：分类方法与时频域特征</h3><p><strong>方法名称：</strong> Classification-Based AQA (时频域特征分析)<a href="zotero://select/library/items/E6ESLL67">📚</a> , <a href="zotero://select/library/items/S34ZUNBS">📚</a></p>
+<p><strong>论文标题：</strong> Video based assessment of OSATs using sequential motion textures; Automated Video-Based Assessment of Surgical Skills for Training and Evaluation in Medical Schools</p>
+<p><strong>核心技术：</strong> Dense Trajectory + LBP-TOP（时空纹理）+ SVM分类</p>
+<p><strong>数据集：</strong> OSATS</p>
+<p><strong>性能：</strong> 分类准确率 = 0.75-0.80</p>
+<p><strong>主要贡献：</strong> 将AQA问题转化为分类任务，引入时间序列和频率域特征表示，证明了基于动作轨迹的手工特征的有效性</p>
+<p><strong>应用背景：</strong> 医疗手术技能评估与定性评分</p>
+<p><strong>优缺点：</strong> ✅ 时频特征有效；❌ 分类范式不如回归精细，仍依赖手工特征</p>
+<p><strong>演变与进步：</strong> 为后续混合学习范式（分类+回归）提供参考</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Sharma-VideoBasedAssessment-,</span><br><span class="line">  title = &#123;Video Based Assessment of OSATS Using Sequential Motion Textures&#125;,</span><br><span class="line">  author = &#123;Sharma, Yachna and Bettadapura, Vinay and Plotz, Thomas and Hammerla, Nils and Mellor, Sebastian and McNaney, Roisin and Olivier, Patrick and Deshmukh, Sandeep and McCaskie, Andrew and Essa, Irfan&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@article&#123;Zia-AutomatedVideobasedAssessment-2016,</span><br><span class="line">  title = &#123;Automated Video-Based Assessment of Surgical Skills for Training and Evaluation in Medical Schools&#125;,</span><br><span class="line">  author = &#123;Zia, Aneeq and Sharma, Yachna and Bettadapura, Vinay and Sarin, Eric L. and Ploetz, Thomas and Clements, Mark A. and Essa, Irfan&#125;,</span><br><span class="line">  year = 2016,</span><br><span class="line">  month = sep,</span><br><span class="line">  journal = &#123;International Journal of Computer Assisted Radiology and Surgery&#125;,</span><br><span class="line">  volume = &#123;11&#125;,</span><br><span class="line">  number = &#123;9&#125;,</span><br><span class="line">  pages = &#123;1623--1636&#125;,</span><br><span class="line">  doi = &#123;10.1007/s11548-016-1468-2&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法5：Learning-to-Score-Olympic-Events"><a href="#方法5：Learning-to-Score-Olympic-Events" class="headerlink" title="方法5：Learning to Score Olympic Events"></a>方法5：Learning to Score Olympic Events</h3><p><strong>方法名称：</strong> Deep Learning-Based Regression for Olympic Events Scoring <a href="zotero://select/library/items/V9SG4UQ5">📚</a></p>
+<p><strong>论文标题：</strong> Learning to Score Olympic Events</p>
+<p><strong>核心技术：</strong> C3D +LSTM + 手工设计的全连接回归层 + L2回归损失</p>
+<p><strong>数据集：</strong> UNLV-Dive , MIT-Dive</p>
+<p><strong>主要贡献：</strong> 首次系统地将深度学习特征（VGG预训练权重）应用于奥运项目评分，证明了深层特征对浅层特征的优越性</p>
+<p><strong>应用背景：</strong> 跳水、体操等竞技体育评分</p>
+<p><strong>优缺点：</strong> ✅ 深度表示优于手工特征，SRCC较高；❌ 数据规模小、泛化受限，Transformer出现前</p>
+<p><strong>演变与进步：</strong> 启发后续使用更强的视频骨干(C3D, I3D)与时序建模</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Parmar-LearningScoreOlympic-2017,</span><br><span class="line">  title = &#123;Learning to Score Olympic Events&#125;,</span><br><span class="line">  booktitle = &#123;2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)&#125;,</span><br><span class="line">  author = &#123;Parmar, Paritosh and Morris, Brendan Tran&#125;,</span><br><span class="line">  year = 2017,</span><br><span class="line">  month = jul,</span><br><span class="line">  pages = &#123;76--84&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Honolulu, HI, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPRW.2017.16&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法6：C3D系列（深度学习突破）"><a href="#方法6：C3D系列（深度学习突破）" class="headerlink" title="方法6：C3D系列（深度学习突破）"></a>方法6：C3D系列（深度学习突破）</h3><p><strong>方法名称：</strong> C3D-SVR, C3D-LSTM, C3D-LSTM-SVR, <a href="zotero://select/library/items/Z6KV7ERX">📚</a></p>
+<p><strong>论文标题：</strong> Action quality assessment across multiple actions</p>
+<p><strong>核心技术：</strong> C3D特征提取 + SVR/LSTM回归 + 多任务联合学习</p>
+<p><strong>数据集：</strong> AQA-7</p>
+<p><strong>主要贡献：</strong> 首次在AQA中引入3D卷积神经网络进行端到端时空特征学习，开启AQA的深度学习新时代。相比2D特征，C3D显著提升了时序建模能力</p>
+<p><strong>应用背景：</strong> 竞技体育动作质量评估</p>
+<p><strong>优缺点：</strong> ✅ 深度时空卷积有效，SRCC突破性提升至0.7+；❌ 计算量大，数据依赖强</p>
+<p><strong>演变与进步：</strong> 启发后续I3D、SlowFast等视频骨干的应用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Parmar-ActionQualityAssessment-2019,</span><br><span class="line">  title = &#123;Action Quality Assessment Across Multiple Actions&#125;,</span><br><span class="line">  booktitle = &#123;2019 IEEE Winter Conference on Applications of Computer Vision (WACV)&#125;,</span><br><span class="line">  author = &#123;Parmar, Paritosh and Morris, Brendan&#125;,</span><br><span class="line">  year = 2019,</span><br><span class="line">  month = jan,</span><br><span class="line">  pages = &#123;1468--1476&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Waikoloa Village, HI, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/WACV.2019.00161&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法7：LSTM-GM（对比排序学习）"><a href="#方法7：LSTM-GM（对比排序学习）" class="headerlink" title="方法7：LSTM-GM（对比排序学习）"></a>方法7：LSTM-GM（对比排序学习）</h3><p><strong>方法名称：</strong> LSTM-Gaussian Mixture (LSTM-GM) <a href="zotero://select/library/items/3AMM9QNM">📚</a></p>
+<p><strong>论文标题：</strong> Am I a Baller? Basketball Performance Assessment from First-Person Videos</p>
+<p><strong>核心技术：</strong> AlexNet/VGG特征提取 + LSTM序列建模 + 高斯混合模型 + 排序损失</p>
+<p><strong>数据集：</strong> FP-Basketball</p>
+<p><strong>主要贡献：</strong> 首个基于对比/排序学习的AQA方法，使用对比排序学习而非绝对评分。引入第一人称视角数据集，验证了排序信号对AQA的有效性</p>
+<p><strong>应用背景：</strong> 第一人称体育表现评估</p>
+<p><strong>优缺点：</strong> ✅ 排序学习更符合人类评判习惯；❌ 对比学习所需样本对较多，计算复杂度高</p>
+<p><strong>演变与进步：</strong> 为后续对比回归(CoRe)、配对学习(PCLN)的发展奠定基础</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Bertasius-AmBallerBasketball-2017,</span><br><span class="line">  title = &#123;Am I a Baller? Basketball Performance Assessment from First-Person Videos&#125;,</span><br><span class="line">  shorttitle = &#123;Am I a Baller?&#125;,</span><br><span class="line">  booktitle = &#123;2017 IEEE International Conference on Computer Vision (ICCV)&#125;,</span><br><span class="line">  author = &#123;Bertasius, Gedas and Park, Hyun Soo and Yu, Stella X. and Shi, Jianbo&#125;,</span><br><span class="line">  year = 2017,</span><br><span class="line">  month = oct,</span><br><span class="line">  pages = &#123;2196--2204&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Venice&#125;,</span><br><span class="line">  doi = &#123;10.1109/ICCV.2017.239&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法8：ScoringNet（关键片段与排序损失）"><a href="#方法8：ScoringNet（关键片段与排序损失）" class="headerlink" title="方法8：ScoringNet（关键片段与排序损失）"></a>方法8：ScoringNet（关键片段与排序损失）</h3><p><strong>方法名称：</strong> ScoringNet <a href="zotero://select/library/items/4NXRYVAX">📚</a></p>
+<p><strong>论文标题：</strong> Scoring Net: Learning Key Fragment for Action Quality Assessment with Ranking Loss in Skilled Sports</p>
+<p><strong>核心技术：</strong> CNN特征提取 + 关键片段检测模块 +Bi-LSTM+ 排序损失 + 回归器</p>
+<p><strong>数据集：</strong> Mit-Dive, UNLV-Diving,UNLV-Vault</p>
+<p><strong>主要贡献：</strong> 通过语义视频分割过滤不相关的片段并获取关键片段，以确保特征的有效性。– 排名损失与传统损失函数相结合，形成一个强大的组合损失函数，该函数同时考虑了分数值约束和排名约束。</p>
+<p><strong>应用背景：</strong> 技巧性体育项目的细粒度对比评估</p>
+<p><strong>优缺点：</strong> ✅ 排序信号提升区分度；❌ 对片段选择质量敏感，需要精细调参</p>
+<p><strong>演变与进步：</strong> 影响后续的时间注意(TA-Net)、片段解析(TPT/FineDiving)、对比回归分支</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">@incollection&#123;Li-ScoringNetLearningKey-2019,</span><br><span class="line">  title = &#123;ScoringNet: Learning Key Fragment for Action Quality Assessment with Ranking Loss in Skilled Sports&#125;,</span><br><span class="line">  shorttitle = &#123;ScoringNet&#125;,</span><br><span class="line">  booktitle = &#123;Computer Vision -- ACCV 2018&#125;,</span><br><span class="line">  author = &#123;Li, Yongjun and Chai, Xiujuan and Chen, Xilin&#125;,</span><br><span class="line">  editor = &#123;Jawahar, C.V. and Li, Hongdong and Mori, Greg and Schindler, Konrad&#125;,</span><br><span class="line">  year = 2019,</span><br><span class="line">  volume = &#123;11366&#125;,</span><br><span class="line">  pages = &#123;149--164&#125;,</span><br><span class="line">  publisher = &#123;Springer International Publishing&#125;,</span><br><span class="line">  address = &#123;Cham&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-030-20876-9_10&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法9：2S-CNN（时空分割卷积网络）"><a href="#方法9：2S-CNN（时空分割卷积网络）" class="headerlink" title="方法9：2S-CNN（时空分割卷积网络）"></a>方法9：2S-CNN（时空分割卷积网络）</h3><p><strong>方法名称：</strong> 2S-CNN (Temporal and Spatial Segment Networks) <a href="zotero://select/library/items/L2732NQP">📚</a></p>
+<p><strong>论文标题：</strong> Who’s Better? Who’s Best? Pairwise Deep Ranking for Skill Determination</p>
+<p><strong>核心技术：</strong> 两流网络(RGB + 光流) + 时间分割 + 配对Siamese网络 + 排序损失</p>
+<p><strong>数据集：</strong> EPIC-Skills, JIGSAWS</p>
+<p><strong>主要贡献：</strong> 首个日常生活技能评估数据集(EPIC-Skill)，提出时空分割卷积网络进行对比排序。拓展AQA应用从竞技体育到日常生活</p>
+<p><strong>应用背景：</strong> 日常动作技能等级判定</p>
+<p><strong>优缺点：</strong> ✅ 日常数据集更大更多样；❌ 配对学习计算复杂，小样本情况性能波动</p>
+<p><strong>演变与进步：</strong> EPIC-Skill数据集成为后续多个方法的评估基准</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@INPROCEEDINGS&#123;Doughty-WhosBetterWhos-2018,</span><br><span class="line">  author=&#123;Doughty, Hazel and Damen, Dima and Mayol-Cuevas, Walterio&#125;,</span><br><span class="line">  booktitle=&#123;2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition&#125;, </span><br><span class="line">  title=&#123;Who&#x27;s Better? Who&#x27;s Best? Pairwise Deep Ranking for Skill Determination&#125;, </span><br><span class="line">  year=&#123;2018&#125;,</span><br><span class="line">  volume=&#123;&#125;,</span><br><span class="line">  number=&#123;&#125;,</span><br><span class="line">  pages=&#123;6057-6066&#125;,</span><br><span class="line">  keywords=&#123;Task analysis;Surgery;Training;Sports;Video sequences;Distance measurement;Neural networks&#125;,</span><br><span class="line">  doi=&#123;10.1109/CVPR.2018.00634&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法10：S3D（堆叠3D回归器）"><a href="#方法10：S3D（堆叠3D回归器）" class="headerlink" title="方法10：S3D（堆叠3D回归器）"></a>方法10：S3D（堆叠3D回归器）</h3><p><strong>方法名称：</strong> S3D (Stacking Segmental P3D) <a href="zotero://select/library/items/8T6AJNP2">📚</a></p>
+<p><strong>论文标题：</strong> S3D: Stacking Segmental P3D for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> P3D卷积 + 视频分段 + 阶段特征融合 + 多阶段回归器堆叠</p>
+<p><strong>数据集：</strong> UNLV-Dive</p>
+<p><strong>主要贡献：</strong> 首个分段感知特征提取方法，将视频分割为不同动作阶段（准备、起跳、翻腾、入水）进行特征提取与阶段感知回归</p>
+<p><strong>应用背景：</strong> 程序化动作（有明确阶段）的评估</p>
+<p><strong>优缺点：</strong> ✅ 长时依赖建模更强，可解释性好；❌ 计算量大，对阶段标注质量敏感</p>
+<p><strong>演变与进步：</strong> 为后续 Transformer、时间解析(TPT)、细粒度解析(FineParser)方法提供参照</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Xiang-S3DStackingSegmental-2018,</span><br><span class="line">  title = &#123;S3D: Stacking Segmental P3D for Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;S3D&#125;,</span><br><span class="line">  booktitle = &#123;2018 25th IEEE International Conference on Image Processing (ICIP)&#125;,</span><br><span class="line">  author = &#123;Xiang, Xiang and Tian, Ye and Reiter, Austin and Hager, Gregory D. and Tran, Trac D.&#125;,</span><br><span class="line">  year = 2018,</span><br><span class="line">  month = oct,</span><br><span class="line">  pages = &#123;928--932&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Athens&#125;,</span><br><span class="line">  doi = &#123;10.1109/ICIP.2018.8451364&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="方法11：C3D-AVG-MTL（多任务学习框架）"><a href="#方法11：C3D-AVG-MTL（多任务学习框架）" class="headerlink" title="方法11：C3D-AVG-MTL（多任务学习框架）"></a>方法11：C3D-AVG-MTL（多任务学习框架）</h3><p><strong>方法名称：</strong> C3D-AVG-MTL (Multi-Task Learning with Text) <a href="zotero://select/library/items/A8VEZ6AP">📚</a></p>
+<p><strong>论文标题：</strong> What and How Well You Performed? A Multitask Learning Approach to Action Quality Assessment</p>
+<p><strong>核心技术：</strong> C3D视频特征 + LSTM序列建模 + 多任务学习(性能评分+描述生成) + 注意机制</p>
+<p><strong>数据集：</strong> MTL-AQA</p>
+<p><strong>主要贡献：</strong> 首个多任务学习框架，引入文本模态（性能描述）进行AQA。证明了跨模态学习对AQA的增强效果。发布MTL-AQA成为后续研究基准</p>
+<p><strong>应用背景：</strong> 跳水项目的评分与描述生成</p>
+<p><strong>优缺点：</strong> ✅ 多任务提升性能，引入文本模态；❌ 需要文本标注，模态间权重调参复杂</p>
+<p><strong>演变与进步：</strong> 为后续多模态融合(PAMFN)、语义对齐(VATP-Net)、VL预训练打下基础</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Parmar-WhatHowWell-2019,</span><br><span class="line">  title = &#123;What and How Well You Performed? A Multitask Learning Approach to Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;What and How Well You Performed?&#125;,</span><br><span class="line">  booktitle = &#123;2019 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)&#125;,</span><br><span class="line">  author = &#123;Parmar, Paritosh and Morris, Brendan Tran&#125;,</span><br><span class="line">  year = 2019,</span><br><span class="line">  month = jun,</span><br><span class="line">  pages = &#123;304--313&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Long Beach, CA, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPR.2019.00039&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法12：RAA（排名感知注意力）"><a href="#方法12：RAA（排名感知注意力）" class="headerlink" title="方法12：RAA（排名感知注意力）"></a>方法12：RAA（排名感知注意力）</h3><p><strong>方法名称：</strong> RAA (Rank-Aware Attention Network) <a href="zotero://select/library/items/SZKLRJKL">📚</a></p>
+<p><strong>论文标题：</strong> The Pros and Cons: Rank-Aware Temporal Attention for Skill Determination in Long Videos</p>
+<p><strong>核心技术：</strong> 两流网络(RGB+光流) + 时间注意机制 + 双重注意(优点/缺点) + 排序/分类头</p>
+<p><strong>数据集：</strong> EPIC-Skill, BEST</p>
+<p><strong>主要贡献：</strong> 提出排名感知注意力模型，采用双重注意机制分别关注动作的性能优点与缺点。创新地将正面/负面特征分离</p>
+<p><strong>应用背景：</strong> 日常技能与健身运动评估，需要反馈为什么做得好或不好</p>
+<p><strong>优缺点：</strong> ✅ 双重注意新颖、提供反馈；❌ 需要正负属性标注，设计复杂</p>
+<p><strong>演变与进步：</strong> 为后续可解释性方向(IRIS, NS-AQA)提供参考</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Doughty-ProsConsRankAware-2019,</span><br><span class="line">  title = &#123;The Pros and Cons: Rank-Aware Temporal Attention for Skill Determination in Long Videos&#125;,</span><br><span class="line">  shorttitle = &#123;The Pros and Cons&#125;,</span><br><span class="line">  booktitle = &#123;2019 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)&#125;,</span><br><span class="line">  author = &#123;Doughty, Hazel and &#123;Mayol-Cuevas&#125;, Walterio and Damen, Dima&#125;,</span><br><span class="line">  year = 2019,</span><br><span class="line">  month = jun,</span><br><span class="line">  pages = &#123;7854--7863&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Long Beach, CA, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPR.2019.00805&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法13：JR-GCN（关节关系图卷积）"><a href="#方法13：JR-GCN（关节关系图卷积）" class="headerlink" title="方法13：JR-GCN（关节关系图卷积）"></a>方法13：JR-GCN（关节关系图卷积）</h3><p><strong>方法名称：</strong> JR-GCN <a href="zotero://select/library/items/QPWNMVSV">📚</a></p>
+<p><strong>论文标题：</strong> Action Assessment by Joint Relation Graphs</p>
+<p><strong>核心技术：</strong> 2D/3D姿态估计 + 关节关系图构建 + 图卷积网络(GCN) + 时序LSTM + 回归头</p>
+<p><strong>数据集：</strong> JIGSAWS, AQA-7</p>
+<p><strong>主要贡献：</strong> 首次在AQA中应用图卷积网络进行骨架特征建模。将关节间的空间关系显式建模为图结构，相比CNN对背景更鲁棒</p>
+<p><strong>应用背景：</strong> 手术技能、竞技体育等骨架可获取的领域</p>
+<p><strong>优缺点：</strong> ✅ 抗背景干扰、可解释性好、轻量化；❌ 依赖高质量姿态估计，复杂环境表现下降</p>
+<p><strong>演变与进步：</strong> 推动图结构/GCN 在 AQA 中的应用，衍生出ST-GCN、HGCN、MS-GCN等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@INPROCEEDINGS&#123;Pan-ActionAssessmentJoint-2019,</span><br><span class="line">  author=&#123;Pan, Jia-Hui and Gao, Jibin and Zheng, Wei-Shi&#125;,</span><br><span class="line">  booktitle=&#123;2019 IEEE/CVF International Conference on Computer Vision (ICCV)&#125;, </span><br><span class="line">  title=&#123;Action Assessment by Joint Relation Graphs&#125;, </span><br><span class="line">  year=&#123;2019&#125;,</span><br><span class="line">  volume=&#123;&#125;,</span><br><span class="line">  number=&#123;&#125;,</span><br><span class="line">  pages=&#123;6330-6339&#125;,</span><br><span class="line">  keywords=&#123;Skeleton;Videos;Computational modeling;Task analysis;Feature extraction;Convolution;Kinetic theory&#125;,</span><br><span class="line">  doi=&#123;10.1109/ICCV.2019.00643&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法14：USDL（不确定性感知评分分布学习）"><a href="#方法14：USDL（不确定性感知评分分布学习）" class="headerlink" title="方法14：USDL（不确定性感知评分分布学习）"></a>方法14：USDL（不确定性感知评分分布学习）</h3><p><strong>方法名称：</strong> USDL <a href="zotero://select/library/items/W64Z5QZT">📚</a></p>
+<p><strong>论文标题：</strong> Uncertainty-Aware Score Distribution Learning for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + LSTM序列建模 + 高斯分布参数预测(均值+方差) + 不确定性感知损失</p>
+<p><strong>数据集：</strong> JIGSAWS, AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 首次将不确定性建模引入AQA，使用高斯分布建模评分的多裁判变异性。相比确定性输出，分布预测更能捕捉标注噪声与评分歧义</p>
+<p><strong>应用背景：</strong> 存在多裁判/标注员主观差异的评分场景</p>
+<p><strong>优缺点：</strong> ✅ 鲁棒于噪声标签，分布建模新颖；❌ 依赖分布先验/方差设定，参数敏感</p>
+<p><strong>演变与进步：</strong> 开启不确定性学习分支，衍生出MUSDL、DAE、UD-AQA、LUSD-Net等一系列改进</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Tang-UncertaintyAwareScoreDistribution-2020,</span><br><span class="line">  title = &#123;Uncertainty-Aware Score Distribution Learning for Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)&#125;,</span><br><span class="line">  author = &#123;Tang, Yansong and Ni, Zanlin and Zhou, Jiahuan and Zhang, Danyang and Lu, Jiwen and Wu, Ying and Zhou, Jie&#125;,</span><br><span class="line">  year = 2020,</span><br><span class="line">  month = jun,</span><br><span class="line">  pages = &#123;9836--9845&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Seattle, WA, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPR42600.2020.00986&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法15：MS-LSTM（多尺度LSTM）"><a href="#方法15：MS-LSTM（多尺度LSTM）" class="headerlink" title="方法15：MS-LSTM（多尺度LSTM）"></a>方法15：MS-LSTM（多尺度LSTM）</h3><p><strong>方法名称：</strong> MLA-LSTM  <a href="zotero://select/library/items/UEFZP24A">📚</a></p>
+<p><strong>论文标题：</strong> Mla-lstm: A local and global location attention lstm learning model for scoring figure skating</p>
+<p><strong>核心技术：</strong> 卷积跳跃LSTM + 多尺度特征融合 + 位置注意(局部+全局) + 回归头</p>
+<p><strong>数据集：</strong> MIT-Skate, Fis-V</p>
+<p><strong>主要贡献：</strong> 多尺度卷积跳跃LSTM用于长视频分段处理，结合位置注意机制提高关键动作的关注度</p>
+<p><strong>应用背景：</strong> 长视频、多阶段动作（如花样滑冰）的评估</p>
+<p><strong>优缺点：</strong> ✅ 多尺度特征融合充分；❌ 参数量大，对长序列建模仍有限制</p>
+<p><strong>演变与进步：</strong> 为后续Transformer长序列建模方向提供参考</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Han-MLALSTMLocalGlobal-2023,</span><br><span class="line">  title = &#123;MLA-LSTM: A Local and Global Location Attention LSTM Learning Model for Scoring Figure Skating&#125;,</span><br><span class="line">  shorttitle = &#123;MLA-LSTM&#125;,</span><br><span class="line">  author = &#123;Han, Chaoyu and Shen, Fangyao and Chen, Lina and Lian, Xiaoyi and Gou, Hongjie and Gao, Hong&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = jan,</span><br><span class="line">  journal = &#123;Systems&#125;,</span><br><span class="line">  volume = &#123;11&#125;,</span><br><span class="line">  number = &#123;1&#125;,</span><br><span class="line">  pages = &#123;21&#125;,</span><br><span class="line">  doi = &#123;10.3390/systems11010021&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法16：ACTION-Net（动作-静态上下文注意网络）"><a href="#方法16：ACTION-Net（动作-静态上下文注意网络）" class="headerlink" title="方法16：ACTION-Net（动作-静态上下文注意网络）"></a>方法16：ACTION-Net（动作-静态上下文注意网络）</h3><p><strong>方法名称：</strong> ACTION-Net <a href="zotero://select/library/items/C2YPH342">📚</a></p>
+<p><strong>论文标题：</strong> Hybrid Dynamic-Static Context-Aware Attention Network for Action Assessment in Long Videos</p>
+<p><strong>核心技术：</strong> I3D(动作) + ResNet-50(静态上下文) + 上下文注意机制 + 融合模块 + 回归器</p>
+<p><strong>数据集：</strong> MIT-Skate, RG</p>
+<p><strong>主要贡献：</strong> 结合运动特征(I3D)和静态上下文(环境、器械)，采用多模态特征提取和注意融合</p>
+<p><strong>应用背景：</strong> 需要环境上下文的运动项目（体操、滑冰）</p>
+<p><strong>优缺点：</strong> ✅ 上下文融合增强鲁棒性；❌ 结构复杂、训练代价高</p>
+<p><strong>演变与进步：</strong> 推动”分段/子动作”与”上下文”显式建模</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Zeng-HybridDynamicstaticContextaware-2020,</span><br><span class="line">  title = &#123;Hybrid Dynamic-Static Context-Aware Attention Network for Action Assessment in Long Videos&#125;,</span><br><span class="line">  booktitle = &#123;Proceedings of the 28th ACM International Conference on Multimedia&#125;,</span><br><span class="line">  author = &#123;Zeng, Ling-An and Hong, Fa-Ting and Zheng, Wei-Shi and Yu, Qi-Zhi and Zeng, Wei and Wang, Yao-Wei and Lai, Jian-Huang&#125;,</span><br><span class="line">  year = 2020,</span><br><span class="line">  month = oct,</span><br><span class="line">  pages = &#123;2526--2534&#125;,</span><br><span class="line">  publisher = &#123;ACM&#125;,</span><br><span class="line">  address = &#123;Seattle WA USA&#125;,</span><br><span class="line">  doi = &#123;10.1145/3394171.3413560&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法17：AIM（非对称关系建模）"><a href="#方法17：AIM（非对称关系建模）" class="headerlink" title="方法17：AIM（非对称关系建模）"></a>方法17：AIM（非对称关系建模）</h3><p><strong>方法名称：</strong> AIM <a href="zotero://select/library/items/9FF55ESX">📚</a></p>
+<p><strong>论文标题：</strong> An Asymmetric Modeling for Action Assessment</p>
+<p><strong>核心技术：</strong> 骨架特征提取 + 非对称角色建模(主/辅) + 互动关系编码 + GCN + 回归头</p>
+<p><strong>数据集：</strong> JIGSAWS, AQA-7, TASD-2</p>
+<p><strong>主要贡献：</strong> 首次在AQA中显式建模多智能体间的非对称关系。针对双人/多人协作场景，区分主要参与者与辅助参与者的角色</p>
+<p><strong>应用背景：</strong> 双人手术、配对舞蹈等互动类项目</p>
+<p><strong>优缺点：</strong> ✅ 细粒度地捕获互动要点，新颖的角色建模；❌ 主/次划分与场景依赖强</p>
+<p><strong>演变与进步：</strong> 延展为 AIL 与配套数据集(TASD-2、PaSK)，推动互动类AQA生态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@incollection&#123;Gao-AsymmetricModelingAction-2020,</span><br><span class="line">  title = &#123;An Asymmetric Modeling for Action Assessment&#125;,</span><br><span class="line">  booktitle = &#123;Computer Vision -- ECCV 2020&#125;,</span><br><span class="line">  author = &#123;Gao, Jibin and Zheng, Wei-Shi and Pan, Jia-Hui and Gao, Chengying and Wang, Yaowei and Zeng, Wei and Lai, Jianhuang&#125;,</span><br><span class="line">  editor = &#123;Vedaldi, Andrea and Bischof, Horst and Brox, Thomas and Frahm, Jan-Michael&#125;,</span><br><span class="line">  year = 2020,</span><br><span class="line">  volume = &#123;12375&#125;,</span><br><span class="line">  pages = &#123;222--238&#125;,</span><br><span class="line">  publisher = &#123;Springer International Publishing&#125;,</span><br><span class="line">  address = &#123;Cham&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-030-58577-8_14&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="方法18：CoRe（对比回归框架）"><a href="#方法18：CoRe（对比回归框架）" class="headerlink" title="方法18：CoRe（对比回归框架）"></a>方法18：CoRe（对比回归框架）</h3><p><strong>方法名称：</strong> CoRe <a href="zotero://select/library/items/K9IYUISD">📚</a></p>
+<p><strong>论文标题：</strong> Group-Aware Contrastive Regression for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 参考视频池 + 对比回归损失 + 相对评分预测</p>
+<p><strong>数据集：</strong> JIGSAWS, AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 将评分任务转化为相对评分学习，采用参考视频进行对比。相比绝对回归，相对评分学习对数据缩放更鲁棒</p>
+<p><strong>应用背景：</strong> 跨数据集、跨项目评估</p>
+<p><strong>优缺点：</strong> ✅ 大数据下SRCC高，鲁棒性强；❌ 计算/参照选择昂贵，小数据不稳定</p>
+<p><strong>演变与进步：</strong> 催生 T2CR/MCoRe 等后续改良，成为对比回归分支的代表</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Yu-GroupawareContrastiveRegression-2021,</span><br><span class="line">  title = &#123;Group-Aware Contrastive Regression for Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;2021 IEEE/CVF International Conference on Computer Vision (ICCV)&#125;,</span><br><span class="line">  author = &#123;Yu, Xumin and Rao, Yongming and Zhao, Wenliang and Lu, Jiwen and Zhou, Jie&#125;,</span><br><span class="line">  year = 2021,</span><br><span class="line">  month = oct,</span><br><span class="line">  pages = &#123;7899--7908&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Montreal, QC, Canada&#125;,</span><br><span class="line">  doi = &#123;10.1109/ICCV48922.2021.00782&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法19：SportCap（运动捕捉与细粒度理解）"><a href="#方法19：SportCap（运动捕捉与细粒度理解）" class="headerlink" title="方法19：SportCap（运动捕捉与细粒度理解）"></a>方法19：SportCap（运动捕捉与细粒度理解）</h3><p><strong>方法名称：</strong> SportCap <a href="zotero://select/library/items/8CV9PELD">📚</a></p>
+<p><strong>论文标题：</strong> SportCap: Monocular 3D Human Motion Capture and Fine-Grained Understanding in Challenging Sports Videos</p>
+<p><strong>核心技术：</strong> 单目3D姿态估计 + 骨架特征提取 + 时空图卷积 + 细粒度评分模块</p>
+<p><strong>数据集：</strong> SMART(新建 - 体操挑战数据集)(来自FineGym)</p>
+<p><strong>主要贡献：</strong> 结合3D姿态估计和骨架特征用于AQA，在挑战性体操视频中进行细粒度理解</p>
+<p><strong>应用背景：</strong> 需要3D姿态精细建模的体操项目</p>
+<p><strong>优缺点：</strong> ✅ 3D姿态更准确；❌ 依赖单目3D估计精度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Chen-SportsCapMonocular3D-2021,</span><br><span class="line">  title = &#123;SportsCap: Monocular 3D Human Motion Capture and Fine-Grained Understanding in Challenging Sports Videos&#125;,</span><br><span class="line">  shorttitle = &#123;SportsCap&#125;,</span><br><span class="line">  author = &#123;Chen, Xin and Pang, Anqi and Yang, Wei and Ma, Yuexin and Xu, Lan and Yu, Jingyi&#125;,</span><br><span class="line">  year = 2021,</span><br><span class="line">  month = oct,</span><br><span class="line">  journal = &#123;International Journal of Computer Vision&#125;,</span><br><span class="line">  volume = &#123;129&#125;,</span><br><span class="line">  number = &#123;10&#125;,</span><br><span class="line">  pages = &#123;2846--2864&#125;,</span><br><span class="line">  doi = &#123;10.1007/s11263-021-01486-4&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法20：ST-GCN（时空图卷积网络）"><a href="#方法20：ST-GCN（时空图卷积网络）" class="headerlink" title="方法20：ST-GCN（时空图卷积网络）"></a>方法20：ST-GCN（时空图卷积网络）</h3><p><strong>方法名称：</strong> ST-GCN <a href="zotero://select/library/items/LS3C3LLB">📚</a></p>
+<p><strong>论文标题：</strong> Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action Recognition</p>
+<p><strong>核心技术：</strong> 骨架提取 + 时空图构建 + ST-GCN卷积 + 时序编码 + 回归头</p>
+<p><strong>主要贡献：</strong> 建模骨架时空关系</p>
+<p><strong>应用背景：</strong> 骨架数据可得的体育项目</p>
+<p><strong>优缺点：</strong> ✅ ST-GCN经典有效；❌ 性能相比I3D略低</p>
+<p><strong>演变与进步：</strong> 为后续HGCN、MS-GCN等改进奠基</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Peng-SpatialTemporalGraph-2021,</span><br><span class="line">  title = &#123;Spatial Temporal Graph Deconvolutional Network for Skeleton-Based Human Action Recognition&#125;,</span><br><span class="line">  author = &#123;Peng, Wei and Shi, Jingang and Zhao, Guoying&#125;,</span><br><span class="line">  year = 2021,</span><br><span class="line">  journal = &#123;IEEE Signal Processing Letters&#125;,</span><br><span class="line">  volume = &#123;28&#125;,</span><br><span class="line">  pages = &#123;244--248&#125;,</span><br><span class="line">  doi = &#123;10.1109/LSP.2021.3049691&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法21：EAGLE-Eye（极端姿态动作评分器）"><a href="#方法21：EAGLE-Eye（极端姿态动作评分器）" class="headerlink" title="方法21：EAGLE-Eye（极端姿态动作评分器）"></a>方法21：EAGLE-Eye（极端姿态动作评分器）</h3><p><strong>方法名称：</strong> EAGLE-Eye <a href="zotero://select/library/items/CE4C9TUM">📚</a></p>
+<p><strong>论文标题：</strong> EAGLE-Eye: Extreme-Pose Action Grader Using Detail Bird’s-Eye View</p>
+<p><strong>核心技术：</strong> 骨架提取 + 俯视图变换 + 多尺度时间卷积 + 交互建模 + 回归头</p>
+<p><strong>数据集：</strong> MIT-Skate, AQA-7</p>
+<p><strong>主要贡献：</strong> 采用俯视图视角增强对骨架动态的感知，捕捉骨架点动态和交互</p>
+<p><strong>应用背景：</strong> 需要多视角理解的复杂动作</p>
+<p><strong>优缺点：</strong> ✅ 俯视图新视角；❌ 视角变换可能丢失信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Nekoui-EAGLEEyeExtremeposeAction-2021,</span><br><span class="line">  title = &#123;EAGLE-Eye: Extreme-Pose Action Grader Using detaiL Bird&#x27;s-Eye View&#125;,</span><br><span class="line">  shorttitle = &#123;EAGLE-Eye&#125;,</span><br><span class="line">  booktitle = &#123;2021 IEEE Winter Conference on Applications of Computer Vision (WACV)&#125;,</span><br><span class="line">  author = &#123;Nekoui, Mahdiar and Tito Cruz, Fidel Omar and Cheng, Li&#125;,</span><br><span class="line">  year = 2021,</span><br><span class="line">  month = jan,</span><br><span class="line">  pages = &#123;394--402&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Waikoloa, HI, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/WACV48630.2021.00044&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法22：RGR（参考导向回归）"><a href="#方法22：RGR（参考导向回归）" class="headerlink" title="方法22：RGR（参考导向回归）"></a>方法22：RGR（参考导向回归）</h3><p><strong>方法名称：</strong> RGR  <a href="zotero://select/library/items/L7A36FLN">📚</a></p>
+<p><strong>论文标题：</strong> Action Quality Assessment Using Siamese Network-Based Deep Metric Learning</p>
+<p><strong>核心技术：</strong> I3D特征提取 + Siamese孪生网络 + 度量学习 + 相似度评分</p>
+<p><strong>数据集：</strong> UNLV-Dive, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 使用Siamese网络将评分任务转化为相似度评分，通过对比参考样本进行相对评分</p>
+<p><strong>应用背景：</strong> 存在标准/参考样本的评估场景</p>
+<p><strong>优缺点：</strong> ✅ 易于刻画细微差异；❌ 依赖参照样本选择、推理开销大</p>
+<p><strong>演变与进步：</strong> 为 CoRe/多阶段对比回归奠定基础</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Jain-ActionQualityAssessment-2021,</span><br><span class="line">  title = &#123;Action Quality Assessment Using Siamese Network-Based Deep Metric Learning&#125;,</span><br><span class="line">  author = &#123;Jain, Hiteshi and Harit, Gaurav and Sharma, Avinash&#125;,</span><br><span class="line">  year = 2021,</span><br><span class="line">  journal = &#123;IEEE Trans. Circuits Syst. Video Technol.&#125;,</span><br><span class="line">  volume = &#123;31&#125;,</span><br><span class="line">  number = &#123;6&#125;,</span><br><span class="line">  pages = &#123;2260--2273&#125;,</span><br><span class="line">  doi = &#123;10.1109/TCSVT.2020.3017727&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法23：TSA-Net（管自注意网络）"><a href="#方法23：TSA-Net（管自注意网络）" class="headerlink" title="方法23：TSA-Net（管自注意网络）"></a>方法23：TSA-Net（管自注意网络）</h3><p><strong>方法名称：</strong> TSA-Net <a href="zotero://select/library/items/KZC5BU2M">📚</a></p>
+<p><strong>论文标题：</strong> TSA-Net: Tube Self-Attention Network for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 目标检测与跟踪 + I3D特征提取 + 自注意机制 + RPN+管追踪 + 回归头</p>
+<p><strong>数据集：</strong> AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 结合目标跟踪和自注意机制进行动作评估，使用管状区域提高关注度</p>
+<p><strong>应用背景：</strong> 需要前景分离与跟踪的评估场景</p>
+<p><strong>优缺点：</strong> ✅ 关注目标更聚焦，性能稳定；❌ 轨迹估计不稳时性能下降</p>
+<p><strong>演变与进步：</strong> 为后续 Transformer 序列建模提供经验</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Wang-TSANetTubeSelfAttention-2021,</span><br><span class="line">  title = &#123;TSA-Net: Tube Self-Attention Network for Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;TSA-Net&#125;,</span><br><span class="line">  booktitle = &#123;Proceedings of the 29th ACM International Conference on Multimedia&#125;,</span><br><span class="line">  author = &#123;Wang, Shunli and Yang, Dingkang and Zhai, Peng and Chen, Chixiao and Zhang, Lihua&#125;,</span><br><span class="line">  year = 2021,</span><br><span class="line">  month = oct,</span><br><span class="line">  eprint = &#123;2201.03746&#125;,</span><br><span class="line">  primaryclass = &#123;cs&#125;,</span><br><span class="line">  pages = &#123;4902--4910&#125;,</span><br><span class="line">  doi = &#123;10.1145/3474085.3475438&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法24：TAL（时间注意学习）"><a href="#方法24：TAL（时间注意学习）" class="headerlink" title="方法24：TAL（时间注意学习）"></a>方法24：TAL（时间注意学习）</h3><p><strong>方法名称：</strong> TAL <a href="zotero://select/library/items/S2S3N4D9">📚</a></p>
+<p><strong>论文标题：</strong> Temporal Attention Learning for Action Quality Assessment in Sports Video</p>
+<p><strong>核心技术：</strong> 视频分段 + CNN特征提取 + 动态时间注意权重学习 + 加权回归</p>
+<p><strong>数据集：</strong> UNLV-Dive, UNLV-Vault</p>
+<p><strong>主要贡献：</strong> 动态学习不同动作阶段的注意力权重，自适应关注关键时间段</p>
+<p><strong>应用背景：</strong> 不同阶段重要性差异大的动作</p>
+<p><strong>优缺点：</strong> ✅ 时间建模直观，性能稳定；❌ 对长序与跨阶段关系仍有限制</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Lei-TemporalAttentionLearning-2021,</span><br><span class="line">  title = &#123;Temporal Attention Learning for Action Quality Assessment in Sports Video&#125;,</span><br><span class="line">  author = &#123;Lei, Qing and Zhang, Hongbo and Du, Jixiang&#125;,</span><br><span class="line">  year = 2021,</span><br><span class="line">  month = oct,</span><br><span class="line">  journal = &#123;Signal, Image and Video Processing&#125;,</span><br><span class="line">  volume = &#123;15&#125;,</span><br><span class="line">  number = &#123;7&#125;,</span><br><span class="line">  pages = &#123;1575--1583&#125;,</span><br><span class="line">  doi = &#123;10.1007/s11760-021-01890-w&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法25：FineDiving数据集与TSA（时间分割注意力）"><a href="#方法25：FineDiving数据集与TSA（时间分割注意力）" class="headerlink" title="方法25：FineDiving数据集与TSA（时间分割注意力）"></a>方法25：FineDiving数据集与TSA（时间分割注意力）</h3><p><strong>方法名称：</strong> TSA <a href="zotero://select/library/items/RHSQG6LX">📚</a></p>
+<p><strong>论文标题：</strong> FineDiving: A Fine-Grained Dataset for Procedure-Aware Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 时间分割注意力模块 + 子动作检测 + 多任务学习(评分+分割)</p>
+<p><strong>数据集：</strong> FineDiving</p>
+<p><strong>主要贡献：</strong> 提出首个细粒度子动作标注数据集(FineDiving)，引入时间分割注意力模块用于子过程识别。推动AQA向细粒度、可解释方向发展</p>
+<p><strong>应用背景：</strong> 高精度、可解释的动作评估</p>
+<p><strong>优缺点：</strong> ✅ 细粒度数据集高质量，性能SOTA；❌ 标注成本高，泛化到新项目需要重新标注</p>
+<p><strong>演变与进步：</strong> FineDiving成为后续多个方法的主要评估基准，启发FineParser、ASTRM、STSA等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Xu-FineDivingFinegrainedDataset-2022,</span><br><span class="line">  title = &#123;FineDiving: A Fine-Grained Dataset for Procedure-Aware Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;FineDiving&#125;,</span><br><span class="line">  booktitle = &#123;2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)&#125;,</span><br><span class="line">  author = &#123;Xu, Jinglin and Rao, Yongming and Yu, Xumin and Chen, Guangyi and Zhou, Jie and Lu, Jiwen&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  month = jun,</span><br><span class="line">  pages = &#123;2939--2948&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;New Orleans, LA, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPR52688.2022.00296&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法26：GDLT（等级解耦Likert-Transformer）"><a href="#方法26：GDLT（等级解耦Likert-Transformer）" class="headerlink" title="方法26：GDLT（等级解耦Likert Transformer）"></a>方法26：GDLT（等级解耦Likert Transformer）</h3><p><strong>方法名称：</strong> GDLT <a href="zotero://select/library/items/BYRPA3W6">📚</a></p>
+<p><strong>论文标题：</strong> Likert Scoring with Grade Decoupling for Long-Term Action Assessment</p>
+<p><strong>核心技术：</strong> Transformer编码器 + 等级原型学习 + Likert分级机制 + 强度解码器 + 等级解耦损失</p>
+<p><strong>数据集：</strong> Fis-V, RG</p>
+<p><strong>主要贡献：</strong> 将长期动作评分分解为等级与强度组合，引入 Likert 分级+”等级解耦”思想。通过等级原型与解码器实现”量化分+响应强度”合成最终分</p>
+<p><strong>应用背景：</strong> 长视频、复杂多阶段动作（如花样滑冰、艺术体操）</p>
+<p><strong>优缺点：</strong> ✅ 长序列建模与可解释性好，分解思想新颖；❌ 需设计等级原型，迁移到新项目时需适配</p>
+<p><strong>演变与进步：</strong> 成为长序列Transformer系列代表，与TPT等互补</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Xu-FineDivingFinegrainedDataset-2022,</span><br><span class="line">  title = &#123;FineDiving: A Fine-Grained Dataset for Procedure-Aware Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;FineDiving&#125;,</span><br><span class="line">  booktitle = &#123;2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)&#125;,</span><br><span class="line">  author = &#123;Xu, Jinglin and Rao, Yongming and Yu, Xumin and Chen, Guangyi and Zhou, Jie and Lu, Jiwen&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  month = jun,</span><br><span class="line">  pages = &#123;2939--2948&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;New Orleans, LA, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPR52688.2022.00296&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法27：TPT（时间解析Transformer）"><a href="#方法27：TPT（时间解析Transformer）" class="headerlink" title="方法27：TPT（时间解析Transformer）"></a>方法27：TPT（时间解析Transformer）</h3><p><strong>方法名称：</strong> TPT <a href="zotero://select/library/items/E6E4WULV">📚</a></p>
+<p><strong>论文标题：</strong> Action Quality Assessment with Temporal Parsing Transformer</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 可学习查询 + Transformer编码器 + 特征解析模块 + 排序+稀疏性损失 + 回归头</p>
+<p><strong>数据集：</strong> JIGSAWS, AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 使用学习查询解耦整体视频特征为局部时间特征，实现可解析的动作过程识别。引入排序和稀疏性损失增强约束</p>
+<p><strong>应用背景：</strong> 有明确程序/阶段的技术动作</p>
+<p><strong>优缺点：</strong> ✅ 可解析、可定位子过程，性能SOTA；❌ 查询设计与数量对性能敏感</p>
+<p><strong>演变与进步：</strong> 常与对比回归（如 CoRe）联合，形成”解析+对比”的强组合。启发后续FineParser等</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Bai-ActionQualityAssessment-2022,</span><br><span class="line">  title = &#123;Action Quality Assessment with Temporal Parsing Transformer&#125;,</span><br><span class="line">  booktitle = &#123;Computer Vision - ECCV 2022 - 17th European Conference, Tel Aviv, Israel, October 23-27, 2022, Proceedings, Part IV&#125;,</span><br><span class="line">  author = &#123;Bai, Yang and Zhou, Desen and Zhang, Songyang and Wang, Jian and Ding, Errui and Guan, Yu and Long, Yang and Wang, Jingdong&#125;,</span><br><span class="line">  editor = &#123;Avidan, Shai and Brostow, Gabriel J. and Ciss&#123;\&#x27;e&#125;, Moustapha and Farinella, Giovanni Maria and Hassner, Tal&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  series = &#123;Lecture Notes in Computer Science&#125;,</span><br><span class="line">  volume = &#123;13664&#125;,</span><br><span class="line">  pages = &#123;422--438&#125;,</span><br><span class="line">  publisher = &#123;Springer&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-031-19772-7_25&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法28：I3D-Transformer"><a href="#方法28：I3D-Transformer" class="headerlink" title="方法28：I3D-Transformer"></a>方法28：I3D-Transformer</h3><p><strong>方法名称：</strong> I3D-Transformer <a href="zotero://select/library/items/8L24CQQB">📚</a></p>
+<p><strong>论文标题：</strong> Action Quality Assessment Using Transformers</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 多种Transformer变体(ViT, BERT-style, 自定义) + 回归头</p>
+<p><strong>数据集：</strong> MTL-AQA</p>
+<p><strong>主要贡献：</strong> 系统探索不同Transformer架构用于AQA，比较各种变体的效果</p>
+<p><strong>应用背景：</strong> Transformer在AQA中的应用探索</p>
+<p><strong>优缺点：</strong> ✅ 架构对比全面；❌ 相比TPT性能略低</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@misc&#123;Iyer-ActionQualityAssessment-2022,</span><br><span class="line">  title = &#123;Action Quality Assessment Using Transformers&#125;,</span><br><span class="line">  author = &#123;Iyer, Abhay and Alali, Mohammad and Bodala, Hemanth and Vaidya, Sunit&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  month = jul,</span><br><span class="line">  number = &#123;arXiv:2207.12318&#125;,</span><br><span class="line">  eprint = &#123;2207.12318&#125;,</span><br><span class="line">  primaryclass = &#123;cs&#125;,</span><br><span class="line">  publisher = &#123;arXiv&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2207.12318&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法29：I3D-TA（时间感知注意）"><a href="#方法29：I3D-TA（时间感知注意）" class="headerlink" title="方法29：I3D-TA（时间感知注意）"></a>方法29：I3D-TA（时间感知注意）</h3><p><strong>方法名称：</strong> I3D-TA <a href="zotero://select/library/items/GAHLQTSM">📚</a></p>
+<p><strong>论文标题：</strong> Learning Time-Aware Features for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 时间感知注意模块 + 关键片段提取 + 加权回归</p>
+<p><strong>数据集：</strong> MTL-AQA</p>
+<p><strong>主要贡献：</strong> 采用时间感知注意机制学习关键片段，动态调整不同时刻的注意权重</p>
+<p><strong>应用背景：</strong> 需要时间建模的评估</p>
+<p><strong>优缺点：</strong> ✅ 时间建模直观；❌ 对长序与跨阶段关系仍有限制</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zhang-LearningTimeawareFeatures-2022,</span><br><span class="line">  title = &#123;Learning Time-Aware Features for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Zhang, Yu and Xiong, Wei and Mi, Siya&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  month = jun,</span><br><span class="line">  journal = &#123;Pattern Recognition Letters&#125;,</span><br><span class="line">  volume = &#123;158&#125;,</span><br><span class="line">  pages = &#123;104--110&#125;,</span><br><span class="line">  doi = &#123;10.1016/j.patrec.2022.04.015&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法30：UD-AQA（不确定性驱动的AQA）"><a href="#方法30：UD-AQA（不确定性驱动的AQA）" class="headerlink" title="方法30：UD-AQA（不确定性驱动的AQA）"></a>方法30：UD-AQA（不确定性驱动的AQA）</h3><p><strong>方法名称：</strong> UD-AQA  <a href="zotero://select/library/items/7D6JYDU4">📚</a></p>
+<p><strong>论文标题：</strong> Uncertainty-Driven Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 条件变分自编码器(CVAE) + 隐变量采样 + 高斯分布建模</p>
+<p><strong>数据集：</strong> JIGSAWS, MTL-AQA, FineDiving</p>
+<p><strong>主要贡献：</strong> 采用条件变分自编码器(CVAE)建模评分的内在模糊性，允许从分布中采样多个可能的评分</p>
+<p><strong>应用背景：</strong> 需要建模评分不确定性的场景</p>
+<p><strong>优缺点：</strong> ✅ 捕获内在歧义；❌ 训练复杂、对先验假设敏感</p>
+<p><strong>演变与进步：</strong> 与 LUSD-Net/DAE 形成不确定性建模家族</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@misc&#123;Zhou-UncertaintyDrivenActionQuality-2025,</span><br><span class="line">  title = &#123;Uncertainty-Driven Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Zhou, Caixia and Huang, Yaping&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  month = jan,</span><br><span class="line">  number = &#123;arXiv:2207.14513&#125;,</span><br><span class="line">  eprint = &#123;2207.14513&#125;,</span><br><span class="line">  primaryclass = &#123;cs&#125;,</span><br><span class="line">  publisher = &#123;arXiv&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2207.14513&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法31：PCLN（配对对比学习网络）"><a href="#方法31：PCLN（配对对比学习网络）" class="headerlink" title="方法31：PCLN（配对对比学习网络）"></a>方法31：PCLN（配对对比学习网络）</h3><p><strong>方法名称：</strong> PCLN <a href="zotero://select/library/items/QMVE5RMD">📚</a></p>
+<p><strong>论文标题：</strong> Pairwise Contrastive Learning Network for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 样本对采集 + 对比损失 + 排序损失 + 回归损失</p>
+<p><strong>数据集：</strong> AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 结合配对学习和回归学习进行对比AQA，使用动态样本对生成策略</p>
+<p><strong>应用背景：</strong> 需要相对比较的评分场景</p>
+<p><strong>优缺点：</strong> ✅ 细粒度判别强；❌ 需要成对采样，训练/推理成本更高</p>
+<p><strong>演变与进步：</strong> 承接到多阶段/目标感知的对比回归(MCoRe、T2CR)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@incollection&#123;Li-PairwiseContrastiveLearning-2022,</span><br><span class="line">  title = &#123;Pairwise Contrastive Learning Network for Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;Computer Vision -- ECCV 2022&#125;,</span><br><span class="line">  author = &#123;Li, Mingzhe and Zhang, Hong-Bo and Lei, Qing and Fan, Zongwen and Liu, Jinghua and Du, Ji-Xiang&#125;,</span><br><span class="line">  editor = &#123;Avidan, Shai and Brostow, Gabriel and Ciss&#123;\&#x27;e&#125;, Moustapha and Farinella, Giovanni Maria and Hassner, Tal&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  volume = &#123;13664&#125;,</span><br><span class="line">  pages = &#123;457--473&#125;,</span><br><span class="line">  publisher = &#123;Springer Nature Switzerland&#125;,</span><br><span class="line">  address = &#123;Cham&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-031-19772-7_27&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法32：MD与CVCSPC（运动解缠绕）"><a href="#方法32：MD与CVCSPC（运动解缠绕）" class="headerlink" title="方法32：MD与CVCSPC（运动解缠绕）"></a>方法32：MD与CVCSPC（运动解缠绕）</h3><p><strong>方法名称：</strong> S^4 AQA <a href="zotero://select/library/items/HQF9GFGF">📚</a></p>
+<p><strong>论文标题：</strong> Semi-Supervised Action Quality Assessment with Self-Supervised Segment Feature Recovery</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 运动解缠绕模块 + 自监督恢复损失 + 对比一致性正则化</p>
+<p><strong>数据集：</strong> MTL-AQA, RG, JIGSAWS</p>
+<p><strong>主要贡献：</strong> 将错误运动从全局运动中分离，采用自监督方法进行半监督AQA。创新性的运动解缠绕思想</p>
+<p><strong>应用背景：</strong> 标签有限的场景</p>
+<p><strong>优缺点：</strong> ✅ 运动解缠绕新颖；❌ 半监督性能低于全监督</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zhang-SemiSupervisedActionQuality-2022,</span><br><span class="line">  title = &#123;Semi-Supervised Action Quality Assessment With Self-Supervised Segment Feature Recovery&#125;,</span><br><span class="line">  author = &#123;Zhang, Shao-Jie and Pan, Jia-Hui and Gao, Jibin and Zheng, Wei-Shi&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  month = sep,</span><br><span class="line">  journal = &#123;IEEE Transactions on Circuits and Systems for Video Technology&#125;,</span><br><span class="line">  volume = &#123;32&#125;,</span><br><span class="line">  number = &#123;9&#125;,</span><br><span class="line">  pages = &#123;6017--6028&#125;,</span><br><span class="line">  doi = &#123;10.1109/TCSVT.2022.3143549&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法：Adaptive-Net（自适应网络）"><a href="#方法：Adaptive-Net（自适应网络）" class="headerlink" title="方法：Adaptive Net（自适应网络）"></a>方法：Adaptive Net（自适应网络）</h3><p><strong>方法名称：</strong> Adaptive Net <a href="zotero://select/library/items/X2NJPU4I">📚</a></p>
+<p><strong>论文标题：</strong> Adaptive Action Assessment</p>
+<p><strong>核心技术：</strong> 神经架构搜索(NAS) + 适配模块 + 领域自适应 + 跨域AQA框架</p>
+<p><strong>数据集：</strong> JIGSAWS, AQA-7, EPIC-Skill, BEST</p>
+<p><strong>主要贡献：</strong> 目标检测，然后动作评估，自动网络架构搜索(NAS)进行跨域泛化，自动学习最优的领域适配机制</p>
+<p><strong>演变与进步：</strong> 为后续NAS在AQA中的应用奠基</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Pan-AdaptiveActionAssessment-2022,</span><br><span class="line">  title = &#123;Adaptive Action Assessment&#125;,</span><br><span class="line">  author = &#123;Pan, Jia-Hui and Gao, Jibin and Zheng, Wei-Shi&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  month = dec,</span><br><span class="line">  journal = &#123;IEEE Transactions on Pattern Analysis and Machine Intelligence&#125;,</span><br><span class="line">  volume = &#123;44&#125;,</span><br><span class="line">  number = &#123;12&#125;,</span><br><span class="line">  pages = &#123;8779--8795&#125;,</span><br><span class="line">  doi = &#123;10.1109/TPAMI.2021.3126534&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法33：FSPN（细粒度时空解析网络）"><a href="#方法33：FSPN（细粒度时空解析网络）" class="headerlink" title="方法33：FSPN（细粒度时空解析网络）"></a>方法33：FSPN（细粒度时空解析网络）</h3><p><strong>方法名称：</strong> FSPN <a href="zotero://select/library/items/GVX3DHDH">📚</a></p>
+<p><strong>论文标题：</strong> Fine-Grained Spatio-Temporal Parsing Network for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 时空特征提取 + 细粒度子动作检测 + 多尺度Transformer模块 + 层次化评分</p>
+<p><strong>数据集：</strong> AQA-7, MTL-AQA, FineDiving</p>
+<p><strong>主要贡献：</strong> 以演员为中心，提取细粒度子动作特征，采用多尺度时空Transformer模块进行分层处理</p>
+<p><strong>应用背景：</strong> 程序化、步骤清晰的动作质量评估</p>
+<p><strong>优缺点：</strong> ✅ 可解释、细粒度强；❌ 解析依赖设计与数据标注质量</p>
+<p><strong>演变与进步：</strong> 为 FineParser 等”更细粒度解析”奠基</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;gedamuFineGrainedSpatioTemporalParsing2023,</span><br><span class="line">  title = &#123;Fine-Grained Spatio-Temporal Parsing Network for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Gedamu, Kumie and Ji, Yanli and Yang, Yang and Shen, Heng Tao&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  journal = &#123;IEEE TRANSACTIONS ON IMAGE PROCESSING&#125;,</span><br><span class="line">  volume = &#123;32&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法34：MSRM与SSRMM（多阶段回归模块）"><a href="#方法34：MSRM与SSRMM（多阶段回归模块）" class="headerlink" title="方法34：MSRM与SSRMM（多阶段回归模块）"></a>方法34：MSRM与SSRMM（多阶段回归模块）</h3><p><strong>方法名称：</strong> MSRM/SSRMM <a href="zotero://select/library/items/ZXBRWTS6">📚</a></p>
+<p><strong>论文标题：</strong> Learning and Fusing Multiple Hidden Substages for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> CNN特征提取 + 5阶段分割 + 多个回归器 + 阶段特定训练策略</p>
+<p><strong>数据集：</strong> UNLV-Dive</p>
+<p><strong>主要贡献：</strong> 将视频分为5个阶段(助跑、起跳、翻腾、转身、入水)进行回归，提出不同场景的训练策略</p>
+<p><strong>应用背景：</strong> 有明确分阶段的动作</p>
+<p><strong>优缺点：</strong> ✅ 阶段建模清晰；❌ 阶段划分固定，泛化性受限</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Dong-LearningFusingMultiple-2021,</span><br><span class="line">  title = &#123;Learning and Fusing Multiple Hidden Substages for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Dong, Li-Jia and Zhang, Hong-Bo and Shi, Qinghongya and Lei, Qing and Du, Ji-Xiang and Gao, Shangce&#125;,</span><br><span class="line">  year = 2021,</span><br><span class="line">  month = oct,</span><br><span class="line">  journal = &#123;Knowledge-Based Systems&#125;,</span><br><span class="line">  volume = &#123;229&#125;,</span><br><span class="line">  pages = &#123;107388&#125;,</span><br><span class="line">  doi = &#123;10.1016/j.knosys.2021.107388&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法35：TECN（高斯引导帧序列编码网络）"><a href="#方法35：TECN（高斯引导帧序列编码网络）" class="headerlink" title="方法35：TECN（高斯引导帧序列编码网络）"></a>方法35：TECN（高斯引导帧序列编码网络）</h3><p><strong>方法名称：</strong> TECN  <a href="zotero://select/library/items/RECHPGSF">📚</a></p>
+<p><strong>论文标题：</strong> Gaussian Guided Frame Sequence Encoder Network for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 帧序列编码 + 高斯损失函数 + 概率拟合 + 回归头</p>
+<p><strong>数据集：</strong> AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 使用高斯损失函数最大化预测评分与分布的拟合概率，增强概率建模</p>
+<p><strong>应用背景：</strong> 需要概率建模的评估</p>
+<p><strong>优缺点：</strong> ✅ 概率建模创新；❌ 参数敏感</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Li-GaussianGuidedFrame-2023,</span><br><span class="line">  title = &#123;Gaussian Guided Frame Sequence Encoder Network for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Li, Ming-Zhe and Zhang, Hong-Bo and Dong, Li-Jia and Lei, Qing and Du, Ji-Xiang&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = apr,</span><br><span class="line">  journal = &#123;Complex \&amp; Intelligent Systems&#125;,</span><br><span class="line">  volume = &#123;9&#125;,</span><br><span class="line">  number = &#123;2&#125;,</span><br><span class="line">  pages = &#123;1963--1974&#125;,</span><br><span class="line">  doi = &#123;10.1007/s40747-022-00892-6&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法36：DAE（分布自编码器）"><a href="#方法36：DAE（分布自编码器）" class="headerlink" title="方法36：DAE（分布自编码器）"></a>方法36：DAE（分布自编码器）</h3><p><strong>方法名称：</strong> DAE <a href="zotero://select/library/items/I4QN2633">📚</a></p>
+<p><strong>论文标题：</strong> Auto-Encoding Score Distribution Regression for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + VAE编码器 + 评分分布参数预测 + 重构损失</p>
+<p><strong>数据集：</strong> JIGSAWS, AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 使用VAE技术将视频特征编码为评分分布，实现隐空间的分布建模</p>
+<p><strong>应用背景：</strong> 需要分布学习的场景</p>
+<p><strong>优缺点：</strong> ✅ VAE框架优雅；❌ 训练复杂，超参数多</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zhang-AutoencodingScoreDistribution-2024,</span><br><span class="line">  title = &#123;Auto-Encoding Score Distribution Regression for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Zhang, Boyu and Chen, Jiayuan and Xu, Yinfei and Zhang, Hui and Yang, Xu and Geng, Xin&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;Neural Comput. Appl.&#125;,</span><br><span class="line">  volume = &#123;36&#125;,</span><br><span class="line">  number = &#123;2&#125;,</span><br><span class="line">  pages = &#123;929--942&#125;,</span><br><span class="line">  doi = &#123;10.1007/S00521-023-09068-W&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法37：LUSD-Net（定位辅助不确定性评分解缠网络）"><a href="#方法37：LUSD-Net（定位辅助不确定性评分解缠网络）" class="headerlink" title="方法37：LUSD-Net（定位辅助不确定性评分解缠网络）"></a>方法37：LUSD-Net（定位辅助不确定性评分解缠网络）</h3><p><strong>方法名称：</strong> LUSD-Net <a href="zotero://select/library/items/TCXEFQT9">📚</a></p>
+<p><strong>论文标题：</strong> Localization-Assisted Uncertainty Score Disentanglement Network for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 骨架特征提取 + 动作定位模块 + 不确定性分解(PCS+TES) + 高斯分布建模</p>
+<p><strong>数据集：</strong> Fis-V, FineFS</p>
+<p><strong>主要贡献：</strong> 通过不确定性分解模块解耦过程一致性评分(PCS)和技术执行评分(TES)，技术子动作定位模块，引入定位辅助的不确定性解耦</p>
+<p><strong>应用背景：</strong> 局部错误位置重要的场景（如入水、落地等）</p>
+<p><strong>优缺点：</strong> ✅ 分布建模+定位更稳健；❌ 需要较强的定位质量与标注</p>
+<p><strong>演变与进步：</strong> 与分布学习(USDL/DAE)方向融合</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Ji-LocalizationassistedUncertaintyScore-2023,</span><br><span class="line">  title = &#123;Localization-Assisted Uncertainty Score Disentanglement Network for Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;Proceedings of the 31st ACM International Conference on Multimedia&#125;,</span><br><span class="line">  author = &#123;Ji, Yanli and Ye, Lingfeng and Huang, Huili and Mao, Lijing and Zhou, Yang and Gao, Lingling&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = oct,</span><br><span class="line">  pages = &#123;8590--8597&#125;,</span><br><span class="line">  publisher = &#123;ACM&#125;,</span><br><span class="line">  address = &#123;Ottawa ON Canada&#125;,</span><br><span class="line">  doi = &#123;10.1145/3581783.3613795&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法38：ASTRM（跨阶段时间推理模块）"><a href="#方法38：ASTRM（跨阶段时间推理模块）" class="headerlink" title="方法38：ASTRM（跨阶段时间推理模块）"></a>方法38：ASTRM（跨阶段时间推理模块）</h3><p><strong>方法名称：</strong> ASTRM <a href="zotero://select/library/items/8J6TK6BS">📚</a></p>
+<p><strong>论文标题：</strong> Improving Action Quality Assessment with Across-Staged Temporal Reasoning on Imbalanced Data</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 子动作分割 + 跨阶段时间推理模块 + 对不均衡数据的处理</p>
+<p><strong>数据集：</strong> FineDiving</p>
+<p><strong>主要贡献：</strong> 采用交叉阶段时间推理学习阶段间的时间关系，处理样本不均衡问题</p>
+<p><strong>应用背景：</strong> 有明确阶段但样本不均衡的数据</p>
+<p><strong>优缺点：</strong> ✅ 充分利用阶段结构，处理不均衡；❌ 仍受阶段边界/标注质量影响</p>
+<p><strong>演变与进步：</strong> 与自适应/解析式方法结合更优</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Lian-ImprovingActionQuality-2023,</span><br><span class="line">  title = &#123;Improving Action Quality Assessment with Across-Staged Temporal Reasoning on Imbalanced Data&#125;,</span><br><span class="line">  author = &#123;Lian, Pu-Xiang and Shao, Zhi-Gang&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = dec,</span><br><span class="line">  journal = &#123;Applied Intelligence&#125;,</span><br><span class="line">  volume = &#123;53&#125;,</span><br><span class="line">  number = &#123;24&#125;,</span><br><span class="line">  pages = &#123;30443--30454&#125;,</span><br><span class="line">  doi = &#123;10.1007/s10489-023-05166-3&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法39：RG-AQA（回放引导的动作质量评估）"><a href="#方法39：RG-AQA（回放引导的动作质量评估）" class="headerlink" title="方法39：RG-AQA（回放引导的动作质量评估）"></a>方法39：RG-AQA（回放引导的动作质量评估）</h3><p><strong>方法名称：</strong> RG-AQA <a href="zotero://select/library/items/NIZWHAR8">📚</a></p>
+<p><strong>论文标题：</strong> A Figure Skating Jumping Dataset for Replay-Guided Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 三流网络(现场+回放+示范) + 对比学习 + 三角形相似度 + 回归头</p>
+<p><strong>数据集：</strong> RFJS(新建 - 回放引导花样滑冰跳跃数据集)</p>
+<p><strong>主要贡献：</strong> 首次利用现场/回放/示范视频的三流对比学习进行AQA</p>
+<p><strong>应用背景：</strong> 体育赛事评估，有现场与回放视频</p>
+<p><strong>优缺点：</strong> ✅ 利用回放增强学习；❌ 需要回放视频配对</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Liu-FigureSkatingJumping-2023,</span><br><span class="line">  title = &#123;A Figure Skating Jumping Dataset for Replay-Guided Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;Proceedings of the 31st ACM International Conference on Multimedia&#125;,</span><br><span class="line">  author = &#123;Liu, Yanchao and Cheng, Xina and Ikenaga, Takeshi&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = oct,</span><br><span class="line">  pages = &#123;2437--2445&#125;,</span><br><span class="line">  publisher = &#123;ACM&#125;,</span><br><span class="line">  address = &#123;Ottawa ON Canada&#125;,</span><br><span class="line">  doi = &#123;10.1145/3581783.3613774&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法40：PSL（伪子评分学习）"><a href="#方法40：PSL（伪子评分学习）" class="headerlink" title="方法40：PSL（伪子评分学习）"></a>方法40：PSL（伪子评分学习）</h3><p><strong>方法名称：</strong> PSL <a href="zotero://select/library/items/4YRMGH59">📚</a></p>
+<p><strong>论文标题：</strong> Label-Reconstruction-Based Pseudo-Subscore Learning for Action Quality Assessment in Sporting Events</p>
+<p><strong>核心技术：</strong> 总体评分 + 伪子评分生成 + 多任务辅助学习 + 迭代精化</p>
+<p><strong>数据集：</strong> UNLV-Dive</p>
+<p><strong>主要贡献：</strong> 使用总体评分作为训练标签，为子阶段生成伪评分标签，减少标注成本</p>
+<p><strong>应用背景：</strong> 标注资源有限的场景</p>
+<p><strong>优缺点：</strong> ✅ 减少标注成本；❌ 伪标签噪声可能传递偏差</p>
+<p><strong>演变与进步：</strong> 引出”专家可校验”的伪标签与IRIS的显式评分条目监督</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zhang-LabelreconstructionbasedPseudosubscoreLearning-2023,</span><br><span class="line">  title = &#123;Label-Reconstruction-Based Pseudo-Subscore Learning for Action Quality Assessment in Sporting Events&#125;,</span><br><span class="line">  author = &#123;Zhang, Hong-Bo and Dong, Li-Jia and Lei, Qing and Yang, Li-Jie and Du, Ji-Xiang&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = may,</span><br><span class="line">  journal = &#123;Applied Intelligence&#125;,</span><br><span class="line">  volume = &#123;53&#125;,</span><br><span class="line">  number = &#123;9&#125;,</span><br><span class="line">  pages = &#123;10053--10067&#125;,</span><br><span class="line">  doi = &#123;10.1007/s10489-022-03984-5&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法41：GOAT（群体感知注意）"><a href="#方法41：GOAT（群体感知注意）" class="headerlink" title="方法41：GOAT（群体感知注意）"></a>方法41：GOAT（群体感知注意）</h3><p><strong>方法名称：</strong> GOAT <a href="zotero://select/library/items/57BAN795">📚</a></p>
+<p><strong>论文标题：</strong> Logo: A Long-Form Video Dataset for Group Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 群体检测与跟踪 + GCN提取空间群体特征 + 时间特征融合 + 关键片段注意</p>
+<p><strong>数据集：</strong> LOGO(新发布 - 群体动作数据集)</p>
+<p><strong>主要贡献：</strong> 首个长形式群体动作数据集(LOGO)，使用GCN提取空间群体特征进行评估</p>
+<p><strong>应用背景：</strong> 多人合作项目的评估</p>
+<p><strong>优缺点：</strong> ✅ 首个群体数据集；❌ 群体建模复杂，性能相对较低</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Zhang-LOGOLongFormVideo-2023,</span><br><span class="line">  title = &#123;LOGO: A Long-Form Video Dataset for Group Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;LOGO&#125;,</span><br><span class="line">  booktitle = &#123;2023 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)&#125;,</span><br><span class="line">  author = &#123;Zhang, Shiyi and Dai, Wenxun and Wang, Sujia and Shen, Xiangwei and Lu, Jiwen and Zhou, Jie and Tang, Yansong&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = jun,</span><br><span class="line">  pages = &#123;2405--2414&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Vancouver, BC, Canada&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPR52729.2023.00238&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法42：HGCN（分层图卷积网络）"><a href="#方法42：HGCN（分层图卷积网络）" class="headerlink" title="方法42：HGCN（分层图卷积网络）"></a>方法42：HGCN（分层图卷积网络）</h3><p><strong>方法名称：</strong> HGCN <a href="zotero://select/library/items/PZ24VZ3A">📚</a></p>
+<p><strong>论文标题：</strong> Hierarchical Graph Convolutional Networks for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 骨架提取 + 分层图构建(关节-关节、关节组-关节组) + 多层GCN + 时序LSTM + 回归头</p>
+<p><strong>数据集：</strong> JIGSAWS AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 消除片段内的语义混淆，构造有意义的场景捕捉局部动作动态</p>
+<p><strong>应用背景：</strong> 骨架/关键点可得或结构性强的项目</p>
+<p><strong>优缺点：</strong> ✅ 相关性建模充分、精度稳定；❌ 图构建与拓扑依赖领域知识</p>
+<p><strong>演变与进步：</strong> 与Transformer/对比范式互补</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zhou-HierarchicalGraphConvolutional-2023,</span><br><span class="line">  title = &#123;Hierarchical Graph Convolutional Networks for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Zhou, Kanglei and Ma, Yue and Shum, Hubert P. H. and Liang, Xiaohui&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = dec,</span><br><span class="line">  journal = &#123;IEEE Transactions on Circuits and Systems for Video Technology&#125;,</span><br><span class="line">  volume = &#123;33&#125;,</span><br><span class="line">  number = &#123;12&#125;,</span><br><span class="line">  pages = &#123;7749--7763&#125;,</span><br><span class="line">  doi = &#123;10.1109/TCSVT.2023.3281413&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法43：MS-GCN（多骨架结构GCN）"><a href="#方法43：MS-GCN（多骨架结构GCN）" class="headerlink" title="方法43：MS-GCN（多骨架结构GCN）"></a>方法43：MS-GCN（多骨架结构GCN）</h3><p><strong>方法名称：</strong> MS-GCN <a href="zotero://select/library/items/Z4RBJW4I">📚</a></p>
+<p><strong>论文标题：</strong> Multi-Skeleton Structures Graph Convolutional Network for Action Quality Assessment in Long Videos</p>
+<p><strong>核心技术：</strong> 骨架提取 + 三种图结构(自连接、部分内连接、部分间连接) + 并行GCN + 特征融合 + 回归</p>
+<p><strong>数据集：</strong> RG, MIT-skate</p>
+<p><strong>主要贡献：</strong> 构造三种骨架图进行特征提取，充分利用不同连接模式</p>
+<p><strong>应用背景：</strong> 长视频体操项目</p>
+<p><strong>优缺点：</strong> ✅ 多图结构全面；❌ 性能相对较低</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Lei-MultiskeletonStructuresGraph-2023,</span><br><span class="line">  title = &#123;Multi-Skeleton Structures Graph Convolutional Network for Action Quality Assessment in Long Videos&#125;,</span><br><span class="line">  author = &#123;Lei, Qing and Li, Huiying and Zhang, Hongbo and Du, Jixiang and Gao, Shangce&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = oct,</span><br><span class="line">  journal = &#123;Applied Intelligence&#125;,</span><br><span class="line">  volume = &#123;53&#125;,</span><br><span class="line">  number = &#123;19&#125;,</span><br><span class="line">  pages = &#123;21692--21705&#125;,</span><br><span class="line">  doi = &#123;10.1007/s10489-023-04613-5&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法44：Skating-Mixer（长期运动音频-视觉建模）"><a href="#方法44：Skating-Mixer（长期运动音频-视觉建模）" class="headerlink" title="方法44：Skating-Mixer（长期运动音频-视觉建模）"></a>方法44：Skating-Mixer（长期运动音频-视觉建模）</h3><p><strong>方法名称：</strong> Skating-Mixer <a href="zotero://select/library/items/ZY3XKV4S">📚</a></p>
+<p><strong>论文标题：</strong> Skating-Mixer: Long-Term Sport Audio-Visual Modeling with MLPs</p>
+<p><strong>核心技术：</strong> 音视频特征提取 + MLP-Mixer架构 + 记忆机制 + 长期依赖建模</p>
+<p><strong>数据集：</strong> Fis-V, FS1000</p>
+<p><strong>主要贡献：</strong> 提取音视频特征，结合MLP-Mixer与记忆机制处理长期依赖</p>
+<p><strong>应用背景：</strong> 音视频均可用的体育项目</p>
+<p><strong>优缺点：</strong> ✅ 多模态融合，MLP-Mixer轻量；❌ 音频质量依赖强</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Xia-SkatingMixerLongTermSport-2023,</span><br><span class="line">  title = &#123;Skating-Mixer: Long-Term Sport Audio-Visual Modeling with MLPs&#125;,</span><br><span class="line">  shorttitle = &#123;Skating-Mixer&#125;,</span><br><span class="line">  author = &#123;Xia, Jingfei and Zhuge, Mingchen and Geng, Tiantian and Fan, Shun and Wei, Yuantai and He, Zhenyu and Zheng, Feng&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  month = jun,</span><br><span class="line">  journal = &#123;Proceedings of the AAAI Conference on Artificial Intelligence&#125;,</span><br><span class="line">  volume = &#123;37&#125;,</span><br><span class="line">  number = &#123;3&#125;,</span><br><span class="line">  pages = &#123;2901--2909&#125;,</span><br><span class="line">  doi = &#123;10.1609/aaai.v37i3.25392&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法45：AdaST（自适应阶段感知评估技能转移）"><a href="#方法45：AdaST（自适应阶段感知评估技能转移）" class="headerlink" title="方法45：AdaST（自适应阶段感知评估技能转移）"></a>方法45：AdaST（自适应阶段感知评估技能转移）</h3><p><strong>方法名称：</strong> AdaST <a href="zotero://select/library/items/5NCXK24S">📚</a></p>
+<p><strong>论文标题：</strong> Adaptive Stage-Aware Assessment Skill Transfer for Skill Determination</p>
+<p><strong>核心技术：</strong> 源动作评估网络 + 自适应阶段对齐 + 领域自适应 + 迁移学习框架</p>
+<p><strong>数据集：</strong> AQA-7, EPIC-Skill, BEST</p>
+<p><strong>主要贡献：</strong> 自适应源动作搜索，将源动作评估技能转移到目标动作的相应阶段</p>
+<p><strong>应用背景：</strong> 跨项目、跨数据集评估</p>
+<p><strong>优缺点：</strong> ✅ 自适应性强，跨域能力好；❌ 设计/调参复杂</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zhang-AdaptiveStageAwareAssessment-2024,</span><br><span class="line">  title = &#123;Adaptive Stage-Aware Assessment Skill Transfer for Skill Determination&#125;,</span><br><span class="line">  author = &#123;Zhang, Shao-Jie and Pan, Jia-Hui and Gao, Jibin and Zheng, Wei-Shi&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;IEEE Transactions on Multimedia&#125;,</span><br><span class="line">  volume = &#123;26&#125;,</span><br><span class="line">  pages = &#123;4061--4072&#125;,</span><br><span class="line">  doi = &#123;10.1109/TMM.2023.3294800&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法46：SGN（语义引导网络）"><a href="#方法46：SGN（语义引导网络）" class="headerlink" title="方法46：SGN（语义引导网络）"></a>方法46：SGN（语义引导网络）</h3><p><strong>方法名称：</strong> SGN <a href="zotero://select/library/items/CSSCQTDJ">📚</a></p>
+<p><strong>论文标题：</strong> Learning Semantics-Guided Representations for Scoring Figure Skating</p>
+<p><strong>核心技术：</strong> 教师-学生架构 + 可学习原子查询 + 语义引导注意 + 文本特征融合</p>
+<p><strong>数据集：</strong> MTL-AQA, Fis-V, FS1000</p>
+<p><strong>主要贡献：</strong> 教师-学生架构，使用学习的原子查询和注意机制适应文本语义知识</p>
+<p><strong>应用背景：</strong> 有文本规则/描述的评估</p>
+<p><strong>优缺点：</strong> ✅ 语义引导创新；❌ 依赖高质量文本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Du-LearningSemanticsGuidedRepresentations-2024,</span><br><span class="line">  title = &#123;Learning Semantics-Guided Representations for Scoring Figure Skating&#125;,</span><br><span class="line">  author = &#123;Du, Zexing and He, Di and Wang, Xue and Wang, Qing&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;IEEE Transactions on Multimedia&#125;,</span><br><span class="line">  volume = &#123;26&#125;,</span><br><span class="line">  pages = &#123;4987--4997&#125;,</span><br><span class="line">  doi = &#123;10.1109/TMM.2023.3328180&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法47：MCoRe（多阶段对比回归）"><a href="#方法47：MCoRe（多阶段对比回归）" class="headerlink" title="方法47：MCoRe（多阶段对比回归）"></a>方法47：MCoRe（多阶段对比回归）</h3><p><strong>方法名称：</strong> MCoRe <a href="zotero://select/library/items/DP3TFVE2">📚</a></p>
+<p><strong>论文标题：</strong> Multi-Stage Contrastive Regression for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 子动作分割 + 阶段内对比损失 + 多阶段回归器</p>
+<p><strong>数据集：</strong> FineDiving</p>
+<p><strong>主要贡献：</strong> 在不同阶段内建立正负样本对，增强阶段分割准确性与评分精细度</p>
+<p><strong>应用背景：</strong> 有明确子阶段的技术动作</p>
+<p><strong>优缺点：</strong> ✅ 细粒度、可分步优化；❌ 设计复杂、训练时间长</p>
+<p><strong>演变与进步：</strong> 承接 CoRe→T2CR→MCoRe 的对比回归演化链</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;An-MultiStageContrastiveRegression-2024,</span><br><span class="line">  title = &#123;Multi-Stage Contrastive Regression for Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;IEEE International Conference on Acoustics, Speech and Signal Processing, ICASSP 2024, Seoul, Republic of Korea, April 14-19, 2024&#125;,</span><br><span class="line">  author = &#123;An, Qi and Qi, Mengshi and Ma, Huadong&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  pages = &#123;4110--4114&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  doi = &#123;10.1109/ICASSP48485.2024.10447069&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法48：T2CR（双路径目标感知对比回归）"><a href="#方法48：T2CR（双路径目标感知对比回归）" class="headerlink" title="方法48：T2CR（双路径目标感知对比回归）"></a>方法48：T2CR（双路径目标感知对比回归）</h3><p><strong>方法名称：</strong> T2CR <a href="zotero://select/library/items/IGLKTCPD">📚</a></p>
+<p><strong>论文标题：</strong> Two-Path Target-Aware Contrastive Regression for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 直接回归路径(绝对评分) + 对比回归路径(相对评分) + 目标感知特征融合 + 双路径损失</p>
+<p><strong>数据集：</strong> JIGSAWS, AQA-7, MTL-AQA, FineDiving</p>
+<p><strong>主要贡献：</strong> 融合直接回归和对比回归，结合全局和局部特征，双路径互补</p>
+<p><strong>应用背景：</strong> 跨域、跨项目评估</p>
+<p><strong>优缺点：</strong> ✅ 大规模数据下排名相关性强；❌ 参照选择与推理成本较高，小数据稳定性不足</p>
+<p><strong>演变与进步：</strong> 与CoRe/MCoRe形成对比回归序列化方案</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Ke-TwopathTargetawareContrastive-2024,</span><br><span class="line">  title = &#123;Two-Path Target-Aware Contrastive Regression for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Ke, Xiao and Xu, Huangbiao and Lin, Xiaofeng and Guo, Wenzhong&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = apr,</span><br><span class="line">  journal = &#123;Information Sciences&#125;,</span><br><span class="line">  volume = &#123;664&#125;,</span><br><span class="line">  pages = &#123;120347&#125;,</span><br><span class="line">  doi = &#123;10.1016/j.ins.2024.120347&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法49：SSPR（语义序列性能回归）"><a href="#方法49：SSPR（语义序列性能回归）" class="headerlink" title="方法49：SSPR（语义序列性能回归）"></a>方法49：SSPR（语义序列性能回归）</h3><p><strong>方法名称：</strong> SSPR <a href="zotero://select/library/items/679DEMQZ">📚</a></p>
+<p><strong>论文标题：</strong> Assessing Action Quality with Semantic-Sequence Performance Regression and Densely Distributed Sample Weighting</p>
+<p><strong>核心技术：</strong> 语义特征提取 + 分段聚类 + 密集样本加权策略 + 序列性能回归</p>
+<p><strong>数据集：</strong> UNLV-Dive, AQA-7</p>
+<p><strong>主要贡献：</strong> 提取语义特征进行分段，采用密集加权策略增强样本利用</p>
+<p><strong>应用背景：</strong> 样本不均衡的评估</p>
+<p><strong>优缺点：</strong> ✅ 加权策略有效；❌ 语义分割质量依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Huang-AssessingActionQuality-2024,</span><br><span class="line">  title = &#123;Assessing Action Quality with Semantic-Sequence Performance Regression and Densely Distributed Sample Weighting&#125;,</span><br><span class="line">  author = &#123;Huang, Feng and Li, Jianjun&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = feb,</span><br><span class="line">  journal = &#123;Applied Intelligence&#125;,</span><br><span class="line">  volume = &#123;54&#125;,</span><br><span class="line">  number = &#123;4&#125;,</span><br><span class="line">  pages = &#123;3245--3259&#125;,</span><br><span class="line">  doi = &#123;10.1007/s10489-024-05349-6&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法50：FineParser（细粒度时空动作解析器）"><a href="#方法50：FineParser（细粒度时空动作解析器）" class="headerlink" title="方法50：FineParser（细粒度时空动作解析器）"></a>方法50：FineParser（细粒度时空动作解析器）</h3><p><strong>方法名称：</strong> FineParser <a href="zotero://select/library/items/DBY5TWPF">📚</a></p>
+<p><strong>论文标题：</strong> FineParser: A Fine-Grained Spatio-Temporal Action Parser for Human-Centric Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 四模块设计：(1)空间动作解析(SAP-检测关键身体部位), (2)时间动作解析(TAP-分割子动作), (3)静态视觉编码(SVE-背景特征), (4)细粒度对比回归(FCR)</p>
+<p><strong>数据集：</strong> MTL-AQA, FineDiving, FineDiving-HM</p>
+<p><strong>主要贡献：</strong> 四模块设计实现精细时空解析，显著提升可解释性与性能</p>
+<p><strong>应用背景：</strong> 需要精细解析与可解释的评估</p>
+<p><strong>优缺点：</strong> ✅ 解析粒度高、可解释，性能SOTA；❌ 对解析模块与标注依赖强</p>
+<p><strong>演变与进步：</strong> 与FSPN/TPT/GDLT形成”分解—聚合”的解析范式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Xu-FineParserFineGrainedSpatioTemporal-2024,</span><br><span class="line">  title = &#123;FineParser: A Fine-Grained Spatio-Temporal Action Parser for Human-Centric Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;FineParser&#125;,</span><br><span class="line">  booktitle = &#123;IEEE/CVF Conference on Computer Vision and Pattern Recognition, CVPR 2024, Seattle, WA, USA, June 16-22, 2024&#125;,</span><br><span class="line">  author = &#123;Xu, Jinglin and Yin, Sibo and Zhao, Guohao and Wang, Zishuo and Peng, Yuxin&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  pages = &#123;14628--14637&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPR52733.2024.01386&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法51：STSA（时空分割注意）"><a href="#方法51：STSA（时空分割注意）" class="headerlink" title="方法51：STSA（时空分割注意）"></a>方法51：STSA（时空分割注意）</h3><p><strong>方法名称：</strong> STSA <a href="zotero://select/library/items/226XHFUT">📚</a></p>
+<p><strong>论文标题：</strong> Procedure-Aware Action Quality Assessment: Datasets and Performance Evaluation</p>
+<p><strong>核心技术：</strong> 时间分割(TSA) + 空间动作注意(SMA) + 多尺度融合 + 回归头</p>
+<p><strong>数据集：</strong> FineDiving</p>
+<p><strong>主要贡献：</strong> 在TSA基础上加入空间动作注意模块(SMA)，更好地区分前景和背景</p>
+<p><strong>应用背景：</strong> 程序化动作评估</p>
+<p><strong>优缺点：</strong> ✅ 时空建模全面；❌ 参数量大</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Xu-ProcedureAwareActionQuality-2024,</span><br><span class="line">  title = &#123;Procedure-Aware Action Quality Assessment: Datasets and Performance Evaluation&#125;,</span><br><span class="line">  shorttitle = &#123;Procedure-Aware Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Xu, Jinglin and Rao, Yongming and Zhou, Jie and Lu, Jiwen&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = dec,</span><br><span class="line">  journal = &#123;International Journal of Computer Vision&#125;,</span><br><span class="line">  volume = &#123;132&#125;,</span><br><span class="line">  number = &#123;12&#125;,</span><br><span class="line">  pages = &#123;6069--6090&#125;,</span><br><span class="line">  doi = &#123;10.1007/s11263-024-02146-z&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法52：Rhythmer（节奏感知Transformer）"><a href="#方法52：Rhythmer（节奏感知Transformer）" class="headerlink" title="方法52：Rhythmer（节奏感知Transformer）"></a>方法52：Rhythmer（节奏感知Transformer）</h3><p><strong>方法名称：</strong> Rhythmer <a href="zotero://select/library/items/Q2F58496">📚</a></p>
+<p><strong>论文标题：</strong> Ranking-Based Skill Assessment with Rhythm-Aware Transformer</p>
+<p><strong>核心技术：</strong> 节奏特征提取 + 自适应持续时间建模 + Transformer编码器 + 排序/分类头</p>
+<p><strong>数据集：</strong> EPIC-Skill, ROSMA, HeiChole</p>
+<p><strong>主要贡献：</strong> 自适应挖掘任务持续时间相关的节奏模式，动态调整注意力焦点</p>
+<p><strong>应用背景：</strong> 节奏变化明显的日常技能</p>
+<p><strong>优缺点：</strong> ✅ 抓住节律差异；❌ 对节律特征抽取质量敏感</p>
+<p><strong>演变与进步：</strong> 与时间感知/解析方法结合更强</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Luo-RhythmerRankingBasedSkill-2025,</span><br><span class="line">  title = &#123;Rhythmer: Ranking-Based Skill Assessment With Rhythm-Aware Transformer&#125;,</span><br><span class="line">  shorttitle = &#123;Rhythmer&#125;,</span><br><span class="line">  author = &#123;Luo, Zhuang and Xiao, Yang and Yang, Feng and Zhou, Joey Tianyi and Fang, Zhiwen&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  month = jan,</span><br><span class="line">  journal = &#123;IEEE Transactions on Circuits and Systems for Video Technology&#125;,</span><br><span class="line">  volume = &#123;35&#125;,</span><br><span class="line">  number = &#123;1&#125;,</span><br><span class="line">  pages = &#123;259--272&#125;,</span><br><span class="line">  doi = &#123;10.1109/TCSVT.2024.3459938&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法53：PAMFN（渐进自适应多模态融合网络）"><a href="#方法53：PAMFN（渐进自适应多模态融合网络）" class="headerlink" title="方法53：PAMFN（渐进自适应多模态融合网络）"></a>方法53：PAMFN（渐进自适应多模态融合网络）</h3><p><strong>方法名称：</strong> PAMFN <a href="zotero://select/library/items/84MMVAKK">📚</a></p>
+<p><strong>论文标题：</strong> Multimodal Action Quality Assessment</p>
+<p><strong>核心技术：</strong> RGB(I3D) + 光流(ConvLSTM) + 音频(VGGish) + 渐进融合模块 + 自适应权重学习</p>
+<p><strong>数据集：</strong> Fis-V, RG</p>
+<p><strong>主要贡献：</strong> RGB、光流、音频多模态逐步融合，自适应选择最优融合策略</p>
+<p><strong>应用背景：</strong> 存在多源传感或多模态信息的场景</p>
+<p><strong>优缺点：</strong> ✅ 融合增强鲁棒性；❌ 模态缺失/不同步时性能波动</p>
+<p><strong>演变与进步：</strong> 与VL/指令对齐形成综合方案</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zeng-MultimodalActionQuality-2024,</span><br><span class="line">  title = &#123;Multimodal Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Zeng, Ling-An and Zheng, Wei-Shi&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;IEEE Transactions on Image Processing&#125;,</span><br><span class="line">  volume = &#123;33&#125;,</span><br><span class="line">  eprint = &#123;2402.09444&#125;,</span><br><span class="line">  primaryclass = &#123;eess&#125;,</span><br><span class="line">  pages = &#123;1600--1613&#125;,</span><br><span class="line">  doi = &#123;10.1109/TIP.2024.3362135&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法54：NAE-AQA（叙述性动作评估）"><a href="#方法54：NAE-AQA（叙述性动作评估）" class="headerlink" title="方法54：NAE-AQA（叙述性动作评估）"></a>方法54：NAE-AQA（叙述性动作评估）</h3><p><strong>方法名称：</strong> NAE-AQA <a href="zotero://select/library/items/NPJKZ8LF">📚</a></p>
+<p><strong>论文标题：</strong> Narrative Action Evaluation with Prompt-Guided Multimodal Interaction</p>
+<p><strong>核心技术：</strong> CLIP视觉编码器 + 文本编码器 + Prompt工程 + 视频-文本匹配 + 自然语言生成</p>
+<p><strong>数据集：</strong> MTL-AQA, FineGym</p>
+<p><strong>主要贡献：</strong> 将评分回归转化为视频-文本匹配任务，生成自然语言描述，实现可解释的评分</p>
+<p><strong>应用背景：</strong> 需要自然语言反馈的评估</p>
+<p><strong>优缺点：</strong> ✅ 生成自然语言反馈，新颖范式；❌ 依赖大规模多模态预训练</p>
+<p><strong>演变与进步：</strong> 开启”评分+描述生成”的新范式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Zhang-NarrativeActionEvaluation-2024,</span><br><span class="line">  title = &#123;Narrative Action Evaluation with Prompt-Guided Multimodal Interaction&#125;,</span><br><span class="line">  booktitle = &#123;IEEE/CVF Conference on Computer Vision and Pattern Recognition, CVPR 2024, Seattle, WA, USA, June 16-22, 2024&#125;,</span><br><span class="line">  author = &#123;Zhang, Shiyi and Bai, Sule and Chen, Guangyi and Chen, Lei and Lu, Jiwen and Wang, Junle and Tang, Yansong&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  pages = &#123;18430--18439&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  doi = &#123;10.1109/CVPR52733.2024.01744&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法55：VATP-Net（视觉-语义对齐时间解析网络）"><a href="#方法55：VATP-Net（视觉-语义对齐时间解析网络）" class="headerlink" title="方法55：VATP-Net（视觉-语义对齐时间解析网络）"></a>方法55：VATP-Net（视觉-语义对齐时间解析网络）</h3><p><strong>方法名称：</strong> VATP-Net <a href="zotero://select/library/items/D2H3IQQL">📚</a></p>
+<p><strong>论文标题：</strong> Visual-Semantic Alignment Temporal Parsing for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 自监督时间解析模块(SUTPM) + 多模态交互模块(MMI) + 视觉-文本对齐损失</p>
+<p><strong>数据集：</strong> MTL-AQA, Fis-V, RG, FineFS</p>
+<p><strong>主要贡献：</strong> 自监督时间解析模块与多模态交互模块联合学习，实现视觉与语义对齐</p>
+<p><strong>应用背景：</strong> 有文本标注与视觉信息的评估</p>
+<p><strong>优缺点：</strong> ✅ 跨域性能稳定；❌ 多模态对齐复杂</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Gedamu-VisualsemanticAlignmentTemporal-2024,</span><br><span class="line">  title = &#123;Visual-Semantic Alignment Temporal Parsing for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Gedamu, Kumie and Ji, Yanli and Yang, Yang and Shao, Jie and Shen, Heng Tao&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS FOR VIDEO TECHNOLOGY&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法56：2M-AF（多模态评估框架）"><a href="#方法56：2M-AF（多模态评估框架）" class="headerlink" title="方法56：2M-AF（多模态评估框架）"></a>方法56：2M-AF（多模态评估框架）</h3><p><strong>方法名称：</strong> 2M-AF <a href="zotero://select/library/items/JTYBT7RQ">📚</a></p>
+<p><strong>论文标题：</strong> A Strong Multi-Modality Framework for Human Action Quality Assessment with Self-Supervised Representation Learning</p>
+<p><strong>核心技术：</strong> RGB(I3D)+骨架(GCN) + 自监督掩码编码GCN + 多模态融合 + 对比学习</p>
+<p><strong>数据集：</strong> UNLV-Diving, AQA-7, MMFS-63</p>
+<p><strong>主要贡献：</strong> RGB+骨架多模态融合，结合自监督掩码编码GCN增强表示学习</p>
+<p><strong>应用背景：</strong> 骨架与RGB均可用的评估</p>
+<p><strong>优缺点：</strong> ✅ 多模态融合充分，自监督增强；❌ 骨架提取精度依赖强</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Ding-2MAFStrongMultiModality-2024,</span><br><span class="line">  title = &#123;2M-AF: A Strong Multi-Modality Framework For Human Action Quality Assessment with Self-Supervised Representation Learning&#125;,</span><br><span class="line">  shorttitle = &#123;2M-AF&#125;,</span><br><span class="line">  booktitle = &#123;Proceedings of the 32nd ACM International Conference on Multimedia&#125;,</span><br><span class="line">  author = &#123;Ding, Yuning and Zhang, Sifan and Shenglan, Liu and Zhang, Jinrong and Chen, Wenyue and Haifei, Duan and Dong, Bingcheng and Sun, Tao&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = oct,</span><br><span class="line">  pages = &#123;1564--1572&#125;,</span><br><span class="line">  publisher = &#123;ACM&#125;,</span><br><span class="line">  address = &#123;Melbourne VIC Australia&#125;,</span><br><span class="line">  doi = &#123;10.1145/3664647.3681084&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法57：EGCN（集成图卷积网络）"><a href="#方法57：EGCN（集成图卷积网络）" class="headerlink" title="方法57：EGCN（集成图卷积网络）"></a>方法57：EGCN（集成图卷积网络）</h3><p><strong>方法名称：</strong> EGCN</p>
+<p><strong>论文标题：</strong> EGCN: An Ensemble-Based Learning Framework for Exploring Graph Convolutional Network Variations</p>
+<p><strong>核心技术：</strong> 骨架提取 + 位置和方向信息融合 + 多个GCN变体集成 + 加权融合</p>
+<p><strong>数据集：</strong> UI-PRDM(康复), KIMORE(康复)</p>
+<p><strong>性能：</strong></p>
+<ul>
+<li>UI-PRDM: 准确率 = 0.95</li>
+<li>KIMORE: 准确率 = 0.9282</li>
+</ul>
+<p><strong>主要贡献：</strong> 结合位置和方向信息的集成学习，多个GCN的融合策略提升康复评估</p>
+<p><strong>应用背景：</strong> 物理康复与保健评估</p>
+<p><strong>优缺点：</strong> ✅ 集成学习稳定；❌ 参数量和计算复杂度高</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Yu-EGCNEnsemblebasedLearning-2022a,</span><br><span class="line">  title = &#123;EGCN: An Ensemble-Based Learning Framework for Exploring Effective Skeleton-Based Rehabilitation Exercise Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;EGCN&#125;,</span><br><span class="line">  booktitle = &#123;Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence&#125;,</span><br><span class="line">  author = &#123;Yu, Bruce X.B. and Liu, Yan and Zhang, Xiang and Chen, Gong and Chan, Keith C.C.&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  month = jul,</span><br><span class="line">  pages = &#123;3681--3687&#125;,</span><br><span class="line">  publisher = &#123;International Joint Conferences on Artificial Intelligence Organization&#125;,</span><br><span class="line">  address = &#123;Vienna, Austria&#125;,</span><br><span class="line">  doi = &#123;10.24963/ijcai.2022/511&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法58：EK-GCN（专家知识引导的图卷积网络）"><a href="#方法58：EK-GCN（专家知识引导的图卷积网络）" class="headerlink" title="方法58：EK-GCN（专家知识引导的图卷积网络）"></a>方法58：EK-GCN（专家知识引导的图卷积网络）</h3><p><strong>方法名称：</strong> EK-GCN (Expert-Knowledge-based Graph Convolutional Network)</p>
+<p><strong>论文标题：</strong> An Expert-Knowledge-Based Graph Convolutional Network for Skeleton-Based Physical Rehabilitation Exercises Assessment</p>
+<p><strong>核心技术：</strong> 骨架提取 + 专家知识驱动的加权图构建 + 关键关节强调 + GCN卷积 + 康复评分预测</p>
+<p><strong>数据集：</strong> KIMORE(康复)</p>
+<p><strong>主要贡献：</strong> 加权图结构由专家知识指导关键关节和运动特征的选择</p>
+<p><strong>应用背景：</strong> 物理康复教学与评估</p>
+<p><strong>优缺点：</strong> ✅ 专家知识显式融入；❌ 需要获取高质量专家知识</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;He-ExpertKnowledgeBasedGraphConvolutional-2024,</span><br><span class="line">  title = &#123;An Expert-Knowledge-Based Graph Convolutional Network for Skeleton- Based Physical Rehabilitation Exercises Assessment&#125;,</span><br><span class="line">  author = &#123;He, Tian and Chen, Yang and Wang, Ling and Cheng, Hong&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;IEEE Transactions on Neural Systems and Rehabilitation Engineering&#125;,</span><br><span class="line">  volume = &#123;32&#125;,</span><br><span class="line">  pages = &#123;1916--1925&#125;,</span><br><span class="line">  doi = &#123;10.1109/TNSRE.2024.3400790&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法59：DNLA（判别性非局部注意）"><a href="#方法59：DNLA（判别性非局部注意）" class="headerlink" title="方法59：DNLA（判别性非局部注意）"></a>方法59：DNLA（判别性非局部注意）</h3><p><strong>方法名称：</strong> DNLA <a href="zotero://select/library/items/PWTW8WGZ">📚</a></p>
+<p><strong>论文标题：</strong> Learning Sparse Temporal Video Mapping for Action Quality Assessment in Floor Gymnastics</p>
+<p><strong>核心技术：</strong> 骨架与视频多模态特征 + 稀疏特征提取 + 判别性非局部注意 + 动作质量评分</p>
+<p><strong>数据集：</strong> AGF-Olympics(体操)</p>
+<p><strong>主要贡献：</strong> 从骨架和视频中提取稀疏特征，抑制多余信息提升判别性</p>
+<p><strong>应用背景：</strong> 体操项目的评估</p>
+<p><strong>优缺点：</strong> ✅ 稀疏特征提取创新；❌ 性能相对较低</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zahan-LearningSparseTemporal-2024,</span><br><span class="line">  title = &#123;Learning Sparse Temporal Video Mapping for Action Quality Assessment in Floor Gymnastics&#125;,</span><br><span class="line">  author = &#123;Zahan, Sania and Mubashar Hassan, Ghulam and Mian, Ajmal&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;IEEE Transactions on Instrumentation and Measurement&#125;,</span><br><span class="line">  volume = &#123;73&#125;,</span><br><span class="line">  pages = &#123;1--11&#125;,</span><br><span class="line">  doi = &#123;10.1109/TIM.2024.3398072&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法60：NS-AQA（神经符号AQA）"><a href="#方法60：NS-AQA（神经符号AQA）" class="headerlink" title="方法60：NS-AQA（神经符号AQA）"></a>方法60：NS-AQA（神经符号AQA）</h3><p><strong>方法名称：</strong> NS-AQA <a href="zotero://select/library/items/I459GXXP">📚</a></p>
+<p><strong>论文标题：</strong> Hierarchical Neurosymbolic Approach for Comprehensive and Explainable Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 神经网络(I3D特征提取) + 符号推理(规则库、本体) + 分层解释模块 + 综合报告生成</p>
+<p><strong>数据集：</strong> FineDiving(跳水)</p>
+<p><strong>主要贡献：</strong> 结合神经网络与符号推理，提供可解释的详细AQA报告与改进建议</p>
+<p><strong>应用背景：</strong> 需要高度可解释性与指导建议的评估</p>
+<p><strong>优缺点：</strong> ✅ 高度可解释，可生成建议；❌ 符号知识库构建复杂，依赖领域专家</p>
+<p><strong>演变与进步：</strong> 开启”神经-符号混合”的可解释AQA新方向</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;HierarchicalNeuroSymbolicApproach2024,</span><br><span class="line">  title = &#123;Hierarchical NeuroSymbolic Approach for Comprehensive and Explainable Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)&#125;,</span><br><span class="line">  author = &#123;Okamoto, Lauren and Parmar, Paritosh&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = jun,</span><br><span class="line">  pages = &#123;3204--3213&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Seattle, WA, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/cvprw63382.2024.00326&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法61：RICA2（规则知情校准评估）"><a href="#方法61：RICA2（规则知情校准评估）" class="headerlink" title="方法61：RICA2（规则知情校准评估）"></a>方法61：RICA2（规则知情校准评估）</h3><p><strong>方法名称：</strong> RICA2 <a href="zotero://select/library/items/BJ5XFDQ7">📚</a></p>
+<p><strong>论文标题：</strong> RICA2: Rubric-Informed, Calibrated Assessment of Actions</p>
+<p><strong>核心技术：</strong> DAG表示(动作步骤+评分标准) + 图神经网络(GNN) + 概率嵌入 + 校准机制</p>
+<p><strong>数据集：</strong> JIGSAWS, MTL-AQA, FineDiving</p>
+<p><strong>主要贡献：</strong> 将动作步骤和评分标准表示为有向无环图(DAG)，使用GNN生成概率嵌入</p>
+<p><strong>应用背景：</strong> 有明确规则与标准的评估</p>
+<p><strong>优缺点：</strong> ✅ 规则显式表示，可校准；❌ DAG构建复杂</p>
+<p><strong>演变与进步：</strong> 与符号方法融合，提升可解释性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Majeedi-RICA2RubricInformedCalibrated-2024,</span><br><span class="line">  title = &#123;RICA2: Rubric-Informed, Calibrated Assessment of Actions&#125;,</span><br><span class="line">  shorttitle = &#123;RICA\textbackslash (\textasciicircum\textbackslash mbox2\textbackslash )&#125;,</span><br><span class="line">  booktitle = &#123;Computer Vision - ECCV 2024 - 18th European Conference, Milan, Italy, September 29-October 4, 2024, Proceedings, Part LXIII&#125;,</span><br><span class="line">  author = &#123;Majeedi, Abrar and Gajjala, Viswanatha Reddy and GNVV, Satya Sai Srinath Namburi and Li, Yin&#125;,</span><br><span class="line">  editor = &#123;Leonardis, Ales and Ricci, Elisa and Roth, Stefan and Russakovsky, Olga and Sattler, Torsten and Varol, G&#123;\&quot;u&#125;l&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  series = &#123;Lecture Notes in Computer Science&#125;,</span><br><span class="line">  volume = &#123;15121&#125;,</span><br><span class="line">  pages = &#123;143--161&#125;,</span><br><span class="line">  publisher = &#123;Springer&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-031-73036-8_9&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法62：DuRA（双参考辅助网络）"><a href="#方法62：DuRA（双参考辅助网络）" class="headerlink" title="方法62：DuRA（双参考辅助网络）"></a>方法62：DuRA（双参考辅助网络）</h3><p><strong>方法名称：</strong> DuRA <a href="zotero://select/library/items/BZ9CPRS2">📚</a></p>
+<p><strong>论文标题：</strong> Dual-Referenced Assistive Network for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D特征提取 + 语义级等级原型库 + 个体级参考样本池 + 双参考对比机制</p>
+<p><strong>数据集：</strong> AQA-7, MTL-AQA</p>
+<p><strong>主要贡献：</strong> 利用语义级等级原型和个体级参考样本增强细节关注，过滤无关信息</p>
+<p><strong>应用背景：</strong> 跨域评估</p>
+<p><strong>优缺点：</strong> ✅ 双参考机制创新；❌ 参考池构建与维护复杂</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Huang-DualreferencedAssistiveNetwork-2025,</span><br><span class="line">  title = &#123;Dual-Referenced Assistive Network for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Huang, Keyi and Tian, Yi and Yu, Chen and Huang, Yaping&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  month = jan,</span><br><span class="line">  journal = &#123;Neurocomputing&#125;,</span><br><span class="line">  volume = &#123;614&#125;,</span><br><span class="line">  pages = &#123;128786&#125;,</span><br><span class="line">  doi = &#123;10.1016/j.neucom.2024.128786&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法63：SAP-Net（自监督子动作解析网络）"><a href="#方法63：SAP-Net（自监督子动作解析网络）" class="headerlink" title="方法63：SAP-Net（自监督子动作解析网络）"></a>方法63：SAP-Net（自监督子动作解析网络）</h3><p><strong>方法名称：</strong> SAP-Net  <a href="zotero://select/library/items/DH7WUES7">📚</a></p>
+<p><strong>论文标题：</strong> Self-Supervised Subaction Parsing Network for Semi-Supervised Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 教师-学生网络 + 伪标签生成 + 一致性正则化 + 自监督子动作解析</p>
+<p><strong>数据集：</strong> MTL-AQA, FineDiving, RG, FineFS</p>
+<p><strong>主要贡献：</strong> 教师-学生网络，利用伪标签进行一致性正则化，支持半监督学习</p>
+<p><strong>应用背景：</strong> 标签数据不足的场景</p>
+<p><strong>优缺点：</strong> ✅ 半监督框架有效；❌ 伪标签质量依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Gedamu-SelfsupervisedSubactionParsing-2024,</span><br><span class="line">  title = &#123;Self-Supervised Subaction Parsing Network for Semi-Supervised Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Gedamu, Kumie and Ji, Yanli and Yang, Yang and Shao, Jie and Shen, Heng Tao&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;IEEE Transactions on Image Processing&#125;,</span><br><span class="line">  pages = &#123;1--1&#125;,</span><br><span class="line">  doi = &#123;10.1109/TIP.2024.3468870&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法64：TRS（教师-参考-学生架构）"><a href="#方法64：TRS（教师-参考-学生架构）" class="headerlink" title="方法64：TRS（教师-参考-学生架构）"></a>方法64：TRS（教师-参考-学生架构）</h3><p><strong>方法名称：</strong> TRS <a href="zotero://select/library/items/5T7P5T93">📚</a></p>
+<p><strong>论文标题：</strong> Semi-Supervised Teacher-Reference-Student Architecture for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 教师网络(生成伪标签) + 参考网络(提供补充监督) + 学生网络(目标模型) + 知识蒸馏</p>
+<p><strong>数据集：</strong> JIGSAWS , MTL-AQA, RG</p>
+<p><strong>主要贡献：</strong> 半监督框架，教师网络生成伪标签，参考网络提供补充监督</p>
+<p><strong>应用背景：</strong> 标签不足的场景</p>
+<p><strong>优缺点：</strong> ✅ 三网络互补；❌ 框架复杂，参数多</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Yun-SemisupervisedTeacherReferenceStudentArchitecture-2024,</span><br><span class="line">  title = &#123;Semi-Supervised Teacher-Reference-Student Architecture for Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;Computer Vision - ECCV 2024 - 18th European Conference, Milan, Italy, September 29-October 4, 2024, Proceedings, Part LXXIV&#125;,</span><br><span class="line">  author = &#123;Yun, Wulian and Qi, Mengshi and Peng, Fei and Ma, Huadong&#125;,</span><br><span class="line">  editor = &#123;Leonardis, Ales and Ricci, Elisa and Roth, Stefan and Russakovsky, Olga and Sattler, Torsten and Varol, G&#123;\&quot;u&#125;l&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  series = &#123;Lecture Notes in Computer Science&#125;,</span><br><span class="line">  volume = &#123;15132&#125;,</span><br><span class="line">  pages = &#123;161--178&#125;,</span><br><span class="line">  publisher = &#123;Springer&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-031-72904-1_10&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法65：PECoP（参数高效连续预训练）"><a href="#方法65：PECoP（参数高效连续预训练）" class="headerlink" title="方法65：PECoP（参数高效连续预训练）"></a>方法65：PECoP（参数高效连续预训练）</h3><p><strong>方法名称：</strong> PECoP <a href="zotero://select/library/items/X7XH84R9">📚</a></p>
+<p><strong>论文标题：</strong> PECoP: Parameter Efficient Continual Pretraining for Action Quality Assessment</p>
+<p><strong>核心技术：</strong> I3D主干 + 轻量级3D-Adapter注入 + 域特定自监督预训练 + 参数高效微调</p>
+<p><strong>数据集：</strong> JIGSAWS, MTL-AQA, FineDiving</p>
+<p><strong>主要贡献：</strong> 轻量级Adapter实现参数高效的连续预训练，通过域特定自监督任务增强</p>
+<p><strong>应用背景：</strong> 需要多任务学习与参数高效微调的场景</p>
+<p><strong>优缺点：</strong> ✅ 参数高效、内存占用低；❌ 适配器设计需要精心调优</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Dadashzadeh-PECoPParameterEfficient-2024,</span><br><span class="line">  title = &#123;PECoP: Parameter Efficient Continual Pretraining for Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;PECoP&#125;,</span><br><span class="line">  booktitle = &#123;2024 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)&#125;,</span><br><span class="line">  author = &#123;Dadashzadeh, Amirhossein and Duan, Shuchao and Whone, Alan and Mirmehdi, Majid&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = jan,</span><br><span class="line">  pages = &#123;42--52&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Waikoloa, HI, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/WACV57701.2024.00012&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法66：Continual-AQA（连续学习AQA）"><a href="#方法66：Continual-AQA（连续学习AQA）" class="headerlink" title="方法66：Continual-AQA（连续学习AQA）"></a>方法66：Continual-AQA（连续学习AQA）</h3><p><strong>方法名称：</strong> Continual-AQA <a href="zotero://select/library/items/JMDBZY7G">📚</a></p>
+<p><strong>论文标题：</strong> Continual Action Assessment via Task-Consistent Score-Discriminative Feature Distribution Modeling</p>
+<p><strong>核心技术：</strong> 连续学习框架 + FSCAR模块(代表样本抽取+增强) + AGSG模块(新旧任务知识组合) + 特征分布建模</p>
+<p><strong>数据集：</strong> AQA-7, BEST, MTL-AQA</p>
+<p><strong>主要贡献：</strong> FSCAR模块提取代表样本并增强特征/评分；AGSG模块组合新旧任务知识，防止灾难性遗忘</p>
+<p><strong>应用背景：</strong> 需要持续学习新任务的场景</p>
+<p><strong>优缺点：</strong> ✅ 连续学习创新；❌ 复杂度高，参数敏感</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Li-ContinualActionAssessment-2024,</span><br><span class="line">  title = &#123;Continual Action Assessment via Task-Consistent Score-Discriminative Feature Distribution Modeling&#125;,</span><br><span class="line">  author = &#123;Li, Yuan-Ming and Zeng, Ling-An and Meng, Jing-Ke and Zheng, Wei-Shi&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = oct,</span><br><span class="line">  journal = &#123;IEEE Transactions on Circuits and Systems for Video Technology&#125;,</span><br><span class="line">  volume = &#123;34&#125;,</span><br><span class="line">  number = &#123;10&#125;,</span><br><span class="line">  eprint = &#123;2309.17105&#125;,</span><br><span class="line">  primaryclass = &#123;cs&#125;,</span><br><span class="line">  pages = &#123;9112--9124&#125;,</span><br><span class="line">  doi = &#123;10.1109/TCSVT.2024.3396692&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法67：MAGR（流形对齐图正则化）"><a href="#方法67：MAGR（流形对齐图正则化）" class="headerlink" title="方法67：MAGR（流形对齐图正则化）"></a>方法67：MAGR（流形对齐图正则化）</h3><p><strong>方法名称：</strong> MAGR <a href="zotero://select/library/items/29T9CXZ2">📚</a></p>
+<p><strong>论文标题：</strong> MAGR: Manifold-Aligned Graph Regularization for Continual Action Quality Assessment</p>
+<p><strong>核心技术：</strong> 流形学习 + 特征流形对齐 + 图正则化 + 特征分布一致性约束</p>
+<p><strong>数据集：</strong> MTL-AQA, UNLV-Dive, FineDiving, JDM-MSA</p>
+<p><strong>主要贡献：</strong> 对齐旧特征与动态变化的特征流形，图正则化维持特征分布一致性</p>
+<p><strong>应用背景：</strong> 连续学习与持续训练</p>
+<p><strong>优缺点：</strong> ✅ 流形对齐创新；❌ 计算复杂度高</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@incollection&#123;zhouMAGRManifoldAlignedGraph2025,</span><br><span class="line">  title = &#123;MAGR: Manifold-Aligned Graph Regularization for Continual Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;MAGR&#125;,</span><br><span class="line">  author = &#123;Zhou, Kanglei and Wang, Liyuan and Zhang, Xingxing and Shum, Hubert P. H. and Li, Frederick W. B. and Li, Jianguo and Liang, Xiaohui&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  volume = &#123;15069&#125;,</span><br><span class="line">  eprint = &#123;2403.04398&#125;,</span><br><span class="line">  primaryclass = &#123;cs&#125;,</span><br><span class="line">  pages = &#123;375--392&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-031-73247-8_22&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法68：CoFInAl（粗细指令对齐）"><a href="#方法68：CoFInAl（粗细指令对齐）" class="headerlink" title="方法68：CoFInAl（粗细指令对齐）"></a>方法68：CoFInAl（粗细指令对齐）</h3><p><strong>方法名称：</strong> CoFInAl <a href="zotero://select/library/items/HWM79QV2">📚</a></p>
+<p><strong>论文标题：</strong> CoFInAl: Enhancing Action Quality Assessment with Coarse-to-Fine Instruction Alignment</p>
+<p><strong>核心技术：</strong> 粗粒度评级模块(CRPM) + 精细评分模块(FSRM) + 指令引导的特征提取 + 两阶段评分</p>
+<p><strong>数据集：</strong> Fis-V, Rhy.Gym</p>
+<p><strong>主要贡献：</strong> 模仿评委评分过程，先进行粗粒度评级，再进行精细评分，两阶段互补</p>
+<p><strong>应用背景：</strong> 流程复杂、规则明确的长时视频（如艺术体操、花样滑冰）</p>
+<p><strong>优缺点：</strong> ✅ 长序鲁棒、效率高、符合评分习惯；❌ 依赖高质量”指令/规范”设计</p>
+<p><strong>演变与进步：</strong> 与Transformer家族(GDLT/TPT)互补，在长视频数据集表现优异</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Zhou-CoFInAlEnhancingAction-2024,</span><br><span class="line">  title = &#123;CoFInAl: Enhancing Action Quality Assessment with Coarse-to-Fine Instruction Alignment&#125;,</span><br><span class="line">  shorttitle = &#123;CoFInAl&#125;,</span><br><span class="line">  booktitle = &#123;Proceedings of the Thirty-ThirdInternational Joint Conference on Artificial Intelligence&#125;,</span><br><span class="line">  author = &#123;Zhou, Kanglei and Li, Junlin and Cai, Ruizhi and Wang, Liyuan and Zhang, Xingxing and Liang, Xiaohui&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = aug,</span><br><span class="line">  eprint = &#123;2404.13999&#125;,</span><br><span class="line">  primaryclass = &#123;cs&#125;,</span><br><span class="line">  pages = &#123;1771--1779&#125;,</span><br><span class="line">  doi = &#123;10.24963/ijcai.2024/196&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法69：ZEAL（零样本外科技能评估）"><a href="#方法69：ZEAL（零样本外科技能评估）" class="headerlink" title="方法69：ZEAL（零样本外科技能评估）"></a>方法69：ZEAL（零样本外科技能评估）</h3><p><strong>方法名称：</strong> ZEAL <a href="zotero://select/library/items/95P5T46F">📚</a></p>
+<p><strong>论文标题：</strong> ZEAL: Surgical Skill Assessment with Zero-Shot Tool Inference Using Unified Foundation Model</p>
+<p><strong>核心技术：</strong> 统一基础模型(如SAM) + 工具分割与推理 + 零样本转移 + 手术技能评估</p>
+<p><strong>应用背景：</strong> 外科手术技能评估</p>
+<p><strong>主要贡献：</strong> 利用统一基础模型进行工具分割和手术技能评估，实现零样本泛化</p>
+<p><strong>优缺点：</strong> ✅ 零样本泛化能力强；❌ 依赖基础模型性能</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@misc&#123;Kondo-ZEALSurgicalSkill-2024,</span><br><span class="line">  title = &#123;ZEAL: Surgical Skill Assessment with Zero-Shot Tool Inference Using Unified Foundation Model&#125;,</span><br><span class="line">  shorttitle = &#123;ZEAL&#125;,</span><br><span class="line">  author = &#123;Kondo, Satoshi&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = jul,</span><br><span class="line">  number = &#123;arXiv:2407.02738&#125;,</span><br><span class="line">  eprint = &#123;2407.02738&#125;,</span><br><span class="line">  primaryclass = &#123;cs&#125;,</span><br><span class="line">  publisher = &#123;arXiv&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2407.02738&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法70：LucidAction（分层多模型数据集）"><a href="#方法70：LucidAction（分层多模型数据集）" class="headerlink" title="方法70：LucidAction（分层多模型数据集）"></a>方法70：LucidAction（分层多模型数据集）</h3><p><strong>方法名称：</strong> LucidAction <a href="zotero://select/library/items/BGHYJJXR">📚</a></p>
+<p><strong>论文标题：</strong> LucidAction: A Hierarchical and Multi-Model Dataset for Comprehensive Action Quality Assessment</p>
+<p><strong>数据集特性：</strong> 多视角RGB视频、2D骨架序列、3D骨架序列、分层注释(整体评分、阶段评分、关键点评分)</p>
+<p><strong>数据集规模：</strong> 1000+ 视频，覆盖多个运动项目</p>
+<p><strong>主要贡献：</strong> 发布多视角、多模态、分层标注的AQA数据集，支持综合AQA分析与多任务学习</p>
+<p><strong>应用背景：</strong> 综合性AQA研究与基准测试</p>
+<p><strong>优缺点：</strong> ✅ 数据集完整性强，多模态丰富；❌ 标注成本高</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Dong-LucidActionHierarchicalMultimodel-,</span><br><span class="line">  title=&#123;LucidAction: A hierarchical and multi-model dataset for comprehensive action quality assessment&#125;,</span><br><span class="line">  author=&#123;Dong, Linfeng and others&#125;,</span><br><span class="line">  journal=&#123;NeurIPS&#125;,</span><br><span class="line">  year=&#123;2025&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法71：GAIA（AI生成视频的AQA）"><a href="#方法71：GAIA（AI生成视频的AQA）" class="headerlink" title="方法71：GAIA（AI生成视频的AQA）"></a>方法71：GAIA（AI生成视频的AQA）</h3><p><strong>方法名称：</strong> GAIA <a href="zotero://select/library/items/Q3U6TZVH">📚</a></p>
+<p><strong>论文标题：</strong> GAIA: Rethinking Action Quality Assessment for AI-Generated Videos</p>
+<p><strong>核心技术：</strong> 生成视频检测 + 运动一致性评估 + 物理可行性检验 + AI生成视频的质量评分</p>
+<p><strong>数据集：</strong> GAIA(新建 - AI生成视频AQA数据集)</p>
+<p><strong>主要贡献：</strong> 首个AI生成视频的AQA数据集和评估方法，应对生成视频质量评估新挑战</p>
+<p><strong>应用背景：</strong> AI生成视频的质量评估</p>
+<p><strong>优缺点：</strong> ✅ 面向新的应用场景；❌ AI生成视频多样性有限</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Chen-GAIARethinkingAction-2024,</span><br><span class="line">  title = &#123;GAIA: Rethinking Action Quality Assessment for AI-Generated Videos&#125;,</span><br><span class="line">  shorttitle = &#123;GAIA&#125;,</span><br><span class="line">  booktitle = &#123;Advances in Neural Information Processing Systems 38: Annual Conference on Neural Information Processing Systems 2024, NeurIPS 2024, Vancouver, BC, Canada, December 10 - 15, 2024&#125;,</span><br><span class="line">  author = &#123;Chen, Zijian and Sun, Wei and Tian, Yuan and Jia, Jun and Zhang, Zicheng and Wang, Jiarui and Huang, Ru and Min, Xiongkuo and Zhai, Guangtao and Zhang, Wen-Jun&#125;,</span><br><span class="line">  editor = &#123;Globersons, Amir and Mackey, Lester and Belgrave, Danielle and Fan, Angela and Paquet, Ulrich and Tomczak, Jakub M. and Zhang, Cheng&#125;,</span><br><span class="line">  year = 2024</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法72：CLN（对比学习康复评估）"><a href="#方法72：CLN（对比学习康复评估）" class="headerlink" title="方法72：CLN（对比学习康复评估）"></a>方法72：CLN（对比学习康复评估）</h3><p> 方法名称： <a href="zotero://select/library/items/UEJ24GER">📚</a><br> 论文标题： A Contrastive Learning Network for Performance Metric and Assessment of Physical Rehabilitation Exercises<br> 核心技术： 对比学习框架 + 绩效度量学习 + 多样本特征对齐<br> 数据集： KIMORE,UI-PRMD<br> 主要贡献： 面向康复场景构建对比学习网络，联合学习动作表现度量与评分，实现对异常/偏差动作的区分<br> 应用背景： 物理康复训练的动作质量评估与进度跟踪<br>优缺点：✅ 利用对比学习增强鲁棒性；❌ 数据集规模和多样性需验证</p>
+<p>演变与进步：将对比学习从通用表示学习扩展到专门的康复评估领域</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Yao-ContrastiveLearningNetwork-2023,</span><br><span class="line">  title = &#123;A Contrastive Learning Network for Performance Metric and Assessment of Physical Rehabilitation Exercises&#125;,</span><br><span class="line">  author = &#123;Yao, Long and Lei, Qing and Zhang, Hongbo and Du, Jixiang and Gao, Shangce&#125;,</span><br><span class="line">  year = 2023,</span><br><span class="line">  journal = &#123;IEEE Transactions on Neural Systems and Rehabilitation Engineering&#125;,</span><br><span class="line">  volume = &#123;31&#125;,</span><br><span class="line">  pages = &#123;3790--3802&#125;,</span><br><span class="line">  doi = &#123;10.1109/TNSRE.2023.3317411&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法73：DPFL-FS（骨架深度姿态特征-花样滑冰）"><a href="#方法73：DPFL-FS（骨架深度姿态特征-花样滑冰）" class="headerlink" title="方法73：DPFL-FS（骨架深度姿态特征-花样滑冰）"></a>方法73：DPFL-FS（骨架深度姿态特征-花样滑冰）</h3><p> 方法名称： ST-GCN-LSTM <a href="zotero://select/library/items/C2CV8B4U">📚</a><br> 论文标题： Skeleton-Based Deep Pose Feature Learning for Action Quality Assessment on Figure Skating Videos<br> 核心技术： 基于骨架的深度姿态特征学习 + 时序聚合<br> 数据集： MIT-Skate, Fis-V<br> 主要贡献： 以骨架特征为核心，弱化背景/外观干扰，提升对花样滑冰细粒度姿态与节奏的建模<br> 应用背景： 花样滑冰等对姿态精准度要求高的竞赛项目<br> 优缺点： ✅ 抗背景干扰、轻量；❌ 对关键点质量敏感，复杂编排建模受限<br> 演变与进步： 可与长序列Transformer/超图建模结合，提高长时视频鲁棒性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Li-SkeletonbasedDeepPose-2022,</span><br><span class="line">  title = &#123;Skeleton-Based Deep Pose Feature Learning for Action Quality Assessment on Figure Skating Videos&#125;,</span><br><span class="line">  author = &#123;Li, Huiying and Lei, Qing and Zhang, Hongbo and Du, Jixiang and Gao, Shangce&#125;,</span><br><span class="line">  year = 2022,</span><br><span class="line">  month = nov,</span><br><span class="line">  journal = &#123;Journal of Visual Communication and Image Representation&#125;,</span><br><span class="line">  volume = &#123;89&#125;,</span><br><span class="line">  pages = &#123;103625&#125;,</span><br><span class="line">  doi = &#123;10.1016/j.jvcir.2022.103625&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法74：SSTDT（骨架时空解耦Transformer）"><a href="#方法74：SSTDT（骨架时空解耦Transformer）" class="headerlink" title="方法74：SSTDT（骨架时空解耦Transformer）"></a>方法74：SSTDT（骨架时空解耦Transformer）</h3><p> 方法名称：SSTDT <a href="zotero://select/library/items/H5BIU25A">📚</a><br> 论文标题： Skeletal Spatio-Temporal Decoupling Transformer for Long-Duration Action Quality Assessment<br> 核心技术： 时空解耦式Transformer + 长时序建模 + 骨架表示<br> 数据集： MIT-Skate, Fis-V, RG<br> 主要贡献： 将时空因素解耦建模，缓解长视频中的依赖稀释与信息混杂<br> 应用背景： 规则复杂、流程长的体育项目（如艺术体操、花样滑冰）<br> 优缺点： ✅ 长序鲁棒、结构清晰；❌ 训练成本较高，对骨架噪声敏感<br> 演变与进步： 与多核超图/指令对齐类方法互补，可作为主干特征抽取器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Lei-SkeletalSpatiotemporalDecoupling-2025,</span><br><span class="line">  title = &#123;Skeletal Spatio-Temporal Decoupling Transformer for Long-Duration Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Lei, Qing and Yao, Long and Zhang, Hongbo and Du, Jixiang&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  month = nov,</span><br><span class="line">  journal = &#123;Knowledge-Based Systems&#125;,</span><br><span class="line">  volume = &#123;330&#125;,</span><br><span class="line">  pages = &#123;114672&#125;,</span><br><span class="line">  doi = &#123;10.1016/j.knosys.2025.114672&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法75：VL-AKL（语义感知视觉语言知识学习）"><a href="#方法75：VL-AKL（语义感知视觉语言知识学习）" class="headerlink" title="方法75：VL-AKL（语义感知视觉语言知识学习）"></a>方法75：VL-AKL（语义感知视觉语言知识学习）</h3><p> 方法名称： VL-AKL <a href="zotero://select/library/items/BRGKCIE4">📚</a><br> 论文标题： Vision-Language Action Knowledge Learning for Semantic-Aware Action Quality Assessment<br> 核心技术： 视觉-语言知识学习 + 语义对齐 + 指令/文本引导特征<br> 数据集： FineDiving, MTL-AQA, JIGSAWS, Fis-V<br> 主要贡献： 将动作语义知识注入AQA，利用文本先验指导特征抽取与评分<br> 应用背景： 需要遵循规则说明/裁判术语的项目<br> 优缺点： ✅ 语义可解释、可迁移；❌ 依赖文本质量与对齐策略<br> 演变与进步： 可与两阶段评分、层级指令方法（如PHI/CoFInAl）组合</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@incollection&#123;Xu-VisionLanguageActionKnowledge-2025,</span><br><span class="line">  title = &#123;Vision-Language Action Knowledge Learning for Semantic-Aware Action Quality Assessment&#125;,</span><br><span class="line">  booktitle = &#123;Computer Vision -- ECCV 2024&#125;,</span><br><span class="line">  author = &#123;Xu, Huangbiao and Ke, Xiao and Li, Yuezhou and Xu, Rui and Wu, Huanqi and Lin, Xiaofeng and Guo, Wenzhong&#125;,</span><br><span class="line">  editor = &#123;Leonardis, Ale&#123;\v s&#125; and Ricci, Elisa and Roth, Stefan and Russakovsky, Olga and Sattler, Torsten and Varol, G&#123;&quot;u&#125;l&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  volume = &#123;15100&#125;,</span><br><span class="line">  pages = &#123;423--440&#125;,</span><br><span class="line">  publisher = &#123;Springer Nature Switzerland&#125;,</span><br><span class="line">  address = &#123;Cham&#125;,</span><br><span class="line">  doi = &#123;10.1007/978-3-031-72946-1_24&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法76：HP-MSCR（层级姿态引导的多阶段对比回归）"><a href="#方法76：HP-MSCR（层级姿态引导的多阶段对比回归）" class="headerlink" title="方法76：HP-MSCR（层级姿态引导的多阶段对比回归）"></a>方法76：HP-MSCR（层级姿态引导的多阶段对比回归）</h3><p> 方法名称： HP-MSCR <a href="zotero://select/library/items/LPAB3YK4">📚</a><br> 论文标题： Action Quality Assessment via Hierarchical Pose-Guided Multi-Stage Contrastive Regression<br> 核心技术： 层级姿态引导 + 多阶段对比学习 + 回归评分<br> 数据集：FineDiving, MTL-AQA<br> 主要贡献： 将层级姿态线索逐步注入对比式回归，提高细粒度评分区分度<br> 应用背景： 骨架清晰、节奏明确的项目<br> 优缺点： ✅ 结构分明、可解释性较好；❌ 对关键点鲁棒性要求高<br> 演变与进步： 可与时空解耦/超图结构结合，提升长序表现</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Qi-ActionQualityAssessment-2025,</span><br><span class="line">  title = &#123;Action Quality Assessment via Hierarchical Pose-Guided Multi-Stage Contrastive Regression&#125;,</span><br><span class="line">  author = &#123;Qi, Mengshi and Ye, Hao and Peng, Jiaxuan and Ma, Huadong&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  journal = &#123;IEEE Trans. Image Process.&#125;,</span><br><span class="line">  volume = &#123;34&#125;,</span><br><span class="line">  pages = &#123;6461--6474&#125;,</span><br><span class="line">  doi = &#123;10.1109/TIP.2025.3613952&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法77：PHI（渐进层级指令）"><a href="#方法77：PHI（渐进层级指令）" class="headerlink" title="方法77：PHI（渐进层级指令）"></a>方法77：PHI（渐进层级指令）</h3><p> 方法名称： PHI <a href="zotero://select/library/items/RMWBPVUG">📚</a><br> 论文标题： PHI: Bridging Domain Shift in Long-Term Action Quality Assessment via Progressive Hierarchical Instruction<br> 核心技术： 渐进式层级指令对齐 + 域迁移 + 长时序建模<br> 数据集： RG, Fis-V, LOGO<br> 主要贡献： 通过层级指令缩小AQA特征与识别特征的域差，提升跨项目泛化<br> 应用背景： 规则明确、流程复杂的长视频评分<br> 优缺点： ✅ 跨域鲁棒、可解释；❌ 依赖高质量指令设计<br> 演变与进步： 与CoFInAl的两阶段评分互补，可作指令侧增强</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zhou-PHIBridgingDomain-2025,</span><br><span class="line">  title = &#123;PHI: Bridging Domain Shift in Long-Term Action Quality Assessment via Progressive Hierarchical Instruction&#125;,</span><br><span class="line">  shorttitle = &#123;PHI&#125;,</span><br><span class="line">  author = &#123;Zhou, Kanglei and Shum, Hubert P. H. and Li, Frederick W. B. and Zhang, Xingxing and Liang, Xiaohui&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  journal = &#123;IEEE Transactions on Image Processing&#125;,</span><br><span class="line">  volume = &#123;34&#125;,</span><br><span class="line">  pages = &#123;3718--3732&#125;,</span><br><span class="line">  doi = &#123;10.1109/TIP.2025.3574938&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法78：HC-FGAQA（以人为中心的细粒度AQA）"><a href="#方法78：HC-FGAQA（以人为中心的细粒度AQA）" class="headerlink" title="方法78：HC-FGAQA（以人为中心的细粒度AQA）"></a>方法78：HC-FGAQA（以人为中心的细粒度AQA）</h3><p> 方法名称： HC-FGAQA  <a href="zotero://select/library/items/IKSH4XFE">📚</a><br> 论文标题： Human-Centric Fine-Grained Action Quality Assessment<br> 核心技术： 以人为中心的细粒度建模 + 局部关键动作解析<br> 数据集： FineDiving-HM, AQA-7-HM,  MTL-AQA-HM<br> 主要贡献： 聚焦人体主体与关键细节动作的精细建模，提升细微差异的评分敏感度<br> 应用背景： 对细节评分敏感的专业项目<br> 优缺点： ✅ 细粒度强、可解释；❌ 可能对噪声与遮挡敏感<br> 演变与进步： 可与语义/指令约束联动，形成可解释评分链路</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Xu-HumancentricFinegrainedAction-2025,</span><br><span class="line">  title = &#123;Human-Centric Fine-Grained Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Xu, Jinglin and Yin, Sibo and Peng, Yuxin&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  journal = &#123;IEEE Transactions on Pattern Analysis and Machine Intelligence&#125;,</span><br><span class="line">  pages = &#123;1--13&#125;,</span><br><span class="line">  doi = &#123;10.1109/TPAMI.2025.3556935&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法79：Quality-Guided-Vision-Language-Learning"><a href="#方法79：Quality-Guided-Vision-Language-Learning" class="headerlink" title="方法79：Quality-Guided Vision-Language Learning"></a>方法79：Quality-Guided Vision-Language Learning</h3><p>方法名称：<a href="zotero://select/library/items/G9CQGK9F">📚</a></p>
+<p>论文标题：Quality-Guided Vision-Language Learning for Long-Term Action Quality Assessment</p>
+<p>核心技术：质量引导学习、视觉-语言多模态融合、长时序列处理、语言监督</p>
+<p>数据集：RG, Fis-V, FS1000, FineFS性能：（具体数值需查阅原论文）</p>
+<p>主要贡献：将质量标签作为引导信号，融合视觉和语言模态进行长时动作评估</p>
+<p>应用背景：长时体育运动评估、多模态学习</p>
+<p>优缺点：✅ 质量引导增强学习信号；❌ 依赖质量标注和语言描述</p>
+<p>演变与进步：在Vision-Language学习基础上加入质量监督，强化评估的目标导向性</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">@article&#123;Xu-QualityGuidedVisionLanguageLearning-2025,</span><br><span class="line">  title = &#123;Quality-Guided Vision-Language Learning for Long-Term Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Xu, Huangbiao and Wu, Huanqi and Ke, Xiao and Li, Yuezhou and Xu, Rui and Guo, Wenzhong&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  journal = &#123;IEEE Transactions on Multimedia&#125;,</span><br><span class="line">  volume = &#123;27&#125;,</span><br><span class="line">  pages = &#123;7326--7339&#125;,</span><br><span class="line">  doi = &#123;10.1109/TMM.2025.3599078&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法80：B2S（从节拍到评分）"><a href="#方法80：B2S（从节拍到评分）" class="headerlink" title="方法80：B2S（从节拍到评分）"></a>方法80：B2S（从节拍到评分）</h3><p> 方法名称： B2S <a href="zotero://select/library/items/GR5UNVAM">📚</a><br> 论文标题： From Beats to Scores: A Multi-Modal Framework for Comprehensive Figure Skating Assessment<br> 核心技术： 多模态融合（视觉+节拍/音频）+ 全流程评分<br> 数据集： Fis-V, FS1000, FineFS<br> 主要贡献： 引入节拍/音乐信息辅助评分，提升对编排与节奏的感知<br> 应用背景： 音乐驱动、编排与节奏强相关的项目<br> 优缺点： ✅ 捕捉节奏语义；❌ 对音频质量与对齐敏感<br> 演变与进步： 可与骨架/指令模块组合提升解释性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Wang-BeatsScoresMultiModal-2025,</span><br><span class="line">  title = &#123;From Beats to Scores: A Multi-Modal Framework for Comprehensive Figure Skating Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;From Beats to Scores&#125;,</span><br><span class="line">  booktitle = &#123;2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)&#125;,</span><br><span class="line">  author = &#123;Wang, Fengshun and Wang, Qiurui and Chen, Dan&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  month = jun,</span><br><span class="line">  pages = &#123;5895--5904&#125;,</span><br><span class="line">  publisher = &#123;IEEE&#125;,</span><br><span class="line">  address = &#123;Nashville, TN, USA&#125;,</span><br><span class="line">  doi = &#123;10.1109/cvprw67362.2025.00588&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法81：FineCausal（可解释因果细粒度AQA）"><a href="#方法81：FineCausal（可解释因果细粒度AQA）" class="headerlink" title="方法81：FineCausal（可解释因果细粒度AQA）"></a>方法81：FineCausal（可解释因果细粒度AQA）</h3><p> 方法名称： FineCausal <a href="zotero://select/library/items/5QTGWWGE">📚</a><br> 论文标题： FineCausal: A Causal-Based Framework for Interpretable Fine-Grained Action Quality Assessment<br> 核心技术： 因果建模 + 细粒度可解释评分<br> 数据集： FineDiving-HM<br> 主要贡献： 融合因果推断以区分“相关”与“致因”因素，增强评分解释性<br> 应用背景： 需要判定关键失误/奖惩因子的项目<br> 优缺点： ✅ 可解释、鲁棒于混杂；❌ 建模假设较强<br> 演变与进步： 可与指令/语义先验结合约束因果图</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Han-FineCausalCausalBasedFramework-2025,</span><br><span class="line">  title = &#123;FineCausal: A Causal-Based Framework for Interpretable Fine-Grained Action Quality Assessment&#125;,</span><br><span class="line">  shorttitle = &#123;FineCausal&#125;,</span><br><span class="line">  booktitle = &#123;IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops, CVPR Workshops 2025, Nashville, TN, USA, June 11-15, 2025&#125;,</span><br><span class="line">  author = &#123;Han, Ruisheng and Zhou, Kanglei and &#123;Atapour-Abarghouei&#125;, Amir and Liang, Xiaohui and Shum, Hubert P. H.&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  pages = &#123;6018--6027&#125;,</span><br><span class="line">  publisher = &#123;Computer Vision Foundation / IEEE&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法82：TS-MambaPyramid（两流Mamba金字塔）"><a href="#方法82：TS-MambaPyramid（两流Mamba金字塔）" class="headerlink" title="方法82：TS-MambaPyramid（两流Mamba金字塔）"></a>方法82：TS-MambaPyramid（两流Mamba金字塔）</h3><p> 方法名称： TS-MambaPyramid <a href="zotero://select/library/items/89VY7GV8">📚</a><br> 论文标题： Learning Long-Range Action Representation by Two-Stream Mamba Pyramid Network for Figure Skating Assessment<br> 核心技术： 两流结构（外观/运动或骨架/视频）+ 状态空间模型（Mamba）+ 金字塔长程建模<br> 数据集： Fis-V, FS1000, FineFS<br> 主要贡献： 结合Mamba的长程依赖与两流互补以建模长视频<br> 应用背景： 花样滑冰等长时序项目<br> 优缺点： ✅ 长依赖建模强；❌ 训练/推理成本较高<br> 演变与进步： 可与指令/节拍模块融合提升语义一致性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@inproceedings&#123;Wang-LearningLongRangeAction-2025,</span><br><span class="line">  title = &#123;Learning Long-Range Action Representation by Two-Stream Mamba Pyramid Network for Figure Skating Assessment&#125;,</span><br><span class="line">  booktitle = &#123;Proceedings of the 33rd ACM International Conference on Multimedia&#125;,</span><br><span class="line">  author = &#123;Wang, Fengshun and Wang, Qiurui and Zhao, Peilin&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  month = oct,</span><br><span class="line">  pages = &#123;867--875&#125;,</span><br><span class="line">  publisher = &#123;ACM&#125;,</span><br><span class="line">  address = &#123;Dublin Ireland&#125;,</span><br><span class="line">  doi = &#123;10.1145/3746027.3754702&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法83：DanceFix（群舞整齐度评估）"><a href="#方法83：DanceFix（群舞整齐度评估）" class="headerlink" title="方法83：DanceFix（群舞整齐度评估）"></a>方法83：DanceFix（群舞整齐度评估）</h3><p> 方法名称： DanceFix <a href="zotero://select/library/items/7PUXR6YI">📚</a><br> 论文标题： DanceFix: An Exploration in Group Dance Neatness Assessment Through Fixing Abnormal Challenges of Human Pose<br> 核心技术： 群体骨架鲁棒化 + 异常姿态修复 + 整齐度度量</p>
+<p> 主要贡献： 面向群体舞蹈提出整齐度评估并处理骨架异常<br> 应用背景： 校园/竞赛群舞编队一致性评估<br> 优缺点： ✅ 面向群体、多主体鲁棒；❌ 依赖多人姿态质量<br> 演变与进步： 可与节拍/音频同步增强一致性判定</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Xu-DanceFixExplorationGroup-a,</span><br><span class="line">  title = &#123;DanceFix: An Exploration in Group Dance Neatness Assessment Through Fixing Abnormal Challenges of Human Pose&#125;,</span><br><span class="line">  author = &#123;Xu, Huangbiao and Ke, Xiao and Wu, Huanqi and Xu, Rui and Li, Yuezhou and Xu, Peirong and Guo, Wenzhong&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>方法84：LG-AV-AQA（语言引导视听评估）<br> 方法名称： <a href="zotero://select/library/items/B3HIRA9E">📚</a><br> 论文标题： Language-Guided Audio-Visual Learning for Long-Term Sports Assessment<br> 核心技术： 文本引导 + 视听多模态对齐 + 长时序融合<br> 数据集： FS1000, RG, Fis-V, LOGO<br> 主要贡献： 利用语言先验指导视听融合，面向长视频的规则与节奏理解<br> 应用背景： 音乐/口令/规则与动作强相关的项目<br> 优缺点： ✅ 多模态互补；❌ 对对齐与同步要求高<br> 演变与进步： 可与两阶段评分/指令层级化组合</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Xu-LanguageGuidedAudioVisualLearning-,</span><br><span class="line">  title = &#123;Language-Guided Audio-Visual Learning for Long-Term Sports Assessment&#125;,</span><br><span class="line">  author = &#123;Xu, Huangbiao and Ke, Xiao and Wu, Huanqi and Xu, Rui and Li, Yuezhou and Guo, Wenzhong&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法85：QG-VL-AQA（质量引导视觉语言）"><a href="#方法85：QG-VL-AQA（质量引导视觉语言）" class="headerlink" title="方法85：QG-VL-AQA（质量引导视觉语言）"></a>方法85：QG-VL-AQA（质量引导视觉语言）</h3><p> 方法名称： QG-VL-AQA <a href="zotero://select/library/items/G9CQGK9F">📚</a><br> 论文标题： Quality-Guided Vision-Language Learning for Long-Term Action Quality Assessment<br> 核心技术： 质量信号引导的视觉-语言对齐 + 长时序建模<br> 数据集： RG, Fis-V, FS1000,  FineFS<br> 主要贡献： 将质量/评分信号纳入V-L对齐过程，提升语义-评分一致性<br> 应用背景： 规则清晰且有明确评分标准的项目<br> 优缺点： ✅ 评分对齐性强；❌ 需高质量文本与标注<br> 演变与进步： 与PHI/CoFInAl等指令方法形成互补</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Xu-QualityGuidedVisionLanguageLearning-2025,</span><br><span class="line">  title = &#123;Quality-Guided Vision-Language Learning for Long-Term Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Xu, Huangbiao and Wu, Huanqi and Ke, Xiao and Li, Yuezhou and Xu, Rui and Guo, Wenzhong&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  journal = &#123;IEEE Transactions on Multimedia&#125;,</span><br><span class="line">  volume = &#123;27&#125;,</span><br><span class="line">  pages = &#123;7326--7339&#125;,</span><br><span class="line">  doi = &#123;10.1109/TMM.2025.3599078&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法86：SBS（尺度化背景置换）"><a href="#方法86：SBS（尺度化背景置换）" class="headerlink" title="方法86：SBS（尺度化背景置换）"></a>方法86：SBS（尺度化背景置换）</h3><p> 方法名称： SBS <a href="zotero://select/library/items/LSYLL8MF">📚</a><br> 论文标题： Scaled Background Swap: Video Augmentation for Action Quality Assessment with Background Debiasing<br> 核心技术： 背景去偏增强（背景置换/缩放）+ 数据增广<br> 数据集： AQA-7, MTL-AQA<br> 主要贡献： 通过背景置换减轻模型对背景的依赖，提升泛化<br> 应用背景： 背景干扰大的实拍视频评分<br> 优缺点： ✅ 泛化提升；❌ 可能引入伪影与分布漂移<br> 演变与进步： 可与骨架/指令模型结合，进一步弱化外观偏置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Zhang-ScaledBackgroundSwap-2025,</span><br><span class="line">  title = &#123;Scaled Background Swap: Video Augmentation for Action Quality Assessment with Background Debiasing&#125;,</span><br><span class="line">  shorttitle = &#123;Scaled Background Swap&#125;,</span><br><span class="line">  author = &#123;Zhang, Xin and Feng, Hongzhi and Hossain, M. Shamim and Chen, Yinzhuo and Wang, Hongbo and Yin, Yuyu&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  month = may,</span><br><span class="line">  journal = &#123;ACM Transactions on Multimedia Computing, Communications, and Applications&#125;,</span><br><span class="line">  pages = &#123;3737461&#125;,</span><br><span class="line">  doi = &#123;10.1145/3737461&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法87：AST-GTN（自适应时空图Transformer）"><a href="#方法87：AST-GTN（自适应时空图Transformer）" class="headerlink" title="方法87：AST-GTN（自适应时空图Transformer）"></a>方法87：AST-GTN（自适应时空图Transformer）</h3><p> 方法名称： AST-GTN <a href="zotero://select/library/items/6CSSMWL3">📚</a><br> 论文标题： Adaptive Spatiotemporal Graph Transformer Network for Action Quality Assessment<br> 核心技术： 时空图结构 + Transformer + 自适应拓扑学习<br> 数据集： RG, Fis-V<br> 主要贡献： 学习式图拓扑与Transformer结合，提升关键关节与时序依赖建模<br> 应用背景： 骨架为主的多项目评分<br> 优缺点： ✅ 结构自适应；❌ 训练复杂度与稳定性需权衡<br> 演变与进步： 可并入多核超图/层级指令增强</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Liu-AdaptiveSpatiotemporalGraph-2025,</span><br><span class="line">  title = &#123;Adaptive Spatiotemporal Graph Transformer Network for Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Liu, Jiang and Wang, Huasheng and Zhou, Wei and Stawarz, Katarzyna and Corcoran, Padraig and Chen, Ying and Liu, Hantao&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  journal = &#123;IEEE Transactions on Circuits and Systems for Video Technology&#125;,</span><br><span class="line">  pages = &#123;1--1&#125;,</span><br><span class="line">  doi = &#123;10.1109/TCSVT.2025.3541456&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法88：MB-AQA（多分支综合建模）"><a href="#方法88：MB-AQA（多分支综合建模）" class="headerlink" title="方法88：MB-AQA（多分支综合建模）"></a>方法88：MB-AQA（多分支综合建模）</h3><p> 方法名称： MB-AQA <a href="zotero://select/library/items/W3EIE4C6">📚</a><br> 论文标题： Comprehensive Action Quality Assessment Through Multi-Branch Modeling<br> 核心技术： 多分支特征建模（外观/骨架/运动等）+ 融合评价<br> 数据集： FineDiving, MTLAQA, AQA-7,<br> 主要贡献： 通过多分支并行与融合覆盖多种信息粒度<br> 应用背景： 多因素共同影响评分的项目<br> 优缺点： ✅ 表达力强；❌ 计算与参数量偏大<br> 演变与进步： 可与指令/因果机制结合提升解释性</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Xu-ComprehensiveActionQuality-2025,</span><br><span class="line">  title = &#123;Comprehensive Action Quality Assessment Through Multi-Branch Modeling&#125;,</span><br><span class="line">  author = &#123;Xu, Siyuan and Chen, Peilin and Liu, Yue and Wang, Meng and Wang, Shiqi and Yan, Hong and Kwong, Sam&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  journal = &#123;IEEE Transactions on Multimedia&#125;,</span><br><span class="line">  pages = &#123;1--14&#125;,</span><br><span class="line">  publisher = &#123;&#123;Institute of Electrical and Electronics Engineers (IEEE)&#125;&#125;,</span><br><span class="line">  doi = &#123;10.1109/tmm.2025.3607713&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法89：AQA综述（方法与基准）"><a href="#方法89：AQA综述（方法与基准）" class="headerlink" title="方法89：AQA综述（方法与基准）"></a>方法89：AQA综述（方法与基准）</h3><p> 方法名称： <a href="zotero://select/library/items/3HDN8YD5">📚</a><br> 论文标题： A Comprehensive Survey of Action Quality Assessment: Method and Benchmark<br> 核心技术： 综述与分类 + 基准汇总<br> 主要贡献： 全面回顾AQA发展、方法谱系与评测基准<br> 应用背景： 研究者入门与方法对比参考<br> 优缺点： ✅ 全景视角；❌ 随领域发展需持续更新<br> 演变与进步： 为后续指令/长时序/多模态方向奠基</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@misc&#123;Zhou-ComprehensiveSurveyAction-2024,</span><br><span class="line">  title = &#123;A Comprehensive Survey of Action Quality Assessment: Method and Benchmark&#125;,</span><br><span class="line">  shorttitle = &#123;A Comprehensive Survey of Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Zhou, Kanglei and Cai, Ruizhi and Wang, Liyuan and Shum, Hubert P. H. and Liang, Xiaohui&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  month = dec,</span><br><span class="line">  number = &#123;arXiv:2412.11149&#125;,</span><br><span class="line">  eprint = &#123;2412.11149&#125;,</span><br><span class="line">  primaryclass = &#123;cs&#125;,</span><br><span class="line">  publisher = &#123;arXiv&#125;,</span><br><span class="line">  archiveprefix = &#123;arXiv&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法90：AQA系统性综述（ESWA）"><a href="#方法90：AQA系统性综述（ESWA）" class="headerlink" title="方法90：AQA系统性综述（ESWA）"></a>方法90：AQA系统性综述（ESWA）</h3><p> 方法名称： <a href="zotero://select/library/items/4R93J3IX">📚</a><br> 论文标题： Vision-Based Human Action Quality Assessment: A Systematic Review<br> 核心技术： 系统性综述 + 方法/数据/挑战总结<br> 主要贡献： 面向视觉AQA的系统性总结与趋势洞察<br> 应用背景： 学术与产业调研<br> 优缺点： ✅ 系统全面；❌ 覆盖范围随时间可能滞后<br> 演变与进步： 为多模态/长时序/指令方法提供路线图</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Liu-VisionbasedHumanAction-2025,</span><br><span class="line">  title = &#123;Vision-Based Human Action Quality Assessment: A Systematic Review&#125;,</span><br><span class="line">  shorttitle = &#123;Vision-Based Human Action Quality Assessment&#125;,</span><br><span class="line">  author = &#123;Liu, Jiang and Wang, Huasheng and Stawarz, Katarzyna and Li, Shiyin and Fu, Yao and Liu, Hantao&#125;,</span><br><span class="line">  year = 2025,</span><br><span class="line">  month = mar,</span><br><span class="line">  journal = &#123;Expert Systems with Applications&#125;,</span><br><span class="line">  volume = &#123;263&#125;,</span><br><span class="line">  pages = &#123;125642&#125;,</span><br><span class="line">  doi = &#123;10.1016/j.eswa.2024.125642&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法91：AQA十年回顾（系统综述）"><a href="#方法91：AQA十年回顾（系统综述）" class="headerlink" title="方法91：AQA十年回顾（系统综述）"></a>方法91：AQA十年回顾（系统综述）</h3><p> 方法名称： <a href="zotero://select/library/items/PV44J326">📚</a><br> 论文标题： A Decade of Action Quality Assessment: Largest Systematic Survey of Trends, Challenges, and Future Directions<br> 核心技术： 十年发展脉络梳理 + 挑战与前景<br> 主要贡献： 汇总趋势与挑战，提出未来研究方向<br> 应用背景： 学术前沿与路线规划<br> 优缺点： ✅ 全景趋势梳理；❌ 需结合最新进展更新<br> 演变与进步： 为因果/指令/多模态/长时序等方向提供指引</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Yin-DecadeActionQuality-,</span><br><span class="line">  title = &#123;A Decade of Action Quality Assessment: Largest Systematic Survey of Trends, Challenges, and Future Directions&#125;,</span><br><span class="line">  author = &#123;Yin, Hao and Parmar, Paritosh and Xu, Daoliang and Zhang, Yang and Zheng, Tianyou and Fu, Weiwei&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法92：ResFNN（残差前馈网络AQA）"><a href="#方法92：ResFNN（残差前馈网络AQA）" class="headerlink" title="方法92：ResFNN（残差前馈网络AQA）"></a>方法92：ResFNN（残差前馈网络AQA）</h3><p> 方法名称： ResFNN <a href="zotero://select/library/items/PAQWRJ9J">📚</a><br> 论文标题： ResFNN: Residual Structure-Based Feedforward Neural Network for Action Quality Assessment in Sports Consumer Electronics<br> 核心技术： 残差前馈网络 + 轻量化建模<br> 数据集： AQA-7, MTL-AQA, JIGSAWS<br> 主要贡献： 以轻量残差前馈结构实现低成本AQA推理<br> 应用背景： 消费电子/边缘设备上的AQA应用<br> 优缺点： ✅ 轻量高效；❌ 表达能力有限，需与时序/骨架模块结合<br> 演变与进步： 可作为设备端评分头，与云端长序模型协同</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;ResFNNResidualStructureBased2024,</span><br><span class="line">  title = &#123;ResFNN: Residual Structure-Based Feedforward Neural Network for Action Quality Assessment in Sports Consumer Electronics&#125;,</span><br><span class="line">  shorttitle = &#123;ResFNN&#125;,</span><br><span class="line">  author = &#123;Gao, Honghao and Yu, Si and Iqbal, Muddesar and Guizani, Mohsen&#125;,</span><br><span class="line">  year = 2024,</span><br><span class="line">  journal = &#123;IEEE Transactions on Consumer Electronics&#125;,</span><br><span class="line">  pages = &#123;1--1&#125;,</span><br><span class="line">  doi = &#123;10.1109/TCE.2024.3482560&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上列举了AQA领域从1995年至2024年共72个主要方法的发展进程。这些方法在以下几个维度上演进：</p>
+<h3 id="1-特征提取演化"><a href="#1-特征提取演化" class="headerlink" title="1. 特征提取演化"></a>1. <strong>特征提取演化</strong></h3><ul>
+<li>手工特征(HOG/MBH) → 浅层机器学习(SVM) → 深度CNN(VGG/C3D) → 3D卷积(C3D/I3D) → Transformer架构 → 多模态融合(RGB+骨架+音频+文本)</li>
+</ul>
+<h3 id="2-模型范式演化"><a href="#2-模型范式演化" class="headerlink" title="2. 模型范式演化"></a>2. <strong>模型范式演化</strong></h3><ul>
+<li>确定性回归 → 分类方法 → 排序学习 → 对比学习 → 多任务学习 → 自监督学习 → 半监督学习 → 连续学习</li>
+</ul>
+<h3 id="3-模态范围扩展"><a href="#3-模态范围扩展" class="headerlink" title="3. 模态范围扩展"></a>3. <strong>模态范围扩展</strong></h3><ul>
+<li>单一RGB视频 → RGB+光流 → +骨架数据 → +音频 → +自然语言 → +规则/指令 → +AI生成视频评估</li>
+</ul>
+<h3 id="4-理论深度提升"><a href="#4-理论深度提升" class="headerlink" title="4. 理论深度提升"></a>4. <strong>理论深度提升</strong></h3><ul>
+<li>点估计 → 分布建模(USDL/DAE) → 不确定性量化(UD-AQA) → 可解释性(NS-AQA/IRIS) → 神经-符号混合(NS-AQA/RICA2)</li>
+</ul>
+<h3 id="5-应用场景扩展"><a href="#5-应用场景扩展" class="headerlink" title="5. 应用场景扩展"></a>5. <strong>应用场景扩展</strong></h3><ul>
+<li>竞技体育(跳水、体操、滑冰) → 日常技能(EPIC-Skill) → 医疗康复(JIGSAWS、KIMORE) → 群体动作(LOGO) → AI生成视频(GAIA)</li>
+</ul>
+<h3 id="6-细粒度程度提升"><a href="#6-细粒度程度提升" class="headerlink" title="6. 细粒度程度提升"></a>6. <strong>细粒度程度提升</strong></h3><ul>
+<li>整体评分 → 阶段评分 → 子动作评分 → 关键点评分 → 多维度评分(子分项) → 自然语言反馈</li>
+</ul>
+<h3 id="7-跨域能力进步"><a href="#7-跨域能力进步" class="headerlink" title="7. 跨域能力进步"></a>7. <strong>跨域能力进步</strong></h3><ul>
+<li>单任务单数据集 → 多任务学习 → 领域自适应 → 零样本泛化 → 连续学习 → 参数高效微调</li>
+</ul>
+<p>这些进展反映了AQA从早期的探索性工作逐步演进为成熟的深度学习领域，结合了计算机视觉、自然语言处理、图神经网络等多个前沿技术方向。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://zzhenyao.github.io/2025/11/18/13-26-24/" title="AQA（动作质量评估）方法发展时间线">https://zzhenyao.github.io/2025/11/18/13-26-24/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/AQA-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># AQA, 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/11/18/11-01-54/" rel="prev" title="3D重建与目标追踪论文阅读清单">
+                  <i class="fa fa-chevron-left"></i> 3D重建与目标追踪论文阅读清单
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.4.0/mermaid.min.js","integrity":"sha256-3JloMMI/ZQx6ryuhhZTsQJQmGAkXeni6PkshX7UUO2s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"37d334f931dd44c1d07fbbddc1449cff"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
