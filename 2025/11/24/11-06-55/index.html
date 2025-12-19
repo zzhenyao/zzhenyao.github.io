@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zzhenyao.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="简单整理相关人体运动预测和扩散运动生成的论文。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="扩散生成与重建方法发展时间线">
+<meta property="og:url" content="https://zzhenyao.github.io/2025/11/24/11-06-55/index.html">
+<meta property="og:site_name" content="且听风吟">
+<meta property="og:description" content="简单整理相关人体运动预测和扩散运动生成的论文。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-24T03:06:55.000Z">
+<meta property="article:modified_time" content="2025-12-19T04:17:22.881Z">
+<meta property="article:author" content="yao">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zzhenyao.github.io/2025/11/24/11-06-55/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://zzhenyao.github.io/2025/11/24/11-06-55/","path":"2025/11/24/11-06-55/","title":"扩散生成与重建方法发展时间线"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>扩散生成与重建方法发展时间线 | 且听风吟</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">且听风吟</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">轻舟过万重,青山依旧在</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%955%EF%BC%9AEarly-Knowledge-of-Object-Motion-Continuity-and-Inertia"><span class="nav-number">1.</span> <span class="nav-text">方法5：Early Knowledge of Object Motion: Continuity and Inertia</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%951%EF%BC%9ANonisotropic-Gaussian-Diffusion-%E9%9D%9E%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E9%AB%98%E6%96%AF%E6%89%A9%E6%95%A3"><span class="nav-number">2.</span> <span class="nav-text">方法1：Nonisotropic Gaussian Diffusion (非各向同性高斯扩散)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%953%EF%BC%9APhysics-Informed-Learning-with-Sparse-IMUs-%E5%9F%BA%E4%BA%8E%E7%A8%80%E7%96%8FIMU%E7%9A%84%E7%89%A9%E7%90%86%E6%84%9F%E7%9F%A5%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text">方法3：Physics-Informed Learning with Sparse IMUs (基于稀疏IMU的物理感知学习)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%954%EF%BC%9AHUMOS%EF%BC%88%E5%9F%BA%E4%BA%8E%E4%BD%93%E5%9E%8B%E6%9D%A1%E4%BB%B6%E7%9A%84%E8%BF%90%E5%8A%A8%E5%BB%BA%E6%A8%A1%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">方法4：HUMOS（基于体型条件的运动建模）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%956%EF%BC%9AShape-aware-Inertial-Poser"><span class="nav-number">5.</span> <span class="nav-text">方法6：Shape-aware Inertial Poser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%957%EF%BC%9AAvatars-Grow-Legs"><span class="nav-number">6.</span> <span class="nav-text">方法7：Avatars Grow Legs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%958%EF%BC%9ATemporal-Regularization-Makes-Your-Video-Generator-Stronger"><span class="nav-number">7.</span> <span class="nav-text">方法8：Temporal Regularization Makes Your Video Generator Stronger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%959%EF%BC%9AViA-View-invariant-Skeleton-Action-Representation-Learning-via-Motion-Retargeting"><span class="nav-number">8.</span> <span class="nav-text">方法9：ViA: View-invariant Skeleton Action Representation Learning via Motion Retargeting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9510%EF%BC%9ADiscovering-Governing-Equations-from-Data"><span class="nav-number">9.</span> <span class="nav-text">方法10：Discovering Governing Equations from Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9511%EF%BC%9APhysics-informed-Neural-Networks-PINNs"><span class="nav-number">10.</span> <span class="nav-text">方法11：Physics-informed Neural Networks (PINNs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9512%EF%BC%9ALearning-Switching-Linear-Models-of-Human-Motion"><span class="nav-number">11.</span> <span class="nav-text">方法12：Learning Switching Linear Models of Human Motion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%9513%EF%BC%9AA-Plug-and-Play-Physical-Motion-Restoration-Approach-for-In-the-Wild-High-Difficulty-Motions"><span class="nav-number">12.</span> <span class="nav-text">方法13：A Plug-and-Play Physical Motion Restoration Approach for In-the-Wild High-Difficulty Motions</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yao"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">yao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">89</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zzhenyao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zzhenyao" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zzhenyao.github.io/2025/11/24/11-06-55/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="yao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="且听风吟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="扩散生成与重建方法发展时间线 | 且听风吟">
+      <meta itemprop="description" content="简单整理相关人体运动预测和扩散运动生成的论文。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          扩散生成与重建方法发展时间线
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-11-24 11:06:55" itemprop="dateCreated datePublished" datetime="2025-11-24T11:06:55+08:00">2025-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-19 12:17:22" itemprop="dateModified" datetime="2025-12-19T12:17:22+08:00">2025-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+            <div class="post-description">简单整理相关人体运动预测和扩散运动生成的论文。</div>
+	<hr>
+        <h3 id="方法5：Early-Knowledge-of-Object-Motion-Continuity-and-Inertia"><a href="#方法5：Early-Knowledge-of-Object-Motion-Continuity-and-Inertia" class="headerlink" title="方法5：Early Knowledge of Object Motion: Continuity and Inertia"></a>方法5：Early Knowledge of Object Motion: Continuity and Inertia</h3><p><strong>方法名称：</strong> Early Knowledge of Object Motion: Continuity and Inertia <a href="zotero://select/library/items/XAZJE5JX">📚</a><br><strong>论文标题：</strong> Early Knowledge of Object Motion: Continuity and Inertia<br><strong>核心技术：</strong> 人类对运动的先验认知建模（Early Motion Perception） + 连续性假设（Continuity Principle） + 惯性原理（Inertia Principle） + 心理物理实验 + 认知建模（Cognitive Modeling）<br><strong>数据集：</strong> 无（理论性论文，基于心理物理实验数据）<br><strong>主要贡献：</strong></p>
+<ul>
+<li>首次系统性提出：人类在 <strong>早期视觉感知阶段</strong>（&lt; 100ms）即已内化 <strong>运动连续性</strong>与 <strong>惯性</strong>作为基本认知先验；</li>
+<li>通过心理物理实验（如光点运动、遮挡追踪、加速/减速判断）验证：<ul>
+<li>人类更倾向于将运动轨迹视为 <strong>平滑连续</strong>而非跳跃；</li>
+<li>更倾向于预测物体在受力后 <strong>保持速度趋势</strong>（惯性），而非突然停止或转向；</li>
+</ul>
+</li>
+<li>提出“ <strong>运动连续性-惯性联合先验</strong>”（Continuity-Inertia Prior）作为人类运动理解的核心机制；</li>
+<li>为计算机视觉中的运动建模提供 <strong>生物学与认知科学依据</strong>，解释为何“平滑运动”在人类感知中更自然、更可信；</li>
+<li>为AQA、动作生成、视频预测等任务中引入“人类感知合理性”评估标准奠定理论基础。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Spelke-EarlyKnowledgeObject-1994,</span><br><span class="line">  title = &#123;Early Knowledge of Object Motion: Continuity and Inertia&#125;,</span><br><span class="line">  shorttitle = &#123;Early Knowledge of Object Motion&#125;,</span><br><span class="line">  author = &#123;Spelke, Elizabeth S. and Katz, Gary and Purcell, Susan E. and Ehrlich, Sheryl M. and Breinlinger, Karen&#125;,</span><br><span class="line">  date = &#123;1994-02&#125;,</span><br><span class="line">  journaltitle = &#123;Cognition&#125;,</span><br><span class="line">  shortjournal = &#123;Cognition&#125;,</span><br><span class="line">  volume = &#123;51&#125;,</span><br><span class="line">  number = &#123;2&#125;,</span><br><span class="line">  pages = &#123;131--176&#125;,</span><br><span class="line">  doi = &#123;10.1016/0010-0277(94)90013-2&#125;,</span><br><span class="line">  url = &#123;https://linkinghub.elsevier.com/retrieve/pii/0010027794900132&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法1：Nonisotropic-Gaussian-Diffusion-非各向同性高斯扩散"><a href="#方法1：Nonisotropic-Gaussian-Diffusion-非各向同性高斯扩散" class="headerlink" title="方法1：Nonisotropic Gaussian Diffusion (非各向同性高斯扩散)"></a>方法1：Nonisotropic Gaussian Diffusion (非各向同性高斯扩散)</h3><p><strong>方法名称：</strong> Nonisotropic Gaussian Diffusion <a href="zotero://select/library/items/CXP4N8VV">📚</a><br><strong>论文标题：</strong> Nonisotropic Gaussian Diffusion for Realistic 3D Human Motion Prediction<br><strong>核心技术：</strong> 非各向同性高斯扩散过程（Nonisotropic Gaussian Diffusion）、运动轨迹的协方差建模、时间一致性约束、基于物理先验的噪声调度<br><strong>数据集：</strong> Human3.6M, CMU Mocap, AMASS<br><strong>主要贡献：</strong></p>
+<ul>
+<li>提出一种<strong>非各向同性高斯扩散模型</strong>，显式建模人体运动在不同空间维度（如关节角度、平移、旋转）上的<strong>异质性动态特性</strong>；</li>
+<li>设计<strong>可学习的协方差矩阵</strong>，使扩散过程在关节空间中具有方向性，更贴合真实运动的自由度差异；</li>
+<li>引入<strong>时间一致性正则项</strong>，确保生成动作在时间维度上平滑连续，抑制不自然抖动；</li>
+<li>在多个基准上实现<strong>SOTA的运动生成质量</strong>（如FID、MPJPE），并显著提升动作自然性与物理合理性。<br><strong>应用背景：</strong> 3D 动作生成、虚拟角色动画、人机交互、动作质量评估（AQA）中的“理想动作”建模<br><strong>优缺点：</strong><br>✅ 显著提升生成动作的自然性与物理合理性，优于传统各向同性扩散模型；<br>✅ 支持对复杂运动（如旋转、跳跃）的精准建模，对高维动作空间建模更有效；<br>❌ 训练成本较高，对噪声调度与协方差建模敏感；<br>❌ 仍依赖于预训练动作数据，难以直接处理未见动作类型或异常动作。<br><strong>演变与进步：</strong></li>
+<li>在扩散模型中首次引入<strong>非各向同性扩散机制</strong>，突破传统各向同性假设；</li>
+<li>为后续<strong>物理引导扩散模型</strong>（Physics-guided Diffusion）、<strong>运动流形学习</strong>（Motion Manifold Learning）提供关键范式；</li>
+<li>为 AQA 任务中“理想动作”的建模提供了可学习的<strong>高质量动作先验</strong>，可用于衡量实际动作与理想轨迹的偏差。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@online&#123;Curreli-NonisotropicGaussianDiffusion-2025a,</span><br><span class="line">  title = &#123;Nonisotropic Gaussian Diffusion for Realistic 3D Human Motion Prediction&#125;,</span><br><span class="line">  author = &#123;Curreli, Cecilia and Muhle, Dominik and Saroha, Abhishek and Ye, Zhenzhang and Marin, Riccardo and Cremers, Daniel&#125;,</span><br><span class="line">  date = &#123;2025-07-08&#125;,</span><br><span class="line">  eprint = &#123;2501.06035&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;cs&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2501.06035&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/2501.06035&#125;,</span><br><span class="line">  pubstate = &#123;prepublished&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法3：Physics-Informed-Learning-with-Sparse-IMUs-基于稀疏IMU的物理感知学习"><a href="#方法3：Physics-Informed-Learning-with-Sparse-IMUs-基于稀疏IMU的物理感知学习" class="headerlink" title="方法3：Physics-Informed Learning with Sparse IMUs (基于稀疏IMU的物理感知学习)"></a>方法3：Physics-Informed Learning with Sparse IMUs (基于稀疏IMU的物理感知学习)</h3><p><strong>方法名称：</strong> Physics-Informed Learning with Sparse IMUs <a href="zotero://select/library/items/VD7REEC4">📚</a><br><strong>论文标题：</strong> Physics-Informed Learning for Human Whole-Body Kinematics Prediction via Sparse IMUs<br><strong>核心技术：</strong> 稀疏惯性测量单元（Sparse IMUs）数据 + 物理先验建模（牛顿-欧拉动力学） + 图神经网络（GNN） + 无监督物理损失函数（Physics-Informed Loss）<br><strong>数据集：</strong> DIP-IMU, CMU Mocap, Mocap4D<br><strong>主要贡献：</strong></p>
+<ul>
+<li>首次将 <strong>物理一致性约束</strong>（如动量守恒、角动量守恒、力矩平衡）嵌入稀疏IMU驱动的全身运动预测框架；</li>
+<li>设计 <strong>可微分的物理损失函数</strong>，在训练中显式惩罚违反物理规律的运动轨迹（如异常加速度、能量突变）；</li>
+<li>构建基于图神经网络的运动状态估计器，有效融合稀疏IMU信号与身体拓扑结构；</li>
+<li>在仅使用 <strong>4–6个IMU传感器</strong>（如手腕、脚踝、腰部）时，实现接近全身体感数据的运动重建精度（MPJPE &lt; 50mm）；</li>
+<li>为可穿戴设备上的实时动作评估（如康复、体育训练）提供轻量化、高鲁棒性的解决方案。<br><strong>应用背景：</strong> 可穿戴动作捕捉、运动康复评估、体育动作质量分析（AQA）、远程运动员训练监控<br><strong>优缺点：</strong><br>✅ 显著提升稀疏IMU数据下的运动重建精度与物理合理性；<br>✅ 模型对传感器噪声与缺失具有强鲁棒性，适合真实场景部署；<br>✅ 可解释性强，物理损失提供可分析的“动作合理性”指标；<br>❌ 依赖精确的物理模型参数（如质量、质心），对个体差异敏感；<br>❌ 物理损失计算复杂，训练速度较慢，难以实时推理。<br><strong>演变与进步：</strong></li>
+<li>推动了“物理感知学习”（Physics-Informed Learning）在动作建模中的落地，从纯数据驱动转向 <strong>数据+物理联合建模</strong>；</li>
+<li>为 AQA 任务中“动作合理性”与“运动效率”评估提供了可量化、可解释的物理指标（如能量耗散、动量偏差）；</li>
+<li>为未来构建 <strong>轻量化、可部署的AQA系统</strong>（如基于智能手环的评分）提供了技术路径。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@online&#123;Guo-PhysicsInformedLearningHuman-2025,</span><br><span class="line">  title = &#123;Physics-Informed Learning for Human Whole-Body Kinematics Prediction via Sparse IMUs&#125;,</span><br><span class="line">  author = &#123;Guo, Cheng and L&#x27;Erario, Giuseppe and Romualdi, Giulio and Leonori, Mattia and Lorenzini, Marta and Ajoudani, Arash and Pucci, Daniele&#125;,</span><br><span class="line">  date = &#123;2025-09-30&#125;,</span><br><span class="line">  eprint = &#123;2509.25704&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;cs&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2509.25704&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/2509.25704&#125;,</span><br><span class="line">  pubstate = &#123;prepublished&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法4：HUMOS（基于体型条件的运动建模）"><a href="#方法4：HUMOS（基于体型条件的运动建模）" class="headerlink" title="方法4：HUMOS（基于体型条件的运动建模）"></a>方法4：HUMOS（基于体型条件的运动建模）</h3><p><strong>方法名称：</strong> HUMOS: Human Motion Model Conditioned on Body Shape <a href="zotero://select/library/items/CBE39FQU">📚</a><br><strong>论文标题：</strong> HUMOS: Human Motion Model Conditioned on Body Shape<br><strong>核心技术：</strong> 体型条件生成（Body Shape Conditioning） + 3D动作扩散模型（3D Motion Diffusion） + 体型-动作联合隐空间建模（Shape-Aware Latent Space） + 可微分人体几何先验（Human Body Prior）<br><strong>数据集：</strong> AMASS, Human3.6M, SMPLify-X, 3DPW<br><strong>主要贡献：</strong></p>
+<ul>
+<li>提出首个 <strong>显式建模体型（Body Shape）与动作（Motion）耦合关系</strong>的生成式人体运动模型 HUMOS；</li>
+<li>设计 <strong>体型条件编码器</strong>，将SMPL参数（如身高、体重、肢体比例）映射为运动先验的调节向量，实现“不同体型生成不同动作风格”；</li>
+<li>在扩散模型中引入 <strong>可微分的人体几何先验</strong>，确保生成动作在身体拓扑上合理（如避免关节穿透、肢体过伸）；</li>
+<li>实现跨体型泛化：同一动作在不同体型（如高/矮、胖/瘦）下生成自然、符合解剖学的动作形态；</li>
+<li>在动作自然性（FID）、动作多样性（Diversity）和体型一致性（Shape Consistency）上均达到SOTA。<br><strong>应用背景：</strong> 虚拟角色动画、个性化运动训练系统、动作质量评估（AQA）中的“个体化理想动作”建模、数字人生成<br><strong>优缺点：</strong><br>✅ 显著提升生成动作的 <strong>体型一致性与个体化自然性</strong>，避免“高个子做矮人动作”等不合理现象；<br>✅ 支持对不同体型用户的个性化动作生成与评估；<br>✅ 可作为AQA中“个体化理想动作”的建模工具，提升评分公平性；<br>❌ 模型依赖高质量体型标注，对体型异常或非标准人体建模能力有限；<br>❌ 训练成本高，需联合优化体型与动作表示。<br><strong>演变与进步：</strong></li>
+<li>推动了“体型-动作联合建模”从 <strong>静态配准</strong>走向 <strong>动态生成</strong>，打破传统动作库与体型解耦的局限；</li>
+<li>为AQA任务中引入 <strong>个体化评分标准</strong>提供了技术基础——即“同一动作对不同体型的合理程度应差异化评估”；</li>
+<li>为未来构建 <strong>个性化运动教练系统</strong>（如为不同体型用户定制评分标准）提供了可学习的生成先验。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@online&#123;Tripathi-HUMOSHumanMotion-2025,</span><br><span class="line">  title = &#123;HUMOS: Human Motion Model Conditioned on Body Shape&#125;,</span><br><span class="line">  shorttitle = &#123;HUMOS&#125;,</span><br><span class="line">  author = &#123;Tripathi, Shashank and Taheri, Omid and Lassner, Christoph and Black, Michael J. and Holden, Daniel and Stoll, Carsten&#125;,</span><br><span class="line">  date = &#123;2025-04-03&#125;,</span><br><span class="line">  eprint = &#123;2409.03944&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;cs&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2409.03944&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/2409.03944&#125;,</span><br><span class="line">  pubstate = &#123;prepublished&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法6：Shape-aware-Inertial-Poser"><a href="#方法6：Shape-aware-Inertial-Poser" class="headerlink" title="方法6：Shape-aware Inertial Poser"></a>方法6：Shape-aware Inertial Poser</h3><p><strong>方法名称：</strong> Shape-aware Inertial Poser <a href="zotero://select/library/items/XAZJE5JX">📚</a><br><strong>论文标题：</strong> Shape-aware Inertial Poser: Motion Tracking for Humans with Diverse Shapes Using Sparse Inertial Sensors<br><strong>核心技术：</strong> 稀疏IMU + 体型感知建模（Shape-aware） + 可微分人体动力学先验 + 联合优化姿态与体型<br><strong>数据集：</strong> DIP-IMU, CMU Mocap<br><strong>主要贡献：</strong></p>
+<ul>
+<li>首次实现基于稀疏IMU的<strong>体型感知运动跟踪</strong>，支持不同体型用户；</li>
+<li>融合体型参数与运动动力学，提升姿态估计的物理合理性与个体适应性。<br><strong>应用背景：</strong> 可穿戴动作捕捉、个性化运动评估、AQA中的个体化动作建模<br><strong>优缺点：</strong><br>✅ 支持多样体型，提升真实场景鲁棒性；<br>❌ 依赖体型初始化，对极端体型适应性有限。<br><strong>演变与进步：</strong></li>
+<li>推动稀疏IMU系统从“通用跟踪”向“个体化建模”演进，为AQA提供可迁移的个体化评估基础。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@online&#123;Yin-ShapeawareInertialPoser-2025,</span><br><span class="line">  title = &#123;Shape-Aware Inertial Poser: Motion Tracking for Humans with Diverse Shapes Using Sparse Inertial Sensors&#125;,</span><br><span class="line">  shorttitle = &#123;Shape-Aware Inertial Poser&#125;,</span><br><span class="line">  author = &#123;Yin, Lu and Shi, Ziying and Wu, Yinghao and Yi, Xinyu and Xu, Feng and Guo, Shihui&#125;,</span><br><span class="line">  date = &#123;2025-10-20&#125;,</span><br><span class="line">  eprint = &#123;2510.17101&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;cs&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2510.17101&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/2510.17101&#125;,</span><br><span class="line">  pubstate = &#123;prepublished&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法7：Avatars-Grow-Legs"><a href="#方法7：Avatars-Grow-Legs" class="headerlink" title="方法7：Avatars Grow Legs"></a>方法7：Avatars Grow Legs</h3><p><strong>方法名称：</strong> Avatars Grow Legs <a href="zotero://select/library/items/9GEQPBP3">📚</a><br><strong>论文标题：</strong> Avatars Grow Legs: Generating Smooth Human Motion from Sparse Tracking Inputs with Diffusion Model<br><strong>核心技术：</strong> 稀疏运动追踪输入（如关键点、IMU） + 扩散模型（Diffusion Model） + 时空一致性建模 + 运动平滑先验<br><strong>数据集：</strong> Human3.6M, DIP-IMU, 3DPW<br><strong>主要贡献：</strong></p>
+<ul>
+<li>从稀疏输入（如仅关节位置）生成高保真、平滑的完整人体动作；</li>
+<li>利用扩散模型显式建模运动连续性，恢复缺失的动态细节。<br><strong>应用背景：</strong> 虚拟角色动画、轻量级动作捕捉、AQA中的动作补全与质量修复<br><strong>优缺点：</strong><br>✅ 有效恢复稀疏输入下的运动细节，提升动作自然性；<br>❌ 对输入噪声敏感，生成过程较慢。<br><strong>演变与进步：</strong></li>
+<li>推动扩散模型在“从稀疏到完整”动作重建中的应用，为AQA提供动作补全与合理性修复能力。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@online&#123;Du-AvatarsGrowLegs-2023,</span><br><span class="line">  title = &#123;Avatars Grow Legs: Generating Smooth Human Motion from Sparse Tracking Inputs with Diffusion Model&#125;,</span><br><span class="line">  shorttitle = &#123;Avatars Grow Legs&#125;,</span><br><span class="line">  author = &#123;Du, Yuming and Kips, Robin and Pumarola, Albert and Starke, Sebastian and Thabet, Ali and Sanakoyeu, Artsiom&#125;,</span><br><span class="line">  date = &#123;2023-04-17&#125;,</span><br><span class="line">  eprint = &#123;2304.08577&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;cs&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2304.08577&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/2304.08577&#125;,</span><br><span class="line">  pubstate = &#123;prepublished&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法8：Temporal-Regularization-Makes-Your-Video-Generator-Stronger"><a href="#方法8：Temporal-Regularization-Makes-Your-Video-Generator-Stronger" class="headerlink" title="方法8：Temporal Regularization Makes Your Video Generator Stronger"></a>方法8：Temporal Regularization Makes Your Video Generator Stronger</h3><p><strong>方法名称：</strong> Temporal Regularization Makes Your Video Generator Stronger <a href="zotero://select/library/items/HVWGTKNA">📚</a><br><strong>论文标题：</strong> Temporal Regularization Makes Your Video Generator Stronger<br><strong>核心技术：</strong> 扩散模型 + 时间一致性正则化（Temporal Regularization） + 速度场平滑约束 + 动态一致性建模<br><strong>数据集：</strong> Kinetics, UCF101, Something-Something V2<br><strong>主要贡献：</strong></p>
+<ul>
+<li>提出时间正则化机制，显式约束生成视频的时序平滑性；</li>
+<li>有效抑制运动抖动与不连续，提升视频生成的自然性与连贯性。<br><strong>应用背景：</strong> 视频生成、动作预测、AQA中的动作流畅性评估<br><strong>优缺点：</strong><br>✅ 显著提升生成视频的时间一致性；<br>❌ 增加训练复杂度，对超参数敏感。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@online&#123;Chen-TemporalRegularizationMakes-2025,</span><br><span class="line">  title = &#123;Temporal Regularization Makes Your Video Generator Stronger&#125;,</span><br><span class="line">  author = &#123;Chen, Harold Haodong and Huang, Haojian and Wu, Xianfeng and Liu, Yexin and Bai, Yajing and Shu, Wen-Jie and Yang, Harry and Lim, Ser-Nam&#125;,</span><br><span class="line">  date = &#123;2025-03-19&#125;,</span><br><span class="line">  eprint = &#123;2503.15417&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;cs&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2503.15417&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/2503.15417&#125;,</span><br><span class="line">  pubstate = &#123;prepublished&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法9：ViA-View-invariant-Skeleton-Action-Representation-Learning-via-Motion-Retargeting"><a href="#方法9：ViA-View-invariant-Skeleton-Action-Representation-Learning-via-Motion-Retargeting" class="headerlink" title="方法9：ViA: View-invariant Skeleton Action Representation Learning via Motion Retargeting"></a>方法9：ViA: View-invariant Skeleton Action Representation Learning via Motion Retargeting</h3><p><strong>方法名称：</strong> ViA <a href="zotero://select/library/items/3JDB3A6G">📚</a><br><strong>论文标题：</strong> ViA: View-invariant Skeleton Action Representation Learning via Motion Retargeting<br><strong>核心技术：</strong> 动作重定向（Motion Retargeting） + 视角不变表示学习 + 骨骼运动建模 + 对齐损失<br><strong>数据集：</strong> NTU RGB+D, Kinetics-Skeleton, PKU-MMD<br><strong>主要贡献：</strong></p>
+<ul>
+<li>通过动作重定向实现视角不变的骨骼动作表示；</li>
+<li>提升模型在多视角下的动作识别与评估鲁棒性。<br><strong>应用背景：</strong> 多视角动作识别、AQA中的视角不变性建模、跨视角动作质量评估<br><strong>优缺点：</strong><br>✅ 显著提升动作表示对视角变化的鲁棒性；<br>❌ 依赖高质量动作重定向，对复杂动作适应性有限。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@online&#123;Yang-ViewinvariantSkeletonAction-2022,</span><br><span class="line">  title = &#123;ViA: View-Invariant Skeleton Action Representation Learning via Motion Retargeting&#125;,</span><br><span class="line">  shorttitle = &#123;ViA&#125;,</span><br><span class="line">  author = &#123;Yang, Di and Wang, Yaohui and Dantcheva, Antitza and Garattoni, Lorenzo and Francesca, Gianpiero and Bremond, Francois&#125;,</span><br><span class="line">  date = &#123;2022-08-31&#125;,</span><br><span class="line">  eprint = &#123;2209.00065&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;cs&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2209.00065&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/2209.00065&#125;,</span><br><span class="line">  pubstate = &#123;prepublished&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法10：Discovering-Governing-Equations-from-Data"><a href="#方法10：Discovering-Governing-Equations-from-Data" class="headerlink" title="方法10：Discovering Governing Equations from Data"></a>方法10：Discovering Governing Equations from Data</h3><p><strong>方法名称：</strong> Discovering Governing Equations from Data <a href="zotero://select/library/items/4WFGUGXJ">📚</a><br><strong>论文标题：</strong> Discovering Governing Equations from Data<br><strong>核心技术：</strong> 数据驱动的微分方程发现 + 压缩感知 + 偏微分方程（PDE）结构搜索 + 正则化稀疏回归<br><strong>数据集：</strong> 仿真数据（如流体、摆动、波动）、真实物理系统观测<br><strong>主要贡献：</strong></p>
+<ul>
+<li>从观测数据中自动发现描述系统演化的物理方程；</li>
+<li>实现“从数据到物理规律”的端到端建模，无需先验知识。<br><strong>应用背景：</strong> 物理建模、运动信号恢复、AQA中的动作动力学建模<br><strong>优缺点：</strong><br>✅ 可从真实或模拟数据中提取运动规律，支持逆向建模；<br>❌ 依赖高质量、高密度数据，对噪声敏感。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Brunton-DiscoveringGoverningEquations-2016,</span><br><span class="line">  title = &#123;Discovering Governing Equations from Data: Sparse Identification of Nonlinear Dynamical Systems&#125;,</span><br><span class="line">  shorttitle = &#123;Discovering Governing Equations from Data&#125;,</span><br><span class="line">  author = &#123;Brunton, Steven L. and Proctor, Joshua L. and Kutz, J. Nathan&#125;,</span><br><span class="line">  date = &#123;2016-04-12&#125;,</span><br><span class="line">  journaltitle = &#123;Proceedings of the National Academy of Sciences&#125;,</span><br><span class="line">  shortjournal = &#123;Proc. Natl. Acad. Sci. U.S.A.&#125;,</span><br><span class="line">  volume = &#123;113&#125;,</span><br><span class="line">  number = &#123;15&#125;,</span><br><span class="line">  eprint = &#123;1509.03580&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;math&#125;,</span><br><span class="line">  pages = &#123;3932--3937&#125;,</span><br><span class="line">  doi = &#123;10.1073/pnas.1517384113&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/1509.03580&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法11：Physics-informed-Neural-Networks-PINNs"><a href="#方法11：Physics-informed-Neural-Networks-PINNs" class="headerlink" title="方法11：Physics-informed Neural Networks (PINNs)"></a>方法11：Physics-informed Neural Networks (PINNs)</h3><p><strong>方法名称：</strong> Physics-informed Neural Networks <a href="zotero://select/library/items/C4GPBAYB">📚</a><br><strong>论文标题：</strong> Physics-informed Neural Networks: A Deep Learning Framework for Solving Forward and Inverse Problems Involving Nonlinear Partial Differential Equations<br><strong>核心技术：</strong> 神经网络 + 偏微分方程（PDE）残差损失 + 无监督学习 + 可微分物理建模<br><strong>数据集：</strong> 仿真数据（如热传导、流体、弹性力学）、物理系统观测<br><strong>主要贡献：</strong></p>
+<ul>
+<li>将PDE作为损失项嵌入神经网络训练，实现物理一致性建模；</li>
+<li>可同时求解正问题与逆问题，支持数据与物理联合建模。<br><strong>应用背景：</strong> 物理信号恢复、运动建模、AQA中的动力学合理性评估<br><strong>优缺点：</strong><br>✅ 支持无监督或弱监督下建模复杂物理系统；<br>❌ 训练不稳定，对边界条件和初始条件敏感。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Raissi-PhysicsinformedNeuralNetworks-2019,</span><br><span class="line">  title = &#123;Physics-Informed Neural Networks: A Deep Learning Framework for Solving Forward and Inverse Problems Involving Nonlinear Partial Differential Equations&#125;,</span><br><span class="line">  shorttitle = &#123;Physics-Informed Neural Networks&#125;,</span><br><span class="line">  author = &#123;Raissi, M. and Perdikaris, P. and Karniadakis, G.E.&#125;,</span><br><span class="line">  date = &#123;2019-02&#125;,</span><br><span class="line">  journaltitle = &#123;Journal of Computational Physics&#125;,</span><br><span class="line">  shortjournal = &#123;Journal of Computational Physics&#125;,</span><br><span class="line">  volume = &#123;378&#125;,</span><br><span class="line">  pages = &#123;686--707&#125;,</span><br><span class="line">  doi = &#123;10.1016/j.jcp.2018.10.045&#125;,</span><br><span class="line">  url = &#123;https://linkinghub.elsevier.com/retrieve/pii/S0021999118307125&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法12：Learning-Switching-Linear-Models-of-Human-Motion"><a href="#方法12：Learning-Switching-Linear-Models-of-Human-Motion" class="headerlink" title="方法12：Learning Switching Linear Models of Human Motion"></a>方法12：Learning Switching Linear Models of Human Motion</h3><p><strong>方法名称：</strong> Learning Switching Linear Models of Human Motion <a href="zotero://select/library/items/Q3CJ5LW2">📚</a><br><strong>论文标题：</strong> Learning Switching Linear Models of Human Motion<br><strong>核心技术：</strong> 切换线性模型（Switching Linear Models, SLM） + 隐状态建模 + 动作片段分割 + 线性动态系统<br><strong>数据集：</strong> Human3.6M, CMU Mocap, AMASS<br><strong>主要贡献：</strong></p>
+<ul>
+<li>将人体运动建模为多个线性动态子系统的切换过程；</li>
+<li>有效捕捉动作中的阶段性特征与突变行为。<br><strong>应用背景：</strong> 动作识别、运动建模、AQA中的动作阶段分析与异常检测<br><strong>优缺点：</strong><br>✅ 适合建模具有明显阶段性的动作（如跳跃、转身）；<br>❌ 对短时突变或连续过渡建模能力有限。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@article&#123;Pavlovic-LearningSwitchingLinear-,</span><br><span class="line">  title = &#123;Learning Switching Linear Models of Human Motion&#125;,</span><br><span class="line">  author = &#123;Pavlovic, Vladimir and Rehg, James M and MacCormick, John&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="方法13：A-Plug-and-Play-Physical-Motion-Restoration-Approach-for-In-the-Wild-High-Difficulty-Motions"><a href="#方法13：A-Plug-and-Play-Physical-Motion-Restoration-Approach-for-In-the-Wild-High-Difficulty-Motions" class="headerlink" title="方法13：A Plug-and-Play Physical Motion Restoration Approach for In-the-Wild High-Difficulty Motions"></a>方法13：A Plug-and-Play Physical Motion Restoration Approach for In-the-Wild High-Difficulty Motions</h3><p><strong>方法名称：</strong> Plug-and-Play Physical Motion Restoration <a href="zotero://select/library/items/6V5R6QU7">📚</a><br><strong>论文标题：</strong> A Plug-and-Play Physical Motion Restoration Approach for In-the-Wild High-Difficulty Motions<br><strong>核心技术：</strong> 物理先验嵌入（Physics-informed Prior） + 可插拔式修复模块（Plug-and-Play） + 扩散模型 + 运动连续性与惯性建模<br><strong>数据集：</strong> In-the-wild 视频（如抖音、YouTube）、CMU Mocap、AMASS<br><strong>主要贡献：</strong></p>
+<ul>
+<li>提出一种可插拔的物理运动修复框架，适用于真实场景中的高难度动作；</li>
+<li>通过显式建模惯性与连续性，恢复被遮挡、抖动或镜头切换破坏的运动轨迹。<br><strong>应用背景：</strong> 真实场景动作质量评估（AQA）、运动视频修复、动作补全与真实性增强<br><strong>优缺点：</strong><br>✅ 无需微调即可适配不同动作类型，支持复杂运动恢复；<br>❌ 对极端遮挡或剧烈跳跃仍存在恢复局限。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@online&#123;Zhang-PlugandPlayPhysicalMotion-2024,</span><br><span class="line">  title = &#123;A Plug-and-Play Physical Motion Restoration Approach for In-the-Wild High-Difficulty Motions&#125;,</span><br><span class="line">  author = &#123;Zhang, Youliang and Li, Ronghui and Zhang, Yachao and Pan, Liang and Wang, Jingbo and Liu, Yebin and Li, Xiu&#125;,</span><br><span class="line">  date = &#123;2024-12-23&#125;,</span><br><span class="line">  eprint = &#123;2412.17377&#125;,</span><br><span class="line">  eprinttype = &#123;arXiv&#125;,</span><br><span class="line">  eprintclass = &#123;cs&#125;,</span><br><span class="line">  doi = &#123;10.48550/arXiv.2412.17377&#125;,</span><br><span class="line">  url = &#123;http://arxiv.org/abs/2412.17377&#125;,</span><br><span class="line">  pubstate = &#123;prepublished&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://zzhenyao.github.io/2025/11/24/11-06-55/" title="扩散生成与重建方法发展时间线">https://zzhenyao.github.io/2025/11/24/11-06-55/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/11/18/13-26-24/" rel="prev" title="AQA（动作质量评估）方法发展时间线">
+                  <i class="fa fa-chevron-left"></i> AQA（动作质量评估）方法发展时间线
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yao</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.4.0/mermaid.min.js","integrity":"sha256-3JloMMI/ZQx6ryuhhZTsQJQmGAkXeni6PkshX7UUO2s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"PKunicor","repo":"PKunicor.github.io","client_id":"2efe0e153686e5d9e67d","client_secret":"c84e031b6ac86ce366a6b61640a4b1a8e01d05e0","admin_user":"PKunicor","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"0acbbe66d699b9d9d010a7ee356a1c3d"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
